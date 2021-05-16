@@ -1,0 +1,263 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  
+  <title>centos部署wordpress | qwrdxer &#39;s blog</title>
+  <meta name="author" content="qwrdxer" />
+
+  
+  <meta name="description" content="1.安装apache1234sudo yum install httpd# 启动httpdsudo service httpd start
+
+浏览器输入ip访问测试页面" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <meta property="og:title" content="centos部署wordpress" />
+  <meta property="og:site_name" content="qwrdxer &#39;s blog" />
+
+  
+  
+
+  
+    <meta property="og:image" content="" />
+  
+
+  
+  <link href="/css/images/favicon.ico" rel="icon" />
+  
+
+  <link rel="alternate" href="/atom.xml" title="qwrdxer &#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">qwrdxer &#39;s blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2021-04-14T17:34:16.000Z"><a href="/2021/04/15/centos部署wordpress/">2021-04-15</a></time>
+      
+      
+  
+    <h1 class="title">centos部署wordpress</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="1-安装apache"><a href="#1-安装apache" class="headerlink" title="1.安装apache"></a>1.安装apache</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install httpd</span><br><span class="line"></span><br><span class="line"># 启动httpd</span><br><span class="line">sudo service httpd start</span><br></pre></td></tr></table></figure>
+
+<p>浏览器输入ip访问测试页面</p>
+<p><em><span id="more"></span></em> </p>
+<h3 id="2-安装mysql"><a href="#2-安装mysql" class="headerlink" title="2.安装mysql"></a>2.安装mysql</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">wget -i -c http://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm</span><br><span class="line">yum -y install mysql57-community-release-el7-10.noarch.rpm</span><br><span class="line">yum -y install mysql-community-server</span><br><span class="line"></span><br><span class="line"><span class="comment">#启动mysql</span></span><br><span class="line">systemctl start  mysqld.service</span><br><span class="line"></span><br><span class="line"><span class="comment">#获得密码</span></span><br><span class="line">grep <span class="string">&quot;password&quot;</span> /var/<span class="built_in">log</span>/mysqld.log</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用查找到的密码登录</span></span><br><span class="line">mysql -u root -p</span><br><span class="line"></span><br><span class="line"><span class="comment"># 登录成功后输入如下命令修改密码</span></span><br><span class="line">&gt; ALTER USER <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class="string">&#x27;new password&#x27;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加远程登录(可选则跳过)</span></span><br><span class="line">grant all privileges on *.* to <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified by <span class="string">&#x27;password&#x27;</span> with grant option;</span><br><span class="line">flush privileges;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-安装php-gt-5-6-20"><a href="#3-安装php-gt-5-6-20" class="headerlink" title="3.安装php(&gt;5.6.20 )"></a>3.安装php(&gt;5.6.20 )</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</span><br><span class="line">rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</span><br><span class="line">yum -y install php71w-common php71w-fpm php71w-opcache php71w-gd php71w-mysqlnd php71w-mbstring php71w-pecl-redis php71w-pecl-memcached php71w-devel mod_php71w.x86_64</span><br><span class="line">systemctl  start php-fpm</span><br><span class="line">systemctl <span class="built_in">enable</span> php-fpm</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>无法解析php文件参考这篇博客（后来知道是少安装了mod_php71w.x86_64)</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33858250/article/details/81270278">https://blog.csdn.net/qq_33858250/article/details/81270278</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/126717388">https://zhuanlan.zhihu.com/p/126717388</a></p>
+<h3 id="4-设置mysql、httpd开机自启动"><a href="#4-设置mysql、httpd开机自启动" class="headerlink" title="4. 设置mysql、httpd开机自启动"></a>4. 设置mysql、httpd开机自启动</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chkconfig httpd on</span><br><span class="line">sudo chkconfig mysqld on</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-下载安装wordpress"><a href="#5-下载安装wordpress" class="headerlink" title="5. 下载安装wordpress"></a>5. 下载安装wordpress</h3><p><a target="_blank" rel="noopener" href="https://cn.wordpress.org/">https://cn.wordpress.org/</a></p>
+<p>或者 命令 wget <a target="_blank" rel="noopener" href="https://cn.wordpress.org/latest-zh_CN.tar.gz">https://cn.wordpress.org/latest-zh_CN.tar.gz</a></p>
+<p>太慢了建议翻墙</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">#解压到指定目录</span></span><br><span class="line"> unzip wordpress-5.7-zh_CN.zip -d /var/www/html/</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> <span class="comment"># mysql中创建数据库</span></span><br><span class="line">mysql -u root -p</span><br><span class="line"> </span><br><span class="line">create database wordpress;</span><br><span class="line"><span class="comment"># 退出mysql</span></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 编辑配置文件</span></span><br><span class="line"><span class="built_in">cd</span> /var/www/html/wordpress</span><br><span class="line">cp wp-config-sample.php wp-config.php</span><br><span class="line"></span><br><span class="line">vim wp-config.php</span><br><span class="line"><span class="comment">#修改这几个字段</span></span><br><span class="line">/** MySQL数据库名：wordpress */</span><br><span class="line">define(‘DB_NAME<span class="string">&#x27;, ‘wordpress&#x27;</span>); </span><br><span class="line">/** MySQL数据库用户名 :root*/</span><br><span class="line">define(‘DB_USER<span class="string">&#x27;, ‘root&#x27;</span>); </span><br><span class="line">/** MySQL数据库密码 :password*/</span><br><span class="line">define(‘DB_PASSWORD<span class="string">&#x27;, ‘your password&#x27;</span>);</span><br><span class="line">/** MySQL主机（不用修改） */</span><br><span class="line">define(‘DB_HOST<span class="string">&#x27;, ‘localhost&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-测试安装"><a href="#6-测试安装" class="headerlink" title="6.测试安装"></a>6.测试安装</h3><p>浏览器登录即可</p>
+<h3 id="7-参考博客"><a href="#7-参考博客" class="headerlink" title="7.参考博客"></a>7.参考博客</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36582604/article/details/80526287">https://blog.csdn.net/qq_36582604/article/details/80526287</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/DarrenChan/p/6622233.html">https://www.cnblogs.com/DarrenChan/p/6622233.html</a></p>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/环境配置/">环境配置</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/环境配置/">环境配置</a>, <a href="/tags/报错解决/">报错解决</a>, <a href="/tags/linux/">linux</a>, <a href="/tags/WordPress/">WordPress</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:qwrdxer.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/web安全工具篇/">web安全工具篇</a><small>2</small></li>
+  
+    <li><a href="/categories/web安全漏洞篇/">web安全漏洞篇</a><small>2</small></li>
+  
+    <li><a href="/categories/开发工具/">开发工具</a><small>2</small></li>
+  
+    <li><a href="/categories/杂项/">杂项</a><small>1</small></li>
+  
+    <li><a href="/categories/环境配置/">环境配置</a><small>1</small></li>
+  
+    <li><a href="/categories/杂项/脚本/">脚本</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2021/05/16/sqlmap使用/">sqlmap使用</a>
+      </li>
+    
+      <li>
+        <a href="/2021/05/11/SQL注入相关/">SQL注入相关</a>
+      </li>
+    
+      <li>
+        <a href="/2021/04/21/nmap使用/">nmap使用</a>
+      </li>
+    
+      <li>
+        <a href="/2021/04/20/docker相关/">docker相关</a>
+      </li>
+    
+      <li>
+        <a href="/2021/04/19/文件包含相关/">文件包含漏洞相关</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
+    <li><a href="/tags/WordPress/">WordPress</a><small>1</small></li>
+  
+    <li><a href="/tags/bash/">bash</a><small>1</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/tags/web漏洞/">web漏洞</a><small>2</small></li>
+  
+    <li><a href="/tags/工具使用/">工具使用</a><small>4</small></li>
+  
+    <li><a href="/tags/报错解决/">报错解决</a><small>1</small></li>
+  
+    <li><a href="/tags/文件包含/">文件包含</a><small>1</small></li>
+  
+    <li><a href="/tags/渗透测试/">渗透测试</a><small>2</small></li>
+  
+    <li><a href="/tags/环境配置/">环境配置</a><small>1</small></li>
+  
+    <li><a href="/tags/脚本/">脚本</a><small>3</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/WordPress/" style="font-size: 10px;">WordPress</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/web%E6%BC%8F%E6%B4%9E/" style="font-size: 13.33px;">web漏洞</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">工具使用</a> <a href="/tags/%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3/" style="font-size: 10px;">报错解决</a> <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" style="font-size: 10px;">文件包含</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 13.33px;">渗透测试</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">环境配置</a> <a href="/tags/%E8%84%9A%E6%9C%AC/" style="font-size: 16.67px;">脚本</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <p>
+  
+  &copy; 2021 qwrdxer
+  
+  All rights reserved.</p>
+  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</div>
+<div class="clearfix"></div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id='bg'></div>
+</body>
+</html>

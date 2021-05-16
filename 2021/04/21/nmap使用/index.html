@@ -1,0 +1,334 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  
+  <title>nmap使用 | qwrdxer &#39;s blog</title>
+  <meta name="author" content="qwrdxer" />
+
+  
+  <meta name="description" content="参考资料
+https://blog.csdn.net/Jeanphorn/article/details/45419237
+nmap功能:
+主机发现功能
+端口扫描功能
+服务及版本探测
+操作系统检测
+漏洞扫描
+waf检测
+….." />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <meta property="og:title" content="nmap使用" />
+  <meta property="og:site_name" content="qwrdxer &#39;s blog" />
+
+  
+  
+
+  
+    <meta property="og:image" content="" />
+  
+
+  
+  <link href="/css/images/favicon.ico" rel="icon" />
+  
+
+  <link rel="alternate" href="/atom.xml" title="qwrdxer &#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">qwrdxer &#39;s blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2021-04-21T11:29:51.000Z"><a href="/2021/04/21/nmap使用/">2021-04-21</a></time>
+      
+      
+  
+    <h1 class="title">nmap使用</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20210421195723482.png" alt="image-20210421195723482"></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Jeanphorn/article/details/45419237">https://blog.csdn.net/Jeanphorn/article/details/45419237</a></p>
+<h2 id="nmap功能"><a href="#nmap功能" class="headerlink" title="nmap功能:"></a>nmap功能:</h2><ul>
+<li>主机发现功能</li>
+<li>端口扫描功能</li>
+<li>服务及版本探测</li>
+<li>操作系统检测</li>
+<li>漏洞扫描</li>
+<li>waf检测</li>
+<li>…..</li>
+</ul>
+<p><em><span id="more"></span></em> </p>
+<h2 id="主机发现"><a href="#主机发现" class="headerlink" title="主机发现"></a>主机发现</h2><h3 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h3><p><code>-sn </code>只进行主机发现,不进行端口扫描</p>
+<p><code>-Pn</code> 关闭主机发现</p>
+<p><code>-PR</code> 使用ARP协议进行内网主机发现</p>
+<p><code>-PE</code> 使用ICMP的Echo Ping扫描</p>
+<p><code>-PP</code> 使用ICMP的时间戳主机发现</p>
+<p><code>-PM</code> 使用ICMP地址掩码主机发现</p>
+<p><code>-PS</code> 使用TCP的 SYN包进行扫描</p>
+<p><code>-PA </code> 使用TCP的 ACK包进行扫描(响应为RST)</p>
+<p><code> -PU</code>使用UDP协议进行扫描</p>
+<p><code>-PY</code>  使用SCTP协议进行扫描(不常用,支持这种协议的主机不多)</p>
+<p><code>-PO</code> 使用IP数据包进行扫描(-PO  = -PO 1,2,4 默认使用ICMP IGMP IP-in-IP)</p>
+<p><code>-n </code>取消域名解析</p>
+<p><code>-R</code> 解析域名 (可以使用–dns-servers [server1,server2..] 指定DNS服务器)</p>
+<p><code>--data-length</code>在数据包中添加随机数据。</p>
+<h2 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h2><p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20210421195324513.png" alt="image-20210421195324513"></p>
+<p><strong>STATE列展示端口的状态</strong></p>
+<ul>
+<li><code>open</code>：如果目标端口的状态为open，这表明在该端口有应用程序接收TCP连接或者UDP报文</li>
+<li><code>closed</code>：如果目标端口的状态为closed，这里要注意closed并不意味着没有任何反应，状态为closed的端口是可访问的，这种端口可以接收Nmap探测报文并做出响应。相比较而言，没有应用程序在open上监听。</li>
+<li> <code>filtered</code>：产生这种结果的原因主要是存在目标网络数据包过滤，由于这些设备过滤了探测数据包，导致Nmap无法确定该端口是否开放。这种设备可能是路由器、防火墙甚至专门的安全软件。</li>
+<li><code>unfiltered</code>：这种结果很少见，它表明目标端口是可以访问的，但是Nmap却无法判断它到底是open还是closed的。通常只有在进行ACK扫描时才会出现这种状态。</li>
+<li><code>open | filtered</code>：无法确定端口是开放的还是被过滤了，开放的端口不响应就是一个例子。</li>
+<li> <code>closed|filtered</code>：无法确定端口是关闭的还是被过滤了。只有在使用idle扫描时才会发生这种情况</li>
+</ul>
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p><code>-p [port] </code>指定端口 格式为[a-b] / [a,b,c,d]</p>
+<p><code>-F </code>指定 100 个常用的端口</p>
+<p><code>-p U:[port],P:[port] </code>使用协议指定扫描端口</p>
+<p><code>-p *</code> 扫描所有端口</p>
+<p><code>--top-ports</code> 常见端口扫描</p>
+<p>对目标192.168.153.131的53端口进行UDP扫描，25端口进行TCP扫描，命令如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sU -sT -p U:53,T:80,22 102.111.111.33</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>TCP扫描</strong></p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20210421200030004.png" alt="image-20210421200030004"></p>
+<p><code>-sT </code>进行完整的TCP三次握手</p>
+<p><code>-sS </code>发送syn数据包进行端口扫描 </p>
+<p><code>-sF </code>发送一个FIN数据包 , 若没关闭,会响应一个RST标志</p>
+<p><code>-sN </code>NULL扫描 按照RFC793的规定，对于所有关闭的端口，目标系统应该返回RST标志。</p>
+<p><code>-sX </code>向目标端口发送一个含有FIN、URG和PUSH标志的数据包。按照RFC 793的规定，对于所有关闭的端口，目标系统应该返回RST标志</p>
+<p><strong>UDP扫描</strong></p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20210421200322812.png" alt="image-20210421200322812"></p>
+<p><code>-sU</code> 发送UDP数据包进行扫描</p>
+<p><strong>IDLE扫描(空闲扫描)</strong></p>
+<p>nmap  <code>-sI</code> 僵尸主机IP 目标主机IP</p>
+<p>原理介绍: </p>
+<pre><code>1. 首先向僵尸主机发送SYN/ACK数据包,获取僵尸主机的 RST数据包ID (假设值为`a`)
+2. 发送带有僵尸主机IP的伪地址SYN数据包给目标主机
+3. 如果目标端口不开放,会响应一个RST包,如果目标端口开放，目标主机向僵尸主机响应SYN/ACK报文，僵尸主机发现这个非法连接响应，并向目标主机发送RST报文(`a+1`)，此时IPID号开始增长。
+4. 向僵尸主机发送另一个SYN/ACK报文并检查僵尸主机RST报文中的IPID是否为`a+2`，若是则开放，若为`a+1`则未开放
+</code></pre>
+<h2 id="操作系统与服务检测"><a href="#操作系统与服务检测" class="headerlink" title="操作系统与服务检测"></a>操作系统与服务检测</h2><h3 id="操作系统探测"><a href="#操作系统探测" class="headerlink" title="操作系统探测"></a>操作系统探测</h3><p><strong>通过向目标发送探针，然后根据目标的回应来猜测系统。</strong></p>
+<p>这个探针大都是以TCP和UDP数据包的形式，检查的细节包括初始序列号（ISN）、TCO选项、IP标识符（ID）数字时间戳、显示拥塞通知（ECN）、窗口大小等。每个操作系统对于这些探针都会做出不同的响应，这些工具提取出这些响应中的特征，然后记录在一个数据库中。</p>
+<p>Nmap进行识别的探针和响应对应的关系保存在<code>Nmap-os-db</code>文件中。</p>
+<p>Nmap会尝试验证如下参数。</p>
+<ul>
+<li>供应商的名字：操作系统的供应商的名字，比如微软或者SUN。▯ 操作系统：操作系统的名字，比如Windows、Mac OS X、Linux等。</li>
+<li>操作系统的版本：比如Windows XP、Windows 2000、Windows2003、Windows 2008等。 </li>
+<li>当前设备的类型：比如通用计算机、打印服务器、媒体播放器、路由器、WAP或者电力装置等。</li>
+</ul>
+<p>除了这些参数以外，操作系统检测还提供了关于系统运行时间和TCP序列可预测性信息的分类</p>
+<p>在命令行中使用-O参数通过端口扫描来完成对操作系统的扫描</p>
+<p><code>--osscan-limit </code>只对满足”至少分别有一个状态为open和closed的端口” 条件的主机进行操作系统探测</p>
+<p><code>--osscan-guss</code> 猜测最接近目标的操作系统</p>
+<p><code>--max-retries</code> 对操作系统尝试的次数,默认为5</p>
+<h3 id="端口服务探测"><a href="#端口服务探测" class="headerlink" title="端口服务探测"></a>端口服务探测</h3><p><code>-sV </code>进行服务和版本检测</p>
+<p><code>-A </code>同时打开操作系统和版本探测</p>
+<h2 id="其他参数"><a href="#其他参数" class="headerlink" title="其他参数"></a>其他参数</h2><p><code>-f </code>使用-f选项可以对Nmap发送的探测数据包进行分段。这样将原来的数据包分成几个部分，目标网络的防御机制例如包过滤、防火墙等在对这些数据包进行检测的时候就会变得更加困难。另外必须谨慎使用这个选项，一些老旧的系统在处理分段的包时经常会出现死机的情况。</p>
+<p> <code>-mtu</code>（使用指定的MTU）</p>
+<p><code> -D &lt;decoy1 [, decoy2][, ME], ...&gt;</code> 指定源IP，进行伪装</p>
+<p><code>-oN xxx.txt 192.168.1.1</code> 扫描结果保存为txt文件</p>
+<p><code>-oX xxx.xml 192.168.1.1</code> 扫描结果保存为xml文件</p>
+<p><code>-oG xxx.xml 192.168.1.1</code> 扫描结果保存为grep文件</p>
+<p><code>-sC</code>利用default（默认）分类中所有脚本对目标进行检测。这个分类中的脚本一般不会对目标系统造成任何危害。但是有些脚本可能会引起目标系统上的安全防御措施的警报。普通的用户权限并不能发送原始套接字，这样将会导致扫描的过程变得很慢。而root权限的用户在使用Nmap时，默认的扫描方式就是SYN扫描。</p>
+<p><code>--script </code> 使用指定的脚本对目标进行扫描</p>
+<p><code>--script-args</code> 指定脚本的参数</p>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/web安全工具篇/">web安全工具篇</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/工具使用/">工具使用</a>, <a href="/tags/渗透测试/">渗透测试</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:qwrdxer.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/web安全工具篇/">web安全工具篇</a><small>2</small></li>
+  
+    <li><a href="/categories/web安全漏洞篇/">web安全漏洞篇</a><small>2</small></li>
+  
+    <li><a href="/categories/开发工具/">开发工具</a><small>2</small></li>
+  
+    <li><a href="/categories/杂项/">杂项</a><small>1</small></li>
+  
+    <li><a href="/categories/环境配置/">环境配置</a><small>1</small></li>
+  
+    <li><a href="/categories/杂项/脚本/">脚本</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2021/05/16/sqlmap使用/">sqlmap使用</a>
+      </li>
+    
+      <li>
+        <a href="/2021/05/11/SQL注入相关/">SQL注入相关</a>
+      </li>
+    
+      <li>
+        <a href="/2021/04/21/nmap使用/">nmap使用</a>
+      </li>
+    
+      <li>
+        <a href="/2021/04/20/docker相关/">docker相关</a>
+      </li>
+    
+      <li>
+        <a href="/2021/04/19/文件包含相关/">文件包含漏洞相关</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
+    <li><a href="/tags/WordPress/">WordPress</a><small>1</small></li>
+  
+    <li><a href="/tags/bash/">bash</a><small>1</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/tags/web漏洞/">web漏洞</a><small>2</small></li>
+  
+    <li><a href="/tags/工具使用/">工具使用</a><small>4</small></li>
+  
+    <li><a href="/tags/报错解决/">报错解决</a><small>1</small></li>
+  
+    <li><a href="/tags/文件包含/">文件包含</a><small>1</small></li>
+  
+    <li><a href="/tags/渗透测试/">渗透测试</a><small>2</small></li>
+  
+    <li><a href="/tags/环境配置/">环境配置</a><small>1</small></li>
+  
+    <li><a href="/tags/脚本/">脚本</a><small>3</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/WordPress/" style="font-size: 10px;">WordPress</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/web%E6%BC%8F%E6%B4%9E/" style="font-size: 13.33px;">web漏洞</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">工具使用</a> <a href="/tags/%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3/" style="font-size: 10px;">报错解决</a> <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" style="font-size: 10px;">文件包含</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 13.33px;">渗透测试</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">环境配置</a> <a href="/tags/%E8%84%9A%E6%9C%AC/" style="font-size: 16.67px;">脚本</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <p>
+  
+  &copy; 2021 qwrdxer
+  
+  All rights reserved.</p>
+  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</div>
+<div class="clearfix"></div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id='bg'></div>
+</body>
+</html>

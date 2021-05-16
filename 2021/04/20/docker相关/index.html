@@ -261,7 +261,7 @@
 <p>将Docker的3443端口映射到物理机的 13443端口</p>
 <p>docker run -it -d -p 13443:3443 secfa/docker-awvs</p>
 <p>容器的相关信息</p>
-<p>awvs13 username: <a href="mailto:&#97;&#100;&#x6d;&#x69;&#110;&#64;&#x61;&#100;&#109;&#105;&#110;&#46;&#99;&#111;&#x6d;">&#97;&#100;&#x6d;&#x69;&#110;&#64;&#x61;&#100;&#109;&#105;&#110;&#46;&#99;&#111;&#x6d;</a><br>awvs13 password: Admin123<br>AWVS版本：13.0.200217097</p>
+<p>awvs13 username: <a href="mailto:&#97;&#x64;&#109;&#x69;&#110;&#x40;&#97;&#100;&#109;&#105;&#x6e;&#46;&#x63;&#x6f;&#x6d;">&#97;&#x64;&#109;&#x69;&#110;&#x40;&#97;&#100;&#109;&#105;&#x6e;&#46;&#x63;&#x6f;&#x6d;</a><br>awvs13 password: Admin123<br>AWVS版本：13.0.200217097</p>
 <p><strong>wordpress</strong></p>
 <p>docker run -d –privileged=true –name OLDMysql -v /data/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -p 33306:3306 mysql:5.6</p>
 <p>docker run -d –name OLDwp -e WORDPRESS_DB_HOST=mysql -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=123456 -e WORDPRESS_DB_NAME=myword -p 1080:80 –link OLDMysql:mysql wordpress</p>

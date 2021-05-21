@@ -168,6 +168,7 @@ waf检测
 <p><code>-oN xxx.txt 192.168.1.1</code> 扫描结果保存为txt文件</p>
 <p><code>-oX xxx.xml 192.168.1.1</code> 扫描结果保存为xml文件</p>
 <p><code>-oG xxx.xml 192.168.1.1</code> 扫描结果保存为grep文件</p>
+<p><code>-iL</code> 从指定文件 中获得目标</p>
 <p><code>-sC</code>利用default（默认）分类中所有脚本对目标进行检测。这个分类中的脚本一般不会对目标系统造成任何危害。但是有些脚本可能会引起目标系统上的安全防御措施的警报。普通的用户权限并不能发送原始套接字，这样将会导致扫描的过程变得很慢。而root权限的用户在使用Nmap时，默认的扫描方式就是SYN扫描。</p>
 <p><code>--script </code> 使用指定的脚本对目标进行扫描</p>
 <p><code>--script-args</code> 指定脚本的参数</p>

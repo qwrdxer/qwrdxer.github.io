@@ -165,7 +165,7 @@ https://www.bugbank.cn/q/article/58afc3c06ef394d12a8a4379.html" />
 <li>LEFT(s，n) 函数返回字符串 s 最左边的 n 个字符。</li>
 <li>RIGHT(s，n)返回字符串 s 最右边边的 n 个字符。</li>
 <li>TRIM( )    删除字符串左右两侧的空格</li>
-<li>SUBSTRING(s，n，len) ，从字符串 s 返回一个长度同 len 字符相同的子字符串，起始于位置 n。</li>
+<li>SUBSTR(s，n，len) ，从字符串 s 返回一个长度同 len 字符相同的子字符串，起始于位置 n。</li>
 </ul>
 <hr>
 <p><strong>其他函数</strong></p>
@@ -303,9 +303,40 @@ https://www.bugbank.cn/q/article/58afc3c06ef394d12a8a4379.html" />
 <p>在正常应用中出现的可能性较低。</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45146120/article/details/101037211">https://blog.csdn.net/weixin_45146120/article/details/101037211</a></p>
 <hr>
-<h3 id="3-无回显注入"><a href="#3-无回显注入" class="headerlink" title="3. 无回显注入"></a>3. 无回显注入</h3><p><strong>基于延时注入</strong></p>
+<h3 id="3-无回显注入"><a href="#3-无回显注入" class="headerlink" title="3. 无回显注入"></a>3. 无回显注入</h3><blockquote>
+<p>有的时候,服务器端并不会返回查询结果给客户端,这时候就不能直接通过SQL注入获取信息,</p>
+<p>可以考虑通过条件语句判断，根据服务器返回情况进行数据猜解。</p>
+<p>这种注入需要逐个字符地猜解,因此速度较慢。</p>
+</blockquote>
 <p><strong>基于布尔注入</strong></p>
-<h3 id="4-二次注入"><a href="#4-二次注入" class="headerlink" title="4. 二次注入"></a>4. 二次注入</h3><h3 id="5-其他注入"><a href="#5-其他注入" class="headerlink" title="5. 其他注入"></a>5. 其他注入</h3><h2 id="防御SQL注入"><a href="#防御SQL注入" class="headerlink" title="防御SQL注入"></a>防御SQL注入</h2><h3 id="1-过滤敏感参数"><a href="#1-过滤敏感参数" class="headerlink" title="1. 过滤敏感参数"></a>1. 过滤敏感参数</h3><h3 id="2-使用参数化查询"><a href="#2-使用参数化查询" class="headerlink" title="2. 使用参数化查询"></a>2. 使用参数化查询</h3><h2 id="WAF绕过"><a href="#WAF绕过" class="headerlink" title="WAF绕过"></a>WAF绕过</h2><h2 id="其他补充"><a href="#其他补充" class="headerlink" title="其他补充"></a>其他补充</h2><p>在dvwa low测试中</p>
+<p>Bool盲注通常是由于开发者将报错信息屏蔽而导致的，但是网页中真和假有着不同的回显，比如为真时返回access,为假时返回false;或者为真时返回正常页面，为假时跳转到错误页面等。</p>
+<p>构造Payload的思路: </p>
+<ol>
+<li>要获取的目标数据的语句. 如<code>select password from user limit 1</code> ， 又或是函数 <code>user()</code>;</li>
+<li>截取其中的字符, 使用 <code>substr</code> ， <code>left</code> , <code>right</code> 等函数, 如 <code>substr(user(),1,1)</code>;</li>
+<li>进一步处理截取结果: 为了编写脚本方便. 可以将截取结果转换为16进制或ASCLL码对应的数字值,如<code>ascii(substr(user(),1,1))</code></li>
+<li>比较字符  <code>if(ascii(substr(user(),1,1))=96,1,0)</code> 相等则为true 不相等为false</li>
+<li>拼接payload <code>1&#39; and if(ascii(substr(user(),1,1))=96,1,0) -- </code><br><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20210520155335091.png" alt="image-20210520155335091"></li>
+<li>在脚本中最好使用二分法猜解字符</li>
+</ol>
+<p><strong>基于延时注入</strong></p>
+<p>有时候SQL注入不仅没有回显,服务器也不会根据条件返回不同的页面，这时候考虑延时注入。</p>
+<p>延时注入可以使用sleep或者benchmark等函数</p>
+<p>他们的使用类似布尔注入，只需将IF中的返回结果替换即可</p>
+<p>如</p>
+<p><code>1&#39; and if(ascii(substr(user(),1,1))=97,sleep(4),0) -- </code></p>
+<h3 id="4-二次注入"><a href="#4-二次注入" class="headerlink" title="4. 二次注入"></a>4. 二次注入</h3><p>二次注入是通过与数据库服务器进行交互的过程再次进行注入</p>
+<p>如已知管理员用户为admin</p>
+<p>修改密码的SQL语句为 <code>update users set password=&#39;__ &#39; where username =&#39;__ &#39;and password=&#39;__ &#39;;</code></p>
+<p>注册账号 admin’ – -  密码123456</p>
+<p>登录该账号，修改密码 为1111</p>
+<p>提交修改密码执行的语句为 <code>update users set password=&#39;1111&#39; where username =&#39;admin&#39; -- - and password=&#39;123456&#39;;</code></p>
+<p>因为注释的原因实际执行的语句为 <code> update users set password=&#39;1111&#39; where username =&#39;admin&#39;</code></p>
+<h3 id="5-通过SQL注入读写文件"><a href="#5-通过SQL注入读写文件" class="headerlink" title="5. 通过SQL注入读写文件"></a>5. 通过SQL注入读写文件</h3><p><strong>读文件Payload</strong></p>
+<p><code>1&#39; union select 1,load_file(&quot;/etc/passwd&quot;) -- </code></p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20210520163309519.png" alt="image-20210520163309519"></p>
+<p><strong>写文件Payload</strong></p>
+<h2 id="防御SQL注入"><a href="#防御SQL注入" class="headerlink" title="防御SQL注入"></a>防御SQL注入</h2><h3 id="1-过滤敏感参数"><a href="#1-过滤敏感参数" class="headerlink" title="1. 过滤敏感参数"></a>1. 过滤敏感参数</h3><h3 id="2-使用参数化查询"><a href="#2-使用参数化查询" class="headerlink" title="2. 使用参数化查询"></a>2. 使用参数化查询</h3><h2 id="WAF绕过"><a href="#WAF绕过" class="headerlink" title="WAF绕过"></a>WAF绕过</h2><h3 id="1-过滤关键字"><a href="#1-过滤关键字" class="headerlink" title="1. 过滤关键字"></a>1. 过滤关键字</h3><h2 id="其他补充"><a href="#其他补充" class="headerlink" title="其他补充"></a>其他补充</h2><h3 id="1-关于字段类型"><a href="#1-关于字段类型" class="headerlink" title="1.关于字段类型"></a>1.关于字段类型</h3><p>在dvwa low测试中</p>
 <p>输入 1 和 1+字符串(如1a , 1aaaaaa) 返回结果相同</p>
 <p>而查询语句为</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT first_name, last_name FROM users WHERE user_id &#x3D; &#39;1&#39;;</span><br><span class="line">SELECT first_name, last_name FROM users WHERE user_id &#x3D; &#39;1a&#39;;</span><br><span class="line">SELECT first_name, last_name FROM users WHERE user_id &#x3D; &#39;1aaaaaaa&#39;;</span><br></pre></td></tr></table></figure>

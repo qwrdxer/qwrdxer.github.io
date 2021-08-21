@@ -258,8 +258,11 @@
 <p><strong>dvwa</strong></p>
 <p>Pull image: docker pull citizenstig/dvwa</p>
 <p>sudo docker run -d -p 6666:80 -p 3307:3306 -e MYSQL_PASS=”123456” citizenstig/dvwa</p>
-<p><strong>awvs</strong></p>
+<p><strong>awvs1</strong>3</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">pull 拉取下载镜像</span><br><span class="line"></span><br><span class="line">docker pull secfa/docker-awvs</span><br><span class="line"></span><br><span class="line">将Docker的3443端口映射到物理机的 13443端口</span><br><span class="line"></span><br><span class="line">docker run -it -d -p 13443:3443 secfa/docker-awvs</span><br><span class="line"></span><br><span class="line">容器的相关信息</span><br><span class="line"></span><br><span class="line">awvs13 username: admin@admin.com</span><br><span class="line">awvs13 password: Admin123</span><br><span class="line">AWVS版本：13.0.200217097</span><br></pre></td></tr></table></figure>
+
+<p><strong>awvs14</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">awvs14 docker</span></span><br><span class="line">docker run -it -d --name awvs -p 3443:3443 xrsec/awvs:v14</span><br><span class="line">ip:3443</span><br><span class="line">awvs@awvs.com</span><br><span class="line">Awvs@awvs.com</span><br></pre></td></tr></table></figure>
 
 
 
@@ -322,7 +325,7 @@
   
     <li><a href="/categories/web安全漏洞篇/">web安全漏洞篇</a><small>2</small></li>
   
-    <li><a href="/categories/开发工具/">开发工具</a><small>2</small></li>
+    <li><a href="/categories/开发工具/">开发工具</a><small>3</small></li>
   
     <li><a href="/categories/杂项/">杂项</a><small>1</small></li>
   
@@ -342,6 +345,10 @@
   <ul class="entry">
     
       <li>
+        <a href="/2021/08/15/Shell脚本学习笔记/">Shell脚本学习笔记</a>
+      </li>
+    
+      <li>
         <a href="/2021/07/25/信息收集/">信息收集</a>
       </li>
     
@@ -357,10 +364,6 @@
         <a href="/2021/04/21/nmap使用/">nmap使用</a>
       </li>
     
-      <li>
-        <a href="/2021/04/20/docker相关/">docker相关</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -374,17 +377,21 @@
   
     <li><a href="/tags/WordPress/">WordPress</a><small>1</small></li>
   
-    <li><a href="/tags/bash/">bash</a><small>1</small></li>
+    <li><a href="/tags/bash/">bash</a><small>2</small></li>
   
     <li><a href="/tags/docker/">docker</a><small>1</small></li>
   
-    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+    <li><a href="/tags/linux/">linux</a><small>2</small></li>
   
     <li><a href="/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
   
     <li><a href="/tags/web漏洞/">web漏洞</a><small>2</small></li>
   
     <li><a href="/tags/工具使用/">工具使用</a><small>5</small></li>
+  
+    <li><a href="/tags/开发/">开发</a><small>1</small></li>
   
     <li><a href="/tags/报错解决/">报错解决</a><small>1</small></li>
   
@@ -394,7 +401,7 @@
   
     <li><a href="/tags/环境配置/">环境配置</a><small>1</small></li>
   
-    <li><a href="/tags/脚本/">脚本</a><small>3</small></li>
+    <li><a href="/tags/脚本/">脚本</a><small>4</small></li>
   
   </ul>
 </div>
@@ -404,7 +411,7 @@
 <div class="widget tagcloud">
   <h3 class="title">Tag Cloud</h3>
   <div class="entry">
-    <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/WordPress/" style="font-size: 10px;">WordPress</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/web%E6%BC%8F%E6%B4%9E/" style="font-size: 13.33px;">web漏洞</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">工具使用</a> <a href="/tags/%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3/" style="font-size: 10px;">报错解决</a> <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" style="font-size: 10px;">文件包含</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 16.67px;">渗透测试</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">环境配置</a> <a href="/tags/%E8%84%9A%E6%9C%AC/" style="font-size: 16.67px;">脚本</a>
+    <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/WordPress/" style="font-size: 10px;">WordPress</a> <a href="/tags/bash/" style="font-size: 12.5px;">bash</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/linux/" style="font-size: 12.5px;">linux</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/web%E6%BC%8F%E6%B4%9E/" style="font-size: 12.5px;">web漏洞</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">工具使用</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 10px;">开发</a> <a href="/tags/%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3/" style="font-size: 10px;">报错解决</a> <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" style="font-size: 10px;">文件包含</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">渗透测试</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">环境配置</a> <a href="/tags/%E8%84%9A%E6%9C%AC/" style="font-size: 17.5px;">脚本</a>
   </div>
 </div>
 

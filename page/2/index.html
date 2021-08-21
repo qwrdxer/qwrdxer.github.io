@@ -3,26 +3,16 @@
 <head>
   <meta charset="utf-8" />
   
-  <title>some script | qwrdxer &#39;s blog</title>
+  <title>Page 2 | qwrdxer &#39;s blog</title>
   <meta name="author" content="qwrdxer" />
 
-  
-  <meta name="description" content="记录一些有用的小工具使用Python在当前文件下开启HTTP服务Python &amp;lt;= 2.3
-python -c “import SimpleHTTPServer as s; s.test();” 8000
-Python &amp;gt;= 2.4
-python -m SimpleHTTPServer 8000
-Python 3.x
-python3 -m http.server 8000
- python -m SimpleHTTPServer
-使用python开启ftp
- python3 -m pyftpdlib -p 21" />
   
 
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-  <meta property="og:title" content="some script" />
+  
   <meta property="og:site_name" content="qwrdxer &#39;s blog" />
 
   
@@ -65,47 +55,35 @@ python3 -m http.server 8000
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
   
   <div class="post-content">
     <header>
       
         <div class="icon"></div>
-        <time datetime="2021-04-15T03:23:33.000Z"><a href="/2021/04/15/some-script/">2021-04-15</a></time>
+        <time datetime="2021-04-14T17:34:16.000Z"><a href="/2021/04/15/centos部署wordpress/">2021-04-15</a></time>
       
       
   
-    <h1 class="title">some script</h1>
+    <h1 class="title"><a href="/2021/04/15/centos部署wordpress/">centos部署wordpress</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h2 id="记录一些有用的小工具"><a href="#记录一些有用的小工具" class="headerlink" title="记录一些有用的小工具"></a>记录一些有用的小工具</h2><h3 id="使用Python在当前文件下开启HTTP服务"><a href="#使用Python在当前文件下开启HTTP服务" class="headerlink" title="使用Python在当前文件下开启HTTP服务"></a>使用Python在当前文件下开启HTTP服务</h3><p>Python &lt;= 2.3</p>
-<p>python -c “import SimpleHTTPServer as s; s.test();” 8000</p>
-<p>Python &gt;= 2.4</p>
-<p>python -m SimpleHTTPServer 8000</p>
-<p>Python 3.x</p>
-<p>python3 -m http.server 8000</p>
-<p> python -m SimpleHTTPServer</p>
-<p>使用python开启ftp</p>
-<p> python3 -m pyftpdlib -p 21</p>
-<p><em><span id="more"></span></em> </p>
-<h3 id="分屏-在各大ssh连接中十分有用"><a href="#分屏-在各大ssh连接中十分有用" class="headerlink" title="分屏(在各大ssh连接中十分有用)"></a>分屏(在各大ssh连接中十分有用)</h3><p>screen -S name 创建一个id为name的shellTerminal</p>
-<p>screen -ls 列出所有Terminal</p>
-<p>screen -r name 进入某个Terminal</p>
-<h3 id="Snap安装"><a href="#Snap安装" class="headerlink" title="Snap安装"></a>Snap安装</h3><p>apt install snapd</p>
-<p>systemctl enable –now snapd apparmor</p>
-<p>snap install qv2ray</p>
-<h3 id="从一堆http链接中提取子域名"><a href="#从一堆http链接中提取子域名" class="headerlink" title="从一堆http链接中提取子域名"></a>从一堆http链接中提取子域名</h3><p>cat file | grep -v “http” &gt;&gt; outputurl</p>
-<p>cat file | grep “http” &gt;&gt; output2url</p>
-<p>cat output2url | awk -F “/“ ‘{print $3}’ &gt; ouputurl</p>
-<h3 id="一键安装docker"><a href="#一键安装docker" class="headerlink" title="一键安装docker"></a>一键安装docker</h3><p>curl -fsSL <a target="_blank" rel="noopener" href="https://get.docker.com/">https://get.docker.com</a> | bash -s docker –mirror Aliyun</p>
-<p>也可以使用国内 daocloud 一键安装命令：</p>
-<p>curl -sSL <a target="_blank" rel="noopener" href="https://get.daocloud.io/docker">https://get.daocloud.io/docker</a> | sh</p>
+        <h3 id="1-安装apache"><a href="#1-安装apache" class="headerlink" title="1.安装apache"></a>1.安装apache</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install httpd</span><br><span class="line"></span><br><span class="line"># 启动httpd</span><br><span class="line">sudo service httpd start</span><br></pre></td></tr></table></figure>
 
+<p>浏览器输入ip访问测试页面</p>
+<p><em>
       
     </div>
+    
+    <footer>
+      <div class="alignleft">
+        <a href="/2021/04/15/centos部署wordpress/#more" class="more-link">More</a>
+      </div>
+    </footer>
     
     <footer>
         <div class="alignright">
@@ -115,13 +93,13 @@ python3 -m http.server 8000
         
   
   <div class="categories">
-    <a href="/categories/杂项/">杂项</a>, <a href="/categories/杂项/脚本/">脚本</a>
+    <a href="/categories/环境配置/">环境配置</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/脚本/">脚本</a>, <a href="/tags/python/">python</a>, <a href="/tags/bash/">bash</a>
+    <a href="/tags/环境配置/">环境配置</a>, <a href="/tags/报错解决/">报错解决</a>, <a href="/tags/linux/">linux</a>, <a href="/tags/WordPress/">WordPress</a>
   </div>
 
         <!-- partial('post/share') -->
@@ -132,6 +110,16 @@ python3 -m http.server 8000
 
 
 
+
+
+
+<nav id="pagination">
+  
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+</nav>
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">

@@ -94,8 +94,6 @@ https://www.cnblogs.com/bonelee/p/14292794.html" />
 <p>比如下列代码也可能造成恶意文件包含</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> file_get_contents(substr(strstr(<span class="variable">$_SERVER</span>[<span class="string">&#x27;QUERY_STRING&#x27;</span>], <span class="string">&#x27;url=&#x27;</span>), <span class="number">4</span>));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
-
-
 <p>在渗透测试过程中，可以尝试通过伪协议的方式读取本文件的源代码</p>
 <p>php://filter/convert.base64-encode/resource=filename</p>
 <p>如</p>
@@ -294,7 +292,7 @@ https://www.cnblogs.com/bonelee/p/14292794.html" />
   <footer id="footer" class="inner"><div class="alignleft">
   <p>
   
-  &copy; 2021 qwrdxer
+  &copy; 2022 qwrdxer
   
   All rights reserved.</p>
   <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>

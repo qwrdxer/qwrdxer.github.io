@@ -113,10 +113,10 @@ waf检测
 <ul>
 <li><code>open</code>：如果目标端口的状态为open，这表明在该端口有应用程序接收TCP连接或者UDP报文</li>
 <li><code>closed</code>：如果目标端口的状态为closed，这里要注意closed并不意味着没有任何反应，状态为closed的端口是可访问的，这种端口可以接收Nmap探测报文并做出响应。相比较而言，没有应用程序在open上监听。</li>
-<li> <code>filtered</code>：产生这种结果的原因主要是存在目标网络数据包过滤，由于这些设备过滤了探测数据包，导致Nmap无法确定该端口是否开放。这种设备可能是路由器、防火墙甚至专门的安全软件。</li>
+<li><code>filtered</code>：产生这种结果的原因主要是存在目标网络数据包过滤，由于这些设备过滤了探测数据包，导致Nmap无法确定该端口是否开放。这种设备可能是路由器、防火墙甚至专门的安全软件。</li>
 <li><code>unfiltered</code>：这种结果很少见，它表明目标端口是可以访问的，但是Nmap却无法判断它到底是open还是closed的。通常只有在进行ACK扫描时才会出现这种状态。</li>
 <li><code>open | filtered</code>：无法确定端口是开放的还是被过滤了，开放的端口不响应就是一个例子。</li>
-<li> <code>closed|filtered</code>：无法确定端口是关闭的还是被过滤了。只有在使用idle扫描时才会发生这种情况</li>
+<li><code>closed|filtered</code>：无法确定端口是关闭的还是被过滤了。只有在使用idle扫描时才会发生这种情况</li>
 </ul>
 <h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p><code>-p [port] </code>指定端口 格式为[a-b] / [a,b,c,d]</p>
 <p><code>-F </code>指定 100 个常用的端口</p>
@@ -125,8 +125,6 @@ waf检测
 <p><code>--top-ports</code> 常见端口扫描</p>
 <p>对目标192.168.153.131的53端口进行UDP扫描，25端口进行TCP扫描，命令如下。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sU -sT -p U:53,T:80,22 102.111.111.33</span><br></pre></td></tr></table></figure>
-
-
 
 <p><strong>TCP扫描</strong></p>
 <p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20210421200030004.png" alt="image-20210421200030004"></p>
@@ -315,7 +313,7 @@ waf检测
   <footer id="footer" class="inner"><div class="alignleft">
   <p>
   
-  &copy; 2021 qwrdxer
+  &copy; 2022 qwrdxer
   
   All rights reserved.</p>
   <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>

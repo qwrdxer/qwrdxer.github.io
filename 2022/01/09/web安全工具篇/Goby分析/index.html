@@ -7,7 +7,14 @@
   <meta name="author" content="qwrdxer" />
 
   
-  <meta name="description" content="" />
+  <meta name="description" content="Wireshark抓包
+tcp.port==xxxx and ip.addr==127.0.0.1
+ 
+启动goby
+​                               
+Goby.exe为前端程序(electron)
+Goby-cmd.exe为后端程序（go）绑定端口为8361，提供http服务、漏洞扫描服务
+一开始为前端与后端建立http连接,随后切换为websocket进行通信， 前两次绑定失败，应该是后端服务在启动，最后绑定32441端口 ，该端口向前端发送具体的扫描结果，如开放端口信息、指纹、漏洞等" />
   
 
   
@@ -73,8 +80,7 @@
     </header>
     <div class="entry">
       
-        <p><em><span id="more"></span></em> </p>
-<p>Wireshark抓包</p>
+        <p>Wireshark抓包</p>
 <p>tcp.port==xxxx and ip.addr==127.0.0.1</p>
 <p> <img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220109133714265.png" alt="image-20220109133714265"></p>
 <p>启动goby</p>
@@ -82,6 +88,7 @@
 <p>Goby.exe为前端程序(electron)</p>
 <p>Goby-cmd.exe为后端程序（go）绑定端口为8361，提供http服务、漏洞扫描服务</p>
 <p>一开始为前端与后端建立http连接,随后切换为websocket进行通信， 前两次绑定失败，应该是后端服务在启动，最后绑定32441端口 ，该端口向前端发送具体的扫描结果，如开放端口信息、指纹、漏洞等</p>
+<p> <em><span id="more"></span></em> </p>
 <p> <img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220109133729548.png" alt="image-20220109133729548"></p>
 <p>获取环境变量</p>
 <p> <img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220109133734228.png" alt="image-20220109133734228"></p>
@@ -161,11 +168,11 @@
   
     <li><a href="/categories/日志/">日志</a><small>1</small></li>
   
-    <li><a href="/categories/杂项/">杂项</a><small>1</small></li>
-  
     <li><a href="/categories/渗透测试篇/">渗透测试篇</a><small>1</small></li>
   
     <li><a href="/categories/环境配置/">环境配置</a><small>1</small></li>
+  
+    <li><a href="/categories/脚本/">脚本</a><small>1</small></li>
   
   </ul>
 </div>

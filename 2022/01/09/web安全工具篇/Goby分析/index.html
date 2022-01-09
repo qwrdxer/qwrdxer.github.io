@@ -3,16 +3,18 @@
 <head>
   <meta charset="utf-8" />
   
-  <title>docker | qwrdxer &#39;s blog</title>
+  <title>Goby分析 | qwrdxer &#39;s blog</title>
   <meta name="author" content="qwrdxer" />
 
+  
+  <meta name="description" content="" />
   
 
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-  
+  <meta property="og:title" content="Goby分析" />
   <meta property="og:site_name" content="qwrdxer &#39;s blog" />
 
   
@@ -55,25 +57,83 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title tag">docker</h2>
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2022-01-09T05:35:49.000Z"><a href="/2022/01/09/web安全工具篇/Goby分析/">2022-01-09</a></time>
+      
+      
+  
+    <h1 class="title">Goby分析</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><em><span id="more"></span></em> </p>
+<p>Wireshark抓包</p>
+<p>tcp.port==xxxx and ip.addr==127.0.0.1</p>
+<p> <img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220109133714265.png" alt="image-20220109133714265"></p>
+<p>启动goby</p>
+<p>​                               </p>
+<p>Goby.exe为前端程序(electron)</p>
+<p>Goby-cmd.exe为后端程序（go）绑定端口为8361，提供http服务、漏洞扫描服务</p>
+<p>一开始为前端与后端建立http连接,随后切换为websocket进行通信， 前两次绑定失败，应该是后端服务在启动，最后绑定32441端口 ，该端口向前端发送具体的扫描结果，如开放端口信息、指纹、漏洞等</p>
+<p> <img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220109133729548.png" alt="image-20220109133729548"></p>
+<p>获取环境变量</p>
+<p> <img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220109133734228.png" alt="image-20220109133734228"></p>
+<p>获取执行完毕的任务</p>
+<p> <img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220109133738043.png" alt="image-20220109133738043"></p>
+<p>获取poc列表</p>
+<p> <img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220109133741853.png" alt="image-20220109133741853"></p>
+<p>开启一个扫描任务后，继续分析</p>
+<p>点击开启后，前端post请求/api/v1/startscan/ 到后端进行扫描 ，原端口为18731</p>
+<p> <img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220109133749036.png" alt="image-20220109133749036"></p>
+<p>这次请求只用来提交任务，提交完毕后就连接关闭了</p>
+<p> <img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220109133752820.png" alt="image-20220109133752820"></p>
+<p>火绒剑，马赛克部分为扫描目标，不作考虑</p>
+<p> <img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220109133756569.png" alt="image-20220109133756569"></p>
+<p>32441端口，用于后端向前端传递目标端口协议、指纹信息。</p>
+<p> <img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220109133800195.png" alt="image-20220109133800195"></p>
+<p>对应于前端的这两块部分</p>
+<p> <img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220109133803737.png" alt="image-20220109133803737"></p>
+<p> <img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220109133809157.png" alt="image-20220109133809157"></p>
+<p>前端一开始会不断调用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/api/v1/getProgress </span><br><span class="line"></span><br><span class="line">/api/v1/getStatisticsData </span><br></pre></td></tr></table></figure>
 
 
-  <div class="archive">
+
+<p>这两个接口，getsatisticData获取 指纹、ico图标等扫描结果信息</p>
+<p>Getprogress用来判断这个任务是否完成</p>
+<p> <img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220109133826156.png" alt="image-20220109133826156"></p>
+<p>其中progress的值对应前端的扫描百分数 </p>
+<p> <img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220109133830660.png" alt="image-20220109133830660"></p>
+<p>扫描完毕，（getprogress结果为100）</p>
+<p>调用如下接口进行前端数据展示</p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220109133836262.png" alt="image-20220109133836262"></p>
+<p> <img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220109133848210.png" alt="image-20220109133848210"></p>
+
+      
+    </div>
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2021-04-20T05:49:50.000Z"><a href="/2021/04/20/开发工具/docker相关/">2021-04-20</a></time>
-            
-              <h1 class="title"><a href="/2021/04/20/开发工具/docker相关/">docker相关</a></h1>
-            
-          </header>
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
         </div>
-      </article>
-    
+        
+        
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
   </div>
+</article>
+
+
+
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">

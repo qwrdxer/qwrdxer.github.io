@@ -1,0 +1,299 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  
+  <title>xray使用 | qwrdxer &#39;s blog</title>
+  <meta name="author" content="qwrdxer" />
+
+  
+  <meta name="description" content="xray下载https://github.com/chaitin/xray/releases
+下载指定操作系统的xray即可
+终端首次执行命令会在同一目录下生成congfig.yaml配置文件
+如果有license证书,将其命名为xray-license.lic放到和xray同一个目录即可使用高级版
+官方参考文档
+https://docs.xray.cool/" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <meta property="og:title" content="xray使用" />
+  <meta property="og:site_name" content="qwrdxer &#39;s blog" />
+
+  
+  
+
+  
+    <meta property="og:image" content="" />
+  
+
+  
+  <link href="/css/images/favicon.ico" rel="icon" />
+  
+
+  <link rel="alternate" href="/atom.xml" title="qwrdxer &#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">qwrdxer &#39;s blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2021-04-16T04:10:08.000Z"><a href="/2021/04/16/web安全工具篇/xray使用/">2021-04-16</a></time>
+      
+      
+  
+    <h1 class="title">xray使用</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="xray下载"><a href="#xray下载" class="headerlink" title="xray下载"></a>xray下载</h2><p><a target="_blank" rel="noopener" href="https://github.com/chaitin/xray/releases">https://github.com/chaitin/xray/releases</a></p>
+<p>下载指定操作系统的xray即可</p>
+<p>终端首次执行命令会在同一目录下生成<code>congfig.yaml</code>配置文件</p>
+<p>如果有license证书,将其命名为xray-license.lic放到和xray同一个目录即可使用高级版</p>
+<p>官方参考文档</p>
+<p><a target="_blank" rel="noopener" href="https://docs.xray.cool/">https://docs.xray.cool/</a></p>
+<p><em><span id="more"></span></em> </p>
+<h2 id="xray配置文件"><a href="#xray配置文件" class="headerlink" title="xray配置文件"></a>xray配置文件</h2><h3 id="1-配置扫描时的代理"><a href="#1-配置扫描时的代理" class="headerlink" title="1.配置扫描时的代理"></a>1.配置扫描时的代理</h3><p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20210416135559029.png" alt="image-20210416135559029"></p>
+<h3 id="2-配置爬虫禁止的域名"><a href="#2-配置爬虫禁止的域名" class="headerlink" title="2.配置爬虫禁止的域名"></a>2.配置爬虫禁止的域名</h3><p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20210416135538773.png" alt="image-20210416135538773"></p>
+<h3 id="3-配置cookie-登录用户"><a href="#3-配置cookie-登录用户" class="headerlink" title="3. 配置cookie( 登录用户)"></a>3. 配置cookie( 登录用户)</h3><p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20210416135905779.png" alt="image-20210416135905779"></p>
+<h2 id="xray命令"><a href="#xray命令" class="headerlink" title="xray命令"></a>xray命令</h2><p><strong>在终端下输入<code>xray_windows_amd64.exe --help</code></strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">COMMANDS:</span><br><span class="line">     webscan, ws      Run a webscan task </span><br><span class="line">     servicescan, ss  Run a service scan task</span><br><span class="line">     subdomain, sd    Run a subdomain task</span><br><span class="line">     poclint, pl      lint yaml poc</span><br><span class="line">     reverse          Run a standalone reverse server</span><br><span class="line">     convert          convert results from json to html or from html to json</span><br><span class="line">     genca            GenerateToFile CA certificate and key</span><br><span class="line">     upgrade          check new version and upgrade self if any updates found</span><br><span class="line">     version          Show version info</span><br><span class="line">     help, h          Shows a list of commands or help for one command</span><br><span class="line"></span><br><span class="line">GLOBAL OPTIONS:</span><br><span class="line">   --config FILE      Load configuration from FILE (default: &quot;config.yaml&quot;)</span><br><span class="line">   --log-level value  Log level, choices are debug, info, warn, error, fatal</span><br><span class="line">   --help, -h         show help</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="1-subdomain-子域名扫描"><a href="#1-subdomain-子域名扫描" class="headerlink" title="1. subdomain 子域名扫描"></a><strong>1. subdomain 子域名扫描</strong></h3><p>查看帮助: <code> xray_windows_amd64.exe subdomain --help</code> </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">OPTIONS:</span><br><span class="line">   --target value, -t value  指定扫描目标</span><br><span class="line">   --no-brute                禁用子域名爆破</span><br><span class="line">   --web-only                筛选出带有web服务的域名</span><br><span class="line">   --ip-only                 筛选能成功解析ip的域名</span><br><span class="line">   --json-output FILE        output xray results to FILE in json format</span><br><span class="line">   --html-output FILE        output xray result to FILE in HTML format</span><br><span class="line">   --text-output FILE        output xray results to FILE in plain text format</span><br><span class="line">   --webhook-output value    将结果以json格式发送到一个地址(webhook)</span><br></pre></td></tr></table></figure>
+
+<p>扫描web服务并将其输出到txt文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">扫描web服务并将其输出到txt文件</span></span><br><span class="line">xray_windows_amd64.exe subdomain -t xxx.xxx.xxx --no-brute --web-only --ip-only --text-output xxx.txt</span><br></pre></td></tr></table></figure>
+
+<p>输出格式为 域名,ip地址,在linux下可以使用awk筛选出域名/ip</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 输出域名</span></span><br><span class="line">cat xxx.txt | awk -F , &#x27;&#123;print $1&#125;&#x27; &gt;&gt; result_dm.txt</span><br><span class="line"><span class="meta">#</span><span class="bash"> 输出ip ,可用于进一步C段扫描</span></span><br><span class="line">cat xxx.txt | awk -F , &#x27;&#123;print $2&#125;&#x27; &gt;&gt; result_ip.txt</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-webscan-web漏洞扫描"><a href="#2-webscan-web漏洞扫描" class="headerlink" title="2. webscan  web漏洞扫描"></a>2. <strong>webscan  web漏洞扫描</strong></h3><p>查看帮助:<code>xray_windows_amd64.exe webscan --help</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">OPTIONS:</span><br><span class="line">   --list, -l                                     列出可用插件</span><br><span class="line">   --plugins value, --plugin value, --plug value  指定插件, 多个插件使用 &#x27;,&#x27; 分割</span><br><span class="line">   --poc value, -p value                          指定POC,多个POC使用&#x27;,&#x27; 分割</span><br><span class="line"></span><br><span class="line">   --listen value                                 监听指定端口,收集流量进行扫描,非常适合集合多个工具进行自动化扫描,value的值为地址, (example: 127.0.0.1:1111)</span><br><span class="line">   --basic-crawler value, --basic value           use a basic spider to crawl the target and scan the requests</span><br><span class="line">   --browser-crawler value, --browser value       use a browser spider to crawl the target and scan the requests</span><br><span class="line">   --url-file value, --uf value                   从文件中获取url进行扫描(可用subdomain收集的结果,注意需要将结果中的ip和域名分离出来)</span><br><span class="line">   --burp-file value, --bf value                  read requests from burpsuite exported file as targets</span><br><span class="line">   --url value, -u value                          扫描单个url</span><br><span class="line">   --data value, -d value                         data string to be sent through POST (e.g. &#x27;username=admin&#x27;)</span><br><span class="line">   --raw-request FILE, --rr FILE                  load http raw request from a FILE</span><br><span class="line">   --force-ssl, --fs                              force usage of SSL/HTTPS for raw-request</span><br><span class="line"></span><br><span class="line">   --json-output FILE, --jo FILE                  output xray results to FILE in json format</span><br><span class="line">   --html-output FILE, --ho FILE                  output xray result to FILE in HTML format</span><br><span class="line">   --webhook-output value, --wo value             post xray result to url in json format</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例扫描命令</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 扫描单个url</span></span><br><span class="line">xray_windows_amd64.exe webscan --browser-crawler --url  xxx.xxx.com --html-output 1.html</span><br><span class="line"><span class="meta">#</span><span class="bash"> 指定url文件进行扫描</span></span><br><span class="line">xray_windows_amd64.exe webscan --browser-crawler --url-file result.txt --html-output 1.html</span><br></pre></td></tr></table></figure>
+
+<p>一个简单的脚本(linux)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line">TARGET=<span class="string">&quot;<span class="variable">$1</span>&quot;</span></span><br><span class="line">./xray_linux_amd64 subdomain -t <span class="variable">$TARGET</span> --no-brute --web-only --ip-only --text-output <span class="variable">$TARGET</span>.txt</span><br><span class="line">cat <span class="variable">$TARGET</span>.txt | awk -F , <span class="string">&#x27;&#123;print $1&#125;&#x27;</span> &gt;&gt; <span class="variable">$TARGET</span>.domain.txt</span><br><span class="line">rm -rf <span class="variable">$TARGET</span>.txt</span><br><span class="line">./xray_linux_amd64 webscan --url-file <span class="variable">$TARGET</span>.domain.txt --html-output <span class="variable">$TARGET</span>.html</span><br></pre></td></tr></table></figure>
+
+<p>放在和xray同一目录下运行即可 如: ./test.sh <a target="_blank" rel="noopener" href="http://www.xxx.com/">www.xxx.com</a> </p>
+<p><strong>结合浏览器进行扫描</strong></p>
+<ol>
+<li>浏览器安装证书<a target="_blank" rel="noopener" href="https://www.liuyixiang.com/post/109546.html">https://www.liuyixiang.com/post/109546.html</a></li>
+<li>xray运行监听端口xray_windows_amd64.exe ws –listen 127.0.0.1:7777 –html-output 1.html</li>
+<li>浏览器配置代理为127.0.0.1:7777</li>
+<li>访问网页即可自动扫描</li>
+</ol>
+<p><strong>结合burpsuite进行扫描</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wy_97/article/details/105656097">https://blog.csdn.net/wy_97/article/details/105656097</a></p>
+<h3 id="3-servicescan-端口服务扫描"><a href="#3-servicescan-端口服务扫描" class="headerlink" title="3. servicescan 端口服务扫描"></a>3. servicescan 端口服务扫描</h3><p>查看帮助:<code>xray_windows_amd64.exe servicescan --help</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">OPTIONS:</span><br><span class="line">   --target value, -t value            specify the target, for example: host:8009</span><br><span class="line">   --target-file value, --tf value     load targets from a local file, one target a line</span><br><span class="line">   --json-output FILE, --jo FILE       output xray results to FILE in json format</span><br><span class="line">   --webhook-output value, --wo value  post xray result to url in json format</span><br><span class="line">   --html-output FILE, --ho FILE       output xray result to FILE in HTML format</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="插件使用-amp-开发"><a href="#插件使用-amp-开发" class="headerlink" title="插件使用 &amp; 开发"></a>插件使用 &amp; 开发</h2>
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/web安全工具篇/">web安全工具篇</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/渗透测试/">渗透测试</a>, <a href="/tags/工具使用/">工具使用</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:qwrdxer.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/web安全工具篇/">web安全工具篇</a><small>2</small></li>
+  
+    <li><a href="/categories/web安全漏洞篇/">web安全漏洞篇</a><small>2</small></li>
+  
+    <li><a href="/categories/开发工具/">开发工具</a><small>3</small></li>
+  
+    <li><a href="/categories/日志/">日志</a><small>1</small></li>
+  
+    <li><a href="/categories/杂项/">杂项</a><small>1</small></li>
+  
+    <li><a href="/categories/渗透测试篇/">渗透测试篇</a><small>1</small></li>
+  
+    <li><a href="/categories/环境配置/">环境配置</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2022/01/09/日志/life-record-2021-1/">life record 2021-1</a>
+      </li>
+    
+      <li>
+        <a href="/2021/08/15/开发工具/Shell脚本学习笔记/">Shell脚本学习笔记</a>
+      </li>
+    
+      <li>
+        <a href="/2021/07/25/渗透测试篇/信息收集/">信息收集</a>
+      </li>
+    
+      <li>
+        <a href="/2021/05/11/web安全漏洞篇/SQL注入相关/">SQL注入相关</a>
+      </li>
+    
+      <li>
+        <a href="/2021/04/21/web安全工具篇/nmap使用/">nmap使用</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
+    <li><a href="/tags/WordPress/">WordPress</a><small>1</small></li>
+  
+    <li><a href="/tags/bash/">bash</a><small>2</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>2</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/web漏洞/">web漏洞</a><small>2</small></li>
+  
+    <li><a href="/tags/工具使用/">工具使用</a><small>5</small></li>
+  
+    <li><a href="/tags/开发/">开发</a><small>1</small></li>
+  
+    <li><a href="/tags/报错解决/">报错解决</a><small>1</small></li>
+  
+    <li><a href="/tags/文件包含/">文件包含</a><small>1</small></li>
+  
+    <li><a href="/tags/渗透测试/">渗透测试</a><small>3</small></li>
+  
+    <li><a href="/tags/环境配置/">环境配置</a><small>1</small></li>
+  
+    <li><a href="/tags/脚本/">脚本</a><small>4</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/WordPress/" style="font-size: 10px;">WordPress</a> <a href="/tags/bash/" style="font-size: 12.5px;">bash</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/linux/" style="font-size: 12.5px;">linux</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/web%E6%BC%8F%E6%B4%9E/" style="font-size: 12.5px;">web漏洞</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">工具使用</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 10px;">开发</a> <a href="/tags/%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3/" style="font-size: 10px;">报错解决</a> <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" style="font-size: 10px;">文件包含</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">渗透测试</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">环境配置</a> <a href="/tags/%E8%84%9A%E6%9C%AC/" style="font-size: 17.5px;">脚本</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <p>
+  
+  &copy; 2022 qwrdxer
+  
+  All rights reserved.</p>
+  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</div>
+<div class="clearfix"></div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id='bg'></div>
+</body>
+</html>

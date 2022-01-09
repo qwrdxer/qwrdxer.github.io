@@ -1,0 +1,386 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  
+  <title>Shell脚本学习笔记 | qwrdxer &#39;s blog</title>
+  <meta name="author" content="qwrdxer" />
+
+  
+  <meta name="description" content="todo list
+符号的作用: 
+“” ‘’  `    
+${}  ()  []   &amp;amp;  IFS   $[]  $?  $!
+|  &amp;gt;&amp;gt;  &amp;lt;  &amp;gt;  &amp;lt;&amp;lt;
+\0  \r \t  $ ….
+空格的影响
+如何定义变量? 如何定义函数 ? 如何调用变量? 如何调用函数?
+获取用户输入 read
+数据处理之 cat. grep. tr. find. xargs.
+tr 替换 删除 
+split 分割文件
+关于函数中 echo 和return 在流中的体现
+关于交互式命令、脚本的自动化 echo  -e  “    \n    \n     \n “
+SHELL脚本学习笔记
+写在最前面: 
+
+
+编写目的: 记录学习shell脚本中, 一些容易混淆、遗忘的知识点。
+参考书籍: Linux Shell 脚本攻略 (其实市面上任一本SHELL编程书籍都可, 关键在于实际运用)
+为什么要学习SHELL: 同学习Python目的差不多, 简单易上手, 方便快速开发, 在脚本编写初期使用SHELL+Python+现有工具 实现集成、自动化十分方便快捷。重点在于：命令执行  、结果处理 、结果保存
+笔记结构: 第一部分记录一些语法，第二部分记录容易遗忘、混淆的知识点。" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <meta property="og:title" content="Shell脚本学习笔记" />
+  <meta property="og:site_name" content="qwrdxer &#39;s blog" />
+
+  
+  
+
+  
+    <meta property="og:image" content="" />
+  
+
+  
+  <link href="/css/images/favicon.ico" rel="icon" />
+  
+
+  <link rel="alternate" href="/atom.xml" title="qwrdxer &#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">qwrdxer &#39;s blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2021-08-15T03:19:55.000Z"><a href="/2021/08/15/开发工具/Shell脚本学习笔记/">2021-08-15</a></time>
+      
+      
+  
+    <h1 class="title">Shell脚本学习笔记</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>todo list</p>
+<p>符号的作用: </p>
+<p>“” ‘’  `    </p>
+<p>${}  ()  []   &amp;  IFS   $[]  $?  $!</p>
+<p>|  &gt;&gt;  &lt;  &gt;  &lt;&lt;</p>
+<p>\0  \r \t  $ ….</p>
+<p>空格的影响</p>
+<p>如何定义变量? 如何定义函数 ? 如何调用变量? 如何调用函数?</p>
+<p>获取用户输入 read</p>
+<p>数据处理之 cat. grep. tr. find. xargs.</p>
+<p>tr 替换 删除 </p>
+<p>split 分割文件</p>
+<p>关于函数中 echo 和return 在流中的体现</p>
+<p>关于交互式命令、脚本的自动化 echo  -e  “    \n    \n     \n “</p>
+<h1 id="SHELL脚本学习笔记"><a href="#SHELL脚本学习笔记" class="headerlink" title="SHELL脚本学习笔记"></a>SHELL脚本学习笔记</h1><blockquote>
+<p>写在最前面: </p>
+</blockquote>
+<ol>
+<li>编写目的: 记录学习shell脚本中, 一些容易混淆、遗忘的知识点。</li>
+<li>参考书籍: Linux Shell 脚本攻略 (其实市面上任一本SHELL编程书籍都可, 关键在于实际运用)</li>
+<li>为什么要学习SHELL: 同学习Python目的差不多, 简单易上手, 方便快速开发, 在脚本编写初期使用SHELL+Python+现有工具 实现集成、自动化十分方便快捷。<br>重点在于：命令执行  、结果处理 、结果保存</li>
+<li>笔记结构: 第一部分记录一些语法，第二部分记录容易遗忘、混淆的知识点。</li>
+</ol>
+<p><em><span id="more"></span></em> </p>
+<h2 id="SHELL脚本基础"><a href="#SHELL脚本基础" class="headerlink" title="SHELL脚本基础"></a>SHELL脚本基础</h2><blockquote>
+<p>记录一些基础的东西(语法、常用命令等)</p>
+</blockquote>
+<h3 id="1-输出命令"><a href="#1-输出命令" class="headerlink" title="1. 输出命令"></a>1. 输出命令</h3><blockquote>
+<p>就输出命令来说, 我们更加关心自定义的变量如何输出、如何操控输出的格式, 在Shell脚本中,<code>echo</code> 和 <code>printf</code> 都可用于输出, 常用的为echo, 两者区别并不大。我们更加关注与其输出时使用的 **” “ , ‘ ‘ ,和`  `  ** 的区别</p>
+</blockquote>
+<ul>
+<li><p>单引号<br>以单引号<code>&#39; &#39;</code>包围变量的值时，会将其内容原样输出。</p>
+</li>
+<li><p>双引号<br>以双引号<code>&quot; &quot;</code>包围变量的值时，输出时会先解析里面的变量、命令和格式符号**<u>(echo 需要加上-e 参数才能解析格式符号)</u>** ,然后在输出。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var1=&quot;HELLOWORLD&quot;</span><br><span class="line">echo &quot;$var1&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>反引号<br>反引号 `   `   会先解析内容, 然后将其当做命令执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">echo `dir`</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 其等价于下列命令， 反引号会先解析变量为dir  然后 将内容dir作为命令执行</span></span><br><span class="line">var1=&quot;dir&quot;</span><br><span class="line">echo `$var1`</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 在双引号中也可使用``</span></span><br><span class="line">echo &quot;`date`&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>格式化输出变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">echo</span> 和<span class="built_in">print</span> 都可以用转义符号 \t  \n \r 等 ，<span class="built_in">echo</span> 需要使用 -e来将转义符号进行解析</span></span><br><span class="line">echo -e &quot; \t  Hello  \t world &quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 而<span class="built_in">printf</span> 命令可以使用格式替换福 %s %c %d等, 类似于C语言</span></span><br><span class="line">printf &quot;%s %s %s \r&quot; Hello world !</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>关于两个命令更具体的使用可以用man echo ，man printf进行查看</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="2-变量"><a href="#2-变量" class="headerlink" title="2.变量"></a>2.变量</h3><blockquote>
+<p>关于环境变量、以及变量处理</p>
+</blockquote>
+<ul>
+<li><p>环境变量<br>环境变量可以在终端中输入env查看, 在bash中可以直接使用$ 符号调用已有的环境变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">当前使用的何种shell</span></span><br><span class="line"><span class="meta">$</span><span class="bash">SHELL</span> </span><br><span class="line"><span class="meta">#</span><span class="bash">也可使用<span class="variable">$0</span>查看</span></span><br><span class="line"><span class="meta">$</span><span class="bash">0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">运行sh脚本时输入的参数</span></span><br><span class="line"><span class="meta">$</span><span class="bash">1 <span class="variable">$2</span> <span class="variable">$3</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">查看用户ID ，root为0</span></span><br><span class="line"><span class="meta">$</span><span class="bash">UID</span></span><br></pre></td></tr></table></figure></li>
+<li><p>全局变量<br>有时候在shell脚本中 会调用另一个shell脚本, 这时候通过export将要传递的变量设置为环境变量即可</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var1=&quot;Helloworld&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash">注意: <span class="built_in">export</span> 后面的变量不需要$符号</span></span><br><span class="line">export var1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">此时调用的其他脚本都可以访问var1 这个变量</span></span><br><span class="line">bash 2.sh</span><br></pre></td></tr></table></figure></li>
+<li><p>其他<br>数学运算(整数运算)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 数字赋值</span></span><br><span class="line">no1 =1 </span><br><span class="line">no2 =3</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用<span class="built_in">let</span>可直接进行数学运算, 注意使用<span class="built_in">let</span>时变量不需要$符号</span></span><br><span class="line">let no3 =no1+no2</span><br><span class="line">echo $no3</span><br><span class="line"><span class="meta">#</span><span class="bash"> 自增自减</span></span><br><span class="line">let no1++</span><br><span class="line">let no2--</span><br><span class="line"><span class="meta">#</span><span class="bash"> [ ]  (())  expr和<span class="built_in">let</span>使用方法相同</span></span><br><span class="line"></span><br><span class="line">no4=$[ no1+no2 ]</span><br><span class="line">no5=$((no1+no2))</span><br><span class="line">no6=`expr $no1 + $no2` #注意expr后面两个变量和运算符号之间有空格</span><br></pre></td></tr></table></figure>
+
+<p>获取字符串长度</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">使用 <span class="variable">$&#123;#str&#125;</span>获取</span>  </span><br><span class="line">var1=1234567890</span><br><span class="line">echo $&#123;#var1&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>​    </p>
+<h3 id="3-文件描述符、重定向、管道符号"><a href="#3-文件描述符、重定向、管道符号" class="headerlink" title="3. 文件描述符、重定向、管道符号"></a>3. 文件描述符、重定向、管道符号</h3><blockquote>
+<p>在编写脚本的时候会频繁用到标准输入（ stdin）、标准输出（ stdout）和标准错误<br>（ stderr）。  </p>
+<p>文件描述符是与某个打开的文件或数据流相关联的整数。 文件描述符0、 1以及2是系统预留的。</p>
+<ul>
+<li>0 —— stdin （标准输入）。</li>
+<li>1 —— stdout（标准输出）。</li>
+<li>2 —— stderr（标准错误）。  </li>
+</ul>
+<p>重定向符号有两种</p>
+<ul>
+<li>输出重定向: ,&gt;&gt;  和&gt;   ,两者的区别是 &gt; 会将指向 的文件清空后写入, &gt;&gt; 是在尾部拼接</li>
+<li>输入重定向 &lt; </li>
+</ul>
+<p>|  管道符号, 将前一条命令的结果作为输入传递给后面的命令、</p>
+</blockquote>
+<ul>
+<li>标准流和重定向使用</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">执行一条不存在的命令, 将错误信息输出到一个文件中</span></span><br><span class="line"></span><br><span class="line">testforerror  2 &gt; error.log</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> &amp;&gt;  或 2&gt;&amp;1 表示将stdout 和stderr输出到某个文件中</span></span><br><span class="line">cat *.txt &amp;&gt; errout.log</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输入重定向使用举例: 将shell脚本中的命令传入bash中</span></span><br><span class="line">bash &lt; 5.sh</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>创建一个新的文件描述符</p>
+<p>文件描述符可以看做一个指针变量，通过该变量我们可以对文件进行存取操作。注意0、1 、2是预留的描述符号，我们可以通过<code>exec</code> 命令结合重定向符号创建文件描述符</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 创建一个读取文件的文件描述符并使用cat读取</span></span><br><span class="line">exec 3&lt; text.txt</span><br><span class="line"><span class="meta">#</span><span class="bash"> 即可进行读取</span></span><br><span class="line">cat  &lt;&amp;3</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="meta"> #</span><span class="bash"> 创建用于写入 的文件描述符, &gt;&gt; 为追加模式 , &gt; 为覆盖模式</span></span><br><span class="line"> exec 5&gt;&gt;input.txt</span><br><span class="line"> </span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="4-对变量处理的使用"><a href="#4-对变量处理的使用" class="headerlink" title="4. ${} 对变量处理的使用"></a>4. ${} 对变量处理的使用</h3><h3 id="5-shell-的debug模式"><a href="#5-shell-的debug模式" class="headerlink" title="5. shell 的debug模式"></a>5. shell 的debug模式</h3><h3 id="6-函数"><a href="#6-函数" class="headerlink" title="6.  函数"></a>6.  函数</h3><blockquote>
+<p>函数的定义、传递的参数、返回值</p>
+</blockquote>
+<ul>
+<li><p>定义</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function fname()</span><br><span class="line">&#123;</span><br><span class="line">	statements;</span><br><span class="line">&#125;</span><br><span class="line">或者</span><br><span class="line">fname()</span><br><span class="line">&#123;</span><br><span class="line">	statements;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">执行函数</span></span><br><span class="line"> fname arg1 arg2</span><br></pre></td></tr></table></figure></li>
+<li><p>参数访问</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">0是脚本名称。</span></span><br><span class="line"><span class="meta">$</span><span class="bash">1是第一个参数。</span></span><br><span class="line"><span class="meta">$</span><span class="bash">2是第二个参数。</span></span><br><span class="line"><span class="meta">$</span><span class="bash">n是第n个参数。</span></span><br><span class="line"><span class="meta">$</span><span class="bash">?接收上一条函数的执行结果</span></span><br><span class="line">&quot;$@&quot;被扩展成&quot;$1&quot; &quot;$2&quot; &quot;$3&quot;等。</span><br><span class="line">&quot;$*&quot;被扩展成&quot;$1c$2c$3&quot;，是一个字符串，不常用</span><br></pre></td></tr></table></figure></li>
+<li><p>返回值<br>return 只能返回一个整型变量, 要返回字符串可以通过设置全局变量， 或者利用输出信息获取。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">全局变量</span></span><br><span class="line">fun1()</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">        s=&quot;$&quot;</span><br><span class="line">        export s</span><br><span class="line">&#125;</span><br><span class="line">fun1 test</span><br><span class="line"></span><br><span class="line">echo $s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输出信息</span></span><br><span class="line">get_str()</span><br><span class="line">&#123;</span><br><span class="line">	echo &quot;string&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo `get_str` #写法一</span><br><span class="line">echo $(get_str) #写法二</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="SHELL脚本应用"><a href="#SHELL脚本应用" class="headerlink" title="SHELL脚本应用"></a>SHELL脚本应用</h2><blockquote>
+<p>单引号和双引号的区别?如何改变终端输出的颜色? 如何结合Linux的命令对结果进行处理?</p>
+</blockquote>
+<h3 id="1-单引号和双引号的区别"><a href="#1-单引号和双引号的区别" class="headerlink" title="1. 单引号和双引号的区别"></a>1. 单引号和双引号的区别</h3><h3 id="2-控制终端输出颜色"><a href="#2-控制终端输出颜色" class="headerlink" title="2. 控制终端输出颜色"></a>2. 控制终端输出颜色</h3><blockquote>
+<p>有时候为了美化，可以对输出加上颜色控制<br>字体颜色范围为 30<del>39 ， 背景颜色范围为40</del>49</p>
+<p>更多设置可以使用<code>man console_codes</code> 查看</p>
+</blockquote>
+<ul>
+<li><p>字体颜色控制<br>常用颜色码为: 重置=0，黑色=30，红色=31，绿色=32，黄色=33，蓝色=34，洋红=35，青色=36，白色=37。  </p>
+</li>
+<li><p>背景颜色控制<br>常用颜色码为: 重置=0，黑色=40，红色=41，绿色=42，黄色=43，蓝色=44，洋红=45，青色=46，白色=47。</p>
+</li>
+<li><p>使用方式  <code>\e[1;字体颜色 或 背景颜色m </code>即可进行设置，若想同时设置 使用; 分开即可如 <code>\e[1;33;44m</code></p>
+</li>
+<li><p>重置 :使用 <code>\e[0m </code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo -e &quot;\e[1;33;45m Hello \e[1;37;42m world \e[0m&quot;</span><br><span class="line"></span><br><span class="line">printf &quot;\e[1;33;41m Hello \e[1;37;42m world \e[0m&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20210815135301999.png" alt="image-20210815135301999"></p>
+</li>
+</ul>
+<h3 id="3-字符匹配与替换"><a href="#3-字符匹配与替换" class="headerlink" title="3. 字符匹配与替换"></a>3. 字符匹配与替换</h3><blockquote>
+<p>常用命令 tr 、sed 、awk 、grep … </p>
+</blockquote>
+<h3 id="4-字符串转数字"><a href="#4-字符串转数字" class="headerlink" title="4. 字符串转数字"></a>4. 字符串转数字</h3><h3 id="结果保存"><a href="#结果保存" class="headerlink" title="结果保存"></a>结果保存</h3><blockquote>
+<p>参考</p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20210815123054352.png" alt="image-20210815123054352"></p>
+</blockquote>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/开发工具/">开发工具</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/bash/">bash</a>, <a href="/tags/脚本/">脚本</a>, <a href="/tags/shell/">shell</a>, <a href="/tags/linux/">linux</a>, <a href="/tags/开发/">开发</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:qwrdxer.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/web安全工具篇/">web安全工具篇</a><small>2</small></li>
+  
+    <li><a href="/categories/web安全漏洞篇/">web安全漏洞篇</a><small>2</small></li>
+  
+    <li><a href="/categories/开发工具/">开发工具</a><small>3</small></li>
+  
+    <li><a href="/categories/日志/">日志</a><small>1</small></li>
+  
+    <li><a href="/categories/杂项/">杂项</a><small>1</small></li>
+  
+    <li><a href="/categories/渗透测试篇/">渗透测试篇</a><small>1</small></li>
+  
+    <li><a href="/categories/环境配置/">环境配置</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2022/01/09/日志/life-record-2021-1/">life record 2021-1</a>
+      </li>
+    
+      <li>
+        <a href="/2021/08/15/开发工具/Shell脚本学习笔记/">Shell脚本学习笔记</a>
+      </li>
+    
+      <li>
+        <a href="/2021/07/25/渗透测试篇/信息收集/">信息收集</a>
+      </li>
+    
+      <li>
+        <a href="/2021/05/11/web安全漏洞篇/SQL注入相关/">SQL注入相关</a>
+      </li>
+    
+      <li>
+        <a href="/2021/04/21/web安全工具篇/nmap使用/">nmap使用</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
+    <li><a href="/tags/WordPress/">WordPress</a><small>1</small></li>
+  
+    <li><a href="/tags/bash/">bash</a><small>2</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>2</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/web漏洞/">web漏洞</a><small>2</small></li>
+  
+    <li><a href="/tags/工具使用/">工具使用</a><small>5</small></li>
+  
+    <li><a href="/tags/开发/">开发</a><small>1</small></li>
+  
+    <li><a href="/tags/报错解决/">报错解决</a><small>1</small></li>
+  
+    <li><a href="/tags/文件包含/">文件包含</a><small>1</small></li>
+  
+    <li><a href="/tags/渗透测试/">渗透测试</a><small>3</small></li>
+  
+    <li><a href="/tags/环境配置/">环境配置</a><small>1</small></li>
+  
+    <li><a href="/tags/脚本/">脚本</a><small>4</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/WordPress/" style="font-size: 10px;">WordPress</a> <a href="/tags/bash/" style="font-size: 12.5px;">bash</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/linux/" style="font-size: 12.5px;">linux</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/web%E6%BC%8F%E6%B4%9E/" style="font-size: 12.5px;">web漏洞</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">工具使用</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 10px;">开发</a> <a href="/tags/%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3/" style="font-size: 10px;">报错解决</a> <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" style="font-size: 10px;">文件包含</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">渗透测试</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">环境配置</a> <a href="/tags/%E8%84%9A%E6%9C%AC/" style="font-size: 17.5px;">脚本</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <p>
+  
+  &copy; 2022 qwrdxer
+  
+  All rights reserved.</p>
+  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</div>
+<div class="clearfix"></div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id='bg'></div>
+</body>
+</html>

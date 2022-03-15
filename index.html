@@ -92,6 +92,11 @@
           <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
         </div>
         
+  
+  <div class="categories">
+    <a href="/categories/自动化脚本-工具开发/">自动化脚本&工具开发</a>
+  </div>
+
         
   
   <div class="tags">
@@ -124,276 +129,15 @@
     </header>
     <div class="entry">
       
-        <h2 id="3-7"><a href="#3-7" class="headerlink" title="3/7"></a>3/7</h2><blockquote>
-<h3 id="毕设代码编写"><a href="#毕设代码编写" class="headerlink" title="毕设代码编写"></a>毕设代码编写</h3></blockquote>
-<blockquote>
-<h3 id="Go语言学习"><a href="#Go语言学习" class="headerlink" title="Go语言学习"></a>Go语言学习</h3></blockquote>
-<p>map和struct vs new() 和make()</p>
-<p>make 用于 slices maps channel</p>
-<p>试图通过make创建一个结构体会报错</p>
-<p>试图通过new创建一个map变量，需要为其初始化后才能使用。</p>
-<p>结构体中的标签(tag)</p>
-<p>可以通过反射获取</p>
-<p>Go方法</p>
-<ol>
-<li><p>Go 方法是作用在接收者（receiver）上的一个函数，接收者是某种类型的变量。因此方法是一种特殊类型的函数。</p>
-</li>
-<li><p>接收者类型可以是（几乎）任何类型，不仅仅是结构体类型：任何类型都可以有方法，甚至可以是函数类型，可以是 int、bool、string 或数组的别名类型。但是接收者不能是一个接口类型，因为接口是一个抽象定义，但是方法却是具体实现；如果这样做会引发一个编译错误：<strong>invalid receiver type…</strong></p>
-</li>
-<li><p>最后接收者不能是一个指针类型(ptr)，但是它可以是任何其他允许类型的指针。</p>
-</li>
-<li><p>定义方法格式如下</p>
-</li>
-</ol>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(recv receiver_type)</span> <span class="title">methodName</span><span class="params">(parameter_list)</span> <span class="params">(return_value_list)</span></span> &#123; ... &#125;</span><br></pre></td></tr></table></figure>
-
-<p>思考1: 什么时候使用方法？<br>当需要对结构体中原始的数据进行相互之间或单独处理时，考虑使用方法；</p>
-<p>思考2: 当接受者为值或指针时?</p>
-<p><strong>由值作为接收者，被调用时，是对对象的拷贝，指针作为接收者，被调用时，是对对象本身的操作</strong>。</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014239709/article/details/89552933">https://blog.csdn.net/u014239709/article/details/89552933</a><br><a target="_blank" rel="noopener" href="https://www.cntofu.com/book/14/eBook/11.6.md">https://www.cntofu.com/book/14/eBook/11.6.md</a></p>
-<h2 id="3-8"><a href="#3-8" class="headerlink" title="3/8"></a>3/8</h2><h3 id="Go接口"><a href="#Go接口" class="headerlink" title="Go接口"></a>Go接口</h3><p>接口定义了一组方法（方法集），但是这些方法不包含（实现）代码：它们没有被实现（它们是抽象的）。接口里也不能包含变量。</p>
-<p><strong>类型不需要显式声明它实现了某个接口：接口被隐式地实现。多个类型可以实现同一个接口</strong>。</p>
-<p><strong>实现某个接口的类型（除了实现接口方法外）可以有其他的方法</strong>。</p>
-<p><strong>一个类型可以实现多个接口</strong>。</p>
-<p><strong>接口类型可以包含一个实例的引用， 该实例的类型实现了此接口（接口是动态类型）</strong>。</p>
-<p>即使接口在类型之后才定义，二者处于不同的包中，被单独编译：只要类型实现了接口中<strong>所有</strong>的方法，它就实现了此接口。</p>
-<p>接口定义</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Namer <span class="keyword">interface</span> &#123;</span><br><span class="line">    Method1(param_list) return_type</span><br><span class="line">    Method2(param_list) return_type</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>接口实现</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span><span class="params">(xxx type1)</span> <span class="title">Method1</span><span class="params">(param_list)</span> <span class="title">return_type</span></span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>两个类型 <code>stockPosition</code> 和 <code>car</code>，它们都有一个 <code>getValue()</code> 方法，我们可以定义一个具有此方法的接口 <code>valuable</code>。接着定义一个使用 <code>valuable</code> 类型作为参数的函数 <code>showValue()</code>，所有实现了 <code>valuable</code> 接口的类型都可以用这个函数。</p>
-<p>一个接口可以包含一个或多个其他的接口，这相当于直接将这些内嵌接口的方法列举在外层接口中一样。</p>
-<p>通常我们可以使用 <strong>类型断言</strong> 来测试在某个时刻 <code>varI</code> 是否包含类型 <code>T</code> 的值：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> v, ok := varI.(T); ok &#123;  <span class="comment">// checked type assertion</span></span><br><span class="line">    Process(v)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// varI is not of type T</span></span><br></pre></td></tr></table></figure>
-
-<p>接口变量的类型也可以使用一种特殊形式的 <code>switch</code> 来检测：<strong>type-switch</strong> （下面是示例 11.4 的第二部分）：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> t := areaIntf.(<span class="keyword">type</span>) &#123;</span><br><span class="line"><span class="keyword">case</span> *Square:</span><br><span class="line">	fmt.Printf(<span class="string">&quot;Type Square %T with value %v\n&quot;</span>, t, t)</span><br><span class="line"><span class="keyword">case</span> *Circle:</span><br><span class="line">	fmt.Printf(<span class="string">&quot;Type Circle %T with value %v\n&quot;</span>, t, t)</span><br><span class="line"><span class="keyword">case</span> <span class="literal">nil</span>:</span><br><span class="line">	fmt.Printf(<span class="string">&quot;nil value: nothing to check?\n&quot;</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">	fmt.Printf(<span class="string">&quot;Unexpected type %T\n&quot;</span>, t)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以用 <code>type-switch</code> 进行运行时类型分析，但是在 <code>type-switch</code> 不允许有 <code>fallthrough</code> 。</p>
-<p>假定 <code>v</code> 是一个值，然后我们想测试它是否实现了 <code>Stringer</code> 接口，可以这样做：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Stringer <span class="keyword">interface</span> &#123;</span><br><span class="line">    String() <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> sv, ok := v.(Stringer); ok &#123;</span><br><span class="line">    fmt.Printf(<span class="string">&quot;v implements String(): %s\n&quot;</span>, sv.String()) <span class="comment">// note: sv, not v</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p>接口是一种契约，实现类型必须满足它，它描述了类型的行为，规定类型可以做什么。接口彻底将类型能做什么，以及如何做分离开来，使得相同接口的变量在不同的时刻表现出不同的行为，这就是多态的本质。</p>
-<h2 id="3-9"><a href="#3-9" class="headerlink" title="3/9"></a>3/9</h2><h3 id="Go接口-1"><a href="#Go接口-1" class="headerlink" title="Go接口"></a>Go接口</h3><blockquote>
-<p>继续学习接口</p>
-</blockquote>
-<p>接口变量中存储的具体值是不可寻址的，幸运的是，如果使用不当编译器会给出错误</p>
-<p>在接口上调用方法时，必须有和方法定义时相同的接收者类型或者是可以从具体类型 <code>P</code> 直接可以辨识的：</p>
-<ul>
-<li>指针方法可以通过指针调用</li>
-<li>值方法可以通过值调用</li>
-<li>接收者是值的方法可以通过指针调用，因为指针会首先被解引用</li>
-<li>接收者是指针的方法不可以通过值调用，因为存储在接口中的值没有地址</li>
-</ul>
-<p>Go 语言规范定义了接口方法集的调用规则：</p>
-<ul>
-<li>类型 *T 的可调用方法集包含接受者为 *T 或 T 的所有方法集</li>
-<li>类型 T 的可调用方法集包含接受者为 T 的所有方法</li>
-<li>类型 T 的可调用方法集不包含接受者为 *T 的方法</li>
-</ul>
-<blockquote>
-<p>稍作总结</p>
-</blockquote>
-<p>函数: 参数为结构体、数字、字符串、数组</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">func1</span><span class="params">(param)</span> <span class="title">return</span></span>&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>方法: 作用在接收者的函数</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(recv receiver_type)</span> <span class="title">methodName</span><span class="params">(parameter_list)</span> <span class="params">(return_value_list)</span></span> &#123; ... &#125;</span><br></pre></td></tr></table></figure>
-
-<p>通过recv.methodName调用</p>
-<p>接口函数: 参数为接口  ，用于对实现接口的成员进行管理</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">func2</span><span class="params">(<span class="keyword">int</span> <span class="keyword">interface</span>)</span> <span class="title">return</span></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>调用</p>
-<p>package.func2(var)</p>
-<blockquote>
-<p>空接口</p>
-</blockquote>
-<p><strong>空接口或者最小接口</strong> 不包含任何方法，它对实现不做任何要求：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Any <span class="keyword">interface</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>空接口类似 <code>Java/C#</code> 中所有类的基类： <code>Object</code> 类，二者的目标也很相近。</p>
-<p>可以给一个空接口类型的变量 <code>var val interface &#123;&#125;</code> 赋任何类型的值。</p>
-<p>每个空接口 变量在内存中占据两个字长：一个用来存储它包含的类型，另一个用来存储它包含的数据或者指向数据的指针。</p>
-<blockquote>
-<p>go官方说明</p>
-<p><a target="_blank" rel="noopener" href="https://go.dev/ref/spec">https://go.dev/ref/spec</a></p>
-</blockquote>
-<blockquote>
-<p>go map中修改value的值</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37102984/article/details/121292529">https://blog.csdn.net/qq_37102984/article/details/121292529</a></p>
-</blockquote>
-<p>一个接口的值可以赋值给另一个接口变量</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010003835/article/details/51750511">https://blog.csdn.net/u010003835/article/details/51750511</a></p>
-<h3 id="30天自制操作系统"><a href="#30天自制操作系统" class="headerlink" title="30天自制操作系统"></a>30天自制操作系统</h3><h2 id="3-11"><a href="#3-11" class="headerlink" title="3/11"></a>3/11</h2><h3 id="30天自制操作系统day6"><a href="#30天自制操作系统day6" class="headerlink" title="30天自制操作系统day6"></a>30天自制操作系统day6</h3><h3 id="Go反射"><a href="#Go反射" class="headerlink" title="Go反射"></a>Go反射</h3><p>反射是用程序检查其所拥有的结构，尤其是类型的一种能力；这是元编程的一种形式。反射可以在运行时检查类型和变量，例如它的大小、方法和 <code>动态</code> 的调用这些方法。这对于没有源代码的包尤其有用。这是一个强大的工具，除非真得有必要，否则应当避免使用或小心使用。</p>
-<p>变量的最基本信息就是类型和值：反射包的 <code>Type</code> 用来表示一个 Go 类型，反射包的 <code>Value</code> 为 Go 值提供了反射接口。</p>
-<p>Value 有一个 Type 方法返回 reflect.Value 的 Type。另一个是 Type 和 Value 都有 Kind 方法返回一个常量来表示类型：Uint、Float64、Slice 等等。同样 Value 有叫做 Int 和 Float 的方法可以获取存储在内部的值（跟 int64 和 float64 一样）</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// blog: Laws of Reflection</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;reflect&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> x <span class="keyword">float64</span> = <span class="number">3.4</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;type:&quot;</span>, reflect.TypeOf(x))</span><br><span class="line">	v := reflect.ValueOf(x)</span><br><span class="line">	fmt.Println(<span class="string">&quot;value:&quot;</span>, v)</span><br><span class="line">	fmt.Println(<span class="string">&quot;type:&quot;</span>, v.Type())</span><br><span class="line">	fmt.Println(<span class="string">&quot;kind:&quot;</span>, v.Kind())</span><br><span class="line">	fmt.Println(<span class="string">&quot;value:&quot;</span>, v.Float())</span><br><span class="line">	fmt.Println(v.Interface())</span><br><span class="line">	fmt.Printf(<span class="string">&quot;value is %5.2e\n&quot;</span>, v.Interface())</span><br><span class="line">	y := v.Interface().(<span class="keyword">float64</span>)</span><br><span class="line">	fmt.Println(y)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>通过反射修改值</p>
-</blockquote>
-<p>当 <code>v := reflect.ValueOf(x)</code> 函数通过传递一个 x 拷贝创建了 v，那么 v 的改变并不能更改原始的 x。要想 v 的更改能作用到 x，那就必须传递 x 的地址 <code>v = reflect.ValueOf(&amp;x)</code>。</p>
-<p>当然，此时的v仍无法进行修改，需调用v.Elem()函数，</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> x <span class="keyword">float64</span> = <span class="number">3.4</span></span><br><span class="line">	v := reflect.ValueOf(x)</span><br><span class="line">	<span class="comment">// setting a value:</span></span><br><span class="line">	<span class="comment">// v.SetFloat(3.1415) // Error: will panic: reflect.Value.SetFloat using unaddressable value</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;settability of v:&quot;</span>, v.CanSet())</span><br><span class="line">	v = reflect.ValueOf(&amp;x) <span class="comment">// Note: take the address of x.</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;type of v:&quot;</span>, v.Type())</span><br><span class="line">	fmt.Println(<span class="string">&quot;settability of v:&quot;</span>, v.CanSet())</span><br><span class="line">	v = v.Elem()</span><br><span class="line">	fmt.Println(<span class="string">&quot;The Elem of v is: &quot;</span>, v)</span><br><span class="line">	fmt.Println(<span class="string">&quot;type of v:&quot;</span>, v.Type())</span><br><span class="line">	fmt.Println(<span class="string">&quot;settability of v:&quot;</span>, v.CanSet())</span><br><span class="line">	v.SetFloat(<span class="number">3.1415</span>) <span class="comment">// this works!</span></span><br><span class="line">	fmt.Println(v.Interface())</span><br><span class="line">	fmt.Println(v)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p>反射结构体</p>
-</blockquote>
-<p>有些时候需要反射一个结构类型。<code>NumField()</code> 方法返回结构内的字段数量；通过一个 for 循环用索引取得每个字段的值 <code>Field(i)</code>。</p>
-<p>我们同样能够调用签名在结构上的方法，例如，使用索引 n 来调用：<code>Method(n).Call(nil)</code>。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;reflect&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> NotknownType <span class="keyword">struct</span> &#123;</span><br><span class="line">	s1, s2, s3 <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(n NotknownType)</span> <span class="title">String</span><span class="params">()</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> n.s1 + <span class="string">&quot; - &quot;</span> + n.s2 + <span class="string">&quot; - &quot;</span> + n.s3</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// variable to investigate:</span></span><br><span class="line"><span class="keyword">var</span> secret <span class="keyword">interface</span>&#123;&#125; = NotknownType&#123;<span class="string">&quot;Ada&quot;</span>, <span class="string">&quot;Go&quot;</span>, <span class="string">&quot;Oberon&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	value := reflect.ValueOf(secret) <span class="comment">// &lt;main.NotknownType Value&gt;</span></span><br><span class="line">	typ := reflect.TypeOf(secret)    <span class="comment">// main.NotknownType</span></span><br><span class="line">	<span class="comment">// alternative:</span></span><br><span class="line">	<span class="comment">//typ := value.Type()  // main.NotknownType</span></span><br><span class="line">	fmt.Println(typ)</span><br><span class="line">	knd := value.Kind() <span class="comment">// struct</span></span><br><span class="line">	fmt.Println(knd)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// iterate through the fields of the struct:</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; value.NumField(); i++ &#123;</span><br><span class="line">		fmt.Printf(<span class="string">&quot;Field %d: %v\n&quot;</span>, i, value.Field(i))</span><br><span class="line">		<span class="comment">// error: panic: reflect.Value.SetString using value obtained using unexported field</span></span><br><span class="line">		<span class="comment">//value.Field(i).SetString(&quot;C#&quot;)</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// call the first method, which is String():</span></span><br><span class="line">	results := value.Method(<span class="number">0</span>).Call(<span class="literal">nil</span>)</span><br><span class="line">	fmt.Println(results) <span class="comment">// [Ada - Go - Oberon]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>向反射方法中传入参数</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">params := <span class="built_in">make</span>([]reflect.Value, <span class="number">1</span>)</span><br><span class="line">params[<span class="number">0</span>] = reflect.ValueOf(<span class="number">20</span>)</span><br><span class="line">results := value.Method(<span class="number">0</span>).Call(params)</span><br></pre></td></tr></table></figure>
-
-
-
-<p>设置结构体成员的值</p>
-<p>（成员的首字母应该大写，否则无法访问）</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;reflect&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> T <span class="keyword">struct</span> &#123;</span><br><span class="line">	A <span class="keyword">int</span></span><br><span class="line">	B <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	t := T&#123;<span class="number">23</span>, <span class="string">&quot;skidoo&quot;</span>&#125;</span><br><span class="line">	s := reflect.ValueOf(&amp;t).Elem()</span><br><span class="line">	typeOfT := s.Type()</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; s.NumField(); i++ &#123;</span><br><span class="line">		f := s.Field(i)</span><br><span class="line">		fmt.Printf(<span class="string">&quot;%d: %s %s = %v\n&quot;</span>, i,</span><br><span class="line">			typeOfT.Field(i).Name, f.Type(), f.Interface())</span><br><span class="line">	&#125;</span><br><span class="line">	s.Field(<span class="number">0</span>).SetInt(<span class="number">77</span>)</span><br><span class="line">	s.Field(<span class="number">1</span>).SetString(<span class="string">&quot;Sunset Strip&quot;</span>)</span><br><span class="line">	fmt.Println(<span class="string">&quot;t is now&quot;</span>, t)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="接口和动态类型"><a href="#接口和动态类型" class="headerlink" title="接口和动态类型"></a>接口和动态类型</h3><p>接收一个（或多个）接口类型作为参数的函数，其实参可以是任何实现了该接口的类型。 <code>实现了某个接口的类型可以被传给任何以此接口为参数的函数</code> 。</p>
-<blockquote>
-<p>动态方法调用</p>
-</blockquote>
-<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><blockquote>
-<p>学习&amp;实践  心态&amp;成就感</p>
-</blockquote>
-<p>越复杂的知识，越需要投入更多的时间去钻研、去踩坑，单纯的学习很难获得反馈。需要一个良好的心态坚持下去。</p>
-<p>学习到一定程度，才能按着自己的想法去实现一些东西，通过实践，获取成就感。</p>
-<p>如何平衡学习和实践，换句话说，学习到什么时候才能去实践？学的少了，实践没有结果；学的多了，没有产出，影响心态。</p>
-<p>所以关键在于对自己目前状态、学习方向的把控。不要做无意义的内卷。</p>
-<h3 id="计算机技术栈难度分类"><a href="#计算机技术栈难度分类" class="headerlink" title="计算机技术栈难度分类"></a>计算机技术栈难度分类</h3><blockquote>
-<p> 难度： 高     (你在学习之前… 应该做好足够的心理准备)</p>
-</blockquote>
-<p>1、计算机底层知识</p>
-<p>计算机组成原理 、操作系统、编译原理 …  </p>
-<p>你需要抱着书狂啃、你需要访问上世纪的网站来探索莫名其妙的问题、你需要纠结每一个变量、每一个字节、你需要投入大量的时间去反复学习、你需要动手调试大量的代码、实践才能出真知。</p>
-<p>2、各个交叉领域</p>
-<p>人工智能=数学+计算机</p>
-<p>密码学=数学+计算机</p>
-<p>嵌入式=物理+计算机</p>
-<p>​        … </p>
-<p>想要学习他们，你需要学习一些具有一定门槛、且怎么看都跟计算机关系不大的知识。</p>
-<p>3、超脱计算机语言的知识</p>
-<p>​    也即是抛弃其共性、通过学习其个性、深入了解其底层</p>
-<p>​    JVM 、多线程、架构….</p>
-<p>4、一颗持续学习的心</p>
-<p>不长的人生里、你将会扮演很多角色，但一生扮演一位学生的角色… 在下佩服</p>
-<blockquote>
-<p> 难度:   中等 ( 你需要投入一定的时间、但收获肯定能让你满意)</p>
-</blockquote>
-<p>1、 精通编程语言</p>
-<p>​    可不是简单的HELLOWORLD</p>
-<p>​    JAVA需要学习web方面大量框架</p>
-<p>​    数据库需要学会优化</p>
-<p>​    go你得会并发</p>
-<p>​    C/C++  …. 可能需要学一辈子</p>
-<p>2、某一个方向</p>
-<p>​    大数据、容器技术、区块链、物联网….</p>
-<blockquote>
-<p> 难度:     简单 (抛开其内部的实现细节不谈，或许百度百度就能入门了)</p>
-</blockquote>
-<p>github  docker  正则表达式 bash   python  …. </p>
-<h2 id="3-12"><a href="#3-12" class="headerlink" title="3/12"></a>3/12</h2><h3 id="毕业设计"><a href="#毕业设计" class="headerlink" title="毕业设计"></a>毕业设计</h3><blockquote>
-<p>需求</p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43297055/article/details/90933657">https://blog.csdn.net/weixin_43297055/article/details/90933657</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41842236/article/details/106302044">https://blog.csdn.net/weixin_41842236/article/details/106302044</a></p>
-<ol>
-<li>引入文件上传功能</li>
-<li>将部分表单提交更改为ajax提交</li>
-<li>报告模板选用docx</li>
-<li>生成报告功能</li>
-<li>将未使用的后端功能删除</li>
-</ol>
-<p>p</p>
-<blockquote>
-<p>一个很离谱的bug</p>
-</blockquote>
-<p>项目需要文件上传功能</p>
-<p>使用bootstrap的fileinput插件</p>
-<p>从GitHub下载，将css 和 js文件拷入项目中，启动项目</p>
-<p>发现web页面无法访问这些新添加的 文件 - -、</p>
-<p>离谱的是同一文件夹下其他以前项目开发的css、js文件都能访问</p>
-<p>百度了一下，大部分都是说权限配置问题、测了几个解决方法，都没啥用</p>
-<p><strong>将文件名命名为以前项目中的 文件名，可以访问</strong></p>
-<p><strong>改回原来的名字，可以访问了</strong></p>
-<p>….</p>
-<p>离谱</p>
-<blockquote>
-<p>奇葩问题2</p>
-</blockquote>
-<p>maven引入依赖后，spring项目无法使用那个包，检查了一下午，发现是在导出的lib中，并不存在那个jar包。</p>
-<p>其实这个问题很久以前学习的时候就遇到过， 只是没有记录下来</p>
-<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220312173952866.png" alt="image-20220312173952866"></p>
-<blockquote>
-<p>奇葩问题3</p>
-</blockquote>
-<p>好了，现在项目中有这个包了，但还是运行失败</p>
-<p>经过漫长的百度 解决方案如下:</p>
-<p>将commons-fileupload-1.3.3.jar</p>
-<p>commons-io-1.4.jar</p>
-<p>放入到tomcat 的lib目录成功</p>
-<h2 id="3-13"><a href="#3-13" class="headerlink" title="3/13"></a>3/13</h2><h3 id="毕业设计-1"><a href="#毕业设计-1" class="headerlink" title="毕业设计"></a>毕业设计</h3><blockquote>
-<p>登录cookie 加入一个随机字符串作为文件夹的名字</p>
-</blockquote>
-<blockquote>
-<p>前端点击文件删除后，后端也应该将该文件删除</p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/bruce128/article/details/79072260">https://blog.csdn.net/bruce128/article/details/79072260</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hesqlplus730/article/details/97915824">https://blog.csdn.net/hesqlplus730/article/details/97915824</a></p>
-<blockquote>
-<p>文件上传成功后，用户输入专家人数、要抽取的人数 服务器进行随机生成编号并返回</p>
-</blockquote>
-<h2 id="3-14"><a href="#3-14" class="headerlink" title="3/14"></a>3/14</h2><h3 id="毕业设计-2"><a href="#毕业设计-2" class="headerlink" title="毕业设计"></a>毕业设计</h3><blockquote>
-<p>生成随机数并返回到前端</p>
-</blockquote>
-<blockquote>
-<p>多张图片合成一张图片</p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xujiangdong1992/article/details/104616043">https://blog.csdn.net/xujiangdong1992/article/details/104616043</a></p>
-<blockquote>
-<p>模板数据填入</p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000038364182">https://segmentfault.com/a/1190000038364182</a></p>
-<p>POI操作word图片过于困难， 发现另一个包: freemarker</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/h-java/p/10026850.html">https://www.cnblogs.com/h-java/p/10026850.html</a></p>
-<p>在一个单元格处插入多张图片</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37676492/article/details/107019383">https://blog.csdn.net/qq_37676492/article/details/107019383</a></p>
-<blockquote>
-<p>下载模板</p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://github.com/yongming9011/WordExportDemo">https://github.com/yongming9011/WordExportDemo</a></p>
-<h2 id="3-15"><a href="#3-15" class="headerlink" title="3/15"></a>3/15</h2><h3 id="毕业设计-3"><a href="#毕业设计-3" class="headerlink" title="毕业设计"></a>毕业设计</h3><blockquote>
-<p> freeemaker导入图片失败</p>
-</blockquote>
-<ol>
-<li>检测是否为框架问题，将word导出模板，直接生成，跟源文件无区别，不是框架问题</li>
-<li>检测是否编辑模板问题，在字符串区域无问题，在图片区域出现问题，图片数据无法保存。</li>
-<li>单图片直接插入，没有问题</li>
-<li>多图片插入需要使用循环…</li>
-<li>测试使用vscode格式化xml文件后，会多出tab 和换行，导致freemaker解析失败。</li>
-<li>测试结束 ，vscode 格式化xml，多出的tab导致解析失败，图片无法插入</li>
-</ol>
-
+        <p><em>
       
     </div>
+    
+    <footer>
+      <div class="alignleft">
+        <a href="/2022/03/07/日志/2022-3/#more" class="more-link">More</a>
+      </div>
+    </footer>
     
     <footer>
         <div class="alignright">
@@ -401,6 +145,11 @@
           <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
         </div>
         
+  
+  <div class="categories">
+    <a href="/categories/日志/">日志</a>
+  </div>
+
         
         <!-- partial('post/share') -->
       <div class="clearfix"></div>
@@ -466,6 +215,11 @@
           <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
         </div>
         
+  
+  <div class="categories">
+    <a href="/categories/操作系统/">操作系统</a>
+  </div>
+
         
         <!-- partial('post/share') -->
       <div class="clearfix"></div>
@@ -767,27 +521,7 @@
     </header>
     <div class="entry">
       
-        <blockquote>
-<p>2022-1-9</p>
-</blockquote>
-<ol>
-<li>学习GO语言结构体方法部分 <a target="_blank" rel="noopener" href="https://www.cntofu.com/book/14/eBook/10.1.md">https://www.cntofu.com/book/14/eBook/10.1.md</a></li>
-<li>《遗忘之海》已读完</li>
-<li>更新一篇Goby文章</li>
-</ol>
-<blockquote>
-<p>2022-1-10</p>
-</blockquote>
-<ol>
-<li>阅读《微尘》</li>
-</ol>
-<blockquote>
-<p>2022-1-11</p>
-</blockquote>
-<ol>
-<li>编写web登录框爆破脚本</li>
-</ol>
-<p><em>
+        <p><em>
       
     </div>
     
@@ -1045,7 +779,9 @@
   
     <li><a href="/categories/开发工具/">开发工具</a><small>3</small></li>
   
-    <li><a href="/categories/日志/">日志</a><small>1</small></li>
+    <li><a href="/categories/操作系统/">操作系统</a><small>1</small></li>
+  
+    <li><a href="/categories/日志/">日志</a><small>2</small></li>
   
     <li><a href="/categories/杂项/">杂项</a><small>1</small></li>
   
@@ -1055,7 +791,7 @@
   
     <li><a href="/categories/脚本/">脚本</a><small>1</small></li>
   
-    <li><a href="/categories/自动化脚本-工具开发/">自动化脚本&amp;工具开发</a><small>1</small></li>
+    <li><a href="/categories/自动化脚本-工具开发/">自动化脚本&amp;工具开发</a><small>2</small></li>
   
   </ul>
 </div>

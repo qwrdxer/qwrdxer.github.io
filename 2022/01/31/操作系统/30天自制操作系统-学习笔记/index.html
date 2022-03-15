@@ -16,19 +16,7 @@ run.bat
 复制结束后会运行如下命令
 1qemu.exe -L . -m 32 -localtime -std-vga -fda fdimage0.bin
 
-使用qemu运行该img文件
-
-读盘
-
-1234567891011MOV AX,0x0820MOV ES,AXMOV CH,0 ; 柱面0MOV DH,0 ; 磁头0MOV CL,2 ; 扇区2MOV AH,0x02 ; AH=0x02 : 读盘MOV AL,1 ; 1个扇区MOV BX,0MOV DL,0x00 ; A驱动器INT 0x13 ; 调用磁盘BIOSJC error
-
-磁盘读、 写， 扇区校验（verify） ， 以及寻道（seek）AH=0x02;（读盘）AH=0x03;（ 写盘）AH=0x04;（ 校验）AH=0x0c;（ 寻道）AL=处理对象的扇区数;（ 只能同时处理连续的扇区）CH=柱面号 &amp;0xff;CL=扇区号（ 0-5位） |（ 柱面号&amp;amp;0x300） * * 2;DH=磁头号;DL=驱动器号；ES:BX=缓冲地址； (校验及寻道时不使用)返回值：FLACS.CF==0： 没有错误， AH==0FLAGS.CF==1： 有错误， 错误号码存入AH内（ 与重置（ reset）功能一样）  
-
-读入10个柱面
-
-
-next: 缓冲地址加32x16 ，如果扇区号＞18，需要读入磁盘反面数据，DH+1 ,加1后如果为1 ，扇区号重置为1，读反面数据即可，如果为2 ，则需要更换柱面。
-makefilehttps://blog.csdn.net/haoel/article/details/2886" />
+使用qemu运行该img文件" />
   
 
   
@@ -104,6 +92,7 @@ makefilehttps://blog.csdn.net/haoel/article/details/2886" />
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qemu.exe -L . -m 32 -localtime -std-vga -fda fdimage0.bin</span><br></pre></td></tr></table></figure>
 
 <p>使用qemu运行该img文件</p>
+<p><em><span id="more"></span></em> </p>
 <blockquote>
 <p>读盘</p>
 </blockquote>
@@ -116,7 +105,7 @@ makefilehttps://blog.csdn.net/haoel/article/details/2886" />
 <p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220131175620833.png" alt="image-20220131175620833"></p>
 <p>next: 缓冲地址加32x16 ，如果扇区号＞18，需要读入磁盘反面数据，DH+1 ,加1后如果为1 ，扇区号重置为1，读反面数据即可，如果为2 ，则需要更换柱面。</p>
 <h3 id="makefile"><a href="#makefile" class="headerlink" title="makefile"></a>makefile</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/haoel/article/details/2886">https://blog.csdn.net/haoel/article/details/2886</a></p>
-<p><em><span id="more"></span></em> </p>
+<p><em><!-- more --></em> </p>
 <h3 id="名词"><a href="#名词" class="headerlink" title="名词"></a>名词</h3><blockquote>
 <p> 启动区</p>
 </blockquote>

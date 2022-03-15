@@ -1,0 +1,327 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  
+  <title>freemarker操控word | qwrdxer &#39;s blog</title>
+  <meta name="author" content="qwrdxer" />
+
+  
+  <meta name="description" content="工具介绍FreeMarker 是一款 模板引擎： 即一种基于模板和要改变的数据， 并用来生成输出文本(HTML网页，电子邮件，配置文件，源代码等)的通用工具。 它不是面向最终用户的，而是一个Java类库，是一款程序员可以嵌入他们所开发产品的组件。
+模板编写为FreeMarker Template Language (FTL)。它是简单的，专用的语言， 不是 像PHP那样成熟的编程语言。 那就意味着要准备数据在真实编程语言中来显示，比如数据库查询和业务运算， 之后模板显示已经准备好的数据。在模板中，你可以专注于如何展现数据， 而在模板之外可以专注于要展示什么数据。
+通过freemarker ，可以向word模板中填入数据，个人看上它最主要的原因是可以循环插入。
+比如有的需求是需要插入多张图片、多个列表等，对于这种不确定的， 可以使用&amp;lt;#list&amp;gt; 标签，将需要循环的部分括起来，插入时只需要传入数组元素即可生成。" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <meta property="og:title" content="freemarker操控word" />
+  <meta property="og:site_name" content="qwrdxer &#39;s blog" />
+
+  
+  
+
+  
+    <meta property="og:image" content="" />
+  
+
+  
+  <link href="/css/images/favicon.ico" rel="icon" />
+  
+
+  <link rel="alternate" href="/atom.xml" title="qwrdxer &#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">qwrdxer &#39;s blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2022-03-15T04:00:54.000Z"><a href="/2022/03/15/自动化脚本&工具开发/freemarker操控word/">2022-03-15</a></time>
+      
+      
+  
+    <h1 class="title">freemarker操控word</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="工具介绍"><a href="#工具介绍" class="headerlink" title="工具介绍"></a>工具介绍</h2><p>FreeMarker 是一款 <em>模板引擎</em>： 即一种基于模板和要改变的数据， 并用来生成输出文本(HTML网页，电子邮件，配置文件，源代码等)的通用工具。 它不是面向最终用户的，而是一个Java类库，是一款程序员可以嵌入他们所开发产品的组件。</p>
+<p>模板编写为FreeMarker Template Language (FTL)。它是简单的，专用的语言， <em>不是</em> 像PHP那样成熟的编程语言。 那就意味着要准备数据在真实编程语言中来显示，比如数据库查询和业务运算， 之后模板显示已经准备好的数据。在模板中，你可以专注于如何展现数据， 而在模板之外可以专注于要展示什么数据。</p>
+<p>通过freemarker ，可以向word模板中填入数据，个人看上它最主要的原因是可以循环插入。</p>
+<p>比如有的需求是需要插入多张图片、多个列表等，对于这种不确定的， 可以使用&lt;#list&gt; 标签，将需要循环的部分括起来，插入时只需要传入数组元素即可生成。</p>
+<p><em><span id="more"></span></em> </p>
+<p><a target="_blank" rel="noopener" href="http://freemarker.foofun.cn/">http://freemarker.foofun.cn/</a></p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>maven引入</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>e-iceblue<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spire.doc.free<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.9.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.freemarker<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>freemarker<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.20<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>spire需要引入源</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>com.e-iceblue<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>e-iceblue<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://repo.e-iceblue.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h2><h3 id="生成模板文件"><a href="#生成模板文件" class="headerlink" title="生成模板文件"></a>生成模板文件</h3><blockquote>
+<p>首先设计一个docx模板,并在要填入数据的地方写入占位符,需要写入图片的地方随便放一张图片即可</p>
+</blockquote>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220315121123267.png" alt="image-20220315121123267"></p>
+<blockquote>
+<p>按F12 ，将其保存为word2003 xml 格式</p>
+</blockquote>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220315121230245.png" alt="image-20220315121230245"></p>
+<blockquote>
+<p>通过vscode打开，alt+shift+F格式化一下方便修改(注意: 经测试，模板文件中不能有tab键，格式化之后有tab键，因此编写完成后需要把这些tab键都删除，不然生成的word图片会无法显示)</p>
+</blockquote>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220315121414512.png" alt="image-20220315121414512"></p>
+<blockquote>
+<p>对于写好占位符的地方，要为其加上${}  ，一开始不加上是因为word生成的xml会将${占位符}分成三份，在xml里直接修改不容易出错。</p>
+</blockquote>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220315121718332.png" alt="image-20220315121718332"></p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220315121737469.png" alt="image-20220315121737469"></p>
+<blockquote>
+<p>图片的数据信息在binData中，以base64格式存放</p>
+<p>单一的图片也跟上面的差不多，将binData的数据修改成占位符即可</p>
+<p>多图片时就需要使用循环了,主要修改四个地方</p>
+<p>分别是加入循环、在binData中加入占位符，在文件名处加入占位符。</p>
+</blockquote>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220315121921890.png" alt="image-20220315121921890"></p>
+<p>模板如下，可直接使用</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;#list images as image&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">w:pict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:shapetype</span> <span class="attr">id</span>=<span class="string">&quot;_x0000_t75&quot;</span> <span class="attr">coordsize</span>=<span class="string">&quot;21600,21600&quot;</span> <span class="attr">o:spt</span>=<span class="string">&quot;75&quot;</span> <span class="attr">o:preferrelative</span>=<span class="string">&quot;t&quot;</span> <span class="attr">path</span>=<span class="string">&quot;m@4@5l@4@11@9@11@9@5xe&quot;</span> <span class="attr">filled</span>=<span class="string">&quot;f&quot;</span> <span class="attr">stroked</span>=<span class="string">&quot;f&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:stroke</span> <span class="attr">joinstyle</span>=<span class="string">&quot;miter&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:formulas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;if lineDrawn pixelLineWidth 0&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;sum @0 1 0&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;sum 0 0 @1&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;prod @2 1 2&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;prod @3 21600 pixelWidth&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;prod @3 21600 pixelHeight&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;sum @0 0 1&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;prod @6 1 2&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;prod @7 21600 pixelWidth&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;sum @8 21600 0&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;prod @7 21600 pixelHeight&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;sum @10 21600 0&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">v:formulas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:path</span> <span class="attr">o:extrusionok</span>=<span class="string">&quot;f&quot;</span> <span class="attr">gradientshapeok</span>=<span class="string">&quot;t&quot;</span> <span class="attr">o:connecttype</span>=<span class="string">&quot;rect&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">o:lock</span> <span class="attr">v:ext</span>=<span class="string">&quot;edit&quot;</span> <span class="attr">aspectratio</span>=<span class="string">&quot;t&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">v:shapetype</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:binData</span> <span class="attr">w:name</span>=<span class="string">&quot;wordml://$&#123;image_index+1&#125;.png&quot;</span> <span class="attr">xml:space</span>=<span class="string">&quot;preserve&quot;</span>&gt;</span>$&#123;image&#125;<span class="tag">&lt;/<span class="name">w:binData</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:shape</span> <span class="attr">id</span>=<span class="string">&quot;图片 1&quot;</span> <span class="attr">o:spid</span>=<span class="string">&quot;_x0000_i1026&quot;</span> <span class="attr">type</span>=<span class="string">&quot;#_x0000_t75&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width:1in;height:96pt;visibility:visible;mso-wrap-style:square&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:imagedata</span> <span class="attr">src</span>=<span class="string">&quot;wordml://$&#123;image_index+1&#125;.png&quot;</span> <span class="attr">o:title</span>=<span class="string">&quot;&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">v:shape</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">w:pict</span>&gt;</span></span><br><span class="line">&lt;/#list&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a>工具类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.qwrdxer.utils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> freemarker.template.Configuration;</span><br><span class="line"><span class="keyword">import</span> freemarker.template.Template;</span><br><span class="line"><span class="keyword">import</span> sun.misc.BASE64Encoder;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenWord</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 生成word文件</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> dataMap      数据</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> templateName 模板名称</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> file         文件</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> fileName     文件名称</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">createWord</span><span class="params">(Map&lt;String, Object&gt; dataMap, String templateName, File file, String fileName)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Configuration configuration = <span class="keyword">new</span> Configuration();</span><br><span class="line">            configuration.setDefaultEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">            configuration.setDirectoryForTemplateLoading(file);</span><br><span class="line">            Template template = configuration.getTemplate(templateName);</span><br><span class="line">            File outFile = <span class="keyword">new</span> File(<span class="string">&quot;E:\\87b0767d5d8f49039fac2b1d1e29fdc3\\&quot;</span> + fileName);</span><br><span class="line">            <span class="keyword">if</span> (!outFile.getParentFile().exists()) &#123;</span><br><span class="line">                outFile.getParentFile().mkdirs();</span><br><span class="line">            &#125;</span><br><span class="line">            Writer out = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> OutputStreamWriter(<span class="keyword">new</span> FileOutputStream(outFile), <span class="string">&quot;UTF-8&quot;</span>));</span><br><span class="line">            template.process(dataMap, out);</span><br><span class="line">            out.flush();</span><br><span class="line">            out.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">convertFileToBase64</span><span class="params">(String imgPath)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        InputStream in = <span class="keyword">new</span> FileInputStream(imgPath);</span><br><span class="line">        ByteArrayOutputStream outputStream = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">        <span class="comment">// 将内容读取内存中</span></span><br><span class="line">        <span class="keyword">byte</span>[] buffer = <span class="keyword">null</span>;</span><br><span class="line">        buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="keyword">int</span> len = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> ((len = in.read(buffer)) != -<span class="number">1</span>) &#123;</span><br><span class="line">            outputStream.write(buffer, <span class="number">0</span>, len);</span><br><span class="line">        &#125;</span><br><span class="line">        buffer = outputStream.toByteArray();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (in != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">// 关闭inputStream流</span></span><br><span class="line">                in.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (outputStream != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">// 关闭outputStream流</span></span><br><span class="line">                outputStream.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">            <span class="comment">// 对字节数组Base64编码</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> BASE64Encoder().encode(buffer);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>createWord 函数用于根据模板将数据填入，并输出到指定文件</p>
+<p>参数为:</p>
+<ol>
+<li>要填入模板中的数据 Map</li>
+<li>模板名字  String</li>
+<li>模板所在文件夹  File</li>
+<li>输出文件的路径+名字 String</li>
+</ol>
+<p>convertFileToBase64函数,将图片数据转换成base64, 输入为图片所在路径</p>
+<p>测试代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span> <span class="keyword">throws</span> IOException, TemplateException </span>&#123;</span><br><span class="line">    Map&lt;String, Object&gt; dataMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    dataMap.put(<span class="string">&quot;num&quot;</span>,<span class="string">&quot;1,23,,3,4,54,435,345,345&quot;</span>);</span><br><span class="line">    dataMap.put(<span class="string">&quot;projectname&quot;</span>,<span class="string">&quot;测试项目&quot;</span>);</span><br><span class="line">    List&lt;String&gt; images = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">    images.add(convertFileToBase64(<span class="string">&quot;E:\\87b0767d5d8f49039fac2b1d1e29fdc3\\d2a1.png&quot;</span>));</span><br><span class="line">    images.add(convertFileToBase64(<span class="string">&quot;E:\\87b0767d5d8f49039fac2b1d1e29fdc3\\logo.png&quot;</span>));</span><br><span class="line">    dataMap.put(<span class="string">&quot;images&quot;</span>,images);</span><br><span class="line">    createWord(dataMap,<span class="string">&quot;temp.ftl&quot;</span>,<span class="keyword">new</span> File(<span class="string">&quot;E:\\87b0767d5d8f49039fac2b1d1e29fdc3\\&quot;</span>),<span class="string">&quot;E:\\87b0767d5d8f49039fac2b1d1e29fdc3\\test.doc&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<blockquote>
+<p>参考文章</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xujiangdong1992/article/details/104616043">https://blog.csdn.net/xujiangdong1992/article/details/104616043</a></p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000038364182">https://segmentfault.com/a/1190000038364182</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/h-java/p/10026850.html">https://www.cnblogs.com/h-java/p/10026850.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37676492/article/details/107019383">https://blog.csdn.net/qq_37676492/article/details/107019383</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/yongming9011/WordExportDemo">https://github.com/yongming9011/WordExportDemo</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/工具使用/">工具使用</a>
+  </div>
+
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:qwrdxer.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/web安全工具篇/">web安全工具篇</a><small>3</small></li>
+  
+    <li><a href="/categories/web安全漏洞篇/">web安全漏洞篇</a><small>2</small></li>
+  
+    <li><a href="/categories/开发工具/">开发工具</a><small>3</small></li>
+  
+    <li><a href="/categories/日志/">日志</a><small>1</small></li>
+  
+    <li><a href="/categories/杂项/">杂项</a><small>1</small></li>
+  
+    <li><a href="/categories/渗透测试篇/">渗透测试篇</a><small>1</small></li>
+  
+    <li><a href="/categories/环境配置/">环境配置</a><small>1</small></li>
+  
+    <li><a href="/categories/脚本/">脚本</a><small>1</small></li>
+  
+    <li><a href="/categories/自动化脚本-工具开发/">自动化脚本&amp;工具开发</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2022/03/15/自动化脚本&amp;工具开发/freemarker操控word/">freemarker操控word</a>
+      </li>
+    
+      <li>
+        <a href="/2022/03/07/日志/2022-3/">2022-3</a>
+      </li>
+    
+      <li>
+        <a href="/2022/01/31/操作系统/30天自制操作系统-学习笔记/">30天自制操作系统-学习笔记</a>
+      </li>
+    
+      <li>
+        <a href="/2022/01/12/杂项/GITHUB收集/">GITHUB收集</a>
+      </li>
+    
+      <li>
+        <a href="/2022/01/11/自动化脚本&amp;工具开发/web页面密码爆破/">web页面密码爆破</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
+    <li><a href="/tags/WordPress/">WordPress</a><small>1</small></li>
+  
+    <li><a href="/tags/bash/">bash</a><small>2</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>2</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/web漏洞/">web漏洞</a><small>2</small></li>
+  
+    <li><a href="/tags/工具使用/">工具使用</a><small>6</small></li>
+  
+    <li><a href="/tags/工具开发/">工具开发</a><small>1</small></li>
+  
+    <li><a href="/tags/开发/">开发</a><small>1</small></li>
+  
+    <li><a href="/tags/报错解决/">报错解决</a><small>1</small></li>
+  
+    <li><a href="/tags/文件包含/">文件包含</a><small>1</small></li>
+  
+    <li><a href="/tags/渗透测试/">渗透测试</a><small>4</small></li>
+  
+    <li><a href="/tags/环境配置/">环境配置</a><small>1</small></li>
+  
+    <li><a href="/tags/脚本/">脚本</a><small>4</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/WordPress/" style="font-size: 10px;">WordPress</a> <a href="/tags/bash/" style="font-size: 13.33px;">bash</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/web%E6%BC%8F%E6%B4%9E/" style="font-size: 13.33px;">web漏洞</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">工具使用</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/" style="font-size: 10px;">工具开发</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 10px;">开发</a> <a href="/tags/%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3/" style="font-size: 10px;">报错解决</a> <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" style="font-size: 10px;">文件包含</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 16.67px;">渗透测试</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">环境配置</a> <a href="/tags/%E8%84%9A%E6%9C%AC/" style="font-size: 16.67px;">脚本</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <p>
+  
+  &copy; 2022 qwrdxer
+  
+  All rights reserved.</p>
+  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</div>
+<div class="clearfix"></div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id='bg'></div>
+</body>
+</html>

@@ -1,0 +1,653 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  
+  <title>30天自制操作系统-学习笔记 | qwrdxer &#39;s blog</title>
+  <meta name="author" content="qwrdxer" />
+
+  
+  <meta name="description" content="20220131day1~day3
+代码
+run.bat
+
+12345copy helloos.img ..\z_tools\qemu\fdimage0.bin# 将helloos.img 复制到qemu文件夹下，命名为fdimage0.bin..\z_tools\make.exe	-C ../z_tools/qemu# -C 且换目录到qemu文件夹下，并执行make命令
+
+复制结束后会运行如下命令
+1qemu.exe -L . -m 32 -localtime -std-vga -fda fdimage0.bin
+
+使用qemu运行该img文件
+
+读盘
+
+1234567891011MOV AX,0x0820MOV ES,AXMOV CH,0 ; 柱面0MOV DH,0 ; 磁头0MOV CL,2 ; 扇区2MOV AH,0x02 ; AH=0x02 : 读盘MOV AL,1 ; 1个扇区MOV BX,0MOV DL,0x00 ; A驱动器INT 0x13 ; 调用磁盘BIOSJC error
+
+磁盘读、 写， 扇区校验（verify） ， 以及寻道（seek）AH=0x02;（读盘）AH=0x03;（ 写盘）AH=0x04;（ 校验）AH=0x0c;（ 寻道）AL=处理对象的扇区数;（ 只能同时处理连续的扇区）CH=柱面号 &amp;0xff;CL=扇区号（ 0-5位） |（ 柱面号&amp;amp;0x300） * * 2;DH=磁头号;DL=驱动器号；ES:BX=缓冲地址； (校验及寻道时不使用)返回值：FLACS.CF==0： 没有错误， AH==0FLAGS.CF==1： 有错误， 错误号码存入AH内（ 与重置（ reset）功能一样）  
+
+读入10个柱面
+
+
+next: 缓冲地址加32x16 ，如果扇区号＞18，需要读入磁盘反面数据，DH+1 ,加1后如果为1 ，扇区号重置为1，读反面数据即可，如果为2 ，则需要更换柱面。
+makefilehttps://blog.csdn.net/haoel/article/details/2886" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <meta property="og:title" content="30天自制操作系统-学习笔记" />
+  <meta property="og:site_name" content="qwrdxer &#39;s blog" />
+
+  
+  
+
+  
+    <meta property="og:image" content="" />
+  
+
+  
+  <link href="/css/images/favicon.ico" rel="icon" />
+  
+
+  <link rel="alternate" href="/atom.xml" title="qwrdxer &#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">qwrdxer &#39;s blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2022-01-31T02:57:39.000Z"><a href="/2022/01/31/操作系统/30天自制操作系统-学习笔记/">2022-01-31</a></time>
+      
+      
+  
+    <h1 class="title">30天自制操作系统-学习笔记</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="20220131"><a href="#20220131" class="headerlink" title="20220131"></a>20220131</h2><p>day1~day3</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><blockquote>
+<p>run.bat</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">copy helloos.img ..\z_tools\qemu\fdimage0.bin</span><br><span class="line"><span class="meta">#</span><span class="bash"> 将helloos.img 复制到qemu文件夹下，命名为fdimage0.bin</span></span><br><span class="line">..\z_tools\make.exe	-C ../z_tools/qemu</span><br><span class="line"><span class="meta">#</span><span class="bash"> -C 且换目录到qemu文件夹下，并执行make命令</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>复制结束后会运行如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qemu.exe -L . -m 32 -localtime -std-vga -fda fdimage0.bin</span><br></pre></td></tr></table></figure>
+
+<p>使用qemu运行该img文件</p>
+<blockquote>
+<p>读盘</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">MOV AX,0x0820</span><br><span class="line">MOV ES,AX</span><br><span class="line">MOV CH,0 ; 柱面0</span><br><span class="line">MOV DH,0 ; 磁头0</span><br><span class="line">MOV CL,2 ; 扇区2</span><br><span class="line">MOV AH,0x02 ; AH=0x02 : 读盘</span><br><span class="line">MOV AL,1 ; 1个扇区</span><br><span class="line">MOV BX,0</span><br><span class="line">MOV DL,0x00 ; A驱动器</span><br><span class="line">INT 0x13 ; 调用磁盘BIOS</span><br><span class="line">JC error</span><br></pre></td></tr></table></figure>
+
+<p>磁盘读、 写， 扇区校验（verify） ， 以及寻道（seek）<br>AH=0x02;（读盘）<br>AH=0x03;（ 写盘）<br>AH=0x04;（ 校验）<br>AH=0x0c;（ 寻道）<br>AL=处理对象的扇区数;（ 只能同时处理连续的扇区）<br>CH=柱面号 &0xff;<br>CL=扇区号（ 0-5位） |（ 柱面号&amp;0x300） * * 2;<br>DH=磁头号;<br>DL=驱动器号；<br>ES:BX=缓冲地址； (校验及寻道时不使用)<br>返回值：<br>FLACS.CF==0： 没有错误， AH==0<br>FLAGS.CF==1： 有错误， 错误号码存入AH内（ 与重置（ reset）<br>功能一样）  </p>
+<blockquote>
+<p>读入10个柱面</p>
+</blockquote>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220131175620833.png" alt="image-20220131175620833"></p>
+<p>next: 缓冲地址加32x16 ，如果扇区号＞18，需要读入磁盘反面数据，DH+1 ,加1后如果为1 ，扇区号重置为1，读反面数据即可，如果为2 ，则需要更换柱面。</p>
+<h3 id="makefile"><a href="#makefile" class="headerlink" title="makefile"></a>makefile</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/haoel/article/details/2886">https://blog.csdn.net/haoel/article/details/2886</a></p>
+<p><em><span id="more"></span></em> </p>
+<h3 id="名词"><a href="#名词" class="headerlink" title="名词"></a>名词</h3><blockquote>
+<p> 启动区</p>
+</blockquote>
+<p>软盘第一个的扇区称为启动区。 那么什么是扇区呢？ 计算机读写软盘的时候， 并不是一个字节一个字节地读写的， 而是以512字节为一个单位进行读写。 因此,软盘的512字节就称为一个扇区。  计算机首先从最初一个扇区开始读软盘， 然后去检查这个扇区最后2个字节的内容。  如果计算机确认了第一个扇区的最后两个字节正好是0x55 AA， 那它就认为这个扇区的开头是启动程序， 并开始执行这个程序  。</p>
+<blockquote>
+<p>IPL</p>
+</blockquote>
+<p>initial program loader的缩写。 启动程序加载器。 启动区只有区区512字节， 实际的操作系统不像hello-os这么小， 根本装不进去。 所以几乎所有的操作系统， 都是把加载操作系统本身的程序放在启动区里的。  </p>
+<blockquote>
+<p>汇编指令:org</p>
+</blockquote>
+<p>指明机器语言指令装载到内存中的哪个位置</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/soulzx/article/details/6536200">https://blog.csdn.net/soulzx/article/details/6536200</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org指令是链接时使用的，不是汇编那一步使用的。即不是cpu的一条指令，而是给编译器看的伪指令。</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>汇编指令 mov A,B</p>
+</blockquote>
+<p>将Ｂ赋值给Ａ</p>
+<blockquote>
+<p>汇编指令mov A,[B]</p>
+</blockquote>
+<p>获取B寄存器中存储的内存地址对应的数据，赋值给A</p>
+<blockquote>
+<p>汇编指令HLT </p>
+</blockquote>
+<p>让CPU进入待机状态，当外部有输入时继续执行指令</p>
+<blockquote>
+<p>汇编指令INT</p>
+</blockquote>
+<p> INT: interrupt</p>
+<p>0x10  : 输出字符</p>
+<p>0x13  : 磁盘操作(根据AH的值)</p>
+<blockquote>
+<p>汇编指令JC: Jump if carry</p>
+</blockquote>
+<p>如果进位标志(carry flag)是1 就跳转</p>
+<p>CMP: compare</p>
+<p>JE: jump if equal</p>
+<p>JBE： jump if below or qual</p>
+<p>JB : jump if below</p>
+<p>BIOS：basic input output system</p>
+<blockquote>
+<p>寄存器</p>
+</blockquote>
+<p>AX——accumulator， 累加寄存器<br>CX——counter， 计数寄存器<br>DX——data， 数据寄存器<br>BX——base， 基址寄存器<br>SP——stack pointer， 栈指针寄存器<br>BP——base pointer， 基址指针寄存器<br>SI——source index， 源变址寄存器<br>DI——destination index， 目的变址寄存器  </p>
+<p>AL——累加寄存器低位（accumulator low）<br>CL——计数寄存器低位（counter low）<br>DL——数据寄存器低位（data low）<br>BL——基址寄存器低位（base low）<br>AH——累加寄存器高位（accumulator high）<br>CH——计数寄存器高位（counter high）<br>DH——数据寄存器高位（data high）<br>BH——基址寄存器高位（base high）  </p>
+<p>段寄存器(16位)</p>
+<p>ES——附加段寄存器（extra segment）<br>CS——代码段寄存器（code segment）<br>SS——栈段寄存器（stack segment）<br>DS——数据段寄存器（data segment）<br>FS——没有名称（segment part 2）<br>GS——没有名称（segment part 3）  </p>
+<p>Cylinder 柱面</p>
+<p>Head 磁头</p>
+<p>Sector 扇区</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>一般向一个空软盘保存文件时（根据文件系统)，</p>
+<ol>
+<li>文件名会写在0x002600以后的地方；</li>
+<li>文件的内容会写在0x004200以后的地方。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/c234jc/article/details/70991050">https://blog.csdn.net/c234jc/article/details/70991050</a></p>
+<p>内存分布图</p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/1096103-20191006104056867-805241753.png" alt="img"></p>
+<h2 id="20220201"><a href="#20220201" class="headerlink" title="20220201"></a>20220201</h2><h3 id="操作系统流程"><a href="#操作系统流程" class="headerlink" title="操作系统流程:"></a>操作系统流程:</h3><ol>
+<li>CPU将系统盘中第一个扇区(启动区)的内容(512Byte)加载入内存中,检验扇区最后两字节是否为0x55 ,0xAA. 如果计算机确认了第一个扇区的最后两个字节正好是0x55 AA， 那它就认为这个扇区的开头是启动程序， 并开始执行这个程序  。</li>
+<li>一个扇区是远远不够存储操作系统的，因此需要让CPU将其他扇区代码读入内存(缓冲区)中,我们要借助启动区读入的就是操作系统的代码</li>
+<li>函数是如何导入作者暂未讲解. ..</li>
+</ol>
+<h3 id="harib00g-代码解读"><a href="#harib00g-代码解读" class="headerlink" title="harib00g 代码解读"></a>harib00g 代码解读</h3><blockquote>
+<p>haribote.nas</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">; haribote-os</span><br><span class="line">; TAB&#x3D;4</span><br><span class="line"></span><br><span class="line">		ORG		0xc200	</span><br><span class="line">		MOV		AL,0x13	</span><br><span class="line">		MOV		AH,0x00</span><br><span class="line">		INT		0x10</span><br><span class="line">fin:</span><br><span class="line">		HLT</span><br><span class="line">		JMP		fin</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这段是启动区运行完毕后要执行的汇编代码</p>
+<p><del>ORG设置其加载到内存时的位置</del></p>
+<p>ORG可以理解为偏移量，供编译器进行地址转换，</p>
+<p>MOV        AL,0x13<br>MOV        AH,0x00</p>
+<p> AH=0x00 ，AL=0x13设置显示为VGA图形模式</p>
+<p>INT        0x10 调用bios函数来设置显示为VGA图形模式</p>
+<p>后续代码进入循环</p>
+<h3 id="harb00j"><a href="#harb00j" class="headerlink" title="harb00j"></a>harb00j</h3><p>引入了C语言，因为C语言中没有HLT，需要用汇编实现这个函数</p>
+<blockquote>
+<p>naskfunc.nas和bootpack.c</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">; naskfunc</span><br><span class="line">; TAB&#x3D;4</span><br><span class="line">[FORMAT &quot;WCOFF&quot;] ; 制作目标文件的模式</span><br><span class="line">[BITS 32] ; 制作32位模式用的机械语言</span><br><span class="line">;制作目标文件的信息</span><br><span class="line">[FILE &quot;naskfunc.nas&quot;] ; 源文件名信息</span><br><span class="line">	GLOBAL _io_hlt ; 程序中包含的函数名</span><br><span class="line">;以下是实际的函数</span><br><span class="line">[SECTION .text] ; 目标文件中写了这些之后再写程序</span><br><span class="line">_io_hlt: ; void io_hlt(void);</span><br><span class="line">    HLT</span><br><span class="line">    RET</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*告诉C编译器， 有一个函数在别的文件里*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">io_hlt</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="comment">/*是函数声明却不用&#123; &#125;， 而用;， 这表示的意思是： 函数是在别的文件中， 你自己找一下吧！ */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">HariMain</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">fin:</span><br><span class="line">	io_hlt(); <span class="comment">/*执行naskfunc.nas里的_io_hlt*/</span></span><br><span class="line">	<span class="keyword">goto</span> fin;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="harb01b"><a href="#harb01b" class="headerlink" title="harb01b"></a>harb01b</h3><p>写一个HELLO</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">io_hlt</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write_mem8</span><span class="params">(<span class="keyword">int</span> addr, <span class="keyword">int</span> data)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">HariMain</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i; </span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0xa0000</span>; i &lt;= <span class="number">0xaffff</span>; i++) &#123;</span><br><span class="line">    	write_mem8(i, i &amp; <span class="number">0x0f</span>);</span><br><span class="line">    &#125;</span><br><span class="line">	WriteH(<span class="number">0xa0000</span>);</span><br><span class="line">	WriteE(<span class="number">0xa0000</span>+<span class="number">7</span>);</span><br><span class="line">	WriteL(<span class="number">0xa0000</span>+<span class="number">7</span>*<span class="number">2</span>);</span><br><span class="line">	WriteL(<span class="number">0xa0000</span>+<span class="number">7</span>*<span class="number">3</span>);</span><br><span class="line">	WriteO(<span class="number">0xa0000</span>+<span class="number">7</span>*<span class="number">4</span>);</span><br><span class="line">	<span class="keyword">for</span> (;;) &#123;</span><br><span class="line">		io_hlt();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*256/4 * 5*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">WriteH</span><span class="params">(<span class="keyword">int</span> addr)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;=<span class="number">10</span>;i++)&#123;</span><br><span class="line">		write_mem8(addr+i*<span class="number">320</span>,<span class="number">0x0f</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;=<span class="number">10</span>;i++)&#123;</span><br><span class="line">		write_mem8(addr+<span class="number">5</span>+i*<span class="number">320</span>,<span class="number">0x0f</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	write_mem8(addr+<span class="number">1</span>+<span class="number">4</span>*<span class="number">320</span>,<span class="number">0x0f</span>);</span><br><span class="line">	write_mem8(addr+<span class="number">2</span>+<span class="number">4</span>*<span class="number">320</span>,<span class="number">0x0f</span>);</span><br><span class="line">	write_mem8(addr+<span class="number">3</span>+<span class="number">4</span>*<span class="number">320</span>,<span class="number">0x0f</span>);</span><br><span class="line">	write_mem8(addr+<span class="number">4</span>+<span class="number">4</span>*<span class="number">320</span>,<span class="number">0x0f</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">WriteE</span><span class="params">(<span class="keyword">int</span> addr)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;=<span class="number">10</span>;i++)&#123;</span><br><span class="line">		write_mem8(addr+i*<span class="number">320</span>,<span class="number">0x0f</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=<span class="number">4</span>;i++)&#123;</span><br><span class="line">		write_mem8(addr+i,<span class="number">0x0f</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=<span class="number">4</span>;i++)&#123;</span><br><span class="line">		write_mem8(addr+i+<span class="number">320</span>*<span class="number">5</span>,<span class="number">0x0f</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=<span class="number">4</span>;i++)&#123;</span><br><span class="line">		write_mem8(addr+i+<span class="number">320</span>*<span class="number">10</span>,<span class="number">0x0f</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">WriteL</span><span class="params">(<span class="keyword">int</span> addr)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;=<span class="number">10</span>;i++)&#123;</span><br><span class="line">		write_mem8(addr+i*<span class="number">320</span>,<span class="number">0x0f</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=<span class="number">4</span>;i++)&#123;</span><br><span class="line">		write_mem8(addr+i+<span class="number">320</span>*<span class="number">10</span>,<span class="number">0x0f</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">WriteO</span><span class="params">(<span class="keyword">int</span> addr)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;=<span class="number">10</span>;i++)&#123;</span><br><span class="line">		write_mem8(addr+i*<span class="number">320</span>,<span class="number">0x0f</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;=<span class="number">10</span>;i++)&#123;</span><br><span class="line">		write_mem8(addr+<span class="number">5</span>+i*<span class="number">320</span>,<span class="number">0x0f</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=<span class="number">4</span>;i++)&#123;</span><br><span class="line">		write_mem8(addr+i,<span class="number">0x0f</span>);</span><br><span class="line">		write_mem8(addr+i+<span class="number">320</span>*<span class="number">10</span>,<span class="number">0x0f</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="20220202"><a href="#20220202" class="headerlink" title="20220202"></a>20220202</h2><h3 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h3><p>作者将指针用 地址变量来描述</p>
+<p>char *p 定义了一个指针(即地址变量，其值为内存中的地址)</p>
+<p>p=0x000a 即让p指向一个内存地址</p>
+<p>往地址中写入值:</p>
+<p>在c语言中  *p=0x123</p>
+<p>在汇编中是 mov [EAX], 0x123</p>
+<p>指针，其存储的值为一个地址变量 ，我们可以通过用*号去访问那个地址</p>
+<p>&amp; 取地址，获取变量的地址</p>
+<p>p=(char *)&amp;a 获取到a变量的地址，并将其转换成char类型的地址变量，赋值给p</p>
+<p>p[1] 是什么意思:</p>
+<p>p[1]等价于 *(p+1), 这个1并不是数值上的1 ，而是单位1 ，他根据指针的类型来决定具体的大小，char类型为1byte, short为2byte(word) ，int为4byte(DWORD)</p>
+<p>p[1]并不代表其为数组，作者原话如下</p>
+<blockquote>
+<p>不是说改变一下写法， 地址变量就变成数组了。 大家不要被那些劣质的<br>教科书骗了。 编译器生成的机器语言也完全一样。 这比什么都更能证<br>明， 意思没有变化， 只是写法不同。  </p>
+<p>说个题外话， 加法运算可以交换顺序， 所以将*(p + i)写成*(i + p) 也是<br>可以的。 同理， 将p[i]写成i[p]也是可以的（可能你会不相信， 但这样写<br>既不会出错， 也能正常运行） 。 a[2]也可以写成2[a]（这当然是真<br>的） 。 难道还能说这是名为2的数组的第a个元素吗？ 当然不能。 所以，<br>p[i]也好， i[p]也好， 仅仅是一种省略写法， 本质上讲， 与数组没有关<br>系。  </p>
+</blockquote>
+<h3 id="harib01f-色号设定"><a href="#harib01f-色号设定" class="headerlink" title="harib01f  色号设定"></a>harib01f  色号设定</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">set_palette</span><span class="params">(<span class="keyword">int</span> start, <span class="keyword">int</span> end, <span class="keyword">unsigned</span> <span class="keyword">char</span> *rgb)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, eflags;</span><br><span class="line">    eflags = io_load_eflags(); <span class="comment">/* 记录中断许可标志的值*/</span></span><br><span class="line">    io_cli(); <span class="comment">/* 将中断许可标志置为0， 禁止中断 */</span></span><br><span class="line">    io_out8(<span class="number">0x03c8</span>, start);</span><br><span class="line">    <span class="keyword">for</span> (i = start; i &lt;= end; i++) &#123;</span><br><span class="line">        io_out8(<span class="number">0x03c9</span>, rgb[<span class="number">0</span>] / <span class="number">4</span>);</span><br><span class="line">        io_out8(<span class="number">0x03c9</span>, rgb[<span class="number">1</span>] / <span class="number">4</span>);</span><br><span class="line">        io_out8(<span class="number">0x03c9</span>, rgb[<span class="number">2</span>] / <span class="number">4</span>);</span><br><span class="line">        rgb += <span class="number">3</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    io_store_eflags(eflags); <span class="comment">/* 复原中断许可标志 */</span></span><br><span class="line"><span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>CLI ： clear interrupt flag 将中断标志置为0</p>
+<p>STI： set interrupt flag 将中断标志置为1</p>
+<p>读写EFLAGES  汇编指令: PUSHFD POPFD</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">_io_load_eflags: ; int io_load_eflags(void);</span><br><span class="line">    PUSHFD ; 指 PUSH EFLAGS</span><br><span class="line">    POP EAX</span><br><span class="line">    RET</span><br><span class="line">_io_store_eflags: ; void io_store_eflags(int eflags);</span><br><span class="line">    MOV EAX,[ESP+4]</span><br><span class="line">    PUSH EAX</span><br><span class="line">    POPFD ; 指 POP EFLAGS</span><br><span class="line">    RET</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="20220203"><a href="#20220203" class="headerlink" title="20220203"></a>20220203</h2><h3 id="harib02b结构体"><a href="#harib02b结构体" class="headerlink" title="harib02b结构体"></a>harib02b结构体</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">BOOTINFO</span> &#123;</span></span><br><span class="line">    <span class="keyword">char</span> cyls, leds, vmode, reserve;</span><br><span class="line">    <span class="keyword">short</span> scrnx, scrny;</span><br><span class="line">    <span class="keyword">char</span> *vram;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">HariMain</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *vram;</span><br><span class="line">    <span class="keyword">int</span> xsize, ysize;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">BOOTINFO</span> *<span class="title">binfo</span>;</span></span><br><span class="line">    init_palette();</span><br><span class="line">    binfo = (struct BOOTINFO *) <span class="number">0x0ff0</span>;</span><br><span class="line">    xsize = (*binfo).scrnx;</span><br><span class="line">    ysize = (*binfo).scrny;</span><br><span class="line">    vram = (*binfo).vram;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>BOOTINFO 结构体存储了启动信息</p>
+<p>在HariMain中</p>
+<p> binfo = (struct BOOTINFO *) 0x0ff0; 这一句用于获取在内存地址为0x0ff0的数据，由前文可知，该处内存存储了图形化界面的各种设置，分别对应了结构体中的各个变量。</p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220310192807590.png" alt="image-20220310192807590"></p>
+<h3 id="harib02d-显示字符"><a href="#harib02d-显示字符" class="headerlink" title="harib02d 显示字符"></a>harib02d 显示字符</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">putfont8</span><span class="params">(<span class="keyword">char</span> *vram, <span class="keyword">int</span> xsize, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">char</span> c, <span class="keyword">char</span> *font)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">char</span> *p, d <span class="comment">/* data */</span>;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">16</span>; i++) &#123;</span><br><span class="line">        p = vram + (y + i) * xsize + x;</span><br><span class="line">        d = font[i];</span><br><span class="line">        <span class="keyword">if</span> ((d &amp; <span class="number">0x80</span>) != <span class="number">0</span>) &#123; p[<span class="number">0</span>] = c; &#125;</span><br><span class="line">        <span class="keyword">if</span> ((d &amp; <span class="number">0x40</span>) != <span class="number">0</span>) &#123; p[<span class="number">1</span>] = c; &#125;</span><br><span class="line">        <span class="keyword">if</span> ((d &amp; <span class="number">0x20</span>) != <span class="number">0</span>) &#123; p[<span class="number">2</span>] = c; &#125;</span><br><span class="line">        <span class="keyword">if</span> ((d &amp; <span class="number">0x10</span>) != <span class="number">0</span>) &#123; p[<span class="number">3</span>] = c; &#125;</span><br><span class="line">        <span class="keyword">if</span> ((d &amp; <span class="number">0x08</span>) != <span class="number">0</span>) &#123; p[<span class="number">4</span>] = c; &#125;</span><br><span class="line">        <span class="keyword">if</span> ((d &amp; <span class="number">0x04</span>) != <span class="number">0</span>) &#123; p[<span class="number">5</span>] = c; &#125;</span><br><span class="line">        <span class="keyword">if</span> ((d &amp; <span class="number">0x02</span>) != <span class="number">0</span>) &#123; p[<span class="number">6</span>] = c; &#125;</span><br><span class="line">        <span class="keyword">if</span> ((d &amp; <span class="number">0x01</span>) != <span class="number">0</span>) &#123; p[<span class="number">7</span>] = c; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>参数中 *vram为显存地址，xsize为显示的宽度，x,y为起始坐标，c为颜色， font为要输出的字符数组。</p>
+<h3 id="harib02e-增加字体"><a href="#harib02e-增加字体" class="headerlink" title="harib02e 增加字体"></a>harib02e 增加字体</h3><p>hankaku.txt为一个记录字符的文件</p>
+<p>其用8x16个. 和 * 记录了一些常用字符(256个)，类似如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">char 0x03</span><br><span class="line">........</span><br><span class="line">........</span><br><span class="line">........</span><br><span class="line">........</span><br><span class="line">.**.**..</span><br><span class="line">*******.</span><br><span class="line">*******.</span><br><span class="line">*******.</span><br><span class="line">.*****..</span><br><span class="line">..***...</span><br><span class="line">...*....</span><br><span class="line">........</span><br><span class="line">........</span><br><span class="line">........</span><br><span class="line">........</span><br><span class="line">........</span><br></pre></td></tr></table></figure>
+
+<p>使用工具makefont.exe，将其中的.和*转换成0和1 ,即用1byte代表一行，如下图所示，每一行都代表一个字符</p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220203134146849.png" alt="image-20220203134146849"></p>
+<p>现在这个文件仅仅是二进制文件，还不能供bootpack.obj使用，还要加上连接所必须的接口信息，将他变成目标文件</p>
+<p>$(BIN2OBJ) hankaku.bin hankaku.obj _hankaku</p>
+<p>类似于将如下两行程序转成汇编</p>
+<p>_hankanku:<br>        DB 各种数据（共4096字节）  </p>
+<p>C语言中要导入源程序以外准备的数据，都需要加上extern属性</p>
+<p>extern char hankaku[4096];</p>
+<p>这样， C编译器就能够知道它是外部数据， 并在编译时做出相应调整。</p>
+<p>生成二进制映像文件</p>
+<p>bootpack.bim : bootpack.obj naskfunc.obj hankaku.obj Makefile</p>
+<p>  $(OBJ2BIM) @$(RULEFILE) out:bootpack.bim stack:3136k map:bootpack.map \</p>
+<p>​    bootpack.obj naskfunc.obj hankaku.obj</p>
+<p>转成hrb</p>
+<p>bootpack.hrb : bootpack.bim Makefile</p>
+<p>  $(BIM2HRB) bootpack.bim bootpack.hrb 0</p>
+<p>加上头</p>
+<p>haribote.sys : asmhead.bin bootpack.hrb Makefile</p>
+<p>  copy /B asmhead.bin+bootpack.hrb haribote.sys</p>
+<p>制作img文件(引入启动区程序)</p>
+<p>haribote.img : ipl10.bin haribote.sys Makefile</p>
+<p>  $(EDIMG)  imgin:../z_tools/fdimg0at.tek \</p>
+<p>​    wbinimg src:ipl10.bin len:512 from:0 to:0 \</p>
+<p>​    copy from:haribote.sys to:@: \</p>
+<p>​    imgout:haribote.img</p>
+<h3 id="harib02f-显示字符串"><a href="#harib02f-显示字符串" class="headerlink" title="harib02f 显示字符串"></a>harib02f 显示字符串</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">putfonts8_asc</span><span class="params">(<span class="keyword">char</span> *vram, <span class="keyword">int</span> xsize, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">char</span> c, <span class="keyword">unsigned</span> <span class="keyword">char</span> *s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">extern</span> <span class="keyword">char</span> hankaku[<span class="number">4096</span>];</span><br><span class="line">    <span class="keyword">for</span> (; *s != <span class="number">0x00</span>; s++) &#123;</span><br><span class="line">        putfont8(vram, xsize, x, y, c, hankaku + *s * <span class="number">16</span>);</span><br><span class="line">        x += <span class="number">8</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>s为字符串指针，字符串以0x00作为结束</p>
+<h3 id="harib02h-显示鼠标指针"><a href="#harib02h-显示鼠标指针" class="headerlink" title="harib02h 显示鼠标指针"></a>harib02h 显示鼠标指针</h3><blockquote>
+<p>绘制鼠标的函数</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">putblock8_8</span><span class="params">(<span class="keyword">char</span> *vram, <span class="keyword">int</span> vxsize, <span class="keyword">int</span> pxsize,</span></span></span><br><span class="line"><span class="function"><span class="params"><span class="keyword">int</span> pysize, <span class="keyword">int</span> px0, <span class="keyword">int</span> py0, <span class="keyword">char</span> *buf, <span class="keyword">int</span> bxsize)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x, y;</span><br><span class="line">    <span class="keyword">for</span> (y = <span class="number">0</span>; y &lt; pysize; y++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (x = <span class="number">0</span>; x &lt; pxsize; x++) &#123;</span><br><span class="line">        	vram[(py0 + y) * vxsize + (px0 + x)] = buf[y * bxsize + x];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>vxsize为320 ，pxsize 、pysize为要绘制图形的大小， px0 ，py0为图形的起始坐标 buf存储鼠标数据 ，bxsize类似pxsize</p>
+<h2 id="20220309"><a href="#20220309" class="headerlink" title="20220309"></a>20220309</h2><p>.c C语言文件 -&gt; 汇编文件 -&gt; 机器语言目标文件 -&gt; 链接</p>
+<p>ipl10.nas 启动区文件，用于加载操作系统到内存中。</p>
+<p>naskfunc.nas  ，asmhead.nas    这两个用于存储汇编代码</p>
+<p>bootpack.c  C语言函数</p>
+<h2 id="20220310"><a href="#20220310" class="headerlink" title="20220310"></a>20220310</h2><h3 id="makefile阅读，从下往上看"><a href="#makefile阅读，从下往上看" class="headerlink" title="makefile阅读，从下往上看"></a>makefile阅读，从下往上看</h3><p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220310203953026.png" alt="image-20220310203953026"></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/choutou1011/article/details/100747819">https://blog.csdn.net/choutou1011/article/details/100747819</a></p>
+<blockquote>
+<p>haribote.img</p>
+</blockquote>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">haribote.img : ipl10.bin haribote.sys Makefile</span><br><span class="line"></span><br><span class="line">  <span class="variable">$(EDIMG)</span>  imgin:../z_tools/fdimg0at.tek \</span><br><span class="line"> 	wbinimg src:ipl10.bin len:512 from:0 to:0 \</span><br><span class="line">	copy from:haribote.sys to:@: \</span><br><span class="line">	imgout:haribote.img</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这是制作镜像文件的最后一步，</p>
+<ol>
+<li><p>输入为 ipl10.bin  haribote.sys</p>
+</li>
+<li><p>输出为 haribote.img</p>
+</li>
+<li><p>edimg.exe: 这个是软盘镜像制作工具。</p>
+</li>
+<li><p>wbinimg 写入启动扇区的命令</p>
+</li>
+<li><p>imgin 读取指定的文件作为磁盘映像。</p>
+</li>
+<li><p>copy 将文件和文件名写入系统中</p>
+</li>
+</ol>
+<blockquote>
+<p>fdimg0at.tek</p>
+</blockquote>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220310204218030.png" alt="image-20220310204218030"></p>
+<blockquote>
+<p>ipl10.bin</p>
+</blockquote>
+<p>启动区文件， 通过ipl10.nas制作,操作系统会首先运行该处的代码，此处代码主要是加载后续扇区到内存中。</p>
+<p>扇区中有代码文件，书中将扇区加载到以0x8000作为起始的内存中。</p>
+<p>源码文件起始于img中 0x4200的位置</p>
+<p>因此，当将扇区加载完成后，使用JMP 0xc200   跳转到源码文件的起始位置，操作系统开始执行。</p>
+<blockquote>
+<p>haribote.sys</p>
+</blockquote>
+<p>源码文件，书中的代码有汇编、有C语言，需要先将其整合在一起</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">haribote.sys : asmhead.bin bootpack.hrb Makefile</span><br><span class="line">	copy &#x2F;B asmhead.bin+bootpack.hrb haribote.sys</span><br></pre></td></tr></table></figure>
+
+<p>asmhead.bin 通过目前章节只知道代码可以调用C语言程序</p>
+<blockquote>
+<p>bootpack.hrb</p>
+</blockquote>
+<p>由bootpack.bim制作而成</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bootpack.hrb : bootpack.bim Makefile</span><br><span class="line">	<span class="variable">$(BIM2HRB)</span> bootpack.bim bootpack.hrb 0</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>bootpack.bim</p>
+</blockquote>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bootpack.bim : bootpack.obj naskfunc.obj hankaku.obj Makefile</span><br><span class="line">	<span class="variable">$(OBJ2BIM)</span> @<span class="variable">$(RULEFILE)</span> out:bootpack.bim stack:3136k map:bootpack.map \</span><br><span class="line">		bootpack.obj naskfunc.obj hankaku.obj</span><br></pre></td></tr></table></figure>
+
+<p>obj2bim 将目标文件合成为bim文件</p>
+<blockquote>
+<p>hakaku</p>
+</blockquote>
+<p>hankaku.bin : hankaku.txt Makefile</p>
+<p>  $(MAKEFONT) hankaku.txt hankaku.bin</p>
+<p>hankaku.obj : hankaku.bin Makefile</p>
+<p>  $(BIN2OBJ) hankaku.bin hankaku.obj _hankaku</p>
+<h2 id="20220311"><a href="#20220311" class="headerlink" title="20220311"></a>20220311</h2><h3 id="harib02i-GDT和IDT的初始化"><a href="#harib02i-GDT和IDT的初始化" class="headerlink" title="harib02i GDT和IDT的初始化"></a>harib02i GDT和IDT的初始化</h3><blockquote>
+<p>分段 segmentation</p>
+</blockquote>
+<p>按照自己喜欢的方式， 将合计4GB的内存分成很多块（block） ， 每一块的起始地址都看作来0处理。</p>
+<p> 为了了表示一个段， 需要有以下信息。</p>
+<ol>
+<li>段的大小是多少</li>
+<li>段的起始地址在哪里</li>
+<li>段的管理属性（禁止写入， 禁止执行， 系统专用等）  </li>
+</ol>
+<blockquote>
+<p>段号(segment selector 段选择符) 与GDT(global (segment) descriptor table 全局段号记录表)</p>
+</blockquote>
+<p>CPU需要用8个字节存储这些信息，但段寄存器只有16位(由于CPU设计的原因，低三位不能使用)，因此段寄存器只能存储段号, 再由段号映射到存在内存中的GDT（global (segment) descriptor table，全局段号记录表），读取段的信息。</p>
+<p>段寄存器有16位，三位不能使用，所以段号范围为0~8191即可以定义8192个段，每个段需要8字节来定义，一共需要64kb 即GDT大小为64KB</p>
+<blockquote>
+<p>IDT (interrupt descriptor table 中断记录表)</p>
+</blockquote>
+<p>当CPU遇到外部状况变化， 或者是内部偶然发生某些错误时， 会临时切换过去处理这种突发事件。 这就是中断功能 。</p>
+<p>各个设备有变化时就产生中断， 中断发生后， CPU暂时停止正在处理的任务， 并做好接下来能够继续处理的准备， 转而执行中断程序。 中断程序执行完以后， 再调用事先设定好的函数， 返回处理中的任务。 正是得益于中断机制， CPU可以不用一直查询键盘， 鼠标， 网卡等设备的状态， 将精力集中在处理任务上。</p>
+<p>IDT，Interrupt Descriptor Table，即中断描述符表，和GDT类似，他记录了0~255的中断号和调用函数之间的关系。</p>
+<p>  <img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220311100906242.png" alt="image-20220311100906242"></p>
+<p>关于IDT和GDT的详细介绍</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ice__snow/article/details/50654629">https://blog.csdn.net/ice__snow/article/details/50654629</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/cwcmcw/article/details/21640363">https://blog.csdn.net/cwcmcw/article/details/21640363</a></p>
+<p>GDT可以被放在内存的任何位置，那么当程序员通过段寄存器来引用一个段描述符时，CPU必须知道GDT的入口，也就是基地址放在哪里，所以Intel的设计者门提供了一个寄存器GDTR用来存放GDT的入口地址，程序员将GDT设定在内存中某个位置之后，可以通过LGDT指令将GDT的入口地址装入此寄存器，从此以后，CPU就根据此寄存器中的内容作为GDT的入口来访问GDT了。</p>
+<blockquote>
+<p>新增代码</p>
+</blockquote>
+<p>char *p; /<em>用于BYTE类地址</em>/<br>short *p; /<em>用于WORD类地址</em>/<br>int *p; /<em>用于DWORD类地址</em>/  </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SEGMENT_DESCRIPTOR</span>&#123;</span> </span><br><span class="line">    <span class="keyword">short</span> limit_low, base_low;</span><br><span class="line">    <span class="keyword">char</span> base_mid, access_right;</span><br><span class="line">    <span class="keyword">char</span> limit_high, base_high;</span><br><span class="line">&#125;; <span class="comment">//存放GDT每个段的8字节信息2+2+1+1+1+1</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">GATE_DESCRIPTOR</span> &#123;</span></span><br><span class="line">    <span class="keyword">short</span> offset_low, selector;</span><br><span class="line">    <span class="keyword">char</span> dw_count, access_right;<span class="keyword">short</span> offset_high;</span><br><span class="line">&#125;; <span class="comment">//存放IDT信息</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_gdtidt</span><span class="params">(<span class="keyword">void</span>)</span><span class="comment">//GDT初始化</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">SEGMENT_DESCRIPTOR</span> *<span class="title">gdt</span> =</span> (struct SEGMENT_DESCRIPTOR *) <span class="number">0x00270000</span>;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">GATE_DESCRIPTOR</span> *<span class="title">idt</span> =</span> (struct GATE_DESCRIPTOR *) <span class="number">0x0026f800</span>;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="comment">/* GDT的初始化 </span></span><br><span class="line"><span class="comment">    	GDT里面的值都为0</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">8192</span>; i++) &#123;</span><br><span class="line">    	set_segmdesc(gdt + i, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    	程序使用了两个段</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    set_segmdesc(gdt + <span class="number">1</span>, <span class="number">0xffffffff</span>, <span class="number">0x00000000</span>, <span class="number">0x4092</span>);</span><br><span class="line">    set_segmdesc(gdt + <span class="number">2</span>, <span class="number">0x0007ffff</span>, <span class="number">0x00280000</span>, <span class="number">0x409a</span>);</span><br><span class="line">    load_gdtr(<span class="number">0xffff</span>, <span class="number">0x00270000</span>);</span><br><span class="line">    <span class="comment">/* IDT的初始化 */</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">256</span>; i++) &#123;</span><br><span class="line">    	set_gatedesc(idt + i, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    load_idtr(<span class="number">0x7ff</span>, <span class="number">0x0026f800</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">set_segmdesc</span><span class="params">(struct SEGMENT_DESCRIPTOR *sd, <span class="keyword">unsigned</span> <span class="keyword">int</span> limit, <span class="keyword">int</span> base,<span class="keyword">int</span> ar)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (limit &gt; <span class="number">0xfffff</span>) &#123;</span><br><span class="line">        ar |= <span class="number">0x8000</span>; <span class="comment">/* G_bit = 1 */</span></span><br><span class="line">        limit /= <span class="number">0x1000</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    sd-&gt;limit_low = limit &amp; <span class="number">0xffff</span>;</span><br><span class="line">    sd-&gt;base_low = base &amp; <span class="number">0xffff</span>;</span><br><span class="line">    sd-&gt;base_mid = (base &gt;&gt; <span class="number">16</span>) &amp; <span class="number">0xff</span>;</span><br><span class="line">    sd-&gt;access_right = ar &amp; <span class="number">0xff</span>;</span><br><span class="line">    sd-&gt;limit_high = ((limit &gt;&gt; <span class="number">16</span>) &amp; <span class="number">0x0f</span>) | ((ar &gt;&gt; <span class="number">8</span>) &amp; <span class="number">0xf0</span>);</span><br><span class="line">    sd-&gt;base_high = (base &gt;&gt; <span class="number">24</span>) &amp; <span class="number">0xff</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">set_gatedesc</span><span class="params">(struct GATE_DESCRIPTOR *gd, <span class="keyword">int</span> offset, <span class="keyword">int</span> selector, <span class="keyword">int</span> ar)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    gd-&gt;offset_low = offset &amp; <span class="number">0xffff</span>;</span><br><span class="line">    gd-&gt;selector = selector;</span><br><span class="line">    gd-&gt;dw_count = (ar &gt;&gt; <span class="number">8</span>) &amp; <span class="number">0xff</span>;</span><br><span class="line">    gd-&gt;access_right = ar &amp; <span class="number">0xff</span>;</span><br><span class="line">    gd-&gt;offset_high = (offset &gt;&gt; <span class="number">16</span>) &amp; <span class="number">0xffff</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p> 也就是说将0x270000~0x27ffff 设为GDT</p>
+<p>struct SEGMENT_DESCRIPTOR *gdt = (struct SEGMENT_DESCRIPTOR *) 0x00270000;</p>
+<p>将0x26f800~0x27ffff设为IDT</p>
+<p>  struct GATE_DESCRIPTOR *idt = (struct GATE_DESCRIPTOR *) 0x0026f800; </p>
+<p>将所有段的上限（limit, 指段的字节数-1） 、 基址（base） 、 访问权限都设为0  </p>
+<p>for (i = 0; i &lt; 8192; i++) {<br>    set_segmdesc(gdt + i, 0, 0, 0);<br>}   </p>
+<p>段号为0 的段，上限值为0xffffffff（4GB)、 地址为0，标识CPU所能管理的内存本身，段属性为0x4092</p>
+<p>set_segmdesc(gdt + 1, 0xffffffff, 0x00000000, 0x4092);</p>
+<p>段号为1 的段，上限值为0x0007ffff（521KB)、 地址为0x00280000，标识CPU所能管理的内存本身，</p>
+<p>这正好是为bootpack.hrb而准备的。 用这个段， 就可以执行bootpack.hrb。 因为bootpack.hrb是以ORG 0为前提翻译成的机器语言。  </p>
+<p>set_segmdesc(gdt + 2, 0x0007ffff, 0x00280000, 0x409a)  </p>
+<h3 id="harib03a-分割文件"><a href="#harib03a-分割文件" class="headerlink" title="harib03a  分割文件"></a>harib03a  分割文件</h3><p>makefile优化</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">bootpack.gas : bootpack.c Makefile</span><br><span class="line"><span class="variable">$(CC1)</span> -o bootpack.gas bootpack.c</span><br><span class="line">graphic.gas : graphic.c Makefile</span><br><span class="line"><span class="variable">$(CC1)</span> -o graphic.gas graphic.c</span><br><span class="line">dsctbl.gas : dsctbl.c Makefile</span><br><span class="line"><span class="variable">$(CC1)</span> -o dsctbl.gas dsctbl.c</span><br><span class="line">或者像这样：</span><br><span class="line">bootpack.nas : bootpack.gas Makefile</span><br><span class="line"><span class="variable">$(GAS2NASK)</span> bootpack.gas bootpack.nas</span><br><span class="line">graphic.nas : graphic.gas Makefile</span><br><span class="line"><span class="variable">$(GAS2NASK)</span> graphic.gas graphic.nas</span><br><span class="line">dsctbl.nas : dsctbl.gas Makefile</span><br><span class="line"><span class="variable">$(GAS2NASK)</span> dsctbl.gas dsctbl.nas</span><br></pre></td></tr></table></figure>
+
+<p>可以使用下面规则来取代</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">%.gas : %.c Makefile</span><br><span class="line"><span class="variable">$(CC1)</span> -o <span class="variable">$*</span>.gas <span class="variable">$*</span>.c</span><br><span class="line">%.nas : %.gas Makefile</span><br><span class="line"><span class="variable">$(GAS2NASK)</span> <span class="variable">$*</span>.gas <span class="variable">$*</span>.nas</span><br></pre></td></tr></table></figure>
+
+<p>而且不用考虑冲突问题，makefilemake.exe会首先寻找普通的生成规则， 如果没找到， 就尝试用一般规则。</p>
+<blockquote>
+<p>LGDT</p>
+</blockquote>
+<p>GDT可以被放在内存的任何位置，那么当程序员通过段寄存器来引用一个段描述符时，CPU必须知道GDT的入口，也就是基地址放在哪里，所以Intel的设计者门提供了一个寄存器GDTR用来存放GDT的入口地址，程序员将GDT设定在内存中某个位置之后，可以通过LGDT指令将GDT的入口地址装入此寄存器，从此以后，CPU就根据此寄存器中的内容作为GDT的入口来访问GDT了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_load_gdtr: ; void load_gdtr(int limit, int addr);</span><br><span class="line">MOV AX,[ESP+4] ; limit</span><br><span class="line">MOV [ESP+6],AX</span><br><span class="line">LGDT [ESP+6]</span><br><span class="line">RET</span><br></pre></td></tr></table></figure>
+
+<p>GDTR  这一特殊的寄存器为48位， 不能通过mov直接赋值。而是通过LGDT 指令，将指定地址处6个字节读入寄存器中。</p>
+<p>该寄存器低16位为段上限，它等于“GDT的有效字节数 - 1”。  </p>
+<p>剩下32位为GDT在内存中的开始地址。</p>
+<p>在最初执行这个函数的时候， DWORD[ESP + 4]里存放的是段上限，DWORD[ESP+8]里存放的是地址。   </p>
+<p>load_gdtr(0xffff, 0x00270000);</p>
+<p>在内存分布为[ff ff 00 00  00 00 27 00]</p>
+<p>而我们想要读取的是六个字节 ，即 [ff ff 00 00 27 00]</p>
+<p>在该函数中，首先 向AX 存储[ ff ff ]</p>
+<p>然后将其存入ESP+6处，此时内存分布为 [ff ff ff ff 00 00 27 00]</p>
+<p>此时从ESP+6读取，正好为[ff ff 00 00 27 00]</p>
+<h3 id="填写段信息set-segmdesc"><a href="#填写段信息set-segmdesc" class="headerlink" title="填写段信息set_segmdesc"></a>填写段信息set_segmdesc</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SEGMENT_DESCRIPTOR</span> &#123;</span></span><br><span class="line">    <span class="keyword">short</span> limit_low, base_low;</span><br><span class="line">    <span class="keyword">char</span> base_mid, access_right;</span><br><span class="line">    <span class="keyword">char</span> limit_high, base_high;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">set_segmdesc</span><span class="params">(struct SEGMENT_DESCRIPTOR *sd, <span class="keyword">unsigned</span> <span class="keyword">int</span> limit, <span class="keyword">int</span> base,</span></span></span><br><span class="line"><span class="function"><span class="params"><span class="keyword">int</span> ar)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (limit &gt; <span class="number">0xfffff</span>) &#123;</span><br><span class="line">        ar |= <span class="number">0x8000</span>; <span class="comment">/* G_bit = 1 */</span></span><br><span class="line">        limit /= <span class="number">0x1000</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    sd-&gt;limit_low = limit &amp; <span class="number">0xffff</span>;</span><br><span class="line">    sd-&gt;base_low = base &amp; <span class="number">0xffff</span>;</span><br><span class="line">    sd-&gt;base_mid = (base &gt;&gt; <span class="number">16</span>) &amp; <span class="number">0xff</span>;</span><br><span class="line">    sd-&gt;access_right = ar &amp; <span class="number">0xff</span>;</span><br><span class="line">    sd-&gt;limit_high = ((limit &gt;&gt; <span class="number">16</span>) &amp; <span class="number">0x0f</span>) | ((ar &gt;&gt; <span class="number">8</span>) &amp; <span class="number">0xf0</span>);</span><br><span class="line">    sd-&gt;base_high = (base &gt;&gt; <span class="number">24</span>) &amp; <span class="number">0xff</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个函数是按照CPU的规格要求， 将段的信息归结成8个字节写入内存的。   </p>
+<p>注: limit_high 高四位用于存储段信息，因此段上限可使用的位数为20位</p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220311122742449.png" alt="image-20220311122742449"></p>
+<p>包含如下信息</p>
+<ul>
+<li>段的起始位置 (base)</li>
+<li>段的大小(limit)</li>
+<li>段的管理属性（禁止写入， 禁止执行， 系统专用等） (ar)</li>
+</ul>
+<h3 id="基址base"><a href="#基址base" class="headerlink" title="基址base"></a>基址base</h3><p>基址在结构中分成了三部分，共32位</p>
+<p>为什么要分为3段呢？ 主要是为了与80286时代的程序兼容。 有了这样的<br>规格， 80286用的操作系统， 也可以不用修改就在386以后的CPU上运行<br>了  </p>
+<h3 id="段上限limit"><a href="#段上限limit" class="headerlink" title="段上限limit"></a>段上限limit</h3><p>表示一个段有多少个字节，但在32位系统中，段上限最大是4GB，是一个32位的数字。</p>
+<p>然而在结构体中，存储段上限的仅有20位，最大上限也只能是1mb</p>
+<p>在这里英特尔的叔叔们又想了一个办法， 他们在段的属性里设了一个标志位， 叫做Gbit。 这个标志位是1的时候， limit的单位不解释成字节（byte） ， 而解释成页（page） 。 页是什么呢？ 在电脑的<br>CPU里， 1页是指4KB。  </p>
+<p>​    </p>
+<h3 id="段属性"><a href="#段属性" class="headerlink" title="段属性"></a>段属性</h3><p>12位，段属性又称为“段的访问权属性”， 在程序中用变量名access_right或ar来表示。 因为12位段属性中的高4位放在limit_high的高4位里， 所以程序里有意把ar当作如下的16位构成来处理：<br>xxxx0000xxxxxxxx(其中x是0或1)  </p>
+<p>ar的高4位被称为“扩展访问权”。  </p>
+<p>由“GD00”构成的， 其中G是指刚才所说的G bit， D是指段的模式， 1是指32位模式， 0是指16位模式  </p>
+<p>ar的低四位</p>
+<p>00000000（0x00） ： 未使用的记录表（descriptor table） 。<br>10010010（0x92） ： 系统专用， 可读写的段。 不可执行。<br>10011010（0x9a） ： 系统专用， 可执行的段。 可读不可写。<br>11110010（0xf2） ： 应用程序用， 可读写的段。 不可执行。<br>11111010（0xfa） ： 应用程序用， 可执行的段。 可读不可写。  </p>
+<p>在32位模式下， CPU有系统模式（也称为“ring0”3） 和应用模式（也称为“ring3”） 之分。 操作系统等“管理用”的程序， 和应用程序等“被管理”的程序， 运行时的模式是不同的。  </p>
+<p>CPU到底是处于系统模式还是应用模式， 取决于执行中的应用程序是位<br>于访问权为0x9a的段， 还是位于访问权为0xfa的段。  </p>
+<h3 id="初始化PIC-harib03d"><a href="#初始化PIC-harib03d" class="headerlink" title="初始化PIC(harib03d)"></a>初始化PIC(harib03d)</h3><p>PIC programmable interrupt controller  可编程中断控制器。</p>
+<p>PIC是将8个中断信号1集合成一个中断信号的装置。 PIC监视着输入管脚的8个中断信号， 只要有一个中断信号进来， 就将唯一的输出管脚信号变成ON， 并通知给CPU  </p>
+<p>IBM的大叔们想要通过增加PIC来处理更多的中断信号， 他们认为电脑会有8个以上的外部设备， 所以就把中断信号设计成了15个， 并为此增设了2个PIC。  </p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220311144508369.png" alt="image-20220311144508369"></p>
+<p>中断请求，interrupt request， 缩写为IRQ。  </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>.c的主要组成部分</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init_pic</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"><span class="comment">/* PIC的初始化 */</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    io_out8(PIC0_IMR, <span class="number">0xff</span> ); <span class="comment">/* 禁止所有中断 */</span></span><br><span class="line">    io_out8(PIC1_IMR, <span class="number">0xff</span> ); <span class="comment">/* 禁止所有中断 */</span></span><br><span class="line">    </span><br><span class="line">    io_out8(PIC0_ICW1, <span class="number">0x11</span> ); <span class="comment">/* 边沿触发模式（edge trigger mode） */</span></span><br><span class="line">    io_out8(PIC0_ICW2, <span class="number">0x20</span> ); <span class="comment">/* IRQ0-7由INT20-27接收 */</span></span><br><span class="line">    io_out8(PIC0_ICW3, <span class="number">1</span> &lt;&lt; <span class="number">2</span>); <span class="comment">/* PIC1由IRQ2连接 */</span></span><br><span class="line">    io_out8(PIC0_ICW4, <span class="number">0x01</span> ); <span class="comment">/* 无缓冲区模式 */</span></span><br><span class="line">    </span><br><span class="line">    io_out8(PIC1_ICW1, <span class="number">0x11</span> ); <span class="comment">/* 边沿触发模式（edge trigger mode） */</span></span><br><span class="line">    io_out8(PIC1_ICW2, <span class="number">0x28</span> ); <span class="comment">/* IRQ8-15由INT28-2f接收 */</span></span><br><span class="line">    io_out8(PIC1_ICW3, <span class="number">2</span> ); <span class="comment">/* PIC1由IRQ2连接 */</span></span><br><span class="line">    io_out8(PIC1_ICW4, <span class="number">0x01</span> ); <span class="comment">/* 无缓冲区模式 */</span></span><br><span class="line">    io_out8(PIC0_IMR, <span class="number">0xfb</span> ); <span class="comment">/* 11111011 PIC1以外全部禁止 */</span></span><br><span class="line">    io_out8(PIC1_IMR, <span class="number">0xff</span> ); <span class="comment">/* 11111111 禁止所有中断 */</span></span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>io_out函数用于向指定外部装置传送数据</p>
+<p>为了区别不同的设备， 也要使用设备号码。 设备号码在英文中称为port（端口） ，这些号码并不是随意取的。</p>
+<p>程序中的PIC0和PIC1， 分别指主PIC和从PIC。  PIC内部有很多寄存器， 用端口号码对彼此进行区别， 以决定是写入哪一个寄存器。  </p>
+<p>具体的端口号码写在bootpack.h里， 请参考这个程序。 但是， 端口号相同的东西有很多， 可能会让人觉得混乱。  (有时候向要向一个端口写入多次数据，每次数据代表的操作不同)</p>
+<h3 id="PIC寄存器"><a href="#PIC寄存器" class="headerlink" title="PIC寄存器"></a>PIC寄存器</h3><p>PIC 寄存器都是8位寄存器</p>
+<blockquote>
+<p>​    IMR寄存器</p>
+</blockquote>
+<p>IMR是“interrupt mask register”的缩写， 意思是“中断屏蔽寄存器”。 8位分别对应8路IRQ信号。 如果某一位的值是1， 则该位所对应的IRQ信号被屏蔽， PIC就忽视该路信号。  </p>
+<blockquote>
+<p>ICW寄存器</p>
+</blockquote>
+<p>ICW是“initial control word”的缩写， 意为“初始化控制数据”。  </p>
+<p>ICW有4个， 分别编号为1~4， 共有4个字节的数据。   </p>
+<p>ICW1和ICW4与PIC主板配线方式、 中断信号的电气特性等有关  </p>
+<p>ICW3是有关主—从连接的设定， 对主PIC而言， 第几号IRQ与从PIC相连， 是用8位来设定的。 如果把这些位全部设为1， 那么主PIC就能驱动8个从PIC（那样的话， 最大就可能有64个IRQ） ， 但我们所用的电脑并不是这样的， 所以就设定成00000100。（表示IRQ2与从PIC连接)   </p>
+<p>ICW2 决定了IRQ以哪一号中断通知CPU。   </p>
+<p>中断发生以后， 如果CPU可以受理这个中断， CPU就会命令PIC发送2个字节的数据。 这2个字节是怎么传送的呢？ CPU与PIC用IN或OUT进行数据传送时， 有数据信号线连在一起。 PIC就是利用这个信号线发送这2个字节数据的。 送过来的数据是“0xcd 0x??”这两个字节。 由于电路设计的原因， 这两个字节的数据在CPU看来， 与从内存读进来的程序是完全一样的， 所以CPU就把送过来的“0xcd 0x??”作为机器语言执行。 这恰恰就是把数据当作程序来执行的情况。 这里的0xcd就是调用BIOS时使用的那个INT指令。 我们在程序里写的“INT 0x10”， 最后就被编译成了“0xcd 0x10”。 所以， CPU上了PIC的当， 按照PIC所希望的中断号执行了INT指令。  </p>
+<p>中断处理</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42240667/article/details/105071373">https://blog.csdn.net/weixin_42240667/article/details/105071373</a></p>
+<h3 id="中断处理程序"><a href="#中断处理程序" class="headerlink" title="中断处理程序"></a>中断处理程序</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inthandler21</span><span class="params">(<span class="keyword">int</span> *esp)</span></span></span><br><span class="line"><span class="function"><span class="comment">/* 来自PS/2键盘的中断 */</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">BOOTINFO</span> *<span class="title">binfo</span> =</span> (struct BOOTINFO *) ADR_BOOTINFO;</span><br><span class="line">boxfill8(binfo-&gt;vram, binfo-&gt;scrnx, COL8_000000, <span class="number">0</span>, <span class="number">0</span>, <span class="number">32</span> * <span class="number">8</span> - <span class="number">1</span>, <span class="number">15</span>);</span><br><span class="line">putfonts8_asc(binfo-&gt;vram, binfo-&gt;scrnx, <span class="number">0</span>, <span class="number">0</span>, COL8_FFFFFF, <span class="string">&quot;INT 21 (IRQ-1) :</span></span><br><span class="line"><span class="string">PS/2 keyboard&quot;</span>);</span><br><span class="line"><span class="keyword">for</span> (;;) &#123;</span><br><span class="line">io_hlt();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>中断处理完成之后， 不能执行“return;”（=RET指令） ， 而是必须执行IRETD指令  </p>
+<p>这里使用汇编实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">EXTERN _inthandler21, _inthandler2c</span><br><span class="line">_asm_inthandler21:</span><br><span class="line">    PUSH ES</span><br><span class="line">    PUSH DS</span><br><span class="line">    PUSHAD</span><br><span class="line">    MOV EAX,ESP</span><br><span class="line">    PUSH EAX</span><br><span class="line">    MOV AX,SS</span><br><span class="line">    MOV DS,AX</span><br><span class="line">    MOV ES,AX</span><br><span class="line">    CALL _inthandler21</span><br><span class="line">    POP EAX</span><br><span class="line">    POPAD</span><br><span class="line">    POP DS</span><br><span class="line">    POP ES</span><br><span class="line">    IRETD</span><br></pre></td></tr></table></figure>
+
+<p>这个函数只是将寄存器的值保存到栈里， 然后将DS和ES调整到与SS相等， 再调用_inthandler21， 返回以后， 将所有寄存器的值再返回到原来的值， 然后执行IRETD。 内容就这些。 如此小心翼翼地保存寄存器的值， 其原因在于， 中断处理发生在函数处理的途中， 通过IREDT从中断处理返回以后， 如果寄存器的值乱了， 函数就无法正常处理下去了， 所以一定要想尽办法让寄存器的值返回到中断处理前的状态。  </p>
+<p>PUSHAD， 它相当于：<br>PUSH EAX<br>PUSH ECX<br>PUSH EDX<br>PUSH EBX<br>PUSH ESP<br>PUSH EBP<br>PUSH ESI<br>PUSH EDI<br>反过来， POPAD指令相当于按以上相反的顺序， 把它们全都POP出来  </p>
+<h3 id="将中断处理程序注册到IDT中"><a href="#将中断处理程序注册到IDT中" class="headerlink" title="将中断处理程序注册到IDT中"></a>将中断处理程序注册到IDT中</h3><p>在dsctbl.c的init_gdtidt里加入以下语句  </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* IDT的设定 */</span></span><br><span class="line">set_gatedesc(idt + <span class="number">0x21</span>, (<span class="keyword">int</span>) asm_inthandler21, <span class="number">2</span> * <span class="number">8</span>, AR_INTGATE32);</span><br><span class="line">set_gatedesc(idt + <span class="number">0x2c</span>, (<span class="keyword">int</span>) asm_inthandler2c, <span class="number">2</span> * <span class="number">8</span>, AR_INTGATE32);</span><br></pre></td></tr></table></figure>
+
+<p>asm_inthandler21注册在idt的第0x21号。 这样， 如果发生中断了， CPU就会自动调用asm_inthandler21。 这里的2 * 8表示的是asm_inthandler21属于哪一个段， 即段号是2， 乘以8是因为低3位有着别的意思， 这里低3位必须是0。</p>
+<p>CLI汇编指令全称为Clear Interupt，该指令的作用是禁止中断发生，在CLI起效之后，所有外部中断都被屏蔽，这样可以保证当前运行的代码不被打断，起到保护代码运行的作用。</p>
+<p>STI汇编指令全称为Set Interupt，该指令的作用是允许中断发生，在STI起效之后，所有外部中断都被恢复，这样可以打破被保护代码的运行，允许硬件中断转而处理中断的作用。</p>
+<h2 id="工具记录"><a href="#工具记录" class="headerlink" title="工具记录"></a>工具记录</h2><h3 id="HEX-Editor-二进制编辑器"><a href="#HEX-Editor-二进制编辑器" class="headerlink" title="HEX Editor 二进制编辑器"></a>HEX Editor 二进制编辑器</h3><p><a target="_blank" rel="noopener" href="https://hexeditor.en.softonic.com/download">https://hexeditor.en.softonic.com/download</a></p>
+<h3 id="QEMU-虚拟机"><a href="#QEMU-虚拟机" class="headerlink" title="QEMU 虚拟机"></a>QEMU 虚拟机</h3><p><a target="_blank" rel="noopener" href="https://www.qemu.org/">https://www.qemu.org/</a></p>
+<h3 id="书本配套文件"><a href="#书本配套文件" class="headerlink" title="书本配套文件"></a>书本配套文件</h3><p><a target="_blank" rel="noopener" href="https://github.com/sky5454/30daysMakeOS-Origin-ISOfiles">https://github.com/sky5454/30daysMakeOS-Origin-ISOfiles</a></p>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:qwrdxer.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/web安全工具篇/">web安全工具篇</a><small>3</small></li>
+  
+    <li><a href="/categories/web安全漏洞篇/">web安全漏洞篇</a><small>2</small></li>
+  
+    <li><a href="/categories/开发工具/">开发工具</a><small>3</small></li>
+  
+    <li><a href="/categories/日志/">日志</a><small>1</small></li>
+  
+    <li><a href="/categories/杂项/">杂项</a><small>1</small></li>
+  
+    <li><a href="/categories/渗透测试篇/">渗透测试篇</a><small>1</small></li>
+  
+    <li><a href="/categories/环境配置/">环境配置</a><small>1</small></li>
+  
+    <li><a href="/categories/脚本/">脚本</a><small>1</small></li>
+  
+    <li><a href="/categories/自动化脚本-工具开发/">自动化脚本&amp;工具开发</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2022/03/15/自动化脚本&amp;工具开发/freemarker操控word/">freemarker操控word</a>
+      </li>
+    
+      <li>
+        <a href="/2022/03/07/日志/2022-3/">2022-3</a>
+      </li>
+    
+      <li>
+        <a href="/2022/01/31/操作系统/30天自制操作系统-学习笔记/">30天自制操作系统-学习笔记</a>
+      </li>
+    
+      <li>
+        <a href="/2022/01/12/杂项/GITHUB收集/">GITHUB收集</a>
+      </li>
+    
+      <li>
+        <a href="/2022/01/11/自动化脚本&amp;工具开发/web页面密码爆破/">web页面密码爆破</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
+    <li><a href="/tags/WordPress/">WordPress</a><small>1</small></li>
+  
+    <li><a href="/tags/bash/">bash</a><small>2</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>2</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/web漏洞/">web漏洞</a><small>2</small></li>
+  
+    <li><a href="/tags/工具使用/">工具使用</a><small>6</small></li>
+  
+    <li><a href="/tags/工具开发/">工具开发</a><small>1</small></li>
+  
+    <li><a href="/tags/开发/">开发</a><small>1</small></li>
+  
+    <li><a href="/tags/报错解决/">报错解决</a><small>1</small></li>
+  
+    <li><a href="/tags/文件包含/">文件包含</a><small>1</small></li>
+  
+    <li><a href="/tags/渗透测试/">渗透测试</a><small>4</small></li>
+  
+    <li><a href="/tags/环境配置/">环境配置</a><small>1</small></li>
+  
+    <li><a href="/tags/脚本/">脚本</a><small>4</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/WordPress/" style="font-size: 10px;">WordPress</a> <a href="/tags/bash/" style="font-size: 13.33px;">bash</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/web%E6%BC%8F%E6%B4%9E/" style="font-size: 13.33px;">web漏洞</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">工具使用</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/" style="font-size: 10px;">工具开发</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 10px;">开发</a> <a href="/tags/%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3/" style="font-size: 10px;">报错解决</a> <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" style="font-size: 10px;">文件包含</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 16.67px;">渗透测试</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">环境配置</a> <a href="/tags/%E8%84%9A%E6%9C%AC/" style="font-size: 16.67px;">脚本</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <p>
+  
+  &copy; 2022 qwrdxer
+  
+  All rights reserved.</p>
+  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</div>
+<div class="clearfix"></div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id='bg'></div>
+</body>
+</html>

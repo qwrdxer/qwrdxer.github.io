@@ -751,7 +751,8 @@ run.bat
 <p>top代表最上面图层的高度。   </p>
 <p>sheets0这个结构体用于存放我们准备的256个图层的信息  。</p>
 <p>sheets是记忆地址变量的领域，   由于sheets0中的图层顺序混乱， 所以<br>我们把它们按照高度进行升序排列， 然后将其地址写入sheets中， 这样<br>就方便多了。  </p>
-<p><img src="C:\Users\qwrdxer\AppData\Roaming\Typora\typora-user-images\image-20220326125741267.png" alt="image-20220326125741267"></p>
+<p><img src="/2022/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/hexo\source_posts\操作系统\30天自制操作系统-学习笔记\image-20220326132233042.png" alt="image-20220326132233042"></p>
+<p><img src="/2022/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Users\qwrdxer\AppData\Roaming\Typora\typora-user-images\image-20220326125741267.png" alt="image-20220326125741267"></p>
 <h2 id="——"><a href="#——" class="headerlink" title="——-"></a>——-</h2><h2 id="流程整体分析"><a href="#流程整体分析" class="headerlink" title="流程整体分析"></a>流程整体分析</h2><h3 id="CPU读入启动区"><a href="#CPU读入启动区" class="headerlink" title="CPU读入启动区"></a>CPU读入启动区</h3><blockquote>
 <p>CPU将系统盘中第一个扇区(启动区)的内容(512Byte)加载入内存中,检验扇区最后两字节是否为0x55 ,0xAA. 如果计算机确认了第一个扇区的最后两个字节正好是0x55 AA， 那它就认为这个扇区的开头是启动程序， 并开始执行这个程序  。</p>
 </blockquote>

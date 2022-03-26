@@ -3,21 +3,18 @@
 <head>
   <meta charset="utf-8" />
   
-  <title>文件包含漏洞相关 | qwrdxer &#39;s blog</title>
+  <title>test | qwrdxer &#39;s blog</title>
   <meta name="author" content="qwrdxer" />
 
   
-  <meta name="description" content="参考文章https://www.freebuf.com/articles/web/182280.html
-https://segmentfault.com/a/1190000018991087
-https://blog.csdn.net/nzjdsds/article/details/82461043
-https://www.cnblogs.com/bonelee/p/14292794.html" />
+  <meta name="description" content="" />
   
 
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-  <meta property="og:title" content="文件包含漏洞相关" />
+  <meta property="og:title" content="test" />
   <meta property="og:site_name" content="qwrdxer &#39;s blog" />
 
   
@@ -66,89 +63,21 @@ https://www.cnblogs.com/bonelee/p/14292794.html" />
     <header>
       
         <div class="icon"></div>
-        <time datetime="2021-04-19T06:49:59.000Z"><a href="/2021/04/19/web安全漏洞篇/文件包含相关/">2021-04-19</a></time>
+        <time datetime="2022-03-26T05:24:55.000Z"><a href="/2022/03/26/test/test/">2022-03-26</a></time>
       
       
   
-    <h1 class="title">文件包含漏洞相关</h1>
+    <h1 class="title">test</h1>
   
 
     </header>
     <div class="entry">
       
-        <h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/182280.html">https://www.freebuf.com/articles/web/182280.html</a></p>
-<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000018991087">https://segmentfault.com/a/1190000018991087</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/nzjdsds/article/details/82461043">https://blog.csdn.net/nzjdsds/article/details/82461043</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/bonelee/p/14292794.html">https://www.cnblogs.com/bonelee/p/14292794.html</a></p>
-<p><em><span id="more"></span></em> </p>
-<h2 id="漏洞相关函数"><a href="#漏洞相关函数" class="headerlink" title="漏洞相关函数"></a>漏洞相关函数</h2><p>PHP中文件包含函数有以下四种：</p>
+        <p><em><span id="more"></span></em> </p>
+<p><img src="/2022/03/26/test/test/hexo\source_posts\test\test\image-20220326132535850.png" alt="image-20220326132535850"></p>
 <blockquote>
-<p>require()</p>
-<p>require_once()</p>
-<p>include()</p>
-<p>include_once()</p>
+<p>参考文章</p>
 </blockquote>
-<p><code>include</code>和<code>require</code>区别主要是，<code>include</code>在包含的过程中如果出现错误，会抛出一个警告，程序<strong>继续正常运行</strong>；而<code>require</code>函数出现错误的时候，会直接报错并退出程序的执行。</p>
-<p>而<code>include_once()</code>，<code>require_once()</code>这两个函数，与前两个的不同之处在于这两个函数只包含一次，适用于在脚本执行期间同一个文件有可能被包括超过一次的情况下，你想确保它只被包括一次以避免函数重定义，变量重新赋值等问题。</p>
-<p>还有就是<code>echo</code> +<code>file_get_contents</code> 这种文件包含形式</p>
-<p>比如下列代码也可能造成恶意文件包含</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> file_get_contents(substr(strstr(<span class="variable">$_SERVER</span>[<span class="string">&#x27;QUERY_STRING&#x27;</span>], <span class="string">&#x27;url=&#x27;</span>), <span class="number">4</span>));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>在渗透测试过程中，可以尝试通过伪协议的方式读取本文件的源代码</p>
-<p>php://filter/convert.base64-encode/resource=filename</p>
-<p>如</p>
-<p><a target="_blank" rel="noopener" href="http://xxx.xxx.com/fileinc.php?filename=php://filter/convert.base64-encode/resource=fileinc.php">http://xxx.xxx.com/fileinc.php?filename=php://filter/convert.base64-encode/resource=fileinc.php</a></p>
-<p>可以通过本地包含/etc/my.ini <code>allow_url_fopen</code> <code>allow_url_include</code>文件查看参数的设置</p>
-<h2 id="本地文件包含漏洞常用文件名"><a href="#本地文件包含漏洞常用文件名" class="headerlink" title="本地文件包含漏洞常用文件名"></a>本地文件包含漏洞常用文件名</h2><p>/etc/profile   #环境变量</p>
-<p>/etc/sudoers #</p>
-<p>/etc/my.cnf #mysql配置文件</p>
-<p>/etc/hosts</p>
-<p>/etc/group</p>
-<p>/etc/passwd</p>
-<p>/etc/php.ini </p>
-<p>/etc/crontab</p>
-<p>/etc/aliases</p>
-<p>/etc/nginx/conf.d/default.conf</p>
-<p>/etc/httpd/conf.d/httpd.conf</p>
-<p>/proc/net/dev # 网卡信息</p>
-<p>/proc/net/tcp #tcp端口信息</p>
-<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20210420135604161.png" alt="image-20210420135604161"></p>
-<p>/proc/ [pid] /cmdline  #进程命令行信息</p>
-<p>/proc/version # linux内核版本信息</p>
-<p>/var/log/lastlog # 上次登录的IP</p>
-<p>/var/log/mysqld.log  #mysql初始化密码</p>
-<p>/var/log/httpd/  ….</p>
-<p>c:\boot.ini // 查看系统版本</p>
-<p>c:\windows\system32\inetsrv\MetaBase.xml // IIS配置文件</p>
-<p>c:\windows\repair\sam // 存储Windows系统初次安装的密码</p>
-<p>c:\ProgramFiles\mysql\my.ini // MySQL配置</p>
-<p>c:\ProgramFiles\mysql\data\mysql\user.MYD // MySQL root密码</p>
-<p>c:\windows\php.ini // php 配置信息</p>
-<h2 id="远程文件包含漏洞"><a href="#远程文件包含漏洞" class="headerlink" title="远程文件包含漏洞"></a>远程文件包含漏洞</h2><p>要求: </p>
-<p><code>allow_url_fopen = On</code>（是否允许打开远程文件）</p>
-<p><code>allow_url_include = On</code>（是否允许include/require远程文件）</p>
-<h2 id="伪协议"><a href="#伪协议" class="headerlink" title="伪协议"></a>伪协议</h2><p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20210419204006954.png" alt="image-20210419204006954"></p>
-<p>还有http://  ftp://啥的</p>
-<p>具体介绍参考<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000018991087">https://segmentfault.com/a/1190000018991087</a></p>
-<p><strong>使用例子:</strong></p>
-<p>php://filter/convert.base64-encode/resource=filename</p>
-<p>file:///etc/passwd</p>
-<pre><code> (下面这两个需要 `allow_url_include`为open ,当然如果利用成功可直接获得webshell ,, 可遇不可求啊)
-</code></pre>
-<p>php://input       [ 把后面的post传入]  <?php phpinfo()?></p>
-<p>data://text/plain,<?php phpinfo()?></p>
-<p><strong>zip://(需要搭配文件上传漏洞)</strong></p>
-<p><strong>使用方法：</strong></p>
-<p>zip://archive.zip#dir/file.txt</p>
-<p>zip:// [压缩文件绝对路径]#[压缩文件内的子文件名]</p>
-<h2 id="绕过方式"><a href="#绕过方式" class="headerlink" title="绕过方式"></a>绕过方式</h2><p>A . 添加了文件后缀</p>
-<?php include($_GET['filename'] . ".html"); ?>
-
-<ol>
-<li>使用文件名+ ? 号绕过</li>
-<li>使用文件名+ #号绕过</li>
-<li>文件名+ 空格绕过</li>
-</ol>
 
       
     </div>
@@ -159,17 +88,7 @@ https://www.cnblogs.com/bonelee/p/14292794.html" />
           <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
         </div>
         
-  
-  <div class="categories">
-    <a href="/categories/web安全漏洞篇/">web安全漏洞篇</a>
-  </div>
-
         
-  
-  <div class="tags">
-    <a href="/tags/web漏洞/">web漏洞</a>, <a href="/tags/文件包含/">文件包含</a>
-  </div>
-
         <!-- partial('post/share') -->
       <div class="clearfix"></div>
     </footer>

@@ -62,6 +62,53 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2022-03-27T01:49:33.000Z"><a href="/2022/03/27/操作系统/30天自制操作系统-学习笔记 day11~day20/">2022-03-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2022/03/27/操作系统/30天自制操作系统-学习笔记 day11~day20/">30天自制操作系统-学习笔记 day11~day20</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="20220327"><a href="#20220327" class="headerlink" title="20220327"></a>20220327</h2><h3 id="鼠标显示问题（harib08a）"><a href="#鼠标显示问题（harib08a）" class="headerlink" title="鼠标显示问题（harib08a）"></a>鼠标显示问题（harib08a）</h3><blockquote>
+<p>一开始，对鼠标图层界定范围代码</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (mx &lt; <span class="number">0</span>) &#123;</span><br><span class="line">	mx = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (my &lt; <span class="number">0</span>) &#123;</span><br><span class="line">	my = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (mx &gt; binfo-&gt;scrnx - <span class="number">16</span>) &#123;</span><br><span class="line">	mx = binfo-&gt;scrnx - <span class="number">16</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (my &gt; binfo-&gt;scrny - <span class="number">16</span>) &#123;</span><br><span class="line">	my = binfo-&gt;scrny - <span class="number">16</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其在边缘处可移动的范围如下</p>
+<p><img src="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/image-20220327100442803-16483466869583.png" alt="image-20220327100442803"></p>
+<h3 id="实现画面外的支持（harib08b）"><a href="#实现画面外的支持（harib08b）" class="headerlink" title="实现画面外的支持（harib08b）"></a>实现画面外的支持（harib08b）</h3><blockquote>
+<p>参考文章</p>
+</blockquote>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2022-03-26T05:24:55.000Z"><a href="/2022/03/26/test/test/">2022-03-26</a></time>
       
       
@@ -243,7 +290,7 @@
     </header>
     <div class="entry">
       
-        <p><em>
+        <p><em></em></p>
       
     </div>
     
@@ -564,82 +611,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2021-08-15T03:19:55.000Z"><a href="/2021/08/15/开发工具/Shell脚本学习笔记/">2021-08-15</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2021/08/15/开发工具/Shell脚本学习笔记/">Shell脚本学习笔记</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>todo list</p>
-<p>符号的作用: </p>
-<p>“” ‘’  `    </p>
-<p>${}  ()  []   &amp;  IFS   $[]  $?  $!</p>
-<p>|  &gt;&gt;  &lt;  &gt;  &lt;&lt;</p>
-<p>\0  \r \t  $ ….</p>
-<p>空格的影响</p>
-<p>如何定义变量? 如何定义函数 ? 如何调用变量? 如何调用函数?</p>
-<p>获取用户输入 read</p>
-<p>数据处理之 cat. grep. tr. find. xargs.</p>
-<p>tr 替换 删除 </p>
-<p>split 分割文件</p>
-<p>关于函数中 echo 和return 在流中的体现</p>
-<p>关于交互式命令、脚本的自动化 echo  -e  “    \n    \n     \n “</p>
-<h1 id="SHELL脚本学习笔记"><a href="#SHELL脚本学习笔记" class="headerlink" title="SHELL脚本学习笔记"></a>SHELL脚本学习笔记</h1><blockquote>
-<p>写在最前面: </p>
-</blockquote>
-<ol>
-<li>编写目的: 记录学习shell脚本中, 一些容易混淆、遗忘的知识点。</li>
-<li>参考书籍: Linux Shell 脚本攻略 (其实市面上任一本SHELL编程书籍都可, 关键在于实际运用)</li>
-<li>为什么要学习SHELL: 同学习Python目的差不多, 简单易上手, 方便快速开发, 在脚本编写初期使用SHELL+Python+现有工具 实现集成、自动化十分方便快捷。<br>重点在于：命令执行  、结果处理 、结果保存</li>
-<li>笔记结构: 第一部分记录一些语法，第二部分记录容易遗忘、混淆的知识点。</li>
-</ol>
-<p><em>
-      
-    </div>
-    
-    <footer>
-      <div class="alignleft">
-        <a href="/2021/08/15/开发工具/Shell脚本学习笔记/#more" class="more-link">More</a>
-      </div>
-    </footer>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/开发工具/">开发工具</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/bash/">bash</a>, <a href="/tags/脚本/">脚本</a>, <a href="/tags/shell/">shell</a>, <a href="/tags/linux/">linux</a>, <a href="/tags/开发/">开发</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
 
 <nav id="pagination">
   
@@ -694,6 +665,10 @@
   <ul class="entry">
     
       <li>
+        <a href="/2022/03/27/操作系统/30天自制操作系统-学习笔记 day11~day20/">30天自制操作系统-学习笔记 day11~day20</a>
+      </li>
+    
+      <li>
         <a href="/2022/03/26/test/test/">test</a>
       </li>
     
@@ -707,10 +682,6 @@
     
       <li>
         <a href="/2022/03/07/日志/2022-3/">2022-3</a>
-      </li>
-    
-      <li>
-        <a href="/2022/01/31/操作系统/30天自制操作系统-学习笔记/">30天自制操作系统-学习笔记 day1~day10</a>
       </li>
     
   </ul>

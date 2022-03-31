@@ -451,7 +451,97 @@
 <p>比如某人养猫，小猫生活的很好，那就不难判断出这是一个很有爱的人。</p>
 <p>比如某人在某个领域很出色，那就可以判断这是一个有自己思想的人。</p>
 <h2 id="3-26"><a href="#3-26" class="headerlink" title="3/26"></a>3/26</h2><h3 id="30天自制操作系统-3"><a href="#30天自制操作系统-3" class="headerlink" title="30天自制操作系统"></a>30天自制操作系统</h3><p>day10</p>
-<h3 id><a href="#" class="headerlink" title></a></h3>
+<h3 id><a href="#" class="headerlink" title></a></h3><h2 id="3-28"><a href="#3-28" class="headerlink" title="3/28"></a>3/28</h2><h3 id="30天自制操作系统-4"><a href="#30天自制操作系统-4" class="headerlink" title="30天自制操作系统"></a>30天自制操作系统</h3><p>day11</p>
+<h3 id="毕业设计-10"><a href="#毕业设计-10" class="headerlink" title="毕业设计"></a>毕业设计</h3><blockquote>
+<p>用户输入手机号检查</p>
+</blockquote>
+<blockquote>
+<p>去除登录功能</p>
+</blockquote>
+<blockquote>
+<p>前端界面优化</p>
+</blockquote>
+<blockquote>
+<p>输入数字验证</p>
+</blockquote>
+<blockquote>
+<p>反馈页面优化</p>
+</blockquote>
+<blockquote>
+<p>对指定的手机号+项目名，每四小时能生成一次</p>
+</blockquote>
+<p>点击生成按钮后，</p>
+<p>生成报告</p>
+<p>手机号、项目名、生成时间存储入库内</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">生成编号():</span><br><span class="line">	获取当前时间;</span><br><span class="line">	获取数据库信息(手机号,项目名);</span><br><span class="line">	如果存在信息</span><br><span class="line">		当前时间相差小于四个小时:</span><br><span class="line">			返回&quot;请XXX小时后再次尝试&quot;</span><br><span class="line">		大于四小时:</span><br><span class="line">			正常返回，</span><br><span class="line">			更新时间update</span><br><span class="line">	不存在信息</span><br><span class="line">		正常返回</span><br><span class="line">		插入时间insert</span><br></pre></td></tr></table></figure>
+
+<p>前端若正常获取到编号，则将生成报告按钮显示出来，否侧不显示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jdbc.driver&#x3D;com.mysql.jdbc.Driver</span><br><span class="line">jdbc.url&#x3D;jdbc:mysql:&#x2F;&#x2F;127.0.0.1:3306&#x2F;zjk_taofangxing_?useSSL&#x3D;false&amp;useUnicode&#x3D;true&amp;characterEncoding&#x3D;UTF-8&amp;autoReconnect&#x3D;true</span><br><span class="line">jdbc.username&#x3D;root</span><br><span class="line">jdbc.password&#x3D;123456</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jdbc.driver&#x3D;com.mysql.jdbc.Driver</span><br><span class="line">jdbc.url&#x3D;jdbc:mysql:&#x2F;&#x2F;127.0.0.1:3306&#x2F;zjk_2022?useSSL&#x3D;false&amp;useUnicode&#x3D;true&amp;characterEncoding&#x3D;UTF-8&amp;autoReconnect&#x3D;true</span><br><span class="line">jdbc.username&#x3D;zjk_2022</span><br><span class="line">jdbc.password&#x3D;Zyz4SiH6RdtzkGHN</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="3-29"><a href="#3-29" class="headerlink" title="3/29"></a>3/29</h2><h3 id="30天自制操作系统-5"><a href="#30天自制操作系统-5" class="headerlink" title="30天自制操作系统"></a>30天自制操作系统</h3><p>day12</p>
+<h3 id="毕业设计-11"><a href="#毕业设计-11" class="headerlink" title="毕业设计"></a>毕业设计</h3><blockquote>
+<p>报告新增编号功能</p>
+</blockquote>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><blockquote>
+<p>一篇博客,前言讲的很不错，记录下来。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_33699914/article/details/87997163">https://blog.csdn.net/weixin_33699914/article/details/87997163</a></p>
+<p>在开始正题之前，先闲聊几句。有人说，计算机科学这个学科，软件方向研究到头就是数学，硬件方向研究到头就是物理，最轻松的是中间这批使用者，可以不太懂物理，不太懂数学，依旧可以使用计算机作为自己谋生的工具。这个规律具有普适应，看看“定时器”这个例子，往<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%BA%94%E7%94%A8%E5%B1%82&spm=1001.2101.3001.7020">应用层</a>研究，有 Quartz，Spring Schedule 等框架；往分布式研究，又有 SchedulerX，ElasticJob 等分布式任务调度；往底层实现看，又有多种定时器实现方案的原理、工作效率、数据结构可以深究…简单上手使用一个框架，并不能体现出个人的水平，如何与他人构成区分度？我觉得至少要在某一个方向有所建树：</p>
+<ol>
+<li>深入研究某个现有框架的实现原理，例如：读源码</li>
+<li>将一个传统技术在分布式领域很好地延伸，很多成熟的传统技术可能在单机 work well，但分布式场景需要很多额外的考虑。</li>
+<li>站在设计者的角度，如果从零开始设计一个轮子，怎么利用合适的算法、数据结构，去实现它。</li>
+</ol>
+<blockquote>
+<p>网易云一条评论</p>
+</blockquote>
+<p><img src="/2022/03/07/%E6%97%A5%E5%BF%97/2022-3/image-20220329170246214.png" alt="image-20220329170246214"></p>
+<blockquote>
+<p>防范辐射</p>
+</blockquote>
+<p><strong>1.用笔记本电脑代替台式机</strong></p>
+<p>研究显示，台式机机箱的辐射要比笔记本电脑大得多。所以，将台式机机箱替换成笔记本电脑是个降低辐射的方法。</p>
+<p><strong>2.每天清洁电脑屏幕</strong></p>
+<p>每天使用电脑前， 都先用专门 的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%B6%B2%E6%99%B6">液晶</a>屏<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%B8%85%E6%B4%81%E6%B6%B2">清洁液</a>擦拭电脑屏幕，去掉屏幕上因为<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%9D%99%E7%94%B5/623">静电</a>而附着的微尘。那些屏幕上附着的微小颗粒会加大辐射量。</p>
+<p><strong>3.电脑桌前养一瓶水养植物</strong></p>
+<p>在电脑桌前养一瓶水养植物，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AF%8C%E8%B4%B5%E7%AB%B9">富贵竹</a>或<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BB%BF%E8%90%9D/70257">绿萝</a>都可以，绿绿的叶片有缓解视疲劳的功效。</p>
+<p><strong>4.每1小时站起来活动10分钟</strong></p>
+<p>长时间坐在电脑前不运动，不仅全身的血液循环和<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%B7%8B%E5%B7%B4%E5%BE%AA%E7%8E%AF">淋巴循环</a>会受到影响，导致新陈代谢减缓，代谢废物在体内蓄积，四肢水肿 、眼睛 酸涩。</p>
+<p>另外，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A4%A7%E8%84%91%E7%9A%AE%E5%B1%82">大脑皮层</a>也会感到疲惫，难以 发挥最佳的工作状态。</p>
+<p><strong>5.每隔3小时洗脸一次</strong></p>
+<p>距离电脑屏幕最近的身体部位是脸部。由于细小的面部毛孔易被电脑周围因<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%9D%99%E7%94%B5/623">静电</a>而聚集在一起的微粒堵塞，所以皮肤为了继续呼吸就只能让<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%AF%9B%E5%AD%94">毛孔</a>越变越大，导致面部肌肤变得越来越粗糙，还会长痘</p>
+<p>所以，建议每隔3小时就去洗一次脸，清洁皮肤，然后认真涂抹润肤乳滋润肌肤。</p>
+<p><strong>6.脚底踩两个高尔夫球</strong></p>
+<p>坐在电脑前工作时，在脚底踩两个<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%AB%98%E5%B0%94%E5%A4%AB%E7%90%83/32234">高尔夫球</a>，一边工作，一边踩着高尔夫球在地面上小范围滚动。</p>
+<p>这样不仅能防止翘<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BA%8C%E9%83%8E%E8%85%BF">二郎腿</a>等不良坐姿，还能随时活动双腿，防止下肢水肿。</p>
+<p><strong>7.调节电脑屏幕的亮度</strong></p>
+<p>将电脑屏幕亮调低， 减少光线的眼球的刺激，能戴一副<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%98%B2%E8%BE%90%E5%B0%84">防辐射</a>的眼镜就更好了。</p>
+<p><strong>8.随时活动手腕</strong></p>
+<p>工作的间隙，随时抽空活动手腕。将双掌合什，相互运动摩擦致发热，然后十指交叉用力握拳，再依次快速伸展小指、无名指 、中指、 食指 ，这样反复做10次，就能促进手腕部位的血液循环，舒缓僵硬状态，有效预防“鼠标手”。</p>
+<p>此外，还可以事先滴一滴柠檬精油在手掌上，这样双掌相互运动摩擦发热时，柠檬<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%B2%BE%E6%B2%B9">精油</a>的芳香就会散发出来，还有提神醒脑的功效。</p>
+<p><strong>9.准备一把高品质的工作椅</strong></p>
+<p>一把好椅子不仅能帮你保持减肥的坐姿，还能有效缓解腰腹和肩背部位的压力，有效预防腰腹和肩背部疼痛。</p>
+<p>如果工作氛围比较轻松的话 ，用健身球来代替工作椅是个不错的选择。</p>
+<p><strong>10.随时活动颈肩部</strong></p>
+<p>在电脑前工作时还有一点要特别注意，那就是要随时活动颈肩部。</p>
+<p>做做头部旋转运动和肩部 环绕运动，这样能防止长时间使用电脑导致的“颈肩病”。</p>
+<p>同时，还能有效锻炼颈部和肩部肌肉， 如果颈部和肩部肌肉缺乏锻炼，皮肤可能会变得松弛并且显老。</p>
+<p><strong>11.多吃石榴</strong></p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BE%8E%E5%9B%BD%E5%AF%86%E8%A5%BF%E6%A0%B9%E5%B7%9E%E7%AB%8B%E5%A4%A7%E5%AD%A6">美国密西根州立大学</a>的最新医学研究发现，石榴中含有的鞣花 成分能有效避免人体细胞受到<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%94%B5%E7%A6%BB%E8%BE%90%E5%B0%84">电离辐射</a>的伤害。</p>
+<p>所以，当每天坐在电脑前工作时，可以准备一个鲜石榴当加餐，当然一杯鲜榨石榴汁也一样有效。</p>
+<p><strong>12.多吃香蕉</strong></p>
+<p>如果工作者每天都要坐在电脑前工作不短的时间，建议每天吃上1根香蕉。</p>
+<p>香蕉中含量丰富的矿物质钾和其它微量元素、维生素，能有效缓解眼部细胞疲劳。</p>
+<h2 id="3-30"><a href="#3-30" class="headerlink" title="3/30"></a>3/30</h2><h3 id="毕业设计-12"><a href="#毕业设计-12" class="headerlink" title="毕业设计"></a>毕业设计</h3><blockquote>
+<p>优化模板</p>
+</blockquote>
+<h3 id="30天自制操作系统-6"><a href="#30天自制操作系统-6" class="headerlink" title="30天自制操作系统"></a>30天自制操作系统</h3><h3 id="反思-1"><a href="#反思-1" class="headerlink" title="反思"></a>反思</h3>
       
     </div>
     
@@ -497,7 +587,7 @@
   
     <li><a href="/categories/开发工具/">开发工具</a><small>3</small></li>
   
-    <li><a href="/categories/操作系统/">操作系统</a><small>1</small></li>
+    <li><a href="/categories/操作系统/">操作系统</a><small>2</small></li>
   
     <li><a href="/categories/日志/">日志</a><small>3</small></li>
   
@@ -521,6 +611,10 @@
   <ul class="entry">
     
       <li>
+        <a href="/2022/03/31/日志/山还是山,水还是水,你不能永远是那个你/">山还是山,水还是水,你不能永远是那个你</a>
+      </li>
+    
+      <li>
         <a href="/2022/03/27/操作系统/30天自制操作系统-学习笔记 day11~day20/">30天自制操作系统-学习笔记 day11~day20</a>
       </li>
     
@@ -534,10 +628,6 @@
     
       <li>
         <a href="/2022/03/15/自动化脚本&amp;工具开发/freemarker操控word/">freemarker操控word</a>
-      </li>
-    
-      <li>
-        <a href="/2022/03/07/日志/2022-3/">2022-3</a>
       </li>
     
   </ul>

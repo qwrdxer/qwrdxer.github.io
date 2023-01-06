@@ -382,7 +382,7 @@ run.bat
 <p>段号为0 的段，上限值为0xffffffff（4GB)、 地址为0，标识CPU所能管理的内存本身，段属性为0x4092</p>
 <p>set_segmdesc(gdt + 1, 0xffffffff, 0x00000000, 0x4092);</p>
 <p>段号为1 的段，上限值为0x0007ffff（521KB)、 地址为0x00280000，标识CPU所能管理的内存本身，</p>
-<p>这正好是为bootpack.hrb而准备的。 用这个段， 就可以执行bootpack.hrb。 因为bootpack.hrb是以ORG 0为前提翻译成的机器语言。  </p>
+<p>这正好是为bootpack.hrb而准备的(具体可以查看后面介绍的asmhead.nas)。 用这个段， 就可以执行bootpack.hrb。 因为bootpack.hrb是以ORG 0为前提翻译成的机器语言。  </p>
 <p>set_segmdesc(gdt + 2, 0x0007ffff, 0x00280000, 0x409a)  </p>
 <h3 id="harib03a-分割文件"><a href="#harib03a-分割文件" class="headerlink" title="harib03a  分割文件"></a>harib03a  分割文件</h3><p>makefile优化</p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">bootpack.gas : bootpack.c Makefile</span><br><span class="line"><span class="variable">$(CC1)</span> -o bootpack.gas bootpack.c</span><br><span class="line">graphic.gas : graphic.c Makefile</span><br><span class="line"><span class="variable">$(CC1)</span> -o graphic.gas graphic.c</span><br><span class="line">dsctbl.gas : dsctbl.c Makefile</span><br><span class="line"><span class="variable">$(CC1)</span> -o dsctbl.gas dsctbl.c</span><br><span class="line">或者像这样：</span><br><span class="line">bootpack.nas : bootpack.gas Makefile</span><br><span class="line"><span class="variable">$(GAS2NASK)</span> bootpack.gas bootpack.nas</span><br><span class="line">graphic.nas : graphic.gas Makefile</span><br><span class="line"><span class="variable">$(GAS2NASK)</span> graphic.gas graphic.nas</span><br><span class="line">dsctbl.nas : dsctbl.gas Makefile</span><br><span class="line"><span class="variable">$(GAS2NASK)</span> dsctbl.gas dsctbl.nas</span><br></pre></td></tr></table></figure>
@@ -664,7 +664,7 @@ run.bat
 <p>转送数据大小是以双字为单位的， 所以数据大小用字节数除以4来指定。  </p>
 </blockquote>
 <p>memcpy(0x7c00, DSKCAC, 512/4);<br>DSKCAC是0x00100000， 所以上面这句话的意思就是从0x7c00复制512字节到0x00100000。 这正好是将启动扇区复制到1MB以后的内存去的意思。</p>
-<p>memcpy(DSKCAC0+512, DSKCAC+512, cyls * 512<em>18</em>2/4-512/4);<br>它的意思就是将始于0x00008200的磁盘内容（也即是启动区代码<strong>加载到内存中的数据</strong>,共10个柱面)， 复制到0x00100200那里。  </p>
+<p>memcpy(DSKCAC0+512, DSKCAC+512, cyls * 512<em>18</em>2/4-512/4);<br>它的意思就是将始于0x00008200的磁盘内容（也即是启动区代码<strong>加载到内存中的数据</strong>,共10个柱面180kb)， 复制到0x00100200那里。  </p>
 <p>现在我们还没说明的函数就只有有程序开始处的memcpy了。 bootpack是asmhead.nas的最后一个标签。 haribote.sys是通过asmhead.bin和bootpack.hrb连接起来而生成的（可以通过Makefile确认） ， 所以asmhead结束的地方， 紧接着串连着bootpack.hrb最前面的部分。</p>
 <p>memcpy(bootpack, BOTPAK, 512*1024/4); → 从bootpack的地址开始的512KB内容复<br>制到0x00280000号地址去。  </p>
 <blockquote>
@@ -955,23 +955,23 @@ run.bat
   <ul class="entry">
     
       <li>
-        <a href="/2022/03/31/日志/山还是山,水还是水,你不能永远是那个你/">山还是山,水还是水,你不能永远是那个你</a>
+        <a href="/2023/01/05/CS/CS144/source/"></a>
       </li>
     
       <li>
-        <a href="/2022/03/27/操作系统/30天自制操作系统-学习笔记 day11~day20/">30天自制操作系统-学习笔记 day11~day20</a>
+        <a href="/2022/04/27/自动化脚本&amp;工具开发/分布式扫描器实现/">分布式扫描器实现</a>
       </li>
     
       <li>
-        <a href="/2022/03/26/test/test/">test</a>
+        <a href="/2022/04/14/数据库/mongodb学习/">mongodb学习</a>
       </li>
     
       <li>
-        <a href="/2022/03/21/日志/闲语杂记/">闲语杂记</a>
+        <a href="/2022/04/13/Untitled/"></a>
       </li>
     
       <li>
-        <a href="/2022/03/15/自动化脚本&amp;工具开发/freemarker操控word/">freemarker操控word</a>
+        <a href="/2022/04/10/自动化脚本&amp;工具开发/Go编写一个端口扫描器/">Go编写一个扫描器</a>
       </li>
     
   </ul>
@@ -1033,7 +1033,7 @@ run.bat
   <footer id="footer" class="inner"><div class="alignleft">
   <p>
   
-  &copy; 2022 qwrdxer
+  &copy; 2023 qwrdxer
   
   All rights reserved.</p>
   <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>

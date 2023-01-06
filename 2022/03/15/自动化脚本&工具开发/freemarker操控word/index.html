@@ -110,10 +110,7 @@
 <p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220315121718332.png" alt="image-20220315121718332"></p>
 <p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220315121737469.png" alt="image-20220315121737469"></p>
 <blockquote>
-<p>图片的数据信息在binData中，以base64格式存放</p>
-<p>单一的图片也跟上面的差不多，将binData的数据修改成占位符即可</p>
-<p>多图片时就需要使用循环了,主要修改六个地方</p>
-<p>分别是加入循环、在binData中加入占位符，在shape中加上图片的宽和高，在文件名处加入占位符。</p>
+<p>图片的数据信息在binData中，以base64格式存放，单一的图片也跟上面的差不多，将binData的数据修改成占位符即可，多图片时就需要使用循环了,主要修改六个地方，分别是加入循环、在binData中加入占位符，在shape中加上图片的宽和高，在文件名处加入占位符。</p>
 </blockquote>
 <blockquote>
 <p>补充: 在list循环中，若对象为自定义类 ，可通过一个 .获取对应的值</p>
@@ -123,6 +120,10 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;#list images as image&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">w:pict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:shapetype</span> <span class="attr">id</span>=<span class="string">&quot;_x0000_t75&quot;</span> <span class="attr">coordsize</span>=<span class="string">&quot;21600,21600&quot;</span> <span class="attr">o:spt</span>=<span class="string">&quot;75&quot;</span> <span class="attr">o:preferrelative</span>=<span class="string">&quot;t&quot;</span> <span class="attr">path</span>=<span class="string">&quot;m@4@5l@4@11@9@11@9@5xe&quot;</span> <span class="attr">filled</span>=<span class="string">&quot;f&quot;</span> <span class="attr">stroked</span>=<span class="string">&quot;f&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:stroke</span> <span class="attr">joinstyle</span>=<span class="string">&quot;miter&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:formulas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;if lineDrawn pixelLineWidth 0&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;sum @0 1 0&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;sum 0 0 @1&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;prod @2 1 2&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;prod @3 21600 pixelWidth&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;prod @3 21600 pixelHeight&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;sum @0 0 1&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;prod @6 1 2&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;prod @7 21600 pixelWidth&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;sum @8 21600 0&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;prod @7 21600 pixelHeight&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:f</span> <span class="attr">eqn</span>=<span class="string">&quot;sum @10 21600 0&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">v:formulas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:path</span> <span class="attr">o:extrusionok</span>=<span class="string">&quot;f&quot;</span> <span class="attr">gradientshapeok</span>=<span class="string">&quot;t&quot;</span> <span class="attr">o:connecttype</span>=<span class="string">&quot;rect&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">o:lock</span> <span class="attr">v:ext</span>=<span class="string">&quot;edit&quot;</span> <span class="attr">aspectratio</span>=<span class="string">&quot;t&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">v:shapetype</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">w:binData</span> <span class="attr">w:name</span>=<span class="string">&quot;wordml://$&#123;image_index+1&#125;.png&quot;</span> <span class="attr">xml:space</span>=<span class="string">&quot;preserve&quot;</span>&gt;</span>$&#123;image.baseEncode&#125;<span class="tag">&lt;/<span class="name">w:binData</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:shape</span> <span class="attr">id</span>=<span class="string">&quot;图片 1&quot;</span> <span class="attr">o:spid</span>=<span class="string">&quot;_x0000_i1026&quot;</span> <span class="attr">type</span>=<span class="string">&quot;#_x0000_t75&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width:$&#123;image.width&#125;pt;height:$&#123;image.height&#125;pt;visibility:visible;mso-wrap-style:square&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v:imagedata</span> <span class="attr">src</span>=<span class="string">&quot;wordml://$&#123;image_index+1&#125;.png&quot;</span> <span class="attr">o:title</span>=<span class="string">&quot;&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">v:shape</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">w:pict</span>&gt;</span></span><br><span class="line">&lt;/#list&gt;</span><br></pre></td></tr></table></figure>
 
 <p><strong>编写完成后别忘了删除tab键</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getPath</span><span class="params">(String userpath)</span></span>&#123;</span><br><span class="line">    String path=<span class="string">&quot;&quot;</span>;</span><br><span class="line">    String os = System.getProperty(<span class="string">&quot;os.name&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (os.toLowerCase().startsWith(<span class="string">&quot;win&quot;</span>)) &#123;</span><br><span class="line">        path = <span class="string">&quot;E:&quot;</span>+ File.separator+userpath+File.separator;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        path = <span class="string">&quot;/webapps/img/&quot;</span>+userpath+<span class="string">&quot;/&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> path;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="代码介绍"><a href="#代码介绍" class="headerlink" title="代码介绍"></a>代码介绍</h3><blockquote>
 <p>图片相关</p>
 </blockquote>
@@ -273,23 +274,23 @@
   <ul class="entry">
     
       <li>
-        <a href="/2022/03/31/日志/山还是山,水还是水,你不能永远是那个你/">山还是山,水还是水,你不能永远是那个你</a>
+        <a href="/2023/01/05/CS/CS144/source/"></a>
       </li>
     
       <li>
-        <a href="/2022/03/27/操作系统/30天自制操作系统-学习笔记 day11~day20/">30天自制操作系统-学习笔记 day11~day20</a>
+        <a href="/2022/04/27/自动化脚本&amp;工具开发/分布式扫描器实现/">分布式扫描器实现</a>
       </li>
     
       <li>
-        <a href="/2022/03/26/test/test/">test</a>
+        <a href="/2022/04/14/数据库/mongodb学习/">mongodb学习</a>
       </li>
     
       <li>
-        <a href="/2022/03/21/日志/闲语杂记/">闲语杂记</a>
+        <a href="/2022/04/13/Untitled/"></a>
       </li>
     
       <li>
-        <a href="/2022/03/15/自动化脚本&amp;工具开发/freemarker操控word/">freemarker操控word</a>
+        <a href="/2022/04/10/自动化脚本&amp;工具开发/Go编写一个端口扫描器/">Go编写一个扫描器</a>
       </li>
     
   </ul>
@@ -351,7 +352,7 @@
   <footer id="footer" class="inner"><div class="alignleft">
   <p>
   
-  &copy; 2022 qwrdxer
+  &copy; 2023 qwrdxer
   
   All rights reserved.</p>
   <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>

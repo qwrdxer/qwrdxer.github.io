@@ -1,0 +1,768 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  
+  <title>想法记录 | qwrdxer &#39;s blog</title>
+  <meta name="author" content="qwrdxer" />
+
+  
+  <meta name="description" content="API思想- 如何将一系列的工具进行二次封装前期的渗透测试很多时候都可以流程化: 
+信息搜集 (公司名、子公司、子域名) -&amp;gt; 将收集到的信息转换成IP -&amp;gt; 端口扫描 -&amp;gt; 指纹识别 -&amp;gt; 漏洞扫描
+在各个流程中，网络上已经有很多优秀的开源工具了，重新开发有的时候并不是一个好的选择。
+既然如此 ,何不写一个框架，将工具以插件的形式进行安装
+
+框架需要实现的功能如下
+
+mian() 主函数执行整个前期渗透测试流程，当某一个阶段任务结束后进行下一个任务。
+plug_install()  运行插件的install()
+plug_run() 运行某个插件
+plug_uninstall() 卸载某个插件
+可能需要一个web页面
+
+插件需要实现的功能如下
+
+install()  工具安装
+update() 工具更新
+paramanalysis() 输入参数解析
+run()  工具运行
+dataprocess() 工具输出结果二次处理
+datastore() 处理后结果存储
+uninstall() 卸载该插件
+分布式扫描器
+暂定技术栈
+
+前端: bootstrap JQuery
+后端: Go
+数据库 MongoDB消息队列: nsq
+定时任务:  暂时使用循环+  sleep
+
+
+先写一下要达成的效果
+
+用户提交任务:  www.xxx.com,www.ddd.com, 等一系列IP域名地址、
+客户端在MongoDB中初始化一个task，若MongoDB中记录当前无其他task，则将本task设为运行中，将IP、域名等信息插入到task中，每一个IP、域名。
+调度器每5秒查询一次MongoDB，若有正在运行中的任务，且消息队列还没有排满，则从task中取出一定数量的子任务， 处理成消息的格式放入消息队列中。
+执行器从消息队列中取出子任务，执行完成后，将数据更新到MongoDB的task中。
+123456789101112131415161718192021222324252627282930313233343536taskUID : string&amp;#123;    task_total : int     task_waiting : int    task_runned  : int    task_running : int    task_domain: &amp;#123;  需要进行子域名扫描, 子域名扫描完成后进行IP解析，将解析的IP:domain写入到task_IP中    	domain_total : int    	domain_running : int    	domain_runned : int        domain1: &amp;#123;    		subdomain_task_status： (等待中、运行中、运行完毕)				subdomain_info &amp;#123;subdomain:IP&amp;#125;		&amp;#125;				        domain1: subdomain_task_status (等待中、运行中、运行完毕)    &amp;#125;	task_IP :&amp;#123; 进行端口扫描、指纹识别，将识别到的web协议资产加入到task_web中，其他加入到task_other中        IP_total        IP_running        IP_runned        IP1 :&amp;#123;            task_status(等待中、运行中、运行完成)            task_openportanservice(开启的端口服务与指纹)			task_domainbind [domain1 domain2]（IP绑定的子域名)        &amp;#125;    &amp;#125;	task_WEB:&amp;#123;        web1&amp;#123;        web_URL        scan_status    &amp;#125;    &amp;#125;	&amp;#125;
+
+
+
+
+
+MongoDB补充
+清空集合数据
+
+db.xxx.remove({})
+
+设置集合主键
+
+1db.xxx.createIndex( &amp;#123; &amp;quot;ip_host&amp;quot;: 1 &amp;#125;, &amp;#123; unique: true &amp;#125; )
+
+
+
+docker exec -it mongo mongo admin
+db.auth(“admin”,”qwrdxer”)
+use myscan
+db.task1_ip.insertMany([{    ip_scan_status: 0,    ip_host: “220.130.181.152”},{    ip_scan_status: 0,    ip_host: “140.122.149.12”},{    ip_scan_status: 0,    ip_host: “114.25.138.78”}])
+MongoDB设计如下库名: myscan
+db.createCollection(task1_ip)
+每增加一个任务，都需要创建一个集合，并将该集合的名字记录在ScanStatus  的querylist表中
+集合: ScanTask_name_ip  、ScanStatus
+ScanTask_name_ip: 存放任务的ip
+使用db.task1_ip.insertMany()可一次性插入多个IP
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152db.task1_ip.insertMany([&amp;#123;    ip_scan_status: 0,    ip_host: &amp;quot;220.130.181.152&amp;quot;&amp;#125;,&amp;#123;    ip_scan_status: 0,    ip_host: &amp;quot;140.122.149.12&amp;quot;&amp;#125;,&amp;#123;    ip_scan_status: 0,    ip_host: &amp;quot;114.25.138.78&amp;quot;&amp;#125;,&amp;#123;    ip_scan_status: 0,    ip_host: &amp;quot;35.201.212.100&amp;quot;&amp;#125;,&amp;#123;    ip_scan_status: 0,    ip_host: &amp;quot;203.69.15.226&amp;quot;&amp;#125;,&amp;#123;    ip_scan_status: 0,    ip_host: &amp;quot;122.117.147.95&amp;quot;&amp;#125;,&amp;#123;    ip_scan_status: 0,    ip_host: &amp;quot;219.71.199.26&amp;quot;&amp;#125;,&amp;#123;    ip_scan_status: 0,    ip_host: &amp;quot;59.126.205.82&amp;quot;&amp;#125;,&amp;#123;    ip_scan_status: 0,    ip_host: &amp;quot;35.194.147.80&amp;quot;&amp;#125;,&amp;#123;    ip_scan_status: 0,    ip_host: &amp;quot;123.0.63.235&amp;quot;&amp;#125;,&amp;#123;    ip_scan_status: 0,    ip_host: &amp;quot;140.122.53.205&amp;quot;&amp;#125;,&amp;#123;    ip_scan_status: 0,    ip_host: &amp;quot;140.122.53.161&amp;quot;&amp;#125;,&amp;#123;    ip_scan_status: 0,    ip_host: &amp;quot;163.21.180.18&amp;quot;&amp;#125;,&amp;#123;    ip_scan_status: 0,    ip_host: &amp;quot;203.64.208.70&amp;quot;&amp;#125;,&amp;#123;    ip_scan_status: 0,    ip_host: &amp;quot;163.21.180.180&amp;quot;&amp;#125;,&amp;#123;    ip_scan_status: 0,    ip_host: &amp;quot;163.18.23.135&amp;quot;&amp;#125;])
+
+
+
+
+
+db.task1_ip.insertMany({    ip_scan_status: 0,    ip_host: “220.130.181.152”})
+修改某个ip的运行状态
+1db.scan1_ip.updateOne(&amp;#123;ip_host: &amp;quot;121.5.73.12&amp;quot;&amp;#125;,&amp;#123;&amp;quot;$set&amp;quot;:&amp;#123;ip_scan_status:2&amp;#125;&amp;#125;)
+
+查看指定状态的所有IP
+1db.scan1_ip.find(&amp;#123;&amp;quot;ip_scan_status&amp;quot;:0&amp;#125;)
+
+ip扫描结果格式
+12345678910[&amp;#123;    openport:80,    protocol:&amp;quot;http&amp;quot; &amp;#125;,&amp;#123;    openport:22,    protocol:&amp;quot;ssh&amp;quot; &amp;#125;,&amp;#123;    openport:6379,    protocol:&amp;quot;redis&amp;quot; &amp;#125;]
+
+将扫描结果写入到MongoDB中
+12345678910111213db.task1_ip.updateOne(&amp;#123;ip_host: &amp;quot;121.5.73.14&amp;quot;&amp;#125;,&amp;#123;&amp;quot;$set&amp;quot;:&amp;#123;&amp;quot;ip_openport&amp;quot;:[&amp;#123;    openport:8080,    protocol:&amp;quot;http&amp;quot; &amp;#125;,&amp;#123;    openport:22,    protocol:&amp;quot;ssh&amp;quot; &amp;#125;,&amp;#123;    openport:6379,    protocol:&amp;quot;redis&amp;quot; &amp;#125;,&amp;#123;    openport:7171,    protocol:&amp;quot;http&amp;quot; &amp;#125;]&amp;#125;&amp;#125;)
+
+查询有http协议的ip
+1db.scan1_ip.find(&amp;#123;&amp;quot;ip_openport.protocol&amp;quot;:&amp;quot;http&amp;quot;&amp;#125;)
+
+查询有http协议的ip,只要带http的端口
+1234567891011121314cursor.forEach(function(x)&amp;#123;    x.ip_openport.forEach(function(arr,index)&amp;#123;        print(arr.openport)    &amp;#125;)&amp;#125;)db.task1_ip.find(&amp;#123;&amp;quot;ip_openport.protocol&amp;quot;:&amp;quot;http&amp;quot;&amp;#125;).forEach(function(x)&amp;#123;    var iphost=x.ip_host    x.ip_openport.forEach(function(arr,index)&amp;#123;        if(arr.protocol==&amp;quot;http&amp;quot;)&amp;#123;            print(iphost+&amp;quot;:&amp;quot;+arr.port)            iphost=x.ip_host        &amp;#125;    &amp;#125;)&amp;#125;)
+
+输出结果如下 ，可以将http字符串替换成任意协议，输出都为ip_端口
+121.5.73.12:80                                                                                       
+121.5.73.14:8080                                                                                     
+121.5.73.14:7171  
+taskname_domain
+go语言操控MongoDBhttps://blog.csdn.net/opeak/article/details/102544280/
+https://wenku.baidu.com/view/347a637e322b3169a45177232f60ddccda38e69f.html
+
+连接至MongoDB
+
+12345678910111213141516171819202122232425262728const (   MongoDBHosts = &amp;quot;121.5.73.12:27017&amp;quot;   AuthDatabase = &amp;quot;admin&amp;quot;   AuthUserName = &amp;quot;admin&amp;quot;   AuthPassword = &amp;quot;123456&amp;quot;   MaxCon       = 300)func main() &amp;#123;   mongoDBDialInfo := &amp;amp;mgo.DialInfo&amp;#123;      Addrs:    []string&amp;#123;MongoDBHosts&amp;#125;,      Timeout:  60 * time.Second,      Database: AuthDatabase,      Username: AuthUserName,      Password: AuthPassword,   &amp;#125;   session, err := mgo.DialWithInfo(mongoDBDialInfo)   if err != nil &amp;#123;      log.Fatalf(&amp;quot;CreateSession failed:%n&amp;quot;, err)   &amp;#125;   //设置连接池的大小   session.SetPoolLimit(MaxCon)   defer session.Close()   cloneSession := session.Clone()&amp;#125;
+
+创建了一个连接池，当需要对MongDB进行操作时，只需
+cloneSession := session.Clone() 即可获取到一个session 
+
+获取一条记录
+
+首先要根据文档的格式定义好结构体
+JSON转GO结构体
+123456789101112type IP_result struct &amp;#123;	ID           bson.ObjectId  `bson:&amp;quot;_id,omitempty&amp;quot;` //类型是bson.ObjectId	IPScanStatus int            `bson:&amp;quot;ip_scan_status&amp;quot;`	IPHost       string         `bson:&amp;quot;ip_host&amp;quot;`	IPOpenport   []GoIPOpenport `bson:&amp;quot;ip_openport&amp;quot;`	BindDomain   []string       `bson:&amp;quot;binddomain&amp;quot;`&amp;#125;type GoIPOpenport struct &amp;#123;	Openport int    `bson:&amp;quot;openport&amp;quot;`	Protocol string `bson:&amp;quot;protocol&amp;quot;`&amp;#125;
+
+注意:
+
+标签为BSON格式
+结构体中成员必须大写，否则无法被其他包访问导致值为空
+要加上ID属性
+
+测试获取一条数据
+123c := cloneSession.DB(&amp;quot;myscan&amp;quot;).C(&amp;quot;task1_ip&amp;quot;)var v = IP_result&amp;#123;&amp;#125;c.Find(bson.M&amp;#123;&amp;quot;ip_host&amp;quot;: &amp;quot;121.5.73.14&amp;quot;&amp;#125;).One(&amp;amp;v)
+
+
+
+更新文档 - 单个值
+
+更新ip扫描状态
+1c.Update(bson.M&amp;#123;&amp;quot;ip_host&amp;quot;: &amp;quot;121.5.73.15&amp;quot;&amp;#125;, bson.M&amp;#123;&amp;quot;$set&amp;quot;: bson.M&amp;#123;&amp;quot;ip_scan_status&amp;quot;: 110&amp;#125;&amp;#125;)
+
+
+更新文档-列表
+
+对于不确定数量的列表，直接向bson.M中传入切片即可
+1c.Update(bson.M&amp;#123;&amp;quot;ip_host&amp;quot;: &amp;quot;121.5.73.15&amp;quot;&amp;#125;, bson.M&amp;#123;&amp;quot;$set&amp;quot;: bson.M&amp;#123;&amp;quot;openport&amp;quot;: []int&amp;#123;11, 111, 22, 80, 3333&amp;#125;&amp;#125;&amp;#125;)
+
+
+更新文档-嵌套文档
+
+嵌套文档，传入的是键值对 ，本次的需求是向列表成员中插入不定数量的子文档
+首先，对于确定数量的子文档，嵌套bson.M即可
+1data2 := bson.M&amp;#123;&amp;quot;openport&amp;quot;: []bson.M&amp;#123;bson.M&amp;#123;&amp;quot;port&amp;quot;: 80, &amp;quot;protocol&amp;quot;: &amp;quot;https&amp;quot;&amp;#125;, bson.M&amp;#123;&amp;quot;port&amp;quot;: 8080, &amp;quot;protocol&amp;quot;: &amp;quot;http&amp;quot;&amp;#125;&amp;#125;&amp;#125;
+
+对于不确定数量的子文档，首先定义一个bson.M类型的切片，使用for循环赋值即可
+其核心是将结构体转换成bson.M格式
+1234test3 := &amp;amp;GoIPOpenport&amp;#123;Openport: 80, Protocol: &amp;quot;https&amp;quot;&amp;#125;data3, _ := bson.Marshal(test3)mmap := bson.M&amp;#123;&amp;#125;bson.Unmarshal(data3, mmap)
+
+IP扫描任务: 将 端口+指纹写入MongoDB中(单机模式)单机模式的任务只有两种状态: 未扫描，扫描完成( 后续引入消息队列后还需要增加排队中、运行中的状态)
+其核心逻辑如下:
+
+获取一个任务(单机直接从MongoDB中获取，后续的分布式需要从消息队列中获取)
+执行任务
+上传数据，更新该任务状态
+
+
+端口扫描结果为字符串切片,使用strings.Join 转成字符串格式进行nmap指纹识别
+
+1res:=strings.Join(p.openPort,&amp;quot;,&amp;quot;)
+
+
+nmap扫描结果如下
+
+123456789101112PORT     STATE  SERVICE VERSION22/tcp   open   ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.2 (Ubuntu Linux; protocol 2.0)25/tcp   closed smtp53/tcp   open   domain  ISC BIND 9.16.1 (Ubuntu Linux)80/tcp   open   http    Apache httpd 2.4.41 ((Ubuntu))110/tcp  closed pop3111/tcp  open   rpcbind 2-4 (RPC #100000)3306/tcp open   mysql   MySQL 5.7.36Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernelService detection performed. Please report any incorrect results at https://nmap.org/submit/ .Nmap done: 1 IP address (1 host up) scanned in 15.71 seconds
+
+使用如下代码提取出nmap结果中的协议和端口
+12345678910var res = &amp;quot;Starting Nmap 7.70 ( https://nmap.org ) at 2022-04-17 11:42 ?D1ú±ê×?ê±??\nNmap scan report for \nHost is up (0.063s latency).\n\nPORT    STATE  SERVICE VERSION\n22/tcp  open   ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.2 (Ubuntu Linux; protocol 2.0)\n25/tcp  closed smtp\n53/tcp  open   domain  ISC BIND 9.16.1 (Ubuntu Linux)\n80/tcp  open   http    Apache httpd 2.4.41 ((Ubuntu))\n110/tcp closed pop3\n111/tcp open   rpcbind 2-4 (RPC #100000)\nService Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel\n\nService detection performed. Please report any incorrect results at https://nmap.org/submit/ .\nNmap done: 1 IP address (1 host up) scanned in 15.48 seconds\n&amp;quot;var res1 = strings.Split(res, &amp;quot;\n&amp;quot;)reg := regexp.MustCompile(&amp;quot;^[0-9.]+/(?:tcp|udp)(.*)&amp;quot;)for _, infos := range res1 &amp;#123;	status := reg.FindAllString(infos, -1)	if status != nil &amp;#123;		info := strings.Fields(infos)		fmt.Println(info[2])	&amp;#125;&amp;#125;
+
+具体的ip扫描逻辑如下
+
+从MongoDB中读取到一条状态为0 的任务
+取出IP
+扫描端口指纹
+结果解析成BSON格式
+将IP的指纹和端口更新到MongDB中
+将该IP状态设置为扫描成功
+
+123456789101112131415161718func main() &amp;#123;	var conn mongodb.MongoPool	conn.Init()	defer conn.CloseSession()	session := conn.GetSession()	defer session.Close()	c := session.DB(&amp;quot;myscan&amp;quot;).C(&amp;quot;task1_ip&amp;quot;)	var task1 ipscan.IPScanTask	var v = IP_result&amp;#123;&amp;#125;	for&amp;#123;		c.Find(bson.M&amp;#123;&amp;quot;ip_scan_status&amp;quot;: 0&amp;#125;).One(&amp;amp;v)		var target=v.IPHost		task1.Init(target)		var bonsres=task1.Scan()		c.Update(bson.M&amp;#123;&amp;quot;ip_host&amp;quot;: target&amp;#125;,bson.M&amp;#123;&amp;quot;$set&amp;quot;:bson.M&amp;#123;&amp;quot;ip_openport&amp;quot;:bonsres&amp;#125;&amp;#125;)		c.Update(bson.M&amp;#123;&amp;quot;ip_host&amp;quot;: target&amp;#125;, bson.M&amp;#123;&amp;quot;$set&amp;quot;: bson.M&amp;#123;&amp;quot;ip_scan_status&amp;quot;: 1&amp;#125;&amp;#125;)	&amp;#125;&amp;#125;
+
+
+
+分布式-调度器Monitor
+ 先看看调度器要实现的功能:
+
+调度器首先要确定当前是否有任务在运行，若没有则从排队中的任务中取出一个设置为运行中
+因此要在mongDB中创建一个集合task_status，其存储的文档格式如下
+1234&amp;#123;    task_name:&amp;quot;taskname&amp;quot;,    task_status:0&amp;#125;
+
+task_name 就是任务的名字，需要从客户端中进行任务创建
+task_status 为任务的状态，一共有三种状态
+
+值为0 ，标识任务刚刚初始化
+值为1 ，标识任务正在运行
+值为2 ，标识任务已完成
+
+需要用到如下MongoDB语句
+12345678910c := session.DB(&amp;quot;myscan&amp;quot;).C(&amp;quot;task_status&amp;quot;)//更新任务状态c.Update(bson.M&amp;#123;&amp;quot;task_name&amp;quot;: taskname&amp;#125;, bson.M&amp;#123;&amp;quot;$set&amp;quot;: bson.M&amp;#123;&amp;quot;task_status&amp;quot;: 1&amp;#125;&amp;#125;)//新增一个任务c.Insert(bson.M&amp;#123;&amp;quot;task_name&amp;quot;:taskname,&amp;quot;task_status&amp;quot;:0&amp;#125;)//顺序查找一个状态为0任务c.Find(bson.M&amp;#123;&amp;quot;task_status&amp;quot;: 0&amp;#125;).Sort(&amp;quot;time:-1&amp;quot;).One(&amp;amp;v)
+
+若当前有任务在运行，则根据任务定位到MongDB子任务集合中：
+
+取出状态为0的子任务
+将其加入写入到消息队列中
+将子任务状态设置为2(排队中)
+
+nsq官方文档如下
+https://nsq.io/
+
+follow the instructions in the INSTALLING doc.
+
+in one shell, start nsqlookupd:  这相当于一个管理员
+1$ nsqlookupd
+in another shell, start nsqd:   这是用来消息发送 ,若在公网中搭建需要制定broadcast-adddress为公网IP
+1$ nsqd --lookupd-tcp-address=127.0.0.1:4160  -broadcast-address xxx.xxx.xxx.xxx
+
+NOTE: if your system hostname does not resolve to 127.0.0.1 then add --broadcast-address=127.0.0.1
+
+in another shell, start nsqadmin:  这是用来管理的web界面
+1$ nsqadmin --lookupd-http-address=127.0.0.1:4161
+publish an initial message (creates the topic in the cluster, too):  发送一条测试消息
+1$ curl -d &amp;#x27;hello world 1&amp;#x27; &amp;#x27;http://127.0.0.1:4151/pub?topic=test&amp;#x27;
+
+go操控nsqhttps://www.cnblogs.com/binHome/p/12006392.html
+
+消息发送测试代码
+
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162package mainimport (	&amp;quot;bufio&amp;quot;	&amp;quot;fmt&amp;quot;	&amp;quot;github.com/nsqio/go-nsq&amp;quot;	&amp;quot;os&amp;quot;	&amp;quot;strings&amp;quot;)// NSQ Producer Demo// 定义nsq生产者var producer *nsq.Producer// 初始化生产者func initProducer(str string) (err error) &amp;#123;	// 创建配置信息	config := nsq.NewConfig()	// 初始化生产者 str传入ip:端口	producer, err = nsq.NewProducer(str, config)	if err != nil &amp;#123;		fmt.Printf(&amp;quot;create producer failed, err:%v\n&amp;quot;, err)		return err	&amp;#125;	// 测试生产者是否有效	err = producer.Ping()	if err != nil&amp;#123;		fmt.Printf(&amp;quot;No ping,err:%v\n&amp;quot;,err)		producer.Stop() //关闭生产者	&amp;#125;	return nil&amp;#125;func main() &amp;#123;	nsqAddress := &amp;quot;121.5.73.12:4150&amp;quot;	// 调用封装好的函数 初始化生产者	err := initProducer(nsqAddress)	if err != nil &amp;#123;		fmt.Printf(&amp;quot;init producer failed, err:%v\n&amp;quot;, err)		return	&amp;#125;	reader := bufio.NewReader(os.Stdin) // 从标准输入读取	for &amp;#123;		data, err := reader.ReadString(&amp;#x27;\n&amp;#x27;)		if err != nil &amp;#123;			fmt.Printf(&amp;quot;read string from stdin failed, err:%v\n&amp;quot;, err)			continue		&amp;#125;		data = strings.TrimSpace(data)		if strings.ToUpper(data) == &amp;quot;Q&amp;quot; &amp;#123; // 输入Q退出			break		&amp;#125;		// 使用Publish 向 &amp;#x27;topic_demo&amp;#x27; publish 数据		err = producer.Publish(&amp;quot;test&amp;quot;, []byte(data))		if err != nil &amp;#123;			fmt.Printf(&amp;quot;publish msg to nsq failed, err:%v\n&amp;quot;, err)			continue		&amp;#125;	&amp;#125;&amp;#125;
+
+
+消息接收测试代码
+
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364// nsq_consumer/main.gopackage mainimport (	&amp;quot;fmt&amp;quot;	&amp;quot;os&amp;quot;	&amp;quot;os/signal&amp;quot;	&amp;quot;syscall&amp;quot;	&amp;quot;time&amp;quot;	&amp;quot;github.com/nsqio/go-nsq&amp;quot;)// NSQ Consumer Demo// MyHandler 是一个消费者类型type MyHandler struct &amp;#123;	Title string&amp;#125;// HandleMessage 是需要实现的处理消息的方法 *必须要实现func (m *MyHandler) HandleMessage(msg *nsq.Message) (err error) &amp;#123;	fmt.Printf(&amp;quot;%s recv from %v, msg:%v\n&amp;quot;, m.Title, msg.NSQDAddress, string(msg.Body))	time.Sleep(time.Duration(2)*time.Second)	return&amp;#125;// 初始化消费者func initConsumer(topic string, channel string, address string) (err error) &amp;#123;	config := nsq.NewConfig()	// 重连时间	config.LookupdPollInterval = 15 * time.Second	// 新建消费者	c, err := nsq.NewConsumer(topic, channel, config)	if err != nil &amp;#123;		fmt.Printf(&amp;quot;create consumer failed, err:%v\n&amp;quot;, err)		return	&amp;#125;	consumer := &amp;amp;MyHandler&amp;#123;		Title: &amp;quot;qwrdxer&amp;quot;,	&amp;#125;	// 屏蔽系统日志	// c.SetLogger(nil,0)	// 添加消费者	c.AddHandler(consumer)	// if err := c.ConnectToNSQD(address); err != nil &amp;#123; // 直接连NSQD	if err := c.ConnectToNSQLookupd(address); err != nil &amp;#123; // 通过lookupd查询		return err	&amp;#125;	return nil&amp;#125;func main() &amp;#123;	err := initConsumer(&amp;quot;test&amp;quot;, &amp;quot;tttt&amp;quot;, &amp;quot;121.5.73.12:4161&amp;quot;)	if err != nil &amp;#123;		fmt.Printf(&amp;quot;init consumer failed, err:%v\n&amp;quot;, err)		return	&amp;#125;	c := make(chan os.Signal)        // 定义一个信号的通道	signal.Notify(c, syscall.SIGINT) // 转发键盘中断信号到c	&amp;lt;-c                              // 阻塞&amp;#125;
+
+调度器代码实现
+初始化nsq 、Mongodb连接
+从mongdb中提取指定数量消息
+for循环，每向消息队列中写入一条消息，将该消息对应的mongodb文档设置为排队中
+sleep10秒
+
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778package mainimport (	&amp;quot;fmt&amp;quot;	&amp;quot;github.com/nsqio/go-nsq&amp;quot;	&amp;quot;gopkg.in/mgo.v2&amp;quot;	&amp;quot;gopkg.in/mgo.v2/bson&amp;quot;	mongodb &amp;quot;qwrdxer.com/NODE/MONGODB&amp;quot;	&amp;quot;time&amp;quot;)type IP_result struct &amp;#123;	ID           bson.ObjectId  `bson:&amp;quot;_id,omitempty&amp;quot;` //类型是bson.ObjectId	IPScanStatus int            `bson:&amp;quot;ip_scan_status&amp;quot;`	IPHost       string         `bson:&amp;quot;ip_host&amp;quot;`	IPOpenport   []GoIPOpenport `bson:&amp;quot;ip_openport&amp;quot;`	BindDomain   []string       `bson:&amp;quot;binddomain&amp;quot;`&amp;#125;type GoIPOpenport struct &amp;#123;	Openport int    `bson:&amp;quot;openport&amp;quot;`	Protocol string `bson:&amp;quot;protocol&amp;quot;`&amp;#125;// NSQ Producer Demotype Monitor struct &amp;#123;	producer *nsq.Producer	mgoconn *mgo.Session	querynum int  //每次查询的任务数	waitTime int  //一次调度后等待的时间&amp;#125;// 初始化生产者func (m *Monitor)Init(ipport string) (err error) &amp;#123;	// 创建配置信息	config := nsq.NewConfig()	// 初始化生产者 str传入ip:端口	m.producer, err = nsq.NewProducer(ipport, config)	if err != nil &amp;#123;		fmt.Printf(&amp;quot;create producer failed, err:%v\n&amp;quot;, err)		return err	&amp;#125;	// 测试生产者是否有效	err = m.producer.Ping()	if err != nil&amp;#123;		fmt.Printf(&amp;quot;No ping,err:%v\n&amp;quot;,err)		m.producer.Stop() //关闭生产者	&amp;#125;	return nil&amp;#125;func (m *Monitor)Start(conn mongodb.MongoPool) &amp;#123;	for&amp;#123;		m.mgoconn=conn.GetSession()//建立mongodb连接		c :=m.mgoconn.DB(&amp;quot;myscan&amp;quot;).C(&amp;quot;task1_ip&amp;quot;)		iter:=c.Find(bson.M&amp;#123;&amp;quot;ip_scan_status&amp;quot;: 0&amp;#125;).Limit(2).Iter()		var v = IP_result&amp;#123;&amp;#125;		for iter.Next(&amp;amp;v) &amp;#123; //迭代子任务			var data=&amp;quot;ipscan;&amp;quot;+&amp;quot;task1_ip;&amp;quot;+v.IPHost			fmt.Println(&amp;quot;adding:&amp;quot;+ data)			err := m.producer.Publish(&amp;quot;test&amp;quot;, []byte(data))//写入消息队列			c.Update(bson.M&amp;#123;&amp;quot;ip_host&amp;quot;: v.IPHost&amp;#125;, bson.M&amp;#123;&amp;quot;$set&amp;quot;: bson.M&amp;#123;&amp;quot;ip_scan_status&amp;quot;: 2&amp;#125;&amp;#125;)//设置状态为排队中			if err != nil &amp;#123;				fmt.Printf(&amp;quot;publish msg to nsq failed, err:%v\n&amp;quot;, err)				continue			&amp;#125;		&amp;#125;		m.mgoconn.Close() //关闭连接		fmt.Println(&amp;quot;睡眠十秒&amp;quot;)		time.Sleep(time.Duration(10)*time.Second)	&amp;#125;&amp;#125;func main() &amp;#123;	//建立mongdb连接池	var conn mongodb.MongoPool	conn.Init()	defer conn.CloseSession()	var Mon =Monitor&amp;#123;&amp;#125;	Mon.Init(&amp;quot;121.5.73.12:4150&amp;quot;)	Mon.Start(conn)&amp;#125;
+
+
+
+
+
+分布式架构设计
+扫描节点
+
+其主函数逻辑如下
+12345678910111213141516func main() &amp;#123;	task := 0	taskLimit := 5	taskList := make([]PortScanTask, 0)    消息队列绑定	for &amp;#123;        if task&amp;lt;taskLimit&amp;#123;            从消息队列中获取子任务            根据任务类别创建一个任务            将该任务加入到taskList中            go run 运行该任务        &amp;#125;        遍历taskList，若有任务已完成，则将其从任务列表中删除        sleep(10)	&amp;#125;&amp;#125;
+
+任务函数需要实现的接口如下
+123456789interface task&amp;#123;    init(); 将参数初始化    run() ; 执行任务    getprocess();获取当前任务进度    dataprocess(); 将运行结果改为JSON格式    upload(); 上传结果到MongoDB中，修改部分参数，如running-1 runned+1    实现接口的任务中还要定义一个标志位，当任务结束后方便主函数将其从任务列表中删除&amp;#125;
+
+
+
+
+调度节点
+
+主函数逻辑如下
+123456func main() &amp;#123;	for &amp;#123;		获取消息队列中可用的        sleep(10)	&amp;#125;&amp;#125;
+
+
+
+
+客户端" />
+  
+
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <meta property="og:title" content="想法记录" />
+  <meta property="og:site_name" content="qwrdxer &#39;s blog" />
+
+  
+  
+
+  
+    <meta property="og:image" content="" />
+  
+
+  
+  <link href="/css/images/favicon.ico" rel="icon" />
+  
+
+  <link rel="alternate" href="/atom.xml" title="qwrdxer &#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">qwrdxer &#39;s blog</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2022-04-09T03:24:11.000Z"><a href="/2022/04/09/自动化脚本&工具开发/想法记录/">2022-04-09</a></time>
+      
+      
+  
+    <h1 class="title">想法记录</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="API思想-如何将一系列的工具进行二次封装"><a href="#API思想-如何将一系列的工具进行二次封装" class="headerlink" title="API思想- 如何将一系列的工具进行二次封装"></a>API思想- 如何将一系列的工具进行二次封装</h2><p>前期的渗透测试很多时候都可以流程化: </p>
+<p>信息搜集 (公司名、子公司、子域名) -&gt; 将收集到的信息转换成IP -&gt; 端口扫描 -&gt; 指纹识别 -&gt; 漏洞扫描</p>
+<p>在各个流程中，网络上已经有很多优秀的开源工具了，重新开发有的时候并不是一个好的选择。</p>
+<p>既然如此 ,何不写一个框架，将工具以插件的形式进行安装</p>
+<blockquote>
+<p>框架需要实现的功能如下</p>
+</blockquote>
+<p>mian() 主函数执行整个前期渗透测试流程，当某一个阶段任务结束后进行下一个任务。</p>
+<p>plug_install()  运行插件的install()</p>
+<p>plug_run() 运行某个插件</p>
+<p>plug_uninstall() 卸载某个插件</p>
+<p>可能需要一个web页面</p>
+<blockquote>
+<p>插件需要实现的功能如下</p>
+</blockquote>
+<p>install()  工具安装</p>
+<p>update() 工具更新</p>
+<p>paramanalysis() 输入参数解析</p>
+<p>run()  工具运行</p>
+<p>dataprocess() 工具输出结果二次处理</p>
+<p>datastore() 处理后结果存储</p>
+<p>uninstall() 卸载该插件</p>
+<h2 id="分布式扫描器"><a href="#分布式扫描器" class="headerlink" title="分布式扫描器"></a>分布式扫描器</h2><blockquote>
+<p>暂定技术栈</p>
+</blockquote>
+<p>前端: bootstrap JQuery</p>
+<p>后端: Go</p>
+<p>数据库 MongoDB<br>消息队列: nsq</p>
+<p>定时任务:  暂时使用循环+  sleep</p>
+<p><img src="/2022/04/09/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC&%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/%E6%83%B3%E6%B3%95%E8%AE%B0%E5%BD%95/image-20220419105247096.png" alt="image-20220419105247096"></p>
+<blockquote>
+<p>先写一下要达成的效果</p>
+</blockquote>
+<p>用户提交任务:  <a target="_blank" rel="noopener" href="http://www.xxx.com,www.ddd.com/">www.xxx.com,www.ddd.com</a>, 等一系列IP域名地址、</p>
+<p>客户端在MongoDB中初始化一个task，若MongoDB中记录当前无其他task，则将本task设为运行中，将IP、域名等信息插入到task中，每一个IP、域名。</p>
+<p>调度器每5秒查询一次MongoDB，若有正在运行中的任务，且消息队列还没有排满，则从task中取出一定数量的子任务， 处理成消息的格式放入消息队列中。</p>
+<p>执行器从消息队列中取出子任务，执行完成后，将数据更新到MongoDB的task中。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">taskUID : string</span><br><span class="line">&#123;</span><br><span class="line">    task_total : int </span><br><span class="line">    task_waiting : int</span><br><span class="line">    task_runned  : int</span><br><span class="line">    task_running : int</span><br><span class="line">    task_domain: &#123;  需要进行子域名扫描, 子域名扫描完成后进行IP解析，将解析的IP:domain写入到task_IP中</span><br><span class="line">    	domain_total : int</span><br><span class="line">    	domain_running : int</span><br><span class="line">    	domain_runned : int</span><br><span class="line">        domain1: &#123;</span><br><span class="line">    		subdomain_task_status： (等待中、运行中、运行完毕)	</span><br><span class="line">			subdomain_info &#123;subdomain:IP&#125;</span><br><span class="line">		&#125;</span><br><span class="line">				</span><br><span class="line">        domain1: subdomain_task_status (等待中、运行中、运行完毕)</span><br><span class="line">    &#125;</span><br><span class="line">	task_IP :&#123; 进行端口扫描、指纹识别，将识别到的web协议资产加入到task_web中，其他加入到task_other中</span><br><span class="line">        IP_total</span><br><span class="line">        IP_running</span><br><span class="line">        IP_runned</span><br><span class="line">        IP1 :&#123;</span><br><span class="line">            task_status(等待中、运行中、运行完成)</span><br><span class="line">            task_openportanservice(开启的端口服务与指纹)</span><br><span class="line">			task_domainbind [domain1 domain2]（IP绑定的子域名)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	task_WEB:&#123;</span><br><span class="line">        web1&#123;</span><br><span class="line">        web_URL</span><br><span class="line">        scan_status</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="MongoDB补充"><a href="#MongoDB补充" class="headerlink" title="MongoDB补充"></a>MongoDB补充</h3><blockquote>
+<p>清空集合数据</p>
+</blockquote>
+<p>db.xxx.remove({})</p>
+<blockquote>
+<p>设置集合主键</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.xxx.createIndex( &#123; &quot;ip_host&quot;: 1 &#125;, &#123; unique: true &#125; )</span><br></pre></td></tr></table></figure>
+
+
+
+<p>docker exec -it mongo mongo admin</p>
+<p>db.auth(“admin”,”qwrdxer”)</p>
+<p>use myscan</p>
+<p>db.task1_ip.insertMany([{<br>    ip_scan_status: 0,<br>    ip_host: “220.130.181.152”<br>},<br>{<br>    ip_scan_status: 0,<br>    ip_host: “140.122.149.12”<br>},<br>{<br>    ip_scan_status: 0,<br>    ip_host: “114.25.138.78”<br>}])</p>
+<h3 id="MongoDB设计如下"><a href="#MongoDB设计如下" class="headerlink" title="MongoDB设计如下"></a>MongoDB设计如下</h3><p>库名: myscan</p>
+<p>db.createCollection(task1_ip)</p>
+<p>每增加一个任务，都需要创建一个集合，并将该集合的名字记录在ScanStatus  的querylist表中</p>
+<p>集合: ScanTask_name_ip  、ScanStatus</p>
+<p>ScanTask_name_ip: 存放任务的ip</p>
+<p>使用db.task1_ip.insertMany()可一次性插入多个IP</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">db.task1_ip.insertMany([&#123;</span><br><span class="line">    ip_scan_status: 0,</span><br><span class="line">    ip_host: &quot;220.130.181.152&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    ip_scan_status: 0,</span><br><span class="line">    ip_host: &quot;140.122.149.12&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    ip_scan_status: 0,</span><br><span class="line">    ip_host: &quot;114.25.138.78&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    ip_scan_status: 0,</span><br><span class="line">    ip_host: &quot;35.201.212.100&quot;</span><br><span class="line">&#125;,&#123;</span><br><span class="line">    ip_scan_status: 0,</span><br><span class="line">    ip_host: &quot;203.69.15.226&quot;</span><br><span class="line">&#125;,&#123;</span><br><span class="line">    ip_scan_status: 0,</span><br><span class="line">    ip_host: &quot;122.117.147.95&quot;</span><br><span class="line">&#125;,&#123;</span><br><span class="line">    ip_scan_status: 0,</span><br><span class="line">    ip_host: &quot;219.71.199.26&quot;</span><br><span class="line">&#125;,&#123;</span><br><span class="line">    ip_scan_status: 0,</span><br><span class="line">    ip_host: &quot;59.126.205.82&quot;</span><br><span class="line">&#125;,&#123;</span><br><span class="line">    ip_scan_status: 0,</span><br><span class="line">    ip_host: &quot;35.194.147.80&quot;</span><br><span class="line">&#125;,&#123;</span><br><span class="line">    ip_scan_status: 0,</span><br><span class="line">    ip_host: &quot;123.0.63.235&quot;</span><br><span class="line">&#125;,&#123;</span><br><span class="line">    ip_scan_status: 0,</span><br><span class="line">    ip_host: &quot;140.122.53.205&quot;</span><br><span class="line">&#125;,&#123;</span><br><span class="line">    ip_scan_status: 0,</span><br><span class="line">    ip_host: &quot;140.122.53.161&quot;</span><br><span class="line">&#125;,&#123;</span><br><span class="line">    ip_scan_status: 0,</span><br><span class="line">    ip_host: &quot;163.21.180.18&quot;</span><br><span class="line">&#125;,&#123;</span><br><span class="line">    ip_scan_status: 0,</span><br><span class="line">    ip_host: &quot;203.64.208.70&quot;</span><br><span class="line">&#125;,&#123;</span><br><span class="line">    ip_scan_status: 0,</span><br><span class="line">    ip_host: &quot;163.21.180.180&quot;</span><br><span class="line">&#125;,&#123;</span><br><span class="line">    ip_scan_status: 0,</span><br><span class="line">    ip_host: &quot;163.18.23.135&quot;</span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>db.task1_ip.insertMany({<br>    ip_scan_status: 0,<br>    ip_host: “220.130.181.152”<br>})</p>
+<p>修改某个ip的运行状态</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.scan1_ip.updateOne(&#123;ip_host: &quot;121.5.73.12&quot;&#125;,&#123;&quot;$set&quot;:&#123;ip_scan_status:2&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>查看指定状态的所有IP</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.scan1_ip.find(&#123;&quot;ip_scan_status&quot;:0&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>ip扫描结果格式</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[&#123;</span><br><span class="line">    openport:80,</span><br><span class="line">    protocol:&quot;http&quot;</span><br><span class="line"> &#125;,&#123;</span><br><span class="line">    openport:22,</span><br><span class="line">    protocol:&quot;ssh&quot;</span><br><span class="line"> &#125;,&#123;</span><br><span class="line">    openport:6379,</span><br><span class="line">    protocol:&quot;redis&quot;</span><br><span class="line"> &#125;]</span><br></pre></td></tr></table></figure>
+
+<p>将扫描结果写入到MongoDB中</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">db.task1_ip.updateOne(&#123;ip_host: &quot;121.5.73.14&quot;&#125;,&#123;&quot;$set&quot;:&#123;&quot;ip_openport&quot;:[&#123;</span><br><span class="line">    openport:8080,</span><br><span class="line">    protocol:&quot;http&quot;</span><br><span class="line"> &#125;,&#123;</span><br><span class="line">    openport:22,</span><br><span class="line">    protocol:&quot;ssh&quot;</span><br><span class="line"> &#125;,&#123;</span><br><span class="line">    openport:6379,</span><br><span class="line">    protocol:&quot;redis&quot;</span><br><span class="line"> &#125;,&#123;</span><br><span class="line">    openport:7171,</span><br><span class="line">    protocol:&quot;http&quot;</span><br><span class="line"> &#125;]&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>查询有http协议的ip</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.scan1_ip.find(&#123;&quot;ip_openport.protocol&quot;:&quot;http&quot;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>查询有http协议的ip,只要带http的端口</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">cursor.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">    x.ip_openport.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">arr,index</span>)</span>&#123;</span><br><span class="line">        print(arr.openport)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">db.task1_ip.find(&#123;<span class="string">&quot;ip_openport.protocol&quot;</span>:<span class="string">&quot;http&quot;</span>&#125;).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> iphost=x.ip_host</span><br><span class="line">    x.ip_openport.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">arr,index</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(arr.protocol==<span class="string">&quot;http&quot;</span>)&#123;</span><br><span class="line">            print(iphost+<span class="string">&quot;:&quot;</span>+arr.port)</span><br><span class="line">            iphost=x.ip_host</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>输出结果如下 ，可以将http字符串替换成任意协议，输出都为ip_端口</p>
+<p>121.5.73.12:80                                                                                       </p>
+<p>121.5.73.14:8080                                                                                     </p>
+<p>121.5.73.14:7171  </p>
+<p>taskname_domain</p>
+<h3 id="go语言操控MongoDB"><a href="#go语言操控MongoDB" class="headerlink" title="go语言操控MongoDB"></a>go语言操控MongoDB</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/opeak/article/details/102544280/">https://blog.csdn.net/opeak/article/details/102544280/</a></p>
+<p><a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/347a637e322b3169a45177232f60ddccda38e69f.html">https://wenku.baidu.com/view/347a637e322b3169a45177232f60ddccda38e69f.html</a></p>
+<blockquote>
+<p>连接至MongoDB</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> (</span><br><span class="line">   MongoDBHosts = <span class="string">&quot;121.5.73.12:27017&quot;</span></span><br><span class="line">   AuthDatabase = <span class="string">&quot;admin&quot;</span></span><br><span class="line">   AuthUserName = <span class="string">&quot;admin&quot;</span></span><br><span class="line">   AuthPassword = <span class="string">&quot;123456&quot;</span></span><br><span class="line">   MaxCon       = <span class="number">300</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">   mongoDBDialInfo := &amp;mgo.DialInfo&#123;</span><br><span class="line">      Addrs:    []<span class="keyword">string</span>&#123;MongoDBHosts&#125;,</span><br><span class="line">      Timeout:  <span class="number">60</span> * time.Second,</span><br><span class="line">      Database: AuthDatabase,</span><br><span class="line">      Username: AuthUserName,</span><br><span class="line">      Password: AuthPassword,</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   session, err := mgo.DialWithInfo(mongoDBDialInfo)</span><br><span class="line">   <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">      log.Fatalf(<span class="string">&quot;CreateSession failed:%n&quot;</span>, err)</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//设置连接池的大小</span></span><br><span class="line">   session.SetPoolLimit(MaxCon)</span><br><span class="line">   <span class="keyword">defer</span> session.Close()</span><br><span class="line">   cloneSession := session.Clone()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建了一个连接池，当需要对MongDB进行操作时，只需</p>
+<p>cloneSession := session.Clone() 即可获取到一个session </p>
+<blockquote>
+<p>获取一条记录</p>
+</blockquote>
+<p>首先要根据文档的格式定义好结构体</p>
+<p>JSON转GO结构体</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> IP_result <span class="keyword">struct</span> &#123;</span><br><span class="line">	ID           bson.ObjectId  <span class="string">`bson:&quot;_id,omitempty&quot;`</span> <span class="comment">//类型是bson.ObjectId</span></span><br><span class="line">	IPScanStatus <span class="keyword">int</span>            <span class="string">`bson:&quot;ip_scan_status&quot;`</span></span><br><span class="line">	IPHost       <span class="keyword">string</span>         <span class="string">`bson:&quot;ip_host&quot;`</span></span><br><span class="line">	IPOpenport   []GoIPOpenport <span class="string">`bson:&quot;ip_openport&quot;`</span></span><br><span class="line">	BindDomain   []<span class="keyword">string</span>       <span class="string">`bson:&quot;binddomain&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> GoIPOpenport <span class="keyword">struct</span> &#123;</span><br><span class="line">	Openport <span class="keyword">int</span>    <span class="string">`bson:&quot;openport&quot;`</span></span><br><span class="line">	Protocol <span class="keyword">string</span> <span class="string">`bson:&quot;protocol&quot;`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意:</p>
+<ol>
+<li>标签为BSON格式</li>
+<li>结构体中成员必须大写，否则无法被其他包访问导致值为空</li>
+<li>要加上ID属性</li>
+</ol>
+<p>测试获取一条数据</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c := cloneSession.DB(<span class="string">&quot;myscan&quot;</span>).C(<span class="string">&quot;task1_ip&quot;</span>)</span><br><span class="line"><span class="keyword">var</span> v = IP_result&#123;&#125;</span><br><span class="line">c.Find(bson.M&#123;<span class="string">&quot;ip_host&quot;</span>: <span class="string">&quot;121.5.73.14&quot;</span>&#125;).One(&amp;v)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/04/09/%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC&%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/%E6%83%B3%E6%B3%95%E8%AE%B0%E5%BD%95/image-20220416160520256.png" alt="image-20220416160520256"></p>
+<blockquote>
+<p>更新文档 - 单个值</p>
+</blockquote>
+<p>更新ip扫描状态</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c.Update(bson.M&#123;<span class="string">&quot;ip_host&quot;</span>: <span class="string">&quot;121.5.73.15&quot;</span>&#125;, bson.M&#123;<span class="string">&quot;$set&quot;</span>: bson.M&#123;<span class="string">&quot;ip_scan_status&quot;</span>: <span class="number">110</span>&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>更新文档-列表</p>
+</blockquote>
+<p>对于不确定数量的列表，直接向bson.M中传入切片即可</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c.Update(bson.M&#123;<span class="string">&quot;ip_host&quot;</span>: <span class="string">&quot;121.5.73.15&quot;</span>&#125;, bson.M&#123;<span class="string">&quot;$set&quot;</span>: bson.M&#123;<span class="string">&quot;openport&quot;</span>: []<span class="keyword">int</span>&#123;<span class="number">11</span>, <span class="number">111</span>, <span class="number">22</span>, <span class="number">80</span>, <span class="number">3333</span>&#125;&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>更新文档-嵌套文档</p>
+</blockquote>
+<p>嵌套文档，传入的是键值对 ，本次的需求是向列表成员中插入不定数量的子文档</p>
+<p>首先，对于确定数量的子文档，嵌套bson.M即可</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data2 := bson.M&#123;<span class="string">&quot;openport&quot;</span>: []bson.M&#123;bson.M&#123;<span class="string">&quot;port&quot;</span>: <span class="number">80</span>, <span class="string">&quot;protocol&quot;</span>: <span class="string">&quot;https&quot;</span>&#125;, bson.M&#123;<span class="string">&quot;port&quot;</span>: <span class="number">8080</span>, <span class="string">&quot;protocol&quot;</span>: <span class="string">&quot;http&quot;</span>&#125;&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于不确定数量的子文档，首先定义一个bson.M类型的切片，使用for循环赋值即可</p>
+<p>其核心是将结构体转换成bson.M格式</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">test3 := &amp;GoIPOpenport&#123;Openport: <span class="number">80</span>, Protocol: <span class="string">&quot;https&quot;</span>&#125;</span><br><span class="line">data3, _ := bson.Marshal(test3)</span><br><span class="line">mmap := bson.M&#123;&#125;</span><br><span class="line">bson.Unmarshal(data3, mmap)</span><br></pre></td></tr></table></figure>
+
+<h3 id="IP扫描任务-将-端口-指纹写入MongoDB中-单机模式"><a href="#IP扫描任务-将-端口-指纹写入MongoDB中-单机模式" class="headerlink" title="IP扫描任务: 将 端口+指纹写入MongoDB中(单机模式)"></a>IP扫描任务: 将 端口+指纹写入MongoDB中(单机模式)</h3><p>单机模式的任务只有两种状态: 未扫描，扫描完成( 后续引入消息队列后还需要增加排队中、运行中的状态)</p>
+<p>其核心逻辑如下:</p>
+<ol>
+<li>获取一个任务(单机直接从MongoDB中获取，后续的分布式需要从消息队列中获取)</li>
+<li>执行任务</li>
+<li>上传数据，更新该任务状态</li>
+</ol>
+<blockquote>
+<p>端口扫描结果为字符串切片,使用strings.Join 转成字符串格式进行nmap指纹识别</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res:=strings.Join(p.openPort,<span class="string">&quot;,&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>nmap扫描结果如下</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">PORT     STATE  SERVICE VERSION</span><br><span class="line"><span class="number">22</span>/tcp   open   ssh     OpenSSH <span class="number">8.2</span>p1 Ubuntu <span class="number">4</span>ubuntu0<span class="number">.2</span> (Ubuntu Linux; protocol <span class="number">2.0</span>)</span><br><span class="line"><span class="number">25</span>/tcp   closed smtp</span><br><span class="line"><span class="number">53</span>/tcp   open   domain  ISC BIND <span class="number">9.16</span><span class="number">.1</span> (Ubuntu Linux)</span><br><span class="line"><span class="number">80</span>/tcp   open   http    Apache httpd <span class="number">2.4</span><span class="number">.41</span> ((Ubuntu))</span><br><span class="line"><span class="number">110</span>/tcp  closed pop3</span><br><span class="line"><span class="number">111</span>/tcp  open   rpcbind <span class="number">2</span><span class="number">-4</span> (RPC #<span class="number">100000</span>)</span><br><span class="line"><span class="number">3306</span>/tcp open   mysql   MySQL <span class="number">5.7</span><span class="number">.36</span></span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https:<span class="comment">//nmap.org/submit/ .</span></span><br><span class="line">Nmap done: <span class="number">1</span> IP address (<span class="number">1</span> host up) scanned in <span class="number">15.71</span> seconds</span><br></pre></td></tr></table></figure>
+
+<p>使用如下代码提取出nmap结果中的协议和端口</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> res = <span class="string">&quot;Starting Nmap 7.70 ( https://nmap.org ) at 2022-04-17 11:42 ?D1ú±ê×?ê±??\nNmap scan report for \nHost is up (0.063s latency).\n\nPORT    STATE  SERVICE VERSION\n22/tcp  open   ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.2 (Ubuntu Linux; protocol 2.0)\n25/tcp  closed smtp\n53/tcp  open   domain  ISC BIND 9.16.1 (Ubuntu Linux)\n80/tcp  open   http    Apache httpd 2.4.41 ((Ubuntu))\n110/tcp closed pop3\n111/tcp open   rpcbind 2-4 (RPC #100000)\nService Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel\n\nService detection performed. Please report any incorrect results at https://nmap.org/submit/ .\nNmap done: 1 IP address (1 host up) scanned in 15.48 seconds\n&quot;</span></span><br><span class="line"><span class="keyword">var</span> res1 = strings.Split(res, <span class="string">&quot;\n&quot;</span>)</span><br><span class="line">reg := regexp.MustCompile(<span class="string">&quot;^[0-9.]+/(?:tcp|udp)(.*)&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> _, infos := <span class="keyword">range</span> res1 &#123;</span><br><span class="line">	status := reg.FindAllString(infos, <span class="number">-1</span>)</span><br><span class="line">	<span class="keyword">if</span> status != <span class="literal">nil</span> &#123;</span><br><span class="line">		info := strings.Fields(infos)</span><br><span class="line">		fmt.Println(info[<span class="number">2</span>])</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体的ip扫描逻辑如下</p>
+<ol>
+<li>从MongoDB中读取到一条状态为0 的任务</li>
+<li>取出IP</li>
+<li>扫描端口指纹</li>
+<li>结果解析成BSON格式</li>
+<li>将IP的指纹和端口更新到MongDB中</li>
+<li>将该IP状态设置为扫描成功</li>
+</ol>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> conn mongodb.MongoPool</span><br><span class="line">	conn.Init()</span><br><span class="line">	<span class="keyword">defer</span> conn.CloseSession()</span><br><span class="line">	session := conn.GetSession()</span><br><span class="line">	<span class="keyword">defer</span> session.Close()</span><br><span class="line">	c := session.DB(<span class="string">&quot;myscan&quot;</span>).C(<span class="string">&quot;task1_ip&quot;</span>)</span><br><span class="line">	<span class="keyword">var</span> task1 ipscan.IPScanTask</span><br><span class="line">	<span class="keyword">var</span> v = IP_result&#123;&#125;</span><br><span class="line">	<span class="keyword">for</span>&#123;</span><br><span class="line">		c.Find(bson.M&#123;<span class="string">&quot;ip_scan_status&quot;</span>: <span class="number">0</span>&#125;).One(&amp;v)</span><br><span class="line">		<span class="keyword">var</span> target=v.IPHost</span><br><span class="line">		task1.Init(target)</span><br><span class="line">		<span class="keyword">var</span> bonsres=task1.Scan()</span><br><span class="line">		c.Update(bson.M&#123;<span class="string">&quot;ip_host&quot;</span>: target&#125;,bson.M&#123;<span class="string">&quot;$set&quot;</span>:bson.M&#123;<span class="string">&quot;ip_openport&quot;</span>:bonsres&#125;&#125;)</span><br><span class="line">		c.Update(bson.M&#123;<span class="string">&quot;ip_host&quot;</span>: target&#125;, bson.M&#123;<span class="string">&quot;$set&quot;</span>: bson.M&#123;<span class="string">&quot;ip_scan_status&quot;</span>: <span class="number">1</span>&#125;&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="分布式-调度器Monitor"><a href="#分布式-调度器Monitor" class="headerlink" title="分布式-调度器Monitor"></a>分布式-调度器Monitor</h3><blockquote>
+<p> 先看看调度器要实现的功能:</p>
+</blockquote>
+<p>调度器首先要确定当前是否有任务在运行，若没有则从排队中的任务中取出一个设置为运行中</p>
+<p>因此要在mongDB中创建一个集合task_status，其存储的文档格式如下</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    task_name:&quot;taskname&quot;,</span><br><span class="line">    task_status:0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>task_name 就是任务的名字，需要从客户端中进行任务创建</p>
+<p>task_status 为任务的状态，一共有三种状态</p>
+<ol>
+<li>值为0 ，标识任务刚刚初始化</li>
+<li>值为1 ，标识任务正在运行</li>
+<li>值为2 ，标识任务已完成</li>
+</ol>
+<p>需要用到如下MongoDB语句</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">c := session.DB(<span class="string">&quot;myscan&quot;</span>).C(<span class="string">&quot;task_status&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//更新任务状态</span></span><br><span class="line">c.Update(bson.M&#123;<span class="string">&quot;task_name&quot;</span>: taskname&#125;, bson.M&#123;<span class="string">&quot;$set&quot;</span>: bson.M&#123;<span class="string">&quot;task_status&quot;</span>: <span class="number">1</span>&#125;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//新增一个任务</span></span><br><span class="line">c.Insert(bson.M&#123;<span class="string">&quot;task_name&quot;</span>:taskname,<span class="string">&quot;task_status&quot;</span>:<span class="number">0</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//顺序查找一个状态为0任务</span></span><br><span class="line">c.Find(bson.M&#123;<span class="string">&quot;task_status&quot;</span>: <span class="number">0</span>&#125;).Sort(<span class="string">&quot;time:-1&quot;</span>).One(&amp;v)</span><br></pre></td></tr></table></figure>
+
+<p>若当前有任务在运行，则根据任务定位到MongDB子任务集合中：</p>
+<ol>
+<li>取出状态为0的子任务</li>
+<li>将其加入写入到消息队列中</li>
+<li>将子任务状态设置为2(排队中)</li>
+</ol>
+<h3 id="nsq"><a href="#nsq" class="headerlink" title="nsq"></a>nsq</h3><p>官方文档如下</p>
+<p><a target="_blank" rel="noopener" href="https://nsq.io/">https://nsq.io/</a></p>
+<ol>
+<li><p>follow the instructions in the <a target="_blank" rel="noopener" href="https://nsq.io/deployment/installing.html">INSTALLING</a> doc.</p>
+</li>
+<li><p>in one shell, start <code>nsqlookupd</code>:  这相当于一个管理员</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nsqlookupd</span></span><br></pre></td></tr></table></figure></li>
+<li><p>in another shell, start <code>nsqd</code>:   这是用来消息发送 ,若在公网中搭建需要制定broadcast-adddress为公网IP</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nsqd --lookupd-tcp-address=127.0.0.1:4160  -broadcast-address xxx.xxx.xxx.xxx</span></span><br></pre></td></tr></table></figure>
+
+<p>NOTE: if your system hostname does not resolve to <code>127.0.0.1</code> then add <code>--broadcast-address=127.0.0.1</code></p>
+</li>
+<li><p>in another shell, start <code>nsqadmin</code>:  这是用来管理的web界面</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> nsqadmin --lookupd-http-address=127.0.0.1:4161</span></span><br></pre></td></tr></table></figure></li>
+<li><p>publish an initial message (creates the topic in the cluster, too):  发送一条测试消息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> curl -d <span class="string">&#x27;hello world 1&#x27;</span> <span class="string">&#x27;http://127.0.0.1:4151/pub?topic=test&#x27;</span></span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="go操控nsq"><a href="#go操控nsq" class="headerlink" title="go操控nsq"></a>go操控nsq</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/binHome/p/12006392.html">https://www.cnblogs.com/binHome/p/12006392.html</a></p>
+<blockquote>
+<p>消息发送测试代码</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;bufio&quot;</span></span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;github.com/nsqio/go-nsq&quot;</span></span><br><span class="line">	<span class="string">&quot;os&quot;</span></span><br><span class="line">	<span class="string">&quot;strings&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// NSQ Producer Demo</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义nsq生产者</span></span><br><span class="line"><span class="keyword">var</span> producer *nsq.Producer</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化生产者</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">initProducer</span><span class="params">(str <span class="keyword">string</span>)</span> <span class="params">(err error)</span></span> &#123;</span><br><span class="line">	<span class="comment">// 创建配置信息</span></span><br><span class="line">	config := nsq.NewConfig()</span><br><span class="line">	<span class="comment">// 初始化生产者 str传入ip:端口</span></span><br><span class="line">	producer, err = nsq.NewProducer(str, config)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">&quot;create producer failed, err:%v\n&quot;</span>, err)</span><br><span class="line">		<span class="keyword">return</span> err</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 测试生产者是否有效</span></span><br><span class="line">	err = producer.Ping()</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span>&#123;</span><br><span class="line">		fmt.Printf(<span class="string">&quot;No ping,err:%v\n&quot;</span>,err)</span><br><span class="line">		producer.Stop() <span class="comment">//关闭生产者</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	nsqAddress := <span class="string">&quot;121.5.73.12:4150&quot;</span></span><br><span class="line">	<span class="comment">// 调用封装好的函数 初始化生产者</span></span><br><span class="line">	err := initProducer(nsqAddress)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">&quot;init producer failed, err:%v\n&quot;</span>, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	reader := bufio.NewReader(os.Stdin) <span class="comment">// 从标准输入读取</span></span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		data, err := reader.ReadString(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			fmt.Printf(<span class="string">&quot;read string from stdin failed, err:%v\n&quot;</span>, err)</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">		data = strings.TrimSpace(data)</span><br><span class="line">		<span class="keyword">if</span> strings.ToUpper(data) == <span class="string">&quot;Q&quot;</span> &#123; <span class="comment">// 输入Q退出</span></span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 使用Publish 向 &#x27;topic_demo&#x27; publish 数据</span></span><br><span class="line">		err = producer.Publish(<span class="string">&quot;test&quot;</span>, []<span class="keyword">byte</span>(data))</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			fmt.Printf(<span class="string">&quot;publish msg to nsq failed, err:%v\n&quot;</span>, err)</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>消息接收测试代码</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// nsq_consumer/main.go</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;os&quot;</span></span><br><span class="line">	<span class="string">&quot;os/signal&quot;</span></span><br><span class="line">	<span class="string">&quot;syscall&quot;</span></span><br><span class="line">	<span class="string">&quot;time&quot;</span></span><br><span class="line"></span><br><span class="line">	<span class="string">&quot;github.com/nsqio/go-nsq&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// NSQ Consumer Demo</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// MyHandler 是一个消费者类型</span></span><br><span class="line"><span class="keyword">type</span> MyHandler <span class="keyword">struct</span> &#123;</span><br><span class="line">	Title <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// HandleMessage 是需要实现的处理消息的方法 *必须要实现</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *MyHandler)</span> <span class="title">HandleMessage</span><span class="params">(msg *nsq.Message)</span> <span class="params">(err error)</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;%s recv from %v, msg:%v\n&quot;</span>, m.Title, msg.NSQDAddress, <span class="keyword">string</span>(msg.Body))</span><br><span class="line">	time.Sleep(time.Duration(<span class="number">2</span>)*time.Second)</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化消费者</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">initConsumer</span><span class="params">(topic <span class="keyword">string</span>, channel <span class="keyword">string</span>, address <span class="keyword">string</span>)</span> <span class="params">(err error)</span></span> &#123;</span><br><span class="line">	config := nsq.NewConfig()</span><br><span class="line">	<span class="comment">// 重连时间</span></span><br><span class="line">	config.LookupdPollInterval = <span class="number">15</span> * time.Second</span><br><span class="line">	<span class="comment">// 新建消费者</span></span><br><span class="line">	c, err := nsq.NewConsumer(topic, channel, config)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">&quot;create consumer failed, err:%v\n&quot;</span>, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	consumer := &amp;MyHandler&#123;</span><br><span class="line">		Title: <span class="string">&quot;qwrdxer&quot;</span>,</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 屏蔽系统日志</span></span><br><span class="line">	<span class="comment">// c.SetLogger(nil,0)</span></span><br><span class="line">	<span class="comment">// 添加消费者</span></span><br><span class="line">	c.AddHandler(consumer)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// if err := c.ConnectToNSQD(address); err != nil &#123; // 直接连NSQD</span></span><br><span class="line">	<span class="keyword">if</span> err := c.ConnectToNSQLookupd(address); err != <span class="literal">nil</span> &#123; <span class="comment">// 通过lookupd查询</span></span><br><span class="line">		<span class="keyword">return</span> err</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	err := initConsumer(<span class="string">&quot;test&quot;</span>, <span class="string">&quot;tttt&quot;</span>, <span class="string">&quot;121.5.73.12:4161&quot;</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">&quot;init consumer failed, err:%v\n&quot;</span>, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	c := <span class="built_in">make</span>(<span class="keyword">chan</span> os.Signal)        <span class="comment">// 定义一个信号的通道</span></span><br><span class="line">	signal.Notify(c, syscall.SIGINT) <span class="comment">// 转发键盘中断信号到c</span></span><br><span class="line">	&lt;-c                              <span class="comment">// 阻塞</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="调度器代码实现"><a href="#调度器代码实现" class="headerlink" title="调度器代码实现"></a>调度器代码实现</h3><ol>
+<li>初始化nsq 、Mongodb连接</li>
+<li>从mongdb中提取指定数量消息</li>
+<li>for循环，每向消息队列中写入一条消息，将该消息对应的mongodb文档设置为排队中</li>
+<li>sleep10秒</li>
+</ol>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;github.com/nsqio/go-nsq&quot;</span></span><br><span class="line">	<span class="string">&quot;gopkg.in/mgo.v2&quot;</span></span><br><span class="line">	<span class="string">&quot;gopkg.in/mgo.v2/bson&quot;</span></span><br><span class="line">	mongodb <span class="string">&quot;qwrdxer.com/NODE/MONGODB&quot;</span></span><br><span class="line">	<span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">type</span> IP_result <span class="keyword">struct</span> &#123;</span><br><span class="line">	ID           bson.ObjectId  <span class="string">`bson:&quot;_id,omitempty&quot;`</span> <span class="comment">//类型是bson.ObjectId</span></span><br><span class="line">	IPScanStatus <span class="keyword">int</span>            <span class="string">`bson:&quot;ip_scan_status&quot;`</span></span><br><span class="line">	IPHost       <span class="keyword">string</span>         <span class="string">`bson:&quot;ip_host&quot;`</span></span><br><span class="line">	IPOpenport   []GoIPOpenport <span class="string">`bson:&quot;ip_openport&quot;`</span></span><br><span class="line">	BindDomain   []<span class="keyword">string</span>       <span class="string">`bson:&quot;binddomain&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> GoIPOpenport <span class="keyword">struct</span> &#123;</span><br><span class="line">	Openport <span class="keyword">int</span>    <span class="string">`bson:&quot;openport&quot;`</span></span><br><span class="line">	Protocol <span class="keyword">string</span> <span class="string">`bson:&quot;protocol&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// NSQ Producer Demo</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Monitor <span class="keyword">struct</span> &#123;</span><br><span class="line">	producer *nsq.Producer</span><br><span class="line">	mgoconn *mgo.Session</span><br><span class="line">	querynum <span class="keyword">int</span>  <span class="comment">//每次查询的任务数</span></span><br><span class="line">	waitTime <span class="keyword">int</span>  <span class="comment">//一次调度后等待的时间</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 初始化生产者</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *Monitor)</span><span class="title">Init</span><span class="params">(ipport <span class="keyword">string</span>)</span> <span class="params">(err error)</span></span> &#123;</span><br><span class="line">	<span class="comment">// 创建配置信息</span></span><br><span class="line">	config := nsq.NewConfig()</span><br><span class="line">	<span class="comment">// 初始化生产者 str传入ip:端口</span></span><br><span class="line">	m.producer, err = nsq.NewProducer(ipport, config)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">&quot;create producer failed, err:%v\n&quot;</span>, err)</span><br><span class="line">		<span class="keyword">return</span> err</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 测试生产者是否有效</span></span><br><span class="line">	err = m.producer.Ping()</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span>&#123;</span><br><span class="line">		fmt.Printf(<span class="string">&quot;No ping,err:%v\n&quot;</span>,err)</span><br><span class="line">		m.producer.Stop() <span class="comment">//关闭生产者</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *Monitor)</span><span class="title">Start</span><span class="params">(conn mongodb.MongoPool)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span>&#123;</span><br><span class="line">		m.mgoconn=conn.GetSession()<span class="comment">//建立mongodb连接</span></span><br><span class="line">		c :=m.mgoconn.DB(<span class="string">&quot;myscan&quot;</span>).C(<span class="string">&quot;task1_ip&quot;</span>)</span><br><span class="line">		iter:=c.Find(bson.M&#123;<span class="string">&quot;ip_scan_status&quot;</span>: <span class="number">0</span>&#125;).Limit(<span class="number">2</span>).Iter()</span><br><span class="line">		<span class="keyword">var</span> v = IP_result&#123;&#125;</span><br><span class="line">		<span class="keyword">for</span> iter.Next(&amp;v) &#123; <span class="comment">//迭代子任务</span></span><br><span class="line">			<span class="keyword">var</span> data=<span class="string">&quot;ipscan;&quot;</span>+<span class="string">&quot;task1_ip;&quot;</span>+v.IPHost</span><br><span class="line">			fmt.Println(<span class="string">&quot;adding:&quot;</span>+ data)</span><br><span class="line">			err := m.producer.Publish(<span class="string">&quot;test&quot;</span>, []<span class="keyword">byte</span>(data))<span class="comment">//写入消息队列</span></span><br><span class="line">			c.Update(bson.M&#123;<span class="string">&quot;ip_host&quot;</span>: v.IPHost&#125;, bson.M&#123;<span class="string">&quot;$set&quot;</span>: bson.M&#123;<span class="string">&quot;ip_scan_status&quot;</span>: <span class="number">2</span>&#125;&#125;)<span class="comment">//设置状态为排队中</span></span><br><span class="line">			<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">				fmt.Printf(<span class="string">&quot;publish msg to nsq failed, err:%v\n&quot;</span>, err)</span><br><span class="line">				<span class="keyword">continue</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		m.mgoconn.Close() <span class="comment">//关闭连接</span></span><br><span class="line">		fmt.Println(<span class="string">&quot;睡眠十秒&quot;</span>)</span><br><span class="line">		time.Sleep(time.Duration(<span class="number">10</span>)*time.Second)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">//建立mongdb连接池</span></span><br><span class="line">	<span class="keyword">var</span> conn mongodb.MongoPool</span><br><span class="line">	conn.Init()</span><br><span class="line">	<span class="keyword">defer</span> conn.CloseSession()</span><br><span class="line">	<span class="keyword">var</span> Mon =Monitor&#123;&#125;</span><br><span class="line">	Mon.Init(<span class="string">&quot;121.5.73.12:4150&quot;</span>)</span><br><span class="line">	Mon.Start(conn)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="分布式架构设计"><a href="#分布式架构设计" class="headerlink" title="分布式架构设计"></a>分布式架构设计</h3><blockquote>
+<p>扫描节点</p>
+</blockquote>
+<p>其主函数逻辑如下</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	task := <span class="number">0</span></span><br><span class="line">	taskLimit := <span class="number">5</span></span><br><span class="line">	taskList := <span class="built_in">make</span>([]PortScanTask, <span class="number">0</span>)</span><br><span class="line">    消息队列绑定</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> task&lt;taskLimit&#123;</span><br><span class="line">            从消息队列中获取子任务</span><br><span class="line">            根据任务类别创建一个任务</span><br><span class="line">            将该任务加入到taskList中</span><br><span class="line">            <span class="keyword">go</span> run 运行该任务</span><br><span class="line">        &#125;</span><br><span class="line">        遍历taskList，若有任务已完成，则将其从任务列表中删除</span><br><span class="line">        sleep(<span class="number">10</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>任务函数需要实现的接口如下</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> task&#123;</span><br><span class="line">    init(); 将参数初始化</span><br><span class="line">    run() ; 执行任务</span><br><span class="line">    getprocess();获取当前任务进度</span><br><span class="line">    dataprocess(); 将运行结果改为JSON格式</span><br><span class="line">    upload(); 上传结果到MongoDB中，修改部分参数，如running<span class="number">-1</span> runned+<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    实现接口的任务中还要定义一个标志位，当任务结束后方便主函数将其从任务列表中删除</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>调度节点</p>
+</blockquote>
+<p>主函数逻辑如下</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		获取消息队列中可用的</span><br><span class="line">        sleep(<span class="number">10</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>客户端</p>
+</blockquote>
+<p><em><span id="more"></span></em> </p>
+<blockquote>
+<p>参考文章</p>
+<p>Go执行系统命令并处理</p>
+<p><a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/97c2e105de36a32d7375a417866fb84ae45cc3f0.html">https://wenku.baidu.com/view/97c2e105de36a32d7375a417866fb84ae45cc3f0.html</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+        
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:qwrdxer.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/test/">test</a><small>1</small></li>
+  
+    <li><a href="/categories/web安全工具篇/">web安全工具篇</a><small>3</small></li>
+  
+    <li><a href="/categories/web安全漏洞篇/">web安全漏洞篇</a><small>2</small></li>
+  
+    <li><a href="/categories/开发工具/">开发工具</a><small>3</small></li>
+  
+    <li><a href="/categories/操作系统/">操作系统</a><small>2</small></li>
+  
+    <li><a href="/categories/日志/">日志</a><small>4</small></li>
+  
+    <li><a href="/categories/杂项/">杂项</a><small>1</small></li>
+  
+    <li><a href="/categories/渗透测试篇/">渗透测试篇</a><small>1</small></li>
+  
+    <li><a href="/categories/环境配置/">环境配置</a><small>1</small></li>
+  
+    <li><a href="/categories/脚本/">脚本</a><small>1</small></li>
+  
+    <li><a href="/categories/自动化脚本-工具开发/">自动化脚本&amp;工具开发</a><small>2</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2023/01/05/CS/CS144/source/"></a>
+      </li>
+    
+      <li>
+        <a href="/2022/04/27/自动化脚本&amp;工具开发/分布式扫描器实现/">分布式扫描器实现</a>
+      </li>
+    
+      <li>
+        <a href="/2022/04/14/数据库/mongodb学习/">mongodb学习</a>
+      </li>
+    
+      <li>
+        <a href="/2022/04/13/Untitled/"></a>
+      </li>
+    
+      <li>
+        <a href="/2022/04/10/自动化脚本&amp;工具开发/Go编写一个端口扫描器/">Go编写一个扫描器</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/MySQL/">MySQL</a><small>1</small></li>
+  
+    <li><a href="/tags/WordPress/">WordPress</a><small>1</small></li>
+  
+    <li><a href="/tags/bash/">bash</a><small>2</small></li>
+  
+    <li><a href="/tags/docker/">docker</a><small>1</small></li>
+  
+    <li><a href="/tags/linux/">linux</a><small>2</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/tags/shell/">shell</a><small>1</small></li>
+  
+    <li><a href="/tags/web漏洞/">web漏洞</a><small>2</small></li>
+  
+    <li><a href="/tags/工具使用/">工具使用</a><small>6</small></li>
+  
+    <li><a href="/tags/工具开发/">工具开发</a><small>1</small></li>
+  
+    <li><a href="/tags/开发/">开发</a><small>1</small></li>
+  
+    <li><a href="/tags/报错解决/">报错解决</a><small>1</small></li>
+  
+    <li><a href="/tags/文件包含/">文件包含</a><small>1</small></li>
+  
+    <li><a href="/tags/渗透测试/">渗透测试</a><small>4</small></li>
+  
+    <li><a href="/tags/环境配置/">环境配置</a><small>1</small></li>
+  
+    <li><a href="/tags/脚本/">脚本</a><small>4</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/WordPress/" style="font-size: 10px;">WordPress</a> <a href="/tags/bash/" style="font-size: 13.33px;">bash</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/web%E6%BC%8F%E6%B4%9E/" style="font-size: 13.33px;">web漏洞</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" style="font-size: 20px;">工具使用</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/" style="font-size: 10px;">工具开发</a> <a href="/tags/%E5%BC%80%E5%8F%91/" style="font-size: 10px;">开发</a> <a href="/tags/%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3/" style="font-size: 10px;">报错解决</a> <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" style="font-size: 10px;">文件包含</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 16.67px;">渗透测试</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">环境配置</a> <a href="/tags/%E8%84%9A%E6%9C%AC/" style="font-size: 16.67px;">脚本</a>
+  </div>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  <p>
+  
+  &copy; 2023 qwrdxer
+  
+  All rights reserved.</p>
+  <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</div>
+<div class="clearfix"></div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></footer>
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<div id='bg'></div>
+</body>
+</html>

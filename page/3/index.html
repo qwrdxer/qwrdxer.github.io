@@ -62,6 +62,110 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2022-01-09T05:35:49.000Z"><a href="/2022/01/09/web安全工具篇/Goby分析/">2022-01-09</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2022/01/09/web安全工具篇/Goby分析/">Goby分析</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Wireshark抓包</p>
+<p>tcp.port==xxxx and ip.addr==127.0.0.1</p>
+<p> <img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220109133714265.png" alt="image-20220109133714265"></p>
+<p>启动goby</p>
+<p>​                               </p>
+<p>Goby.exe为前端程序(electron)</p>
+<p>Goby-cmd.exe为后端程序（go）绑定端口为8361，提供http服务、漏洞扫描服务</p>
+<p>一开始为前端与后端建立http连接,随后切换为websocket进行通信， 前两次绑定失败，应该是后端服务在启动，最后绑定32441端口 ，该端口向前端发送具体的扫描结果，如开放端口信息、指纹、漏洞等</p>
+<p> <em>
+      
+    </div>
+    
+    <footer>
+      <div class="alignleft">
+        <a href="/2022/01/09/web安全工具篇/Goby分析/#more" class="more-link">More</a>
+      </div>
+    </footer>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/web安全工具篇/">web安全工具篇</a>
+  </div>
+
+        
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2022-01-09T05:01:38.000Z"><a href="/2022/01/09/日志/2022-1/">2022-01-09</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2022/01/09/日志/2022-1/">2022-1</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><em>
+      
+    </div>
+    
+    <footer>
+      <div class="alignleft">
+        <a href="/2022/01/09/日志/2022-1/#more" class="more-link">More</a>
+      </div>
+    </footer>
+    
+    <footer>
+        <div class="alignright">
+          
+          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+        </div>
+        
+  
+  <div class="categories">
+    <a href="/categories/日志/">日志</a>
+  </div>
+
+        
+        <!-- partial('post/share') -->
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2021-08-15T03:19:55.000Z"><a href="/2021/08/15/开发工具/Shell脚本学习笔记/">2021-08-15</a></time>
       
       
@@ -560,129 +664,11 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2021-04-15T03:23:33.000Z"><a href="/2021/04/15/脚本/some-script/">2021-04-15</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2021/04/15/脚本/some-script/">some script</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="记录一些有用的小工具"><a href="#记录一些有用的小工具" class="headerlink" title="记录一些有用的小工具"></a>记录一些有用的小工具</h2><h3 id="使用Python在当前文件下开启HTTP服务"><a href="#使用Python在当前文件下开启HTTP服务" class="headerlink" title="使用Python在当前文件下开启HTTP服务"></a>使用Python在当前文件下开启HTTP服务</h3><p>Python &lt;= 2.3</p>
-<p>python -c “import SimpleHTTPServer as s; s.test();” 8000</p>
-<p>Python &gt;= 2.4</p>
-<p>python -m SimpleHTTPServer 8000</p>
-<p>Python 3.x</p>
-<p>python3 -m http.server 8000</p>
-<p> python -m SimpleHTTPServer</p>
-<p>使用python开启ftp</p>
-<p> python3 -m pyftpdlib -p 21</p>
-<p><em>
-      
-    </div>
-    
-    <footer>
-      <div class="alignleft">
-        <a href="/2021/04/15/脚本/some-script/#more" class="more-link">More</a>
-      </div>
-    </footer>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/脚本/">脚本</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/bash/">bash</a>, <a href="/tags/脚本/">脚本</a>, <a href="/tags/python/">python</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2021-04-14T17:34:16.000Z"><a href="/2021/04/15/环境配置/centos部署wordpress/">2021-04-15</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2021/04/15/环境配置/centos部署wordpress/">centos部署wordpress</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="1-安装apache"><a href="#1-安装apache" class="headerlink" title="1.安装apache"></a>1.安装apache</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install httpd</span><br><span class="line"></span><br><span class="line"># 启动httpd</span><br><span class="line">sudo service httpd start</span><br></pre></td></tr></table></figure>
-
-<p>浏览器输入ip访问测试页面</p>
-<p><em>
-      
-    </div>
-    
-    <footer>
-      <div class="alignleft">
-        <a href="/2021/04/15/环境配置/centos部署wordpress/#more" class="more-link">More</a>
-      </div>
-    </footer>
-    
-    <footer>
-        <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
-        </div>
-        
-  
-  <div class="categories">
-    <a href="/categories/环境配置/">环境配置</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/linux/">linux</a>, <a href="/tags/环境配置/">环境配置</a>, <a href="/tags/报错解决/">报错解决</a>, <a href="/tags/WordPress/">WordPress</a>
-  </div>
-
-        <!-- partial('post/share') -->
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
 
 <nav id="pagination">
   
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
   </nav>
 
 </nav>
@@ -700,9 +686,9 @@
   <h3 class="title">Categories</h3>
   <ul class="entry">
   
-    <li><a href="/categories/CS/">CS</a><small>1</small></li>
+    <li><a href="/categories/CS/">CS</a><small>2</small></li>
   
-    <li><a href="/categories/CS/CS144/">CS144</a><small>1</small></li>
+    <li><a href="/categories/CS/CS144/">CS144</a><small>2</small></li>
   
     <li><a href="/categories/编程语言/Go/">Go</a><small>1</small></li>
   
@@ -742,6 +728,14 @@
   <ul class="entry">
     
       <li>
+        <a href="/2023/01/10/编程语言/C++/C++入门/">C++入门</a>
+      </li>
+    
+      <li>
+        <a href="/2023/01/10/C-basic/">C++ basic</a>
+      </li>
+    
+      <li>
         <a href="/2023/01/06/CS/CS144/lab/">lab</a>
       </li>
     
@@ -751,14 +745,6 @@
     
       <li>
         <a href="/2022/04/27/自动化脚本&amp;工具开发/分布式扫描器实现/">分布式扫描器实现</a>
-      </li>
-    
-      <li>
-        <a href="/2022/04/14/数据库/mongodb学习/">mongodb学习</a>
-      </li>
-    
-      <li>
-        <a href="/2022/04/13/Untitled/"></a>
       </li>
     
   </ul>

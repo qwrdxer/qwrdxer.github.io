@@ -3,25 +3,24 @@
 <head>
   <meta charset="utf-8" />
   
-  <title>2022-4 | qwrdxer &#39;s blog</title>
+  <title>C++入门 | qwrdxer &#39;s blog</title>
   <meta name="author" content="qwrdxer" />
 
   
-  <meta name="description" content="4/1 4/2 4/3 4/4论文编写、优化
-4/5毕业设计论文降重
-《踮脚张望的时光》
-总有一天你将破蛹而出，成长得比人们期待的还要美丽。但这个过程会很痛，会很辛苦，有时候还会觉得灰心。面对着汹涌而来的现实，觉得自己渺小无力。但这，也是生命的一部分。做好现在你能做的，然后，一切都会好的。我们都将孤独地长大，不要害怕。
-—《踮脚张望的时光》
+  <meta name="description" content="一个简单的实例1234567#include &amp;lt;iostream&amp;gt; using namespace std; //int main()&amp;#123;    cout &amp;lt;&amp;lt; &amp;quot;Hello, world!&amp;quot; &amp;lt;&amp;lt; endl;    return 0;&amp;#125;
 
-4/630天自制操作系统day14
-其他4/7  4/830天自制操作系统day15~day17" />
+
+#include   //当要使用其他已经编写好的函数的时候，使用include来包含头文件，头文件中包含已经编写好的函数声明,并且该头文件中的函数在其他地方被实现了，可以直接使用。
+using namespace std; // 命名空间，同名的变量可以在不同的命名空间中，这样就不会造成各种库重复命名的冲突。std 是系统标准的命名空间，为了和用户定义的名字不重复，所以它声明在 std 这个命名空间中。另外，这个空间也像一个大包一样，包括了系统所有的支持。
+如在命名空间xx和yy xx::a 和 yy::a 虽然都叫 a，但是不是同一个变量。
+main是一个程序的主函数，是程序开始执行的地方。" />
   
 
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-  <meta property="og:title" content="2022-4" />
+  <meta property="og:title" content="C++入门" />
   <meta property="og:site_name" content="qwrdxer &#39;s blog" />
 
   
@@ -70,43 +69,30 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2022-04-01T02:12:36.000Z"><a href="/2022/04/01/日志/2022-4/">2022-04-01</a></time>
+        <time datetime="2023-01-10T03:30:50.000Z"><a href="/2023/01/10/编程语言/C++/C++入门/">2023-01-10</a></time>
       
       
   
-    <h1 class="title">2022-4</h1>
+    <h1 class="title">C++入门</h1>
   
 
     </header>
     <div class="entry">
       
-        <h2 id="4-1-4-2-4-3-4-4"><a href="#4-1-4-2-4-3-4-4" class="headerlink" title="4/1 4/2 4/3 4/4"></a>4/1 4/2 4/3 4/4</h2><p>论文编写、优化</p>
-<h2 id="4-5"><a href="#4-5" class="headerlink" title="4/5"></a>4/5</h2><h3 id="毕业设计"><a href="#毕业设计" class="headerlink" title="毕业设计"></a>毕业设计</h3><p>论文降重</p>
-<h3 id="《踮脚张望的时光》"><a href="#《踮脚张望的时光》" class="headerlink" title="《踮脚张望的时光》"></a>《踮脚张望的时光》</h3><blockquote>
-<p>总有一天你将破蛹而出，成长得比人们期待的还要美丽。<br>但这个过程会很痛，会很辛苦，有时候还会觉得灰心。<br>面对着汹涌而来的现实，觉得自己渺小无力。<br>但这，也是生命的一部分。做好现在你能做的，然后，一切都会好的。<br>我们都将孤独地长大，不要害怕。</p>
-<p>—《踮脚张望的时光》</p>
+        <h3 id="一个简单的实例"><a href="#一个简单的实例" class="headerlink" title="一个简单的实例"></a>一个简单的实例</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span> </span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std; <span class="comment">//</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hello, world!&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>#include <iostream>  //当要使用其他已经编写好的函数的时候，使用include来包含头文件，头文件中包含已经编写好的函数声明,并且该头文件中的函数在其他地方被实现了，可以直接使用。</iostream></p>
+<p>using namespace std; // 命名空间，同名的变量可以在不同的命名空间中，这样就不会造成各种库重复命名的冲突。std 是系统标准的命名空间，为了和用户定义的名字不重复，所以它声明在 std 这个命名空间中。另外，这个空间也像一个大包一样，包括了系统所有的支持。</p>
+<p>如在命名空间xx和yy <strong>xx::a</strong> 和 <strong>yy::a</strong> 虽然都叫 a，但是不是同一个变量。</p>
+<p>main是一个程序的主函数，是程序开始执行的地方。</p>
 </blockquote>
-<h2 id="4-6"><a href="#4-6" class="headerlink" title="4/6"></a>4/6</h2><h3 id="30天自制操作系统"><a href="#30天自制操作系统" class="headerlink" title="30天自制操作系统"></a>30天自制操作系统</h3><p>day14</p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h2 id="4-7-4-8"><a href="#4-7-4-8" class="headerlink" title="4/7  4/8"></a>4/7  4/8</h2><h3 id="30天自制操作系统-1"><a href="#30天自制操作系统-1" class="headerlink" title="30天自制操作系统"></a>30天自制操作系统</h3><p>day15~day17</p>
 <p><em><span id="more"></span></em> </p>
-<h3 id="Go"><a href="#Go" class="headerlink" title="Go"></a>Go</h3><h2 id="4-10-4-21"><a href="#4-10-4-21" class="headerlink" title="4/10~4/21"></a>4/10~4/21</h2><p>分布式扫描器设计、编写</p>
-<p>论文修改</p>
-<h3 id="4-22"><a href="#4-22" class="headerlink" title="4/22"></a>4/22</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">大学生活的结束也意味着新的旅程的开始，尽管从大二开始受到疫情的影响、很多想法都无法实现，但磕磕绊绊还是走到如今。很感谢在我学习路上给我帮助的老师们，你们对技术的追求、对生活的热爱、对学生的关怀我会牢记一生。很感谢大学以来结交的朋友，尽管你我来自于五湖四海，但我们都有几分相似的品格，大家一起玩闹、一起学习、一起谈生活、一起品人生的日子历历在目。很感谢自己读过的书、看过的影视作品，作者通过文字、图片、视频的故事向我展示了一个色彩缤纷的世界，借着故事中的角色我学会了很多</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h3 id="4-25"><a href="#4-25" class="headerlink" title="4/25"></a>4/25</h3><blockquote>
-<p>ubuntu 安装chrome浏览器失败</p>
+<blockquote>
+<p>参考文章</p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/cplusplus/cpp-tutorial.html">https://www.runoob.com/cplusplus/cpp-tutorial.html</a></p>
 </blockquote>
-<p><a target="_blank" rel="noopener" href="https://wujing.blog.csdn.net/article/details/112970325">https://wujing.blog.csdn.net/article/details/112970325</a></p>
-<p>下载Chrome</p>
-<p>$ wget <a target="_blank" rel="noopener" href="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb">https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</a><br>1<br>安装</p>
-<p>$ sudo dpkg -i google-chrome-stable_current_amd64.deb</p>
-<p>解决办法：修复依赖关系</p>
-<p>$ sudo apt-get install -f</p>
-<h3 id="4-26"><a href="#4-26" class="headerlink" title="4/26"></a>4/26</h3>
+
       
     </div>
     
@@ -116,11 +102,6 @@
           <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
         </div>
         
-  
-  <div class="categories">
-    <a href="/categories/日志/">日志</a>
-  </div>
-
         
         <!-- partial('post/share') -->
       <div class="clearfix"></div>

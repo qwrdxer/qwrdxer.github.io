@@ -7,7 +7,29 @@
   <meta name="author" content="qwrdxer" />
 
   
-  <meta name="description" content="" />
+  <meta name="description" content="Go 方法map和struct vs new() 和make()
+make 用于 slices maps channel
+试图通过make创建一个结构体会报错
+试图通过new创建一个map变量，需要为其初始化后才能使用。
+结构体中的标签(tag)
+可以通过反射获取
+Go方法
+
+Go 方法是作用在接收者（receiver）上的一个函数，接收者是某种类型的变量。因此方法是一种特殊类型的函数。
+
+接收者类型可以是（几乎）任何类型，不仅仅是结构体类型：任何类型都可以有方法，甚至可以是函数类型，可以是 int、bool、string 或数组的别名类型。但是接收者不能是一个接口类型，因为接口是一个抽象定义，但是方法却是具体实现；如果这样做会引发一个编译错误：invalid receiver type…
+
+最后接收者不能是一个指针类型(ptr)，但是它可以是任何其他允许类型的指针。
+
+定义方法格式如下
+
+
+1func (recv receiver_type) methodName(parameter_list) (return_value_list) &amp;#123; ... &amp;#125;
+
+思考1: 什么时候使用方法？当需要对结构体中原始的数据进行相互之间或单独处理时，考虑使用方法；
+思考2: 当接受者为值或指针时?
+由值作为接收者，被调用时，是对对象的拷贝，指针作为接收者，被调用时，是对对象本身的操作。
+https://blog.csdn.net/u014239709/article/details/89552933https://www.cntofu.com/book/14/eBook/11.6.md" />
   
 
   
@@ -73,8 +95,7 @@
     </header>
     <div class="entry">
       
-        <p><em><span id="more"></span></em> </p>
-<h3 id="Go-方法"><a href="#Go-方法" class="headerlink" title="Go 方法"></a>Go 方法</h3><p>map和struct vs new() 和make()</p>
+        <h3 id="Go-方法"><a href="#Go-方法" class="headerlink" title="Go 方法"></a>Go 方法</h3><p>map和struct vs new() 和make()</p>
 <p>make 用于 slices maps channel</p>
 <p>试图通过make创建一个结构体会报错</p>
 <p>试图通过new创建一个map变量，需要为其初始化后才能使用。</p>
@@ -97,6 +118,7 @@
 <p>思考2: 当接受者为值或指针时?</p>
 <p><strong>由值作为接收者，被调用时，是对对象的拷贝，指针作为接收者，被调用时，是对对象本身的操作</strong>。</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014239709/article/details/89552933">https://blog.csdn.net/u014239709/article/details/89552933</a><br><a target="_blank" rel="noopener" href="https://www.cntofu.com/book/14/eBook/11.6.md">https://www.cntofu.com/book/14/eBook/11.6.md</a></p>
+<p><em><span id="more"></span></em> </p>
 <h3 id="Go接口"><a href="#Go接口" class="headerlink" title="Go接口"></a>Go接口</h3><p>接口定义了一组方法（方法集），但是这些方法不包含（实现）代码：它们没有被实现（它们是抽象的）。接口里也不能包含变量。</p>
 <p><strong>类型不需要显式声明它实现了某个接口：接口被隐式地实现。多个类型可以实现同一个接口</strong>。</p>
 <p><strong>实现某个接口的类型（除了实现接口方法外）可以有其他的方法</strong>。</p>

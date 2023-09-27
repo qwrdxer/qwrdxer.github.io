@@ -25,61 +25,6 @@
     
     
     <entry>
-      <title>C++ basic</title>
-      <link href="/2023/01/10/C-basic/"/>
-      <url>/2023/01/10/C-basic/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em><span id="more"></span></em> </p><blockquote><p>参考文章</p></blockquote>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>lab</title>
-      <link href="/2023/01/06/CS/CS144/lab/"/>
-      <url>/2023/01/06/CS/CS144/lab/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="lab0"><a href="#lab0" class="headerlink" title="lab0"></a>lab0</h2><h3 id="使用Telnet模拟http协议访问"><a href="#使用Telnet模拟http协议访问" class="headerlink" title="使用Telnet模拟http协议访问"></a>使用Telnet模拟http协议访问</h3><p><img src="/2023/01/06/CS/CS144/lab/image-20230106170520590.png" alt="image-20230106170520590"></p><p>使用netcat 创建一个服务器并使用telent进行访问，连接建立成功后可以进行信息的交互</p><p><img src="/2023/01/06/CS/CS144/lab/image-20230106182039049.png" alt="image-20230106182039049"></p><p><em><span id="more"></span></em> </p><h3 id="编写一个"><a href="#编写一个" class="headerlink" title="编写一个"></a>编写一个</h3><p>vscode 连接虚拟机，方便代码编写</p><p><a href="http://t.zoukankan.com/lfl17718347843-p-15431659.html">http://t.zoukankan.com/lfl17718347843-p-15431659.html</a></p><p>设置代理方便使用git</p><p><a href="https://blog.csdn.net/EriksenCh/article/details/125936135">https://blog.csdn.net/EriksenCh/article/details/125936135</a></p><p>安装clang6 g++ 8</p><p><a href="https://www.cnblogs.com/wuyun--wy/p/16977352.html">https://www.cnblogs.com/wuyun--wy/p/16977352.html</a></p><h2 id="lab1"><a href="#lab1" class="headerlink" title="lab1"></a>lab1</h2><h2 id="lab2"><a href="#lab2" class="headerlink" title="lab2"></a>lab2</h2><blockquote><p>参考文章</p><p><a href="https://cs144.github.io/">https://cs144.github.io/</a></p><p><a href="https://csdiy.wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/CS144/">https://csdiy.wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/CS144/</a></p><p>ubuntu 安裝qv2ray</p><p><a href="https://igghelper.com/helper/?p=257">https://igghelper.com/helper/?p=257</a></p></blockquote>]]></content>
-      
-      
-      <categories>
-          
-          <category> CS </category>
-          
-          <category> CS144 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/2023/01/05/CS/CS144/source/"/>
-      <url>/2023/01/05/CS/CS144/source/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id><a href="#" class="headerlink" title></a></h2>]]></content>
-      
-      
-      <categories>
-          
-          <category> CS </category>
-          
-          <category> CS144 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>分布式扫描器实现</title>
       <link href="/2022/04/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%AB%E6%8F%8F%E5%99%A8%E5%AE%9E%E7%8E%B0/"/>
       <url>/2022/04/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%AB%E6%8F%8F%E5%99%A8%E5%AE%9E%E7%8E%B0/</url>
@@ -111,19 +56,6 @@
           <category> 数据库 </category>
           
       </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/2022/04/13/Untitled/"/>
-      <url>/2022/04/13/Untitled/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      
       
       
     </entry>

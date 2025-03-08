@@ -6,25 +6,19 @@
   <meta name="keywords" content="">
   <meta name="description" content="安全四大会议&amp;人工智能四大会议下载 | qwrdxer &#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="使用Ubuntu18虚拟机进行环境搭建，参考官方文档: 一、 一些安装前的准备:首先是更新和安装一些包: apt update apt upgrade apt install -y jq proxychains4 git   jq是一个json格式化工具  git 下载fabric的相关github项目 国内下载太慢,使用Proxychains4代理进行下载,proxychains4 配置文件在&#x2F;">
+<meta name="description" content="AutoGen 是一个用于创建多代理 AI 应用程序的框架，这些应用程序可以自主运行或与人类一起工作。 Quick start包安装pip install -U &quot;autogen-agentchat&quot; &quot;autogen-ext[openai]&quot; pip install -U &quot;autogenstudio&quot;  # GUI ,无代码编排的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="fabric环境配置">
-<meta property="og:url" content="https://qwrdxer.github.io/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:title" content="autogen入门之autochat">
+<meta property="og:url" content="https://qwrdxer.github.io/2025/03/08/Agent/autogen%E5%85%A5%E9%97%A8%E4%B9%8Bautochat/index.html">
 <meta property="og:site_name" content="qwrdxer &#39;s blog">
-<meta property="og:description" content="使用Ubuntu18虚拟机进行环境搭建，参考官方文档: 一、 一些安装前的准备:首先是更新和安装一些包: apt update apt upgrade apt install -y jq proxychains4 git   jq是一个json格式化工具  git 下载fabric的相关github项目 国内下载太慢,使用Proxychains4代理进行下载,proxychains4 配置文件在&#x2F;">
+<meta property="og:description" content="AutoGen 是一个用于创建多代理 AI 应用程序的框架，这些应用程序可以自主运行或与人类一起工作。 Quick start包安装pip install -U &quot;autogen-agentchat&quot; &quot;autogen-ext[openai]&quot; pip install -U &quot;autogenstudio&quot;  # GUI ,无代码编排的">
 <meta property="og:locale">
-<meta property="og:image" content="https://qwrdxer.github.io/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/image-20240108185729958.png">
-<meta property="og:image" content="https://qwrdxer.github.io/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/image-20240108190328390.png">
-<meta property="og:image" content="https://qwrdxer.github.io/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/image-20240108190630039.png">
-<meta property="og:image" content="https://qwrdxer.github.io/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/image-20240108192034593.png">
-<meta property="og:image" content="https://qwrdxer.github.io/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/image-20240108192617515.png">
-<meta property="og:image" content="https://qwrdxer.github.io/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/image-20240108204654700.png">
-<meta property="og:image" content="https://qwrdxer.github.io/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/image-20240108205132653.png">
-<meta property="article:published_time" content="2024-01-08T10:47:43.000Z">
-<meta property="article:modified_time" content="2024-01-09T03:35:51.434Z">
+<meta property="article:published_time" content="2025-03-08T12:23:19.000Z">
+<meta property="article:modified_time" content="2025-03-08T12:24:45.651Z">
 <meta property="article:author" content="qwrdxer">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="Multi-Agent">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://qwrdxer.github.io/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/image-20240108185729958.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -51,7 +45,7 @@
 
 <script src="/js/iconfont.js?v=1.1.0" ></script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 <div style="display: none">
   <input class="theme_disqus_on" value="false">
   <input class="theme_preload_comment" value="">
@@ -159,7 +153,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(41)</small>
+                <small>(44)</small>
             
         </div>
     </li>
@@ -298,8 +292,53 @@
         <div data-rel="开发工具">
             
             开发工具
-            <small>(3)</small>
+            <small>(4)</small>
         </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="框架">
+            <i class="fold iconfont icon-right"></i>
+            框架
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;Agent">
+            <i class="fold iconfont icon-right"></i>
+            Agent
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="框架&lt;---&gt;Agent&lt;---&gt;LLM">
+            
+            LLM
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+                
+            </ul>
         
     </li>
 
@@ -358,7 +397,7 @@
         <div data-rel="区块链">
             
             区块链
-            <small>(1)</small>
+            <small>(2)</small>
         </div>
         
     </li>
@@ -508,6 +547,14 @@
     
         
             
+        
+    
+        
+            
+        
+    
+        
+            
                 
     <li>
         <div data-rel="web安全工具篇">
@@ -556,8 +603,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="41">
-<input type="hidden" id="yelog_site_word_count" value="128.2k">
+<input type="hidden" id="yelog_site_posts_number" value="44">
+<input type="hidden" id="yelog_site_word_count" value="134.9k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -639,6 +686,10 @@
             </li>
         
             <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>bash</a>
             </li>
         
@@ -660,6 +711,10 @@
         
             <li class="article-tag-list-item">
                 <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Multi-Agent</a>
             </li>
         
             <li class="article-tag-list-item">
@@ -692,6 +747,33 @@
     </div>
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 框架 Agent LLM "
+           href="/2025/03/08/Agent/autogen%E5%85%A5%E9%97%A8%E4%B9%8Bautochat/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen入门之autochat">autogen入门之autochat</span>
+            <span class="post-date" title="2025-03-08 20:23:19">2025/03/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 开发工具 "
+           href="/2024/02/26/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/logseq%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="logseq使用">logseq使用</span>
+            <span class="post-date" title="2024-02-26 10:47:48">2024/02/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 区块链 "
+           href="/2024/01/21/%E5%8C%BA%E5%9D%97%E9%93%BE/hardhat%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hardhat智能合约流程">hardhat智能合约流程</span>
+            <span class="post-date" title="2024-01-21 15:20:03">2024/01/21</span>
+        </a>
         
         
         <a  class="全部文章 区块链 "

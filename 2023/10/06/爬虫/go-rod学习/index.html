@@ -6,14 +6,18 @@
   <meta name="keywords" content="">
   <meta name="description" content="go-rod学习 | qwrdxer &#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta property="og:type" content="website">
-<meta property="og:title" content="About">
-<meta property="og:url" content="https://qwrdxer.github.io/about/index.html">
+<meta name="description" content="AutoGen 是一个用于创建多代理 AI 应用程序的框架，这些应用程序可以自主运行或与人类一起工作。 Quick start包安装pip install -U &quot;autogen-agentchat&quot; &quot;autogen-ext[openai]&quot; pip install -U &quot;autogenstudio&quot;  # GUI ,无代码编排的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="autogen入门之autochat">
+<meta property="og:url" content="https://qwrdxer.github.io/2025/03/08/Agent/autogen%E5%85%A5%E9%97%A8%E4%B9%8Bautochat/index.html">
 <meta property="og:site_name" content="qwrdxer &#39;s blog">
+<meta property="og:description" content="AutoGen 是一个用于创建多代理 AI 应用程序的框架，这些应用程序可以自主运行或与人类一起工作。 Quick start包安装pip install -U &quot;autogen-agentchat&quot; &quot;autogen-ext[openai]&quot; pip install -U &quot;autogenstudio&quot;  # GUI ,无代码编排的">
 <meta property="og:locale">
-<meta property="article:published_time" content="2023-09-27T10:59:02.024Z">
-<meta property="article:modified_time" content="2020-12-09T15:31:00.000Z">
+<meta property="article:published_time" content="2025-03-08T12:23:19.000Z">
+<meta property="article:modified_time" content="2025-03-08T12:24:59.130Z">
 <meta property="article:author" content="qwrdxer">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="Multi-Agent">
 <meta name="twitter:card" content="summary">
 
 
@@ -147,7 +151,7 @@
 
 <ul>
     <li>
-        <div class="all active" data-rel="全部文章">全部文章
+        <div class="all active" data-rel="All">All
             
                 <small>(44)</small>
             
@@ -553,11 +557,11 @@
         
             <a class="about  hasFriend  site_url"
                
-               href="/about">关于</a>
+               href="/about">About</a>
         
         <a style="width: 50%"
                 
-                                           class="friends">友链</a>
+                                           class="friends">Friends</a>
         
     </div>
 </div>
@@ -572,7 +576,7 @@
     <div class="nav-right">
         <div class="friends-area">
     <div class="friends-title">
-        友情链接
+        Links
         <i class="iconfont icon-left"></i>
     </div>
     <div class="friends-content">
@@ -587,7 +591,7 @@
     <div class="right-top">
         <div id="default-panel">
             <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
-            <div class="right-title">全部文章</div>
+            <div class="right-title">All</div>
             <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
         </div>
         <div id="search-panel">
@@ -707,7 +711,7 @@
     <nav id="title-list-nav">
         
         
-        <a  class="全部文章 Agent "
+        <a  class="All Agent "
            href="/2025/03/08/Agent/autogen%E5%85%A5%E9%97%A8%E4%B9%8Bautochat/"
            data-tag="Agent,Multi-Agent"
            data-author="" >
@@ -716,7 +720,7 @@
         </a>
         
         
-        <a  class="全部文章 开发工具 "
+        <a  class="All 开发工具 "
            href="/2024/02/26/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/logseq%E4%BD%BF%E7%94%A8/"
            data-tag=""
            data-author="" >
@@ -725,7 +729,7 @@
         </a>
         
         
-        <a  class="全部文章 区块链 "
+        <a  class="All 区块链 "
            href="/2024/01/21/%E5%8C%BA%E5%9D%97%E9%93%BE/hardhat%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%B5%81%E7%A8%8B/"
            data-tag=""
            data-author="" >
@@ -734,7 +738,7 @@
         </a>
         
         
-        <a  class="全部文章 区块链 "
+        <a  class="All 区块链 "
            href="/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
            data-tag=""
            data-author="" >
@@ -743,7 +747,7 @@
         </a>
         
         
-        <a  class="全部文章 爬虫 "
+        <a  class="All 爬虫 "
            href="/2023/12/22/%E7%88%AC%E8%99%AB/CF%E7%9B%BE%E7%BB%95%E8%BF%87(NodeJs%E7%89%88)/"
            data-tag=""
            data-author="" >
@@ -752,7 +756,7 @@
         </a>
         
         
-        <a  class="全部文章 "
+        <a  class="All "
            href="/2023/10/23/Untitled/"
            data-tag=""
            data-author="" >
@@ -761,7 +765,7 @@
         </a>
         
         
-        <a  class="全部文章 以太坊 "
+        <a  class="All 以太坊 "
            href="/2023/10/19/%E4%BB%A5%E5%A4%AA%E5%9D%8A/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E9%83%A8%E5%88%86%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B5%85%E6%9E%90/"
            data-tag=""
            data-author="" >
@@ -770,7 +774,7 @@
         </a>
         
         
-        <a  class="全部文章 日志 "
+        <a  class="All 日志 "
            href="/2023/10/12/%E6%97%A5%E5%BF%97/%E9%93%BE%E6%8E%A5%E8%AE%B0%E5%BD%95/"
            data-tag=""
            data-author="" >
@@ -779,7 +783,7 @@
         </a>
         
         
-        <a  class="全部文章 爬虫 "
+        <a  class="All 爬虫 "
            href="/2023/10/06/%E7%88%AC%E8%99%AB/go-rod%E5%AD%A6%E4%B9%A0/"
            data-tag=""
            data-author="" >
@@ -788,7 +792,7 @@
         </a>
         
         
-        <a  class="全部文章 爬虫 "
+        <a  class="All 爬虫 "
            href="/2023/10/06/%E7%88%AC%E8%99%AB/Go%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%88%AC%E8%99%AB/"
            data-tag=""
            data-author="" >
@@ -797,7 +801,7 @@
         </a>
         
         
-        <a  class="全部文章 代码分析 "
+        <a  class="All 代码分析 "
            href="/2023/10/05/%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/RustScan%E6%BA%90%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
            data-tag=""
            data-author="" >
@@ -806,7 +810,7 @@
         </a>
         
         
-        <a  class="全部文章 一些奇怪的bug "
+        <a  class="All 一些奇怪的bug "
            href="/2023/10/02/%E4%B8%80%E4%BA%9B%E5%A5%87%E6%80%AA%E7%9A%84bug/bug%E8%AE%B0%E5%BD%95&%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"
            data-tag=""
            data-author="" >
@@ -815,7 +819,7 @@
         </a>
         
         
-        <a  class="全部文章 论文阅读 人工智能 "
+        <a  class="All 论文阅读 人工智能 "
            href="/2023/10/01/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/OpenAI%E7%9A%84GPT%E5%8F%91%E5%B1%95/"
            data-tag="GPT,LLM"
            data-author="" >
@@ -824,7 +828,7 @@
         </a>
         
         
-        <a  class="全部文章 编程语言 Rust "
+        <a  class="All 编程语言 Rust "
            href="/2023/09/28/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/Rust_lifetime/"
            data-tag=""
            data-author="" >
@@ -833,7 +837,7 @@
         </a>
         
         
-        <a  class="全部文章 写点好玩的 "
+        <a  class="All 写点好玩的 "
            href="/2023/09/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%AE%89%E5%85%A8%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE&%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE%E4%B8%8B%E8%BD%BD/"
            data-tag=""
            data-author="" >
@@ -842,7 +846,7 @@
         </a>
         
         
-        <a  class="全部文章 编程语言 Rust "
+        <a  class="All 编程语言 Rust "
            href="/2023/09/27/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/The%20Rust%20Programming%20Language%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"
            data-tag=""
            data-author="" >
@@ -851,7 +855,7 @@
         </a>
         
         
-        <a  class="全部文章 人工智能 FASTAI "
+        <a  class="All 人工智能 FASTAI "
            href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_3_%E5%A4%9AGPU%E8%AE%AD%E7%BB%83/"
            data-tag=""
            data-author="" >
@@ -860,7 +864,7 @@
         </a>
         
         
-        <a  class="全部文章 人工智能 FASTAI "
+        <a  class="All 人工智能 FASTAI "
            href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_2_Datasets%E3%80%81Pipeline%E3%80%81TfmdLists%E3%80%81Transform/"
            data-tag=""
            data-author="" >
@@ -869,7 +873,7 @@
         </a>
         
         
-        <a  class="全部文章 人工智能 FASTAI "
+        <a  class="All 人工智能 FASTAI "
            href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_1_%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8CAPI%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE/"
            data-tag="深度学习,FASTAI"
            data-author="" >
@@ -878,7 +882,7 @@
         </a>
         
         
-        <a  class="全部文章 人工智能 FASTAI "
+        <a  class="All 人工智能 FASTAI "
            href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"
            data-tag="深度学习,FASTAI"
            data-author="" >
@@ -887,7 +891,7 @@
         </a>
         
         
-        <a  class="全部文章 编程语言 C++ "
+        <a  class="All 编程语言 C++ "
            href="/2023/01/10/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/C++%E5%85%A5%E9%97%A8/"
            data-tag=""
            data-author="" >
@@ -896,7 +900,7 @@
         </a>
         
         
-        <a  class="全部文章 写点好玩的 "
+        <a  class="All 写点好玩的 "
            href="/2022/04/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%AB%E6%8F%8F%E5%99%A8%E5%AE%9E%E7%8E%B0/"
            data-tag=""
            data-author="" >
@@ -905,7 +909,7 @@
         </a>
         
         
-        <a  class="全部文章 数据库 "
+        <a  class="All 数据库 "
            href="/2022/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93/mongodb%E5%AD%A6%E4%B9%A0/"
            data-tag=""
            data-author="" >
@@ -914,7 +918,7 @@
         </a>
         
         
-        <a  class="全部文章 写点好玩的 "
+        <a  class="All 写点好玩的 "
            href="/2022/04/10/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/Go%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E5%99%A8/"
            data-tag=""
            data-author="" >
@@ -923,7 +927,7 @@
         </a>
         
         
-        <a  class="全部文章 写点好玩的 "
+        <a  class="All 写点好玩的 "
            href="/2022/04/09/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E6%83%B3%E6%B3%95%E8%AE%B0%E5%BD%95/"
            data-tag=""
            data-author="" >
@@ -932,7 +936,7 @@
         </a>
         
         
-        <a  class="全部文章 编程语言 Go "
+        <a  class="All 编程语言 Go "
            href="/2022/04/08/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go/The%20Way%20To%20Go/"
            data-tag=""
            data-author="" >
@@ -941,7 +945,7 @@
         </a>
         
         
-        <a  class="全部文章 日志 "
+        <a  class="All 日志 "
            href="/2022/03/31/%E6%97%A5%E5%BF%97/%E5%B1%B1%E8%BF%98%E6%98%AF%E5%B1%B1,%E6%B0%B4%E8%BF%98%E6%98%AF%E6%B0%B4,%E4%BD%A0%E4%B8%8D%E8%83%BD%E6%B0%B8%E8%BF%9C%E6%98%AF%E9%82%A3%E4%B8%AA%E4%BD%A0/"
            data-tag=""
            data-author="" >
@@ -950,7 +954,7 @@
         </a>
         
         
-        <a  class="全部文章 操作系统 "
+        <a  class="All 操作系统 "
            href="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/"
            data-tag=""
            data-author="" >
@@ -959,7 +963,7 @@
         </a>
         
         
-        <a  class="全部文章 日志 "
+        <a  class="All 日志 "
            href="/2022/03/21/%E6%97%A5%E5%BF%97/%E9%97%B2%E8%AF%AD%E6%9D%82%E8%AE%B0/"
            data-tag=""
            data-author="" >
@@ -968,7 +972,7 @@
         </a>
         
         
-        <a  class="全部文章 写点好玩的 "
+        <a  class="All 写点好玩的 "
            href="/2022/03/15/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/freemarker%E6%93%8D%E6%8E%A7word/"
            data-tag="工具使用"
            data-author="" >
@@ -977,7 +981,7 @@
         </a>
         
         
-        <a  class="全部文章 操作系统 "
+        <a  class="All 操作系统 "
            href="/2022/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
            data-tag=""
            data-author="" >
@@ -986,7 +990,7 @@
         </a>
         
         
-        <a  class="全部文章 杂项 "
+        <a  class="All 杂项 "
            href="/2022/01/12/%E6%9D%82%E9%A1%B9/GITHUB%E6%94%B6%E9%9B%86/"
            data-tag=""
            data-author="" >
@@ -995,7 +999,7 @@
         </a>
         
         
-        <a  class="全部文章 写点好玩的 "
+        <a  class="All 写点好玩的 "
            href="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/"
            data-tag="渗透测试,工具开发"
            data-author="" >
@@ -1004,7 +1008,7 @@
         </a>
         
         
-        <a  class="全部文章 web安全工具篇 "
+        <a  class="All web安全工具篇 "
            href="/2022/01/09/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/Goby%E5%88%86%E6%9E%90/"
            data-tag=""
            data-author="" >
@@ -1013,7 +1017,7 @@
         </a>
         
         
-        <a  class="全部文章 开发工具 "
+        <a  class="All 开发工具 "
            href="/2021/08/15/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Shell%E8%84%9A%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
            data-tag="脚本,bash,shell,linux,开发"
            data-author="" >
@@ -1022,7 +1026,7 @@
         </a>
         
         
-        <a  class="全部文章 渗透测试篇 "
+        <a  class="All 渗透测试篇 "
            href="/2021/07/25/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AF%87/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"
            data-tag="渗透测试,工具使用"
            data-author="" >
@@ -1031,7 +1035,7 @@
         </a>
         
         
-        <a  class="全部文章 web安全漏洞篇 "
+        <a  class="All web安全漏洞篇 "
            href="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/"
            data-tag="web漏洞,MySQL"
            data-author="" >
@@ -1040,7 +1044,7 @@
         </a>
         
         
-        <a  class="全部文章 web安全工具篇 "
+        <a  class="All web安全工具篇 "
            href="/2021/04/21/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/nmap%E4%BD%BF%E7%94%A8/"
            data-tag="渗透测试,工具使用"
            data-author="" >
@@ -1049,7 +1053,7 @@
         </a>
         
         
-        <a  class="全部文章 开发工具 "
+        <a  class="All 开发工具 "
            href="/2021/04/20/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/docker%E7%9B%B8%E5%85%B3/"
            data-tag="工具使用,脚本,docker"
            data-author="" >
@@ -1058,7 +1062,7 @@
         </a>
         
         
-        <a  class="全部文章 web安全漏洞篇 "
+        <a  class="All web安全漏洞篇 "
            href="/2021/04/19/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%9B%B8%E5%85%B3/"
            data-tag="web漏洞,文件包含"
            data-author="" >
@@ -1067,7 +1071,7 @@
         </a>
         
         
-        <a  class="全部文章 开发工具 "
+        <a  class="All 开发工具 "
            href="/2021/04/16/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/hexo%E5%91%BD%E4%BB%A4/"
            data-tag="工具使用,脚本"
            data-author="" >
@@ -1076,7 +1080,7 @@
         </a>
         
         
-        <a  class="全部文章 web安全工具篇 "
+        <a  class="All web安全工具篇 "
            href="/2021/04/16/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/xray%E4%BD%BF%E7%94%A8/"
            data-tag="渗透测试,工具使用"
            data-author="" >
@@ -1085,7 +1089,7 @@
         </a>
         
         
-        <a  class="全部文章 脚本 "
+        <a  class="All 脚本 "
            href="/2021/04/15/%E8%84%9A%E6%9C%AC/some-script/"
            data-tag="脚本,bash,python"
            data-author="" >
@@ -1094,7 +1098,7 @@
         </a>
         
         
-        <a  class="全部文章 环境配置 "
+        <a  class="All 环境配置 "
            href="/2021/04/15/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/centos%E9%83%A8%E7%BD%B2wordpress/"
            data-tag="linux,环境配置,报错解决,WordPress"
            data-author="" >
@@ -1140,16 +1144,16 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-10-13 21:18:15'>2023-10-06 11:22</time>
+            Created At : <time class="date" title='Updated At: 2023-10-13 21:18:15'>2023-10-06 11:22</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:1.3k</span>
+        <span>Count:1.3k</span>
         
         
         <span id="busuanzi_container_page_pv">
-            阅读 :<span id="busuanzi_value_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
                 <span class="count-comment">
                     <span class="spinner">
                       <div class="cube1"></div>

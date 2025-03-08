@@ -69,6 +69,31 @@
     
     
     <entry>
+      <title>Josephus Problem</title>
+      <link href="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/"/>
+      <url>/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述:"></a>问题描述:</h1><p>​    Josephus 问题是一个古老而著名的问题，最早的记载来自犹太历史学家弗拉维奥·约瑟夫斯（FlaviusJosephus），他在犹太战争中被罗马军队包围，为了不被俘虏，他和他的 39 个战友决定自杀，但是他们并不想自己亲手杀死自己，于是决定站在一个圆圈里，从一个人开始，每报数到第 14 个人，第 14 个人就会被杀掉，然后从下一个人开始重新报数，直到最后只剩下一个人，那个人就可以幸存。</p><p>​    这个问题的一般形式是：有 n 个人围成一圈，从第一个人开始报数，数到第 k 个人，然后第 k 个人出列，再从出列的下一个人开始重新报数，如此循环，直到最后只剩下一个人。</p><h1 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h1><h2 id="递推关系式"><a href="#递推关系式" class="headerlink" title="递推关系式"></a>递推关系式</h2><p>n 为人数, k 为轮数</p><p>令 f(n, k)表示 n 个人中最后幸存者的编号，Josephus 问题的递推关系式为：</p><p><code>f(n, k)=((f(n-1, k)+k)mod n)+1</code></p><p>其中，f(1, k)= 1。这个递推关系式描述了每一轮中幸存者的编号与上一轮中的关系。</p><h2 id="递推推导"><a href="#递推推导" class="headerlink" title="递推推导"></a>递推推导</h2><p>假设轮数 k = 2, 列表如下</p><table><thead><tr><th>人数</th><th>幸存者编号</th><th>与上一轮关系</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>(上一轮幸存者编号+ 轮数)%本轮人数</td></tr><tr><td>2</td><td>1</td><td>(1+2)%2 = 1</td></tr><tr><td>3</td><td>3</td><td>(1+2)%3 = 3</td></tr><tr><td>4</td><td>1</td><td>(3+2)%4 = 1</td></tr><tr><td>5</td><td>3</td><td>(1+2)%5 = 3</td></tr><tr><td>6</td><td>5</td><td>(3+2)%6 = 5</td></tr><tr><td>7</td><td>7</td><td>(5+2)%7 = 7</td></tr><tr><td>8</td><td>1</td><td>(7+2)%8 = 1</td></tr><tr><td>9</td><td>3</td><td>(1+2)%9 = 3</td></tr><tr><td>10</td><td>5</td><td>(3+2)%10 = 5</td></tr><tr><td>11</td><td>7</td><td>(5+2)%11 = 7</td></tr><tr><td>12</td><td>9</td><td>(7+2)%12 = 9</td></tr><tr><td>13</td><td>11</td><td>(9+2)%13 = 11</td></tr><tr><td>14</td><td>13</td><td>(11+2)%14 = 13</td></tr><tr><td>15</td><td>15</td><td>(13+2)%15 = 15</td></tr><tr><td>16</td><td>1</td><td>(15+2)%16 = 1</td></tr><tr><td>17</td><td>3</td><td>(1+2)%17 = 3</td></tr><tr><td>18</td><td>5</td><td>(3+2)%18 = 5</td></tr><tr><td>19</td><td>7</td><td>(5+2)%19 = 7</td></tr><tr><td>20</td><td>9</td><td>(7+2)%20 = 9</td></tr></tbody></table><h2 id="逻辑解释"><a href="#逻辑解释" class="headerlink" title="逻辑解释"></a>逻辑解释</h2><p>我们要讨论的是，从 n 个人中 选择出 幸存者 与 从 n-1 个人中选择出幸存者之间的关系</p><h3 id="简单情况"><a href="#简单情况" class="headerlink" title="简单情况"></a>简单情况</h3><p>以11个人和10个人，按照k=2来看</p><p><img src="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/1705467905850.png" alt="1705467905850"></p><p>根据表格，我们已经知道, n=10时 ,幸存者为编号5</p><p><img src="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/1705467988451.png" alt="1705467988451"></p><p>我们可以将n=11 的问题转换成n=10的问题:</p><p>n=11时，从第一个被杀掉的人开始报数，这个问题就是n=10的问题了。</p><p>首先，被杀掉的第一个人是编号2</p><p><img src="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/image-20240117131015175.png" alt="image-20240117131015175"></p><p>那么，剩下的人就是从编号3开始报数，n=10的问题了</p><p><img src="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/1705468277816.png" alt="1705468277816"></p><p>参考一开始那个n=10的问题，我们可以推出幸存者为编号7</p><p><img src="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/1705468318013.png" alt="1705468318013"></p><p>将n=11的问题转换成n=10的问题时,编号之间的关系?</p><p><img src="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/261098941879ad9020f011b8b0368af.jpg" alt="261098941879ad9020f011b8b0368af"></p><p>我们可以看到,大多数编号之间的关系为 +k， 我们可以 得出一个**<u>不完全准确</u>**的结论:</p><p>n=x的幸存者编号为 n=x-1的幸存者编号+ k</p><p>即<code> f(n,k) =f(n-1,k) +k</code></p><h3 id="特殊情况"><a href="#特殊情况" class="headerlink" title="特殊情况"></a>特殊情况</h3><p>考虑n=16 和n=15  、k=2的情况</p><p>n=15时，幸存者为编号15:</p><p><img src="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/image-20240117133838613.png" alt="image-20240117133838613"></p><p>将n=16的问题转换成n=15的问题</p><p><img src="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/1705469961111.png" alt="1705469961111"></p><p>幸存者为编号1</p><p><img src="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/image-20240117133957072.png" alt="image-20240117133957072"></p><p>n=16和n=15问题并不是完全直接转化的。</p><p>数量的不同代表着他们每次从编号第一个到编号最后一个所需的次数是不同的:</p><p>即，虽然理论上,问题转换后,幸存者为编号16的下一个编号17，但很显然不是，编号16报完数之后进入下一轮循环了，从编号1 开始，编号1 为幸存者。</p><p>此时就需要用到模运算了。</p><p>它们之间的关系如下:</p><p><code>f(n, k)=((f(n-1, k)+k)mod n)+1</code>  (注:没有编号为0的情况,都是从编号1 开始,因此最后要加一)</p><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>python代码如下:</p><pre><code class="python">def josephus(n, k):    if n == 1:        return 1    else:        return ((josephus(n-1, k) + k -1) % n) + 1</code></pre><hr><p>文章参考:</p><p>博客地址: qwrdxer.github.io</p><p>欢迎交流: qq1944270374</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Josephus </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>fabric环境配置</title>
       <link href="/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
       <url>/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>

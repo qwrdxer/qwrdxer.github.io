@@ -1,0 +1,2124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>autogen提高之AgentChat Advanced部分 | qwrdxer &#39;s blog</title>
+  <meta name="keywords" content=" Agent , Multi-Agent , Memory , Swarm ">
+  <meta name="description" content="autogen提高之AgentChat Advanced部分 | qwrdxer &#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="自定义Agent所有的Agent 都继承自 BaseChatAgent 并实现了如下方法  on_message() 定义代理响应消息的行为的抽象方法。当要求代理在 run（） 中提供响应时，将调用此方法。它返回一个 Response 对象。 on_reset()  将代理重置为其初始状态的抽象方法。当要求代理重置自身时，将调用此方法。 produced_message_types : 代理可以在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="autogen提高之AgentChat Advanced部分">
+<meta property="og:url" content="https://qwrdxer.github.io/2025/03/10/Agent/autogen%E6%8F%90%E9%AB%98%E4%B9%8BAgentChat%20Advanced%E9%83%A8%E5%88%86/index.html">
+<meta property="og:site_name" content="qwrdxer &#39;s blog">
+<meta property="og:description" content="自定义Agent所有的Agent 都继承自 BaseChatAgent 并实现了如下方法  on_message() 定义代理响应消息的行为的抽象方法。当要求代理在 run（） 中提供响应时，将调用此方法。它返回一个 Response 对象。 on_reset()  将代理重置为其初始状态的抽象方法。当要求代理重置自身时，将调用此方法。 produced_message_types : 代理可以在">
+<meta property="og:locale">
+<meta property="og:image" content="https://qwrdxer.github.io/2025/03/10/Agent/autogen%E6%8F%90%E9%AB%98%E4%B9%8BAgentChat%20Advanced%E9%83%A8%E5%88%86/image-20250310213937494.png">
+<meta property="og:image" content="https://qwrdxer.github.io/2025/03/10/Agent/autogen%E6%8F%90%E9%AB%98%E4%B9%8BAgentChat%20Advanced%E9%83%A8%E5%88%86/image-20250310213915605.png">
+<meta property="og:image" content="https://qwrdxer.github.io/2025/03/10/Agent/autogen%E6%8F%90%E9%AB%98%E4%B9%8BAgentChat%20Advanced%E9%83%A8%E5%88%86/image-20250310213811430.png">
+<meta property="article:published_time" content="2025-03-10T13:35:41.000Z">
+<meta property="article:modified_time" content="2025-03-10T13:40:03.232Z">
+<meta property="article:author" content="qwrdxer">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="Multi-Agent">
+<meta property="article:tag" content="Memory">
+<meta property="article:tag" content="Swarm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qwrdxer.github.io/2025/03/10/Agent/autogen%E6%8F%90%E9%AB%98%E4%B9%8BAgentChat%20Advanced%E9%83%A8%E5%88%86/image-20250310213937494.png">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>qwrdxer</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/qwrdxer"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/yyc-96-55-3"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qwrdxer?type=blog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1944270374@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1944270374&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(46)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="杂项">
+            
+            杂项
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="编程语言">
+            <i class="fold iconfont icon-right"></i>
+            编程语言
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;C++">
+            
+            C++
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Go">
+            
+            Go
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Rust">
+            
+            Rust
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="操作系统">
+            
+            操作系统
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="代码分析">
+            
+            代码分析
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="环境配置">
+            
+            环境配置
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="脚本">
+            
+            脚本
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="开发工具">
+            
+            开发工具
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文阅读">
+            <i class="fold iconfont icon-right"></i>
+            论文阅读
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="论文阅读&lt;---&gt;人工智能">
+            
+            人工智能
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="爬虫">
+            
+            爬虫
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="区块链">
+            
+            区块链
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="人工智能">
+            <i class="fold iconfont icon-right"></i>
+            人工智能
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="人工智能&lt;---&gt;FASTAI">
+            
+            FASTAI
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="日志">
+            
+            日志
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="渗透测试篇">
+            
+            渗透测试篇
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            
+            数据库
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="算法">
+            
+            算法
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="写点好玩的">
+            
+            写点好玩的
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="一些奇怪的bug">
+            
+            一些奇怪的bug
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="以太坊">
+            
+            以太坊
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Agent">
+            
+            Agent
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全工具篇">
+            
+            web安全工具篇
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全漏洞篇">
+            
+            web安全漏洞篇
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">关于</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="46">
+<input type="hidden" id="yelog_site_word_count" value="141.4k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>报错解决</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具使用</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境配置</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>脚本</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>深度学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>渗透测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>文件包含</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>bash</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FASTAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPT</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Josephus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Memory</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Multi-Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>shell</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Swarm</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>web漏洞</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WordPress</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 Agent "
+           href="/2025/03/10/Agent/autogen%E6%8F%90%E9%AB%98%E4%B9%8BAgentChat%20Advanced%E9%83%A8%E5%88%86/"
+           data-tag="Agent,Multi-Agent,Memory,Swarm"
+           data-author="" >
+            <span class="post-title" title="autogen提高之AgentChat Advanced部分">autogen提高之AgentChat Advanced部分</span>
+            <span class="post-date" title="2025-03-10 21:35:41">2025/03/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 Agent "
+           href="/2025/03/08/Agent/autogen%E5%85%A5%E9%97%A8%E4%B9%8Bagentchat/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen入门之autochat">autogen入门之autochat</span>
+            <span class="post-date" title="2025-03-08 20:23:19">2025/03/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 开发工具 "
+           href="/2024/02/26/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/logseq%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="logseq使用">logseq使用</span>
+            <span class="post-date" title="2024-02-26 10:47:48">2024/02/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 区块链 "
+           href="/2024/01/21/%E5%8C%BA%E5%9D%97%E9%93%BE/hardhat%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hardhat智能合约流程">hardhat智能合约流程</span>
+            <span class="post-date" title="2024-01-21 15:20:03">2024/01/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 算法 "
+           href="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/"
+           data-tag="Josephus"
+           data-author="" >
+            <span class="post-title" title="Josephus Problem">Josephus Problem</span>
+            <span class="post-date" title="2024-01-17 11:49:36">2024/01/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 区块链 "
+           href="/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="fabric环境配置">fabric环境配置</span>
+            <span class="post-date" title="2024-01-08 18:47:43">2024/01/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 爬虫 "
+           href="/2023/12/22/%E7%88%AC%E8%99%AB/CF%E7%9B%BE%E7%BB%95%E8%BF%87(NodeJs%E7%89%88)/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CF盾绕过(NodeJs版)">CF盾绕过(NodeJs版)</span>
+            <span class="post-date" title="2023-12-22 20:11:48">2023/12/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2023/10/23/Untitled/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-10-23 21:15:12">2023/10/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 以太坊 "
+           href="/2023/10/19/%E4%BB%A5%E5%A4%AA%E5%9D%8A/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E9%83%A8%E5%88%86%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B5%85%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="以太坊部分知识点浅析">以太坊部分知识点浅析</span>
+            <span class="post-date" title="2023-10-19 16:10:05">2023/10/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 日志 "
+           href="/2023/10/12/%E6%97%A5%E5%BF%97/%E9%93%BE%E6%8E%A5%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="链接记录">链接记录</span>
+            <span class="post-date" title="2023-10-12 19:40:28">2023/10/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/go-rod%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="go-rod学习">go-rod学习</span>
+            <span class="post-date" title="2023-10-06 11:22:48">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/Go%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%88%AC%E8%99%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go实现一个爬虫">Go实现一个爬虫</span>
+            <span class="post-date" title="2023-10-06 11:10:43">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 代码分析 "
+           href="/2023/10/05/%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/RustScan%E6%BA%90%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RustScan源代码分析">RustScan源代码分析</span>
+            <span class="post-date" title="2023-10-05 19:28:59">2023/10/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 一些奇怪的bug "
+           href="/2023/10/02/%E4%B8%80%E4%BA%9B%E5%A5%87%E6%80%AA%E7%9A%84bug/bug%E8%AE%B0%E5%BD%95&%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="bug记录&amp;解决方法">bug记录&amp;解决方法</span>
+            <span class="post-date" title="2023-10-02 16:05:12">2023/10/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文阅读 人工智能 "
+           href="/2023/10/01/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/OpenAI%E7%9A%84GPT%E5%8F%91%E5%B1%95/"
+           data-tag="GPT,LLM"
+           data-author="" >
+            <span class="post-title" title="大模型论文">大模型论文</span>
+            <span class="post-date" title="2023-10-01 22:17:21">2023/10/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 Rust "
+           href="/2023/09/28/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/Rust_lifetime/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Rust的生命周期">Rust的生命周期</span>
+            <span class="post-date" title="2023-09-28 11:33:04">2023/09/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 写点好玩的 "
+           href="/2023/09/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%AE%89%E5%85%A8%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE&%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE%E4%B8%8B%E8%BD%BD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安全四大会议&amp;人工智能四大会议下载">安全四大会议&amp;人工智能四大会议下载</span>
+            <span class="post-date" title="2023-09-27 20:47:28">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 Rust "
+           href="/2023/09/27/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/The%20Rust%20Programming%20Language%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Rust Programming Language阅读笔记">The Rust Programming Language阅读笔记</span>
+            <span class="post-date" title="2023-09-27 20:35:50">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_3_%E5%A4%9AGPU%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_3_多GPU训练">FASTAI_3_多GPU训练</span>
+            <span class="post-date" title="2023-09-27 20:32:12">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_2_Datasets%E3%80%81Pipeline%E3%80%81TfmdLists%E3%80%81Transform/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_2_Datasets、Pipeline、TfmdLists、Transform">FASTAI_2_Datasets、Pipeline、TfmdLists、Transform</span>
+            <span class="post-date" title="2023-09-27 20:29:37">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_1_%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8CAPI%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI_1_使用不同API加载数据">FASTAI_1_使用不同API加载数据</span>
+            <span class="post-date" title="2023-09-27 20:28:09">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI快速入门">FASTAI快速入门</span>
+            <span class="post-date" title="2023-09-27 20:18:36">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 C++ "
+           href="/2023/01/10/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/C++%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C++入门">C++入门</span>
+            <span class="post-date" title="2023-01-10 11:30:50">2023/01/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 写点好玩的 "
+           href="/2022/04/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%AB%E6%8F%8F%E5%99%A8%E5%AE%9E%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="分布式扫描器实现">分布式扫描器实现</span>
+            <span class="post-date" title="2022-04-27 11:43:42">2022/04/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 数据库 "
+           href="/2022/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93/mongodb%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="mongodb学习">mongodb学习</span>
+            <span class="post-date" title="2022-04-14 09:31:33">2022/04/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 写点好玩的 "
+           href="/2022/04/10/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/Go%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E5%99%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go编写一个扫描器">Go编写一个扫描器</span>
+            <span class="post-date" title="2022-04-10 14:34:18">2022/04/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 写点好玩的 "
+           href="/2022/04/09/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E6%83%B3%E6%B3%95%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="想法记录">想法记录</span>
+            <span class="post-date" title="2022-04-09 11:24:11">2022/04/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 Go "
+           href="/2022/04/08/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go/The%20Way%20To%20Go/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Way To Go">The Way To Go</span>
+            <span class="post-date" title="2022-04-08 18:09:20">2022/04/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 日志 "
+           href="/2022/03/31/%E6%97%A5%E5%BF%97/%E5%B1%B1%E8%BF%98%E6%98%AF%E5%B1%B1,%E6%B0%B4%E8%BF%98%E6%98%AF%E6%B0%B4,%E4%BD%A0%E4%B8%8D%E8%83%BD%E6%B0%B8%E8%BF%9C%E6%98%AF%E9%82%A3%E4%B8%AA%E4%BD%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="山还是山,水还是水,你不能永远是那个你">山还是山,水还是水,你不能永远是那个你</span>
+            <span class="post-date" title="2022-03-31 09:37:42">2022/03/31</span>
+        </a>
+        
+        
+        <a  class="全部文章 操作系统 "
+           href="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day11~day20">30天自制操作系统-学习笔记 day11~day20</span>
+            <span class="post-date" title="2022-03-27 09:49:33">2022/03/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 日志 "
+           href="/2022/03/21/%E6%97%A5%E5%BF%97/%E9%97%B2%E8%AF%AD%E6%9D%82%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="闲语杂记">闲语杂记</span>
+            <span class="post-date" title="2022-03-21 12:51:18">2022/03/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 写点好玩的 "
+           href="/2022/03/15/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/freemarker%E6%93%8D%E6%8E%A7word/"
+           data-tag="工具使用"
+           data-author="" >
+            <span class="post-title" title="freemarker操控word">freemarker操控word</span>
+            <span class="post-date" title="2022-03-15 12:00:54">2022/03/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 操作系统 "
+           href="/2022/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day1~day10">30天自制操作系统-学习笔记 day1~day10</span>
+            <span class="post-date" title="2022-01-31 10:57:39">2022/01/31</span>
+        </a>
+        
+        
+        <a  class="全部文章 杂项 "
+           href="/2022/01/12/%E6%9D%82%E9%A1%B9/GITHUB%E6%94%B6%E9%9B%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GITHUB收集">GITHUB收集</span>
+            <span class="post-date" title="2022-01-12 20:07:03">2022/01/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 写点好玩的 "
+           href="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/"
+           data-tag="渗透测试,工具开发"
+           data-author="" >
+            <span class="post-title" title="web页面密码爆破">web页面密码爆破</span>
+            <span class="post-date" title="2022-01-11 10:21:34">2022/01/11</span>
+        </a>
+        
+        
+        <a  class="全部文章 web安全工具篇 "
+           href="/2022/01/09/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/Goby%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Goby分析">Goby分析</span>
+            <span class="post-date" title="2022-01-09 13:35:49">2022/01/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 开发工具 "
+           href="/2021/08/15/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Shell%E8%84%9A%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag="脚本,bash,shell,linux,开发"
+           data-author="" >
+            <span class="post-title" title="Shell脚本学习笔记">Shell脚本学习笔记</span>
+            <span class="post-date" title="2021-08-15 11:19:55">2021/08/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 渗透测试篇 "
+           href="/2021/07/25/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AF%87/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="信息收集">信息收集</span>
+            <span class="post-date" title="2021-07-25 19:33:55">2021/07/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 web安全漏洞篇 "
+           href="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,MySQL"
+           data-author="" >
+            <span class="post-title" title="SQL注入相关">SQL注入相关</span>
+            <span class="post-date" title="2021-05-11 15:23:06">2021/05/11</span>
+        </a>
+        
+        
+        <a  class="全部文章 web安全工具篇 "
+           href="/2021/04/21/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/nmap%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="nmap使用">nmap使用</span>
+            <span class="post-date" title="2021-04-21 19:29:51">2021/04/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 开发工具 "
+           href="/2021/04/20/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/docker%E7%9B%B8%E5%85%B3/"
+           data-tag="工具使用,脚本,docker"
+           data-author="" >
+            <span class="post-title" title="docker相关">docker相关</span>
+            <span class="post-date" title="2021-04-20 13:49:50">2021/04/20</span>
+        </a>
+        
+        
+        <a  class="全部文章 web安全漏洞篇 "
+           href="/2021/04/19/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,文件包含"
+           data-author="" >
+            <span class="post-title" title="文件包含漏洞相关">文件包含漏洞相关</span>
+            <span class="post-date" title="2021-04-19 14:49:59">2021/04/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 开发工具 "
+           href="/2021/04/16/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/hexo%E5%91%BD%E4%BB%A4/"
+           data-tag="工具使用,脚本"
+           data-author="" >
+            <span class="post-title" title="hexo相关">hexo相关</span>
+            <span class="post-date" title="2021-04-16 12:12:14">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="全部文章 web安全工具篇 "
+           href="/2021/04/16/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/xray%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="xray使用">xray使用</span>
+            <span class="post-date" title="2021-04-16 12:10:08">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="全部文章 脚本 "
+           href="/2021/04/15/%E8%84%9A%E6%9C%AC/some-script/"
+           data-tag="脚本,bash,python"
+           data-author="" >
+            <span class="post-title" title="some script">some script</span>
+            <span class="post-date" title="2021-04-15 11:23:33">2021/04/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 环境配置 "
+           href="/2021/04/15/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/centos%E9%83%A8%E7%BD%B2wordpress/"
+           data-tag="linux,环境配置,报错解决,WordPress"
+           data-author="" >
+            <span class="post-title" title="centos部署wordpress">centos部署wordpress</span>
+            <span class="post-date" title="2021-04-15 01:34:16">2021/04/15</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Agent/autogen提高之AgentChat Advanced部分" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">autogen提高之AgentChat Advanced部分</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Agent">Agent</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">Agent</a>
+            
+            <a class="color2">Multi-Agent</a>
+            
+            <a class="color2">Memory</a>
+            
+            <a class="color1">Swarm</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2025-03-10 21:40:03'>2025-03-10 21:35</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:5.4k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89Agent"><span class="toc-text">自定义Agent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Selector-Group-Chat"><span class="toc-text">Selector Group Chat</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90"><span class="toc-text">原理分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B-Web%E6%90%9C%E7%B4%A2-%E5%88%86%E6%9E%90"><span class="toc-text">示例, Web搜索&#x2F;分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Swarm"><span class="toc-text">Swarm</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-text">原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5"><span class="toc-text">实践</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B52-%E8%82%A1%E7%A5%A8%E7%A0%94%E7%A9%B6"><span class="toc-text">实践2 股票研究</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Magentic-One"><span class="toc-text">Magentic-One</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Memory"><span class="toc-text">Memory</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ListMemory"><span class="toc-text">ListMemory</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Custom-Memory-Stores-Vector-DBs-etc"><span class="toc-text">Custom Memory Stores (Vector DBs, etc.)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E5%AF%BC%E5%87%BA"><span class="toc-text">组件导出</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="自定义Agent"><a href="#自定义Agent" class="headerlink" title="自定义Agent"></a>自定义Agent</h3><p>所有的Agent 都继承自 <code>BaseChatAgent</code> 并实现了如下方法</p>
+<ul>
+<li>on_message() 定义代理响应消息的行为的抽象方法。当要求代理在 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.BaseChatAgent.run" title="autogen_agentchat.agents.BaseChatAgent.run"><code>run（）</code></a> 中提供响应时，将调用此方法。它返回一个 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.base.html#autogen_agentchat.base.Response" title="autogen_agentchat.base.Response"><code>Response</code></a> 对象。</li>
+<li>on_reset()  将代理重置为其初始状态的抽象方法。当要求代理重置自身时，将调用此方法。</li>
+<li>produced_message_types : 代理可以在其响应中生成的可能的消息类型列表</li>
+</ul>
+<pre><code class="python">class CountDownAgent(BaseChatAgent):
+    def __init__(self,name:str,count:int=3):
+        super().__init__(name,&quot;A simple Agent that counts down&quot;)
+        self._count=count
+    @property
+    def produced_message_types(self)-&gt;Sequence[type[ChatMessage]]:
+        return (TextMessage,)
+    async def on_messages(self, messages:Sequence[ChatMessage], cancellation_token:CancellationToken) -&gt; Response:
+        response:Response|None=None
+        async for message in self.on_messages_stream(messages,cancellation_token=CancellationToken):
+            if isinstance(message,Response):
+                response=message
+        assert response is not None
+        return response
+        
+    async def on_messages_stream(self, messages:Sequence[ChatMessage], cancellation_token:CancellationToken)-&gt; AsyncGenerator[AgentEvent|ChatMessage|Response,None]:
+        inner_messages:List[AgentEvent | ChatMessage]=[]
+        for i in range(self._count,0,-1):
+            msg=TextMessage(content=f&quot;&#123;i&#125;&quot;,source=self.name)
+            inner_messages.append(msg)
+            yield msg
+        yield Response(chat_message=TextMessage(content=&quot;Done!&quot;,source=self.name))
+
+    async def on_reset(self, cancellation_token:CancellationToken)-&gt;None:
+        pass
+
+
+async def run_countdown_agent()-&gt;None:
+    countdown_agent=CountDownAgent(&quot;countdown&quot;)
+    async for message in countdown_agent.on_messages_stream([],CancellationToken):
+        if isinstance(message, Response):
+            print(message.chat_message.content)
+        else:
+            print(message.content)
+await run_countdown_agent()
+</code></pre>
+<ul>
+<li>on_messages 通过调用on_message_stream来实现</li>
+<li>on_messages_stream中,主要是对消息的处理和返回，返回可以是中间结果 Message,但最终要返回一个Response作为Agent的最终结果</li>
+<li>该代理从给定数字倒计时到 0，并生成具有当前计数的消息流。</li>
+</ul>
+<pre><code class="python">class ArithmeticAgent(BaseChatAgent):
+    def __init__(self, name:str, description:str,operator_func:Callable[[int],int])-&gt;None:
+        super().__init__(name, description)
+        self._operator_func= operator_func
+        self._message_history:List[ChatMessage]=[]
+    
+    @property
+    def produced_message_types(self)-&gt;Sequence[type[ChatMessage]]:
+        return (TextMessage,)
+        
+    async def on_messages(self, messages:Sequence[ChatMessage], cancellation_token:CancellationToken)-&gt;Response:
+        self._message_history.extend(messages)
+        assert isinstance(self._message_history[-1],TextMessage)
+        number = int(self._message_history[-1].content)
+        result =self._operator_func(number)
+        response_message = TextMessage(content=str(result), source=self.name)
+        # Update the message history.
+        self._message_history.append(response_message)
+        # Return the response.
+        return Response(chat_message=response_message)
+
+    async def on_reset(self, cancellation_token: CancellationToken) -&gt; None:
+        pass
+</code></pre>
+<ul>
+<li><code>Callable[[int], int]</code> 是一种类型提示，表示一个接受一个 <code>int</code> 类型参数并返回一个 <code>int</code> 类型结果的函数。</li>
+</ul>
+<pre><code class="python">async def run_number_agents() -&gt; None:
+    # Create agents for number operations.
+    add_agent = ArithmeticAgent(&quot;add_agent&quot;, &quot;Adds 1 to the number.&quot;, lambda x: x + 1)
+    multiply_agent = ArithmeticAgent(&quot;multiply_agent&quot;, &quot;Multiplies the number by 2.&quot;, lambda x: x * 2)
+    subtract_agent = ArithmeticAgent(&quot;subtract_agent&quot;, &quot;Subtracts 1 from the number.&quot;, lambda x: x - 1)
+    divide_agent = ArithmeticAgent(&quot;divide_agent&quot;, &quot;Divides the number by 2 and rounds down.&quot;, lambda x: x // 2)
+    identity_agent = ArithmeticAgent(&quot;identity_agent&quot;, &quot;Returns the number as is.&quot;, lambda x: x)
+    # The termination condition is to stop after 10 messages.
+    termination_condition = MaxMessageTermination(10)
+    # Create a selector group chat.
+    selector_group_chat = SelectorGroupChat(
+        [add_agent, multiply_agent, subtract_agent, divide_agent, identity_agent],
+        model_client=model_client,
+        termination_condition=termination_condition,
+        allow_repeated_speaker=True,  # Allow the same agent to speak multiple times, necessary for this task.
+        selector_prompt=(
+            &quot;Available roles:\n&#123;roles&#125;\nTheir job descriptions:\n&#123;participants&#125;\n&quot;
+            &quot;Current conversation history:\n&#123;history&#125;\n&quot;
+            &quot;Please select the most appropriate role for the next message, and only return the role name.&quot;
+        ),
+    )
+
+    # Run the selector group chat with a given task and stream the response.
+    task: List[ChatMessage] = [
+        TextMessage(content=&quot;Apply the operations to turn the given number into 25.&quot;, source=&quot;user&quot;),
+        TextMessage(content=&quot;10&quot;, source=&quot;user&quot;),
+    ]
+    stream = selector_group_chat.run_stream(task=task)
+    await Console(stream)
+
+# Use asyncio.run(run_number_agents()) when running in a script.
+
+await run_number_agents()
+</code></pre>
+<ul>
+<li>创建了一个SelectGroupChat ，大模型可以决定去调用哪个请求</li>
+<li>终止条件设置为10条Message</li>
+</ul>
+<p>可以在Agent中使用自定义的Client</p>
+<pre><code class="python">class GeminiAssistantAgent(BaseChatAgent):
+    def __init__(self, name:str,
+                 description:str=&quot;An agent that provides assistance with ability to use tools.&quot;,
+                 model: str=&quot;gemini-1.5-flash-002&quot;,
+                 api_key: str = os.environ[&quot;GEMINI_API_KEY&quot;],
+                 system_message: str | None = &quot;You are a helpful assistant that can respond to messages. Reply with TERMINATE when the task has been completed.&quot;,
+                 ):
+        super().__init__(name=name, description=description)
+        self._model_context = UnboundedChatCompletionContext()
+        self._model_client =genai.Client(api_key=api_key)
+        self._system_message=system_message
+        self._model=model
+    @property
+    def produced_message_types(self) -&gt; Sequence[type[ChatMessage]]:
+        return (TextMessage,)
+    async def on_messages(self, messages: Sequence[ChatMessage], cancellation_token: CancellationToken) -&gt; Response:
+        final_response = None
+        async for message in self.on_messages_stream(messages, cancellation_token):
+            if isinstance(message, Response):
+                final_response = message
+                
+        if final_response is None:
+            raise AssertionError(&quot;The stream should have returned the final result.&quot;)
+            
+        return final_response
+
+  
+
+    async def on_messages_stream(self, messages:Sequence[ChatMessage], cancellation_token:CancellationToken) -&gt;AsyncGenerator[AgentEvent|ChatMessage|Response,None]:
+        for msg in messages:
+            await self._model_context.add_message(UserMessage(content=msg.content, source=msg.source))
+        history = [
+            (msg.source if hasattr(msg, &quot;source&quot;) else &quot;system&quot;)
+            + &quot;: &quot;
+            + (msg.content if isinstance(msg.content, str) else &quot;&quot;)
+            + &quot;\n&quot;
+            for msg in await self._model_context.get_messages()
+        ]
+
+        response = self._model_client.models.generate_content(
+            model=self._model,
+            contents=f&quot;History: &#123;history&#125;\nGiven the history, please provide a response&quot;,
+            config=types.GenerateContentConfig(
+                system_instruction=self._system_message,
+                temperature=0.3,
+            ),
+        )
+
+        usage = RequestUsage(
+            prompt_tokens=response.usage_metadata.prompt_token_count,
+            completion_tokens=response.usage_metadata.candidates_token_count,
+        )
+
+        await self._model_context.add_message(AssistantMessage(content=response.text, source=self.name))
+        # Yield the final response
+        yield Response(
+            chat_message=TextMessage(content=response.text, source=self.name, models_usage=usage),
+            inner_messages=[],
+        )
+
+    async def on_reset(self, cancellation_token: CancellationToken) -&gt; None:
+        &quot;&quot;&quot;Reset the assistant by clearing the model context.&quot;&quot;&quot;
+        await self._model_context.clear()
+   
+</code></pre>
+<pre><code class="python">    @classmethod
+    def _from_config(cls, config: GeminiAssistantAgentConfig) -&gt; Self:
+        return cls(
+            name=config.name, description=config.description, model=config.model, system_message=config.system_message
+        )
+
+    def _to_config(self) -&gt; GeminiAssistantAgentConfig:
+        return GeminiAssistantAgentConfig(
+            name=self.name,
+            description=self.description,
+            model=self._model,
+            system_message=self._system_message,
+        )
+</code></pre>
+<p>通过实现 <code>_from_config</code>和<code>_to_config</code>方法,可以对Agent 进行导入导出</p>
+<h3 id="Selector-Group-Chat"><a href="#Selector-Group-Chat" class="headerlink" title="Selector Group Chat"></a>Selector Group Chat</h3><p>这个Team的参与者轮流进行任务执行, 一个由Team指定的模型负责根据上下文分析并选择下一个任务执行的Agent.</p>
+<h4 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h4><ol>
+<li>负责分析的模型查看当前上下文, 包括对话历史以及Agents的姓名和描述属性,确定下一个执行任务的Agent。默认情况下，团队不会连续选择相同的发言，除非它是唯一可用的代理。这可以通过设置 <code>allow_repeated_speaker=True</code> 来更改。您还可以通过提供自定义选择功能来覆盖模型。</li>
+<li>被选择的Agent会执行任务、给出相应的Response, 然后将其广播给其他所有参与者。</li>
+<li>Team检查终止条件,若不终止则继续执行1</li>
+<li>当对话结束时,团队将返回包含次任务的对话历史记录的<code>TaskResult</code></li>
+</ol>
+<h4 id="示例-Web搜索-分析"><a href="#示例-Web搜索-分析" class="headerlink" title="示例, Web搜索/分析"></a>示例, Web搜索/分析</h4><p><img src="/2025/03/10/Agent/autogen%E6%8F%90%E9%AB%98%E4%B9%8BAgentChat%20Advanced%E9%83%A8%E5%88%86/image-20250310213937494.png" alt="image-20250310213937494"><br>创建一个三个Agent组成的SelectorGroupChat<br>Planning负责任务规划,Web Search负责调用工具进行信息检索, Data Analyst负责进行数据处理</p>
+<pre><code class="python"># Note: This example uses mock tools instead of real APIs for demonstration purposes
+def search_web_tool(query: str) -&gt; str:
+    if &quot;2006-2007&quot; in query:
+        return &quot;&quot;&quot;Here are the total points scored by Miami Heat players in the 2006-2007 season:
+        Udonis Haslem: 844 points
+        Dwayne Wade: 1397 points
+        James Posey: 550 points
+        ...
+        &quot;&quot;&quot;
+    elif &quot;2007-2008&quot; in query:
+        return &quot;The number of total rebounds for Dwayne Wade in the Miami Heat season 2007-2008 is 214.&quot;
+    elif &quot;2008-2009&quot; in query:
+        return &quot;The number of total rebounds for Dwayne Wade in the Miami Heat season 2008-2009 is 398.&quot;
+    return &quot;No data found.&quot;
+
+def percentage_change_tool(start: float, end: float) -&gt; float:
+    return ((end - start) / start) * 100
+
+model_client = OpenAIChatCompletionClient(model=&quot;gpt-4o&quot;)
+
+planning_agent = AssistantAgent(
+    &quot;PlanningAgent&quot;,
+    description=&quot;An agent for planning tasks, this agent should be the first to engage when given a new task.&quot;,
+    model_client=model_client,
+    system_message=&quot;&quot;&quot;
+    You are a planning agent.
+    Your job is to break down complex tasks into smaller, manageable subtasks.
+    Your team members are:
+        WebSearchAgent: Searches for information
+        DataAnalystAgent: Performs calculations
+
+    You only plan and delegate tasks - you do not execute them yourself.
+
+    When assigning tasks, use this format:
+    1. &lt;agent&gt; : &lt;task&gt;
+
+    After all tasks are complete, summarize the findings and end with &quot;TERMINATE&quot;.
+    &quot;&quot;&quot;,
+)
+
+web_search_agent = AssistantAgent(
+    &quot;WebSearchAgent&quot;,
+    description=&quot;An agent for searching information on the web.&quot;,
+    tools=[search_web_tool],
+    model_client=model_client,
+    system_message=&quot;&quot;&quot;
+    You are a web search agent.
+    Your only tool is search_tool - use it to find information.
+    You make only one search call at a time.
+    Once you have the results, you never do calculations based on them.
+    &quot;&quot;&quot;,
+)
+
+data_analyst_agent = AssistantAgent(
+    &quot;DataAnalystAgent&quot;,
+    description=&quot;An agent for performing calculations.&quot;,
+    model_client=model_client,
+    tools=[percentage_change_tool],
+    system_message=&quot;&quot;&quot;
+    You are a data analyst.
+    Given the tasks you have been assigned, you should analyze the data and provide results using the tools provided.
+    If you have not seen the data, ask for it.
+    &quot;&quot;&quot;,
+)
+</code></pre>
+<p>首先定义工具和Agent,主要注意是Agent 的description要描述清晰</p>
+<ul>
+<li>详细任务由<code>SelectorGroupChat</code>进行接受，根据代理的描述选择最合适的代理来处理初始任务.</li>
+<li>Planning Agent分析任务并将其分解为子任务,使用以下格式将每个子任务分配给最合适的代理： <code>&lt;agent&gt; ： &lt;task&gt;</code></li>
+<li>根据对话上下文和代理描述，<code>SelectorGroupChat</code> 管理器动态选择下一个代理来处理他们分配的子任务。</li>
+<li><strong>Web Search Agent</strong> 一次执行一个搜索，并将结果存储在共享对话历史记录中。</li>
+<li><strong>Data Analyst</strong> 将使用可用的计算工具处理收集的信息。</li>
+<li>工作流来确认任务是否结束</li>
+</ul>
+<pre><code class="python">text_mention_termination = TextMentionTermination(&quot;TERMINATE&quot;)
+max_messages_termination = MaxMessageTermination(max_messages=25)
+termination = text_mention_termination | max_messages_termination
+
+#选择器的提示词如下
+selector_prompt = &quot;&quot;&quot;Select an agent to perform task.
+&#123;roles&#125;
+Current conversation context:
+&#123;history&#125;
+Read the above conversation, then select an agent from &#123;participants&#125; to perform the next task.
+Make sure the planner agent has assigned tasks before other agents start working.
+Only select one agent.
+&quot;&quot;&quot;
+
+#创建团队
+team = SelectorGroupChat(
+    [planning_agent, web_search_agent, data_analyst_agent],
+    model_client=model_client,
+    termination_condition=termination,
+    selector_prompt=selector_prompt,
+    allow_repeated_speaker=True,  # Allow an agent to speak multiple turns in a row.
+)
+
+task = &quot;Who was the Miami Heat player with the highest points in the 2006-2007 season, and what was the percentage change in his total rebounds between the 2007-2008 and 2008-2009 seasons?&quot;
+await Console(team.run_stream(task=task))
+
+task = &quot;Who was the Miami Heat player with the highest points in the 2006-2007 season, and what was the percentage change in his total rebounds between the 2007-2008 and 2008-2009 seasons?&quot;
+
+await Console(team.run_stream(task=task))
+</code></pre>
+<p>然后设置team的停止条件,构建selector的提示词,最终构建Team并执行任务</p>
+<pre><code class="python">def selector_func(messages: Sequence[AgentEvent | ChatMessage]) -&gt; str | None:
+    if messages[-1].source != planning_agent.name:
+        return planning_agent.name
+    return None
+
+
+# Reset the previous team and run the chat again with the selector function.
+await team.reset()
+team = SelectorGroupChat(
+    [planning_agent, web_search_agent, data_analyst_agent],
+    model_client=model_client,
+    termination_condition=termination,
+    selector_prompt=selector_prompt,
+    allow_repeated_speaker=True,
+    selector_func=selector_func,
+)
+
+await Console(team.run_stream(task=task))
+</code></pre>
+<p>很多时候，我们希望更好地控制选择过程。为此，我们可以使用自定义 selector 函数设置 <code>selector_func</code> 参数来覆盖默认的基于模型的选择。这允许我们实现更复杂的选择逻辑和基于状态的过渡。<br>从自定义选择器函数返回 <code>None</code> 将使用基于模型的默认选择。</p>
+<pre><code class="python">user_proxy_agent = UserProxyAgent(&quot;UserProxyAgent&quot;, description=&quot;A proxy for the user to approve or disapprove tasks.&quot;)
+
+
+def selector_func_with_user_proxy(messages: Sequence[AgentEvent | ChatMessage]) -&gt; str | None:
+    if messages[-1].source != planning_agent.name and messages[-1].source != user_proxy_agent.name:
+        # Planning agent should be the first to engage when given a new task, or check progress.
+        return planning_agent.name
+    if messages[-1].source == planning_agent.name:
+        if messages[-2].source == user_proxy_agent.name and &quot;APPROVE&quot; in messages[-1].content.upper():  # type: ignore
+            # User has approved the plan, proceed to the next agent.
+            return None
+        # Use the user proxy agent to get the user&#39;s approval to proceed.
+        return user_proxy_agent.name
+    if messages[-1].source == user_proxy_agent.name:  #用户参与
+        # If the user does not approve, return to the planning agent.
+        if &quot;APPROVE&quot; not in messages[-1].content.upper():  # type: ignore #让planning重新规划
+            return planning_agent.name
+    return None
+
+
+# Reset the previous agents and run the chat again with the user proxy agent and selector function.
+await team.reset()
+team = SelectorGroupChat(
+    [planning_agent, web_search_agent, data_analyst_agent, user_proxy_agent],
+    model_client=model_client,
+    termination_condition=termination,
+    selector_prompt=selector_prompt,
+    selector_func=selector_func_with_user_proxy,
+    allow_repeated_speaker=True,
+)
+
+await Console(team.run_stream(task=task))
+</code></pre>
+<p>我们可以将 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.UserProxyAgent" title="autogen_agentchat.agents.UserProxyAgent"><code>UserProxyAgent</code></a> 添加到团队中，以便在运行期间提供用户反馈<br>我们只需将其添加到团队中并更新选择器函数，以便在规划代理发言后始终检查用户反馈。如果用户响应<code>“APPROVE”</code>，则对话将继续，否则，规划代理会再次尝试，直到用户批准为止。</p>
+<h3 id="Swarm"><a href="#Swarm" class="headerlink" title="Swarm"></a>Swarm</h3><p><a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html#autogen_agentchat.teams.Swarm" title="autogen_agentchat.teams.Swarm"><code>Swarm</code></a> 实现了一个团队，代理可以在其中交接 task 分配给其他代理 ,上文的Agent选择权交给一个集中式的Selector。</p>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><ol>
+<li>每个代理都能够生成 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.messages.html#autogen_agentchat.messages.HandoffMessage" title="autogen_agentchat.messages.HandoffMessage"><code>HandoffMessage</code></a> 来指示它可以移交给哪些其他代理</li>
+<li>当团队开始执行任务时，第一个 代理将执行该任务，并就是否移交以及移交给谁做出 决定。</li>
+<li>当代理生成 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.messages.html#autogen_agentchat.messages.HandoffMessage" title="autogen_agentchat.messages.HandoffMessage"><code>HandoffMessage</code></a> 时，接收代理将接管具有相同消息上下文的任务。</li>
+<li>该过程将继续，直到满足终止条件。</li>
+</ol>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.AssistantAgent" title="autogen_agentchat.agents.AssistantAgent"><code>AssistantAgent</code></a> 使用模型的工具调用功能来生成切换。这意味着模型必须支持工具调用。</li>
+</ul>
+<h4 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h4><p><img src="/2025/03/10/Agent/autogen%E6%8F%90%E9%AB%98%E4%B9%8BAgentChat%20Advanced%E9%83%A8%E5%88%86/image-20250310213915605.png" alt="image-20250310213915605"></p>
+<p><strong>Travel Agent</strong>：处理一般旅行和退款协调。<br><strong>航班退款</strong>： 专门使用 <code>refund_flight</code> 工具处理航班退款。<br>当代理移交给 <code>“user”</code> 时，我们允许用户与代理交互。</p>
+<ol>
+<li>用户提交请求,首先由Travel Agent进行回答</li>
+<li>基于用户请求<ol>
+<li>如果是退款相关任务,交给Flights Refunder Agent处理</li>
+<li>需要客户提供更多信息,任一Agent都可以询问用户</li>
+</ol>
+</li>
+<li><strong>Flights Refunder</strong>会在适当时使用 <code>refund_flight</code> 工具处理退款。</li>
+<li>当用户提供输入时，它会作为 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.messages.html#autogen_agentchat.messages.HandoffMessage" title="autogen_agentchat.messages.HandoffMessage"><code>HandoffMessage</code></a> 发送回团队。此消息将定向到最初请求用户输入的代理。</li>
+</ol>
+<pre><code class="python">from typing import Any, Dict, List
+
+from autogen_agentchat.agents import AssistantAgent
+from autogen_agentchat.conditions import HandoffTermination, TextMentionTermination
+from autogen_agentchat.messages import HandoffMessage
+from autogen_agentchat.teams import Swarm
+from autogen_agentchat.ui import Console
+from autogen_ext.models.openai import OpenAIChatCompletionClient
+
+def refund_flight(flight_id: str) -&gt; str:
+    &quot;&quot;&quot;Refund a flight&quot;&quot;&quot;
+    return f&quot;Flight &#123;flight_id&#125; refunded&quot;
+   
+</code></pre>
+<pre><code class="python">model_client = OpenAIChatCompletionClient(
+    model=&quot;gpt-4o&quot;,
+    # api_key=&quot;YOUR_API_KEY&quot;,
+)
+
+travel_agent = AssistantAgent(
+    &quot;travel_agent&quot;,
+    model_client=model_client,
+    handoffs=[&quot;flights_refunder&quot;, &quot;user&quot;],
+    system_message=&quot;&quot;&quot;You are a travel agent.
+    The flights_refunder is in charge of refunding flights.
+    If you need information from the user, you must first send your message, then you can handoff to the user.
+    Use TERMINATE when the travel planning is complete.&quot;&quot;&quot;,
+)
+
+flights_refunder = AssistantAgent(
+    &quot;flights_refunder&quot;,
+    model_client=model_client,
+    handoffs=[&quot;travel_agent&quot;, &quot;user&quot;],
+    tools=[refund_flight],
+    system_message=&quot;&quot;&quot;You are an agent specialized in refunding flights.
+    You only need flight reference numbers to refund a flight.
+    You have the ability to refund a flight using the refund_flight tool.
+    If you need information from the user, you must first send your message, then you can handoff to the user.
+    When the transaction is complete, handoff to the travel agent to finalize.&quot;&quot;&quot;,
+)
+</code></pre>
+<pre><code class="python">termination = HandoffTermination(target=&quot;user&quot;) | TextMentionTermination(&quot;TERMINATE&quot;)
+team = Swarm([travel_agent, flights_refunder], termination_condition=termination)
+
+task = &quot;I need to refund my flight.&quot;
+
+async def run_team_stream() -&gt; None:
+    task_result = await Console(team.run_stream(task=task))
+    last_message = task_result.messages[-1]
+
+    while isinstance(last_message, HandoffMessage) and last_message.target == &quot;user&quot;:
+        user_message = input(&quot;User: &quot;)
+
+        task_result = await Console(
+            team.run_stream(task=HandoffMessage(source=&quot;user&quot;, target=last_message.source, content=user_message))
+        )
+        last_message = task_result.messages[-1]
+
+
+# Use asyncio.run(...) if you are running this in a script.
+await run_team_stream()
+</code></pre>
+<h4 id="实践2-股票研究"><a href="#实践2-股票研究" class="headerlink" title="实践2 股票研究"></a>实践2 股票研究</h4><p><img src="/2025/03/10/Agent/autogen%E6%8F%90%E9%AB%98%E4%B9%8BAgentChat%20Advanced%E9%83%A8%E5%88%86/image-20250310213811430.png" alt="image-20250310213811430"></p>
+<ul>
+<li>Planner 中央协调员，根据他们的专业知识将特定任务委派给专业代理。规划师确保每个代理都得到有效利用并监督整个工作流程。</li>
+<li><strong>Financial Analyst（财务分析师</strong>）：负责使用 <code>get_stock_data</code> 等工具分析财务指标和股票数据的专业代理。</li>
+<li> <strong>News Analyst（新闻分析师</strong>）：专注于使用 <code>get_news</code> 等工具收集和总结与股票相关的近期新闻文章的代理人。</li>
+<li> <strong>Writer（作者）：</strong> 负责将股票和新闻分析的结果汇编成一个有凝聚力的最终报告的代理人。</li>
+</ul>
+<pre><code class="python">async def get_stock_data(symbol: str) -&gt; Dict[str, Any]:
+    &quot;&quot;&quot;Get stock market data for a given symbol&quot;&quot;&quot;
+    return &#123;&quot;price&quot;: 180.25, &quot;volume&quot;: 1000000, &quot;pe_ratio&quot;: 65.4, &quot;market_cap&quot;: &quot;700B&quot;&#125;
+
+
+async def get_news(query: str) -&gt; List[Dict[str, str]]:
+    &quot;&quot;&quot;Get recent news articles about a company&quot;&quot;&quot;
+    return [
+        &#123;
+            &quot;title&quot;: &quot;Tesla Expands Cybertruck Production&quot;,
+            &quot;date&quot;: &quot;2024-03-20&quot;,
+            &quot;summary&quot;: &quot;Tesla ramps up Cybertruck manufacturing capacity at Gigafactory Texas, aiming to meet strong demand.&quot;,
+        &#125;,
+        &#123;
+            &quot;title&quot;: &quot;Tesla FSD Beta Shows Promise&quot;,
+            &quot;date&quot;: &quot;2024-03-19&quot;,
+            &quot;summary&quot;: &quot;Latest Full Self-Driving beta demonstrates significant improvements in urban navigation and safety features.&quot;,
+        &#125;,
+        &#123;
+            &quot;title&quot;: &quot;Model Y Dominates Global EV Sales&quot;,
+            &quot;date&quot;: &quot;2024-03-18&quot;,
+            &quot;summary&quot;: &quot;Tesla&#39;s Model Y becomes best-selling electric vehicle worldwide, capturing significant market share.&quot;,
+        &#125;,
+    ]
+</code></pre>
+<pre><code class="python">model_client = OpenAIChatCompletionClient(
+    model=&quot;gpt-4o&quot;,
+    # api_key=&quot;YOUR_API_KEY&quot;,
+)
+
+planner = AssistantAgent(
+    &quot;planner&quot;,
+    model_client=model_client,
+    handoffs=[&quot;financial_analyst&quot;, &quot;news_analyst&quot;, &quot;writer&quot;],
+    system_message=&quot;&quot;&quot;You are a research planning coordinator.
+    Coordinate market research by delegating to specialized agents:
+    - Financial Analyst: For stock data analysis
+    - News Analyst: For news gathering and analysis
+    - Writer: For compiling final report
+    Always send your plan first, then handoff to appropriate agent.
+    Always handoff to a single agent at a time.
+    Use TERMINATE when research is complete.&quot;&quot;&quot;,
+)
+
+financial_analyst = AssistantAgent(
+    &quot;financial_analyst&quot;,
+    model_client=model_client,
+    handoffs=[&quot;planner&quot;],
+    tools=[get_stock_data],
+    system_message=&quot;&quot;&quot;You are a financial analyst.
+    Analyze stock market data using the get_stock_data tool.
+    Provide insights on financial metrics.
+    Always handoff back to planner when analysis is complete.&quot;&quot;&quot;,
+)
+
+news_analyst = AssistantAgent(
+    &quot;news_analyst&quot;,
+    model_client=model_client,
+    handoffs=[&quot;planner&quot;],
+    tools=[get_news],
+    system_message=&quot;&quot;&quot;You are a news analyst.
+    Gather and analyze relevant news using the get_news tool.
+    Summarize key market insights from news.
+    Always handoff back to planner when analysis is complete.&quot;&quot;&quot;,
+)
+
+writer = AssistantAgent(
+    &quot;writer&quot;,
+    model_client=model_client,
+    handoffs=[&quot;planner&quot;],
+    system_message=&quot;&quot;&quot;You are a financial report writer.
+    Compile research findings into clear, concise reports.
+    Always handoff back to planner when writing is complete.&quot;&quot;&quot;,
+)
+</code></pre>
+<p>Swarm仍需要一个主力的规划节点用于启动任务,实际去看时，附庸节点并没有的自主能力，比如新闻分析后可以直接转发给Writer的，但是它还是发给了planner，然后planner直接转发给了Writer</p>
+<h3 id="Magentic-One"><a href="#Magentic-One" class="headerlink" title="Magentic-One"></a>Magentic-One</h3><p><a target="_blank" rel="noopener" href="https://aka.ms/magentic-one-blog">Magentic-One</a> 是一个通用的多代理系统，用于解决跨各种域的开放式 Web 和基于文件的任务。它代表了多代理系统向前迈出的重要一步，在许多代理基准上实现了有竞争力的性能（有关详细信息，请参阅<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2411.04468">技术报告</a>）。</p>
+<p>Magentic-One 的 Orchestrator 代理会创建计划，将任务委派给其他代理，并跟踪目标的进度，并根据需要动态修改计划。</p>
+<pre><code class="python">import asyncio
+from autogen_ext.models.openai import OpenAIChatCompletionClient
+from autogen_agentchat.agents import AssistantAgent
+from autogen_agentchat.teams import MagenticOneGroupChat
+from autogen_agentchat.ui import Console
+
+
+async def main() -&gt; None:
+    model_client = OpenAIChatCompletionClient(model=&quot;gpt-4o&quot;)
+
+    assistant = AssistantAgent(
+        &quot;Assistant&quot;,
+        model_client=model_client,
+    )
+    team = MagenticOneGroupChat([assistant], model_client=model_client)
+    await Console(team.run_stream(task=&quot;Provide a different proof for Fermat&#39;s Last Theorem&quot;))
+
+
+asyncio.run(main())
+</code></pre>
+<p>引入WebSurferAgent </p>
+<pre><code class="python">import asyncio
+from autogen_ext.models.openai import OpenAIChatCompletionClient
+from autogen_agentchat.teams import MagenticOneGroupChat
+from autogen_agentchat.ui import Console
+from autogen_ext.agents.web_surfer import MultimodalWebSurfer
+# from autogen_ext.agents.file_surfer import FileSurfer
+# from autogen_ext.agents.magentic_one import MagenticOneCoderAgent
+# from autogen_agentchat.agents import CodeExecutorAgent
+# from autogen_ext.code_executors.local import LocalCommandLineCodeExecutor
+
+async def main() -&gt; None:
+    model_client = OpenAIChatCompletionClient(model=&quot;gpt-4o&quot;)
+
+    surfer = MultimodalWebSurfer(
+        &quot;WebSurfer&quot;,
+        model_client=model_client,
+    )
+
+    team = MagenticOneGroupChat([surfer], model_client=model_client)
+    await Console(team.run_stream(task=&quot;What is the UV index in Melbourne today?&quot;))
+
+    # # Note: you can also use  other agents in the team
+    # team = MagenticOneGroupChat([surfer, file_surfer, coder, terminal], model_client=model_client)
+    # file_surfer = FileSurfer( &quot;FileSurfer&quot;,model_client=model_client)
+    # coder = MagenticOneCoderAgent(&quot;Coder&quot;,model_client=model_client)
+    # terminal = CodeExecutorAgent(&quot;ComputerTerminal&quot;,code_executor=LocalCommandLineCodeExecutor())
+
+
+asyncio.run(main())
+</code></pre>
+<p>或者，将所有代理捆绑在一起的 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_ext.teams.magentic_one.html#autogen_ext.teams.magentic_one.MagenticOne" title="autogen_ext.teams.magentic_one.MagenticOne"><code>MagenticOne</code></a> 帮助程序类一起使用：</p>
+<pre><code class="python">import asyncio
+from autogen_ext.models.openai import OpenAIChatCompletionClient
+from autogen_ext.teams.magentic_one import MagenticOne
+from autogen_agentchat.ui import Console
+
+async def example_usage():
+    client = OpenAIChatCompletionClient(model=&quot;gpt-4o&quot;)
+    m1 = MagenticOne(client=client)
+    task = &quot;Write a Python script to fetch data from an API.&quot;
+    result = await Console(m1.run_stream(task=task))
+    print(result)
+
+if __name__ == &quot;__main__&quot;:
+    asyncio.run(example_usage())
+</code></pre>
+<p>总体而言，Magentic-One 由以下代理组成：</p>
+<ul>
+<li>编排器：负责任务分解和规划、指导其他代理执行子任务、跟踪整体进度并根据需要采取纠正措施的首席代理</li>
+<li>WebSurfer：这是一个LLM基于代理，精通命令和管理基于 Chromium 的 Web 浏览器的状态。对于每个传入的请求，WebSurfer 都会在浏览器上执行一个作，然后报告网页的新状态 WebSurfer 的作空间包括导航（例如访问 URL、执行 Web 搜索）;网页作（例如，单击和键入）;和阅读动作（例如，总结或回答问题）。WebSurfer 依赖于浏览器的可访问性树和提示执行其作的标记集。</li>
+<li>FileSurfer：这是一个基于 LLM的代理，它命令基于 markdown 的文件预览应用程序读取大多数类型的本地文件。FileSurfer 还可以执行常见的导航任务，例如列出目录的内容和导航文件夹结构。</li>
+<li>Coder：这是一个LLM基于代理的代理，通过其系统提示符专门用于编写代码、分析从其他代理收集的信息或创建新工件。</li>
+<li>ComputerTerminal：最后，ComputerTerminal 为团队提供了对控制台 shell 的访问，Coder 的程序可以在其中执行，并且可以安装新的编程库。</li>
+</ul>
+<h3 id="Memory"><a href="#Memory" class="headerlink" title="Memory"></a>Memory</h3><p>AgentChat 提供了一个 Memory 协议，该协议可以扩展以提供此功能。主要方法包括 <code>query</code>、<code>update_context</code>、<code>add</code>、<code>clear</code> 和 <code>close</code>。</p>
+<ul>
+<li><code>add</code>: add new entries to the memory store</li>
+<li><code>query</code>: retrieve relevant information from the memory store</li>
+<li><code>update_context</code>: mutate an agent’s internal <code>model_context</code> by adding the retrieved information (used in the <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.AssistantAgent" title="autogen_agentchat.agents.AssistantAgent"><code>AssistantAgent</code></a> class)</li>
+<li><code>clear</code>: clear all entries from the memory store</li>
+<li><code>close</code>: clean up any resources used by the memory store</li>
+</ul>
+<h4 id="ListMemory"><a href="#ListMemory" class="headerlink" title="ListMemory"></a>ListMemory</h4><p>。这是一个简单的基于列表的内存实现，按时间顺序维护内存，并将最近的Memory附加到模型的上下文中。</p>
+<pre><code class="python">from autogen_agentchat.agents import AssistantAgent
+from autogen_agentchat.ui import Console
+from autogen_core.memory import ListMemory, MemoryContent, MemoryMimeType
+from autogen_ext.models.openai import OpenAIChatCompletionClient
+
+
+# Initialize user memory
+user_memory = ListMemory()
+
+# Add user preferences to memory
+await user_memory.add(MemoryContent(content=&quot;The weather should be in metric units&quot;, mime_type=MemoryMimeType.TEXT))
+
+await user_memory.add(MemoryContent(content=&quot;Meal recipe must be vegan&quot;, mime_type=MemoryMimeType.TEXT))
+
+
+async def get_weather(city: str, units: str = &quot;imperial&quot;) -&gt; str:
+    if units == &quot;imperial&quot;:
+        return f&quot;The weather in &#123;city&#125; is 73 °F and Sunny.&quot;
+    elif units == &quot;metric&quot;:
+        return f&quot;The weather in &#123;city&#125; is 23 °C and Sunny.&quot;
+    else:
+        return f&quot;Sorry, I don&#39;t know the weather in &#123;city&#125;.&quot;
+
+
+assistant_agent = AssistantAgent(
+    name=&quot;assistant_agent&quot;,
+    model_client=OpenAIChatCompletionClient(
+        model=&quot;gpt-4o-2024-08-06&quot;,
+    ),
+    tools=[get_weather],
+    memory=[user_memory],
+)
+
+# Run the agent with a task.
+stream = assistant_agent.run_stream(task=&quot;What is the weather in New York?&quot;)
+await Console(stream)
+</code></pre>
+<p>从目前来看, Memory类似一个外挂的知识,大模型对其的使用方式是放到system Message中。</p>
+<h4 id="Custom-Memory-Stores-Vector-DBs-etc"><a href="#Custom-Memory-Stores-Vector-DBs-etc" class="headerlink" title="Custom Memory Stores (Vector DBs, etc.)"></a>Custom Memory Stores (Vector DBs, etc.)</h4><ul>
+<li><code>autogen_ext.memory.chromadb.ChromaDBVectorMemory</code> ：使用矢量数据库存储和检索信息的内存存储。</li>
+</ul>
+<pre><code class="python">import os
+from pathlib import Path
+
+from autogen_agentchat.agents import AssistantAgent
+from autogen_agentchat.ui import Console
+from autogen_core.memory import MemoryContent, MemoryMimeType
+from autogen_ext.memory.chromadb import ChromaDBVectorMemory, PersistentChromaDBVectorMemoryConfig
+from autogen_ext.models.openai import OpenAIChatCompletionClient
+
+# Initialize ChromaDB memory with custom config
+chroma_user_memory = ChromaDBVectorMemory(
+    config=PersistentChromaDBVectorMemoryConfig(
+        collection_name=&quot;preferences&quot;,
+        persistence_path=os.path.join(str(Path.home()), &quot;.chromadb_autogen&quot;),
+        k=2,  # Return top  k results
+        score_threshold=0.4,  # Minimum similarity score
+    )
+)
+# a HttpChromaDBVectorMemoryConfig is also supported for connecting to a remote ChromaDB server
+
+# Add user preferences to memory
+await chroma_user_memory.add(
+    MemoryContent(
+        content=&quot;The weather should be in metric units&quot;,
+        mime_type=MemoryMimeType.TEXT,
+        metadata=&#123;&quot;category&quot;: &quot;preferences&quot;, &quot;type&quot;: &quot;units&quot;&#125;,
+    )
+)
+
+await chroma_user_memory.add(
+    MemoryContent(
+        content=&quot;Meal recipe must be vegan&quot;,
+        mime_type=MemoryMimeType.TEXT,
+        metadata=&#123;&quot;category&quot;: &quot;preferences&quot;, &quot;type&quot;: &quot;dietary&quot;&#125;,
+    )
+)
+
+
+# Create assistant agent with ChromaDB memory
+assistant_agent = AssistantAgent(
+    name=&quot;assistant_agent&quot;,
+    model_client=OpenAIChatCompletionClient(
+        model=&quot;gpt-4o&quot;,
+    ),
+    tools=[get_weather],
+    memory=[user_memory],
+)
+
+stream = assistant_agent.run_stream(task=&quot;What is the weather in New York?&quot;)
+await Console(stream)
+
+await user_memory.close()
+</code></pre>
+<h3 id="组件导出"><a href="#组件导出" class="headerlink" title="组件导出"></a>组件导出</h3><p>AutoGen 提供了一个 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_core.html#autogen_core.Component" title="autogen_core.Component"><code>Component</code></a> 配置类，它定义了将组件序列化 / 反序列化为声明式规范的行为。我们可以通过分别调用 <code>.dump_component（）</code> 和 <code>.load_component（）</code> 来实现这一点。这对于调试、可视化甚至与他人共享您的工作非常有用。在此笔记本中，我们将演示如何将多个组件序列化为声明性规范（如 JSON 文件）。</p>
+<p>导出<code>.dump_component()</code><br>JSON格式输出 <code>model_dump_json()</code><br>导入 <code> load_component(or_term_config)</code></p>
+<hr>
+<p>文章参考:</p>
+<p>博客地址: qwrdxer.github.io</p>
+<p>欢迎交流: qq1944270374</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1944270374@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2020-2023 qwrdxer
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 592px;
+    }
+    .nav.fullscreen {
+        margin-left: -592px;
+    }
+    .nav-left {
+        width: 170px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 542px;
+        }
+        .nav.fullscreen {
+            margin-left: -542px;
+        }
+        .nav-left {
+            width: 150px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 542px;
+            margin-left: -542px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    #post {
+        background: url(/img/start.png);
+    }
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

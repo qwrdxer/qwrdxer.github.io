@@ -1,0 +1,1884 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>multi-agent中的设计模式 | qwrdxer &#39;s blog</title>
+  <meta name="keywords" content=" Agent , Multi-Agent ">
+  <meta name="description" content="multi-agent中的设计模式 | qwrdxer &#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About">
+<meta property="og:url" content="https://qwrdxer.github.io/about/index.html">
+<meta property="og:site_name" content="qwrdxer &#39;s blog">
+<meta property="og:locale">
+<meta property="article:published_time" content="2023-09-27T10:59:02.024Z">
+<meta property="article:modified_time" content="2020-12-09T15:31:00.000Z">
+<meta property="article:author" content="qwrdxer">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>qwrdxer</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/qwrdxer"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/yyc-96-55-3"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qwrdxer?type=blog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1944270374@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1944270374&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(49)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="杂项">
+            
+            杂项
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="编程语言">
+            <i class="fold iconfont icon-right"></i>
+            编程语言
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;C++">
+            
+            C++
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Go">
+            
+            Go
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Rust">
+            
+            Rust
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="操作系统">
+            
+            操作系统
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="代码分析">
+            
+            代码分析
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="环境配置">
+            
+            环境配置
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="脚本">
+            
+            脚本
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="开发工具">
+            
+            开发工具
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文阅读">
+            <i class="fold iconfont icon-right"></i>
+            论文阅读
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="论文阅读&lt;---&gt;人工智能">
+            
+            人工智能
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="爬虫">
+            
+            爬虫
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="区块链">
+            
+            区块链
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="人工智能">
+            <i class="fold iconfont icon-right"></i>
+            人工智能
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="人工智能&lt;---&gt;FASTAI">
+            
+            FASTAI
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="日志">
+            
+            日志
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="渗透测试篇">
+            
+            渗透测试篇
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            
+            数据库
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="算法">
+            
+            算法
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="写点好玩的">
+            
+            写点好玩的
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="一些奇怪的bug">
+            
+            一些奇怪的bug
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="以太坊">
+            
+            以太坊
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Agent">
+            
+            Agent
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="MCP">
+            
+            MCP
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全工具篇">
+            
+            web安全工具篇
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全漏洞篇">
+            
+            web安全漏洞篇
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">关于</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="49">
+<input type="hidden" id="yelog_site_word_count" value="153k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>报错解决</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具使用</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境配置</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>脚本</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>深度学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>渗透测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>通讯协议</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>文件包含</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>bash</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FASTAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPT</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Josephus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MCP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Memory</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Multi-Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>shell</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Swarm</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>web漏洞</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WordPress</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 Agent "
+           href="/2025/03/22/Agent/multi-agent%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="multi-agent中的设计模式">multi-agent中的设计模式</span>
+            <span class="post-date" title="2025-03-22 14:46:50">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 Agent "
+           href="/2025/03/22/Agent/autogen-core%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen-core学习记录">autogen-core学习记录</span>
+            <span class="post-date" title="2025-03-22 14:42:21">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 MCP "
+           href="/2025/03/12/MCP/MCP(Model%20Context%20Protocol)%20%E7%AE%80%E4%BB%8B/"
+           data-tag="LLM,MCP,通讯协议"
+           data-author="" >
+            <span class="post-title" title="MCP(Model Context Protocol) 简介">MCP(Model Context Protocol) 简介</span>
+            <span class="post-date" title="2025-03-12 15:47:27">2025/03/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 Agent "
+           href="/2025/03/10/Agent/autogen%E6%8F%90%E9%AB%98%E4%B9%8BAgentChat%20Advanced%E9%83%A8%E5%88%86/"
+           data-tag="Agent,Multi-Agent,Memory,Swarm"
+           data-author="" >
+            <span class="post-title" title="autogen提高之AgentChat Advanced部分">autogen提高之AgentChat Advanced部分</span>
+            <span class="post-date" title="2025-03-10 21:35:41">2025/03/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 Agent "
+           href="/2025/03/08/Agent/autogen%E5%85%A5%E9%97%A8%E4%B9%8Bagentchat/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen入门之autochat">autogen入门之autochat</span>
+            <span class="post-date" title="2025-03-08 20:23:19">2025/03/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 开发工具 "
+           href="/2024/02/26/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/logseq%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="logseq使用">logseq使用</span>
+            <span class="post-date" title="2024-02-26 10:47:48">2024/02/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 区块链 "
+           href="/2024/01/21/%E5%8C%BA%E5%9D%97%E9%93%BE/hardhat%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hardhat智能合约流程">hardhat智能合约流程</span>
+            <span class="post-date" title="2024-01-21 15:20:03">2024/01/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 算法 "
+           href="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/"
+           data-tag="Josephus"
+           data-author="" >
+            <span class="post-title" title="Josephus Problem">Josephus Problem</span>
+            <span class="post-date" title="2024-01-17 11:49:36">2024/01/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 区块链 "
+           href="/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="fabric环境配置">fabric环境配置</span>
+            <span class="post-date" title="2024-01-08 18:47:43">2024/01/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 爬虫 "
+           href="/2023/12/22/%E7%88%AC%E8%99%AB/CF%E7%9B%BE%E7%BB%95%E8%BF%87(NodeJs%E7%89%88)/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CF盾绕过(NodeJs版)">CF盾绕过(NodeJs版)</span>
+            <span class="post-date" title="2023-12-22 20:11:48">2023/12/22</span>
+        </a>
+        
+        
+        <a  class="全部文章 "
+           href="/2023/10/23/Untitled/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2023-10-23 21:15:12">2023/10/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 以太坊 "
+           href="/2023/10/19/%E4%BB%A5%E5%A4%AA%E5%9D%8A/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E9%83%A8%E5%88%86%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B5%85%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="以太坊部分知识点浅析">以太坊部分知识点浅析</span>
+            <span class="post-date" title="2023-10-19 16:10:05">2023/10/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 日志 "
+           href="/2023/10/12/%E6%97%A5%E5%BF%97/%E9%93%BE%E6%8E%A5%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="链接记录">链接记录</span>
+            <span class="post-date" title="2023-10-12 19:40:28">2023/10/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/go-rod%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="go-rod学习">go-rod学习</span>
+            <span class="post-date" title="2023-10-06 11:22:48">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/Go%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%88%AC%E8%99%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go实现一个爬虫">Go实现一个爬虫</span>
+            <span class="post-date" title="2023-10-06 11:10:43">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="全部文章 代码分析 "
+           href="/2023/10/05/%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/RustScan%E6%BA%90%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RustScan源代码分析">RustScan源代码分析</span>
+            <span class="post-date" title="2023-10-05 19:28:59">2023/10/05</span>
+        </a>
+        
+        
+        <a  class="全部文章 一些奇怪的bug "
+           href="/2023/10/02/%E4%B8%80%E4%BA%9B%E5%A5%87%E6%80%AA%E7%9A%84bug/bug%E8%AE%B0%E5%BD%95&%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="bug记录&amp;解决方法">bug记录&amp;解决方法</span>
+            <span class="post-date" title="2023-10-02 16:05:12">2023/10/02</span>
+        </a>
+        
+        
+        <a  class="全部文章 论文阅读 人工智能 "
+           href="/2023/10/01/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/OpenAI%E7%9A%84GPT%E5%8F%91%E5%B1%95/"
+           data-tag="GPT,LLM"
+           data-author="" >
+            <span class="post-title" title="大模型论文">大模型论文</span>
+            <span class="post-date" title="2023-10-01 22:17:21">2023/10/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 Rust "
+           href="/2023/09/28/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/Rust_lifetime/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Rust的生命周期">Rust的生命周期</span>
+            <span class="post-date" title="2023-09-28 11:33:04">2023/09/28</span>
+        </a>
+        
+        
+        <a  class="全部文章 写点好玩的 "
+           href="/2023/09/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%AE%89%E5%85%A8%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE&%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE%E4%B8%8B%E8%BD%BD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安全四大会议&amp;人工智能四大会议下载">安全四大会议&amp;人工智能四大会议下载</span>
+            <span class="post-date" title="2023-09-27 20:47:28">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 Rust "
+           href="/2023/09/27/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/The%20Rust%20Programming%20Language%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Rust Programming Language阅读笔记">The Rust Programming Language阅读笔记</span>
+            <span class="post-date" title="2023-09-27 20:35:50">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_3_%E5%A4%9AGPU%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_3_多GPU训练">FASTAI_3_多GPU训练</span>
+            <span class="post-date" title="2023-09-27 20:32:12">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_2_Datasets%E3%80%81Pipeline%E3%80%81TfmdLists%E3%80%81Transform/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_2_Datasets、Pipeline、TfmdLists、Transform">FASTAI_2_Datasets、Pipeline、TfmdLists、Transform</span>
+            <span class="post-date" title="2023-09-27 20:29:37">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_1_%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8CAPI%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI_1_使用不同API加载数据">FASTAI_1_使用不同API加载数据</span>
+            <span class="post-date" title="2023-09-27 20:28:09">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI快速入门">FASTAI快速入门</span>
+            <span class="post-date" title="2023-09-27 20:18:36">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 C++ "
+           href="/2023/01/10/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/C++%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C++入门">C++入门</span>
+            <span class="post-date" title="2023-01-10 11:30:50">2023/01/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 写点好玩的 "
+           href="/2022/04/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%AB%E6%8F%8F%E5%99%A8%E5%AE%9E%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="分布式扫描器实现">分布式扫描器实现</span>
+            <span class="post-date" title="2022-04-27 11:43:42">2022/04/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 数据库 "
+           href="/2022/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93/mongodb%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="mongodb学习">mongodb学习</span>
+            <span class="post-date" title="2022-04-14 09:31:33">2022/04/14</span>
+        </a>
+        
+        
+        <a  class="全部文章 写点好玩的 "
+           href="/2022/04/10/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/Go%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E5%99%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go编写一个扫描器">Go编写一个扫描器</span>
+            <span class="post-date" title="2022-04-10 14:34:18">2022/04/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 写点好玩的 "
+           href="/2022/04/09/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E6%83%B3%E6%B3%95%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="想法记录">想法记录</span>
+            <span class="post-date" title="2022-04-09 11:24:11">2022/04/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 编程语言 Go "
+           href="/2022/04/08/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go/The%20Way%20To%20Go/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Way To Go">The Way To Go</span>
+            <span class="post-date" title="2022-04-08 18:09:20">2022/04/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 日志 "
+           href="/2022/03/31/%E6%97%A5%E5%BF%97/%E5%B1%B1%E8%BF%98%E6%98%AF%E5%B1%B1,%E6%B0%B4%E8%BF%98%E6%98%AF%E6%B0%B4,%E4%BD%A0%E4%B8%8D%E8%83%BD%E6%B0%B8%E8%BF%9C%E6%98%AF%E9%82%A3%E4%B8%AA%E4%BD%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="山还是山,水还是水,你不能永远是那个你">山还是山,水还是水,你不能永远是那个你</span>
+            <span class="post-date" title="2022-03-31 09:37:42">2022/03/31</span>
+        </a>
+        
+        
+        <a  class="全部文章 操作系统 "
+           href="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day11~day20">30天自制操作系统-学习笔记 day11~day20</span>
+            <span class="post-date" title="2022-03-27 09:49:33">2022/03/27</span>
+        </a>
+        
+        
+        <a  class="全部文章 日志 "
+           href="/2022/03/21/%E6%97%A5%E5%BF%97/%E9%97%B2%E8%AF%AD%E6%9D%82%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="闲语杂记">闲语杂记</span>
+            <span class="post-date" title="2022-03-21 12:51:18">2022/03/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 写点好玩的 "
+           href="/2022/03/15/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/freemarker%E6%93%8D%E6%8E%A7word/"
+           data-tag="工具使用"
+           data-author="" >
+            <span class="post-title" title="freemarker操控word">freemarker操控word</span>
+            <span class="post-date" title="2022-03-15 12:00:54">2022/03/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 操作系统 "
+           href="/2022/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day1~day10">30天自制操作系统-学习笔记 day1~day10</span>
+            <span class="post-date" title="2022-01-31 10:57:39">2022/01/31</span>
+        </a>
+        
+        
+        <a  class="全部文章 杂项 "
+           href="/2022/01/12/%E6%9D%82%E9%A1%B9/GITHUB%E6%94%B6%E9%9B%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GITHUB收集">GITHUB收集</span>
+            <span class="post-date" title="2022-01-12 20:07:03">2022/01/12</span>
+        </a>
+        
+        
+        <a  class="全部文章 写点好玩的 "
+           href="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/"
+           data-tag="渗透测试,工具开发"
+           data-author="" >
+            <span class="post-title" title="web页面密码爆破">web页面密码爆破</span>
+            <span class="post-date" title="2022-01-11 10:21:34">2022/01/11</span>
+        </a>
+        
+        
+        <a  class="全部文章 web安全工具篇 "
+           href="/2022/01/09/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/Goby%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Goby分析">Goby分析</span>
+            <span class="post-date" title="2022-01-09 13:35:49">2022/01/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 开发工具 "
+           href="/2021/08/15/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Shell%E8%84%9A%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag="脚本,bash,shell,linux,开发"
+           data-author="" >
+            <span class="post-title" title="Shell脚本学习笔记">Shell脚本学习笔记</span>
+            <span class="post-date" title="2021-08-15 11:19:55">2021/08/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 渗透测试篇 "
+           href="/2021/07/25/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AF%87/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="信息收集">信息收集</span>
+            <span class="post-date" title="2021-07-25 19:33:55">2021/07/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 web安全漏洞篇 "
+           href="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,MySQL"
+           data-author="" >
+            <span class="post-title" title="SQL注入相关">SQL注入相关</span>
+            <span class="post-date" title="2021-05-11 15:23:06">2021/05/11</span>
+        </a>
+        
+        
+        <a  class="全部文章 web安全工具篇 "
+           href="/2021/04/21/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/nmap%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="nmap使用">nmap使用</span>
+            <span class="post-date" title="2021-04-21 19:29:51">2021/04/21</span>
+        </a>
+        
+        
+        <a  class="全部文章 开发工具 "
+           href="/2021/04/20/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/docker%E7%9B%B8%E5%85%B3/"
+           data-tag="工具使用,脚本,docker"
+           data-author="" >
+            <span class="post-title" title="docker相关">docker相关</span>
+            <span class="post-date" title="2021-04-20 13:49:50">2021/04/20</span>
+        </a>
+        
+        
+        <a  class="全部文章 web安全漏洞篇 "
+           href="/2021/04/19/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,文件包含"
+           data-author="" >
+            <span class="post-title" title="文件包含漏洞相关">文件包含漏洞相关</span>
+            <span class="post-date" title="2021-04-19 14:49:59">2021/04/19</span>
+        </a>
+        
+        
+        <a  class="全部文章 开发工具 "
+           href="/2021/04/16/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/hexo%E5%91%BD%E4%BB%A4/"
+           data-tag="工具使用,脚本"
+           data-author="" >
+            <span class="post-title" title="hexo相关">hexo相关</span>
+            <span class="post-date" title="2021-04-16 12:12:14">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="全部文章 web安全工具篇 "
+           href="/2021/04/16/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/xray%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="xray使用">xray使用</span>
+            <span class="post-date" title="2021-04-16 12:10:08">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="全部文章 脚本 "
+           href="/2021/04/15/%E8%84%9A%E6%9C%AC/some-script/"
+           data-tag="脚本,bash,python"
+           data-author="" >
+            <span class="post-title" title="some script">some script</span>
+            <span class="post-date" title="2021-04-15 11:23:33">2021/04/15</span>
+        </a>
+        
+        
+        <a  class="全部文章 环境配置 "
+           href="/2021/04/15/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/centos%E9%83%A8%E7%BD%B2wordpress/"
+           data-tag="linux,环境配置,报错解决,WordPress"
+           data-author="" >
+            <span class="post-title" title="centos部署wordpress">centos部署wordpress</span>
+            <span class="post-date" title="2021-04-15 01:34:16">2021/04/15</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Agent/multi-agent中的设计模式" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">multi-agent中的设计模式</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Agent">Agent</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">Agent</a>
+            
+            <a class="color2">Multi-Agent</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2025-03-22 14:49:35'>2025-03-22 14:46</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:3.8k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Multi-Agent-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-text">Multi-Agent 设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Concurrent-Agent-%E5%B9%B6%E5%8F%91"><span class="toc-text">Concurrent Agent 并发</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Single-Message-amp-Multiple-Processors"><span class="toc-text">Single Message &amp; Multiple Processors</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Multiple-messages-amp-Multiple-Processors"><span class="toc-text">Multiple messages &amp; Multiple Processors</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Direct-Messages"><span class="toc-text">Direct Messages</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sequential-Workflow-%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="toc-text">Sequential Workflow 工作流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Group-Chat-%E7%BE%A4%E8%81%8A"><span class="toc-text">Group Chat 群聊</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#handsoffs%E4%BA%A4%E6%8E%A5"><span class="toc-text">handsoffs交接</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#message"><span class="toc-text">message</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Agent"><span class="toc-text">Agent</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#topic"><span class="toc-text">topic</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AC%E5%8F%91%E5%B7%A5%E5%85%B7"><span class="toc-text">转发工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#UserAgent"><span class="toc-text">UserAgent</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mixture-of-Agent"><span class="toc-text">Mixture of Agent</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Multi-Agent-Debate"><span class="toc-text">Multi-Agent Debate</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Reflection"><span class="toc-text">Reflection</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Multi-Agent-设计模式"><a href="#Multi-Agent-设计模式" class="headerlink" title="Multi-Agent 设计模式"></a>Multi-Agent 设计模式</h2><p>Agent 可以通过多种方式协同工作来解决问题,多Agent设计模式描述了多个Agent如何相互交互以解决实际的问题。</p>
+<h3 id="Concurrent-Agent-并发"><a href="#Concurrent-Agent-并发" class="headerlink" title="Concurrent Agent 并发"></a>Concurrent Agent 并发</h3><p>本节介绍三种多Agent的并发模式</p>
+<ul>
+<li>Single Message &amp; Multiple Processors ：即订阅同一Topic的多个Agent同时处理单个消息</li>
+<li>Multiple Message &amp; Multiple Processors : 即如何根据topic将特定消息路由到专用Agent</li>
+<li>Direct Messaging : Agent与Agent之间如何发送消息</li>
+</ul>
+<pre><code class="python">import asyncio
+from dataclasses import dataclass
+
+from autogen_core import (
+    AgentId,
+    ClosureAgent,
+    ClosureContext,
+    DefaultTopicId,
+    MessageContext,
+    RoutedAgent,
+    SingleThreadedAgentRuntime,
+    TopicId,
+    TypeSubscription,
+    default_subscription,
+    message_handler,
+    type_subscription,
+)
+
+
+@dataclass
+class Task:
+    task_id: str
+
+
+@dataclass
+class TaskResponse:
+    task_id: str
+    result: str
+</code></pre>
+<h4 id="Single-Message-amp-Multiple-Processors"><a href="#Single-Message-amp-Multiple-Processors" class="headerlink" title="Single Message &amp; Multiple Processors"></a>Single Message &amp; Multiple Processors</h4><ul>
+<li>示例中的每个Agent都使用 <code>default_subscription</code> 来订阅默认的topic</li>
+<li>当将消息发送到默认的topic时，所有Agent都将独立处理该消息</li>
+</ul>
+<p>示例中通过<code>publish_message</code>发送到默认topic，agent1和agent2都会处理这个任务</p>
+<pre><code class="python">@default_subscription
+class Processor(RoutedAgent):
+
+    @message_handler
+    async def on_task(self,message:Task,ctx:MessageContext)-&gt;None:
+        print(f&quot;&#123;self._description&#125; starting task &#123;message.task_id&#125;&quot;)
+        await asyncio.sleep(2)  # Simulate work
+        print(f&quot;&#123;self._description&#125; finished task &#123;message.task_id&#125;&quot;)
+
+async def main():
+    runtime = SingleThreadedAgentRuntime()
+    await Processor.register(runtime,&quot;agent1&quot;,lambda:Processor(&quot;agent1&quot;))
+    await Processor.register(runtime,&quot;agent2&quot;,lambda:Processor(&quot;agent2&quot;))
+    runtime.start()
+    await runtime.publish_message(Task(task_id=&quot;2&quot;),DefaultTopicId())
+    await runtime.stop_when_idle()
+  
+
+if __name__ == &quot;__main__&quot;:
+    asyncio.run(main())
+</code></pre>
+<h4 id="Multiple-messages-amp-Multiple-Processors"><a href="#Multiple-messages-amp-Multiple-Processors" class="headerlink" title="Multiple messages &amp; Multiple Processors"></a>Multiple messages &amp; Multiple Processors</h4><ul>
+<li>示例中创建了两个agent分别订阅了 <code>urgent</code> 与 <code>normal</code>两个topic</li>
+<li>两个agent的处理结果会发送到 <code>task_results</code> 这个topic</li>
+<li>可以通过 ClosureAgent来收集这两个Agent的处理结果</li>
+</ul>
+<pre><code class="python">TASK_RESULTS_TOPIC_TYPE = &quot;task-results&quot;
+task_results_topic_id = TopicId(type=TASK_RESULTS_TOPIC_TYPE, source=&quot;default&quot;)
+
+
+@type_subscription(topic_type=&quot;urgent&quot;)
+class UrgentProcessor(RoutedAgent):
+    @message_handler
+    async def on_task(self, message: Task, ctx: MessageContext) -&gt; None:
+        print(f&quot;Urgent processor starting task &#123;message.task_id&#125;&quot;)
+        await asyncio.sleep(1)  # Simulate work
+        print(f&quot;Urgent processor finished task &#123;message.task_id&#125;&quot;)
+        #将处理结果发给指定的topic
+        task_response = TaskResponse(task_id=message.task_id, result=&quot;Results by Urgent Processor&quot;)
+        await self.publish_message(task_response, topic_id=task_results_topic_id)
+
+
+@type_subscription(topic_type=&quot;normal&quot;)
+class NormalProcessor(RoutedAgent):
+    @message_handler
+    async def on_task(self, message: Task, ctx: MessageContext) -&gt; None:
+        print(f&quot;Normal processor starting task &#123;message.task_id&#125;&quot;)
+        await asyncio.sleep(3)  # Simulate work
+        print(f&quot;Normal processor finished task &#123;message.task_id&#125;&quot;)
+
+        task_response = TaskResponse(task_id=message.task_id, result=&quot;Results by Normal Processor&quot;)
+        await self.publish_message(task_response, topic_id=task_results_topic_id)
+</code></pre>
+<ul>
+<li>注册Agent并向主题发送消息,Agent会去处理<br>```python<br>runtime = SingleThreadedAgentRuntime()</li>
+</ul>
+<p>await UrgentProcessor.register(runtime, “urgent_processor”, lambda: UrgentProcessor(“Urgent Processor”))<br>await NormalProcessor.register(runtime, “normal_processor”, lambda: NormalProcessor(“Normal Processor”))</p>
+<p>runtime.start()</p>
+<p>await runtime.publish_message(Task(task_id=”normal-1”), topic_id=TopicId(type=”normal”, source=”default”))<br>await runtime.publish_message(Task(task_id=”urgent-1”), topic_id=TopicId(type=”urgent”, source=”default”))</p>
+<p>await runtime.stop_when_idle()</p>
+<pre><code>
+
+- 然后使用 `ClosureAgent`来收集发布的信息
+```python
+queue = asyncio.Queue[TaskResponse]()
+
+
+async def collect_result(_agent: ClosureContext, message: TaskResponse, ctx: MessageContext) -&gt; None:
+    await queue.put(message)
+
+
+runtime.start()
+
+CLOSURE_AGENT_TYPE = &quot;collect_result_agent&quot;
+await ClosureAgent.register_closure(
+    runtime,
+    CLOSURE_AGENT_TYPE,
+    collect_result,
+    subscriptions=lambda: [TypeSubscription(topic_type=TASK_RESULTS_TOPIC_TYPE, agent_type=CLOSURE_AGENT_TYPE)],
+)
+
+await runtime.publish_message(Task(task_id=&quot;normal-1&quot;), topic_id=TopicId(type=&quot;normal&quot;, source=&quot;default&quot;))
+await runtime.publish_message(Task(task_id=&quot;urgent-1&quot;), topic_id=TopicId(type=&quot;urgent&quot;, source=&quot;default&quot;))
+
+await runtime.stop_when_idle()
+while not queue.empty():
+    print(await queue.get())
+</code></pre>
+<h4 id="Direct-Messages"><a href="#Direct-Messages" class="headerlink" title="Direct Messages"></a>Direct Messages</h4><ul>
+<li>有两种直接发送的方法,Agent之间发送或者通过runtime发送给指定Agent</li>
+<li>消息使用AgentId进行寻址</li>
+<li>发送者可能会期望收到来自目标Agent的Response</li>
+<li><strong>注册Agent是指注册了这个Agent类型 type</strong></li>
+<li>当使用 <code>AgentId(type,key)</code> 传送消息时，运行时将获取实例或创建一个实例（如果不存在）。</li>
+</ul>
+<h3 id="Sequential-Workflow-工作流"><a href="#Sequential-Workflow-工作流" class="headerlink" title="Sequential Workflow 工作流"></a>Sequential Workflow 工作流</h3><p>顺序工作流是一种Multi Agent设计模式，其中Agent按确定性顺序响应。工作流程中的每个Agent通过处理消息、生成响应，然后将其传递给下一个Agent来执行特定任务。此模式可用于创建确定性工作流，其中每个Agent都为预先指定的子任务做出贡献。</p>
+<ul>
+<li>每一个Agent监听一个topic</li>
+<li>上一个Agent的输出会传给下一个topic<br><img src="/2025/03/22/Agent/multi-agent%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20250322144834255.png" alt="image-20250322144834255"><br>实现思路: </li>
+</ul>
+<ol>
+<li>首先画好整个工作流 ，每一个Agent的位置</li>
+<li>然后创建topic，用于Agent之间的通信</li>
+<li>将topic绑定给Agent</li>
+<li>发送消息给最初始的Agent所订阅的topic，整个工作流开始运作。</li>
+</ol>
+<h3 id="Group-Chat-群聊"><a href="#Group-Chat-群聊" class="headerlink" title="Group Chat 群聊"></a>Group Chat 群聊</h3><p>群聊设计模式: 一组Agent共享一个公共的Messages，即他们都订阅和发布到同一个topic，每个参与Agent都专门用于特定任务，例如协作写作任务中的作家、插画家和编辑。您还可以包括一个代理来代表人类用户，以便在需要时帮助指导Agent。</p>
+<ul>
+<li><p>在群聊中, 参与Agent会轮流发布消息，轮次的顺序由具体需求进行实现,可以使用循环算法或者让带有LLM的selector去选择</p>
+</li>
+<li><p>群聊可用于将复杂任务动态分解为较小的任务，这些任务可以由具有明确定义角色的专门代理处理。还可以将群聊嵌套到一个层次结构中，每个参与者都有一个递归群聊。</p>
+</li>
+<li><p><img src="/2025/03/22/Agent/multi-agent%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20250322144823149.png" alt="image-20250322144823149">首先是topic设置, 每一个Agent都需要订阅两个Topic:一个用于接收公共消息,一个用于接收自己的任务消息</p>
+<ul>
+<li>任务消息由manager发布,公共消息是协作Agent的任务执行结果</li>
+</ul>
+</li>
+<li><p>我们需要定义一个Group Chat Manager Agent，用于 决定 由哪个Agent进行消息发布</p>
+</li>
+<li><p>协作Agent接收到自己的任务消息时会执行任务，接收到公共消息时，将其记录下来</p>
+</li>
+</ul>
+<h3 id="handsoffs交接"><a href="#handsoffs交接" class="headerlink" title="handsoffs交接"></a>handsoffs交接</h3><p>Handoff 是 OpenAI 在一个名为 <a target="_blank" rel="noopener" href="https://github.com/openai/swarm">Swarm</a> 的实验项目中引入的一种多代理设计模式。<strong>关键思想是让代理使用特殊工具调用将任务委派给其他代理。</strong> ，任务转交的本质还是工具调用。</p>
+<p><img src="/2025/03/22/Agent/multi-agent%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20250322144808738.png" alt="image-20250322144808738"></p>
+<h4 id="message"><a href="#message" class="headerlink" title="message"></a>message</h4><pre><code class="python">class UserLogin(BaseModel):
+    pass
+
+# 用户的输入，由User Agent代替转发
+class UserTask(BaseModel):
+    context: List[LLMMessage]
+
+# Agent的响应消息,
+class AgentResponse(BaseModel):
+    reply_to_topic_type: str
+    context: List[LLMMessage]
+</code></pre>
+<h4 id="Agent"><a href="#Agent" class="headerlink" title="Agent"></a>Agent</h4><ul>
+<li>在Swarm中,Agent是不按照顺序进行轮流发言的，所以除了任务执行外，我们还需要定义一个特别的User Agent用于代替用户进行发言</li>
+<li>功能性Agent中,定义了 sales  issue triage  human 这四个Agent用于处理用户问题</li>
+</ul>
+<h4 id="topic"><a href="#topic" class="headerlink" title="topic"></a>topic</h4><p>每一个Agent都有一个自己的topic , Agent之间、Agent与用户的交互通过topic进行消息传递</p>
+<pre><code class="python">sales_agent_topic_type = &quot;SalesAgent&quot;
+issues_and_repairs_agent_topic_type = &quot;IssuesAndRepairsAgent&quot;
+triage_agent_topic_type = &quot;TriageAgent&quot;
+human_agent_topic_type = &quot;HumanAgent&quot;
+user_topic_type = &quot;User&quot;
+</code></pre>
+<h4 id="转发工具"><a href="#转发工具" class="headerlink" title="转发工具"></a>转发工具</h4><p>转发的本质还是Function Call, 负责任务执行的Agent会自己判断是否需要转发,如果需要,则调用转发工具,这个工具会返回转发目标对应的Topic</p>
+<pre><code class="python">def transfer_to_sales_agent() -&gt; str:
+    return sales_agent_topic_type
+
+
+def transfer_to_issues_and_repairs() -&gt; str:
+    return issues_and_repairs_agent_topic_type
+
+
+def transfer_back_to_triage() -&gt; str:
+    return triage_agent_topic_type
+
+
+def escalate_to_human() -&gt; str:
+    return human_agent_topic_type
+
+
+transfer_to_sales_agent_tool = FunctionTool(
+    transfer_to_sales_agent, description=&quot;Use for anything sales or buying related.&quot;
+)
+transfer_to_issues_and_repairs_tool = FunctionTool(
+    transfer_to_issues_and_repairs, description=&quot;Use for issues, repairs, or refunds.&quot;
+)
+transfer_back_to_triage_tool = FunctionTool(
+    transfer_back_to_triage,
+    description=&quot;Call this if the user brings up a topic outside of your purview,\nincluding escalating to human.&quot;,
+)
+escalate_to_human_tool = FunctionTool(escalate_to_human, description=&quot;Only call this if explicitly asked to.&quot;)
+</code></pre>
+<h4 id="UserAgent"><a href="#UserAgent" class="headerlink" title="UserAgent"></a>UserAgent</h4><p>在Swarm中,Agent是不按照顺序进行轮流发言的，所以除了任务执行外，我们还需要定义一个特别的User Agent用于代替用户进行发言</p>
+<ul>
+<li><p>handle_user_login用户一开始获取到用户输入的任务，将其发送给第一个代理 <code>triage_agent</code></p>
+</li>
+<li><p>handle_user_result:接收其他Agent的结果,获取用户输入,发给目标Agent进行下一步任务执行<br>```python<br>class UserAgent(RoutedAgent):<br>  def <strong>init</strong>(self, description: str, user_topic_type: str, agent_topic_type: str) -&gt; None:</p>
+<pre><code>  super().__init__(description)
+  self._user_topic_type = user_topic_type
+  self._agent_topic_type = agent_topic_type
+</code></pre>
+<p>  @message_handler<br>  async def handle_user_login(self, message: UserLogin, ctx: MessageContext) -&gt; None:</p>
+<pre><code>  print(f&quot;&#123;&#39;-&#39;*80&#125;\nUser login, session ID: &#123;self.id.key&#125;.&quot;, flush=True)
+  # Get the user&#39;s initial input after login.
+  user_input = input(&quot;User: &quot;)
+  print(f&quot;&#123;&#39;-&#39;*80&#125;\n&#123;self.id.type&#125;:\n&#123;user_input&#125;&quot;)
+  await self.publish_message(
+      UserTask(context=[UserMessage(content=user_input, source=&quot;User&quot;)]),
+      topic_id=TopicId(self._agent_topic_type, source=self.id.key),
+  )
+</code></pre>
+<p>  @message_handler<br>  async def handle_task_result(self, message: AgentResponse, ctx: MessageContext) -&gt; None:</p>
+<pre><code>  # Get the user&#39;s input after receiving a response from an agent.
+  user_input = input(&quot;User (type &#39;exit&#39; to close the session): &quot;)
+  print(f&quot;&#123;&#39;-&#39;*80&#125;\n&#123;self.id.type&#125;:\n&#123;user_input&#125;&quot;, flush=True)
+  if user_input.strip().lower() == &quot;exit&quot;:
+      print(f&quot;&#123;&#39;-&#39;*80&#125;\nUser session ended, session ID: &#123;self.id.key&#125;.&quot;)
+      return
+  message.context.append(UserMessage(content=user_input, source=&quot;User&quot;))
+  await self.publish_message(
+      UserTask(context=message.context), topic_id=TopicId(message.reply_to_topic_type, source=self.id.key)
+  )
+</code></pre>
+</li>
+</ul>
+<pre><code>
+
+
+#### 任务执行Agent
+其需要执行用户发送的Task,具体步骤如下
+1. 调用client 对用户的输入进行任务执行
+2. 如果有工具调用，则进入循环
+    1. 运行所有的工具调用，将任务工具调用结果、代理转发工具结果分别存储
+    2. 如果有转发工具的调用结果,则将其转发给目标
+    3. 如果有任务工具的调用结果，则调用client继续执行任务，否则代表只有转发的tool call，直接结束本次任务
+3. 如果到了这里，则代表Agent已经执行全部的任务，将结果返回给用户即可
+
+总体来看,任务执行的Agent有两个目标: 任务执行给用户响应、任务转发,
+```python
+
+class AIAgent(RoutedAgent):
+    def __init__(
+        self,
+        description: str,
+        system_message: SystemMessage,
+        model_client: ChatCompletionClient,
+        tools: List[Tool],
+        delegate_tools: List[Tool],
+        agent_topic_type: str,
+        user_topic_type: str,
+    ) -&gt; None:
+        super().__init__(description)
+        self._system_message = system_message
+        self._model_client = model_client
+        self._tools = dict([(tool.name, tool) for tool in tools])
+        self._tool_schema = [tool.schema for tool in tools]
+        self._delegate_tools = dict([(tool.name, tool) for tool in delegate_tools])
+        self._delegate_tool_schema = [tool.schema for tool in delegate_tools]
+        self._agent_topic_type = agent_topic_type
+        self._user_topic_type = user_topic_type
+
+    @message_handler
+    async def handle_task(self, message: UserTask, ctx: MessageContext) -&gt; None:
+        #让大模型进行补全，同时提供代理工具,用于大模型进行权限移交.
+        llm_result = await self._model_client.create(
+            messages=[self._system_message] + message.context,
+            tools=self._tool_schema + self._delegate_tool_schema,
+            cancellation_token=ctx.cancellation_token,
+        )
+        print(f&quot;&#123;&#39;-&#39;*80&#125;\n&#123;self.id.type&#125;:\n&#123;llm_result.content&#125;&quot;, flush=True)
+        # Process the LLM result. 处理工具调用
+        while isinstance(llm_result.content, list) and all(isinstance(m, FunctionCall) for m in llm_result.content):
+            tool_call_results: List[FunctionExecutionResult] = []
+            delegate_targets: List[Tuple[str, UserTask]] = []
+            # Process each function call.
+            for call in llm_result.content:
+                arguments = json.loads(call.arguments)
+                if call.name in self._tools: #正常的工具调用
+                    # Execute the tool directly.
+                    result = await self._tools[call.name].run_json(arguments, ctx.cancellation_token)
+                    result_as_str = self._tools[call.name].return_value_as_string(result)
+                    tool_call_results.append(
+                        FunctionExecutionResult(call_id=call.id, content=result_as_str, is_error=False, name=call.name)
+                    )
+                elif call.name in self._delegate_tools: #代理工具调用
+                    # Execute the tool to get the delegate agent&#39;s topic type.
+                    result = await self._delegate_tools[call.name].run_json(arguments, ctx.cancellation_token)
+                    topic_type = self._delegate_tools[call.name].return_value_as_string(result)
+                    # Create the context for the delegate agent, including the function call and the result.
+                    delegate_messages = list(message.context) + [
+                        AssistantMessage(content=[call], source=self.id.type),
+                        FunctionExecutionResultMessage(
+                            content=[
+                                FunctionExecutionResult(
+                                    call_id=call.id,
+                                    content=f&quot;Transferred to &#123;topic_type&#125;. Adopt persona immediately.&quot;,
+                                    is_error=False,
+                                    name=call.name,
+                                )
+                            ]
+                        ),
+                    ]
+                    delegate_targets.append((topic_type, UserTask(context=delegate_messages)))
+                else:
+                    raise ValueError(f&quot;Unknown tool: &#123;call.name&#125;&quot;)
+            if len(delegate_targets) &gt; 0:
+                # Delegate the task to other agents by publishing messages to the corresponding topics.
+                for topic_type, task in delegate_targets:
+                    print(f&quot;&#123;&#39;-&#39;*80&#125;\n&#123;self.id.type&#125;:\nDelegating to &#123;topic_type&#125;&quot;, flush=True)
+                    await self.publish_message(task, topic_id=TopicId(topic_type, source=self.id.key))
+            if len(tool_call_results) &gt; 0:
+                print(f&quot;&#123;&#39;-&#39;*80&#125;\n&#123;self.id.type&#125;:\n&#123;tool_call_results&#125;&quot;, flush=True)
+                # Make another LLM call with the results.
+                message.context.extend(
+                    [
+                        AssistantMessage(content=llm_result.content, source=self.id.type),
+                        FunctionExecutionResultMessage(content=tool_call_results),
+                    ]
+                )
+                llm_result = await self._model_client.create(
+                    messages=[self._system_message] + message.context,
+                    tools=self._tool_schema + self._delegate_tool_schema,
+                    cancellation_token=ctx.cancellation_token,
+                )
+                print(f&quot;&#123;&#39;-&#39;*80&#125;\n&#123;self.id.type&#125;:\n&#123;llm_result.content&#125;&quot;, flush=True)
+            else:
+                # The task has been delegated, so we are done.
+                return
+        # The task has been completed, publish the final result.
+        assert isinstance(llm_result.content, str)
+        message.context.append(AssistantMessage(content=llm_result.content, source=self.id.type))
+        await self.publish_message(
+            AgentResponse(context=message.context, reply_to_topic_type=self._agent_topic_type),
+            topic_id=TopicId(self._user_topic_type, source=self.id.key),
+        )
+</code></pre>
+<ul>
+<li>工具分为两种，功能工具和代理工具 ，功能工具是实现Agent 功能的工具，代理工具则负责转发</li>
+<li>Agent在调用llm client时，会将这两种工具发送给大模型，让其决定工具的使用</li>
+<li>如果LLM client决定转发，则构造相应的message发送到相应的topic</li>
+</ul>
+<h4 id="Mixture-of-Agent"><a href="#Mixture-of-Agent" class="headerlink" title="Mixture of Agent"></a>Mixture of Agent</h4><p><a target="_blank" rel="noopener" href="https://github.com/togethercomputer/moa">https://github.com/togethercomputer/moa</a></p>
+<p><img src="/2025/03/22/Agent/multi-agent%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20250322144753518.png" alt="image-20250322144753518"></p>
+<p>混合代理是一种 multi-Agent设计模式,它按照前馈神经网络架构进行建模</p>
+<ul>
+<li>该模式有两种Agent组成: worker Agent与 orchestrator Agent</li>
+<li>workerAgent被按照固定数量分为多个层</li>
+<li>orchestrator agent 接收用户输入,并将其发送给第一层中的worker Agent</li>
+<li>每一个worker Agent都执行任务 </li>
+<li>orchestrator agent聚合任务结果，并将包含先前结果的更新任务分派给第二层中的工作代理。</li>
+<li>在最后一层中，orchestrator agent 聚合上一层的结果，并将单个最终结果返回给用户。</li>
+</ul>
+<pre><code class="python">class OrchestratorAgent(RoutedAgent):
+    def __init__(
+        self,
+        model_client: ChatCompletionClient,
+        worker_agent_types: List[str],
+        num_layers: int,
+    ) -&gt; None:
+        super().__init__(description=&quot;Aggregator Agent&quot;)
+        self._model_client = model_client
+        self._worker_agent_types = worker_agent_types
+        self._num_layers = num_layers
+
+    @message_handler
+    async def handle_task(self, message: UserTask, ctx: MessageContext) -&gt; FinalResult:
+        print(f&quot;&#123;&#39;-&#39;*80&#125;\nOrchestrator-&#123;self.id&#125;:\nReceived task: &#123;message.task&#125;&quot;)
+        # Create task for the first layer.
+        worker_task = WorkerTask(task=message.task, previous_results=[])
+        # Iterate over layers.
+        for i in range(self._num_layers - 1):
+            # Assign workers for this layer.
+            worker_ids = [
+                AgentId(worker_type, f&quot;&#123;self.id.key&#125;/layer_&#123;i&#125;/worker_&#123;j&#125;&quot;)
+                for j, worker_type in enumerate(self._worker_agent_types)
+            ]
+            # Dispatch tasks to workers.
+            print(f&quot;&#123;&#39;-&#39;*80&#125;\nOrchestrator-&#123;self.id&#125;:\nDispatch to workers at layer &#123;i&#125;&quot;)
+            results = await asyncio.gather(*[self.send_message(worker_task, worker_id) for worker_id in worker_ids])
+            print(f&quot;&#123;&#39;-&#39;*80&#125;\nOrchestrator-&#123;self.id&#125;:\nReceived results from workers at layer &#123;i&#125;&quot;)
+            # Prepare task for the next layer.
+            worker_task = WorkerTask(task=message.task, previous_results=[r.result for r in results])
+        # Perform final aggregation.
+        print(f&quot;&#123;&#39;-&#39;*80&#125;\nOrchestrator-&#123;self.id&#125;:\nPerforming final aggregation&quot;)
+        system_prompt = &quot;You have been provided with a set of responses from various open-source models to the latest user query. Your task is to synthesize these responses into a single, high-quality response. It is crucial to critically evaluate the information provided in these responses, recognizing that some of it may be biased or incorrect. Your response should not simply replicate the given answers but should offer a refined, accurate, and comprehensive reply to the instruction. Ensure your response is well-structured, coherent, and adheres to the highest standards of accuracy and reliability.\n\nResponses from models:&quot;
+        system_prompt += &quot;\n&quot; + &quot;\n\n&quot;.join([f&quot;&#123;i+1&#125;. &#123;r&#125;&quot; for i, r in enumerate(worker_task.previous_results)])
+        model_result = await self._model_client.create(
+            [SystemMessage(content=system_prompt), UserMessage(content=message.task, source=&quot;user&quot;)]
+        )
+        assert isinstance(model_result.content, str)
+        return FinalResult(result=model_result.content)
+</code></pre>
+<h4 id="Multi-Agent-Debate"><a href="#Multi-Agent-Debate" class="headerlink" title="Multi-Agent Debate"></a>Multi-Agent Debate</h4><p>多智能体辩论是一种多智能体设计模式，用于模拟多轮次交互，其中在每个轮次中，智能体相互交换响应，并根据其他智能体的响应优化其响应。<br><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2406.11776">https://arxiv.org/abs/2406.11776</a></p>
+<p>该模式的工作原理如下：</p>
+<ol>
+<li>用户向聚合器代理发送数学问题。</li>
+<li>聚合器代理将问题分配给求解器代理。</li>
+<li>每个求解器代理都会处理问题，并向其邻居发布响应。</li>
+<li>每个求解器代理都使用来自其邻居的响应来优化其响应，并发布新的响应。</li>
+<li>重复步骤 4 固定轮数。在最后一轮中，每个求解器代理都会发布最终响应。</li>
+<li>聚合器代理使用多数投票来聚合来自所有求解器代理的最终响应以获得最终答案，然后发布答案。</li>
+</ol>
+<p>求解器处理两种消息，一种是邻居的消息，当期接收到足够多的邻居消息时，会进行问题求解，随后转发给邻居</p>
+<h4 id="Reflection"><a href="#Reflection" class="headerlink" title="Reflection"></a>Reflection</h4><p><img src="/2025/03/22/Agent/multi-agent%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20250322144732954.png" alt="image-20250322144732954"><br>反射可以使用两个Agent进行实现，第一个Agent负责生成任务执行结果,第二个Agent则对任务执行结果进行响应，两个Agent继续交互，直到达到终止条件(最大迭代次数 或者 第二个Agent批准)</p>
+<ul>
+<li>有四种消息类型,任务输入、结果输出 、 任务中间结果、任务中间结果评价</li>
+<li>Agent需要有记忆力</li>
+</ul>
+<hr>
+<p>文章参考:</p>
+<p>博客地址: qwrdxer.github.io</p>
+<p>欢迎交流: qq1944270374</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1944270374@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2020-2023 qwrdxer
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 722px;
+    }
+    .nav.fullscreen {
+        margin-left: -722px;
+    }
+    .nav-left {
+        width: 300px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 542px;
+        }
+        .nav.fullscreen {
+            margin-left: -542px;
+        }
+        .nav-left {
+            width: 150px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 542px;
+            margin-left: -542px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    #post {
+        background: url(/img/start.png);
+    }
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

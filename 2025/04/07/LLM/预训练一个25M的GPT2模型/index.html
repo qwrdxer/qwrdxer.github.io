@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Go编写一个扫描器 | qwrdxer &#39;s blog</title>
+  <title>预训练一个25M的GPT2模型 | qwrdxer &#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="Go编写一个扫描器 | qwrdxer &#39;s blog">
+  <meta name="description" content="预训练一个25M的GPT2模型 | qwrdxer &#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="About">
@@ -1257,32 +1257,24 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-写点好玩的/Go编写一个端口扫描器" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-LLM/预训练一个25M的GPT2模型" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Go编写一个扫描器</h1>
+        <h1 class="article-title">预训练一个25M的GPT2模型</h1>
     
     <div class="article-meta">
         
         
-        
-        <span class="book">
-            <i class="iconfont icon-category"></i>
-            
-            
-            <a  data-rel="写点好玩的">写点好玩的</a>
-            
-        </span>
         
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-27 20:52:37'>2022-04-10 14:34</time>
+            Created At : <time class="date" title='Updated At: 2025-04-07 14:22:06'>2025-04-07 14:19</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:2.5k</span>
+        <span>Count:3.9k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1301,7 +1293,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0"><span class="toc-text">基础学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E8%BF%9E%E6%8E%A5%E5%BB%BA%E7%AB%8B"><span class="toc-text">端口连接建立</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%88%E6%9C%AC1-%E7%AE%80%E5%8D%95%E7%9A%84%E6%89%AB%E6%8F%8F"><span class="toc-text">版本1 简单的扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%88%E6%9C%AC2%EF%BC%8C%E7%BB%93%E6%9E%84%E4%BD%93%E5%B0%81%E8%A3%85"><span class="toc-text">版本2，结构体封装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%88%E6%9C%AC3-%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-text">版本3: 多线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E7%AB%AF%E5%8F%A3%E6%95%B0%E9%87%8F"><span class="toc-text">计算端口数量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E5%85%A5%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90"><span class="toc-text">加入参数解析</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87"><span class="toc-text">数据准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E9%80%89%E6%8B%A9"><span class="toc-text">数据集选择</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF%E8%AE%BE%E8%AE%A1"><span class="toc-text">思路设计</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%E8%AE%BE%E8%AE%A1"><span class="toc-text">模型参数设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E8%AE%AD%E7%BB%83-%E6%9C%80%E5%88%9D%E4%BB%A3%E7%A0%81"><span class="toc-text">开始训练 - 最初代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E8%AE%AD%E7%BB%83-%E4%BC%98%E5%8C%96%E7%89%88%E4%BB%A3%E7%A0%81"><span class="toc-text">开始训练 - 优化版代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-text">测试</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1317,429 +1309,464 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="基础学习"><a href="#基础学习" class="headerlink" title="基础学习"></a>基础学习</h2><h3 id="端口连接建立"><a href="#端口连接建立" class="headerlink" title="端口连接建立"></a>端口连接建立</h3><h3 id="版本1-简单的扫描"><a href="#版本1-简单的扫描" class="headerlink" title="版本1 简单的扫描"></a>版本1 简单的扫描</h3><pre><code class="go">// panic_recover.go
-package main
-
-import (
-    &quot;fmt&quot;
-    &quot;net&quot;
-)
-
-func Scan(IP string) []int &#123;
-    var target_tmplet = &quot;%s:%d&quot;
-    var index_open = 0
-    open_port := make([]int, 5, 5)
-    scan_port := []int&#123;22, 80, 6379&#125;
-    for _, port := range scan_port &#123;
-        address := fmt.Sprintf(target_tmplet, IP, port)
-        conn, err := net.Dial(&quot;tcp&quot;, address)
-        if err != nil &#123;
-            fmt.Println(err)
-            continue
-        &#125;
-        conn.Close()
-        fmt.Printf(&quot;%d port open!\n&quot;, port)
-        open_port[index_open] = port
-        index_open++
-    &#125;
-    return open_port
-&#125;
-func main() &#123;
-    Scan(&quot;scanme.nmap.org&quot;)
-&#125;
+        <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.modelscope.cn/datasets/gongjy/minimind_dataset/summary">https://www.modelscope.cn/datasets/gongjy/minimind_dataset/summary</a><br><a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind?tab=readme-ov-file">https://github.com/jingyaogong/minimind?tab=readme-ov-file</a></p>
+<h3 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h3><h4 id="数据集选择"><a href="#数据集选择" class="headerlink" title="数据集选择"></a>数据集选择</h4><p>使用pretrain_hq.jsonl 进行预训练<br><a target="_blank" rel="noopener" href="https://www.modelscope.cn/datasets/gongjy/minimind_dataset/summary">https://www.modelscope.cn/datasets/gongjy/minimind_dataset/summary</a><br>样本例子如下:都是中文文本,每一行一个JSON</p>
+<pre><code class="json">&#123;&quot;text&quot;: &quot;&lt;s&gt;介绍一本你近期阅读的书籍。\n最近我阅读了一本名为《霹雳娇娃》的小说。这本小说讲述了三位女性侠士与神秘组织之间的斗争。在这个故事中，女性侠士们并不是柔弱无力的弱女子，她们展现出了超强的战斗能力和深厚的情感内涵。小说通过复杂的情节和令人窒息的危机场面，揭示了人性善恶的多重性，并强调了团结互助的重要性。\n这本小说的细节描写十分生动鲜活，使读者能够身临其境。此外，角色之间的互动也表现出了情感和人性的复杂性。我认为这本小说不仅仅是一个好的故事，更是一部能够启示读者思考的良心之作。\n基于以上这段文本换一种方式重新描述。最近，我读了一本非常引人入胜的小说——《霹雳娇娃》。这本小说跟随三位女性侠士与神秘组织之间的生死决战。故事展示了三位侠士的坚韧和无所畏惧的战斗精神，同时也揭示了隐藏的人性弱点和矛盾之处。情节丰满，紧张刺激——你会感到自己置身其中。同时，本书还强调了互助合作的重要性，切中当今社会和我们内心深处的共鸣。\n在精彩的情节中，作者巧妙地把握了角色之间的情感和复杂性，使得书中的事件和人物不再只是一个干瘪的故事线，而是变成了一个立体的故事世界。这本小说不仅可以带给你好的故事，还可以让读者了解到自己内心深处的一些意义。&lt;/s&gt;&quot;&#125;
+&#123;&quot;text&quot;: &quot;&lt;s&gt;常见的心理障碍类型有哪些？\n心理障碍常常是人类生活压力过大、心理压抑等原因造成的。常见的心理障碍类型包括：抑郁症、强迫症、焦虑症、创伤后应激障碍等。其中，抑郁症主要表现为情感低落、失去兴趣等；强迫症则表现为强迫症状，需要反复进行某种行为；焦虑症则表现为极度担忧、不安和消极情绪；创伤后应激障碍则是由于遭受创伤事件后造成的精神创伤而引起的精神病症状。处理心理障碍需要采取适当的心理疏导和药物辅助治疗。如果你或身边的人需要帮助，及时与心理医生或心理咨询师联系是很重要的。\n基于以上这段文本重新润色，保证意思一致。常见的心理障碍类型有哪些？\n当人们的生活压力过大或情绪被压抑时，容易出现各种心理障碍。到目前为止，我们已经确定了几种常见的心理障碍类型，它们分别是抑郁症、强迫症、焦虑症和创伤后应激障碍。抑郁症表现为情感低落和失去兴趣；强迫症表现为需要反复进行某种行为；焦虑症表现为极度担忧、不安和消极情绪；创伤后应激障碍则是受到创伤事件影响后引起的精神创伤。对于这些心理障碍，心理医生和心理咨询师可以提供适当的心理疏导和药物辅助治疗。即使你周围的人并没有得到心理障碍的诊断，但如果你感觉他们表现出这些征兆，还是尽早提供帮助为好。&lt;/s&gt;&quot;&#125;
 </code></pre>
-<p><em><span id="more"></span></em> </p>
-<h3 id="版本2，结构体封装"><a href="#版本2，结构体封装" class="headerlink" title="版本2，结构体封装"></a>版本2，结构体封装</h3><p>将代码进行封装，方便操作及功能拓展</p>
-<pre><code>// panic_recover.go
-package main
+<p>编写一个简单的脚本看一下平均长度</p>
+<pre><code class="python"># Python 实现
+def calculate_average_length_and_line_count(file_path):
+    with open(file_path, &#39;r&#39;, encoding=&#39;utf-8&#39;) as file:
+        lines = file.readlines()
+    
+    line_count = len(lines)
+    line_lengths = [len(line.strip()) for line in lines]
+    avg_length = sum(line_lengths) / line_count if line_count &gt; 0 else 0
+    
+    return line_count, avg_length
 
-import (
-    &quot;fmt&quot;
-    &quot;net&quot;
-)
-
-type PortScanTask struct &#123;
-    target        string   //扫描目标, 可以是IP 或 域名
-    scanPortRange []string //存储扫描的范围，可以是具体的端口(如80,8080,9090)，也可以是某个范围(如1-100)
-    openPort      []string // 用于存储开放端口
-    openPortCount int      // 记录开放端口数量，在存储开放端口时，作为下标存储
-&#125;
-
-/*
-    用于初始化端口扫描任务,主要是对用户输入的端口范围进行处理
-    如用户输入为 80,8080,3306,1-100
-    我们首先需要按照逗号进行切分，然后检查这些输入是否符合规范即可
-*/
-func (p *PortScanTask) init(target string, targetRanget string) &#123;
-    p.openPortCount = 0
-    p.target = target
-    p.scanPortRange = []string&#123;&quot;22&quot;, &quot;80&quot;, &quot;6379&quot;, &quot;3306&quot;&#125;
-    p.openPort = make([]string, 5, 5)
-&#125;
-func (p *PortScanTask) Scan() []string &#123;
-    var target_tmplet = &quot;%s:%s&quot;
-    for _, port := range p.scanPortRange &#123;
-        address := fmt.Sprintf(target_tmplet, p.target, port)
-        conn, err := net.Dial(&quot;tcp&quot;, address)
-        if err != nil &#123;
-            fmt.Println(err)
-            continue
-        &#125;
-        conn.Close()
-        fmt.Printf(&quot;%s port open!\n&quot;, port)
-        p.openPort[p.openPortCount] = port
-        p.openPortCount++
-    &#125;
-    return p.openPort
-&#125;
-func main() &#123;
-    var task1 PortScanTask
-    task1.init(&quot;121.5.73.12&quot;, &quot;test&quot;)
-    task1.Scan()
-&#125;
+# 输入文件路径
+file_path = &#39;/datasets/pretrain_hq.jsonl&#39;
+line_count, average_length = calculate_average_length_and_line_count(file_path)
+print(f&quot;总行数: &#123;line_count&#125;, 每一行的平均长度是: &#123;average_length&#125;&quot;)
 </code></pre>
-<p>暂时还未实现输入端口切割功能！， 先把多线程搞上</p>
-<h3 id="版本3-多线程"><a href="#版本3-多线程" class="headerlink" title="版本3: 多线程"></a>版本3: 多线程</h3><pre><code class="go">// panic_recover.go
-package main
+<p>总行数: 1,413,103, 每一行的平均长度是: 416.641455718373</p>
+<h4 id="思路设计"><a href="#思路设计" class="headerlink" title="思路设计"></a>思路设计</h4><ul>
+<li>我们的模型上下文设置为512 ,大于512的行需要截取，小于512的行需要填充(padding)</li>
+</ul>
+<p><strong>首先是Dataset的设计</strong></p>
+<ul>
+<li>Dataset提供给模型的X,Y应该是Tokenizer后的向量对，因此需要一个Tokenizer</li>
+<li>根据文本长度做padding或者截取操作</li>
+</ul>
+<pre><code class="python">import torch
+from torch.utils.data import Dataset
+import json
+from transformers.tokenization_utils_fast import PreTrainedTokenizerFast
+from typing import List
+class PretrainDataset(Dataset):
+    def __init__(self,data_dir:str,max_length:int,tokenizer:PreTrainedTokenizerFast):
+        super().__init__()
+        self.data_dir=data_dir
+        self.tokenizer=tokenizer
+        self.max_length=max_length
+        self.samples=self.load_data(self.data_dir)
+    def load_data(self,path:str)-&gt;List[str]:
+        samples=[]
+        with open(path,&#39;r&#39;,encoding=&#39;utf-8&#39;) as f:
+            for idx,line in enumerate(f,1):
+                data=json.load(line.strip())
+                samples.append(data[&#39;text&#39;])
+        return samples
 
-import (
-    &quot;fmt&quot;
-    &quot;net&quot;
-    &quot;sort&quot;
-)
+    def __len__(self):
+        return len(self.samples)
 
-type PortScanTask struct &#123;
-    target        string   //扫描目标, 可以是IP 或 域名
-    target_tmplet string   // 连接的模板 值为 %s:%s 在 init函数中进行赋值
-    scanPortRange []string //存储扫描的范围，可以是具体的端口(如80,8080,9090)，也可以是某个范围(如1-100)
-    openPort      []string // 用于存储开放端口
-    openPortCount int      // 记录开放端口数量，在存储开放端口时，作为下标存储
-    threads       int      //多线程数量
-&#125;
+    def __getitem__(self, index):
+        sample=self.samples[index]
+        sample_tokenize = self.tokenizer(
+            sample,  
+            max_length=self.max_length,  # 设置输入序列的最大长度，超过该长度的文本将会被截断，默认值为 None，表示不限制最大长度
+            padding=&#39;max_length&#39;,  # 设置是否对输入进行填充以及填充方式。&#39;max_length&#39; 表示填充至 `max_length` 指定的长度；&#39;longest&#39; 会根据输入序列的最大长度进行填充，&#39;do_not_pad&#39; 表示不进行填充。
+            truncation=True,  # 设置是否对输入进行截断。True 表示超出 `max_length` 的部分会被截断
+            return_tensors=&#39;pt&#39;  # 设置返回的格式。&#39;pt&#39; 表示返回 PyTorch 张量（Tensor）。可以选择 &#39;tf&#39;（返回 TensorFlow 张量）或 &#39;np&#39;（返回 NumPy 数组），&#39;pt&#39; 是针对 PyTorch 框架的
+        )
 
-/*
-    用于初始化端口扫描任务,主要是对用户输入的端口范围进行处理
-    如用户输入为 80,8080,3306,1-100
-    我们首先需要按照逗号进行切分，然后检查这些输入是否符合规范即可
-*/
-func (p *PortScanTask) init(target string, targetRanget string) &#123;
-    p.openPortCount = 0
-    p.target = target
-    p.target_tmplet = &quot;%s:%s&quot;
-    p.scanPortRange = []string&#123;&quot;22&quot;, &quot;80&quot;, &quot;6379&quot;, &quot;3306&quot;, &quot;111&quot;, &quot;3333&quot;, &quot;53&quot;, &quot;7777&quot;&#125;
-    p.openPort = make([]string, 2)
-    p.threads = 5
-&#125;
-
-/*
-    我们创建一个worker 方法，他从ports通道中取出端口进行扫描，然后将结果返回给results通道
-*/
-func (p *PortScanTask) PortScanWorker(ports, results chan string) &#123;
-    for port := range ports &#123;
-        address := fmt.Sprintf(p.target_tmplet, p.target, port)
-        conn, err := net.Dial(&quot;tcp&quot;, address)
-        if err != nil &#123;
-            //如果端口没有开放,则向通道中写入0
-            results &lt;- &quot;0&quot;
-            continue
-        &#125;
-        conn.Close()
-        results &lt;- port
-    &#125;
-&#125;
-func (p *PortScanTask) Scan() []string &#123;
-    portchan := make(chan string, p.threads)
-    resultchan := make(chan string)
-    for i := 0; i &lt; p.threads; i++ &#123; //创建 5个worker
-        go p.PortScanWorker(portchan, resultchan)
-    &#125;
-    go func() &#123; //启动一个线程将端口写入通道中
-        for _, port := range p.scanPortRange &#123;
-            portchan &lt;- port
-        &#125;
-    &#125;()
-
-    for i := 0; i &lt; len(p.scanPortRange); i++ &#123;
-        port := &lt;-resultchan
-        if port != &quot;0&quot; &#123;
-            p.openPort = append(p.openPort, port)
-        &#125;
-    &#125;
-    close(portchan)
-    close(resultchan)
-    sort.Strings(p.openPort)
-    return p.openPort
-&#125;
-func main() &#123;
-    var task1 PortScanTask
-    task1.init(&quot;121.5.73.12&quot;, &quot;111,22,3306,53,80&quot;)
-    t := task1.Scan()
-    fmt.Println(t)
-&#125;
+        #&#123;&#39;input_ids&#39;: tensor([[2157, 1293,    0,    0,    0,    0,    0,    0,    0,    0]]), &#39;token_type_ids&#39;: tensor([[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]), &#39;attention_mask&#39;: tensor([[1, 1, 0, 0, 0, 0, 0, 0, 0, 0]])&#125;
+        input_ids=sample_tokenize[&#39;input_ids&#39;].squeeze()
+        loss_mask=sample_tokenize[&#39;attention_mask&#39;].squeeze()
+        # X[n] 与Y[n+1] 一一对应 ,即训练的目的是next token预测
+        # Y[b]与loss_mask[b]一一对应,padding部分的token不应该参与loss计算
+        X=sample_tokenize[:-1]
+        Y=sample_tokenize[1:]
+        loss_mask=loss_mask[1:]
+        return X,Y,loss_mask
 </code></pre>
-<h3 id="计算端口数量"><a href="#计算端口数量" class="headerlink" title="计算端口数量"></a>计算端口数量</h3><pre><code class="go">// panic_recover.go
-package main
-
-import (
-    &quot;fmt&quot;
-    &quot;net&quot;
-    &quot;sort&quot;
-    &quot;strconv&quot;
-    &quot;strings&quot;
-)
-
-type PortScanTask struct &#123;
-    target        string //扫描目标, 可以是IP 或 域名
-    target_tmplet string // 连接的模板 值为 %s:%s 在 init函数中进行赋值
-    scanPortRange []int  //存储扫描的范围，可以是具体的端口(如80,8080,9090)，也可以是某个范围(如1-100)
-    openPort      []int  // 用于存储开放端口
-    openPortCount int    // 记录开放端口数量，在存储开放端口时，作为下标存储
-    threads       int    //多线程数量
-&#125;
-
-/*
-    用于初始化端口扫描任务,主要是对用户输入的端口范围进行处理
-    如用户输入为 80,8080,3306,1-100
-    我们首先需要按照逗号进行切分，然后检查这些输入是否符合规范即可
-*/
-func (p *PortScanTask) init(target string, targetRanget string) &#123;
-    p.openPortCount = 0
-    p.target = target
-    p.target_tmplet = &quot;%s:%d&quot;
-    p.scanPortRange = make([]int, 0)
-    p.openPort = make([]int, 0)
-    p.threads = 100
-
-    p.VertifyParm(targetRanget)
-&#125;
-
-/*
-    我们创建一个worker 方法，他从ports通道中取出端口进行扫描，然后将结果返回给results通道
-*/
-func (p *PortScanTask) PortScanWorker(ports chan int, results chan int) &#123;
-    for port := range ports &#123;
-        address := fmt.Sprintf(p.target_tmplet, p.target, port)
-        conn, err := net.Dial(&quot;tcp&quot;, address)
-        if err != nil &#123;
-            //如果端口没有开放,则向通道中写入0
-            results &lt;- 0
-            //fmt.Printf(&quot;%d not open!\n&quot;, port)
-            continue
-        &#125;
-        conn.Close()
-        fmt.Printf(&quot;%d open!\n&quot;, port)
-        results &lt;- port
-    &#125;
-&#125;
-func (p *PortScanTask) Scan() []int &#123;
-    portchan := make(chan int, p.threads)
-    resultchan := make(chan int)
-    for i := 0; i &lt; p.threads; i++ &#123; //创建 5个worker
-        go p.PortScanWorker(portchan, resultchan)
-    &#125;
-    go func() &#123; //启动一个线程将端口写入通道中
-        for _, port := range p.scanPortRange &#123;
-            portchan &lt;- port
-        &#125;
-    &#125;()
-
-    for i := 0; i &lt; len(p.scanPortRange); i++ &#123;
-        port := &lt;-resultchan
-        if port != 0 &#123;
-            p.openPort = append(p.openPort, port)
-        &#125;
-    &#125;
-    close(portchan)
-    close(resultchan)
-    sort.Ints(p.openPort)
-    return p.openPort
-&#125;
-
-//验证端口输入的参数是否符合规范, 一串合规的的输入如下: 22,80,8080,1000-3999
-func (p *PortScanTask) VertifyParm(input string) &#123;
-    sliceParm := strings.Split(input, &quot;,&quot;)
-    for i := range sliceParm &#123;
-        if (strings.Index(sliceParm[i], &quot;-&quot;)) == -1 &#123; //如果不是1-100这种范围的类型
-            tmpInt, err := strconv.Atoi(sliceParm[i]) //转换成数字
-            if err != nil &#123;
-                fmt.Printf(&quot;%s参数不正确!&quot;, sliceParm[i])
-            &#125;
-            if tmpInt &lt;= 0 || tmpInt &gt; 65535 &#123;
-                fmt.Printf(&quot;%s参数不正确!&quot;, sliceParm[i])
-            &#125;
-            p.scanPortRange = append(p.scanPortRange, tmpInt)
-            fmt.Println(tmpInt)
-        &#125; else &#123; //如果是1-100这种范围的类型
-            subsliceParm := strings.Split(sliceParm[i], &quot;-&quot;)
-            if len(subsliceParm) != 2 &#123;
-                fmt.Printf(&quot;%s参数不正确!&quot;, sliceParm[i])
-            &#125; else &#123;
-                if subsliceParm[0] == &quot;&quot; || subsliceParm[1] == &quot;&quot; &#123;
-                    fmt.Printf(&quot;%s参数不正确!&quot;, sliceParm[i])
-                &#125; else &#123; //到此为止才能判断是正确的num1-num2类型
-                    tmpInt1, err1 := strconv.Atoi(subsliceParm[0])
-                    tmpInt2, err2 := strconv.Atoi(subsliceParm[1])
-                    if err1 != nil || err2 != nil &#123;
-                        fmt.Printf(&quot;参数不正确&quot;)
-                    &#125;
-                    if tmpInt2-tmpInt1 &lt;= 0 || tmpInt2 &gt; 65535 || tmpInt1 &gt; 65535 &#123;
-                        fmt.Printf(&quot;参数不正确&quot;)
-                    &#125;
-                    for i := tmpInt1; i &lt;= tmpInt2; i++ &#123;
-                        p.scanPortRange = append(p.scanPortRange, i)
-                    &#125;
-                &#125;
-            &#125;
-        &#125;
-
-    &#125;
-
-&#125;
-func main() &#123;
-    var task1 PortScanTask
-    task1.init(&quot;121.5.73.12&quot;, &quot;1-65535&quot;)
-    t := task1.Scan()
-    fmt.Println(t)
-&#125;
+<h3 id="模型参数设计"><a href="#模型参数设计" class="headerlink" title="模型参数设计"></a>模型参数设计</h3><pre><code class="python">batch_size = 64 # 每次训练的样本数
+context_length=256# 上下文长度
+d_model=512 # 嵌入向量的维度
+num_block=8 # Transformer块数
+num_heads=16 # 多头注意力的头数
+max_token_value=6400
 </code></pre>
-<h3 id="加入参数解析"><a href="#加入参数解析" class="headerlink" title="加入参数解析"></a>加入参数解析</h3><pre><code class="go">// panic_recover.go
-package main
-
-import (
-    &quot;flag&quot;
-    &quot;fmt&quot;
-    &quot;net&quot;
-    &quot;sort&quot;
-    &quot;strconv&quot;
-    &quot;strings&quot;
-    &quot;time&quot;
-)
-
-type PortScanTask struct &#123;
-    target        string //扫描目标, 可以是IP 或 域名
-    target_tmplet string // 连接的模板 值为 %s:%s 在 init函数中进行赋值
-    scanPortRange []int  //存储扫描的范围，可以是具体的端口(如80,8080,9090)，也可以是某个范围(如1-100)
-    openPort      []int  // 用于存储开放端口
-    openPortCount int    // 记录开放端口数量，在存储开放端口时，作为下标存储
-    Workers       int    //多线程数量
-&#125;
-
-/*
-    用于初始化端口扫描任务,主要是对用户输入的端口范围进行处理
-    如用户输入为 80,8080,3306,1-100
-    我们首先需要按照逗号进行切分，然后检查这些输入是否符合规范即可
-*/
-func (p *PortScanTask) init(target string, targetRanget string) &#123;
-    p.openPortCount = 0
-    p.target = target
-    p.target_tmplet = &quot;%s:%d&quot;
-    p.scanPortRange = make([]int, 0)
-    p.openPort = make([]int, 0)
-    p.Workers = 3000
-
-    p.VertifyParm(targetRanget)
-&#125;
-
-/*
-    我们创建一个worker 方法，他从ports通道中取出端口进行扫描，然后将结果返回给results通道
-*/
-func (p *PortScanTask) PortScanWorker(ports chan int, results chan int) &#123;
-    for port := range ports &#123;
-        address := fmt.Sprintf(p.target_tmplet, p.target, port)
-        conn, err := net.Dial(&quot;tcp&quot;, address)
-        if err != nil &#123;
-            //如果端口没有开放,则向通道中写入0
-            results &lt;- 0
-            //fmt.Printf(&quot;%d not open!\n&quot;, port)
-            continue
-        &#125;
-        conn.Close()
-        fmt.Printf(&quot;%d open!\n&quot;, port)
-        results &lt;- port
-    &#125;
-&#125;
-func (p *PortScanTask) Scan() []int &#123;
-    portchan := make(chan int, 1000)
-    resultchan := make(chan int)
-    for i := 0; i &lt; p.Workers; i++ &#123; //创建 5个worker
-        go p.PortScanWorker(portchan, resultchan)
-    &#125;
-    go func() &#123; //启动一个线程将端口写入通道中
-        for _, port := range p.scanPortRange &#123;
-            portchan &lt;- port
-        &#125;
-    &#125;()
-
-    for i := 0; i &lt; len(p.scanPortRange); i++ &#123;
-        port := &lt;-resultchan
-        if port != 0 &#123;
-            p.openPort = append(p.openPort, port)
-        &#125;
-    &#125;
-    close(portchan)
-    close(resultchan)
-    sort.Ints(p.openPort)
-    return p.openPort
-&#125;
-
-//验证端口输入的参数是否符合规范, 一串合规的的输入如下: 22,80,8080,1000-3999
-func (p *PortScanTask) VertifyParm(input string) &#123;
-    sliceParm := strings.Split(input, &quot;,&quot;)
-    for i := range sliceParm &#123;
-        if (strings.Index(sliceParm[i], &quot;-&quot;)) == -1 &#123; //如果不是1-100这种范围的类型
-            tmpInt, err := strconv.Atoi(sliceParm[i]) //转换成数字
-            if err != nil &#123;
-                fmt.Printf(&quot;%s参数不正确!&quot;, sliceParm[i])
-            &#125;
-            if tmpInt &lt;= 0 || tmpInt &gt; 65535 &#123;
-                fmt.Printf(&quot;%s参数不正确!&quot;, sliceParm[i])
-            &#125;
-            p.scanPortRange = append(p.scanPortRange, tmpInt)
-        &#125; else &#123; //如果是1-100这种范围的类型
-            subsliceParm := strings.Split(sliceParm[i], &quot;-&quot;)
-            if len(subsliceParm) != 2 &#123;
-                fmt.Printf(&quot;%s参数不正确!&quot;, sliceParm[i])
-            &#125; else &#123;
-                if subsliceParm[0] == &quot;&quot; || subsliceParm[1] == &quot;&quot; &#123;
-                    fmt.Printf(&quot;%s参数不正确!&quot;, sliceParm[i])
-                &#125; else &#123; //到此为止才能判断是正确的num1-num2类型
-                    tmpInt1, err1 := strconv.Atoi(subsliceParm[0])
-                    tmpInt2, err2 := strconv.Atoi(subsliceParm[1])
-                    if err1 != nil || err2 != nil &#123;
-                        fmt.Printf(&quot;参数不正确&quot;)
-                    &#125;
-                    if tmpInt2-tmpInt1 &lt;= 0 || tmpInt2 &gt; 65535 || tmpInt1 &gt; 65535 &#123;
-                        fmt.Printf(&quot;参数不正确&quot;)
-                    &#125;
-                    for i := tmpInt1; i &lt;= tmpInt2; i++ &#123;
-                        p.scanPortRange = append(p.scanPortRange, i)
-                    &#125;
-                &#125;
-            &#125;
-        &#125;
-
-    &#125;
-
-&#125;
-func main() &#123;
-
-    IPString := flag.String(&quot;IP&quot;, &quot;&quot;, &quot;要扫描的目标IP&quot;)
-
-    PORTString := flag.String(&quot;PORT&quot;, &quot;&quot;, &quot;要扫描的端口&quot;)
-
-    flag.Parse()
-    start := time.Now() // 获取当前时间
-    var task1 PortScanTask
-    task1.init(*IPString, *PORTString)
-    task1.Scan()
-    cost := time.Since(start)
-    fmt.Println(&quot;cost:&quot;, cost)
-&#125;
+<p>打印一下模型的参数量</p>
+<pre><code class="python">from minimodel import GPT2Model
+import torch
+batch_size = 64 # 每次训练的样本数
+context_length=256# 上下文长度
+d_model=512 # 嵌入向量的维度
+num_block=8 # Transformer块数
+num_heads=16 # 多头注意力的头数
+max_token_value=6400
+device=torch.device(&#39;cuda&#39; if torch.cuda.is_available() else &#39;cpu&#39;)
+# Generate
+model = GPT2Model(
+    max_token_value=max_token_value,
+    d_model=d_model,
+    num_heads=num_heads,
+    num_blocks=num_block,
+    context_length=context_length
+).to(device)
+#打印模型的参数量
+print(&quot;模型参数量：&quot;, sum(p.numel() for p in model.parameters())/1e6, &quot;M&quot;)
 </code></pre>
-<p><em><!-- more --></em> </p>
-<blockquote>
-<p>参考文章</p>
-</blockquote>
+<p>或者这样</p>
+<pre><code class="python">model=GPT2Model(max_token_value=max_token_value,d_model=d_model,num_heads=num_heads,num_blocks=num_block,context_length=context_length).to(device)
+
+x = torch.randint(0, max_token_value, (batch_size, context_length), dtype=torch.long).to(device).to(device)
+
+torchinfo.summary(model,input_data=x)
+</code></pre>
+<p>Total params: 25,869,568<br>Trainable params: 25,869,568<br>Non-trainable params: 0</p>
+<p>Input size (MB): 0.13<br>Forward/backward pass size (MB): 6878.66<br>Params size (MB): 103.48<br>Estimated Total Size (MB): 6982.27</p>
+<h3 id="开始训练-最初代码"><a href="#开始训练-最初代码" class="headerlink" title="开始训练 - 最初代码"></a>开始训练 - 最初代码</h3><pre><code class="python">import torch
+from torch.utils.data import DataLoader
+from gpt2model import GPT2Model
+from mydataset import PretrainDataset
+from torch.optim import AdamW
+from transformers import AutoTokenizer
+from tqdm import tqdm
+
+## 超参数定义
+
+batch_size =64 # 每次训练的样本数
+context_length=512# 上下文长度
+d_model=512 # 嵌入向量的维度
+num_block=8 # Transformer块数
+num_heads=16 # 多头注意力的头数
+max_token_value=6400
+  
+learning_rate=1e-4 # 学习率
+dropout=0.1 # Dropout的比率
+train_epoche=6 #在数据集上训练的轮数
+eval_interval=50 # 评估的间隔
+eval_iters=20
+device = &#39;cuda:1&#39; if torch.cuda.is_available() else &#39;cpu&#39; # 设备
+torch.manual_seed(1337) # 随机种子
+
+  
+tokenizer=AutoTokenizer.from_pretrained(&#39;/data1/zah_workspace/llmfromzero/tokenizer/model/minimind_tokenizer&#39;)
+model=GPT2Model(max_token_value=max_token_value,d_model=d_model,num_heads=num_heads,num_blocks=num_block,context_length=context_length).to(device)
+optimizer = AdamW(model.parameters(), lr=learning_rate, weight_decay=0.001)
+loss_fct=torch.nn.CrossEntropyLoss(reduction=&#39;none&#39;)#设置了 reduction=&#39;none&#39;，这意味着它不会自动对损失进行平均或求和，而是返回每个样本的损失值。
+## 数据集加载
+dataset=PretrainDataset(data_dir=&#39;/data3/zah_work/datasets/pretrain_hq.jsonl&#39;,max_length=context_length,tokenizer=tokenizer)
+  
+mydataloader=DataLoader(dataset=dataset,batch_size=batch_size,shuffle=True)
+  
+#训练模型
+
+def train_epch(epoch):
+    model.train()
+    for step,(X,Y,lossmask) in tqdm(enumerate(mydataloader)):
+        X=X.to(device)
+        Y=Y.to(device)
+        # print(X.shape)
+        # print(Y.shape)
+
+        lossmask=lossmask.to(device)
+        logits=model(X)# logits 为(batchsize,contextlength,max_token_value) loss为)
+        #掩码一下，去除padding
+        losses = loss_fct(logits.view(-1, logits.size(-1)), Y.view(-1))
+        #计算损失
+        # print(f&quot;loss shape: &#123;loss.shape&#125;&quot;)
+        # print(f&quot;lossmask shape: &#123;lossmask.shape&#125;&quot;)
+        losses = losses.view(Y.shape)  # [1, 512]
+        valid_tokens = lossmask.to(torch.bool)  # [1, 512]
+
+        # 只计算有效token的损失
+        valid_losses = losses[valid_tokens]
+  
+        # 对有效损失求平均
+
+        final_loss = valid_losses.mean()
+        optimizer.zero_grad()
+        final_loss.backward()
+        optimizer.step()
+        if(step%10==0):
+            print(f&quot;Loss (masked): &#123;final_loss&#125;&quot;)
+        #
+train_epch(10)
+## 模型保存
+</code></pre>
+<p>主要就是加载Tokenizer、Model 设置优化器、损失函数、加载数据集<br>随后开始训练，打印损失</p>
+<h4 id><a href="#" class="headerlink" title></a></h4><h3 id="开始训练-优化版代码"><a href="#开始训练-优化版代码" class="headerlink" title="开始训练 - 优化版代码"></a>开始训练 - 优化版代码</h3><p>让cursor进行分析,进行了如下</p>
+<pre><code>主要修改包括：
+
+1. 降低了学习率从 1e-4 到 5e-5
+
+2. 添加了学习率预热策略（warmup）
+
+3. 添加了梯度裁剪（max_grad_norm = 1.0）
+
+4. 增大了 batch size 从 64 到 128
+
+5. 调整了 weight decay 从 0.001 到 0.01
+
+6. 添加了 Xavier 初始化方法
+
+7. 添加了学习率监控输出
+</code></pre>
+<pre><code class="python">import math
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+def init_weights(module):
+    if isinstance(module, nn.Linear):
+        nn.init.xavier_uniform_(module.weight)
+        if module.bias is not None:
+            nn.init.zeros_(module.bias)
+    elif isinstance(module, nn.Embedding):
+        nn.init.normal_(module.weight, mean=0.0, std=0.02)
+
+class FeedForwardNetWork(nn.Module):
+    def __init__(self,d_model,d_ff):
+        super().__init__()
+        self.d_model=d_model
+        self.d_ff=d_ff
+        self.ffn=nn.Sequential(
+            nn.Linear(in_features=self.d_model,out_features=self.d_ff),
+            nn.ReLU(),
+            nn.Linear(in_features=self.d_ff,out_features=self.d_model),
+            nn.Dropout(0.1)
+        )
+        self.apply(init_weights)
+
+    def forward(self,x):
+        return self.ffn(x)
+
+class ScaledDotProductAttention(nn.Module):
+    def __init__(self,head_dim,context_length=16,dropout=0.1):
+        super().__init__()
+        self.head_dim=head_dim
+        self.dropout=dropout
+        self.context_length=context_length
+        self.Wq=nn.Linear(head_dim,head_dim,bias=False)
+        self.Wk=nn.Linear(head_dim,head_dim,bias=False)
+        self.Wv=nn.Linear(head_dim,head_dim,bias=False)
+        # apply mask
+        self.register_buffer(&#39;mask&#39;,torch.tril(torch.ones(context_length,context_length)))
+        self.dropout_layer = nn.Dropout(self.dropout)
+
+    def forward(self,x):
+        B,T,C=x.shape
+        assert T&lt;=self.context_length
+        assert C==self.head_dim
+        Q=self.Wq(x)
+        K=self.Wk(x)
+        V=self.Wv(x)
+        #计算分数
+        attention=Q @ K.transpose(-2,-1) / math.sqrt(self.head_dim)
+        # mask
+        attention=attention.masked_fill(self.mask[:T,:T]==0,float(&#39;-inf&#39;))
+        attention_score=F.softmax(attention,dim=-1)
+        attention_score = self.dropout_layer(attention_score)
+        x=attention_score@V
+        return x
+  
+class MultiHeadAttention(nn.Module):
+    def __init__(self,d_model,num_heads,context_length=16):
+        super().__init__()
+        self.d_model=d_model
+        self.num_heads=num_heads
+        self.context_length=context_length
+        self.head_dim=d_model // num_heads
+
+        self.heads=nn.ModuleList([ScaledDotProductAttention(head_dim=d_model//num_heads,context_length=context_length) for _ in range(num_heads)])
+        self.projection_layer=nn.Linear(d_model,d_model)
+        self.dropout=nn.Dropout(0.1)
+
+    def forward(self,x):
+        # 将x拆分成多头
+        batch_size=x.size(0)
+        # view : 对数据重新分组，平铺后的矩阵数据位置还是一样的
+        # transpose:x[a,b]的访问变为x[b,a]数据肯定是被打乱的了
+        x=x.view(batch_size,-1,self.num_heads,self.head_dim).transpose(1,2)
+        heads_output=[]
+        for i,head in enumerate(self.heads):
+            heads_output.append(head(x[:,i]))
+        heads_output=torch.cat(heads_output,dim=-1)
+        out=self.projection_layer(heads_output)
+        out=self.dropout(out)
+        return out
+
+
+class TransformerBlock(nn.Module):
+
+    def __init__(self,d_model,num_heads,context_length=16):
+        super().__init__()
+        self.d_model=d_model
+        self.num_heads=num_heads
+        self.layer_norm1=nn.LayerNorm(d_model)
+        self.layer_norm2=nn.LayerNorm(d_model)
+        self.multi_head_attention =MultiHeadAttention(d_model=d_model,num_heads=num_heads,context_length=context_length)
+        self.ff_network=FeedForwardNetWork(d_model=d_model,d_ff=4*d_model)
+
+    def forward(self,x):
+        multi_attention_output=self.multi_head_attention(x)
+        x=self.layer_norm1(x+multi_attention_output)
+        feed_forward_output=self.ff_network(x)
+        x=self.layer_norm2(x+feed_forward_output)
+        return x
+
+class GPT2Model(nn.Module):
+    def __init__(self,max_token_value,d_model,num_heads,num_blocks,context_length=16):
+        super().__init__()
+        self.d_model=d_model
+        self.context_length=context_length
+        self.token_embedding=nn.Embedding(max_token_value,d_model)
+        self.transformer_block=nn.Sequential(*([TransformerBlock(d_model=d_model,num_heads=num_heads,context_length=context_length) for _ in range(num_blocks)]+[nn.LayerNorm(self.d_model)]))
+
+  
+
+        self.language_model_out_linear_layer = nn.Linear(in_features=self.d_model, out_features=max_token_value)
+        self.apply(init_weights)
+
+    def forward(self,idx,targets=None):
+        B,T=idx.shape
+        position_encoding_lookup_table = torch.zeros(self.context_length, self.d_model)
+        position = torch.arange(0, self.context_length, dtype=torch.float).unsqueeze(1)
+        div_term = torch.exp(torch.arange(0, self.d_model, 2).float() * (-math.log(10000.0) / self.d_model))
+        position_encoding_lookup_table[:, 0::2] = torch.sin(position * div_term)
+        position_encoding_lookup_table[:, 1::2] = torch.cos(position * div_term)
+        # change position_encoding_lookup_table from (context_length, d_model) to (T, d_model)
+        position_embedding = position_encoding_lookup_table[:T, :].to(idx.device)
+        x=self.token_embedding(idx)+position_embedding
+        x=self.transformer_block(x)
+        logits=self.language_model_out_linear_layer(x) # batch_size , time_stamp ,table
+        return logits
+
+
+    def generate(self,idx,max_new_tokens=100):
+        for _ in range(max_new_tokens):
+            idx_crop = idx[:, -self.context_length:]
+            logits,loss=self(idx_crop)
+            logist_last_timestep=logits[:,-1,:]
+            probs=F.softmax(input=logist_last_timestep,dim=-1)
+            idx_next=torch.multinomial(input=probs,num_samples=1)
+            idx =torch.cat((idx,idx_next),dim=1)
+        return idx
+</code></pre>
+<pre><code class="python">import torch
+from torch.utils.data import DataLoader
+from gpt2model import GPT2Model
+from mydataset import PretrainDataset
+from torch.optim import AdamW
+from transformers import AutoTokenizer, get_linear_schedule_with_warmup
+from tqdm import tqdm
+## 超参数定义
+batch_size = 128 # 每次训练的样本数
+context_length=512# 上下文长度
+d_model=512 # 嵌入向量的维度
+num_block=8 # Transformer块数
+num_heads=16 # 多头注意力的头数
+max_token_value=6400
+
+
+learning_rate=5e-5 # 学习率
+dropout=0.1 # Dropout的比率
+train_epoche=6 #在数据集上训练的轮数
+eval_interval=50 # 评估的间隔
+eval_iters=20
+warmup_steps = 1000  # 添加warmup步数
+max_grad_norm = 1.0  # 梯度裁剪阈值
+device = &#39;cuda:1&#39; if torch.cuda.is_available() else &#39;cpu&#39; # 设备
+torch.manual_seed(1337) # 随机种子
+
+tokenizer=AutoTokenizer.from_pretrained(&#39;/data1/zah_workspace/llmfromzero/tokenizer/model/minimind_tokenizer&#39;)
+model=GPT2Model(max_token_value=max_token_value,d_model=d_model,num_heads=num_heads,num_blocks=num_block,context_length=context_length).to(device)
+optimizer = AdamW(model.parameters(), lr=learning_rate, weight_decay=0.01)
+loss_fct=torch.nn.CrossEntropyLoss(reduction=&#39;none&#39;)#设置了 reduction=&#39;none&#39;，这意味着它不会自动对损失进行平均或求和，而是返回每个样本的损失值。
+## 数据集加载
+dataset=PretrainDataset(data_dir=&#39;/data3/zah_work/datasets/pretrain_hq.jsonl&#39;,max_length=context_length,tokenizer=tokenizer)
+
+mydataloader=DataLoader(dataset=dataset,batch_size=batch_size,shuffle=True)
+
+# 创建学习率调度器
+num_training_steps = len(mydataloader) * train_epoche
+scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=warmup_steps, num_training_steps=num_training_steps)
+
+#训练模型
+def train_epch(epoch):
+    model.train()
+    for step,(X,Y,lossmask) in tqdm(enumerate(mydataloader)):
+        X=X.to(device)
+        Y=Y.to(device)
+        # print(X.shape)
+        # print(Y.shape)
+        lossmask=lossmask.to(device)
+        logits=model(X)# logits 为(batchsize,contextlength,max_token_value) loss为)
+        #掩码一下，去除padding
+        losses = loss_fct(logits.view(-1, logits.size(-1)), Y.view(-1))
+        #计算损失
+        # print(f&quot;loss shape: &#123;loss.shape&#125;&quot;)
+        # print(f&quot;lossmask shape: &#123;lossmask.shape&#125;&quot;)
+        losses = losses.view(Y.shape)  # [1, 512]
+        valid_tokens = lossmask.to(torch.bool)  # [1, 512]
+        # 只计算有效token的损失
+        valid_losses = losses[valid_tokens]
+  
+        # 对有效损失求平均
+        final_loss = valid_losses.mean()
+        optimizer.zero_grad()
+        final_loss.backward()
+        # 添加梯度裁剪
+        torch.nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm)
+        optimizer.step()
+        scheduler.step()  # 更新学习率
+        if(step%10==0):
+            print(f&quot;Loss (masked): &#123;final_loss&#125;&quot;)
+            print(f&quot;Learning rate: &#123;scheduler.get_last_lr()[0]&#125;&quot;)  # 打印当前学习率
+
+train_epch(10)
+## 模型保存
+</code></pre>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>训练到第二个epoch后loss在2.3~2.5震荡，直接停了。</p>
+<pre><code class="python">import torch
+from torch.utils.data import DataLoader
+from gpt2model import GPT2Model
+from mydataset import PretrainDataset
+from torch.optim import AdamW
+from transformers import AutoTokenizer
+from tqdm import tqdm
+## 超参数定义
+batch_size =64 # 每次训练的样本数
+context_length=512# 上下文长度
+d_model=512 # 嵌入向量的维度
+num_block=8 # Transformer块数
+num_heads=16 # 多头注意力的头数
+max_token_value=6400
+  
+device = &#39;cuda:0&#39; if torch.cuda.is_available() else &#39;cpu&#39; # 设备
+tokenizer=AutoTokenizer.from_pretrained(&#39;./tokenizer/model/minimind_tokenizer&#39;)
+model=GPT2Model(max_token_value=max_token_value,d_model=d_model,num_heads=num_heads,num_blocks=num_block,context_length=context_length).to(device)
+model_path = &#39;./model/gpt2model_epoch3_iter72000_bs64.pt&#39;
+  
+# 直接加载模型的state_dict
+model.load_state_dict(torch.load(model_path, map_location=device))
+  
+idx=tokenizer(&quot;珠穆朗玛峰是&quot;,return_tensors=&#39;pt&#39;)
+input_ids=idx[&#39;input_ids&#39;]
+input_ids=input_ids.to(device)
+newidx=model.generate(input_ids)
+print(tokenizer.decode(newidx[0]))
+</code></pre>
+<p>输出: </p>
+<pre><code class="json">珠穆朗玛峰是什么？玛玛峰是一个极坐线且势力的综合性。它洲是地球上最引力和最紧密的恒星之一，它们是一个巨大的恒星，位于赤道和非洲北部。这是一个惊艳中最强的恒星，位于太平洋中而已被永破碎时与太阳射线相互作用带的行星以及这种最强的恒星。&lt;/s&gt; &lt;s&gt;好的，我马上回来，你能请问
+</code></pre>
+<p>有点人工智障了哈哈</p>
+<p>后续路线</p>
+<ul>
+<li>模型架构优化，提高训练速度</li>
+<li>参数调整（炼丹） 重新训练</li>
+<li>微调</li>
+</ul>
+<hr>
+<p>文章参考:</p>
+<p>博客地址: qwrdxer.github.io</p>
+<p>欢迎交流: qq1944270374</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1944270374@qq.com </span>

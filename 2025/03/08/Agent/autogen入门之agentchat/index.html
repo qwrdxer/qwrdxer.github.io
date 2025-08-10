@@ -1,0 +1,2151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>autogen入门之autochat | qwrdxer &#39;s blog</title>
+  <meta name="keywords" content=" Agent , Multi-Agent ">
+  <meta name="description" content="autogen入门之autochat | qwrdxer &#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About">
+<meta property="og:url" content="https://qwrdxer.github.io/about/index.html">
+<meta property="og:site_name" content="qwrdxer &#39;s blog">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-08-10T03:50:56.671Z">
+<meta property="article:modified_time" content="2025-08-10T03:50:56.671Z">
+<meta property="article:author" content="qwrdxer">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>qwrdxer</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/qwrdxer"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/yyc-96-55-3"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qwrdxer?type=blog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1944270374@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1944270374&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(54)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="杂项">
+            
+            杂项
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="编程语言">
+            <i class="fold iconfont icon-right"></i>
+            编程语言
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;C++">
+            
+            C++
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Go">
+            
+            Go
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Rust">
+            
+            Rust
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="操作系统">
+            
+            操作系统
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="代码分析">
+            
+            代码分析
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="环境配置">
+            
+            环境配置
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="脚本">
+            
+            脚本
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="开发工具">
+            
+            开发工具
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文阅读">
+            <i class="fold iconfont icon-right"></i>
+            论文阅读
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="论文阅读&lt;---&gt;人工智能">
+            
+            人工智能
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="爬虫">
+            
+            爬虫
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="区块链">
+            
+            区块链
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="人工智能">
+            <i class="fold iconfont icon-right"></i>
+            人工智能
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="人工智能&lt;---&gt;FASTAI">
+            
+            FASTAI
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="日志">
+            
+            日志
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="渗透测试篇">
+            
+            渗透测试篇
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            
+            数据库
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="算法">
+            
+            算法
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="写点好玩的">
+            
+            写点好玩的
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="一些奇怪的bug">
+            
+            一些奇怪的bug
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="以太坊">
+            
+            以太坊
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Agent">
+            
+            Agent
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="LLM">
+            
+            LLM
+            <small>(5)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="MCP">
+            
+            MCP
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全工具篇">
+            
+            web安全工具篇
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全漏洞篇">
+            
+            web安全漏洞篇
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="54">
+<input type="hidden" id="yelog_site_word_count" value="166.5k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>报错解决</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具使用</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境配置</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>脚本</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>深度学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>渗透测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>通讯协议</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>文件包含</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>bash</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FASTAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPT</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Josephus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MCP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Memory</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Multi-Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>shell</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Swarm</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>web漏洞</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WordPress</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2025/08/10/Untitled/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2025-08-10 11:50:56">2025/08/10</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/12/LLM/Llama%20Factory%20%E5%BE%AE%E8%B0%83%E4%B8%80%E4%B8%AA%20LLM%E8%B6%8A%E7%8B%B1%E7%9B%B8%E5%85%B3%E5%A4%A7%E6%A8%A1%E5%9E%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Llama Factory 微调一个 LLM越狱相关大模型">Llama Factory 微调一个 LLM越狱相关大模型</span>
+            <span class="post-date" title="2025-04-12 13:56:52">2025/04/12</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/10/LLM/Qwen2.5-7b%20Lora%E5%BE%AE%E8%B0%83-peft%E7%AF%87/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Qwen2.5-7b Lora微调-peft篇">Qwen2.5-7b Lora微调-peft篇</span>
+            <span class="post-date" title="2025-04-10 14:32:36">2025/04/10</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/07/LLM/%E9%A2%84%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA25M%E7%9A%84GPT2%E6%A8%A1%E5%9E%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="预训练一个25M的GPT2模型">预训练一个25M的GPT2模型</span>
+            <span class="post-date" title="2025-04-07 14:19:54">2025/04/07</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/06/LLM/Tokenizer%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Tokenizer 从零开始训练">Tokenizer 从零开始训练</span>
+            <span class="post-date" title="2025-04-06 20:50:21">2025/04/06</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/06/LLM/GPT2%20%E6%89%8B%E6%92%95%20%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GPT2 手撕 模型代码分析">GPT2 手撕 模型代码分析</span>
+            <span class="post-date" title="2025-04-06 14:14:30">2025/04/06</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/22/Agent/multi-agent%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="multi-agent中的设计模式">multi-agent中的设计模式</span>
+            <span class="post-date" title="2025-03-22 14:46:50">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/22/Agent/autogen-core%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen-core学习记录">autogen-core学习记录</span>
+            <span class="post-date" title="2025-03-22 14:42:21">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="All MCP "
+           href="/2025/03/12/MCP/MCP(Model%20Context%20Protocol)%20%E7%AE%80%E4%BB%8B/"
+           data-tag="MCP,通讯协议,LLM"
+           data-author="" >
+            <span class="post-title" title="MCP(Model Context Protocol) 简介">MCP(Model Context Protocol) 简介</span>
+            <span class="post-date" title="2025-03-12 15:47:27">2025/03/12</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/10/Agent/autogen%E6%8F%90%E9%AB%98%E4%B9%8BAgentChat%20Advanced%E9%83%A8%E5%88%86/"
+           data-tag="Agent,Multi-Agent,Memory,Swarm"
+           data-author="" >
+            <span class="post-title" title="autogen提高之AgentChat Advanced部分">autogen提高之AgentChat Advanced部分</span>
+            <span class="post-date" title="2025-03-10 21:35:41">2025/03/10</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/08/Agent/autogen%E5%85%A5%E9%97%A8%E4%B9%8Bagentchat/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen入门之autochat">autogen入门之autochat</span>
+            <span class="post-date" title="2025-03-08 20:23:19">2025/03/08</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2024/02/26/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/logseq%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="logseq使用">logseq使用</span>
+            <span class="post-date" title="2024-02-26 10:47:48">2024/02/26</span>
+        </a>
+        
+        
+        <a  class="All 区块链 "
+           href="/2024/01/21/%E5%8C%BA%E5%9D%97%E9%93%BE/hardhat%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hardhat智能合约流程">hardhat智能合约流程</span>
+            <span class="post-date" title="2024-01-21 15:20:03">2024/01/21</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/"
+           data-tag="Josephus"
+           data-author="" >
+            <span class="post-title" title="Josephus Problem">Josephus Problem</span>
+            <span class="post-date" title="2024-01-17 11:49:36">2024/01/17</span>
+        </a>
+        
+        
+        <a  class="All 区块链 "
+           href="/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="fabric环境配置">fabric环境配置</span>
+            <span class="post-date" title="2024-01-08 18:47:43">2024/01/08</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/12/22/%E7%88%AC%E8%99%AB/CF%E7%9B%BE%E7%BB%95%E8%BF%87(NodeJs%E7%89%88)/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CF盾绕过(NodeJs版)">CF盾绕过(NodeJs版)</span>
+            <span class="post-date" title="2023-12-22 20:11:48">2023/12/22</span>
+        </a>
+        
+        
+        <a  class="All 以太坊 "
+           href="/2023/10/19/%E4%BB%A5%E5%A4%AA%E5%9D%8A/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E9%83%A8%E5%88%86%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B5%85%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="以太坊部分知识点浅析">以太坊部分知识点浅析</span>
+            <span class="post-date" title="2023-10-19 16:10:05">2023/10/19</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2023/10/12/%E6%97%A5%E5%BF%97/%E9%93%BE%E6%8E%A5%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="链接记录">链接记录</span>
+            <span class="post-date" title="2023-10-12 19:40:28">2023/10/12</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/go-rod%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="go-rod学习">go-rod学习</span>
+            <span class="post-date" title="2023-10-06 11:22:48">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/Go%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%88%AC%E8%99%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go实现一个爬虫">Go实现一个爬虫</span>
+            <span class="post-date" title="2023-10-06 11:10:43">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="All 代码分析 "
+           href="/2023/10/05/%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/RustScan%E6%BA%90%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RustScan源代码分析">RustScan源代码分析</span>
+            <span class="post-date" title="2023-10-05 19:28:59">2023/10/05</span>
+        </a>
+        
+        
+        <a  class="All 一些奇怪的bug "
+           href="/2023/10/02/%E4%B8%80%E4%BA%9B%E5%A5%87%E6%80%AA%E7%9A%84bug/bug%E8%AE%B0%E5%BD%95&%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="bug记录&amp;解决方法">bug记录&amp;解决方法</span>
+            <span class="post-date" title="2023-10-02 16:05:12">2023/10/02</span>
+        </a>
+        
+        
+        <a  class="All 论文阅读 人工智能 "
+           href="/2023/10/01/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/OpenAI%E7%9A%84GPT%E5%8F%91%E5%B1%95/"
+           data-tag="LLM,GPT"
+           data-author="" >
+            <span class="post-title" title="大模型论文">大模型论文</span>
+            <span class="post-date" title="2023-10-01 22:17:21">2023/10/01</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Rust "
+           href="/2023/09/28/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/Rust_lifetime/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Rust的生命周期">Rust的生命周期</span>
+            <span class="post-date" title="2023-09-28 11:33:04">2023/09/28</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2023/09/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%AE%89%E5%85%A8%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE&%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE%E4%B8%8B%E8%BD%BD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安全四大会议&amp;人工智能四大会议下载">安全四大会议&amp;人工智能四大会议下载</span>
+            <span class="post-date" title="2023-09-27 20:47:28">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Rust "
+           href="/2023/09/27/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/The%20Rust%20Programming%20Language%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Rust Programming Language阅读笔记">The Rust Programming Language阅读笔记</span>
+            <span class="post-date" title="2023-09-27 20:35:50">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_3_%E5%A4%9AGPU%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_3_多GPU训练">FASTAI_3_多GPU训练</span>
+            <span class="post-date" title="2023-09-27 20:32:12">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_2_Datasets%E3%80%81Pipeline%E3%80%81TfmdLists%E3%80%81Transform/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_2_Datasets、Pipeline、TfmdLists、Transform">FASTAI_2_Datasets、Pipeline、TfmdLists、Transform</span>
+            <span class="post-date" title="2023-09-27 20:29:37">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_1_%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8CAPI%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI_1_使用不同API加载数据">FASTAI_1_使用不同API加载数据</span>
+            <span class="post-date" title="2023-09-27 20:28:09">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI快速入门">FASTAI快速入门</span>
+            <span class="post-date" title="2023-09-27 20:18:36">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 C++ "
+           href="/2023/01/10/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/C++%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C++入门">C++入门</span>
+            <span class="post-date" title="2023-01-10 11:30:50">2023/01/10</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%AB%E6%8F%8F%E5%99%A8%E5%AE%9E%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="分布式扫描器实现">分布式扫描器实现</span>
+            <span class="post-date" title="2022-04-27 11:43:42">2022/04/27</span>
+        </a>
+        
+        
+        <a  class="All 数据库 "
+           href="/2022/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93/mongodb%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="mongodb学习">mongodb学习</span>
+            <span class="post-date" title="2022-04-14 09:31:33">2022/04/14</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/10/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/Go%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E5%99%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go编写一个扫描器">Go编写一个扫描器</span>
+            <span class="post-date" title="2022-04-10 14:34:18">2022/04/10</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/09/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E6%83%B3%E6%B3%95%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="想法记录">想法记录</span>
+            <span class="post-date" title="2022-04-09 11:24:11">2022/04/09</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Go "
+           href="/2022/04/08/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go/The%20Way%20To%20Go/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Way To Go">The Way To Go</span>
+            <span class="post-date" title="2022-04-08 18:09:20">2022/04/08</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2022/03/31/%E6%97%A5%E5%BF%97/%E5%B1%B1%E8%BF%98%E6%98%AF%E5%B1%B1,%E6%B0%B4%E8%BF%98%E6%98%AF%E6%B0%B4,%E4%BD%A0%E4%B8%8D%E8%83%BD%E6%B0%B8%E8%BF%9C%E6%98%AF%E9%82%A3%E4%B8%AA%E4%BD%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="山还是山,水还是水,你不能永远是那个你">山还是山,水还是水,你不能永远是那个你</span>
+            <span class="post-date" title="2022-03-31 09:37:42">2022/03/31</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day11~day20">30天自制操作系统-学习笔记 day11~day20</span>
+            <span class="post-date" title="2022-03-27 09:49:33">2022/03/27</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2022/03/21/%E6%97%A5%E5%BF%97/%E9%97%B2%E8%AF%AD%E6%9D%82%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="闲语杂记">闲语杂记</span>
+            <span class="post-date" title="2022-03-21 12:51:18">2022/03/21</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/03/15/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/freemarker%E6%93%8D%E6%8E%A7word/"
+           data-tag="工具使用"
+           data-author="" >
+            <span class="post-title" title="freemarker操控word">freemarker操控word</span>
+            <span class="post-date" title="2022-03-15 12:00:54">2022/03/15</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/2022/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day1~day10">30天自制操作系统-学习笔记 day1~day10</span>
+            <span class="post-date" title="2022-01-31 10:57:39">2022/01/31</span>
+        </a>
+        
+        
+        <a  class="All 杂项 "
+           href="/2022/01/12/%E6%9D%82%E9%A1%B9/GITHUB%E6%94%B6%E9%9B%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GITHUB收集">GITHUB收集</span>
+            <span class="post-date" title="2022-01-12 20:07:03">2022/01/12</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/"
+           data-tag="渗透测试,工具开发"
+           data-author="" >
+            <span class="post-title" title="web页面密码爆破">web页面密码爆破</span>
+            <span class="post-date" title="2022-01-11 10:21:34">2022/01/11</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2022/01/09/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/Goby%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Goby分析">Goby分析</span>
+            <span class="post-date" title="2022-01-09 13:35:49">2022/01/09</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/08/15/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Shell%E8%84%9A%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag="bash,脚本,shell,linux,开发"
+           data-author="" >
+            <span class="post-title" title="Shell脚本学习笔记">Shell脚本学习笔记</span>
+            <span class="post-date" title="2021-08-15 11:19:55">2021/08/15</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试篇 "
+           href="/2021/07/25/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AF%87/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="信息收集">信息收集</span>
+            <span class="post-date" title="2021-07-25 19:33:55">2021/07/25</span>
+        </a>
+        
+        
+        <a  class="All web安全漏洞篇 "
+           href="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,MySQL"
+           data-author="" >
+            <span class="post-title" title="SQL注入相关">SQL注入相关</span>
+            <span class="post-date" title="2021-05-11 15:23:06">2021/05/11</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2021/04/21/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/nmap%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="nmap使用">nmap使用</span>
+            <span class="post-date" title="2021-04-21 19:29:51">2021/04/21</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/04/20/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/docker%E7%9B%B8%E5%85%B3/"
+           data-tag="工具使用,脚本,docker"
+           data-author="" >
+            <span class="post-title" title="docker相关">docker相关</span>
+            <span class="post-date" title="2021-04-20 13:49:50">2021/04/20</span>
+        </a>
+        
+        
+        <a  class="All web安全漏洞篇 "
+           href="/2021/04/19/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,文件包含"
+           data-author="" >
+            <span class="post-title" title="文件包含漏洞相关">文件包含漏洞相关</span>
+            <span class="post-date" title="2021-04-19 14:49:59">2021/04/19</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/04/16/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/hexo%E5%91%BD%E4%BB%A4/"
+           data-tag="工具使用,脚本"
+           data-author="" >
+            <span class="post-title" title="hexo相关">hexo相关</span>
+            <span class="post-date" title="2021-04-16 12:12:14">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2021/04/16/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/xray%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="xray使用">xray使用</span>
+            <span class="post-date" title="2021-04-16 12:10:08">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="All 脚本 "
+           href="/2021/04/15/%E8%84%9A%E6%9C%AC/some-script/"
+           data-tag="bash,脚本,python"
+           data-author="" >
+            <span class="post-title" title="some script">some script</span>
+            <span class="post-date" title="2021-04-15 11:23:33">2021/04/15</span>
+        </a>
+        
+        
+        <a  class="All 环境配置 "
+           href="/2021/04/15/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/centos%E9%83%A8%E7%BD%B2wordpress/"
+           data-tag="linux,环境配置,报错解决,WordPress"
+           data-author="" >
+            <span class="post-title" title="centos部署wordpress">centos部署wordpress</span>
+            <span class="post-date" title="2021-04-15 01:34:16">2021/04/15</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Agent/autogen入门之agentchat" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">autogen入门之autochat</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="Agent">Agent</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">Agent</a>
+            
+            <a class="color2">Multi-Agent</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2025-08-10 11:50:56'>2025-03-08 20:23</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:6.1k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Quick-start"><span class="toc-text">Quick start</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%85%E5%AE%89%E8%A3%85"><span class="toc-text">包安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hello-World"><span class="toc-text">Hello  World</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%8F%E4%BD%9C"><span class="toc-text">协作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F"><span class="toc-text">生态系统</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Agent-Chat"><span class="toc-text">Agent Chat</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Model"><span class="toc-text">Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Messages"><span class="toc-text">Messages</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Agent-Agent-Message"><span class="toc-text">Agent-Agent Message</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E4%BA%8B%E4%BB%B6"><span class="toc-text">内部事件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Agents"><span class="toc-text">Agents</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Assistant-Agent"><span class="toc-text">Assistant Agent</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96Agent%E7%9A%84Response"><span class="toc-text">获取Agent的Response</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E6%A8%A1%E6%80%81%E8%BE%93%E5%85%A5"><span class="toc-text">多模态输入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E5%BC%8F%E8%B0%83%E7%94%A8%E6%B6%88%E6%81%AF"><span class="toc-text">流式调用消息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E5%BC%8FToken%E7%94%9F%E6%88%90"><span class="toc-text">流式Token生成</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8"><span class="toc-text">工具使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E5%B7%A5%E5%85%B7"><span class="toc-text">内置工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Function-Tool"><span class="toc-text">Function Tool</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Model-Context-Protocol-Tools"><span class="toc-text">Model Context Protocol Tools</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Langchain-Tools"><span class="toc-text">Langchain Tools</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%B6%E8%A1%8C%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8"><span class="toc-text">并行工具调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%8C%96%E8%BE%93%E5%87%BA"><span class="toc-text">结构化输出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87-%E8%AE%B0%E5%BF%86"><span class="toc-text">模型的上下文(记忆)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%A2%84%E8%AE%BE%E7%9A%84%E4%BB%A3%E7%90%86"><span class="toc-text">其他预设的代理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Teams"><span class="toc-text">Teams</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%9B%A2%E9%98%9F"><span class="toc-text">创建一个团队</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Running-a-Team"><span class="toc-text">Running a Team</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%82%E5%AF%9FTeam%E8%BF%90%E8%A1%8C"><span class="toc-text">观察Team运行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E7%BD%AE%E5%9B%A2%E9%98%9F-amp-%E5%81%9C%E6%AD%A2%E5%9B%A2%E9%98%9F"><span class="toc-text">重置团队 &amp;  停止团队</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%81%A2%E5%A4%8DTeam%E8%BF%90%E8%A1%8C-amp-%E7%BB%A7%E7%BB%AD%E6%89%A7%E8%A1%8C"><span class="toc-text">恢复Team运行 &amp; 继续执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E6%AD%A2%E5%9B%A2%E9%98%9F"><span class="toc-text">中止团队</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E4%BB%A3%E7%90%86%E5%9B%A2%E9%98%9F"><span class="toc-text">单代理团队</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Human-in-the-Loop"><span class="toc-text">Human in the Loop</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E8%BF%90%E8%A1%8C%E6%9C%9F%E9%97%B4%E6%8F%90%E4%BE%9B%E5%8F%8D%E9%A6%88"><span class="toc-text">在运行期间提供反馈</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%B8%8B%E4%B8%80%E6%AC%A1%E8%BF%90%E8%A1%8C%E6%8F%90%E4%BE%9B%E5%8F%8D%E9%A6%88"><span class="toc-text">为下一次运行提供反馈</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Termination"><span class="toc-text">Termination</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%B8%A6%E7%9A%84%E6%9D%A1%E4%BB%B6"><span class="toc-text">自带的条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%88%E6%AD%A2%E6%9D%A1%E4%BB%B6"><span class="toc-text">自定义终止条件</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>AutoGen</strong> 是一个用于创建多代理 AI 应用程序的框架，这些应用程序可以自主运行或与人类一起工作。</p>
+<h3 id="Quick-start"><a href="#Quick-start" class="headerlink" title="Quick start"></a>Quick start</h3><h4 id="包安装"><a href="#包安装" class="headerlink" title="包安装"></a>包安装</h4><pre><code class="bash">pip install -U &quot;autogen-agentchat&quot; &quot;autogen-ext[openai]&quot;
+pip install -U &quot;autogenstudio&quot;  # GUI ,无代码编排的
+</code></pre>
+<h4 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello  World"></a>Hello  World</h4><p>下面的代码创建了一个Agent并让其输出Hello World</p>
+<pre><code class="python">import asyncio
+from autogen_agentchat.agents import AssistantAgent
+from autogen_ext.models.openai import OpenAIChatCompletionClient
+
+async def main() -&gt; None:
+    agent = AssistantAgent(&quot;assistant&quot;, OpenAIChatCompletionClient(model=&quot;gpt-4o&quot;))
+    print(await agent.run(task=&quot;Say &#39;Hello World!&#39;&quot;))
+
+asyncio.run(main())
+</code></pre>
+<h4 id="协作"><a href="#协作" class="headerlink" title="协作"></a>协作</h4><p>下面是一个例子,实现了用户输入问题，Agent进行联网搜索、资料整理的功能。</p>
+<pre><code class="python"># pip install -U autogen-agentchat autogen-ext[openai,web-surfer]
+# playwright install
+import asyncio
+from autogen_agentchat.agents import AssistantAgent, UserProxyAgent
+from autogen_agentchat.conditions import TextMentionTermination
+from autogen_agentchat.teams import RoundRobinGroupChat
+from autogen_agentchat.ui import Console
+from autogen_ext.models.openai import OpenAIChatCompletionClient
+from autogen_ext.agents.web_surfer import MultimodalWebSurfer
+async def main() -&gt; None:
+    model_client = OpenAIChatCompletionClient(model=&quot;gpt-4o&quot;,api_key=&quot;sk-De9thp9hKJIHto6O58A51019B0Ac4f0fAd019f00&quot;,base_url=&quot;https://api.v3.cm/v1&quot;)
+    assistant = AssistantAgent(&quot;assistant&quot;, model_client)
+    web_surfer = MultimodalWebSurfer(&quot;web_surfer&quot;, model_client)
+    user_proxy = UserProxyAgent(&quot;user_proxy&quot;)
+    termination = TextMentionTermination(&quot;exit&quot;) # Type &#39;exit&#39; to end the conversation.
+    team = RoundRobinGroupChat([web_surfer, assistant, user_proxy], termination_condition=termination)
+    await Console(team.run_stream(task=&quot;帮我收集一下最近的multi agent相关信息，使用中文输出你的调查结果&quot;))
+asyncio.run(main())
+</code></pre>
+<h4 id="生态系统"><a href="#生态系统" class="headerlink" title="生态系统"></a>生态系统</h4><p><img src="/2025/03/08/Agent/autogen%E5%85%A5%E9%97%A8%E4%B9%8Bagentchat/image-20250319110642675.png" alt="image-20250319110642675"></p>
+<ul>
+<li>Core API 实现了消息传递、事件驱动型Agent和本地/分布式 runtime</li>
+<li>AgentChat 实现了一个更简单的快速原型设计</li>
+<li>Extension API  支持第一方和第三方扩展，不断扩展框架功能。它支持客户端的特定LLM实现（例如 OpenAI、AzureOpenAI）和代码执行等功能。</li>
+<li>AutoGen Studio 提供用于构建多代理应用程序的无代码 GUI。</li>
+<li>AutoGen Bench 提供了用于评估代理性能的基准测试套件。</li>
+</ul>
+<h2 id="Agent-Chat"><a href="#Agent-Chat" class="headerlink" title="Agent Chat"></a>Agent Chat</h2><h3 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h3><p>大模型是Agent的基础部分, autogen实现了许多模型的客户端供用户使用,这里使用<code>OpenAIChatCompletionClient</code></p>
+<p>首先需要安装额外的拓展包</p>
+<pre><code class="python">pip install &quot;autogen-ext[openai]&quot;
+</code></pre>
+<p>通过提供apikey、模型名字、base url等信息来创建一个client ,通过调用客户端的Create方法调用大模型进行问题回答</p>
+<pre><code class="python">from autogen_ext.models.openai import OpenAIChatCompletionClient
+from autogen_core.models import UserMessage
+import asyncio
+model_client = OpenAIChatCompletionClient(model=&quot;gpt-4o&quot;,api_key=&quot;sk-De9thp9hKJIHto6O58A51019B0Ac4805843f5f0fAd019f00&quot;,base_url=&quot;https://api.v3.cm/v1&quot;)
+async def main() -&gt; None:
+    result= await model_client.create([UserMessage(content=&quot;What is the capital of France?&quot;, source=&quot;user&quot;)])
+    print(result)
+    return
+</code></pre>
+<p>支持的model provider如下</p>
+<ul>
+<li>Openai <code>pip install &quot;autogen-ext[openai]&quot;</code></li>
+<li>Azure Openai <code>pip install &quot;autogen-ext[openai,azure]&quot;</code></li>
+<li>Azure AI Foundry   <code>pip install &quot;autogen-ext[azure]&quot;</code></li>
+<li>Ollama </li>
+<li>Gemini</li>
+<li>Semantic Kernel Adapter <code>pip install &quot;autogen-ext[semantic-kernel-anthropic]&quot;</code></li>
+</ul>
+<h3 id="Messages"><a href="#Messages" class="headerlink" title="Messages"></a>Messages</h3><p>总体来说，框架的Messages分为两类,一种是Agent与Agent之间的Message(交流),一种是单个Agent自己的内部事件和消息</p>
+<h4 id="Agent-Agent-Message"><a href="#Agent-Agent-Message" class="headerlink" title="Agent-Agent Message"></a>Agent-Agent Message</h4><p>AgentChat支持多种Agent之间交互的Message,他们属于联合类型<code>ChatMessage</code> </p>
+<pre><code class="python">ChatMessage = Annotated[
+    TextMessage | MultiModalMessage | StopMessage | ToolCallSummaryMessage | HandoffMessage, Field(discriminator=&quot;type&quot;)
+]
+</code></pre>
+<p>示例如下:</p>
+<pre><code class="python">from autogen_agentchat.messages import TextMessage,MultiModalMessage
+from autogen_core import Image as AGImage
+from PIL import Image
+from io import BytesIO
+text_message = TextMessage(content=&quot;Hello, world!&quot;, source=&quot;User&quot;)
+pil_image = Image.open(BytesIO(requests.get(&quot;https://picsum.photos/300/200&quot;).content))
+img = AGImage(pil_image) #封装成 框架的图片
+multi_modal_message = MultiModalMessage(content=[&quot;Can you describe the content of this image?&quot;, img], source=&quot;User&quot;)#创建多模态消息
+</code></pre>
+<h4 id="内部事件"><a href="#内部事件" class="headerlink" title="内部事件"></a>内部事件</h4><p>AgentChat还支持 <code>事件</code> 的概念,它是一种Agent自身内部的消息。他们属于联合类型AgentEvent</p>
+<pre><code class="python">AgentEvent = Annotated[
+
+    ToolCallRequestEvent
+
+    | ToolCallExecutionEvent
+
+    | MemoryQueryEvent
+
+    | UserInputRequestedEvent
+
+    | ModelClientStreamingChunkEvent
+
+    | ThoughtEvent,
+
+    Field(discriminator=&quot;type&quot;),
+
+]
+</code></pre>
+<p>通常，事件由代理本身创建，并包含在从 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.base.html#autogen_agentchat.base.ChatAgent.on_messages" title="autogen_agentchat.base.ChatAgent.on_messages"><code>on_messages</code></a> 返回的 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.base.html#autogen_agentchat.base.Response" title="autogen_agentchat.base.Response"><code>Response</code></a> 的 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.base.html#autogen_agentchat.base.Response.inner_messages" title="autogen_agentchat.base.Response.inner_messages"><code>inner_messages</code></a> 字段中。</p>
+<h3 id="Agents"><a href="#Agents" class="headerlink" title="Agents"></a>Agents</h3><p>AutoGen 提供了一组预设的Agent,每个Agent的响应方式都有所不同,所有代理都共享以下属性和方法：</p>
+<ul>
+<li>name</li>
+<li>description</li>
+<li>on_messages() 向代理发送一系列ChatMessage并获取Response，值得注意的事Agent是有自身状态的, 调用此方法时只需要传入最新的消息</li>
+<li>on_messages_stram()</li>
+<li>on_reset() 将代理重置为其初始的状态</li>
+<li>run() &amp; run_stream() 分别调用上述的发送消息方法,提供与Teams相同的接口的便捷方法</li>
+</ul>
+<h4 id="Assistant-Agent"><a href="#Assistant-Agent" class="headerlink" title="Assistant Agent"></a>Assistant Agent</h4><p>这是autogen的内置代理,它使用语言模型并具有使用工具的能力</p>
+<pre><code class="python">from autogen_agentchat.agents import AssistantAgent
+from autogen_agentchat.messages import TextMessage
+from autogen_agentchat.ui import Console
+from autogen_core import CancellationToken
+from autogen_ext.models.openai import OpenAIChatCompletionClient
+model_client = OpenAIChatCompletionClient(
+    model=&quot;gpt-4o&quot;,
+    # api_key=&quot;YOUR_API_KEY&quot;,
+)
+agent = AssistantAgent(
+    name=&quot;assistant&quot;,
+    model_client=model_client,
+    tools=[web_search],
+    system_message=&quot;Use tools to solve tasks.&quot;,
+)
+</code></pre>
+<h4 id="获取Agent的Response"><a href="#获取Agent的Response" class="headerlink" title="获取Agent的Response"></a>获取Agent的Response</h4><pre><code class="python">async def assistant_run()-&gt;None:
+    response=await agent.on_messages(
+        [TextMessage(content=&quot;Find information on AutoGen&quot;, source=&quot;user&quot;)],
+        cancellation_token=CancellationToken(),
+    )
+    print(response.inner_messages)
+    print(response.chat_message)
+    print(response)
+</code></pre>
+<p>response如下</p>
+<pre><code class="python">Response(chat_message=ToolCallSummaryMessage(source=&#39;assistant&#39;, models_usage=None, metadata=&#123;&#125;, content=&#39;AutoGen is a programming framework for building multi-agent applications.&#39;, type=&#39;ToolCallSummaryMessage&#39;), inner_messages=[ToolCallRequestEvent(source=&#39;assistant&#39;, models_usage=RequestUsage(prompt_tokens=61, completion_tokens=15), metadata=&#123;&#125;, content=[FunctionCall(id=&#39;call_4DjoBru0JY9r4v2NyNskYk4d&#39;, arguments=&#39;&#123;&quot;query&quot;:&quot;AutoGen&quot;&#125;&#39;, name=&#39;web_search&#39;)], type=&#39;ToolCallRequestEvent&#39;), ToolCallExecutionEvent(source=&#39;assistant&#39;, models_usage=None, metadata=&#123;&#125;, content=[FunctionExecutionResult(content=&#39;AutoGen is a programming framework for building multi-agent applications.&#39;, name=&#39;web_search&#39;, call_id=&#39;call_4DjoBru0JY9r4v2NyNskYk4d&#39;, is_error=False)], type=&#39;ToolCallExecutionEvent&#39;)])
+</code></pre>
+<p>其中,chatMessage是Agent的最终响应<br>inner_messages是Agent内部的 “思考” 过程, 包含工具的请求调用以及工具的调用结果。</p>
+<ul>
+<li>on_message()将更新代理的内部状态,消息会被自动添加到代理的历史消息中</li>
+<li>可以使用run()方法，返回TaskResult对象\</li>
+<li>默认情况下,代理将返回工具调用的结果作为最终响应</li>
+</ul>
+<h4 id="多模态输入"><a href="#多模态输入" class="headerlink" title="多模态输入"></a>多模态输入</h4><pre><code class="python">from io import BytesIO
+
+import PIL
+import requests
+from autogen_agentchat.messages import MultiModalMessage
+from autogen_core import Image
+
+# Create a multi-modal message with random image and text.
+pil_image = PIL.Image.open(BytesIO(requests.get(&quot;https://picsum.photos/300/200&quot;).content))
+img = Image(pil_image)
+multi_modal_message = MultiModalMessage(content=[&quot;Can you describe the content of this image?&quot;, img], source=&quot;user&quot;)
+
+
+async def assistant_run()-&gt;None:
+    response = await agent.on_messages([multi_modal_message], CancellationToken())
+    print(response.chat_message.content)
+</code></pre>
+<h4 id="流式调用消息"><a href="#流式调用消息" class="headerlink" title="流式调用消息"></a>流式调用消息</h4><p>我们还可以使用 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.AssistantAgent.on_messages_stream" title="autogen_agentchat.agents.AssistantAgent.on_messages_stream"><code>on_messages_stream（）</code></a> 方法，然后使用 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.ui.html#autogen_agentchat.ui.Console" title="autogen_agentchat.ui.Console"><code>Console</code></a> 打印显示在控制台中的消息。<br>Agent会逐条输出消息</p>
+<pre><code class="python">async def assistant_run_stream() -&gt; None:
+    # Option 1: read each message from the stream (as shown in the previous example).
+    # async for message in agent.on_messages_stream(
+    #     [TextMessage(content=&quot;Find information on AutoGen&quot;, source=&quot;user&quot;)],
+    #     cancellation_token=CancellationToken(),
+    # ):
+    #     print(message)
+
+    # Option 2: use Console to print all messages as they appear.
+    await Console(
+        agent.on_messages_stream(
+            [TextMessage(content=&quot;Find information on AutoGen&quot;, source=&quot;user&quot;)],
+            cancellation_token=CancellationToken(),
+        ),
+        output_stats=True,  # Enable stats printing.
+    )
+</code></pre>
+<h4 id="流式Token生成"><a href="#流式Token生成" class="headerlink" title="流式Token生成"></a>流式Token生成</h4><p>通过设置model_client_stream=True 来流式传输 Token</p>
+<pre><code class="python">streaming_assistant = AssistantAgent(
+    name=&quot;assistant&quot;,
+    model_client=model_client,
+    system_message=&quot;You are a helpful assistant.&quot;,
+    model_client_stream=True,  # Enable streaming tokens.
+)
+
+# Use an async function and asyncio.run() in a script.
+async for message in streaming_assistant.on_messages_stream(  # type: ignore
+    [TextMessage(content=&quot;Name two cities in South America&quot;, source=&quot;user&quot;)],
+    cancellation_token=CancellationToken(),
+):
+    print(message)
+</code></pre>
+<h4 id="工具使用"><a href="#工具使用" class="headerlink" title="工具使用"></a>工具使用</h4><p>LLM受限于只能输出文本响应, 无法与外部交互、无法获取实时数据等。 为了解决此类限制, 现在的LLM可以接受一系列可以使用的工具,并生成调用工具请求来拓展其自身能力。</p>
+<p>这种能力称为 Tool Calling 或者Function Calling <a target="_blank" rel="noopener" href="https://platform.openai.com/docs/guides/function-calling">https://platform.openai.com/docs/guides/function-calling</a></p>
+<ul>
+<li>在AgentChat中, <code>AssistantAgent</code> 可以使用工具来执行特定的动作.</li>
+<li>默认情况下,当 <code>AssistantAgent</code> 执行工具时，会将工具执行结果作为最终结果返回chat_message=ToolCallSummaryMessage</li>
+<li>如果想让Agent进一步处理数据的话, 可以在构造AssistantAgent时设置 reflect_on_tool_use=True,让模型进行额外的处理。</li>
+<li>AssistantAgent调用一次会执行如下步骤: 一次模型调用、一次工具调用、 一次可选的模型反思,将最终结果返回。</li>
+</ul>
+<h4 id="内置工具"><a href="#内置工具" class="headerlink" title="内置工具"></a>内置工具</h4><p>AutoGen Extension 提供了一组可与 Assistant Agent 一起使用的内置工具。 函数放置在<code>autogen_ext.tools</code>下</p>
+<ul>
+<li>code_execution</li>
+<li>graphrag 使用 GraphRAG 索引的工具。</li>
+<li>http  用于发出 HTTP 请求的工具。</li>
+<li>langchain 用于使用 LangChain 工具的适配器。</li>
+<li>mcp 用于使用模型聊天协议 （MCP） 服务器的工具。</li>
+<li>semantic_ernel</li>
+</ul>
+<h4 id="Function-Tool"><a href="#Function-Tool" class="headerlink" title="Function Tool"></a>Function Tool</h4><p><a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.AssistantAgent" title="autogen_agentchat.agents.AssistantAgent"><code>AssistantAgent</code></a> 会自动将 Python 函数转换为 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_core.tools.html#autogen_core.tools.FunctionTool" title="autogen_core.tools.FunctionTool"><code>FunctionTool</code></a> 该 Schema 可以被代理用作工具，并自动生成 Tool Schema 从函数签名和文档字符串中。</p>
+<pre><code class="python">from autogen_core.tools import FunctionTool
+
+# Define a tool using a Python function.
+async def web_search_func(query: str) -&gt; str:
+    &quot;&quot;&quot;Find information on the web&quot;&quot;&quot;
+    return &quot;AutoGen is a programming framework for building multi-agent applications.&quot;
+
+# This step is automatically performed inside the AssistantAgent if the tool is a Python function.
+web_search_function_tool = FunctionTool(web_search_func, description=&quot;Find information on the web&quot;)
+# The schema is provided to the model during AssistantAgent&#39;s on_messages call.
+web_search_function_tool.schema
+
+
+&#123;&#39;name&#39;: &#39;web_search_func&#39;,
+ &#39;description&#39;: &#39;Find information on the web&#39;,
+ &#39;parameters&#39;: &#123;&#39;type&#39;: &#39;object&#39;,
+  &#39;properties&#39;: &#123;&#39;query&#39;: &#123;&#39;description&#39;: &#39;query&#39;,
+    &#39;title&#39;: &#39;Query&#39;,
+    &#39;type&#39;: &#39;string&#39;&#125;&#125;,
+  &#39;required&#39;: [&#39;query&#39;],
+  &#39;additionalProperties&#39;: False&#125;,
+ &#39;strict&#39;: False&#125;
+</code></pre>
+<h4 id="Model-Context-Protocol-Tools"><a href="#Model-Context-Protocol-Tools" class="headerlink" title="Model Context Protocol Tools"></a>Model Context Protocol Tools</h4><p><a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.AssistantAgent" title="autogen_agentchat.agents.AssistantAgent"><code>AssistantAgent</code></a> 还可以使用使用 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_ext.tools.mcp.html#autogen_ext.tools.mcp.mcp_server_tools" title="autogen_ext.tools.mcp.mcp_server_tools"><code>mcp_server_tools（）</code></a> 从模型上下文协议 （MCP） 服务器提供的工具。</p>
+<p><code>pip install -U &quot;autogen-ext[mcp]&quot;</code></p>
+<pre><code class="python">from autogen_agentchat.agents import AssistantAgent
+from autogen_ext.models.openai import OpenAIChatCompletionClient
+from autogen_ext.tools.mcp import StdioServerParams, mcp_server_tools
+
+# Get the fetch tool from mcp-server-fetch.
+fetch_mcp_server = StdioServerParams(command=&quot;uvx&quot;, args=[&quot;mcp-server-fetch&quot;])
+tools = await mcp_server_tools(fetch_mcp_server)
+
+# Create an agent that can use the fetch tool.
+model_client = OpenAIChatCompletionClient(model=&quot;gpt-4o&quot;)
+agent = AssistantAgent(name=&quot;fetcher&quot;, model_client=model_client, tools=tools, reflect_on_tool_use=True)  # type: ignore
+
+# Let the agent fetch the content of a URL and summarize it.
+result = await agent.run(task=&quot;Summarize the content of https://en.wikipedia.org/wiki/Seattle&quot;)
+</code></pre>
+<h4 id="Langchain-Tools"><a href="#Langchain-Tools" class="headerlink" title="Langchain Tools"></a>Langchain Tools</h4><p>您还可以通过将 Langchain 库中的工具包装在 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_ext.tools.langchain.html#autogen_ext.tools.langchain.LangChainToolAdapter" title="autogen_ext.tools.langchain.LangChainToolAdapter"><code>LangChainToolAdapter</code></a> 中来使用它们。</p>
+<pre><code class="python">import pandas as pd
+from autogen_ext.tools.langchain import LangChainToolAdapter
+from langchain_experimental.tools.python.tool import PythonAstREPLTool
+
+df = pd.read_csv(&quot;https://raw.githubusercontent.com/pandas-dev/pandas/main/doc/data/titanic.csv&quot;)
+tool = LangChainToolAdapter(PythonAstREPLTool(locals=&#123;&quot;df&quot;: df&#125;))
+model_client = OpenAIChatCompletionClient(model=&quot;gpt-4o&quot;)
+agent = AssistantAgent(
+    &quot;assistant&quot;, tools=[tool], model_client=model_client, system_message=&quot;Use the `df` variable to access the dataset.&quot;
+)
+await Console(
+    agent.on_messages_stream(
+        [TextMessage(content=&quot;What&#39;s the average age of the passengers?&quot;, source=&quot;user&quot;)], CancellationToken()
+    ),
+    output_stats=True,
+)
+</code></pre>
+<h4 id="并行工具调用"><a href="#并行工具调用" class="headerlink" title="并行工具调用"></a>并行工具调用</h4><p>某些模型支持并行工具调用，这对于需要同时调用多个工具的任务非常有用。默认情况下，如果模型客户端产生多个工具调用，<a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.AssistantAgent" title="autogen_agentchat.agents.AssistantAgent"><code>则 AssistantAgent</code></a> 将并行调用这些工具。 可以在初始化客户端时设置 <code>parallel_tool_calls=True</code></p>
+<h4 id="结构化输出"><a href="#结构化输出" class="headerlink" title="结构化输出"></a>结构化输出</h4><p>结构化输出允许模型返回具有应用程序提供的预定义架构的结构化 JSON 文本。</p>
+<pre><code class="python">from typing import Literal
+
+from pydantic import BaseModel
+
+
+# The response format for the agent as a Pydantic base model.
+class AgentResponse(BaseModel):
+    thoughts: str
+    response: Literal[&quot;happy&quot;, &quot;sad&quot;, &quot;neutral&quot;]
+
+
+# Create an agent that uses the OpenAI GPT-4o model with the custom response format.
+model_client = OpenAIChatCompletionClient(
+    model=&quot;gpt-4o&quot;,
+    response_format=AgentResponse,  # type: ignore
+)
+agent = AssistantAgent(
+    &quot;assistant&quot;,
+    model_client=model_client,
+    system_message=&quot;Categorize the input as happy, sad, or neutral following the JSON format.&quot;,
+)
+
+await Console(agent.run_stream(task=&quot;I am happy.&quot;))
+</code></pre>
+<h4 id="模型的上下文-记忆"><a href="#模型的上下文-记忆" class="headerlink" title="模型的上下文(记忆)"></a>模型的上下文(记忆)</h4><p>通过<code>model_context</code>参数设置Agent的记忆管理方式</p>
+<pre><code class="python">from autogen_core.model_context import BufferedChatCompletionContext
+
+# Create an agent that uses only the last 5 messages in the context to generate responses.
+agent = AssistantAgent(
+    name=&quot;assistant&quot;,
+    model_client=model_client,
+    tools=[web_search],
+    system_message=&quot;Use tools to solve tasks.&quot;,
+    model_context=BufferedChatCompletionContext(buffer_size=5),  # Only use the last 5 messages in the context.
+)
+</code></pre>
+<p>默认情况下，<a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.AssistantAgent" title="autogen_agentchat.agents.AssistantAgent"><code>AssistantAgent</code></a> 使用 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_core.model_context.html#autogen_core.model_context.UnboundedChatCompletionContext" title="autogen_core.model_context.UnboundedChatCompletionContext"><code>UnboundedChatCompletionContext</code></a> 它将完整的对话历史记录发送到模型。限制上下文 到最后 <code>n</code> 条消息，你可以使用 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_core.model_context.html#autogen_core.model_context.BufferedChatCompletionContext" title="autogen_core.model_context.BufferedChatCompletionContext"><code>BufferedChatCompletionContext</code></a>。</p>
+<h4 id="其他预设的代理"><a href="#其他预设的代理" class="headerlink" title="其他预设的代理"></a>其他预设的代理</h4><ul>
+<li>UserProxyAgent :将用户的输入作为返回结果的代理</li>
+<li>CodeExecutorAgent: 能执行代码的代理</li>
+<li>OpenAiAssistantAgent ：由 OpenAI Assistant 支持的代理，能够使用自定义工具。</li>
+<li>MultimodalWebSurfer： 多模态代理，可以搜索 Web 并访问网页以获取信息。</li>
+<li>FileSurfer: 可以搜索和浏览本地文件以获取信息的代理。</li>
+<li>VideoSurfer: 可以观看视频以获取信息的代理。</li>
+</ul>
+<h3 id="Teams"><a href="#Teams" class="headerlink" title="Teams"></a>Teams</h3><p>团队是指一组Agent实现一个共同的目标</p>
+<h4 id="创建一个团队"><a href="#创建一个团队" class="headerlink" title="创建一个团队"></a>创建一个团队</h4><p><code>RoundRobinGroupChat</code> 是一种简单而有效的团队配置，其中所有代理共享相同的上下文，并轮流以循环方式响应。每个代理在轮到它时，都会向所有其他代理广播其响应，确保整个团队保持一致的上下文。</p>
+<p>首先创建一个带有两个Agent和一个终止条件(检测到关键词,停止这个Team)的team</p>
+<pre><code class="python">import asyncio
+
+from autogen_agentchat.agents import AssistantAgent
+from autogen_agentchat.base import TaskResult
+from autogen_agentchat.conditions import ExternalTermination, TextMentionTermination
+from autogen_agentchat.teams import RoundRobinGroupChat
+from autogen_agentchat.ui import Console
+from autogen_core import CancellationToken
+from autogen_ext.models.openai import OpenAIChatCompletionClient
+
+# Create an OpenAI model client.
+model_client = OpenAIChatCompletionClient(
+    model=&quot;gpt-4o-2024-08-06&quot;,
+    # api_key=&quot;sk-...&quot;, # Optional if you have an OPENAI_API_KEY env variable set.
+)
+
+# Create the primary agent.
+primary_agent = AssistantAgent(
+    &quot;primary&quot;,
+    model_client=model_client,
+    system_message=&quot;You are a helpful AI assistant.&quot;,
+)
+
+# Create the critic agent.
+critic_agent = AssistantAgent(
+    &quot;critic&quot;,
+    model_client=model_client,
+    system_message=&quot;Provide constructive feedback. Respond with &#39;APPROVE&#39; to when your feedbacks are addressed.&quot;,
+)
+
+# Define a termination condition that stops the task if the critic approves.
+text_termination = TextMentionTermination(&quot;APPROVE&quot;)
+
+# Create a team with the primary and critic agents.
+team = RoundRobinGroupChat([primary_agent, critic_agent], termination_condition=text_termination)
+</code></pre>
+<h4 id="Running-a-Team"><a href="#Running-a-Team" class="headerlink" title="Running a Team"></a>Running a Team</h4><p>调用<code>run</code>方法让Team执行任务</p>
+<pre><code class="python"># Use `asyncio.run(...)` when running in a script.
+result = await team.run(task=&quot;Write a short poem about the fall season.&quot;)
+print(result)
+</code></pre>
+<p>该团队将运行代理，直到满足终止条件。在这种情况下，团队按照循环顺序运行代理，直到在代理的响应中检测到“APPROVE”一词时满足终止条件</p>
+<h4 id="观察Team运行"><a href="#观察Team运行" class="headerlink" title="观察Team运行"></a>观察Team运行</h4><p>与代理的 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.BaseChatAgent.on_messages_stream" title="autogen_agentchat.agents.BaseChatAgent.on_messages_stream"><code>on_messages_stream（）</code></a> 方法类似，您可以通过调用 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html#autogen_agentchat.teams.BaseGroupChat.run_stream" title="autogen_agentchat.teams.BaseGroupChat.run_stream"><code>run_stream（）</code></a> 方法在团队运行时流式传输团队的消息。此方法返回一个生成器，该生成器在生成消息时生成团队中的代理生成的消息，最后一项是 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.base.html#autogen_agentchat.base.TaskResult" title="autogen_agentchat.base.TaskResult"><code>TaskResult</code></a> 对象。</p>
+<pre><code class="python">async for message in team.run_stream(task=&quot;Write a short poem about the fall season.&quot;):  # type: ignore
+    if isinstance(message, TaskResult):
+        print(&quot;Stop Reason:&quot;, message.stop_reason)
+    else:
+        print(message)
+</code></pre>
+<p>通过console方法也可以查看</p>
+<pre><code class="python">await team.reset()  # Reset the team for a new task.
+await Console(team.run_stream(task=&quot;Write a short poem about the fall season.&quot;))  # Stream the messages to the console.
+</code></pre>
+<h4 id="重置团队-amp-停止团队"><a href="#重置团队-amp-停止团队" class="headerlink" title="重置团队 &amp;  停止团队"></a>重置团队 &amp;  停止团队</h4><p>您可以通过调用 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html#autogen_agentchat.teams.BaseGroupChat.reset" title="autogen_agentchat.teams.BaseGroupChat.reset"><code>reset（）</code></a> 方法来重置团队。此方法将清除团队的状态，包括所有代理。它将调用每个代理的 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.base.html#autogen_agentchat.base.ChatAgent.on_reset" title="autogen_agentchat.base.ChatAgent.on_reset"><code>on_reset（）</code></a> 方法来清除代理的状态。</p>
+<pre><code class="python">await team.reset()  # Reset the team for the next run.
+</code></pre>
+<p>如果下一个任务与上一个任务无关，则重置团队通常是一个好主意。但是，如果下一个任务与上一个任务相关，则无需重置，而是可以恢复团队。</p>
+<p>可以通过 <code>ExternalTermination</code> 在外部停止Team ,将在当前代理的轮到结束时停止团队。因此，团队可能不会立即停止。这允许当前代理完成轮次，并在团队停止之前向团队广播最后一条消息，从而保持团队的状态一致。</p>
+<pre><code class="python"># Create a new team with an external termination condition.
+external_termination = ExternalTermination()
+team = RoundRobinGroupChat(
+    [primary_agent, critic_agent],
+    termination_condition=external_termination | text_termination,  # Use the bitwise OR operator to combine conditions.
+)
+
+# Run the team in a background task.
+run = asyncio.create_task(Console(team.run_stream(task=&quot;Write a short poem about the fall season.&quot;)))
+
+# Wait for some time.
+await asyncio.sleep(0.1)
+
+# Stop the team.
+external_termination.set()
+
+# Wait for the team to finish.
+await run
+</code></pre>
+<h4 id="恢复Team运行-amp-继续执行"><a href="#恢复Team运行-amp-继续执行" class="headerlink" title="恢复Team运行 &amp; 继续执行"></a>恢复Team运行 &amp; 继续执行</h4><p>团队是有状态的，并在每次运行后维护对话历史记录和上下文，除非您重置团队。<br>您可以通过再次调用 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html#autogen_agentchat.teams.BaseGroupChat.run" title="autogen_agentchat.teams.BaseGroupChat.run"><code>run（）</code></a> 或 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html#autogen_agentchat.teams.BaseGroupChat.run_stream" title="autogen_agentchat.teams.BaseGroupChat.run_stream"><code>run_stream（）</code></a> 方法，从上次中断的位置继续团队 没有新任务。 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html#autogen_agentchat.teams.RoundRobinGroupChat" title="autogen_agentchat.teams.RoundRobinGroupChat"><code>RoundRobinGroupChat</code></a> 将按循环顺序从下一个代理继续。</p>
+<pre><code class="python">await Console(team.run_stream())  # Resume the team to continue the last task.
+</code></pre>
+<p>让我们使用新任务再次恢复团队，同时保留有关上一个任务的上下文。</p>
+<pre><code class="python">await Console(team.run_stream(task=&quot;将这首诗用中文唐诗风格写一遍。&quot;))
+</code></pre>
+<h4 id="中止团队"><a href="#中止团队" class="headerlink" title="中止团队"></a>中止团队</h4><p>您可以中止对 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html#autogen_agentchat.teams.BaseGroupChat.run" title="autogen_agentchat.teams.BaseGroupChat.run"><code>run（）</code></a> 或 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html#autogen_agentchat.teams.BaseGroupChat.run_stream" title="autogen_agentchat.teams.BaseGroupChat.run_stream"><code>run_stream（） 的</code></a>调用 在执行期间，通过设置传递给 <code>cancellation_token</code> 参数的 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_core.html#autogen_core.CancellationToken" title="autogen_core.CancellationToken"><code>CancellationToken</code></a> 来实现。<br>与停止团队不同，中止团队将立即停止团队并引发 <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/asyncio-exceptions.html#asyncio.CancelledError" title="(in Python v3.13)"><code>CancelledError</code></a> 异常。</p>
+<pre><code class="python"># Create a cancellation token.
+cancellation_token = CancellationToken()
+
+# Use another coroutine to run the team.
+run = asyncio.create_task(
+    team.run(
+        task=&quot;Translate the poem to Spanish.&quot;,
+        cancellation_token=cancellation_token,
+    )
+)
+
+# Cancel the run.
+cancellation_token.cancel()
+
+try:
+    result = await run  # This will raise a CancelledError.
+except asyncio.CancelledError:
+    print(&quot;Task was cancelled.&quot;)
+</code></pre>
+<h4 id="单代理团队"><a href="#单代理团队" class="headerlink" title="单代理团队"></a>单代理团队</h4><p>下面是一个在 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html#autogen_agentchat.teams.RoundRobinGroupChat" title="autogen_agentchat.teams.RoundRobinGroupChat"><code>RoundRobinGroupChat</code></a> 团队配置中运行单个代理的示例，其中包含 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.conditions.html#autogen_agentchat.conditions.TextMessageTermination" title="autogen_agentchat.conditions.TextMessageTermination"><code>TextMessageTermination</code></a> 条件。任务是使用工具增加一个数字，直到达到 10。代理将一直调用该工具，直到数字达到 10，然后它将返回最终的 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.messages.html#autogen_agentchat.messages.TextMessage" title="autogen_agentchat.messages.TextMessage"><code>TextMessage</code></a> 这将停止运行。</p>
+<pre><code class="python">from autogen_agentchat.agents import AssistantAgent
+from autogen_agentchat.conditions import TextMessageTermination
+from autogen_agentchat.teams import RoundRobinGroupChat
+from autogen_agentchat.ui import Console
+from autogen_ext.models.openai import OpenAIChatCompletionClient
+
+model_client = OpenAIChatCompletionClient(
+    model=&quot;gpt-4o&quot;,
+    # api_key=&quot;sk-...&quot;, # Optional if you have an OPENAI_API_KEY env variable set.
+    # Disable parallel tool calls for this example.
+    parallel_tool_calls=False,  # type: ignore
+)
+
+
+# Create a tool for incrementing a number.
+def increment_number(number: int) -&gt; int:
+    &quot;&quot;&quot;Increment a number by 1.&quot;&quot;&quot;
+    return number + 1
+
+
+# Create a tool agent that uses the increment_number function.
+looped_assistant = AssistantAgent(
+    &quot;looped_assistant&quot;,
+    model_client=model_client,
+    tools=[increment_number],  # Register the tool.
+    system_message=&quot;You are a helpful AI assistant, use the tool to increment the number.&quot;,
+)
+
+# Termination condition that stops the task if the agent responds with a text message.
+termination_condition = TextMessageTermination(&quot;looped_assistant&quot;)
+
+# Create a team with the looped assistant agent and the termination condition.
+team = RoundRobinGroupChat(
+    [looped_assistant],
+    termination_condition=termination_condition,
+)
+
+# Run the team with a task and print the messages to the console.
+async for message in team.run_stream(task=&quot;Increment the number 5 to 10.&quot;):  # type: ignore
+    print(type(message).__name__, message)
+</code></pre>
+<p>Agent内部会不断生成FunctionCall 和FunctionExecutionResult ,直到结果完成,生成TextMessage( src为这个Agent)<br>关键是要关注终止条件。在此示例中，我们使用 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.conditions.html#autogen_agentchat.conditions.TextMessageTermination" title="autogen_agentchat.conditions.TextMessageTermination"><code>TextMessageTermination</code></a> 条件，当代理停止生成 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.messages.html#autogen_agentchat.messages.ToolCallSummaryMessage" title="autogen_agentchat.messages.ToolCallSummaryMessage"><code>ToolCallSummaryMessage</code></a> 时，该条件将停止团队。团队将继续运行，直到代理生成包含最终结果的 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.messages.html#autogen_agentchat.messages.TextMessage" title="autogen_agentchat.messages.TextMessage"><code>TextMessage</code></a>。</p>
+<h3 id="Human-in-the-Loop"><a href="#Human-in-the-Loop" class="headerlink" title="Human in the Loop"></a>Human in the Loop</h3><p>本节将重点介绍如何从您的应用程序与团队交互，并向团队提供人工反馈。<br>有两种方式与Team进行交互</p>
+<ul>
+<li>在团队运行时,通过 <code>UserProxyAgent</code> 暂停任务执行,从用户那里获得反馈后继续运行</li>
+<li>运行结束后, 通过输入为下一次团队运行提供反馈</li>
+</ul>
+<h4 id="在运行期间提供反馈"><a href="#在运行期间提供反馈" class="headerlink" title="在运行期间提供反馈"></a>在运行期间提供反馈</h4><p><a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.UserProxyAgent" title="autogen_agentchat.agents.UserProxyAgent"><code>UserProxyAgent</code></a> 是一个特殊的内置代理，它充当用户的代理，以便向团队提供反馈。 团队会自己决定什么时候调用 <code>UserProxyAgent</code> 来征求客户的反馈<br>在运行期间调用 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.UserProxyAgent" title="autogen_agentchat.agents.UserProxyAgent"><code>UserProxyAgent</code></a> 时，它会阻止团队的执行，直到用户提供反馈或出现错误。这将阻碍团队的进度，并使团队处于无法保存或恢复的不稳定状态。</p>
+<pre><code class="python">from autogen_agentchat.agents import AssistantAgent, UserProxyAgent
+from autogen_agentchat.conditions import TextMentionTermination
+from autogen_agentchat.teams import RoundRobinGroupChat
+from autogen_agentchat.ui import Console
+from autogen_ext.models.openai import OpenAIChatCompletionClient
+
+# Create the agents.
+model_client = OpenAIChatCompletionClient(model=&quot;gpt-4o-mini&quot;)
+assistant = AssistantAgent(&quot;assistant&quot;, model_client=model_client)
+user_proxy = UserProxyAgent(&quot;user_proxy&quot;, input_func=input)  # Use input() to get user input from console.
+
+# Create the termination condition which will end the conversation when the user says &quot;APPROVE&quot;.
+termination = TextMentionTermination(&quot;APPROVE&quot;)
+
+# Create the team.
+team = RoundRobinGroupChat([assistant, user_proxy], termination_condition=termination)
+
+# Run the conversation and stream to the console.
+stream = team.run_stream(task=&quot;Write a 4-line poem about the ocean.&quot;)
+# Use asyncio.run(...) when running in a script.
+await Console(stream)
+</code></pre>
+<h4 id="为下一次运行提供反馈"><a href="#为下一次运行提供反馈" class="headerlink" title="为下一次运行提供反馈"></a>为下一次运行提供反馈</h4><p> 通常，应用程序或用户与代理团队以交互循环方式进行交互：团队运行直到终止，应用程序或用户提供反馈，团队根据反馈再次运行。</p>
+<ul>
+<li>可以设置最大回合数,以便团队始终在指定回合后停止</li>
+<li>使用终止条件,  允许团队根据团队的内部状态决定何时停止并交还控制权。</li>
+</ul>
+<p><strong>通过最大回合数</strong></p>
+<p>此方法允许您通过设置最大轮次来暂停团队以供用户输入。例如，您可以通过将 <code>max_turns</code> 设置为 1 来将团队配置为在第一个代理响应后停止。这在需要持续用户参与的场景中（例如在聊天机器人中）特别有用。<br>要实现这一点，请在 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html#autogen_agentchat.teams.RoundRobinGroupChat" title="autogen_agentchat.teams.RoundRobinGroupChat"><code>RoundRobinGroupChat（）</code></a> 构造函数中设置 <code>max_turns</code> 参数。</p>
+<pre><code class="python">assistant = AssistantAgent(&quot;assistant&quot;, model_client=model_client)
+
+# Create the team setting a maximum number of turns to 1.
+team = RoundRobinGroupChat([assistant], max_turns=1)
+
+task = &quot;Write a 4-line poem about the ocean.&quot;
+while True:
+    # Run the conversation and stream to the console.
+    stream = team.run_stream(task=task)
+    # Use asyncio.run(...) when running in a script.
+    await Console(stream)
+    # Get the user response.
+    task = input(&quot;Enter your feedback (type &#39;exit&#39; to leave): &quot;)
+    if task.lower().strip() == &quot;exit&quot;:
+        break
+</code></pre>
+<p><strong>使用终止条件</strong><br>在本节中，我们将重点介绍 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.conditions.html#autogen_agentchat.conditions.HandoffTermination" title="autogen_agentchat.conditions.HandoffTermination"><code>HandoffTermination</code></a> ，这会在代理发送 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.messages.html#autogen_agentchat.messages.HandoffMessage" title="autogen_agentchat.messages.HandoffMessage"><code>HandoffMessage</code></a> 消息时停止团队。<br>首先需要传递给Agent一个handoffs，代表移交给谁<br>然后在Team中设置终止条件,当检测到这个handoffs时,结束Team运行</p>
+<pre><code class="python">from autogen_agentchat.base import Handoff
+from autogen_agentchat.conditions import HandoffTermination, TextMentionTermination
+# Create a lazy assistant agent that always hands off to the user.
+lazy_agent = AssistantAgent(
+    &quot;lazy_assistant&quot;,
+    model_client=model_client,
+    handoffs=[Handoff(target=&quot;user&quot;, message=&quot;Transfer to user.&quot;)],
+    system_message=&quot;If you cannot complete the task, transfer to user. Otherwise, when finished, respond with &#39;TERMINATE&#39;.&quot;,
+)
+handoff_termination=HandoffTermination(target=&quot;user&quot;)
+text_termination = TextMentionTermination(&quot;TERMINATE&quot;)
+lazy_agent_team = RoundRobinGroupChat([lazy_agent], termination_condition=handoff_termination | text_termination)
+
+task = &quot;What is the weather in New York?&quot;
+await Console(lazy_agent_team.run_stream(task=task), output_stats=True)
+</code></pre>
+<h3 id="Termination"><a href="#Termination" class="headerlink" title="Termination"></a>Termination</h3><p>AgentChat 通过提供 <code>TerminationCondition</code> 基类和从它继承的多个实现来支持多个终止条件。</p>
+<p>终止条件是一个可调用对象, 它采用上一次调用条件以来的 <code>AgentEvent</code>或者<code>ChatMessage</code>对象序列，如果应终止对话,则返回<code>StopMessage</code> 否则返回None, 达到终止条件后，必须调用reset()来重置它，然后才能再次使用。</p>
+<ul>
+<li>他是有状态的，在每次运行 run()或 run_stream()完成后会自动重置。</li>
+<li>可以使用 and or 匀速那副将他们组合在一起</li>
+<li>Termination是在Agent响应后才调用的，虽然响应中可能包含多个内部消息。但团队仅针对来自单个响应的所有消息调用其终止条件一次。因此，该条件是使用自上次调用以来的消息的“增量序列”调用的。</li>
+</ul>
+<h4 id="自带的条件"><a href="#自带的条件" class="headerlink" title="自带的条件"></a>自带的条件</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.conditions.html#autogen_agentchat.conditions.MaxMessageTermination" title="autogen_agentchat.conditions.MaxMessageTermination"><code>MaxMessageTermination</code></a>：在生成指定数量的消息（包括代理消息和任务消息）后停止。</li>
+<li><a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.conditions.html#autogen_agentchat.conditions.TextMentionTermination" title="autogen_agentchat.conditions.TextMentionTermination"><code>TextMentionTermination</code></a>：当消息中提到特定文本或字符串时停止（例如，“TERMINATE”）。</li>
+<li><a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.conditions.html#autogen_agentchat.conditions.TokenUsageTermination" title="autogen_agentchat.conditions.TokenUsageTermination"><code>TokenUsageTermination</code></a>：当使用一定数量的token时停止。这要求代理在其消息中报告令牌使用情况。</li>
+<li><a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.conditions.html#autogen_agentchat.conditions.TimeoutTermination" title="autogen_agentchat.conditions.TimeoutTermination"><code>TimeoutTermination</code></a>：在指定的持续时间（以秒为单位）后停止。</li>
+<li><a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.conditions.html#autogen_agentchat.conditions.HandoffTermination" title="autogen_agentchat.conditions.HandoffTermination"><code>HandoffTermination</code></a>：请求移交给特定目标时停止。移交消息可用于构建 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html#autogen_agentchat.teams.Swarm" title="autogen_agentchat.teams.Swarm"><code>Swarm</code></a> 等模式。当您想要暂停运行并允许应用程序或用户在代理移交给他们时提供输入时，这非常有用。</li>
+<li><a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.conditions.html#autogen_agentchat.conditions.SourceMatchTermination" title="autogen_agentchat.conditions.SourceMatchTermination"><code>SourceMatchTermination</code></a>：在特定代理响应后停止。</li>
+<li><a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.conditions.html#autogen_agentchat.conditions.ExternalTermination" title="autogen_agentchat.conditions.ExternalTermination"><code>ExternalTermination</code></a>：启用从运行外部对终止的编程控制。这对于 UI 集成（例如，聊天界面中的“停止”按钮）非常有用。</li>
+<li><a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.conditions.html#autogen_agentchat.conditions.StopMessageTermination" title="autogen_agentchat.conditions.StopMessageTermination"><code>StopMessageTermination</code></a>：当代理生成 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.messages.html#autogen_agentchat.messages.StopMessage" title="autogen_agentchat.messages.StopMessage"><code>StopMessage</code></a> 时停止。</li>
+<li><a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.conditions.html#autogen_agentchat.conditions.TextMessageTermination" title="autogen_agentchat.conditions.TextMessageTermination"><code>TextMessageTermination</code></a>：当代理生成 <a target="_blank" rel="noopener" href="https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.messages.html#autogen_agentchat.messages.TextMessage" title="autogen_agentchat.messages.TextMessage"><code>TextMessage</code></a> 时停止。</li>
+</ul>
+<h4 id="自定义终止条件"><a href="#自定义终止条件" class="headerlink" title="自定义终止条件"></a>自定义终止条件</h4><p>在此示例中，我们将创建一个自定义终止条件，用于在进行特定函数调用时停止对话。</p>
+<ul>
+<li>terminated 这个是用于返回是否满足终止条件的方法</li>
+<li>__call__ 每当一个Response生成，都会调用这个终止条件<br>```python<br>from typing import Sequence</li>
+</ul>
+<p>from autogen_agentchat.base import TerminatedException, TerminationCondition<br>from autogen_agentchat.messages import AgentEvent, ChatMessage, StopMessage, ToolCallExecutionEvent<br>from autogen_core import Component<br>from pydantic import BaseModel<br>from typing_extensions import Self</p>
+<p>class FunctionCallTerminationConfig(BaseModel):<br>    “””Configuration for the termination condition to allow for serialization<br>    and deserialization of the component.<br>    “””</p>
+<pre><code>function_name: str
+</code></pre>
+<p>class FunctionCallTermination(TerminationCondition, Component[FunctionCallTerminationConfig]):<br>    “””Terminate the conversation if a FunctionExecutionResult with a specific name is received.”””</p>
+<pre><code>component_config_schema = FunctionCallTerminationConfig
+&quot;&quot;&quot;The schema for the component configuration.&quot;&quot;&quot;
+
+def __init__(self, function_name: str) -&gt; None:
+    self._terminated = False
+    self._function_name = function_name
+
+@property
+def terminated(self) -&gt; bool:
+    return self._terminated
+
+async def __call__(self, messages: Sequence[AgentEvent | ChatMessage]) -&gt; StopMessage | None:
+    if self._terminated:
+        raise TerminatedException(&quot;Termination condition has already been reached&quot;)
+    for message in messages:
+        if isinstance(message, ToolCallExecutionEvent):
+            for execution in message.content:
+                if execution.name == self._function_name:
+                    self._terminated = True
+                    return StopMessage(
+                        content=f&quot;Function &#39;&#123;self._function_name&#125;&#39; was executed.&quot;,
+                        source=&quot;FunctionCallTermination&quot;,
+                    )
+    return None
+
+async def reset(self) -&gt; None:
+    self._terminated = False
+
+def _to_config(self) -&gt; FunctionCallTerminationConfig:
+    return FunctionCallTerminationConfig(
+        function_name=self._function_name,
+    )
+
+@classmethod
+def _from_config(cls, config: FunctionCallTerminationConfig) -&gt; Self:
+    return cls(
+        function_name=config.function_name,
+    )
+</code></pre>
+<pre><code>
+### 状态管理
+在本笔记本中，我们将讨论如何保存和加载代理、团队和终止条件的状态。
+#### Agent管理
+我们可以通过在 [`AssistantAgent`](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.AssistantAgent &quot;autogen_agentchat.agents.AssistantAgent&quot;) 上调用 [`save_state（）`](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.AssistantAgent.save_state &quot;autogen_agentchat.agents.AssistantAgent.save_state&quot;) 方法来获取代理的状态。
+
+- agent_stat=await assistant.save_state()  获取agent的状态
+- await new_assistant_agent.load_state(agent_state) 加载agent状态
+- 对于 [`AssistantAgent`](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.AssistantAgent &quot;autogen_agentchat.agents.AssistantAgent&quot;)，其 state 由 model_context 组成。如果您编写自己的自定义 agent，请考虑覆盖 [`save_state（）`](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.BaseChatAgent.save_state &quot;autogen_agentchat.agents.BaseChatAgent.save_state&quot;) 和 [`load_state（）`](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.BaseChatAgent.load_state &quot;autogen_agentchat.agents.BaseChatAgent.load_state&quot;) 方法来自定义行为。默认实现保存并加载空 state。
+
+
+#### Team管理
+
+teamstat=team.save_state()
+
+team.load_state(teamstat)
+
+
+#### 持久化状态(存储到文件或者数据库中)
+在许多情况下，我们可能希望将团队的状态持久化到磁盘（或数据库）并在以后加载回来。State 是一个字典，可以序列化到文件或写入数据库。
+```python
+import json
+
+## save state to disk
+
+with open(&quot;coding/team_state.json&quot;, &quot;w&quot;) as f:
+    json.dump(team_state, f)
+
+## load state from disk
+with open(&quot;coding/team_state.json&quot;, &quot;r&quot;) as f:
+    team_state = json.load(f)
+
+new_agent_team = RoundRobinGroupChat([assistant_agent], termination_condition=MaxMessageTermination(max_messages=2))
+await new_agent_team.load_state(team_state)
+stream = new_agent_team.run_stream(task=&quot;What was the last line of the poem you wrote?&quot;)
+await Console(stream)
+</code></pre>
+<hr>
+<p>文章参考:</p>
+<p>博客地址: qwrdxer.github.io</p>
+<p>欢迎交流: qq1944270374</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1944270374@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2020-2023 qwrdxer
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 722px;
+    }
+    .nav.fullscreen {
+        margin-left: -722px;
+    }
+    .nav-left {
+        width: 300px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 542px;
+        }
+        .nav.fullscreen {
+            margin-left: -542px;
+        }
+        .nav-left {
+            width: 150px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 542px;
+            margin-left: -542px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    #post {
+        background: url(/img/start.png);
+    }
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

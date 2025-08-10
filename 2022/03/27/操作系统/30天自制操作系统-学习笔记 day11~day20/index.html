@@ -1,0 +1,3677 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>30天自制操作系统-学习笔记 day11~day20 | qwrdxer &#39;s blog</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="30天自制操作系统-学习笔记 day11~day20 | qwrdxer &#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About">
+<meta property="og:url" content="https://qwrdxer.github.io/about/index.html">
+<meta property="og:site_name" content="qwrdxer &#39;s blog">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-08-10T03:50:56.671Z">
+<meta property="article:modified_time" content="2025-08-10T03:50:56.671Z">
+<meta property="article:author" content="qwrdxer">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>qwrdxer</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/qwrdxer"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/yyc-96-55-3"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qwrdxer?type=blog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1944270374@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1944270374&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(54)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="杂项">
+            
+            杂项
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="编程语言">
+            <i class="fold iconfont icon-right"></i>
+            编程语言
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;C++">
+            
+            C++
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Go">
+            
+            Go
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Rust">
+            
+            Rust
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="操作系统">
+            
+            操作系统
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="代码分析">
+            
+            代码分析
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="环境配置">
+            
+            环境配置
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="脚本">
+            
+            脚本
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="开发工具">
+            
+            开发工具
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文阅读">
+            <i class="fold iconfont icon-right"></i>
+            论文阅读
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="论文阅读&lt;---&gt;人工智能">
+            
+            人工智能
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="爬虫">
+            
+            爬虫
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="区块链">
+            
+            区块链
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="人工智能">
+            <i class="fold iconfont icon-right"></i>
+            人工智能
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="人工智能&lt;---&gt;FASTAI">
+            
+            FASTAI
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="日志">
+            
+            日志
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="渗透测试篇">
+            
+            渗透测试篇
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            
+            数据库
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="算法">
+            
+            算法
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="写点好玩的">
+            
+            写点好玩的
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="一些奇怪的bug">
+            
+            一些奇怪的bug
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="以太坊">
+            
+            以太坊
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Agent">
+            
+            Agent
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="LLM">
+            
+            LLM
+            <small>(5)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="MCP">
+            
+            MCP
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全工具篇">
+            
+            web安全工具篇
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全漏洞篇">
+            
+            web安全漏洞篇
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="54">
+<input type="hidden" id="yelog_site_word_count" value="166.5k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>报错解决</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具使用</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境配置</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>脚本</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>深度学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>渗透测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>通讯协议</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>文件包含</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>bash</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FASTAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPT</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Josephus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MCP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Memory</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Multi-Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>shell</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Swarm</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>web漏洞</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WordPress</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2025/08/10/Untitled/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2025-08-10 11:50:56">2025/08/10</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/12/LLM/Llama%20Factory%20%E5%BE%AE%E8%B0%83%E4%B8%80%E4%B8%AA%20LLM%E8%B6%8A%E7%8B%B1%E7%9B%B8%E5%85%B3%E5%A4%A7%E6%A8%A1%E5%9E%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Llama Factory 微调一个 LLM越狱相关大模型">Llama Factory 微调一个 LLM越狱相关大模型</span>
+            <span class="post-date" title="2025-04-12 13:56:52">2025/04/12</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/10/LLM/Qwen2.5-7b%20Lora%E5%BE%AE%E8%B0%83-peft%E7%AF%87/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Qwen2.5-7b Lora微调-peft篇">Qwen2.5-7b Lora微调-peft篇</span>
+            <span class="post-date" title="2025-04-10 14:32:36">2025/04/10</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/07/LLM/%E9%A2%84%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA25M%E7%9A%84GPT2%E6%A8%A1%E5%9E%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="预训练一个25M的GPT2模型">预训练一个25M的GPT2模型</span>
+            <span class="post-date" title="2025-04-07 14:19:54">2025/04/07</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/06/LLM/Tokenizer%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Tokenizer 从零开始训练">Tokenizer 从零开始训练</span>
+            <span class="post-date" title="2025-04-06 20:50:21">2025/04/06</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/06/LLM/GPT2%20%E6%89%8B%E6%92%95%20%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GPT2 手撕 模型代码分析">GPT2 手撕 模型代码分析</span>
+            <span class="post-date" title="2025-04-06 14:14:30">2025/04/06</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/22/Agent/multi-agent%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="multi-agent中的设计模式">multi-agent中的设计模式</span>
+            <span class="post-date" title="2025-03-22 14:46:50">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/22/Agent/autogen-core%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen-core学习记录">autogen-core学习记录</span>
+            <span class="post-date" title="2025-03-22 14:42:21">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="All MCP "
+           href="/2025/03/12/MCP/MCP(Model%20Context%20Protocol)%20%E7%AE%80%E4%BB%8B/"
+           data-tag="MCP,通讯协议,LLM"
+           data-author="" >
+            <span class="post-title" title="MCP(Model Context Protocol) 简介">MCP(Model Context Protocol) 简介</span>
+            <span class="post-date" title="2025-03-12 15:47:27">2025/03/12</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/10/Agent/autogen%E6%8F%90%E9%AB%98%E4%B9%8BAgentChat%20Advanced%E9%83%A8%E5%88%86/"
+           data-tag="Agent,Multi-Agent,Memory,Swarm"
+           data-author="" >
+            <span class="post-title" title="autogen提高之AgentChat Advanced部分">autogen提高之AgentChat Advanced部分</span>
+            <span class="post-date" title="2025-03-10 21:35:41">2025/03/10</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/08/Agent/autogen%E5%85%A5%E9%97%A8%E4%B9%8Bagentchat/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen入门之autochat">autogen入门之autochat</span>
+            <span class="post-date" title="2025-03-08 20:23:19">2025/03/08</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2024/02/26/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/logseq%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="logseq使用">logseq使用</span>
+            <span class="post-date" title="2024-02-26 10:47:48">2024/02/26</span>
+        </a>
+        
+        
+        <a  class="All 区块链 "
+           href="/2024/01/21/%E5%8C%BA%E5%9D%97%E9%93%BE/hardhat%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hardhat智能合约流程">hardhat智能合约流程</span>
+            <span class="post-date" title="2024-01-21 15:20:03">2024/01/21</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/"
+           data-tag="Josephus"
+           data-author="" >
+            <span class="post-title" title="Josephus Problem">Josephus Problem</span>
+            <span class="post-date" title="2024-01-17 11:49:36">2024/01/17</span>
+        </a>
+        
+        
+        <a  class="All 区块链 "
+           href="/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="fabric环境配置">fabric环境配置</span>
+            <span class="post-date" title="2024-01-08 18:47:43">2024/01/08</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/12/22/%E7%88%AC%E8%99%AB/CF%E7%9B%BE%E7%BB%95%E8%BF%87(NodeJs%E7%89%88)/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CF盾绕过(NodeJs版)">CF盾绕过(NodeJs版)</span>
+            <span class="post-date" title="2023-12-22 20:11:48">2023/12/22</span>
+        </a>
+        
+        
+        <a  class="All 以太坊 "
+           href="/2023/10/19/%E4%BB%A5%E5%A4%AA%E5%9D%8A/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E9%83%A8%E5%88%86%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B5%85%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="以太坊部分知识点浅析">以太坊部分知识点浅析</span>
+            <span class="post-date" title="2023-10-19 16:10:05">2023/10/19</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2023/10/12/%E6%97%A5%E5%BF%97/%E9%93%BE%E6%8E%A5%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="链接记录">链接记录</span>
+            <span class="post-date" title="2023-10-12 19:40:28">2023/10/12</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/go-rod%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="go-rod学习">go-rod学习</span>
+            <span class="post-date" title="2023-10-06 11:22:48">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/Go%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%88%AC%E8%99%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go实现一个爬虫">Go实现一个爬虫</span>
+            <span class="post-date" title="2023-10-06 11:10:43">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="All 代码分析 "
+           href="/2023/10/05/%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/RustScan%E6%BA%90%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RustScan源代码分析">RustScan源代码分析</span>
+            <span class="post-date" title="2023-10-05 19:28:59">2023/10/05</span>
+        </a>
+        
+        
+        <a  class="All 一些奇怪的bug "
+           href="/2023/10/02/%E4%B8%80%E4%BA%9B%E5%A5%87%E6%80%AA%E7%9A%84bug/bug%E8%AE%B0%E5%BD%95&%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="bug记录&amp;解决方法">bug记录&amp;解决方法</span>
+            <span class="post-date" title="2023-10-02 16:05:12">2023/10/02</span>
+        </a>
+        
+        
+        <a  class="All 论文阅读 人工智能 "
+           href="/2023/10/01/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/OpenAI%E7%9A%84GPT%E5%8F%91%E5%B1%95/"
+           data-tag="LLM,GPT"
+           data-author="" >
+            <span class="post-title" title="大模型论文">大模型论文</span>
+            <span class="post-date" title="2023-10-01 22:17:21">2023/10/01</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Rust "
+           href="/2023/09/28/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/Rust_lifetime/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Rust的生命周期">Rust的生命周期</span>
+            <span class="post-date" title="2023-09-28 11:33:04">2023/09/28</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2023/09/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%AE%89%E5%85%A8%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE&%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE%E4%B8%8B%E8%BD%BD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安全四大会议&amp;人工智能四大会议下载">安全四大会议&amp;人工智能四大会议下载</span>
+            <span class="post-date" title="2023-09-27 20:47:28">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Rust "
+           href="/2023/09/27/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/The%20Rust%20Programming%20Language%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Rust Programming Language阅读笔记">The Rust Programming Language阅读笔记</span>
+            <span class="post-date" title="2023-09-27 20:35:50">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_3_%E5%A4%9AGPU%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_3_多GPU训练">FASTAI_3_多GPU训练</span>
+            <span class="post-date" title="2023-09-27 20:32:12">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_2_Datasets%E3%80%81Pipeline%E3%80%81TfmdLists%E3%80%81Transform/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_2_Datasets、Pipeline、TfmdLists、Transform">FASTAI_2_Datasets、Pipeline、TfmdLists、Transform</span>
+            <span class="post-date" title="2023-09-27 20:29:37">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_1_%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8CAPI%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI_1_使用不同API加载数据">FASTAI_1_使用不同API加载数据</span>
+            <span class="post-date" title="2023-09-27 20:28:09">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI快速入门">FASTAI快速入门</span>
+            <span class="post-date" title="2023-09-27 20:18:36">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 C++ "
+           href="/2023/01/10/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/C++%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C++入门">C++入门</span>
+            <span class="post-date" title="2023-01-10 11:30:50">2023/01/10</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%AB%E6%8F%8F%E5%99%A8%E5%AE%9E%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="分布式扫描器实现">分布式扫描器实现</span>
+            <span class="post-date" title="2022-04-27 11:43:42">2022/04/27</span>
+        </a>
+        
+        
+        <a  class="All 数据库 "
+           href="/2022/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93/mongodb%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="mongodb学习">mongodb学习</span>
+            <span class="post-date" title="2022-04-14 09:31:33">2022/04/14</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/10/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/Go%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E5%99%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go编写一个扫描器">Go编写一个扫描器</span>
+            <span class="post-date" title="2022-04-10 14:34:18">2022/04/10</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/09/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E6%83%B3%E6%B3%95%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="想法记录">想法记录</span>
+            <span class="post-date" title="2022-04-09 11:24:11">2022/04/09</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Go "
+           href="/2022/04/08/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go/The%20Way%20To%20Go/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Way To Go">The Way To Go</span>
+            <span class="post-date" title="2022-04-08 18:09:20">2022/04/08</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2022/03/31/%E6%97%A5%E5%BF%97/%E5%B1%B1%E8%BF%98%E6%98%AF%E5%B1%B1,%E6%B0%B4%E8%BF%98%E6%98%AF%E6%B0%B4,%E4%BD%A0%E4%B8%8D%E8%83%BD%E6%B0%B8%E8%BF%9C%E6%98%AF%E9%82%A3%E4%B8%AA%E4%BD%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="山还是山,水还是水,你不能永远是那个你">山还是山,水还是水,你不能永远是那个你</span>
+            <span class="post-date" title="2022-03-31 09:37:42">2022/03/31</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day11~day20">30天自制操作系统-学习笔记 day11~day20</span>
+            <span class="post-date" title="2022-03-27 09:49:33">2022/03/27</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2022/03/21/%E6%97%A5%E5%BF%97/%E9%97%B2%E8%AF%AD%E6%9D%82%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="闲语杂记">闲语杂记</span>
+            <span class="post-date" title="2022-03-21 12:51:18">2022/03/21</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/03/15/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/freemarker%E6%93%8D%E6%8E%A7word/"
+           data-tag="工具使用"
+           data-author="" >
+            <span class="post-title" title="freemarker操控word">freemarker操控word</span>
+            <span class="post-date" title="2022-03-15 12:00:54">2022/03/15</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/2022/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day1~day10">30天自制操作系统-学习笔记 day1~day10</span>
+            <span class="post-date" title="2022-01-31 10:57:39">2022/01/31</span>
+        </a>
+        
+        
+        <a  class="All 杂项 "
+           href="/2022/01/12/%E6%9D%82%E9%A1%B9/GITHUB%E6%94%B6%E9%9B%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GITHUB收集">GITHUB收集</span>
+            <span class="post-date" title="2022-01-12 20:07:03">2022/01/12</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/"
+           data-tag="渗透测试,工具开发"
+           data-author="" >
+            <span class="post-title" title="web页面密码爆破">web页面密码爆破</span>
+            <span class="post-date" title="2022-01-11 10:21:34">2022/01/11</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2022/01/09/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/Goby%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Goby分析">Goby分析</span>
+            <span class="post-date" title="2022-01-09 13:35:49">2022/01/09</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/08/15/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Shell%E8%84%9A%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag="bash,脚本,shell,linux,开发"
+           data-author="" >
+            <span class="post-title" title="Shell脚本学习笔记">Shell脚本学习笔记</span>
+            <span class="post-date" title="2021-08-15 11:19:55">2021/08/15</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试篇 "
+           href="/2021/07/25/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AF%87/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="信息收集">信息收集</span>
+            <span class="post-date" title="2021-07-25 19:33:55">2021/07/25</span>
+        </a>
+        
+        
+        <a  class="All web安全漏洞篇 "
+           href="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,MySQL"
+           data-author="" >
+            <span class="post-title" title="SQL注入相关">SQL注入相关</span>
+            <span class="post-date" title="2021-05-11 15:23:06">2021/05/11</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2021/04/21/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/nmap%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="nmap使用">nmap使用</span>
+            <span class="post-date" title="2021-04-21 19:29:51">2021/04/21</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/04/20/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/docker%E7%9B%B8%E5%85%B3/"
+           data-tag="工具使用,脚本,docker"
+           data-author="" >
+            <span class="post-title" title="docker相关">docker相关</span>
+            <span class="post-date" title="2021-04-20 13:49:50">2021/04/20</span>
+        </a>
+        
+        
+        <a  class="All web安全漏洞篇 "
+           href="/2021/04/19/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,文件包含"
+           data-author="" >
+            <span class="post-title" title="文件包含漏洞相关">文件包含漏洞相关</span>
+            <span class="post-date" title="2021-04-19 14:49:59">2021/04/19</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/04/16/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/hexo%E5%91%BD%E4%BB%A4/"
+           data-tag="工具使用,脚本"
+           data-author="" >
+            <span class="post-title" title="hexo相关">hexo相关</span>
+            <span class="post-date" title="2021-04-16 12:12:14">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2021/04/16/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/xray%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="xray使用">xray使用</span>
+            <span class="post-date" title="2021-04-16 12:10:08">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="All 脚本 "
+           href="/2021/04/15/%E8%84%9A%E6%9C%AC/some-script/"
+           data-tag="bash,脚本,python"
+           data-author="" >
+            <span class="post-title" title="some script">some script</span>
+            <span class="post-date" title="2021-04-15 11:23:33">2021/04/15</span>
+        </a>
+        
+        
+        <a  class="All 环境配置 "
+           href="/2021/04/15/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/centos%E9%83%A8%E7%BD%B2wordpress/"
+           data-tag="linux,环境配置,报错解决,WordPress"
+           data-author="" >
+            <span class="post-title" title="centos部署wordpress">centos部署wordpress</span>
+            <span class="post-date" title="2021-04-15 01:34:16">2021/04/15</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-操作系统/30天自制操作系统-学习笔记 day11~day20" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">30天自制操作系统-学习笔记 day11~day20</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="操作系统">操作系统</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2025-08-10 11:50:56'>2022-03-27 09:49</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:14.9k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#20220327"><span class="toc-text">20220327</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BC%A0%E6%A0%87%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98%EF%BC%88harib08a%EF%BC%89"><span class="toc-text">鼠标显示问题（harib08a）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%94%BB%E9%9D%A2%E5%A4%96%E7%9A%84%E6%94%AF%E6%8C%81%EF%BC%88harib08b%EF%BC%89"><span class="toc-text">实现画面外的支持（harib08b）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E7%AA%97%E5%8F%A3harib08d"><span class="toc-text">显示窗口harib08d</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E9%80%9F%E8%AE%A1%E6%95%B0%E5%99%A8harib08f"><span class="toc-text">高速计数器harib08f</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E9%99%A4%E9%97%AA%E7%83%81%EF%BC%881%EF%BC%89-%EF%BC%88harib08g%EF%BC%89"><span class="toc-text">消除闪烁（1） （harib08g）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E9%99%A4%E9%97%AA%E7%83%81%EF%BC%882%EF%BC%89-%EF%BC%88harib08h%EF%BC%89"><span class="toc-text">消除闪烁（2） （harib08h）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20220328"><span class="toc-text">20220328</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%AE%9A%E6%97%B6%E5%99%A8harib09a"><span class="toc-text">使用定时器harib09a</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E9%87%8F%E6%97%B6%E9%97%B4harib09b"><span class="toc-text">计量时间harib09b</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B6%85%E6%97%B6%E5%8A%9F%E8%83%BD"><span class="toc-text">超时功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA%E5%AE%9A%E6%97%B6%E5%99%A8-hraib09d"><span class="toc-text">多个定时器 hraib09d</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E5%BF%AB%E4%B8%AD%E6%96%AD%E5%A4%84%E7%90%86-harib09e"><span class="toc-text">加快中断处理 harib09e</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E5%BF%AB%E4%B8%AD%E6%96%AD%E5%A4%84%E7%90%86%EF%BC%883%EF%BC%89-%EF%BC%88harib09g%EF%BC%89"><span class="toc-text">加快中断处理（3） （harib09g）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20220331"><span class="toc-text">20220331</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E6%95%B4%E7%BC%93%E5%86%B2%E5%8C%BAharib10b"><span class="toc-text">调整缓冲区harib10b</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20220401"><span class="toc-text">20220401</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E5%BF%AB%E4%B8%AD%E6%96%AD%E5%A4%84%E7%90%86"><span class="toc-text">加快中断处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E2%80%9C%E5%93%A8%E5%85%B5%E2%80%9D%E7%AE%80%E5%8C%96%E7%A8%8B%E5%BA%8F%EF%BC%88harib10i%EF%BC%89"><span class="toc-text">使用“哨兵”简化程序（harib10i）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E6%80%BB%E7%BB%93%E4%B8%80%E6%AC%A1%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-text">在总结一次操作系统的执行流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20220406"><span class="toc-text">20220406</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E9%AB%98%E5%88%86%E8%BE%A8%E7%8E%87"><span class="toc-text">提高分辨率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5-harib11f"><span class="toc-text">键盘输入 harib11f</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20220407"><span class="toc-text">20220407</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E4%BB%BB%E5%8A%A1"><span class="toc-text">多任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E5%88%87%E6%8D%A2%E8%BF%9B%E9%98%B6"><span class="toc-text">任务切换进阶</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%9A%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1harib12c"><span class="toc-text">做个简单的多任务harib12c</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E9%AB%98%E8%BF%90%E8%A1%8C%E9%80%9F%E5%BA%A6-harib12e"><span class="toc-text">提高运行速度 harib12e</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#task-b-main%E4%B8%8D%E8%83%BDreturn"><span class="toc-text">task_b_main不能return</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E4%BB%BB%E5%8A%A1%E8%BF%9B%E9%98%B6harib12g"><span class="toc-text">多任务进阶harib12g</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86%E8%87%AA%E5%8A%A8%E5%8C%96harib13a"><span class="toc-text">任务管理自动化harib13a</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E4%BC%91%E7%9C%A0-harib13b"><span class="toc-text">任务休眠 harib13b</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0%E7%AA%97%E5%8F%A3%E7%9A%84%E6%95%B0%E9%87%8F"><span class="toc-text">增加窗口的数量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E5%AE%9A%E4%BB%BB%E5%8A%A1%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7-harib13d"><span class="toc-text">设定任务的优先级(harib13d)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20220408"><span class="toc-text">20220408</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E5%AE%9A%E4%BB%BB%E5%8A%A1%E4%BC%98%E5%85%88%E7%BA%A72%EF%BC%88harib13e%EF%BC%89"><span class="toc-text">设定任务优先级2（harib13e）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%B2%E7%BD%AE%E4%BB%BB%E5%8A%A1-harib14a"><span class="toc-text">闲置任务 harib14a</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%AA%97%E5%8F%A3-harib14b"><span class="toc-text">创建命令行窗口(harib14b)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%87%E6%8D%A2%E8%BE%93%E5%85%A5%E7%AA%97%E5%8F%A3-harib14c"><span class="toc-text">切换输入窗口 harib14c</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%AD%97%E7%AC%A6%E8%BE%93%E5%85%A5-harib14d"><span class="toc-text">实现字符输入 harib14d</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%A6%E5%8F%B7%E8%BE%93%E5%85%A5-harib14e-%E5%A4%A7%E5%86%99%E5%AD%97%E6%AF%8D%E4%B8%8E%E5%B0%8F%E5%86%99%E5%AD%97%E6%AF%8D%EF%BC%88harib14f%EF%BC%89"><span class="toc-text">符号输入 harib14e 大写字母与小写字母（harib14f）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20220409"><span class="toc-text">20220409</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E5%90%84%E7%A7%8D%E9%94%81%E5%AE%9A%E9%94%AE%E7%9A%84%E6%94%AF%E6%8C%81harib14g"><span class="toc-text">对各种锁定键的支持harib14g</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%85%89%E6%A0%87%E9%97%AA%E7%83%81"><span class="toc-text">控制光标闪烁</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%94"><span class="toc-text">—-</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="20220327"><a href="#20220327" class="headerlink" title="20220327"></a>20220327</h2><h3 id="鼠标显示问题（harib08a）"><a href="#鼠标显示问题（harib08a）" class="headerlink" title="鼠标显示问题（harib08a）"></a>鼠标显示问题（harib08a）</h3><blockquote>
+<p>一开始，对鼠标图层界定范围代码</p>
+</blockquote>
+<pre><code class="c">                    if (mx &lt; 0) &#123;
+                        mx = 0;
+                    &#125;
+                    if (my &lt; 0) &#123;
+                        my = 0;
+                    &#125;
+                    if (mx &gt; binfo-&gt;scrnx - 16) &#123;
+                        mx = binfo-&gt;scrnx - 16;
+                    &#125;
+                    if (my &gt; binfo-&gt;scrny - 16) &#123;
+                        my = binfo-&gt;scrny - 16;
+                    &#125;
+</code></pre>
+<p>其在边缘处可移动的范围如下</p>
+<p><img src="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/image-20220327100442803-16483466869583.png" alt="image-20220327100442803"></p>
+<p>而实际上我们需要让其移动范围如下</p>
+<p><img src="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/image-20220327100749757.png" alt="image-20220327100749757"></p>
+<blockquote>
+<p>修改主函数的代码如下</p>
+</blockquote>
+<pre><code class="c">if (mx &gt; binfo-&gt;scrnx - 1) &#123;
+mx = binfo-&gt;scrnx - 1;
+&#125;i
+f (my &gt; binfo-&gt;scrny - 1) &#123;
+my = binfo-&gt;scrny - 1;
+&#125;
+</code></pre>
+<p>在移动到右侧边缘时，产生如下bug</p>
+<p><img src="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/image-20220327101915810.png" alt="image-20220327101915810"></p>
+<p>关键处在此</p>
+<p>vram[vy * ctl-&gt;xsize + vx] = c;</p>
+<h3 id="实现画面外的支持（harib08b）"><a href="#实现画面外的支持（harib08b）" class="headerlink" title="实现画面外的支持（harib08b）"></a>实现画面外的支持（harib08b）</h3><pre><code class="c">void sheet_refreshsub(struct SHTCTL *ctl, int vx0, int vy0, int vx1, int vy1)
+&#123;
+    int h, bx, by, vx, vy, bx0, by0, bx1, by1;
+    unsigned char *buf, c, *vram = ctl-&gt;vram;
+    struct SHEET *sht;
+    /* 如果refresh的范围超出了画面则修正 */
+    if (vx0 &lt; 0) &#123; vx0 = 0; &#125;
+    if (vy0 &lt; 0) &#123; vy0 = 0; &#125;
+    if (vx1 &gt; ctl-&gt;xsize) &#123; vx1 = ctl-&gt;xsize; &#125;
+    if (vy1 &gt; ctl-&gt;ysize) &#123; vy1 = ctl-&gt;ysize; &#125;
+    for (h = 0; h &lt;= ctl-&gt;top; h++) &#123;
+        （中略）
+    &#125;
+    return;
+&#125;
+</code></pre>
+<p>在for循环前新增了判断，如果图层超过了底板的范围，则将需要刷新的区域限制到底板范围以内</p>
+<span id="more"></span>
+
+<h3 id="显示窗口harib08d"><a href="#显示窗口harib08d" class="headerlink" title="显示窗口harib08d"></a>显示窗口harib08d</h3><blockquote>
+<p> 创建一个新的图层，用来存储窗口即可</p>
+</blockquote>
+<pre><code class="c">void make_window8(unsigned char *buf, int xsize, int ysize, char *title)
+&#123;
+    static char closebtn[14][16] = &#123;
+        &quot;OOOOOOOOOOOOOOO@&quot;,
+        &quot;OQQQQQQQQQQQQQ$@&quot;,
+        &quot;OQQQQQQQQQQQQQ$@&quot;,
+        &quot;OQQQ@@QQQQ@@QQ$@&quot;,
+        &quot;OQQQQ@@QQ@@QQQ$@&quot;,
+        &quot;OQQQQQ@@@@QQQQ$@&quot;,
+        &quot;OQQQQQQ@@QQQQQ$@&quot;,
+        &quot;OQQQQQ@@@@QQQQ$@&quot;,
+        &quot;OQQQQ@@QQ@@QQQ$@&quot;,
+        &quot;OQQQ@@QQQQ@@QQ$@&quot;,
+        &quot;OQQQQQQQQQQQQQ$@&quot;,
+        &quot;OQQQQQQQQQQQQQ$@&quot;,
+        &quot;O$$$$$$$$$$$$$$@&quot;,
+        &quot;@@@@@@@@@@@@@@@@&quot;
+    &#125;;
+    int x, y;
+    char c;
+    boxfill8(buf, xsize, COL8_C6C6C6, 0,         0,         xsize - 1, 0        );
+    boxfill8(buf, xsize, COL8_FFFFFF, 1,         1,         xsize - 2, 1        );
+    boxfill8(buf, xsize, COL8_C6C6C6, 0,         0,         0,         ysize - 1);
+    boxfill8(buf, xsize, COL8_FFFFFF, 1,         1,         1,         ysize - 2);
+    boxfill8(buf, xsize, COL8_848484, xsize - 2, 1,         xsize - 2, ysize - 2);
+    boxfill8(buf, xsize, COL8_000000, xsize - 1, 0,         xsize - 1, ysize - 1);
+    boxfill8(buf, xsize, COL8_C6C6C6, 2,         2,         xsize - 3, ysize - 3);
+    boxfill8(buf, xsize, COL8_000084, 3,         3,         xsize - 4, 20       );
+    boxfill8(buf, xsize, COL8_848484, 1,         ysize - 2, xsize - 2, ysize - 2);
+    boxfill8(buf, xsize, COL8_000000, 0,         ysize - 1, xsize - 1, ysize - 1);
+    putfonts8_asc(buf, xsize, 24, 4, COL8_FFFFFF, title);
+    for (y = 0; y &lt; 14; y++) &#123;
+        for (x = 0; x &lt; 16; x++) &#123;
+            c = closebtn[y][x];
+            if (c == &#39;@&#39;) &#123;
+                c = COL8_000000;
+            &#125; else if (c == &#39;$&#39;) &#123;
+                c = COL8_848484;
+            &#125; else if (c == &#39;Q&#39;) &#123;
+                c = COL8_C6C6C6;
+            &#125; else &#123;
+                c = COL8_FFFFFF;
+            &#125;
+            buf[(5 + y) * xsize + (xsize - 21 + x)] = c;
+        &#125;
+    &#125;
+    return;
+&#125;
+</code></pre>
+<blockquote>
+<p>主程序修改</p>
+</blockquote>
+<pre><code class="c">void HariMain(void)
+&#123;
+（中略）
+struct SHEET *sht_back, *sht_mouse, *sht_win; /* 这里！ */
+unsigned char *buf_back, buf_mouse[256], *buf_win; /* 这里！ */
+（中略）
+init_palette();
+shtctl = shtctl_init(memman, binfo-&gt;vram, binfo-&gt;scrnx, binfo-&gt;scrny);
+sht_back = sheet_alloc(shtctl);
+sht_mouse = sheet_alloc(shtctl);
+sht_win = sheet_alloc(shtctl); /* 这里！ */
+buf_back = (unsigned char *) memman_alloc_4k(memman, binfo-&gt;scrnx * binfo-&gt;scrny);
+buf_win = (unsigned char *) memman_alloc_4k(memman, 160 * 68); /* 这里！ */
+sheet_setbuf(sht_back, buf_back, binfo-&gt;scrnx, binfo-&gt;scrny, -1); /* 没有透明
+色 */
+sheet_setbuf(sht_mouse, buf_mouse, 16, 16, 99);
+sheet_setbuf(sht_win, buf_win, 160, 68, -1); /* 没有透明色 */ /* 这里！ */
+init_screen8(buf_back, binfo-&gt;scrnx, binfo-&gt;scrny);
+init_mouse_cursor8(buf_mouse, 99);make_window8(buf_win, 160, 68, &quot;window&quot;); /* 这里！ */
+putfonts8_asc(buf_win, 160, 24, 28, COL8_000000, &quot;Welcome to&quot;); /* 这里！ */
+putfonts8_asc(buf_win, 160, 24, 44, COL8_000000, &quot; Haribote-OS!&quot;); /* 这里！
+*/
+sheet_slide(sht_back, 0, 0);
+mx = (binfo-&gt;scrnx - 16) / 2; /* 为使其处于画面的中央位置， 计算坐标 */
+my = (binfo-&gt;scrny - 28 - 16) / 2;
+sheet_slide(sht_mouse, mx, my);
+sheet_slide(sht_win, 80, 72); /* 这里！ */
+sheet_updown(sht_back, 0);
+sheet_updown(sht_win, 1); /* 这里！ */
+sheet_updown(sht_mouse, 2);
+sprintf(s, &quot;(%3d, %3d)&quot;, mx, my);
+putfonts8_asc(buf_back, binfo-&gt;scrnx, 0, 0, COL8_FFFFFF, s);
+sprintf(s, &quot;memory %dMB free : %dKB&quot;,memtotal / (1024 * 1024), memman_total(memman) / 1024);
+putfonts8_asc(buf_back, binfo-&gt;scrnx, 0, 32, COL8_FFFFFF, s);
+sheet_refresh(sht_back, 0, 0, binfo-&gt;scrnx, 48);
+（中略）
+&#125;
+</code></pre>
+<h3 id="高速计数器harib08f"><a href="#高速计数器harib08f" class="headerlink" title="高速计数器harib08f"></a>高速计数器harib08f</h3><pre><code class="c">for (;;) &#123;
+    count++; /* 从这里开始 */
+    sprintf(s, &quot;%010d&quot;, count);
+    boxfill8(buf_win, 160, COL8_C6C6C6, 40, 28, 119, 43);
+    putfonts8_asc(buf_win, 160, 40, 28, COL8_000000, s);
+    sheet_refresh(sht_win, 40, 28, 120, 44); /* 到这里结束 */
+    io_cli();
+    if (fifo8_status(&amp;keyfifo) + fifo8_status(&amp;mousefifo) == 0) &#123;
+        io_sti(); /* 原来是io_stihlt()，现在不做HLT */ 
+    &#125; else &#123;
+        （中略）
+    &#125;
+&#125;
+</code></pre>
+<p>但是在实际运行中，会出现闪烁的现象。</p>
+<p>为什么会出现这种现象呢？ 这是由于在刷新的时候， 总是先刷新refresh<br>范围内的背景图层， 然后再刷新窗口图层， 所以肯定就会闪烁了。 可是<br>我们使用Windows的时候就没见过这种闪烁， 因此肯定有什么好的解决<br>方法。  </p>
+<h3 id="消除闪烁（1）-（harib08g）"><a href="#消除闪烁（1）-（harib08g）" class="headerlink" title="消除闪烁（1） （harib08g）"></a>消除闪烁（1） （harib08g）</h3><p>窗口图层刷新是因为窗口的内容有变化， 所以要在画面上显示变化后的新内容。 基本上来讲， 可以认为其他图层的内容没有变化（如果其他图层的内容也变了， 那么应该会随后执行该图层的刷新） 。  </p>
+<p>综上所述， 仅对refresh对象及其以上的图层进行刷新就可以了。  </p>
+<pre><code class="c">void sheet_refreshsub(struct SHTCTL *ctl, int vx0, int vy0, int vx1, int vy1, int
+h0)
+&#123;
+    （中略）
+    for (h = h0; h &lt;= ctl-&gt;top; h++) &#123;
+    （中略）
+&#125;
+    return;
+&#125;
+</code></pre>
+<p>引入了一个新的参数h0,代表该图层的高度</p>
+<p>数字部分的背景闪烁问题是解决了， 可是把鼠标放在上面时， 鼠标又闪<br>烁起来了  </p>
+<h3 id="消除闪烁（2）-（harib08h）"><a href="#消除闪烁（2）-（harib08h）" class="headerlink" title="消除闪烁（2） （harib08h）"></a>消除闪烁（2） （harib08h）</h3><p>闪烁现象是由于一会儿描绘一会儿消除造成的。 所以说要想消除闪烁， 就要在刷新窗口时避开鼠标所在的地方<br>对VRAM进行写入处理。</p>
+<blockquote>
+<p>定义一个跟vram大小相同的map，这块内存用来表示画面上的点是哪个图层的像素， 所以它就相当于是图<br>层的地图。 </p>
+</blockquote>
+<p> <img src="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/image-20220328110633925.png" alt="image-20220328110633925"></p>
+<pre><code class="c">struct SHTCTL &#123;
+    unsigned char *vram, *map; /* 这里！ */
+    int xsize, ysize, top;
+    struct SHEET *sheets[MAX_SHEETS];
+    struct SHEET sheets0[MAX_SHEETS];
+&#125;;
+struct SHTCTL *shtctl_init(struct MEMMAN *memman, unsigned char *vram, int xsize,
+int ysize)
+&#123;
+    struct SHTCTL *ctl;
+    int i;
+    ctl = (struct SHTCTL *) memman_alloc_4k(memman, sizeof (struct SHTCTL));
+    if (ctl == 0) &#123;
+        goto err;
+    &#125;/
+    * 从这里开始 */
+    ctl-&gt;map = (unsigned char *) memman_alloc_4k(memman, xsize * ysize);
+    if (ctl-&gt;map == 0) &#123;
+        memman_free_4k(memman, (int) ctl, sizeof (struct SHTCTL));
+        goto err;
+    &#125;/
+    * 到这里结束 */
+    ctl-&gt;vram = vram;
+    ctl-&gt;xsize = xsize;
+    ctl-&gt;ysize = ysize;
+    ctl-&gt;top = -1; /* 没有一张SHEET */
+    for (i = 0; i &lt; MAX_SHEETS; i++) &#123;ctl-&gt;sheets0[i].flags = 0; /* 未使用标记 */
+        ctl-&gt;sheets0[i].ctl = ctl; /* 记录所属 */
+    &#125;
+    err:
+    return ctl;
+&#125;
+</code></pre>
+<blockquote>
+<p>记录 图层位置</p>
+</blockquote>
+<pre><code class="c">void sheet_refreshmap(struct SHTCTL *ctl, int vx0, int vy0, int vx1, int vy1, int
+h0)
+&#123;
+    int h, bx, by, vx, vy, bx0, by0, bx1, by1;
+    unsigned char *buf, sid, *map = ctl-&gt;map;
+    struct SHEET *sht;
+    if (vx0 &lt; 0) &#123; vx0 = 0; &#125;
+    if (vy0 &lt; 0) &#123; vy0 = 0; &#125;
+    if (vx1 &gt; ctl-&gt;xsize) &#123; vx1 = ctl-&gt;xsize; &#125;
+    if (vy1 &gt; ctl-&gt;ysize) &#123; vy1 = ctl-&gt;ysize; &#125;
+    for (h = h0; h &lt;= ctl-&gt;top; h++) &#123;
+        sht = ctl-&gt;sheets[h];
+        sid = sht - ctl-&gt;sheets0; /* 将进行了减法计算的地址作为图层号码使用 */
+        buf = sht-&gt;buf;
+        bx0 = vx0 - sht-&gt;vx0;by0 = vy0 - sht-&gt;vy0;
+        bx1 = vx1 - sht-&gt;vx0;
+        by1 = vy1 - sht-&gt;vy0;
+        if (bx0 &lt; 0) &#123; bx0 = 0; &#125;
+        if (by0 &lt; 0) &#123; by0 = 0; &#125;
+        if (bx1 &gt; sht-&gt;bxsize) &#123; bx1 = sht-&gt;bxsize; &#125;
+        if (by1 &gt; sht-&gt;bysize) &#123; by1 = sht-&gt;bysize; &#125;
+            for (by = by0; by &lt; by1; by++) &#123;
+            vy = sht-&gt;vy0 + by;
+                for (bx = bx0; bx &lt; bx1; bx++) &#123;
+                vx = sht-&gt;vx0 + bx;
+                    if (buf[by * sht-&gt;bxsize + bx] != sht-&gt;col_inv) &#123;
+                        map[vy * ctl-&gt;xsize + vx] = sid;
+                    &#125;
+                &#125;
+            &#125;
+    &#125;
+    return;
+&#125;
+</code></pre>
+<p>这个函数与以前的refreshsub函数基本一样， 只是用色号代替了图层号码而已。   </p>
+<pre><code class="c">void sheet_refreshsub(struct SHTCTL *ctl, int vx0, int vy0, int vx1, int vy1, int
+h0, int h1)
+&#123;
+    int h, bx, by, vx, vy, bx0, by0, bx1, by1;
+    unsigned char *buf, *vram = ctl-&gt;vram, *map = ctl-&gt;map, sid;
+    struct SHEET *sht;
+    /* 如果refresh的范围超出了画面则修正*/
+    （中略）
+    for (h = h0; h &lt;= h1; h++) &#123;
+        sht = ctl-&gt;sheets[h];
+        buf = sht-&gt;buf;
+        sid = sht - ctl-&gt;sheets0;
+        /* 利用vx0～vy1， 对bx0～by1进行倒推 */
+        （中略）
+        for (by = by0; by &lt; by1; by++) &#123;
+            vy = sht-&gt;vy0 + by;
+            for (bx = bx0; bx &lt; bx1; bx++) &#123;
+                vx = sht-&gt;vx0 + bx;
+                if (map[vy * ctl-&gt;xsize + vx] == sid) &#123;
+                vram[vy * ctl-&gt;xsize + vx] = buf[by * sht-&gt;bxsize + bx];
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    return;
+&#125;
+</code></pre>
+<p>以后每次刷新区域时，都先对照一下map中该区域该像素是否为该图层的显示区域。</p>
+<blockquote>
+<p>对调用sheet_refreshsub的函数进行修改</p>
+</blockquote>
+<p>刷新指定图层指定区域,由于图层的上下关系没有改变， 所以不需要重新进行refreshmap的处理。   </p>
+<pre><code class="c">void sheet_refresh(struct SHEET *sht, int bx0, int by0, int bx1, int by1)
+&#123;
+    if (sht-&gt;height &gt;= 0) &#123; /* 如果正在显示， 则按新图层的信息进行刷新 */
+        sheet_refreshsub(sht-&gt;ctl, sht-&gt;vx0 + bx0, sht-&gt;vy0 + by0, sht-&gt;vx0 +
+        bx1, sht-&gt;vy0 + by1,
+        sht-&gt;height, sht-&gt;height);
+    &#125;
+    return;
+&#125;
+</code></pre>
+<p>移动指定图层 ,移动后，部分下级图层会漏出来，部分图层会被隐藏，因此要对图层移动前的区域及图层移动后的区域重新刷新map。最后调用sheet_refreshsub将两部分区域刷新即可。</p>
+<pre><code class="c">void sheet_slide(struct SHEET *sht, int vx0, int vy0)
+&#123;
+    struct SHTCTL *ctl = sht-&gt;ctl;
+    int old_vx0 = sht-&gt;vx0, old_vy0 = sht-&gt;vy0;
+    sht-&gt;vx0 = vx0;
+    sht-&gt;vy0 = vy0;
+    if (sht-&gt;height &gt;= 0) &#123; /* 如果正在显示， 则按新图层的信息进行刷新 */
+        sheet_refreshmap(ctl, old_vx0, old_vy0, old_vx0 + sht-&gt;bxsize, old_vy0 +sht-&gt;bysize, 0);
+        sheet_refreshmap(ctl, vx0, vy0, vx0 + sht-&gt;bxsize, vy0 + sht-&gt;bysize,sht-&gt;height);
+        sheet_refreshsub(ctl, old_vx0, old_vy0, old_vx0 + sht-&gt;bxsize, old_vy0 +sht-&gt;bysize, 0,sht-&gt;height - 1);
+        sheet_refreshsub(ctl, vx0, vy0, vx0 + sht-&gt;bxsize, vy0 + sht-&gt;bysize,sht-&gt;height,sht-&gt;height);
+    &#125;
+    return;
+&#125;
+</code></pre>
+<h2 id="20220328"><a href="#20220328" class="headerlink" title="20220328"></a>20220328</h2><h3 id="使用定时器harib09a"><a href="#使用定时器harib09a" class="headerlink" title="使用定时器harib09a"></a>使用定时器harib09a</h3><blockquote>
+<p> 定时器原理</p>
+</blockquote>
+<p>每隔一段时间(比如0.01秒)就发送一个中断信号给CPU,</p>
+<p>CPU可以在中断处理程序中记录下中断次数,</p>
+<p>其他程序就可以通过获取这个前后的次数来进行时间间隔的判断。</p>
+<blockquote>
+<p>管理定时器</p>
+</blockquote>
+<p>要在电脑中管理定时器， 只需对PIT进行设定就可以了。 PIT是“Programmable Interval Timer”的缩写， 翻译过来就是“可编程的间隔型定时器”。 我们可以通过设定PIT， 让定时器每隔多少秒就产生一次中断。因为在电脑中PIT连接着IRQ（interrupt request， 参考第6章） 的0号， 所以只要设定了PIT就可以设定IRQ0的中断间隔。</p>
+<p> IRQ0的中断周期变更:</p>
+<ol>
+<li>AL=0x34:OUT(0x43,AL);</li>
+<li>AL=中断周期的低8位; OUT(0x40,AL);</li>
+<li>AL=中断周期的高8位; OUT(0x40,AL);</li>
+<li>到这里告一段落。</li>
+<li>如果指定中断周期为0， 会被看作是指定为65536。 实际的中断产<br>生的频率是单位时间时钟周期数（即主频） /设定的数值。 比如<br>设定值如果是1000， 那么中断产生的频率就是1.19318KHz。 设<br>定值是10000的话， 中断产生频率就是119.318Hz。 再比如设定值<br>是11932的话， 中断产生的频率大约就是100Hz了， 即每10ms发<br>生一次中断。   </li>
+</ol>
+<blockquote>
+<p>初始化定时器</p>
+</blockquote>
+<pre><code class="c">#define PIT_CTRL 0x0043
+#define PIT_CNT0 0x0040
+void init_pit(void)
+&#123;
+    io_out8(PIT_CTRL, 0x34);
+    io_out8(PIT_CNT0, 0x9c);
+    io_out8(PIT_CNT0, 0x2e);
+    return;
+&#125;
+</code></pre>
+<pre><code class="c">init_pit(); /* 这里！ */
+io_out8(PIC0_IMR, 0xf8); /* PIT和PIC1和键盘设置为许可(11111000) */ /* 这里！ */
+io_out8(PIC1_IMR, 0xef); /* 鼠标设置为许可(11101111) */
+</code></pre>
+<blockquote>
+<p>IRQ0中断处理程序</p>
+</blockquote>
+<pre><code class="c">void inthandler20(int *esp)
+&#123;
+io_out8(PIC0_OCW2, 0x60); /* 把IRQ-00信号接收完了的信息通知给PIC */
+/* 暂时什么也不做 */
+return;
+&#125;
+</code></pre>
+<pre><code class="assembly">_asm_inthandler20:
+    PUSH ES
+    PUSH DS
+    PUSHAD
+    MOV EAX,ESP
+    PUSH EAX
+    MOV AX,SS
+    MOV DS,AX
+    MOV ES,AX
+    CALL _inthandler20
+    POP EAX
+    POPAD
+    POP DS
+    POP ES
+    IRETD
+</code></pre>
+<blockquote>
+<p>注册到IDT中</p>
+</blockquote>
+<pre><code class="c">void init_gdtidt(void)
+&#123;
+（中略）
+    /* IDT的设定 */
+    set_gatedesc(idt + 0x20, (int) asm_inthandler20, 2 * 8, AR_INTGATE32); /* 这
+    里! */
+    set_gatedesc(idt + 0x21, (int) asm_inthandler21, 2 * 8, AR_INTGATE32);
+    set_gatedesc(idt + 0x27, (int) asm_inthandler27, 2 * 8, AR_INTGATE32);
+    set_gatedesc(idt + 0x2c, (int) asm_inthandler2c, 2 * 8, AR_INTGATE32);
+    return;
+&#125;
+</code></pre>
+<h3 id="计量时间harib09b"><a href="#计量时间harib09b" class="headerlink" title="计量时间harib09b"></a>计量时间harib09b</h3><pre><code class="c">struct TIMERCTL &#123;
+unsigned int count;
+&#125;;
+</code></pre>
+<pre><code class="c">struct TIMERCTL timerctl;
+void init_pit(void)
+&#123;
+    io_out8(PIT_CTRL, 0x34);
+    io_out8(PIT_CNT0, 0x9c);
+    io_out8(PIT_CNT0, 0x2e);
+    timerctl.count = 0; /* 这里！ */
+    return;
+&#125; 
+void inthandler20(int *esp)
+&#123;
+    io_out8(PIC0_OCW2, 0x60); /* 把IRQ-00信号接收完了的信息通知给PIC */
+    timerctl.count++; /* 这里！ */
+    return;
+&#125;
+</code></pre>
+<p>每次中断处理都让其+1</p>
+<p>也即每1秒它都会自动增加100</p>
+<pre><code class="c">void HariMain(void)
+&#123;
+    （中略）for (;;) &#123;
+        sprintf(s, &quot;%010d&quot;, timerctl.count); /* 这里！ */
+        boxfill8(buf_win, 160, COL8_C6C6C6, 40, 28, 119, 43);
+        putfonts8_asc(buf_win, 160, 40, 28, COL8_000000, s);
+        sheet_refresh(sht_win, 40, 28, 120, 44);
+        （中略）
+    &#125;
+&#125;
+</code></pre>
+<h3 id="超时功能"><a href="#超时功能" class="headerlink" title="超时功能"></a>超时功能</h3><pre><code class="c">#include &quot;bootpack.h&quot;
+
+#define PIT_CTRL    0x0043
+#define PIT_CNT0    0x0040
+
+struct TIMERCTL timerctl;
+
+void init_pit(void)
+&#123;
+    io_out8(PIT_CTRL, 0x34);
+    io_out8(PIT_CNT0, 0x9c);
+    io_out8(PIT_CNT0, 0x2e);
+    timerctl.count = 0;
+    timerctl.timeout = 0;
+    return;
+&#125;
+
+void inthandler20(int *esp)
+&#123;
+    io_out8(PIC0_OCW2, 0x60);    /* 把IRQ-00信号接收结束的信息通知给PIC */
+    timerctl.count++;
+    if (timerctl.timeout &gt; 0) &#123;  /* 如果已经设定了超时 */
+        timerctl.timeout--;
+        if (timerctl.timeout == 0) &#123;
+            fifo8_put(timerctl.fifo, timerctl.data);
+        &#125;
+    &#125;
+    return;
+&#125;
+
+void settimer(unsigned int timeout, struct FIFO8 *fifo, unsigned char data)
+&#123;
+    int eflags;
+    eflags = io_load_eflags();
+    io_cli();
+    timerctl.timeout = timeout;
+    timerctl.fifo = fifo;
+    timerctl.data = data;
+    io_store_eflags(eflags);
+    return;
+&#125;
+</code></pre>
+<p>程序若需要延时，就通过settimer来进行设置，fifo和data用于计时器计时结束后和程序交互信息。</p>
+<p>定时器在中断处理程序中检查是否有需要延时的程序(根据timeout的值)</p>
+<blockquote>
+<p>验证程序</p>
+</blockquote>
+<pre><code class="c">void HariMain(void)
+&#123;
+    （中略）
+    struct FIFO8 timerfifo;
+    char s[40], keybuf[32], mousebuf[128], timerbuf[8];
+    （中略）
+    fifo8_init(&amp;timerfifo, 8, timerbuf);
+    settimer(1000, &amp;timerfifo, 1);
+    （中略）
+    for (;;) &#123;
+            （中略）
+            io_cli();
+            if (fifo8_status(&amp;keyfifo) + fifo8_status(&amp;mousefifo) +
+            fifo8_status(&amp;timerfifo) == 0) &#123;
+                io_sti();
+            &#125; else &#123;
+                if (fifo8_status(&amp;keyfifo) != 0) &#123;
+                    （中略）
+                &#125; else if (fifo8_status(&amp;mousefifo) != 0) &#123;
+                    （中略）
+                &#125; else if (fifo8_status(&amp;timerfifo) != 0) &#123;
+                    i = fifo8_get(&amp;timerfifo); /* 首先读入（为了设定起始点） */
+                    io_sti();
+                    putfonts8_asc(buf_back, binfo-&gt;scrnx, 0, 64, COL8_FFFFFF,&quot;10[sec]&quot;);
+                    sheet_refresh(sht_back, 0, 64, 56, 80);
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="多个定时器-hraib09d"><a href="#多个定时器-hraib09d" class="headerlink" title="多个定时器 hraib09d"></a>多个定时器 hraib09d</h3><p>定义一个定时器集合数组， </p>
+<p>定义 分配、释放定时器函数</p>
+<p>中断处理函数中对已分配的定时器进行减一，若减到0，则向fifo中写入</p>
+<pre><code class="c">#define PIT_CTRL    0x0043
+#define PIT_CNT0    0x0040
+
+struct TIMERCTL timerctl;
+
+#define TIMER_FLAGS_ALLOC        1    /* 定时器已计时完毕标志*/
+#define TIMER_FLAGS_USING        2    /* 定时器正在使用标志 */
+
+void init_pit(void)
+&#123;
+    int i;
+    io_out8(PIT_CTRL, 0x34);
+    io_out8(PIT_CNT0, 0x9c);
+    io_out8(PIT_CNT0, 0x2e);
+    timerctl.count = 0;
+    for (i = 0; i &lt; MAX_TIMER; i++) &#123;
+        timerctl.timer[i].flags = 0; /* ���g�p */
+    &#125;
+    return;
+&#125;
+
+struct TIMER *timer_alloc(void)
+&#123;
+    int i;
+    for (i = 0; i &lt; MAX_TIMER; i++) &#123;
+        if (timerctl.timer[i].flags == 0) &#123;
+            timerctl.timer[i].flags = TIMER_FLAGS_ALLOC;
+            return &amp;timerctl.timer[i];
+        &#125;
+    &#125;
+    return 0; /* 未找到空闲定时器 */
+&#125;
+
+void timer_free(struct TIMER *timer)
+&#123;
+    timer-&gt;flags = 0; /* 设置为空闲 */
+    return;
+&#125;
+
+void timer_init(struct TIMER *timer, struct FIFO8 *fifo, unsigned char data)
+&#123;
+    timer-&gt;fifo = fifo;
+    timer-&gt;data = data;
+    return;
+&#125;
+
+void timer_settime(struct TIMER *timer, unsigned int timeout)
+&#123;
+    timer-&gt;timeout = timeout;
+    timer-&gt;flags = TIMER_FLAGS_USING;
+    return;
+&#125;
+
+void inthandler20(int *esp)
+&#123;
+    int i;
+    io_out8(PIC0_OCW2, 0x60);    /* 把IRQ-00信号接收结束的信息通知给PIC */
+    timerctl.count++;
+    for (i = 0; i &lt; MAX_TIMER; i++) &#123;
+        if (timerctl.timer[i].flags == TIMER_FLAGS_USING) &#123;
+            timerctl.timer[i].timeout--;
+            if (timerctl.timer[i].timeout == 0) &#123;
+                timerctl.timer[i].flags = TIMER_FLAGS_ALLOC;
+                fifo8_put(timerctl.timer[i].fifo, timerctl.timer[i].data);
+            &#125;
+        &#125;
+    &#125;
+    return;
+&#125;
+</code></pre>
+<h3 id="加快中断处理-harib09e"><a href="#加快中断处理-harib09e" class="headerlink" title="加快中断处理 harib09e"></a>加快中断处理 harib09e</h3><p>在timerctl 增加一个next 和count</p>
+<p>count 每次中断自增1 ，并和next作比较，若小于next，则计时都没有结束，直接返回。</p>
+<p>若到达next，则将超时的进行标记， 遍历timerctl，记录下一个最近的next</p>
+<p>在使用计时器时，将计时器的count和 timerctl中的next大小作比较， 保证next为最小计时器的值</p>
+<h3 id="加快中断处理（3）-（harib09g）"><a href="#加快中断处理（3）-（harib09g）" class="headerlink" title="加快中断处理（3） （harib09g）"></a>加快中断处理（3） （harib09g）</h3><pre><code class="c">struct TIMERCTL &#123;
+    unsigned int count, next, using;
+    struct TIMER *timers[MAX_TIMER];
+    struct TIMER timers0[MAX_TIMER];
+&#125;;
+</code></pre>
+<pre><code class="c">
+void inthandler20(int *esp)
+&#123;
+    int i, j;
+    io_out8(PIC0_OCW2, 0x60);     /* 把IRQ-00信号接收结束的信息通知给PIC */
+    timerctl.count++;
+    if (timerctl.next &gt; timerctl.count) &#123;
+        return;
+    &#125;
+    for (i = 0; i &lt; timerctl.using; i++) &#123;
+        /* timers的定时器都处于动作中， 所以不确认flags */
+        if (timerctl.timers[i]-&gt;timeout &gt; timerctl.count) &#123;
+            break;
+        &#125;
+        /* 超时*/
+        timerctl.timers[i]-&gt;flags = TIMER_FLAGS_ALLOC;
+        fifo8_put(timerctl.timers[i]-&gt;fifo, timerctl.timers[i]-&gt;data);
+    &#125;
+    /* 正好有i个定时器超时了。 其余的进行移位。 */
+    timerctl.using -= i;
+    for (j = 0; j &lt; timerctl.using; j++) &#123;
+        timerctl.timers[j] = timerctl.timers[i + j];
+    &#125;
+    if (timerctl.using &gt; 0) &#123;
+        timerctl.next = timerctl.timers[0]-&gt;timeout;
+    &#125; else &#123;
+        timerctl.next = 0xffffffff;
+    &#125;
+    return;
+&#125;
+</code></pre>
+<p>排序</p>
+<pre><code class="c">void timer_settime(struct TIMER *timer, unsigned int timeout)
+&#123;
+    int e, i, j;
+    timer-&gt;timeout = timeout + timerctl.count;
+    timer-&gt;flags = TIMER_FLAGS_USING;
+    e = io_load_eflags();
+    io_cli();
+    /* �ǂ��ɓ����΂�������T�� */
+    for (i = 0; i &lt; timerctl.using; i++) &#123;
+        if (timerctl.timers[i]-&gt;timeout &gt;= timer-&gt;timeout) &#123;
+            break;
+        &#125;
+    &#125;
+    /* ����������炷 */
+    for (j = timerctl.using; j &gt; i; j--) &#123;
+        timerctl.timers[j] = timerctl.timers[j - 1];
+    &#125;
+    timerctl.using++;
+    /* �����������܂ɓ���� */
+    timerctl.timers[i] = timer;
+    timerctl.next = timerctl.timers[0]-&gt;timeout;
+    io_store_eflags(e);
+    return;
+&#125;
+</code></pre>
+<h2 id="20220331"><a href="#20220331" class="headerlink" title="20220331"></a>20220331</h2><p>day13</p>
+<h3 id="调整缓冲区harib10b"><a href="#调整缓冲区harib10b" class="headerlink" title="调整缓冲区harib10b"></a>调整缓冲区harib10b</h3><p>每个定时器都分配一个缓冲区有点过于浪费，其实只要在超时的情况下FIFO写入不同的数据，就可以正常地分辨出是哪个定时器超时了。</p>
+<h2 id="20220401"><a href="#20220401" class="headerlink" title="20220401"></a>20220401</h2><p>day13</p>
+<h3 id="加快中断处理"><a href="#加快中断处理" class="headerlink" title="加快中断处理"></a>加快中断处理</h3><p>在timer_settime和计时器中断处理程序inthandler20中，新计时器的插入处理占用了很长时间，虽然timer_settime不是中断处理程序，但毕竟是在中断禁止期间进行的，所以必须要迅速完成。</p>
+<p>其实线性的存储方式(插入慢)并不适合这种模式，我们可以考虑使用链表(插入快)这一数据结构</p>
+<p>在TIMER结构体，新增一个TIMER指针变量，它指向当前定时器临近的下一个定时器。</p>
+<p><img src="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/image-20220401102711590.png" alt="image-20220401102711590"></p>
+<p>同时我们修改TIMERCTL结构体中的timers数字, 现在我们只需要知道一个当前计时器的位置就可以了，因此将其修改成单个指针</p>
+<pre><code class="c">struct TIMERCTL &#123;
+    unsigned int count, next, using;
+    struct TIMER *t0;
+    struct TIMER timers0[MAX_TIMER];
+&#125;;
+</code></pre>
+<pre><code class="c">void timer_settime(struct TIMER *timer, unsigned int timeout)
+&#123;
+    int e;
+    struct TIMER *t, *s;
+    timer-&gt;timeout = timeout + timerctl.count;
+    timer-&gt;flags = TIMER_FLAGS_USING;
+    e = io_load_eflags();
+    io_cli();
+    timerctl.using++;
+    if (timerctl.using == 1) &#123;
+        /* 处于运行状态的定时器只有这一个时 */
+        timerctl.timers[0] = timer;
+        timer-&gt;next = 0; /* 没有下一个 */
+        timerctl.next = timer-&gt;timeout;
+        io_store_eflags(e);
+        return;
+    &#125;
+    t= timerctl.timers[0];//临时存储第一个计时器位置
+    if (timer-&gt;timeout &lt;= t-&gt;timeout) &#123;
+        /* 插入最前面的情况下 */
+        timerctl.timers[0] = timer;
+        timer-&gt;next = t; /* 下面是t */
+        timerctl.next = timer-&gt;timeout;
+        io_store_eflags(e);
+        return;
+    &#125;/
+    * 搜寻插入位置 */
+    for (;;) &#123;
+        s = t;
+        t = t-&gt;next;
+        if (t == 0) &#123;
+            break; /* 最后面*/
+        &#125;
+        if (timer-&gt;timeout &lt;= t-&gt;timeout) &#123;
+            /* 插入到s和t之间时 */
+            s-&gt;next = timer; /* s的下一个是timer */
+            timer-&gt;next = t; /* timer的下一个是t */
+            io_store_eflags(e);
+            return;
+        &#125;
+    &#125;
+    /* 插入最后面的情况下 */
+    s-&gt;next = timer;
+    timer-&gt;next = 0;
+    io_store_eflags(e);
+    return;
+&#125;
+</code></pre>
+<pre><code class="c">void inthandler20(int *esp)
+&#123;
+    int i;
+    struct TIMER *timer;
+    io_out8(PIC0_OCW2, 0x60); /* 把IRQ-00接收信号结束的信息通知给PIC */
+    timerctl.count++;
+    if (timerctl.next &gt; timerctl.count) &#123;
+        return;
+    &#125;
+    timer = timerctl.timers[0]; /* 首先把最前面的地址赋给timer */
+    for (i = 0; i &lt; timerctl.using; i++) &#123;//可能不止一个定时器在相同的时间超时
+        /* 因为timers的定时器都处于运行状态， 所以不确认flags*/
+        if (timer-&gt;timeout &gt; timerctl.count) &#123;
+            break;
+        &#125;
+        /* 超时 */
+        timer-&gt;flags = TIMER_FLAGS_ALLOC;
+        fifo32_put(timer-&gt;fifo, timer-&gt;data);
+        timer = timer-&gt;next; /* 下一定时器的地址赋给timer */
+    &#125;
+    timerctl.using -= i;
+    /* 新移位 */
+    timerctl.timers[0] = timer;
+    /* timerctl.next的设定 */
+    if (timerctl.using &gt; 0) &#123;
+        timerctl.next = timerctl.timers[0]-&gt;timeout;
+    &#125; else &#123;
+        timerctl.next = 0xffffffff;
+    &#125;
+    return;
+&#125;
+</code></pre>
+<h3 id="使用“哨兵”简化程序（harib10i）"><a href="#使用“哨兵”简化程序（harib10i）" class="headerlink" title="使用“哨兵”简化程序（harib10i）"></a>使用“哨兵”简化程序（harib10i）</h3><blockquote>
+<p> 在timer_settime函数有四种可能</p>
+</blockquote>
+<ul>
+<li>运行中的定时器只有一个的情况</li>
+<li>插入到最前面的情况</li>
+<li>插入到s和t之间的情况</li>
+<li>插入到最后面的情况  </li>
+</ul>
+<p>在进行初始化的时候，将时刻0xffffffff的定时器连到最后一个定时器上。</p>
+<p>它一直处于后面，只是一个附带物，这就是 “ 哨兵”</p>
+<blockquote>
+<p>加入哨兵后，有两种情况不再可能出现</p>
+</blockquote>
+<ul>
+<li>处于运行中的定时器只有这1个的情况（因为有哨兵， 所以最少应该有2个）</li>
+<li>插入最前面的情况</li>
+<li>插入s和t之间的情况</li>
+<li>插入最后的情况（哨兵总是在最后）  </li>
+</ul>
+<pre><code class="c">void init_pit(void)
+&#123;
+    int i;
+    struct TIMER *t;
+    io_out8(PIT_CTRL, 0x34);
+    io_out8(PIT_CNT0, 0x9c);
+    io_out8(PIT_CNT0, 0x2e);
+    timerctl.count = 0;
+    for (i = 0; i &lt; MAX_TIMER; i++) &#123;
+        timerctl.timers0[i].flags = 0; /* 没有使用 */
+    &#125;
+    t= timer_alloc(); /* 取得一个 */
+    t-&gt;timeout = 0xffffffff;
+    t-&gt;flags = TIMER_FLAGS_USING;
+    t-&gt;next = 0; /* 末尾 */
+    timerctl.t0 = t; /* 因为现在只有哨兵， 所以他就在最前面*/
+    timerctl.next = 0xffffffff; /* 因为只有哨兵， 所以下一个超时时刻就是哨兵的时刻 */
+    timerctl.using = 1;
+    return;
+&#125;
+</code></pre>
+<pre><code class="c">void timer_settime(struct TIMER *timer, unsigned int timeout)
+&#123;
+    int e;
+    struct TIMER *t, *s;
+    timer-&gt;timeout = timeout + timerctl.count;
+    timer-&gt;flags = TIMER_FLAGS_USING;
+    e = io_load_eflags();
+    io_cli();
+    timerctl.using++;
+    t = timerctl.t0;
+    if (timer-&gt;timeout &lt;= t-&gt;timeout) &#123;
+        /* 插入最前面的情况 */
+        timerctl.t0 = timer;
+        timer-&gt;next = t; /* 下面是设定t */
+        timerctl.next = timer-&gt;timeout;
+        io_store_eflags(e);
+        return;
+    &#125;/
+    * 搜寻插入位置 */
+    for (;;) &#123;
+        s = t;
+        t = t-&gt;next;
+        if (timer-&gt;timeout &lt;= t-&gt;timeout) &#123;
+            /* 插入s和t之间的情况 */
+            s-&gt;next = timer; /* s下一个是timer */
+            timer-&gt;next = t; /* timer的下一个是t */
+            io_store_eflags(e);
+            return;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="c">void inthandler20(int *esp)
+&#123;
+    int i;
+    struct TIMER *timer;
+    io_out8(PIC0_OCW2, 0x60); /* 把IRQ-00接收信号结束的信息通知给PIC */
+    timerctl.count++;
+    if (timerctl.next &gt; timerctl.count) &#123;
+        return;
+    &#125;
+    timer = timerctl.t0; /* 首先把最前面的地址赋给timer */
+    for (i = 0; i &lt; timerctl.using; i++) &#123;
+        /* 因为timers的定时器都处于运行状态， 所以不确认flags */
+        if (timer-&gt;timeout &gt; timerctl.count) &#123;
+        break;
+        &#125;
+        /* 超时 */
+        timer-&gt;flags = TIMER_FLAGS_ALLOC;
+        fifo32_put(timer-&gt;fifo, timer-&gt;data);
+        timer = timer-&gt;next; /* 将下一定时器的地址代入timer*/
+    &#125;
+    timerctl.using -= i;
+    /* 新移位 */
+    timerctl.t0 = timer;
+    /* timerctl.next的设定 */ /* 这里！ */
+    timerctl.next = timerctl.t0-&gt;timeout;
+    return;
+&#125;
+</code></pre>
+<h2 id="在总结一次操作系统的执行流程"><a href="#在总结一次操作系统的执行流程" class="headerlink" title="在总结一次操作系统的执行流程"></a>在总结一次操作系统的执行流程</h2><blockquote>
+<p>首先是映像文件img</p>
+</blockquote>
+<p>img文件总大小为1440KB</p>
+<p>在最初的512字节中, 存储着启动区ipl代码 程序在此执行。</p>
+<p>我们通过工具将其他文件拷入img时，文件名会存放在0x002600以后的地方，文件的内容会写在0x004200以后的地方 。</p>
+<pre><code class="makefile">haribote.img : ipl10.bin haribote.sys Makefile
+    $(EDIMG)   imgin:../z_tools/fdimg0at.tek \
+        wbinimg src:ipl10.bin len:512 from:0 to:0 \
+        copy from:haribote.sys to:@: \
+        imgout:haribote.img
+</code></pre>
+<blockquote>
+<p>部分标记</p>
+</blockquote>
+<p>在IPL中要将启动区往后的10个柱面的代码(180KB)拷贝入内存中(从0x8000开始到0x34fff  )</p>
+<p>因为拷入到内存中，基础的地址为0x8000, 且文件在img中起始地址为0x4200，两者之和为0xc200 因此</p>
+<ol>
+<li>在IPL的最后，要跳到haribote.sys ，执行命令JMP 0xc200</li>
+<li>在haribote.sys中，要加入ORG        0xc200命令，防止地址转换出现问题。</li>
+</ol>
+<blockquote>
+<p>然后映像的执行</p>
+</blockquote>
+<ol>
+<li>CPU会读取映像的前512个字节，根据代码将启动区后的10个扇区读入内存0x8000开始的位置</li>
+<li>执行JMP 0xc200进入操作系统主程序</li>
+</ol>
+<blockquote>
+<p>首先执行的是asmhead.nas</p>
+</blockquote>
+<ol>
+<li>关闭所有中断</li>
+<li>为了让CPU能够访问1MB以上的内存空间， 设定A20GATE</li>
+<li>创建一个临时的GDT, 包含两个段</li>
+<li>将IPL 、bootpack等代码载入指定的内存中</li>
+<li>最后跳转到主程序区(0x280000)继续执行</li>
+</ol>
+<blockquote>
+<p>主程序</p>
+</blockquote>
+<p>首先会初始化GDT IDT 、初始化键盘鼠标、绘制GUI等操作。</p>
+<p>进入循环阶段，处理中断产生的信息并绘制图层。</p>
+<h2 id="20220406"><a href="#20220406" class="headerlink" title="20220406"></a>20220406</h2><p>day 14</p>
+<h3 id="提高分辨率"><a href="#提高分辨率" class="headerlink" title="提高分辨率"></a>提高分辨率</h3><blockquote>
+<p>确认VBE是否存在</p>
+</blockquote>
+<pre><code class="assembly">; 确认VBE是否存在
+    MOV AX,0x9000
+    MOV ES,AX
+    MOV DI,0
+    MOV AX,0x4f00
+    INT 0x10
+    CMP AX,0x004f
+    JNE scrn320
+</code></pre>
+<p>通过给ES赋值0x9000 ,DI赋值0 ，AX赋值0x4f00 然后执行INT 0x10，若VBE存在，AX就会变为0x004f</p>
+<blockquote>
+<p>确认VBE版本</p>
+</blockquote>
+<pre><code class="assembly">MOV AX,[ES:DI+4]
+CMP AX,0x0200
+JB scrn320 ; if (AX &lt; 0x0200) goto scrn320
+</code></pre>
+<blockquote>
+<p>获取画面模式的信息</p>
+</blockquote>
+<p>VBEMODE EQU 0x105  </p>
+<pre><code class="assembly">MOV CX,VBEMODE
+MOV AX,0x4f01
+INT 0x10
+CMP AX,0x004f
+JNE scrn320
+</code></pre>
+<p>此次取得的画面模式信息会写入内存中从ES:DI 开始的256字节中。</p>
+<blockquote>
+<p>确认画面模式信息无误后,即可将信息拷入BOOTINFO中了</p>
+</blockquote>
+<pre><code class="assembly">; 画面模式的切换
+    MOV BX,VBEMODE+0x4000
+    MOV AX,0x4f02
+    INT 0x10
+    MOV BYTE [VMODE],8 ; 记下画面模式（参考C语言）
+    MOV AX,[ES:DI+0x12]
+    MOV [SCRNX],AX
+    MOV AX,[ES:DI+0x14]
+    MOV [SCRNY],AX
+    MOV EAX,[ES:DI+0x28]
+    MOV [VRAM],EAX
+    JMP keystatus
+</code></pre>
+<h3 id="键盘输入-harib11f"><a href="#键盘输入-harib11f" class="headerlink" title="键盘输入 harib11f"></a>键盘输入 harib11f</h3><pre><code class="c">static char keytable[0x54] = &#123;
+0, 0, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;, &#39;0&#39;, &#39;-&#39;, &#39;^&#39;, 0, 0,&#39;Q&#39;, &#39;W&#39;, &#39;E&#39;, &#39;R&#39;, &#39;T&#39;, &#39;Y&#39;, &#39;U&#39;, &#39;I&#39;, &#39;O&#39;, &#39;P&#39;, &#39;@&#39;, &#39;[&#39;, 0, 0, &#39;A&#39;,&#39;S&#39;,&#39;D&#39;, &#39;F&#39;, &#39;G&#39;,&#39;H&#39;, &#39;J&#39;, &#39;K&#39;, &#39;L&#39;, &#39;;&#39;, &#39;:&#39;, 0, 0, &#39;]&#39;, &#39;Z&#39;, &#39;X&#39;, &#39;C&#39;,&#39;V&#39;,&#39;B&#39;, &#39;N&#39;, &#39;M&#39;, &#39;,&#39;, &#39;.&#39;, &#39;/&#39;, 0, &#39;*&#39;, 0, &#39; &#39;, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;, &#39;-&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;+&#39;,&#39;1&#39;,&#39;2&#39;, &#39;3&#39;, &#39;0&#39;, &#39;.&#39;&#125;;
+if (256 &lt;= i &amp;&amp; i &lt;= 511) &#123; /* 键盘数据 */
+    sprintf(s, &quot;%02X&quot;, i - 256);
+    putfonts8_asc_sht(sht_back, 0, 16, COL8_FFFFFF, COL8_008484, s, 2);
+if (i &lt; 256 + 0x54) &#123;
+        if (keytable[i - 256] != 0) &#123;
+            s[0] = keytable[i - 256];
+            s[1] = 0;
+            putfonts8_asc_sht(sht_win, 40, 28, COL8_000000, COL8_C6C6C6, s, 1);
+        &#125;
+    &#125;
+&#125; else if (512 &lt;= i &amp;&amp; i &lt;= 767) &#123; /* 鼠标数据 */
+</code></pre>
+<h2 id="20220407"><a href="#20220407" class="headerlink" title="20220407"></a>20220407</h2><p>day15</p>
+<h3 id="多任务"><a href="#多任务" class="headerlink" title="多任务"></a>多任务</h3><p>当你向CPU发出任务切换的指令时， CPU会先把寄存器中的值全部写入<br>内存中， 这样做是为了当以后切换回这个程序的时候， 可以从中断的地<br>方继续运行。 接下来， 为了运行下一个程序， CPU会把所有寄存器中的<br>值从内存中读取出来（当然， 这个读取的地址和刚刚写入的地址一定是<br>不同的， 不然就相当于什么都没变嘛） ， 这样就完成了一次切换。 我们<br>前面所说的任务切换所需要的时间， 正是对内存进行写入和读取操作所<br>消耗的时间。</p>
+<ol>
+<li> CPU将寄存器中的值写入内存中</li>
+<li>将另一个任务的寄存器的值从内存中加载</li>
+</ol>
+<blockquote>
+<p>定义任务状态段(task satus segment)</p>
+</blockquote>
+<pre><code class="c">struct TSS32 &#123;
+    int backlink, esp0, ss0, esp1, ss1, esp2, ss2, cr3;
+    int eip, eflags, eax, ecx, edx, ebx, esp, ebp, esi, edi;
+    int es, cs, ss, ds, fs, gs;
+    int ldtr, iomap;
+&#125;;
+</code></pre>
+<p>TSS共包含26个int成员，总计104字节</p>
+<p>第一行保存的不是寄存器数据，而是与任务设置相关的信息，在回字形任务切换的时候这些成员不会被写入(backlink 除外，某些情况下是会被写入的)</p>
+<p>第二行成员是32位寄存器，第三行是16位寄存器。 EIP(Extended Instruction Pointer扩展指令指针寄存器) 寄存器用来记录下一条需要执行的指令位于内存中的那个地址的。 每执行一条指令，EIP寄存器中的值就会自动累加，从而保证一直指向下一条指令所在的内存地址。</p>
+<p>汇编中的JMP跳转指令，实际上就是通过JMP间接修改EIP的值来达到目的。</p>
+<p>第四行 和第一行一样，是存储有关任务设置的部分。</p>
+<blockquote>
+<p>切换任务</p>
+</blockquote>
+<p>JMP指令分两种</p>
+<ol>
+<li>只改写EIP(near模式)</li>
+<li>同时改写EIP和CS(far模式)</li>
+</ol>
+<p>如在asmhead.nas的bootpack启动的最后一句</p>
+<pre><code class="assembly">JMP DWORD 2*8:0x0000001b 
+</code></pre>
+<p>这条指令在想EIP存入0x1b同时将CS置为2*8（=16） 。 像这样在JMP目标地址中带冒号（:） 的， 就是far模式的JMP指令。  </p>
+<p>如果一条JMP指令所指定的目标地址段不是可执行的代码， 而是TSS的<br>话， CPU就不会执行通常的改写EIP和CS的操作， 而是将这条指令理解<br>为任务切换。 也就是说， CPU会切换到目标TSS所指定的任务， 说白<br>了， 就是JMP到一个任务那里去了。</p>
+<p>CPU每次执行带有段地址的指令时， 都会去确认一下GDT中的设置， 以<br>便判断接下来要执行的JMP指令到底是普通的far-JMP， 还是任务切换。<br>也就是说， 从汇编程序翻译出来的机器语言来看， 普通的far-JMP和任<br>务切换的far-JMP， 指令本身是没有任何区别的。  </p>
+<blockquote>
+<p>代码实践</p>
+</blockquote>
+<p>创建两个TSS ，分别为任务A的TSS 、任务B的TSS</p>
+<pre><code class="c">struct TSS32 tss_a, tss_b ;
+</code></pre>
+<p>向他们的LDTR和IOMAP中写入合适的值</p>
+<pre><code class="c">tss_a.ldtr = 0;
+tss_a.iomap = 0x40000000;
+tss_b.ldtr = 0;
+tss_b.iomap = 0x40000000;
+</code></pre>
+<p>将这两个任务在GDT中定义</p>
+<pre><code class="c">struct SEGMENT_DESCRIPTOR *gdt = (struct SEGMENT_DESCRIPTOR *) ADR_GDT;
+set_segmdesc(gdt + 3, 103, (int) &amp;tss_a, AR_TSS32);
+set_segmdesc(gdt + 4, 103, (int) &amp;tss_b, AR_TSS32)
+</code></pre>
+<p>void set_segmdesc(struct SEGMENT_DESCRIPTOR *sd, unsigned int limit, int base, int ar)</p>
+<p>段长限制为103字节，基础地址为该函数在内存中的地址。</p>
+<p>然后向TR寄存器(task register 任务寄存器 ，作用是让CPU记住当前正在运行哪一个任务)写入 3*8这个值，用于将当前运行的任务定义为GDT的3号。</p>
+<p>无法通过C语言进行TR寄存器赋值。需要使用汇编的LTR指令 load_tr(3 * 8);</p>
+<pre><code class="assembly">
+_load_tr: ; void load_tr(int tr);
+LTR [ESP+4] ; tr
+RET
+</code></pre>
+<p>要进行任务切换需要使用far模式的JMP指令</p>
+<pre><code class="assembly">_taskswitch4: ; void taskswitch4(void);
+    JMP 4*8:0
+    RET
+</code></pre>
+<p>jmp far模式过程<a target="_blank" rel="noopener" href="https://blog.csdn.net/jadeshu/article/details/112074269">https://blog.csdn.net/jadeshu/article/details/112074269</a></p>
+<p>tss_b准备</p>
+<pre><code class="c">    task_b_esp = memman_alloc_4k(memman, 64 * 1024) + 64 * 1024;
+    tss_b.eip = (int) &amp;task_b_main;
+    tss_b.eflags = 0x00000202; /* IF = 1; */
+    tss_b.eax = 0;
+    tss_b.ecx = 0;
+    tss_b.edx = 0;
+    tss_b.ebx = 0;
+    tss_b.esp = task_b_esp;
+    tss_b.ebp = 0;
+    tss_b.esi = 0;
+    tss_b.edi = 0;
+    tss_b.es = 1 * 8;
+    tss_b.cs = 2 * 8;
+    tss_b.ss = 1 * 8;
+    tss_b.ds = 1 * 8;
+    tss_b.fs = 1 * 8;
+    tss_b.gs = 1 * 8;
+</code></pre>
+<p>给CS寄存器置为GDT的2号，其他寄存器都置为GDT1号，也就是说使用和bootpack,c相同的地址段。</p>
+<p>关于eflags的赋值， 如果把STI后的EFLAGS的值通过io_load_eflags赋给变量的话， 该变量的值就显示为0x00000202， 因此在这里就直接使用了这个值 。</p>
+<p>eip中定义切换到该任务后，代码从哪里开始运行。</p>
+<p>task_b_esp是为任务B定义的 栈。</p>
+<pre><code class="c">int task_b_esp;
+task_b_esp = memman_alloc_4k(memman, 64 * 1024) + 64 * 1024;
+</code></pre>
+<p>因为栈是向低地址增长，因此ESP存入的应该是栈末尾的值。</p>
+<p>设置任务b为HTL</p>
+<pre><code class="c">void task_b_main(void)
+&#123;
+for (;;) &#123; io_hlt(); &#125;
+&#125;
+</code></pre>
+<p>主函数中引入任务切换</p>
+<pre><code class="c">&#125; else if (i == 10) &#123; /* 10秒计时器*/
+putfonts8_asc_sht(sht_back, 0, 64, COL8_FFFFFF, COL8_008484, &quot;10[sec]&quot;, 7);
+taskswitch4(); /*这里！ */
+&#125; else if (i == 3) &#123; /* 3秒计时器 */
+</code></pre>
+<p>运行代码。10秒后会切换到任务b ，整个系统就进入暂停状态。</p>
+<h3 id="任务切换进阶"><a href="#任务切换进阶" class="headerlink" title="任务切换进阶"></a>任务切换进阶</h3><blockquote>
+<p>切换到任务B后5秒切换回任务A</p>
+</blockquote>
+<pre><code class="c">void task_b_main(void)
+&#123;
+    struct FIFO32 fifo;
+    struct TIMER *timer;
+    int i, fifobuf[128];
+
+    fifo32_init(&amp;fifo, 128, fifobuf);
+    timer = timer_alloc();
+    timer_init(timer, &amp;fifo, 1);
+    timer_settime(timer, 500);
+
+    for (;;) &#123;
+        io_cli();
+        if (fifo32_status(&amp;fifo) == 0) &#123;
+            io_sti();
+            io_hlt();
+        &#125; else &#123;
+            i = fifo32_get(&amp;fifo);
+            io_sti();
+            if (i == 1) &#123; 
+                taskswitch3();
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>在这里所使用的变量名， 比如fifo、 timer等， 和HariMain里面是一样的， 不过别担心， 计算机会把它们当成不同的变量来处理。  </p>
+<pre><code class="c">_taskswitch3: ; void taskswitch3(void);
+JMP 3*8:0
+RET
+</code></pre>
+<blockquote>
+<p>思考一</p>
+</blockquote>
+<p> 这里一开始以为回到任务A后，所有程序都会重新执行，实际操作发现会继续执行原来的任务A</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/happyAnger6/article/details/8545351">https://blog.csdn.net/happyAnger6/article/details/8545351</a></p>
+<p>查找资料发现在任务切换前，CPU会自动将当前任务的上下文保存到当前任务的TSS段中。所以任务A的TSS中的值不需要初始化</p>
+<blockquote>
+<p>思考二</p>
+</blockquote>
+<p>如何标识一个段是否有TSS</p>
+<p>set_segmdesc(gdt + 3, 103, (int) &amp;tss_a, AR_TSS32);</p>
+<p>我们设置该GDT为一个任务状态段(TSS)</p>
+<p><img src="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/image-20220407151511492.png" alt="image-20220407151511492"></p>
+<h3 id="做个简单的多任务harib12c"><a href="#做个简单的多任务harib12c" class="headerlink" title="做个简单的多任务harib12c"></a>做个简单的多任务harib12c</h3><blockquote>
+<p>先定义一个切换任务函数</p>
+</blockquote>
+<pre><code class="c">_farjmp: ; void farjmp(int eip, int cs);
+    JMP FAR [ESP+4] ; eip, cs
+    RET
+</code></pre>
+<p>JMP FAR 指令的功能是执行far跳转</p>
+<p>前面定义的两个函数就可进行修改成如下</p>
+<p>taskswitch3(); → farjmp(0, 3 * 8);<br>taskswitch4(); → farjmp(0, 4 * 8);  </p>
+<pre><code class="c">void HariMain(void)&#123;
+    （ 中略）
+    timer_ts = timer_alloc();
+    timer_init(timer_ts, &amp;fifo, 2);
+    timer_settime(timer_ts, 2);
+    （ 中略）
+    for (;;) &#123;
+        io_cli();
+        if (fifo32_status(&amp;fifo) == 0) &#123;
+            io_stihlt();
+        &#125; else &#123;
+            i = fifo32_get(&amp;fifo);
+            io_sti();
+            if (i == 2) &#123;
+                farjmp(0, 4 * 8);
+                timer_settime(timer_ts, 2);//任务b执行结束跳转回来时会从此处开始执行
+            &#125; else if (256 &lt;= i &amp;&amp; i &lt;= 511) &#123; /*键盘数据*/
+            （ 中略）
+            &#125; else if (512 &lt;= i &amp;&amp; i &lt;= 767) &#123; /*鼠标数据*/
+            （ 中略）
+            &#125; else if (i == 10) &#123; /* 10秒计时器*/
+                putfonts8_asc_sht(sht_back, 0, 64, COL8_FFFFFF, COL8_008484,&quot;10[sec]&quot;, 7);
+            &#125; else if (i == 3) &#123; /* 3秒计时器*/
+                putfonts8_asc_sht(sht_back, 0, 80, COL8_FFFFFF, COL8_008484,&quot;3[sec]&quot;, 6);
+            &#125; else if (i &lt;= 1) &#123; /*光标用计时器*/
+            （ 中略）
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<pre><code class="c">void task_b_main(void)
+&#123;
+    struct FIFO32 fifo;
+    struct TIMER *timer_ts;
+    int i, fifobuf[128];
+
+    fifo32_init(&amp;fifo, 128, fifobuf);
+    timer_ts = timer_alloc();
+    timer_init(timer_ts, &amp;fifo, 1);
+    timer_settime(timer_ts, 2);
+
+    for (;;) &#123;
+        
+        io_cli();
+        if (fifo32_status(&amp;fifo) == 0) &#123;
+            io_sti();
+            io_hlt();
+        &#125; else &#123;
+            
+            i = fifo32_get(&amp;fifo);
+            io_sti();
+            if (i == 1) &#123; //计时结束
+                farjmp(0, 3 * 8);
+                timer_settime(timer_ts, 2);//第二次以后切换到任务b都会在这里执行
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>为了更清楚观察，在b中加入计时功能</p>
+</blockquote>
+<pre><code class="c">count++;
+sprintf(s, &quot;%10d&quot;, count);
+putfonts8_asc_sht(sht_back, 0, 144, COL8_FFFFFF, COL8_008484, s, 10);
+</code></pre>
+<p>但是b并不知道sht_back 的值，我们需要在任务A中将该值写入一个内存中，让B从指定的内存中取出来</p>
+<pre><code class="c">本次的HariMain节选
+*((int *) 0x0fec) = (int) sht_back;
+本次的task_b_main节选
+sht_back = (struct SHEET *) *((int *) 0x0fec);
+</code></pre>
+<p>这里用到了许多地址转换</p>
+<blockquote>
+<p>转换解读</p>
+</blockquote>
+<p>sht_back为指针类型，存放的是背景图层所在的地址，首先将其转换成int。</p>
+<p>(int *) 0x0fec 将内存的0x0fec转为一个指针变量。</p>
+<p>*((int *) 0x0fec)=(int) sht_back  我们将背景图层所在的地址存放在0x0fec内存处。</p>
+<h3 id="提高运行速度-harib12e"><a href="#提高运行速度-harib12e" class="headerlink" title="提高运行速度 harib12e"></a>提高运行速度 harib12e</h3><pre><code class="c">void task_b_main(struct SHEET *sht_back)
+&#123;
+    struct FIFO32 fifo;
+    struct TIMER *timer_ts, *timer_put;
+    int i, fifobuf[128], count = 0;
+    char s[12];
+
+    fifo32_init(&amp;fifo, 128, fifobuf);
+    timer_ts = timer_alloc();
+    timer_init(timer_ts, &amp;fifo, 2);
+    timer_settime(timer_ts, 2);
+    timer_put = timer_alloc();
+    timer_init(timer_put, &amp;fifo, 1);
+    timer_settime(timer_put, 1);
+
+    for (;;) &#123;
+        count++;
+        io_cli();
+        if (fifo32_status(&amp;fifo) == 0) &#123;
+            io_sti();
+        &#125; else &#123;
+            i = fifo32_get(&amp;fifo);
+            io_sti();
+            if (i == 1) &#123;
+                sprintf(s, &quot;%11d&quot;, count);
+                putfonts8_asc_sht(sht_back, 0, 144, COL8_FFFFFF, COL8_008484, s, 11);
+                timer_settime(timer_put, 1);
+            &#125; else if (i == 2) &#123;
+                farjmp(0, 3 * 8);
+                timer_settime(timer_ts, 2);
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>新增1个定时器，每隔0.01 秒刷新一次窗口</p>
+<p>相较于原本复杂的图层传递方式，这里优化为使用参数传递，将参数传入任务B的栈中即可</p>
+<pre><code class="c">task_b_esp = memman_alloc_4k(memman, 64 * 1024) + 64 * 1024 - 8;
+*((int *) (task_b_esp + 4)) = (int) sht_back;
+</code></pre>
+<p>这样一来， 在任务B启动的时候， [ESP+4]这个地址里面就已经存入了<br>sht_back的值， 因此我们就欺骗了task_b_main， 让它以为自己所接收到<br>的sht_back是作为一个参数传递过来的。  </p>
+<blockquote>
+<p>为什么要- 8</p>
+</blockquote>
+<p>假设分配的初始地址为0x01234000 </p>
+<p>申请分配64KB，范围为0x01234000到0x01243fff  </p>
+<p>-8 task_b_esp即为0x01243ff8写入sht_back的地址是<br>task_b_esp + 4， 即0x01243ffc， 从这个地址向后写入4字节的sht_back<br>值， 则正好在分配出来的内存范围（0x01234000～0x01243fff） 内完成<br>操作， 这样就不会出问题了。  </p>
+<h3 id="task-b-main不能return"><a href="#task-b-main不能return" class="headerlink" title="task_b_main不能return"></a>task_b_main不能return</h3><p>return的功能， 说到底其实是返回函数被调用位置的一个JMP指令， 但这个task_b_main并不是由某段程序直接调用的， 因此不能使用return。如果强行return的话， 就会像“执行数据”一样发生问题， 程序无法正常运行。  </p>
+<p>为了记住现在正在执行的指令所在的内存地址，需要使用EIP寄存器， 那么return的时候要返回的地址又记录在哪里呢？对于记性不好的CPU来说， 肯定会把这个地址保存在某个地方， 没错，它就保存在栈中， 地址是[ESP]  </p>
+<p>因此， 我们不仅可以利用[ESP+4]， 还可以利用[ESP]来欺骗CPU， 其实只要向[ESP]写入一个合适的值， 告诉CPU应该返回到哪个地址，task_b_main中就可以使用return了。  </p>
+<h3 id="多任务进阶harib12g"><a href="#多任务进阶harib12g" class="headerlink" title="多任务进阶harib12g"></a>多任务进阶harib12g</h3><blockquote>
+<p>真正的多任务，是要做到在程序本身不知道的情况下进行任务切换。</p>
+</blockquote>
+<pre><code class="c">
+struct TIMER *mt_timer;
+int mt_tr;
+void mt_init(void)
+&#123;
+    mt_timer = timer_alloc();
+    /*这里没有必要使用timer_init */
+    timer_settime(mt_timer, 2);
+    mt_tr = 3 * 8;
+    return;
+&#125; 
+void mt_taskswitch(void)
+&#123;
+    if (mt_tr == 3 * 8) &#123;
+        mt_tr = 4 * 8;
+    &#125; else &#123;
+        mt_tr = 3 * 8;
+    &#125;
+    timer_settime(mt_timer, 2);
+    farjmp(0, mt_tr);
+    return;
+&#125;
+</code></pre>
+<p>mt_taskswitch 根据当前mt_tr的值计算出下一个mt_tr的值，重置计时器之后进行任务切换</p>
+<blockquote>
+<p>修改time.c</p>
+</blockquote>
+<pre><code class="c">void inthandler20(int *esp)
+&#123;
+    char ts = 0;
+    （中略）
+    for (;;) &#123;
+    /* timers的计时器全部在工作中， 因此不用确认flags */
+        if (timer-&gt;timeout &gt; timerctl.count) &#123;
+            break;
+        &#125;/*超时*/
+        timer-&gt;flags = TIMER_FLAGS_ALLOC;
+        if (timer != mt_timer) &#123;
+            fifo32_put(timer-&gt;fifo, timer-&gt;data);
+        &#125; else &#123;
+            ts = 1; /* mt_timer超时*/
+        &#125;
+            timer = timer-&gt;next; /*将下一个计时器的地址赋给timer */
+        &#125;
+            timerctl.t0 = timer;
+            timerctl.next = timer-&gt;timeout;
+        if (ts != 0) &#123;
+            mt_taskswitch();
+        &#125;
+    return;
+&#125;
+</code></pre>
+<p>如果产生超时的计时器是mt_timer的话， 不向FIFO写入数据，而是将ts置为1。 最后判断如果ts的值不为0， 就调用mt_taskswitch进行任务切换 。</p>
+<p>不能直接在ts=1处 进行 mt_taskswitch(); 因为任务切换的时候即便中断处理还没完成， IF（ 中断允许标志） 的值也可能会被重设回1（ 因为任务切换的时候会同时切换EFLAGS） 。 这样可不行， 在中断处理还没完成的时候， 可能会产生下一个中断请求， 这会导致程序出错 。</p>
+<blockquote>
+<p>思考1</p>
+</blockquote>
+<p>一开始纠结于多个任务的定时器产生的不同数据万一被另一个任务获取了，不就丢失了吗?</p>
+<p>看了一遍源代码才发现每个timer都可以指定不同的FIFO，只要在不同的任务中设置不同的FIFO就行了。</p>
+<p>day16</p>
+<h3 id="任务管理自动化harib13a"><a href="#任务管理自动化harib13a" class="headerlink" title="任务管理自动化harib13a"></a>任务管理自动化harib13a</h3><p>day15实现的多任务，每增加一个任务都需要改写一下代码，尝试将其自动化</p>
+<pre><code class="c">#define MAX_TASKS 1000 /*最大任务数量*/
+#define TASK_GDT0 3 /*定义从GDT的几号开始分配给TSS */
+struct TSS32 &#123;
+    int backlink, esp0, ss0, esp1, ss1, esp2, ss2, cr3;
+    int eip, eflags, eax, ecx, edx, ebx, esp, ebp, esi, edi;
+    int es, cs, ss, ds, fs, gs;
+    int ldtr, iomap;
+&#125;;
+struct TASK &#123;
+    int sel, flags; /* sel用来存放GDT的编号*/
+    struct TSS32 tss;
+&#125;;
+struct TASKCTL &#123;
+    int running; /*正在运行的任务数量*/
+    int now; /*这个变量用来记录当前正在运行的是哪个任务*/
+    struct TASK *tasks[MAX_TASKS];
+    struct TASK tasks0[MAX_TASKS];
+&#125;;
+</code></pre>
+<blockquote>
+<p>task初始化</p>
+</blockquote>
+<pre><code class="c">struct TASKCTL *taskctl;
+struct TIMER *task_timer;
+
+struct TASK *task_init(struct MEMMAN *memman)
+&#123;
+    int i;
+    struct TASK *task;
+    struct SEGMENT_DESCRIPTOR *gdt = (struct SEGMENT_DESCRIPTOR *) ADR_GDT;
+    taskctl = (struct TASKCTL *) memman_alloc_4k(memman, sizeof (struct TASKCTL));
+    for (i = 0; i &lt; MAX_TASKS; i++) &#123;
+        taskctl-&gt;tasks0[i].flags = 0;
+        taskctl-&gt;tasks0[i].sel = (TASK_GDT0 + i) * 8;
+        set_segmdesc(gdt + TASK_GDT0 + i, 103, (int) &amp;taskctl-&gt;tasks0[i].tss, AR_TSS32);
+    &#125;
+    task = task_alloc();
+    task-&gt;flags = 2; /*标志正在运行*/
+    taskctl-&gt;running = 1;
+    taskctl-&gt;now = 0;
+    taskctl-&gt;tasks[0] = task;
+    load_tr(task-&gt;sel);
+    task_timer = timer_alloc();
+    timer_settime(task_timer, 2);
+    return task;
+&#125;
+</code></pre>
+<ol>
+<li>分配内存</li>
+<li>初始化taskctl中所有的TSS</li>
+<li>将当前运行的作为第一个任务</li>
+<li>创建一个0.02秒的定时器</li>
+</ol>
+<pre><code class="c">
+
+struct TASK *task_alloc(void)
+&#123;
+    int i;
+    struct TASK *task;
+    for (i = 0; i &lt; MAX_TASKS; i++) &#123;
+        if (taskctl-&gt;tasks0[i].flags == 0) &#123;
+            task = &amp;taskctl-&gt;tasks0[i];
+            task-&gt;flags = 1; /* 标志已经被使用 */
+            task-&gt;tss.eflags = 0x00000202; /* IF = 1; 开启中断*/
+            task-&gt;tss.eax = 0; /* 先设置为0*/
+            task-&gt;tss.ecx = 0;
+            task-&gt;tss.edx = 0;
+            task-&gt;tss.ebx = 0;
+            task-&gt;tss.ebp = 0;
+            task-&gt;tss.esi = 0;
+            task-&gt;tss.edi = 0;
+            task-&gt;tss.es = 0;
+            task-&gt;tss.ds = 0;
+            task-&gt;tss.fs = 0;
+            task-&gt;tss.gs = 0;
+            task-&gt;tss.ldtr = 0;
+            task-&gt;tss.iomap = 0x40000000;
+            return task;
+        &#125;
+    &#125;
+    return 0; /* 全部TSS都在使用 */
+&#125;
+
+void task_run(struct TASK *task)//将task加入到tasks末尾，使running加1
+&#123;
+    task-&gt;flags = 2; /* 活动中的标志 */
+    taskctl-&gt;tasks[taskctl-&gt;running] = task;
+    taskctl-&gt;running++;
+    return;
+&#125;
+
+void task_switch(void)
+&#123;
+    timer_settime(task_timer, 2);
+    if (taskctl-&gt;running &gt;= 2) &#123;
+        taskctl-&gt;now++;
+        if (taskctl-&gt;now == taskctl-&gt;running) &#123;
+            taskctl-&gt;now = 0;
+        &#125;
+        farjmp(0, taskctl-&gt;tasks[taskctl-&gt;now]-&gt;sel);
+    &#125;
+    return;
+&#125;
+</code></pre>
+<p>task_switch : 若running为1 表示只有一个当前主任务，不需要进行任务切换，函数直接结束即可。</p>
+<p>大于2时，now +1 ，标识进入下一个任务</p>
+<p>将timer.c中原本调用mt_taskswitch也相应地修改为调用task_switch  </p>
+<blockquote>
+<p>新建一个任务进行测试</p>
+</blockquote>
+<pre><code class="c">void HariMain(void)
+&#123;
+    （中略）
+    struct TASK *task_b;
+    （中略）
+    task_init(memman);
+    task_b = task_alloc();
+    task_b-&gt;tss.esp = memman_alloc_4k(memman, 64 * 1024) + 64 * 1024 - 8;
+    task_b-&gt;tss.eip = (int) &amp;task_b_main;
+    task_b-&gt;tss.es = 1 * 8;
+    task_b-&gt;tss.cs = 2 * 8;
+    task_b-&gt;tss.ss = 1 * 8;
+    task_b-&gt;tss.ds = 1 * 8;
+    task_b-&gt;tss.fs = 1 * 8;
+    task_b-&gt;tss.gs = 1 * 8;
+    *((int *) (task_b-&gt;tss.esp + 4)) = (int) sht_back;
+    task_run(task_b);
+    （中略）
+&#125;
+</code></pre>
+<h3 id="任务休眠-harib13b"><a href="#任务休眠-harib13b" class="headerlink" title="任务休眠 harib13b"></a>任务休眠 harib13b</h3><p>harib13a所实现的多任务是为每个任务分配相同的运行时间，在某个任务空闲时间比较多的时候回造成资源的浪费。</p>
+<p>在没有键盘输入、没有鼠标操作的时候 任务A明显空闲时间比较多。</p>
+<p>解决思路:</p>
+<ol>
+<li>在FIFO结构体中定义一个task变量来绑定当前任务</li>
+<li>若A处于空闲状态，则将A从taskctl-&gt;tasks[]中删去</li>
+<li>处理中断时，若向A的FIFO写入数据则表示任务A需要去处理中断了，调用task_run将其重新运行即可。</li>
+</ol>
+<blockquote>
+<p>首先创建task_sleep</p>
+</blockquote>
+<pre><code class="c">void task_sleep(struct TASK *task)
+&#123;
+    int i;
+    char ts = 0;
+    if (task-&gt;flags == 2) &#123;        /* 如果指定任务处于唤醒状态 */
+        if (task == taskctl-&gt;tasks[taskctl-&gt;now]) &#123;
+            ts = 1; /* 让自己休眠的话，稍后需要进行任务的切换 */
+        &#125;
+
+        for (i = 0; i &lt; taskctl-&gt;running; i++) &#123;
+            if (taskctl-&gt;tasks[i] == task) &#123;
+                /* 找到那个要休眠的任务，其下标为i */
+                break;
+            &#125;
+        &#125;
+        taskctl-&gt;running--;
+        if (i &lt; taskctl-&gt;now) &#123;
+            taskctl-&gt;now--; /* 如果i在now之前，那么移动成员后，当前now需要-1 */
+        &#125;
+        /* 移动成员 */
+        for (; i &lt; taskctl-&gt;running; i++) &#123;
+            taskctl-&gt;tasks[i] = taskctl-&gt;tasks[i + 1];
+        &#125;
+        task-&gt;flags = 1; /* 设置为不工作的状态 */
+        if (ts != 0) &#123;
+            /* 进行任务切换 */
+            if (taskctl-&gt;now &gt;= taskctl-&gt;running) &#123;
+                /* 如果now的值出现异常，需要进行修正 */
+                taskctl-&gt;now = 0;
+            &#125;
+            farjmp(0, taskctl-&gt;tasks[taskctl-&gt;now]-&gt;sel);
+        &#125;
+    &#125;
+    return;
+&#125;
+</code></pre>
+<blockquote>
+<p>当FIFO中写入数据的时候需要将绑定的任务进行唤醒</p>
+</blockquote>
+<pre><code class="c">struct FIFO32 &#123;
+    int *buf;
+    int p, q, size, free, flags;
+    struct TASK *task;
+&#125;;
+</code></pre>
+<p>初始化时，将当前任务作为参数进行传递，</p>
+<pre><code class="c">void fifo32_init(struct FIFO32 *fifo, int size, int *buf, struct TASK *task)
+/* FIFO缓冲区初始化*/
+&#123;
+fifo-&gt;size = size;
+fifo-&gt;buf = buf;
+fifo-&gt;free = size; /*剩余空间*/
+fifo-&gt;flags = 0;
+fifo-&gt;p = 0; /*写入位置*/
+fifo-&gt;q = 0; /*读取位置*/
+fifo-&gt;task = task; /*有数据写入时需要唤醒的任务*/ /*这里！ */
+return;
+&#125;
+</code></pre>
+<p>写入数据时，对任务状态进行检测</p>
+<pre><code class="c">int fifo32_put(struct FIFO32 *fifo, int data)
+/*向FIFO写入数据并累积起来*/
+&#123;
+    if (fifo-&gt;free == 0) &#123;
+    /*没有剩余空间则溢出*/
+    fifo-&gt;flags |= FLAGS_OVERRUN;
+    return -1;
+    &#125;
+    fifo-&gt;buf[fifo-&gt;p] = data;
+    fifo-&gt;p++;
+    if (fifo-&gt;p == fifo-&gt;size) &#123;
+        fifo-&gt;p = 0;
+    &#125;
+    fifo-&gt;free--;
+    if (fifo-&gt;task != 0) &#123; /*从这里开始*/
+        if (fifo-&gt;task-&gt;flags != 2) &#123; /*如果任务处于休眠状态*/
+            task_run(fifo-&gt;task); /*将任务唤醒*/
+        &#125;
+    &#125; /*到这里结束*/
+    return 0;
+&#125;
+</code></pre>
+<blockquote>
+<p>改写主函数</p>
+</blockquote>
+<pre><code class="c">void HariMain(void)
+&#123;
+    struct TASK *task_a, *task_b;
+    （ 中略）
+    fifo32_init(&amp;fifo, 128, fifobuf, 0);
+    （ 中略）
+    task_a = task_init(memman);
+    fifo.task = task_a;
+    （ 中略）
+    for (;;) &#123;
+        io_cli();
+        if (fifo32_status(&amp;fifo) == 0) &#123;
+            task_sleep(task_a);
+            io_sti();
+        &#125; else &#123;
+            （ 中略）
+        &#125;
+    &#125;
+&#125; 
+void task_b_main(struct SHEET *sht_back)
+&#123;
+    （ 中略）
+    fifo32_init(&amp;fifo, 128, fifobuf, 0);
+    （ 中略）
+&#125;
+</code></pre>
+<p>最开始的fifo32_init中指定任务的参数， 我们用0代替了。 因为我们在任务A中应用了休眠， 也就需要使用让FIFO来唤醒的功能， 不过在这个时间点上多任务的初始化还没有完成， 因此无法指定任务， 只能先在这里用0代替， 也就是禁用自动唤醒功能。  </p>
+<p>随后， 在task_init中会返回自己的构造地址， 我们将这个地址存入fifo.task。  </p>
+<p>task_b_main不需要让FIFO唤醒， 因此任务参数指定为0。  </p>
+<p>在此情况下，只有当键盘/鼠标输入数据的时候，才会唤醒taskA进行处理</p>
+<p>其他情况会将绝大部分资源都分配给B进行任务处理。</p>
+<h3 id="增加窗口的数量"><a href="#增加窗口的数量" class="headerlink" title="增加窗口的数量"></a>增加窗口的数量</h3><ol>
+<li>分配三个图层，在图层中创建一个窗口</li>
+<li>创建三个task，都指向task_b_main</li>
+<li>向taskb的栈内传递图层地址</li>
+<li>调整窗口位置、优先级</li>
+</ol>
+<h3 id="设定任务的优先级-harib13d"><a href="#设定任务的优先级-harib13d" class="headerlink" title="设定任务的优先级(harib13d)"></a>设定任务的优先级(harib13d)</h3><blockquote>
+<p>资源分配优先</p>
+</blockquote>
+<p> 即使引入了休眠机制，同时运行的多任务都分配相同的时间，需要高CPU资源的任务会运行缓慢。</p>
+<p>在此之前的任务切换间隔都固定在0.02秒，我们可以为每一个任务在0.01~0.1秒的范围内设定不同的任务切换间隔。</p>
+<blockquote>
+<p>task中新增priority成员</p>
+</blockquote>
+<pre><code class="c">struct TASK &#123;
+    int sel, flags; /* sel代表GDT编号 */
+    int priority; /*这里！ */
+    struct TSS32 tss;
+&#125;;
+</code></pre>
+<blockquote>
+<p>改写mtask.c ,初始任务运行时间都为0.02秒</p>
+</blockquote>
+<pre><code class="c">struct TASK *task_init(struct MEMMAN *memman)
+&#123;
+    （中略）
+    task = task_alloc();
+    task-&gt;flags = 2; /*活动中标志*/
+    task-&gt;priority = 2; /* 0.02秒 */
+    taskctl-&gt;running = 1;
+    taskctl-&gt;now = 0;
+    taskctl-&gt;tasks[0] = task;
+    load_tr(task-&gt;sel);
+    task_timer = timer_alloc();
+    timer_settime(task_timer, task-&gt;priority);
+    return task;
+&#125;
+</code></pre>
+<blockquote>
+<p>在上一个任务结束后，调用task_switch时，将下一个任务的priority作为定时器延时</p>
+</blockquote>
+<pre><code class="c">void task_switch(void)
+&#123;
+    struct TASK *task;
+    taskctl-&gt;now++;
+    if (taskctl-&gt;now == taskctl-&gt;running) &#123;
+        taskctl-&gt;now = 0;
+    &#125;
+    task = taskctl-&gt;tasks[taskctl-&gt;now];
+    timer_settime(task_timer, task-&gt;priority);
+    if (taskctl-&gt;running &gt;= 2) &#123;
+        farjmp(0, task-&gt;sel);
+    &#125;
+    return;
+&#125;
+</code></pre>
+<p>注: 当只有一个任务是，执行farjmp跳转当前任务会导致程序运行乱套，因此在执行farjmp前要判断当前任务不少于2个</p>
+<blockquote>
+<p>最后，在task run 中设置优先级</p>
+</blockquote>
+<pre><code class="c">void task_run(struct TASK *task, int priority)
+&#123;
+    if (priority &gt; 0) &#123;
+        task-&gt;priority = priority;
+    &#125;
+    if (task-&gt;flags != 2) &#123;
+        task-&gt;flags = 2; /* ���쒆�&#125;�[�N */
+        taskctl-&gt;tasks[taskctl-&gt;running] = task;
+        taskctl-&gt;running++;
+    &#125;
+    return;
+&#125;
+</code></pre>
+<p><img src="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/image-20220408110845209-16493873316761-16493873338073.png" alt="image-20220408110845209"></p>
+<h2 id="20220408"><a href="#20220408" class="headerlink" title="20220408"></a>20220408</h2><h3 id="设定任务优先级2（harib13e）"><a href="#设定任务优先级2（harib13e）" class="headerlink" title="设定任务优先级2（harib13e）"></a>设定任务优先级2（harib13e）</h3><p>​    在实际运行过程中  ，鼠标已经出现明显的卡顿了，这是因为其他任务的运行造成A运行速度变慢，从而导致了上述情形。</p>
+<p>​    </p>
+<p>​    我们需要设计一种架构,使得即便高优先级的任务同时运行也能区分哪一个更加优先。</p>
+<p><img src="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/image-20220408112707405-16493884290415.png" alt="image-20220408112707405"></p>
+<p>这种架构的工作原理是， 最上层的LEVEL 0中只要存在哪怕一个任务，则完全忽略LEVEL 1和LEVEL 2中的任务， 只在LEVEL 0的任务中进行任务切换。 当LEVEL 0中的任务全部休眠， 或者全部降到下层LEVEL，也就是当LEVEL 0中没有任何任务的时候， 接下来开始轮到LEVEL 1中的任务进行任务切换。 当LEVEL 0和LEVEL 1中都没有任务时， 那就该轮到LEVEL 2出场了  。</p>
+<blockquote>
+<p>对于每个LEVEL设置最多允许创建100个任务，总共10个LEVEL</p>
+</blockquote>
+<pre><code class="c">#define MAX_TASKS_LV 100
+#define MAX_TASKLEVELS 10
+struct TASK &#123;
+    int sel, flags; /* se1用来存放GDT的编号*/
+    int level, priority;
+    struct TSS32 tss;
+&#125;;
+struct TASKLEVEL &#123;
+    int running; /*正在运行的任务数量*/
+    int now; /*这个变量用来记录当前正在运行的是哪个任务*/
+    struct TASK *tasks[MAX_TASKS_LV];
+&#125;;
+struct TASKCTL &#123;
+    int now_lv; /*现在活动中的LEVEL */
+    char lv_change; /*在下次任务切换时是否需要改变LEVEL */
+    struct TASKLEVEL level[MAX_TASKLEVELS];
+    struct TASK tasks0[MAX_TASKS];
+&#125;;
+</code></pre>
+<p>TASKLEVEL 存储当前LEVEL的任务</p>
+<blockquote>
+<p>task_now函数，用来返回现在活动中的任务的内存地址</p>
+</blockquote>
+<pre><code class="c">struct TASK *task_now(void)
+&#123;
+    struct TASKLEVEL *tl = &amp;taskctl-&gt;level[taskctl-&gt;now_lv];
+    return tl-&gt;tasks[tl-&gt;now];
+&#125;
+</code></pre>
+<blockquote>
+<p>task_add函数，用来向struct TASKLEVEL中添加一个任务</p>
+</blockquote>
+<pre><code class="c">void task_add(struct TASK *task)
+&#123;
+    struct TASKLEVEL *tl = &amp;taskctl-&gt;level[task-&gt;level];
+    tl-&gt;tasks[tl-&gt;running] = task;
+    tl-&gt;running++;
+    task-&gt;flags = 2; /*活动中*/
+    return;
+&#125;
+</code></pre>
+<p>在task中有自己的level变量用来标识应该存放在哪个TASKLEVEL中</p>
+<blockquote>
+<p>task_remove函数， 用来从struct TASKLEVEL中删除一个任务。  </p>
+</blockquote>
+<pre><code class="c">void task_remove(struct TASK *task)
+&#123;
+    int i;
+    struct TASKLEVEL *tl = &amp;taskctl-&gt;level[task-&gt;level];
+
+    /* 寻找task所在位置 */
+    for (i = 0; i &lt; tl-&gt;running; i++) &#123;
+        if (tl-&gt;tasks[i] == task) &#123;
+            /*记录下该任务的下标 */
+            break;
+        &#125;
+    &#125;
+
+    tl-&gt;running--;
+    if (i &lt; tl-&gt;now) &#123;
+        tl-&gt;now--; /* 需要移动成员 */
+    &#125;
+    if (tl-&gt;now &gt;= tl-&gt;running) &#123;
+        /*如果now的值出现异常， 则进行修正*/
+        tl-&gt;now = 0;
+    &#125;
+    task-&gt;flags = 1; /* 休眠 */
+
+    /* 移动 */
+    for (; i &lt; tl-&gt;running; i++) &#123;
+        tl-&gt;tasks[i] = tl-&gt;tasks[i + 1];
+    &#125;
+
+    return;
+&#125;
+</code></pre>
+<blockquote>
+<p>task_switchsub函数， 用来在任务切换时决定接下来切换到哪个LEVEL。  </p>
+</blockquote>
+<pre><code class="c">void task_switchsub(void)
+&#123;
+    int i;
+    /*寻找最上层的LEVEL */
+    for (i = 0; i &lt; MAX_TASKLEVELS; i++) &#123;
+        if (taskctl-&gt;level[i].running &gt; 0) &#123;
+            break; /*找到了*/
+        &#125;
+    &#125;
+    taskctl-&gt;now_lv = i;
+    taskctl-&gt;lv_change = 0;
+    return;
+&#125;
+</code></pre>
+<p>切换LEVEL后将lv_change计为0，除非 调用task_run引入了新的任务或调用task_sleep结束了任务，此时才需要进行重新LEVEL切换。</p>
+<blockquote>
+<p>task_init 最开始的任务将其放置在LEVEL 0 中</p>
+</blockquote>
+<pre><code class="c">struct TASK *task_init(struct MEMMAN *memman)
+&#123;
+    （中略）
+    for (i = 0; i &lt; MAX_TASKLEVELS; i++) &#123;
+        taskctl-&gt;level[i].running = 0;
+        taskctl-&gt;level[i].now = 0;
+    &#125;
+    task = task_alloc();
+    task-&gt;flags = 2; /*活动中标志*/
+    task-&gt;priority = 2; /* 0.02秒*/
+    task-&gt;level = 0; /*最高LEVEL */
+    task_add(task);
+    task_switchsub(); /* LEVEL 设置*/
+    load_tr(task-&gt;sel);
+    task_timer = timer_alloc();
+    timer_settime(task_timer, task-&gt;priority);
+    return task;
+&#125;
+</code></pre>
+<blockquote>
+<p>task_run 让其可以在参数中指定LEVEL</p>
+</blockquote>
+<pre><code class="c">void task_run(struct TASK *task, int level, int priority)
+&#123;
+    if (level &lt; 0) &#123;
+        level = task-&gt;level; /*不改变LEVEL */
+    &#125;
+    if (priority &gt; 0) &#123;
+        task-&gt;priority = priority;
+    &#125; 
+    if (task-&gt;flags == 2 &amp;&amp; task-&gt;level != level) &#123; /*改变活动中的LEVEL */
+        task_remove(task); /*这里执行之后flag的值会变为1， 于是下面的if语句块也会被执行*/
+    &#125;
+    if (task-&gt;flags != 2) &#123;
+        /*从休眠状态唤醒的情形*/
+        task-&gt;level = level;
+        task_add(task);
+    &#125;
+    taskctl-&gt;lv_change = 1; /*下次任务切换时检查LEVEL */
+    return;
+&#125;
+</code></pre>
+<p>在此之前， task_run中下一个要切换到的任务是固定不变的， 不过现在情况就不同了。 例如， 如果用task_run启动了一个比现在活动中的任务LEVEL更高的任务， 那么在下次任务切换时， 就必须无条件地切换到该LEVEL中的该任务去 。</p>
+<p>此外， 如果当前活动中的任务LEVEL被下调， 那么此时就必须将其他LEVEL的任务放在优先的位置（同样以上图来说的话， 比如当LEVEL 0的任务被降级到LEVEL 2时， 任务切换的目标就需要从LEVEL 0变为LEVEL 1）   </p>
+<p>综上所述， 我们需要在下次任务切换时先检查LEVEL， 因此将<br>lv_change置为1  </p>
+<blockquote>
+<p>tasksleep</p>
+</blockquote>
+<pre><code class="c">void task_sleep(struct TASK *task)
+&#123;
+    struct TASK *now_task;
+    if (task-&gt;flags == 2) &#123;
+        /*如果处于活动状态*/
+        now_task = task_now();
+        task_remove(task); /*执行此语句的话flags将变为1 */
+        if (task == now_task) &#123;
+            /*如果是让自己休眠， 则需要进行任务切换*/
+            task_switchsub();
+            now_task = task_now(); /*在设定后获取当前任务的值*/
+            farjmp(0, now_task-&gt;sel);
+        &#125;
+    &#125;
+    return;
+&#125;
+</code></pre>
+<blockquote>
+<p>task_switch 除了当lv_change不为0时的处理意外，其余几乎没有变化</p>
+</blockquote>
+<pre><code class="C">void task_switch(void)
+&#123;
+    struct TASKLEVEL *tl = &amp;taskctl-&gt;level[taskctl-&gt;now_lv];
+    struct TASK *new_task, *now_task = tl-&gt;tasks[tl-&gt;now];
+    tl-&gt;now++;
+    if (tl-&gt;now == tl-&gt;running) &#123;
+        tl-&gt;now = 0;
+    &#125;
+    if (taskctl-&gt;lv_change != 0) &#123;//不为0时，需要进行任务等级的切换。
+        task_switchsub();
+        tl = &amp;taskctl-&gt;level[taskctl-&gt;now_lv];
+    &#125;
+    new_task = tl-&gt;tasks[tl-&gt;now];
+    timer_settime(task_timer, new_task-&gt;priority);
+    if (new_task != now_task) &#123;
+        farjmp(0, new_task-&gt;sel);
+    &#125;
+    return;
+&#125;
+</code></pre>
+<pre><code class="c">void HariMain(void)
+&#123;
+    （中略）
+    init_palette();
+    shtctl = shtctl_init(memman, binfo-&gt;vram, binfo-&gt;scrnx, binfo-&gt;scrny);
+    task_a = task_init(memman);
+    fifo.task = task_a;
+    task_run(task_a, 1, 0); /*这里！ */
+    （中略）
+    /* sht_win_b */
+    for (i = 0; i &lt; 3; i++) &#123;
+    （中略）
+    task_run(task_b[i], 2, i + 1); /*这里！ */&#125;
+    （ 中略）
+&#125;
+</code></pre>
+<p>day17 命令窗口</p>
+<h3 id="闲置任务-harib14a"><a href="#闲置任务-harib14a" class="headerlink" title="闲置任务 harib14a"></a>闲置任务 harib14a</h3><p>在前文中任务A下面的LEVEL有任务B0~B2，但若只有任务A且不进行任何操作的时候，A会进入休眠状态，程序会因为找不到其他任务而导致运行的异常。</p>
+<blockquote>
+<p>如果“所有LEVEL中都没有任务”就会出问题， 那我们只要避免这种情况发生不就可以了吗  </p>
+</blockquote>
+<p>我们可以创建一个哨兵任务，将其放置在最下层的LEVEL中，该任务只进行hlt()</p>
+<pre><code class="c">void task_idle(void)
+&#123;
+    for (;;) &#123;
+           io_hlt();
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>在初始化的时候，将这个闲置任务放在最下层LEVEL中就可以了</p>
+</blockquote>
+<pre><code class="c">struct TASK *task_init(struct MEMMAN *memman)
+&#123;
+    struct TASK *task, *idle;
+    （中略）
+    idle = task_alloc();
+    idle-&gt;tss.esp = memman_alloc_4k(memman, 64 * 1024) + 64 * 1024;
+    idle-&gt;tss.eip = (int) &amp;task_idle;
+    idle-&gt;tss.es = 1 * 8;
+    idle-&gt;tss.cs = 2 * 8;
+    idle-&gt;tss.ss = 1 * 8;
+    idle-&gt;tss.ds = 1 * 8;
+    idle-&gt;tss.fs = 1 * 8;
+    idle-&gt;tss.gs = 1 * 8;
+    task_run(idle, MAX_TASKLEVELS - 1, 1);
+    return task;
+&#125;
+</code></pre>
+<h3 id="创建命令行窗口-harib14b"><a href="#创建命令行窗口-harib14b" class="headerlink" title="创建命令行窗口(harib14b)"></a>创建命令行窗口(harib14b)</h3><ol>
+<li>创建一个图层</li>
+<li>创建一个任务，初始化、绑定函数</li>
+<li>将图层作为参数传递给该任务·</li>
+</ol>
+<pre><code class="c">void HariMain(void)
+&#123;
+    （中略）
+    /* sht_cons */
+    sht_cons = sheet_alloc(shtctl);
+    buf_cons = (unsigned char *) memman_alloc_4k(memman, 256 * 165);
+    sheet_setbuf(sht_cons, buf_cons, 256, 165, -1); /*无透明色*/
+    make_window8(buf_cons, 256, 165, &quot;console&quot;, 0);
+    make_textbox8(sht_cons, 8, 28, 240, 128, COL8_000000);
+    task_cons = task_alloc();
+    task_cons-&gt;tss.esp = memman_alloc_4k(memman, 64 * 1024) + 64 * 1024 - 8;
+    task_cons-&gt;tss.eip = (int) &amp;console_task;
+    task_cons-&gt;tss.es = 1 * 8;
+    task_cons-&gt;tss.cs = 2 * 8;
+    task_cons-&gt;tss.ss = 1 * 8;
+    task_cons-&gt;tss.ds = 1 * 8;
+    task_cons-&gt;tss.fs = 1 * 8;
+    task_cons-&gt;tss.gs = 1 * 8;
+    *((int *) (task_cons-&gt;tss.esp + 4)) = (int) sht_cons;
+    task_run(task_cons, 2, 2); /* level=2, priority=2 */
+    （中略）sheet_slide(sht_back, 0, 0);
+    sheet_slide(sht_cons, 32, 4);
+    sheet_slide(sht_win, 64, 56);
+    sheet_slide(sht_mouse, mx, my);
+    sheet_updown(sht_back, 0);
+    sheet_updown(sht_cons, 1);
+    sheet_updown(sht_win, 2);
+    sheet_updown(sht_mouse, 3);
+    （ 中略）
+&#125; 
+void console_task(struct SHEET *sheet)
+&#123;
+    struct FIFO32 fifo;
+    struct TIMER *timer;
+    struct TASK *task = task_now();
+    int i, fifobuf[128], cursor_x = 8, cursor_c = COL8_000000;
+    fifo32_init(&amp;fifo, 128, fifobuf, task);
+    timer = timer_alloc();
+    timer_init(timer, &amp;fifo, 1);
+    timer_settime(timer, 50);
+    for (;;) &#123;
+        io_cli();
+        if (fifo32_status(&amp;fifo) == 0) &#123;
+            task_sleep(task);
+            io_sti();
+        &#125; else &#123;
+            i = fifo32_get(&amp;fifo);
+            io_sti();
+            if (i &lt;= 1) &#123; /*光标用定时器*/
+                if (i != 0) &#123;
+                    timer_init(timer, &amp;fifo, 0); /*下次置0 */
+                    cursor_c = COL8_FFFFFF;
+                &#125; else &#123;
+                    timer_init(timer, &amp;fifo, 1); /*下次置1 */
+                    cursor_c = COL8_000000;
+                &#125;
+                timer_settime(timer, 50);
+                boxfill8(sheet-&gt;buf, sheet-&gt;bxsize, cursor_c, cursor_x, 28,
+                cursor_x + 7, 43);
+                sheet_refresh(sheet, cursor_x, 28, cursor_x + 8, 44);
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h3 id="切换输入窗口-harib14c"><a href="#切换输入窗口-harib14c" class="headerlink" title="切换输入窗口 harib14c"></a>切换输入窗口 harib14c</h3><blockquote>
+<p>首先将make_window中描绘窗口标题栏的代码和描绘窗口剩余部分的代码区分开</p>
+</blockquote>
+<pre><code class="c">void make_window8(unsigned char *buf, int xsize, int ysize, char *title, char act)
+&#123;
+    boxfill8(buf, xsize, COL8_C6C6C6, 0,         0,         xsize - 1, 0        );
+    boxfill8(buf, xsize, COL8_FFFFFF, 1,         1,         xsize - 2, 1        );
+    boxfill8(buf, xsize, COL8_C6C6C6, 0,         0,         0,         ysize - 1);
+    boxfill8(buf, xsize, COL8_FFFFFF, 1,         1,         1,         ysize - 2);
+    boxfill8(buf, xsize, COL8_848484, xsize - 2, 1,         xsize - 2, ysize - 2);
+    boxfill8(buf, xsize, COL8_000000, xsize - 1, 0,         xsize - 1, ysize - 1);
+    boxfill8(buf, xsize, COL8_C6C6C6, 2,         2,         xsize - 3, ysize - 3);
+    boxfill8(buf, xsize, COL8_848484, 1,         ysize - 2, xsize - 2, ysize - 2);
+    boxfill8(buf, xsize, COL8_000000, 0,         ysize - 1, xsize - 1, ysize - 1);
+    make_wtitle8(buf, xsize, title, act);
+    return;
+&#125;
+
+void make_wtitle8(unsigned char *buf, int xsize, char *title, char act)
+&#123;
+    static char closebtn[14][16] = &#123;
+        &quot;OOOOOOOOOOOOOOO@&quot;,
+        &quot;OQQQQQQQQQQQQQ$@&quot;,
+        &quot;OQQQQQQQQQQQQQ$@&quot;,
+        &quot;OQQQ@@QQQQ@@QQ$@&quot;,
+        &quot;OQQQQ@@QQ@@QQQ$@&quot;,
+        &quot;OQQQQQ@@@@QQQQ$@&quot;,
+        &quot;OQQQQQQ@@QQQQQ$@&quot;,
+        &quot;OQQQQQ@@@@QQQQ$@&quot;,
+        &quot;OQQQQ@@QQ@@QQQ$@&quot;,
+        &quot;OQQQ@@QQQQ@@QQ$@&quot;,
+        &quot;OQQQQQQQQQQQQQ$@&quot;,
+        &quot;OQQQQQQQQQQQQQ$@&quot;,
+        &quot;O$$$$$$$$$$$$$$@&quot;,
+        &quot;@@@@@@@@@@@@@@@@&quot;
+    &#125;;
+    int x, y;
+    char c, tc, tbc;
+    if (act != 0) &#123;
+        tc = COL8_FFFFFF;
+        tbc = COL8_000084;
+    &#125; else &#123;
+        tc = COL8_C6C6C6;
+        tbc = COL8_848484;
+    &#125;
+    boxfill8(buf, xsize, tbc, 3, 3, xsize - 4, 20);
+    putfonts8_asc(buf, xsize, 24, 4, tc, title);
+    for (y = 0; y &lt; 14; y++) &#123;
+        for (x = 0; x &lt; 16; x++) &#123;
+            c = closebtn[y][x];
+            if (c == &#39;@&#39;) &#123;
+                c = COL8_000000;
+            &#125; else if (c == &#39;$&#39;) &#123;
+                c = COL8_848484;
+            &#125; else if (c == &#39;Q&#39;) &#123;
+                c = COL8_C6C6C6;
+            &#125; else &#123;
+                c = COL8_FFFFFF;
+            &#125;
+            buf[(5 + y) * xsize + (xsize - 21 + x)] = c;
+        &#125;
+    &#125;
+    return;
+&#125;
+</code></pre>
+<blockquote>
+<p>在主函数中，定义一个变量key_to, 若键盘输入为tab键，首先将key_to 设置为0或1，</p>
+<p>然后将两个窗口的颜色进行刷新</p>
+</blockquote>
+<h3 id="实现字符输入-harib14d"><a href="#实现字符输入-harib14d" class="headerlink" title="实现字符输入 harib14d"></a>实现字符输入 harib14d</h3><p>要想向不同的任务输入字符、我们必须知道其FIFO的位置，上文中将FIFO定义在任务B指向的函数中，这样显然是不行的，我们需要将FIFO定义在TASK中，这样，主函数(任务A)就能从TASK中获取到目标的FIFO，并向其中写入数据，当切换到目标任务时，只要处理FIFO中的数据即可。</p>
+<pre><code class="c">struct TASK &#123;
+    int sel, flags; /* sel代表GDT编号 */
+    int level, priority;
+    struct FIFO32 fifo; /*这里！ */
+    struct TSS32 tss;
+&#125;;
+</code></pre>
+<p>主函数主要修改如下</p>
+<pre><code class="c">                    if (key_to == 0) &#123;    //等于0 代表输出到A
+                        if (cursor_x &lt; 128) &#123;
+                            
+                            s[0] = keytable[i - 256];
+                            s[1] = 0;
+                            putfonts8_asc_sht(sht_win, cursor_x, 28, COL8_000000, COL8_FFFFFF, s, 1);
+                            cursor_x += 8;
+                        &#125;
+                    &#125; else &#123;    /*否则输出到B命令窗口 */
+                        fifo32_put(&amp;task_cons-&gt;fifo, keytable[i - 256] + 256);
+                    &#125;
+                &#125;
+                if (i == 256 + 0x0e) &#123;    /* 退格键 */
+                    if (key_to == 0) &#123;    /* 发送给任务A */
+                        if (cursor_x &gt; 8) &#123;
+                            /*用空白擦除光标后将光标前移一位*/
+                            putfonts8_asc_sht(sht_win, cursor_x, 28, COL8_000000, COL8_FFFFFF, &quot; &quot;, 1);
+                            cursor_x -= 8;
+                        &#125;
+                    &#125; else &#123;    /* 发送给命令窗口 */
+                        fifo32_put(&amp;task_cons-&gt;fifo, 8 + 256);
+                    &#125;
+</code></pre>
+<blockquote>
+<p>任务B也需要进行修改</p>
+</blockquote>
+<pre><code class="C">            if (256 &lt;= i &amp;&amp; i &lt;= 511) &#123; /* 通过任务A */
+                if (i == 8 + 256) &#123;
+                    /* 退格键 */
+                    if (cursor_x &gt; 16) &#123;
+                        /* 用空白擦除光标后将光标前移一位 */
+                        putfonts8_asc_sht(sheet, cursor_x, 28, COL8_FFFFFF, COL8_000000, &quot; &quot;, 1);
+                        cursor_x -= 8;
+                    &#125;
+                &#125; else &#123;
+                    /* 一般字符*/
+                    if (cursor_x &lt; 240) &#123;
+                        /* 显示一个字符之后将光标后移一位*/
+                        s[0] = i - 256;
+                        s[1] = 0;
+                        putfonts8_asc_sht(sheet, cursor_x, 28, COL8_FFFFFF, COL8_000000, s, 1);
+                        cursor_x += 8;
+                    &#125;
+                &#125;
+            &#125;
+</code></pre>
+<h3 id="符号输入-harib14e-大写字母与小写字母（harib14f）"><a href="#符号输入-harib14e-大写字母与小写字母（harib14f）" class="headerlink" title="符号输入 harib14e 大写字母与小写字母（harib14f）"></a>符号输入 harib14e 大写字母与小写字母（harib14f）</h3><blockquote>
+<p>符号</p>
+</blockquote>
+<p>左Shift按下 0x2a</p>
+<p>左shift抬起 0xaa</p>
+<p>右Shift按下 0x36</p>
+<p>右Shift抬起 0xb6</p>
+<p>我们准备一个key_shift变量， 当左Shift按下时置为1， 右Shift按下时置为2， 两个都不按时置为0， 两个都按下（有人会这么干吗？ ） 的时候就置为3。  </p>
+<p>当key_shift为0时， 我们用keytable0[]将按键编码转换为字符编码， 而当key_shift不为0时， 则使用keytable1[]进行转换。  </p>
+<pre><code class="c">if (key_shift == 0) &#123;
+    s[0] = keytable0[i - 256];
+&#125; else &#123;
+    s[0] = keytable1[i - 256];
+&#125;
+</code></pre>
+<pre><code class="c">if (i == 256 + 0x2a) &#123; /*左Shift ON */
+    key_shift |= 1; //01
+&#125;if (i == 256 + 0x36) &#123; /*右Shift ON */
+    key_shift |= 2;//10
+&#125;if (i == 256 + 0xaa) &#123; /*左Shift OFF */
+    key_shift &amp;= ~1;
+&#125;if (i == 256 + 0xb6) &#123; /*右Shift OFF */
+    key_shift &amp;= ~2;
+&#125;
+</code></pre>
+<blockquote>
+<p>大小写</p>
+</blockquote>
+<p>CapsLock为OFF &amp; Shift键为OFF → 小写英文字母<br>CapsLock为OFF &amp; Shift键为ON → 大写英文字母<br>CapsLock为ON &amp; Shift键为OFF → 大写英文字母<br>CapsLock为ON &amp; Shift键为ON → 小写英文字母  </p>
+<p>我们已经知道如何获取Shift键的状态， 但是CapsLock的状态要如何获取呢？ BIOS知道CapsLock的状态， 可现在我们处于32位模式， 没办法向BIOS查询。  </p>
+<p>在asmhead.nas中， 我们已经从BIOS获取到了键盘状态， 就保存在binfo—&gt;leds中  </p>
+<p>binfo-&gt;leds的第4位→ ScrollLock状态<br>binfo-&gt;leds的第5位 → NumLock状态<br>binfo-&gt;leds的第6位 → CapsLock状态  </p>
+<p>int key_to = 0, key_shift = 0, key_leds = (binfo-&gt;leds &gt;&gt; 4) &amp; 7; /*这里！ *  </p>
+<pre><code class="c">if (&#39;A&#39; &lt;= s[0] &amp;&amp; s[0] &lt;= &#39;Z&#39;) &#123; /*当输入字符为英文字母时*/
+    if (((key_leds &amp; 4) == 0 &amp;&amp; key_shift == 0) ||((key_leds &amp; 4) != 0 &amp;&amp; key_shift != 0)) &#123;
+        s[0] += 0x20; /*将大写字母转换为小写字母*/
+    &#125;
+/*到此结束*/ 
+&#125;
+</code></pre>
+<h2 id="20220409"><a href="#20220409" class="headerlink" title="20220409"></a>20220409</h2><h3 id="对各种锁定键的支持harib14g"><a href="#对各种锁定键的支持harib14g" class="headerlink" title="对各种锁定键的支持harib14g"></a>对各种锁定键的支持harib14g</h3><p>三个按键对应的编码</p>
+<p>0x3a: CapsLock<br>0x45: NumLock<br>0x46: ScrollLock  </p>
+<p>我们只要收到该编码就将bifo-&gt;leds 对应位置修改即可。 但如何让键盘上的指示灯进行相应的状态切换呢?</p>
+<blockquote>
+<p> 对于NumLock和CapsLock等LED的控制， 可采用下面的方法向键盘发送指令和数据  </p>
+</blockquote>
+<ol>
+<li>读取状态寄存器， 等待bit 1的值变为0。</li>
+<li>向数据输出（0060） 写入要发送的1个字节数据。等待键盘返回1个字节的信息， 这和等待键盘输入所采用的方法相同（用IRQ等待或者用轮询状态寄存器bit 1的值直到其变为0都可以） 。</li>
+<li>返回的信息如果为0xfa， 表明1个字节的数据已成功发送给键盘。 如为0xfe则表明发送失败， 需要返回第1步重新发送。  </li>
+</ol>
+<p>要控制LED的状态， 需要按上述方法执行两次， 向键盘发送EDxx数据。 其中， xx的bit 0代表ScrollLock， bit 1代表NumLock， bit 2代表CapsLock（0表示熄灭， 1表示点亮） 。 bit 3～7为保留位， 置0即可。  </p>
+<blockquote>
+<p>代码实现思路</p>
+</blockquote>
+<ol>
+<li><p>创建一个keycmd的FIFO缓冲区, 用来管理由任务A向键盘控制器发送数据的顺讯的，如果有数据要发送到键盘控制器会先在这个缓冲区中累计下来。<br>因为要等待键盘控制器的回应，因此定义一个keycmd_wait，当键盘响应成功时将其设置为-1</p>
+</li>
+<li><p>当输入指定按键时，将其存放在keycmd中</p>
+<pre><code class="c">                if (i == 256 + 0x3a) &#123;    /* CapsLock */
+                    key_leds ^= 4;
+                    fifo32_put(&amp;keycmd, KEYCMD_LED);
+                    fifo32_put(&amp;keycmd, key_leds);
+                &#125;
+                if (i == 256 + 0x45) &#123;    /* NumLock */
+                    key_leds ^= 2;
+                    fifo32_put(&amp;keycmd, KEYCMD_LED);
+                    fifo32_put(&amp;keycmd, key_leds);
+                &#125;
+                if (i == 256 + 0x46) &#123;    /* ScrollLock */
+                    key_leds ^= 1;
+                    fifo32_put(&amp;keycmd, KEYCMD_LED);
+                    fifo32_put(&amp;keycmd, key_leds);
+                &#125;
+</code></pre>
+</li>
+<li><p>若keycmd中有数据，且keycmd_wait为-1 ，将缓冲区的值存入keycmd_wait中并将其写入0x0060端口 </p>
+<pre><code class="c">        if (fifo32_status(&amp;keycmd) &gt; 0 &amp;&amp; keycmd_wait &lt; 0) &#123;
+
+            keycmd_wait = fifo32_get(&amp;keycmd);
+            wait_KBC_sendready();
+            io_out8(PORT_KEYDAT, keycmd_wait);
+        &#125;
+</code></pre>
+</li>
+<li><p>键盘响应成功时，将key_wait设置为-1 进行下一次数据写入，不成功时重新发送keycmd_wait</p>
+<pre><code class="c">                if (i == 256 + 0xfa) &#123;    
+                    keycmd_wait = -1;
+                &#125;
+                if (i == 256 + 0xfe) &#123;    
+                    wait_KBC_sendready();
+                    io_out8(PORT_KEYDAT, keycmd_wait);
+                &#125;
+</code></pre>
+</li>
+</ol>
+<p>day18   dir命令</p>
+<h3 id="控制光标闪烁"><a href="#控制光标闪烁" class="headerlink" title="控制光标闪烁"></a>控制光标闪烁</h3><p>只有可以接受键盘输入的窗口才有光标闪烁</p>
+<blockquote>
+<p>对于任务A ，定义一个变量cursor_c 在按下TAB键时，若切换至其他窗口，则将其设置为-1</p>
+</blockquote>
+<pre><code class="c">if (key_to == 0) &#123;
+    key_to = 1;
+    make_wtitle8(buf_win,  sht_win-&gt;bxsize,  &quot;task_a&quot;,  0);
+    make_wtitle8(buf_cons, sht_cons-&gt;bxsize, &quot;console&quot;, 1);
+    cursor_c = -1;
+    boxfill8(sht_win-&gt;buf, sht_win-&gt;bxsize, COL8_FFFFFF, cursor_x, 28, cursor_x + 7, 43);
+&#125; else &#123;
+    key_to = 0;
+    make_wtitle8(buf_win,  sht_win-&gt;bxsize,  &quot;task_a&quot;,  1);
+    make_wtitle8(buf_cons, sht_cons-&gt;bxsize, &quot;console&quot;, 0);
+    cursor_c = COL8_000000; 
+&#125;
+</code></pre>
+<p>在重新绘制光标时，若cursor_c的值为-1，则光标的颜色不会切换，这样就完成了暂停的效果。</p>
+<blockquote>
+<p>应该怎样由HariMain（任务A） 向console_task（命令行窗口） 传递信息， 告诉它“不需让光标闪烁”或者“需要让光标闪烁”呢？ 像传递按键编码一样， 我们可以使用FIFO来实现。  </p>
+</blockquote>
+<h2 id="—"><a href="#—" class="headerlink" title="—-"></a>—-</h2>
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1944270374@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2020-2023 qwrdxer
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 722px;
+    }
+    .nav.fullscreen {
+        margin-left: -722px;
+    }
+    .nav-left {
+        width: 300px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 542px;
+        }
+        .nav.fullscreen {
+            margin-left: -542px;
+        }
+        .nav-left {
+            width: 150px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 542px;
+            margin-left: -542px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    #post {
+        background: url(/img/start.png);
+    }
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

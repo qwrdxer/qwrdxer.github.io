@@ -1,0 +1,3442 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>30天自制操作系统-学习笔记 day1~day10 | qwrdxer &#39;s blog</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="30天自制操作系统-学习笔记 day1~day10 | qwrdxer &#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About">
+<meta property="og:url" content="https://qwrdxer.github.io/about/index.html">
+<meta property="og:site_name" content="qwrdxer &#39;s blog">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-08-10T03:50:56.671Z">
+<meta property="article:modified_time" content="2025-08-10T03:50:56.671Z">
+<meta property="article:author" content="qwrdxer">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>qwrdxer</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/qwrdxer"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/yyc-96-55-3"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qwrdxer?type=blog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1944270374@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1944270374&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(54)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="杂项">
+            
+            杂项
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="编程语言">
+            <i class="fold iconfont icon-right"></i>
+            编程语言
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;C++">
+            
+            C++
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Go">
+            
+            Go
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Rust">
+            
+            Rust
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="操作系统">
+            
+            操作系统
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="代码分析">
+            
+            代码分析
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="环境配置">
+            
+            环境配置
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="脚本">
+            
+            脚本
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="开发工具">
+            
+            开发工具
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文阅读">
+            <i class="fold iconfont icon-right"></i>
+            论文阅读
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="论文阅读&lt;---&gt;人工智能">
+            
+            人工智能
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="爬虫">
+            
+            爬虫
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="区块链">
+            
+            区块链
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="人工智能">
+            <i class="fold iconfont icon-right"></i>
+            人工智能
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="人工智能&lt;---&gt;FASTAI">
+            
+            FASTAI
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="日志">
+            
+            日志
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="渗透测试篇">
+            
+            渗透测试篇
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            
+            数据库
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="算法">
+            
+            算法
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="写点好玩的">
+            
+            写点好玩的
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="一些奇怪的bug">
+            
+            一些奇怪的bug
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="以太坊">
+            
+            以太坊
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Agent">
+            
+            Agent
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="LLM">
+            
+            LLM
+            <small>(5)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="MCP">
+            
+            MCP
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全工具篇">
+            
+            web安全工具篇
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全漏洞篇">
+            
+            web安全漏洞篇
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="54">
+<input type="hidden" id="yelog_site_word_count" value="166.5k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>报错解决</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具使用</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境配置</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>脚本</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>深度学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>渗透测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>通讯协议</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>文件包含</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>bash</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FASTAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPT</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Josephus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MCP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Memory</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Multi-Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>shell</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Swarm</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>web漏洞</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WordPress</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2025/08/10/Untitled/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2025-08-10 11:50:56">2025/08/10</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/12/LLM/Llama%20Factory%20%E5%BE%AE%E8%B0%83%E4%B8%80%E4%B8%AA%20LLM%E8%B6%8A%E7%8B%B1%E7%9B%B8%E5%85%B3%E5%A4%A7%E6%A8%A1%E5%9E%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Llama Factory 微调一个 LLM越狱相关大模型">Llama Factory 微调一个 LLM越狱相关大模型</span>
+            <span class="post-date" title="2025-04-12 13:56:52">2025/04/12</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/10/LLM/Qwen2.5-7b%20Lora%E5%BE%AE%E8%B0%83-peft%E7%AF%87/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Qwen2.5-7b Lora微调-peft篇">Qwen2.5-7b Lora微调-peft篇</span>
+            <span class="post-date" title="2025-04-10 14:32:36">2025/04/10</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/07/LLM/%E9%A2%84%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA25M%E7%9A%84GPT2%E6%A8%A1%E5%9E%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="预训练一个25M的GPT2模型">预训练一个25M的GPT2模型</span>
+            <span class="post-date" title="2025-04-07 14:19:54">2025/04/07</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/06/LLM/Tokenizer%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Tokenizer 从零开始训练">Tokenizer 从零开始训练</span>
+            <span class="post-date" title="2025-04-06 20:50:21">2025/04/06</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/06/LLM/GPT2%20%E6%89%8B%E6%92%95%20%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GPT2 手撕 模型代码分析">GPT2 手撕 模型代码分析</span>
+            <span class="post-date" title="2025-04-06 14:14:30">2025/04/06</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/22/Agent/multi-agent%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="multi-agent中的设计模式">multi-agent中的设计模式</span>
+            <span class="post-date" title="2025-03-22 14:46:50">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/22/Agent/autogen-core%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen-core学习记录">autogen-core学习记录</span>
+            <span class="post-date" title="2025-03-22 14:42:21">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="All MCP "
+           href="/2025/03/12/MCP/MCP(Model%20Context%20Protocol)%20%E7%AE%80%E4%BB%8B/"
+           data-tag="MCP,通讯协议,LLM"
+           data-author="" >
+            <span class="post-title" title="MCP(Model Context Protocol) 简介">MCP(Model Context Protocol) 简介</span>
+            <span class="post-date" title="2025-03-12 15:47:27">2025/03/12</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/10/Agent/autogen%E6%8F%90%E9%AB%98%E4%B9%8BAgentChat%20Advanced%E9%83%A8%E5%88%86/"
+           data-tag="Agent,Multi-Agent,Memory,Swarm"
+           data-author="" >
+            <span class="post-title" title="autogen提高之AgentChat Advanced部分">autogen提高之AgentChat Advanced部分</span>
+            <span class="post-date" title="2025-03-10 21:35:41">2025/03/10</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/08/Agent/autogen%E5%85%A5%E9%97%A8%E4%B9%8Bagentchat/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen入门之autochat">autogen入门之autochat</span>
+            <span class="post-date" title="2025-03-08 20:23:19">2025/03/08</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2024/02/26/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/logseq%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="logseq使用">logseq使用</span>
+            <span class="post-date" title="2024-02-26 10:47:48">2024/02/26</span>
+        </a>
+        
+        
+        <a  class="All 区块链 "
+           href="/2024/01/21/%E5%8C%BA%E5%9D%97%E9%93%BE/hardhat%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hardhat智能合约流程">hardhat智能合约流程</span>
+            <span class="post-date" title="2024-01-21 15:20:03">2024/01/21</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/"
+           data-tag="Josephus"
+           data-author="" >
+            <span class="post-title" title="Josephus Problem">Josephus Problem</span>
+            <span class="post-date" title="2024-01-17 11:49:36">2024/01/17</span>
+        </a>
+        
+        
+        <a  class="All 区块链 "
+           href="/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="fabric环境配置">fabric环境配置</span>
+            <span class="post-date" title="2024-01-08 18:47:43">2024/01/08</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/12/22/%E7%88%AC%E8%99%AB/CF%E7%9B%BE%E7%BB%95%E8%BF%87(NodeJs%E7%89%88)/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CF盾绕过(NodeJs版)">CF盾绕过(NodeJs版)</span>
+            <span class="post-date" title="2023-12-22 20:11:48">2023/12/22</span>
+        </a>
+        
+        
+        <a  class="All 以太坊 "
+           href="/2023/10/19/%E4%BB%A5%E5%A4%AA%E5%9D%8A/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E9%83%A8%E5%88%86%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B5%85%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="以太坊部分知识点浅析">以太坊部分知识点浅析</span>
+            <span class="post-date" title="2023-10-19 16:10:05">2023/10/19</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2023/10/12/%E6%97%A5%E5%BF%97/%E9%93%BE%E6%8E%A5%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="链接记录">链接记录</span>
+            <span class="post-date" title="2023-10-12 19:40:28">2023/10/12</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/go-rod%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="go-rod学习">go-rod学习</span>
+            <span class="post-date" title="2023-10-06 11:22:48">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/Go%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%88%AC%E8%99%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go实现一个爬虫">Go实现一个爬虫</span>
+            <span class="post-date" title="2023-10-06 11:10:43">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="All 代码分析 "
+           href="/2023/10/05/%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/RustScan%E6%BA%90%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RustScan源代码分析">RustScan源代码分析</span>
+            <span class="post-date" title="2023-10-05 19:28:59">2023/10/05</span>
+        </a>
+        
+        
+        <a  class="All 一些奇怪的bug "
+           href="/2023/10/02/%E4%B8%80%E4%BA%9B%E5%A5%87%E6%80%AA%E7%9A%84bug/bug%E8%AE%B0%E5%BD%95&%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="bug记录&amp;解决方法">bug记录&amp;解决方法</span>
+            <span class="post-date" title="2023-10-02 16:05:12">2023/10/02</span>
+        </a>
+        
+        
+        <a  class="All 论文阅读 人工智能 "
+           href="/2023/10/01/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/OpenAI%E7%9A%84GPT%E5%8F%91%E5%B1%95/"
+           data-tag="LLM,GPT"
+           data-author="" >
+            <span class="post-title" title="大模型论文">大模型论文</span>
+            <span class="post-date" title="2023-10-01 22:17:21">2023/10/01</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Rust "
+           href="/2023/09/28/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/Rust_lifetime/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Rust的生命周期">Rust的生命周期</span>
+            <span class="post-date" title="2023-09-28 11:33:04">2023/09/28</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2023/09/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%AE%89%E5%85%A8%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE&%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE%E4%B8%8B%E8%BD%BD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安全四大会议&amp;人工智能四大会议下载">安全四大会议&amp;人工智能四大会议下载</span>
+            <span class="post-date" title="2023-09-27 20:47:28">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Rust "
+           href="/2023/09/27/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/The%20Rust%20Programming%20Language%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Rust Programming Language阅读笔记">The Rust Programming Language阅读笔记</span>
+            <span class="post-date" title="2023-09-27 20:35:50">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_3_%E5%A4%9AGPU%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_3_多GPU训练">FASTAI_3_多GPU训练</span>
+            <span class="post-date" title="2023-09-27 20:32:12">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_2_Datasets%E3%80%81Pipeline%E3%80%81TfmdLists%E3%80%81Transform/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_2_Datasets、Pipeline、TfmdLists、Transform">FASTAI_2_Datasets、Pipeline、TfmdLists、Transform</span>
+            <span class="post-date" title="2023-09-27 20:29:37">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_1_%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8CAPI%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI_1_使用不同API加载数据">FASTAI_1_使用不同API加载数据</span>
+            <span class="post-date" title="2023-09-27 20:28:09">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI快速入门">FASTAI快速入门</span>
+            <span class="post-date" title="2023-09-27 20:18:36">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 C++ "
+           href="/2023/01/10/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/C++%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C++入门">C++入门</span>
+            <span class="post-date" title="2023-01-10 11:30:50">2023/01/10</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%AB%E6%8F%8F%E5%99%A8%E5%AE%9E%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="分布式扫描器实现">分布式扫描器实现</span>
+            <span class="post-date" title="2022-04-27 11:43:42">2022/04/27</span>
+        </a>
+        
+        
+        <a  class="All 数据库 "
+           href="/2022/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93/mongodb%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="mongodb学习">mongodb学习</span>
+            <span class="post-date" title="2022-04-14 09:31:33">2022/04/14</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/10/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/Go%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E5%99%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go编写一个扫描器">Go编写一个扫描器</span>
+            <span class="post-date" title="2022-04-10 14:34:18">2022/04/10</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/09/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E6%83%B3%E6%B3%95%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="想法记录">想法记录</span>
+            <span class="post-date" title="2022-04-09 11:24:11">2022/04/09</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Go "
+           href="/2022/04/08/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go/The%20Way%20To%20Go/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Way To Go">The Way To Go</span>
+            <span class="post-date" title="2022-04-08 18:09:20">2022/04/08</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2022/03/31/%E6%97%A5%E5%BF%97/%E5%B1%B1%E8%BF%98%E6%98%AF%E5%B1%B1,%E6%B0%B4%E8%BF%98%E6%98%AF%E6%B0%B4,%E4%BD%A0%E4%B8%8D%E8%83%BD%E6%B0%B8%E8%BF%9C%E6%98%AF%E9%82%A3%E4%B8%AA%E4%BD%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="山还是山,水还是水,你不能永远是那个你">山还是山,水还是水,你不能永远是那个你</span>
+            <span class="post-date" title="2022-03-31 09:37:42">2022/03/31</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day11~day20">30天自制操作系统-学习笔记 day11~day20</span>
+            <span class="post-date" title="2022-03-27 09:49:33">2022/03/27</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2022/03/21/%E6%97%A5%E5%BF%97/%E9%97%B2%E8%AF%AD%E6%9D%82%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="闲语杂记">闲语杂记</span>
+            <span class="post-date" title="2022-03-21 12:51:18">2022/03/21</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/03/15/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/freemarker%E6%93%8D%E6%8E%A7word/"
+           data-tag="工具使用"
+           data-author="" >
+            <span class="post-title" title="freemarker操控word">freemarker操控word</span>
+            <span class="post-date" title="2022-03-15 12:00:54">2022/03/15</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/2022/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day1~day10">30天自制操作系统-学习笔记 day1~day10</span>
+            <span class="post-date" title="2022-01-31 10:57:39">2022/01/31</span>
+        </a>
+        
+        
+        <a  class="All 杂项 "
+           href="/2022/01/12/%E6%9D%82%E9%A1%B9/GITHUB%E6%94%B6%E9%9B%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GITHUB收集">GITHUB收集</span>
+            <span class="post-date" title="2022-01-12 20:07:03">2022/01/12</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/"
+           data-tag="渗透测试,工具开发"
+           data-author="" >
+            <span class="post-title" title="web页面密码爆破">web页面密码爆破</span>
+            <span class="post-date" title="2022-01-11 10:21:34">2022/01/11</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2022/01/09/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/Goby%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Goby分析">Goby分析</span>
+            <span class="post-date" title="2022-01-09 13:35:49">2022/01/09</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/08/15/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Shell%E8%84%9A%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag="bash,脚本,shell,linux,开发"
+           data-author="" >
+            <span class="post-title" title="Shell脚本学习笔记">Shell脚本学习笔记</span>
+            <span class="post-date" title="2021-08-15 11:19:55">2021/08/15</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试篇 "
+           href="/2021/07/25/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AF%87/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="信息收集">信息收集</span>
+            <span class="post-date" title="2021-07-25 19:33:55">2021/07/25</span>
+        </a>
+        
+        
+        <a  class="All web安全漏洞篇 "
+           href="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,MySQL"
+           data-author="" >
+            <span class="post-title" title="SQL注入相关">SQL注入相关</span>
+            <span class="post-date" title="2021-05-11 15:23:06">2021/05/11</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2021/04/21/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/nmap%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="nmap使用">nmap使用</span>
+            <span class="post-date" title="2021-04-21 19:29:51">2021/04/21</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/04/20/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/docker%E7%9B%B8%E5%85%B3/"
+           data-tag="工具使用,脚本,docker"
+           data-author="" >
+            <span class="post-title" title="docker相关">docker相关</span>
+            <span class="post-date" title="2021-04-20 13:49:50">2021/04/20</span>
+        </a>
+        
+        
+        <a  class="All web安全漏洞篇 "
+           href="/2021/04/19/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,文件包含"
+           data-author="" >
+            <span class="post-title" title="文件包含漏洞相关">文件包含漏洞相关</span>
+            <span class="post-date" title="2021-04-19 14:49:59">2021/04/19</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/04/16/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/hexo%E5%91%BD%E4%BB%A4/"
+           data-tag="工具使用,脚本"
+           data-author="" >
+            <span class="post-title" title="hexo相关">hexo相关</span>
+            <span class="post-date" title="2021-04-16 12:12:14">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2021/04/16/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/xray%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="xray使用">xray使用</span>
+            <span class="post-date" title="2021-04-16 12:10:08">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="All 脚本 "
+           href="/2021/04/15/%E8%84%9A%E6%9C%AC/some-script/"
+           data-tag="bash,脚本,python"
+           data-author="" >
+            <span class="post-title" title="some script">some script</span>
+            <span class="post-date" title="2021-04-15 11:23:33">2021/04/15</span>
+        </a>
+        
+        
+        <a  class="All 环境配置 "
+           href="/2021/04/15/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/centos%E9%83%A8%E7%BD%B2wordpress/"
+           data-tag="linux,环境配置,报错解决,WordPress"
+           data-author="" >
+            <span class="post-title" title="centos部署wordpress">centos部署wordpress</span>
+            <span class="post-date" title="2021-04-15 01:34:16">2021/04/15</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-操作系统/30天自制操作系统-学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">30天自制操作系统-学习笔记 day1~day10</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="操作系统">操作系统</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2025-08-10 11:50:56'>2022-01-31 10:57</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:16.8k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#20220131"><span class="toc-text">20220131</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text">代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#makefile"><span class="toc-text">makefile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8D%E8%AF%8D"><span class="toc-text">名词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20220201"><span class="toc-text">20220201</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%B5%81%E7%A8%8B"><span class="toc-text">操作系统流程:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#harib00g-%E4%BB%A3%E7%A0%81%E8%A7%A3%E8%AF%BB"><span class="toc-text">harib00g 代码解读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#harb00j"><span class="toc-text">harb00j</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#harb01b"><span class="toc-text">harb01b</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20220202"><span class="toc-text">20220202</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E9%92%88"><span class="toc-text">指针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#harib01f-%E8%89%B2%E5%8F%B7%E8%AE%BE%E5%AE%9A"><span class="toc-text">harib01f  色号设定</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20220203"><span class="toc-text">20220203</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#harib02b%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-text">harib02b结构体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#harib02d-%E6%98%BE%E7%A4%BA%E5%AD%97%E7%AC%A6"><span class="toc-text">harib02d 显示字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#harib02e-%E5%A2%9E%E5%8A%A0%E5%AD%97%E4%BD%93"><span class="toc-text">harib02e 增加字体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#harib02f-%E6%98%BE%E7%A4%BA%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">harib02f 显示字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#harib02h-%E6%98%BE%E7%A4%BA%E9%BC%A0%E6%A0%87%E6%8C%87%E9%92%88"><span class="toc-text">harib02h 显示鼠标指针</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20220309"><span class="toc-text">20220309</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20220310"><span class="toc-text">20220310</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#makefile%E9%98%85%E8%AF%BB%EF%BC%8C%E4%BB%8E%E4%B8%8B%E5%BE%80%E4%B8%8A%E7%9C%8B"><span class="toc-text">makefile阅读，从下往上看</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20220311"><span class="toc-text">20220311</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#harib02i-GDT%E5%92%8CIDT%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">harib02i GDT和IDT的初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#harib03a-%E5%88%86%E5%89%B2%E6%96%87%E4%BB%B6"><span class="toc-text">harib03a  分割文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A1%AB%E5%86%99%E6%AE%B5%E4%BF%A1%E6%81%AFset-segmdesc"><span class="toc-text">填写段信息set_segmdesc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E5%9D%80base"><span class="toc-text">基址base</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AE%B5%E4%B8%8A%E9%99%90limit"><span class="toc-text">段上限limit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AE%B5%E5%B1%9E%E6%80%A7"><span class="toc-text">段属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96PIC-harib03d"><span class="toc-text">初始化PIC(harib03d)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PIC%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">PIC寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F"><span class="toc-text">中断处理程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E4%B8%AD%E6%96%AD%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F%E6%B3%A8%E5%86%8C%E5%88%B0IDT%E4%B8%AD"><span class="toc-text">将中断处理程序注册到IDT中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20220318"><span class="toc-text">20220318</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%94%AE%E7%9B%98%E6%8C%89%E9%94%AE%E4%BF%A1%E6%81%AFharib04a"><span class="toc-text">获取键盘按键信息harib04a</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E5%BF%AB%E4%B8%AD%E6%96%AD%E5%A4%84%E7%90%86%EF%BC%88hiarib04b%EF%BC%89"><span class="toc-text">加快中断处理（hiarib04b）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fifo%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="toc-text">fifo缓冲区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BC%A0%E6%A0%87%EF%BC%88harib04f%EF%BC%89"><span class="toc-text">鼠标（harib04f）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E9%BC%A0%E6%A0%87%E6%8E%A5%E5%8F%97%E6%95%B0%E6%8D%AE%EF%BC%88harib04g%EF%BC%89"><span class="toc-text">从鼠标接受数据（harib04g）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20220319"><span class="toc-text">20220319</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BC%A0%E6%A0%87%E4%BF%A1%E6%81%AF%E8%A7%A3%E8%AF%BBharib05a"><span class="toc-text">鼠标信息解读harib05a</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BC%A0%E6%A0%87%E8%A7%A3%E8%AF%BB2-harib05c"><span class="toc-text">鼠标解读2    harib05c</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#asmhead-nas-%E4%BB%A3%E7%A0%81%E8%A7%A3%E8%AF%BB"><span class="toc-text">asmhead.nas  代码解读</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20220325"><span class="toc-text">20220325</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-text">内存管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20220326"><span class="toc-text">20220326</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%B1%82%E5%8F%A0%E5%8A%A0harib07b"><span class="toc-text">图层叠加harib07b</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E9%AB%98%E5%8F%A0%E5%8A%A0%E7%9A%84%E4%BC%98%E5%8C%96%E9%80%9F%E5%BA%A6harib07c"><span class="toc-text">提高叠加的优化速度harib07c</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E9%AB%98%E9%80%9F%E5%BA%A62-harib07d"><span class="toc-text">提高速度2  harib07d</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%94%E2%80%94"><span class="toc-text">——-</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E6%95%B4%E4%BD%93%E5%88%86%E6%9E%90"><span class="toc-text">流程整体分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU%E8%AF%BB%E5%85%A5%E5%90%AF%E5%8A%A8%E5%8C%BA"><span class="toc-text">CPU读入启动区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E5%90%AF%E5%8A%A8%E5%8C%BA%E5%8A%A0%E8%BD%BD%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BB%A3%E7%A0%81"><span class="toc-text">通过启动区加载操作系统代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%811-%EF%BC%8C%E5%88%9D%E5%A7%8B%E5%8C%96%E4%BF%A1%E6%81%AF"><span class="toc-text">代码1 ，初始化信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%812-%EF%BC%8C%E5%88%9D%E5%A7%8B%E5%8C%96GDT%E5%92%8CIDT"><span class="toc-text">代码2 ，初始化GDT和IDT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%813-%EF%BC%8C%E5%88%9D%E5%A7%8B%E5%8C%96PIC"><span class="toc-text">代码3 ，初始化PIC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E8%AE%B0%E5%BD%95"><span class="toc-text">工具记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HEX-Editor-%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-text">HEX Editor 二进制编辑器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#QEMU-%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-text">QEMU 虚拟机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%A6%E6%9C%AC%E9%85%8D%E5%A5%97%E6%96%87%E4%BB%B6"><span class="toc-text">书本配套文件</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="20220131"><a href="#20220131" class="headerlink" title="20220131"></a>20220131</h2><p>day1~day3</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><blockquote>
+<p>run.bat</p>
+</blockquote>
+<pre><code class="shell">copy helloos.img ..\z_tools\qemu\fdimage0.bin
+# 将helloos.img 复制到qemu文件夹下，命名为fdimage0.bin
+..\z_tools\make.exe    -C ../z_tools/qemu
+# -C 且换目录到qemu文件夹下，并执行make命令
+</code></pre>
+<p>复制结束后会运行如下命令</p>
+<pre><code>qemu.exe -L . -m 32 -localtime -std-vga -fda fdimage0.bin
+</code></pre>
+<p>使用qemu运行该img文件</p>
+<p><em><span id="more"></span></em> </p>
+<blockquote>
+<p>读盘</p>
+</blockquote>
+<pre><code class="shell">MOV AX,0x0820
+MOV ES,AX
+MOV CH,0 ; 柱面0
+MOV DH,0 ; 磁头0
+MOV CL,2 ; 扇区2
+MOV AH,0x02 ; AH=0x02 : 读盘
+MOV AL,1 ; 1个扇区
+MOV BX,0
+MOV DL,0x00 ; A驱动器
+INT 0x13 ; 调用磁盘BIOS
+JC error
+</code></pre>
+<p>磁盘读、 写， 扇区校验（verify） ， 以及寻道（seek）<br>AH=0x02;（读盘）<br>AH=0x03;（ 写盘）<br>AH=0x04;（ 校验）<br>AH=0x0c;（ 寻道）<br>AL=处理对象的扇区数;（ 只能同时处理连续的扇区）<br>CH=柱面号 &0xff;<br>CL=扇区号（ 0-5位） |（ 柱面号&amp;0x300） * * 2;<br>DH=磁头号;<br>DL=驱动器号；<br>ES:BX=缓冲地址； (校验及寻道时不使用)<br>返回值：<br>FLACS.CF==0： 没有错误， AH==0<br>FLAGS.CF==1： 有错误， 错误号码存入AH内（ 与重置（ reset）<br>功能一样）  </p>
+<blockquote>
+<p>读入10个柱面</p>
+</blockquote>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220131175620833.png" alt="image-20220131175620833"></p>
+<p>next: 缓冲地址加32x16 ，如果扇区号＞18，需要读入磁盘反面数据，DH+1 ,加1后如果为1 ，扇区号重置为1，读反面数据即可，如果为2 ，则需要更换柱面。</p>
+<h3 id="makefile"><a href="#makefile" class="headerlink" title="makefile"></a>makefile</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/haoel/article/details/2886">https://blog.csdn.net/haoel/article/details/2886</a></p>
+<p><em><!-- more --></em> </p>
+<h3 id="名词"><a href="#名词" class="headerlink" title="名词"></a>名词</h3><blockquote>
+<p> 启动区</p>
+</blockquote>
+<p>软盘第一个的扇区称为启动区。 那么什么是扇区呢？ 计算机读写软盘的时候， 并不是一个字节一个字节地读写的， 而是以512字节为一个单位进行读写。 因此,软盘的512字节就称为一个扇区。  计算机首先从最初一个扇区开始读软盘， 然后去检查这个扇区最后2个字节的内容。  如果计算机确认了第一个扇区的最后两个字节正好是0x55 AA， 那它就认为这个扇区的开头是启动程序， 并开始执行这个程序  。</p>
+<blockquote>
+<p>IPL</p>
+</blockquote>
+<p>initial program loader的缩写。 启动程序加载器。 启动区只有区区512字节， 实际的操作系统不像hello-os这么小， 根本装不进去。 所以几乎所有的操作系统， 都是把加载操作系统本身的程序放在启动区里的。  </p>
+<blockquote>
+<p>汇编指令:org</p>
+</blockquote>
+<p>指明机器语言指令装载到内存中的哪个位置</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/soulzx/article/details/6536200">https://blog.csdn.net/soulzx/article/details/6536200</a></p>
+<pre><code>org指令是链接时使用的，不是汇编那一步使用的。即不是cpu的一条指令，而是给编译器看的伪指令。
+</code></pre>
+<blockquote>
+<p>汇编指令 mov A,B</p>
+</blockquote>
+<p>将Ｂ赋值给Ａ</p>
+<blockquote>
+<p>汇编指令mov A,[B]</p>
+</blockquote>
+<p>获取B寄存器中存储的内存地址对应的数据，赋值给A</p>
+<blockquote>
+<p>汇编指令HLT </p>
+</blockquote>
+<p>让CPU进入待机状态，当外部有输入时继续执行指令</p>
+<blockquote>
+<p>汇编指令INT</p>
+</blockquote>
+<p> INT: interrupt</p>
+<p>0x10  : 输出字符</p>
+<p>0x13  : 磁盘操作(根据AH的值)</p>
+<blockquote>
+<p>汇编指令JC: Jump if carry</p>
+</blockquote>
+<p>如果进位标志(carry flag)是1 就跳转</p>
+<p>CMP: compare</p>
+<p>JE: jump if equal</p>
+<p>JBE： jump if below or qual</p>
+<p>JB : jump if below</p>
+<p>BIOS：basic input output system</p>
+<blockquote>
+<p>寄存器</p>
+</blockquote>
+<p>AX——accumulator， 累加寄存器<br>CX——counter， 计数寄存器<br>DX——data， 数据寄存器<br>BX——base， 基址寄存器<br>SP——stack pointer， 栈指针寄存器<br>BP——base pointer， 基址指针寄存器<br>SI——source index， 源变址寄存器<br>DI——destination index， 目的变址寄存器  </p>
+<p>AL——累加寄存器低位（accumulator low）<br>CL——计数寄存器低位（counter low）<br>DL——数据寄存器低位（data low）<br>BL——基址寄存器低位（base low）<br>AH——累加寄存器高位（accumulator high）<br>CH——计数寄存器高位（counter high）<br>DH——数据寄存器高位（data high）<br>BH——基址寄存器高位（base high）  </p>
+<p>段寄存器(16位)</p>
+<p>ES——附加段寄存器（extra segment）<br>CS——代码段寄存器（code segment）<br>SS——栈段寄存器（stack segment）<br>DS——数据段寄存器（data segment）<br>FS——没有名称（segment part 2）<br>GS——没有名称（segment part 3）  </p>
+<p>Cylinder 柱面</p>
+<p>Head 磁头</p>
+<p>Sector 扇区</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>一般向一个空软盘保存文件时（根据文件系统)，</p>
+<ol>
+<li>文件名会写在0x002600以后的地方；</li>
+<li>文件的内容会写在0x004200以后的地方。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/c234jc/article/details/70991050">https://blog.csdn.net/c234jc/article/details/70991050</a></p>
+<p>内存分布图</p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/1096103-20191006104056867-805241753.png" alt="img"></p>
+<h2 id="20220201"><a href="#20220201" class="headerlink" title="20220201"></a>20220201</h2><h3 id="操作系统流程"><a href="#操作系统流程" class="headerlink" title="操作系统流程:"></a>操作系统流程:</h3><ol>
+<li>CPU将系统盘中第一个扇区(启动区)的内容(512Byte)加载入内存中,检验扇区最后两字节是否为0x55 ,0xAA. 如果计算机确认了第一个扇区的最后两个字节正好是0x55 AA， 那它就认为这个扇区的开头是启动程序， 并开始执行这个程序  。</li>
+<li>一个扇区是远远不够存储操作系统的，因此需要让CPU将其他扇区代码读入内存(缓冲区)中,我们要借助启动区读入的就是操作系统的代码</li>
+<li>函数是如何导入作者暂未讲解. ..</li>
+</ol>
+<h3 id="harib00g-代码解读"><a href="#harib00g-代码解读" class="headerlink" title="harib00g 代码解读"></a>harib00g 代码解读</h3><blockquote>
+<p>haribote.nas</p>
+</blockquote>
+<pre><code class="assembly">; haribote-os
+; TAB=4
+
+        ORG        0xc200    
+        MOV        AL,0x13    
+        MOV        AH,0x00
+        INT        0x10
+fin:
+        HLT
+        JMP        fin
+</code></pre>
+<p>这段是启动区运行完毕后要执行的汇编代码</p>
+<p><del>ORG设置其加载到内存时的位置</del></p>
+<p>ORG可以理解为偏移量，供编译器进行地址转换，</p>
+<p>MOV        AL,0x13<br>MOV        AH,0x00</p>
+<p> AH=0x00 ，AL=0x13设置显示为VGA图形模式</p>
+<p>INT        0x10 调用bios函数来设置显示为VGA图形模式</p>
+<p>后续代码进入循环</p>
+<h3 id="harb00j"><a href="#harb00j" class="headerlink" title="harb00j"></a>harb00j</h3><p>引入了C语言，因为C语言中没有HLT，需要用汇编实现这个函数</p>
+<blockquote>
+<p>naskfunc.nas和bootpack.c</p>
+</blockquote>
+<pre><code class="assembly">; naskfunc
+; TAB=4
+[FORMAT &quot;WCOFF&quot;] ; 制作目标文件的模式
+[BITS 32] ; 制作32位模式用的机械语言
+;制作目标文件的信息
+[FILE &quot;naskfunc.nas&quot;] ; 源文件名信息
+    GLOBAL _io_hlt ; 程序中包含的函数名
+;以下是实际的函数
+[SECTION .text] ; 目标文件中写了这些之后再写程序
+_io_hlt: ; void io_hlt(void);
+    HLT
+    RET
+</code></pre>
+<pre><code class="c">/*告诉C编译器， 有一个函数在别的文件里*/
+void io_hlt(void);
+/*是函数声明却不用&#123; &#125;， 而用;， 这表示的意思是： 函数是在别的文件中， 你自己找一下吧！ */
+void HariMain(void)
+&#123; 
+fin:
+    io_hlt(); /*执行naskfunc.nas里的_io_hlt*/
+    goto fin;
+&#125;
+</code></pre>
+<h3 id="harb01b"><a href="#harb01b" class="headerlink" title="harb01b"></a>harb01b</h3><p>写一个HELLO</p>
+<pre><code class="c">void io_hlt(void);
+void write_mem8(int addr, int data);
+
+
+void HariMain(void)
+&#123;
+    int i; 
+    for (i = 0xa0000; i &lt;= 0xaffff; i++) &#123;
+        write_mem8(i, i &amp; 0x0f);
+    &#125;
+    WriteH(0xa0000);
+    WriteE(0xa0000+7);
+    WriteL(0xa0000+7*2);
+    WriteL(0xa0000+7*3);
+    WriteO(0xa0000+7*4);
+    for (;;) &#123;
+        io_hlt();
+    &#125;
+&#125;
+
+/*256/4 * 5*/
+void WriteH(int addr)&#123;
+    int i;
+    for (i=0;i&lt;=10;i++)&#123;
+        write_mem8(addr+i*320,0x0f);
+    &#125;
+    for (i=0;i&lt;=10;i++)&#123;
+        write_mem8(addr+5+i*320,0x0f);
+    &#125;
+    write_mem8(addr+1+4*320,0x0f);
+    write_mem8(addr+2+4*320,0x0f);
+    write_mem8(addr+3+4*320,0x0f);
+    write_mem8(addr+4+4*320,0x0f);
+
+&#125;
+void WriteE(int addr)&#123;
+    int i;
+    for (i=0;i&lt;=10;i++)&#123;
+        write_mem8(addr+i*320,0x0f);
+    &#125;
+    for (i=1;i&lt;=4;i++)&#123;
+        write_mem8(addr+i,0x0f);
+    &#125;
+    for (i=1;i&lt;=4;i++)&#123;
+        write_mem8(addr+i+320*5,0x0f);
+    &#125;
+    for (i=1;i&lt;=4;i++)&#123;
+        write_mem8(addr+i+320*10,0x0f);
+    &#125;
+&#125;
+void WriteL(int addr)&#123;
+    int i;
+    for (i=0;i&lt;=10;i++)&#123;
+        write_mem8(addr+i*320,0x0f);
+    &#125;
+    for (i=1;i&lt;=4;i++)&#123;
+        write_mem8(addr+i+320*10,0x0f);
+    &#125;
+&#125;
+void WriteO(int addr)&#123;
+    int i;
+    for (i=0;i&lt;=10;i++)&#123;
+        write_mem8(addr+i*320,0x0f);
+    &#125;
+    for (i=0;i&lt;=10;i++)&#123;
+        write_mem8(addr+5+i*320,0x0f);
+    &#125;
+    for (i=1;i&lt;=4;i++)&#123;
+        write_mem8(addr+i,0x0f);
+        write_mem8(addr+i+320*10,0x0f);
+    &#125;
+&#125;
+</code></pre>
+<h2 id="20220202"><a href="#20220202" class="headerlink" title="20220202"></a>20220202</h2><h3 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h3><p>作者将指针用 地址变量来描述</p>
+<p>char *p 定义了一个指针(即地址变量，其值为内存中的地址)</p>
+<p>p=0x000a 即让p指向一个内存地址</p>
+<p>往地址中写入值:</p>
+<p>在c语言中  *p=0x123</p>
+<p>在汇编中是 mov [EAX], 0x123</p>
+<p>指针，其存储的值为一个地址变量 ，我们可以通过用*号去访问那个地址</p>
+<p>&amp; 取地址，获取变量的地址</p>
+<p>p=(char *)&amp;a 获取到a变量的地址，并将其转换成char类型的地址变量，赋值给p</p>
+<p>p[1] 是什么意思:</p>
+<p>p[1]等价于 *(p+1), 这个1并不是数值上的1 ，而是单位1 ，他根据指针的类型来决定具体的大小，char类型为1byte, short为2byte(word) ，int为4byte(DWORD)</p>
+<p>p[1]并不代表其为数组，作者原话如下</p>
+<blockquote>
+<p>不是说改变一下写法， 地址变量就变成数组了。 大家不要被那些劣质的<br>教科书骗了。 编译器生成的机器语言也完全一样。 这比什么都更能证<br>明， 意思没有变化， 只是写法不同。  </p>
+<p>说个题外话， 加法运算可以交换顺序， 所以将*(p + i)写成*(i + p) 也是<br>可以的。 同理， 将p[i]写成i[p]也是可以的（可能你会不相信， 但这样写<br>既不会出错， 也能正常运行） 。 a[2]也可以写成2[a]（这当然是真<br>的） 。 难道还能说这是名为2的数组的第a个元素吗？ 当然不能。 所以，<br>p[i]也好， i[p]也好， 仅仅是一种省略写法， 本质上讲， 与数组没有关<br>系。  </p>
+</blockquote>
+<h3 id="harib01f-色号设定"><a href="#harib01f-色号设定" class="headerlink" title="harib01f  色号设定"></a>harib01f  色号设定</h3><pre><code class="c">void set_palette(int start, int end, unsigned char *rgb)
+&#123;
+    int i, eflags;
+    eflags = io_load_eflags(); /* 记录中断许可标志的值*/
+    io_cli(); /* 将中断许可标志置为0， 禁止中断 */
+    io_out8(0x03c8, start);
+    for (i = start; i &lt;= end; i++) &#123;
+        io_out8(0x03c9, rgb[0] / 4);
+        io_out8(0x03c9, rgb[1] / 4);
+        io_out8(0x03c9, rgb[2] / 4);
+        rgb += 3;
+    &#125;
+    io_store_eflags(eflags); /* 复原中断许可标志 */
+return;
+&#125;
+</code></pre>
+<p>CLI ： clear interrupt flag 将中断标志置为0</p>
+<p>STI： set interrupt flag 将中断标志置为1</p>
+<p>读写EFLAGES  汇编指令: PUSHFD POPFD</p>
+<pre><code class="assembly">_io_load_eflags: ; int io_load_eflags(void);
+    PUSHFD ; 指 PUSH EFLAGS
+    POP EAX
+    RET
+_io_store_eflags: ; void io_store_eflags(int eflags);
+    MOV EAX,[ESP+4]
+    PUSH EAX
+    POPFD ; 指 POP EFLAGS
+    RET
+</code></pre>
+<h2 id="20220203"><a href="#20220203" class="headerlink" title="20220203"></a>20220203</h2><h3 id="harib02b结构体"><a href="#harib02b结构体" class="headerlink" title="harib02b结构体"></a>harib02b结构体</h3><pre><code class="c">struct BOOTINFO &#123;
+    char cyls, leds, vmode, reserve;
+    short scrnx, scrny;
+    char *vram;
+&#125;;
+void HariMain(void)
+&#123;
+    char *vram;
+    int xsize, ysize;
+    struct BOOTINFO *binfo;
+    init_palette();
+    binfo = (struct BOOTINFO *) 0x0ff0;
+    xsize = (*binfo).scrnx;
+    ysize = (*binfo).scrny;
+    vram = (*binfo).vram;
+&#125;
+</code></pre>
+<p>BOOTINFO 结构体存储了启动信息</p>
+<p>在HariMain中</p>
+<p> binfo = (struct BOOTINFO *) 0x0ff0; 这一句用于获取在内存地址为0x0ff0的数据，由前文可知，该处内存存储了图形化界面的各种设置，分别对应了结构体中的各个变量。</p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220310192807590.png" alt="image-20220310192807590"></p>
+<h3 id="harib02d-显示字符"><a href="#harib02d-显示字符" class="headerlink" title="harib02d 显示字符"></a>harib02d 显示字符</h3><pre><code class="c">void putfont8(char *vram, int xsize, int x, int y, char c, char *font)
+&#123;
+    int i;
+    char *p, d /* data */;
+    for (i = 0; i &lt; 16; i++) &#123;
+        p = vram + (y + i) * xsize + x;
+        d = font[i];
+        if ((d &amp; 0x80) != 0) &#123; p[0] = c; &#125;
+        if ((d &amp; 0x40) != 0) &#123; p[1] = c; &#125;
+        if ((d &amp; 0x20) != 0) &#123; p[2] = c; &#125;
+        if ((d &amp; 0x10) != 0) &#123; p[3] = c; &#125;
+        if ((d &amp; 0x08) != 0) &#123; p[4] = c; &#125;
+        if ((d &amp; 0x04) != 0) &#123; p[5] = c; &#125;
+        if ((d &amp; 0x02) != 0) &#123; p[6] = c; &#125;
+        if ((d &amp; 0x01) != 0) &#123; p[7] = c; &#125;
+    &#125;
+    return;
+&#125;
+</code></pre>
+<p>参数中 *vram为显存地址，xsize为显示的宽度，x,y为起始坐标，c为颜色， font为要输出的字符数组。</p>
+<h3 id="harib02e-增加字体"><a href="#harib02e-增加字体" class="headerlink" title="harib02e 增加字体"></a>harib02e 增加字体</h3><p>hankaku.txt为一个记录字符的文件</p>
+<p>其用8x16个. 和 * 记录了一些常用字符(256个)，类似如下</p>
+<pre><code class="shell">char 0x03
+........
+........
+........
+........
+.**.**..
+*******.
+*******.
+*******.
+.*****..
+..***...
+...*....
+........
+........
+........
+........
+........
+</code></pre>
+<p>使用工具makefont.exe，将其中的.和*转换成0和1 ,即用1byte代表一行，如下图所示，每一行都代表一个字符</p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220203134146849.png" alt="image-20220203134146849"></p>
+<p>现在这个文件仅仅是二进制文件，还不能供bootpack.obj使用，还要加上连接所必须的接口信息，将他变成目标文件</p>
+<p>$(BIN2OBJ) hankaku.bin hankaku.obj _hankaku</p>
+<p>类似于将如下两行程序转成汇编</p>
+<p>_hankanku:<br>        DB 各种数据（共4096字节）  </p>
+<p>C语言中要导入源程序以外准备的数据，都需要加上extern属性</p>
+<p>extern char hankaku[4096];</p>
+<p>这样， C编译器就能够知道它是外部数据， 并在编译时做出相应调整。</p>
+<p>生成二进制映像文件</p>
+<p>bootpack.bim : bootpack.obj naskfunc.obj hankaku.obj Makefile</p>
+<p>  $(OBJ2BIM) @$(RULEFILE) out:bootpack.bim stack:3136k map:bootpack.map \</p>
+<p>​    bootpack.obj naskfunc.obj hankaku.obj</p>
+<p>转成hrb</p>
+<p>bootpack.hrb : bootpack.bim Makefile</p>
+<p>  $(BIM2HRB) bootpack.bim bootpack.hrb 0</p>
+<p>加上头</p>
+<p>haribote.sys : asmhead.bin bootpack.hrb Makefile</p>
+<p>  copy /B asmhead.bin+bootpack.hrb haribote.sys</p>
+<p>制作img文件(引入启动区程序)</p>
+<p>haribote.img : ipl10.bin haribote.sys Makefile</p>
+<p>  $(EDIMG)  imgin:../z_tools/fdimg0at.tek \</p>
+<p>​    wbinimg src:ipl10.bin len:512 from:0 to:0 \</p>
+<p>​    copy from:haribote.sys to:@: \</p>
+<p>​    imgout:haribote.img</p>
+<h3 id="harib02f-显示字符串"><a href="#harib02f-显示字符串" class="headerlink" title="harib02f 显示字符串"></a>harib02f 显示字符串</h3><pre><code class="c">void putfonts8_asc(char *vram, int xsize, int x, int y, char c, unsigned char *s)
+&#123;
+    extern char hankaku[4096];
+    for (; *s != 0x00; s++) &#123;
+        putfont8(vram, xsize, x, y, c, hankaku + *s * 16);
+        x += 8;
+    &#125;
+    return;
+&#125;
+</code></pre>
+<p>s为字符串指针，字符串以0x00作为结束</p>
+<h3 id="harib02h-显示鼠标指针"><a href="#harib02h-显示鼠标指针" class="headerlink" title="harib02h 显示鼠标指针"></a>harib02h 显示鼠标指针</h3><blockquote>
+<p>绘制鼠标的函数</p>
+</blockquote>
+<pre><code class="c">void putblock8_8(char *vram, int vxsize, int pxsize,
+int pysize, int px0, int py0, char *buf, int bxsize)
+&#123;
+    int x, y;
+    for (y = 0; y &lt; pysize; y++) &#123;
+        for (x = 0; x &lt; pxsize; x++) &#123;
+            vram[(py0 + y) * vxsize + (px0 + x)] = buf[y * bxsize + x];
+        &#125;
+    &#125;
+    return;
+&#125;
+</code></pre>
+<p>vxsize为320 ，pxsize 、pysize为要绘制图形的大小， px0 ，py0为图形的起始坐标 buf存储鼠标数据 ，bxsize类似pxsize</p>
+<h2 id="20220309"><a href="#20220309" class="headerlink" title="20220309"></a>20220309</h2><p>.c C语言文件 -&gt; 汇编文件 -&gt; 机器语言目标文件 -&gt; 链接</p>
+<p>ipl10.nas 启动区文件，用于加载操作系统到内存中。</p>
+<p>naskfunc.nas  ，asmhead.nas    这两个用于存储汇编代码</p>
+<p>bootpack.c  C语言函数</p>
+<h2 id="20220310"><a href="#20220310" class="headerlink" title="20220310"></a>20220310</h2><h3 id="makefile阅读，从下往上看"><a href="#makefile阅读，从下往上看" class="headerlink" title="makefile阅读，从下往上看"></a>makefile阅读，从下往上看</h3><p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220310203953026.png" alt="image-20220310203953026"></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/choutou1011/article/details/100747819">https://blog.csdn.net/choutou1011/article/details/100747819</a></p>
+<blockquote>
+<p>haribote.img</p>
+</blockquote>
+<pre><code class="makefile">haribote.img : ipl10.bin haribote.sys Makefile
+
+  $(EDIMG)  imgin:../z_tools/fdimg0at.tek \
+     wbinimg src:ipl10.bin len:512 from:0 to:0 \
+    copy from:haribote.sys to:@: \
+    imgout:haribote.img
+</code></pre>
+<p>这是制作镜像文件的最后一步，</p>
+<ol>
+<li><p>输入为 ipl10.bin  haribote.sys</p>
+</li>
+<li><p>输出为 haribote.img</p>
+</li>
+<li><p>edimg.exe: 这个是软盘镜像制作工具。</p>
+</li>
+<li><p>wbinimg 写入启动扇区的命令</p>
+</li>
+<li><p>imgin 读取指定的文件作为磁盘映像。</p>
+</li>
+<li><p>copy 将文件和文件名写入系统中</p>
+</li>
+</ol>
+<blockquote>
+<p>fdimg0at.tek</p>
+</blockquote>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220310204218030.png" alt="image-20220310204218030"></p>
+<blockquote>
+<p>ipl10.bin</p>
+</blockquote>
+<p>启动区文件， 通过ipl10.nas制作,操作系统会首先运行该处的代码，此处代码主要是加载后续扇区到内存中。</p>
+<p>扇区中有代码文件，书中将扇区加载到以0x8000作为起始的内存中。</p>
+<p>源码文件起始于img中 0x4200的位置</p>
+<p>因此，当将扇区加载完成后，使用JMP 0xc200   跳转到源码文件的起始位置，操作系统开始执行。</p>
+<blockquote>
+<p>haribote.sys</p>
+</blockquote>
+<p>源码文件，书中的代码有汇编、有C语言，需要先将其整合在一起</p>
+<pre><code class="makef">haribote.sys : asmhead.bin bootpack.hrb Makefile
+    copy /B asmhead.bin+bootpack.hrb haribote.sys
+</code></pre>
+<p>asmhead.bin 通过目前章节只知道代码可以调用C语言程序</p>
+<blockquote>
+<p>bootpack.hrb</p>
+</blockquote>
+<p>由bootpack.bim制作而成</p>
+<pre><code class="makefile">bootpack.hrb : bootpack.bim Makefile
+    $(BIM2HRB) bootpack.bim bootpack.hrb 0
+</code></pre>
+<blockquote>
+<p>bootpack.bim</p>
+</blockquote>
+<pre><code class="makefile">bootpack.bim : bootpack.obj naskfunc.obj hankaku.obj Makefile
+    $(OBJ2BIM) @$(RULEFILE) out:bootpack.bim stack:3136k map:bootpack.map \
+        bootpack.obj naskfunc.obj hankaku.obj
+</code></pre>
+<p>obj2bim 将目标文件合成为bim文件</p>
+<blockquote>
+<p>hakaku</p>
+</blockquote>
+<p>hankaku.bin : hankaku.txt Makefile</p>
+<p>  $(MAKEFONT) hankaku.txt hankaku.bin</p>
+<p>hankaku.obj : hankaku.bin Makefile</p>
+<p>  $(BIN2OBJ) hankaku.bin hankaku.obj _hankaku</p>
+<h2 id="20220311"><a href="#20220311" class="headerlink" title="20220311"></a>20220311</h2><h3 id="harib02i-GDT和IDT的初始化"><a href="#harib02i-GDT和IDT的初始化" class="headerlink" title="harib02i GDT和IDT的初始化"></a>harib02i GDT和IDT的初始化</h3><blockquote>
+<p>分段 segmentation</p>
+</blockquote>
+<p>按照自己喜欢的方式， 将合计4GB的内存分成很多块（block） ， 每一块的起始地址都看作来0处理。</p>
+<p> 为了了表示一个段， 需要有以下信息。</p>
+<ol>
+<li>段的大小是多少</li>
+<li>段的起始地址在哪里</li>
+<li>段的管理属性（禁止写入， 禁止执行， 系统专用等）  </li>
+</ol>
+<blockquote>
+<p>段号(segment selector 段选择符) 与GDT(global (segment) descriptor table 全局段号记录表)</p>
+</blockquote>
+<p>CPU需要用8个字节存储这些信息，但段寄存器只有16位(由于CPU设计的原因，低三位不能使用)，因此段寄存器只能存储段号, 再由段号映射到存在内存中的GDT（global (segment) descriptor table，全局段号记录表），读取段的信息。</p>
+<p>段寄存器有16位，三位不能使用，所以段号范围为0~8191即可以定义8192个段，每个段需要8字节来定义，一共需要64kb 即GDT大小为64KB</p>
+<blockquote>
+<p>IDT (interrupt descriptor table 中断记录表)</p>
+</blockquote>
+<p>当CPU遇到外部状况变化， 或者是内部偶然发生某些错误时， 会临时切换过去处理这种突发事件。 这就是中断功能 。</p>
+<p>各个设备有变化时就产生中断， 中断发生后， CPU暂时停止正在处理的任务， 并做好接下来能够继续处理的准备， 转而执行中断程序。 中断程序执行完以后， 再调用事先设定好的函数， 返回处理中的任务。 正是得益于中断机制， CPU可以不用一直查询键盘， 鼠标， 网卡等设备的状态， 将精力集中在处理任务上。</p>
+<p>IDT，Interrupt Descriptor Table，即中断描述符表，和GDT类似，他记录了0~255的中断号和调用函数之间的关系。</p>
+<p>  <img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220311100906242.png" alt="image-20220311100906242"></p>
+<p>关于IDT和GDT的详细介绍</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ice__snow/article/details/50654629">https://blog.csdn.net/ice__snow/article/details/50654629</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/cwcmcw/article/details/21640363">https://blog.csdn.net/cwcmcw/article/details/21640363</a></p>
+<p>GDT可以被放在内存的任何位置，那么当程序员通过段寄存器来引用一个段描述符时，CPU必须知道GDT的入口，也就是基地址放在哪里，所以Intel的设计者门提供了一个寄存器GDTR用来存放GDT的入口地址，程序员将GDT设定在内存中某个位置之后，可以通过LGDT指令将GDT的入口地址装入此寄存器，从此以后，CPU就根据此寄存器中的内容作为GDT的入口来访问GDT了。</p>
+<blockquote>
+<p>新增代码</p>
+</blockquote>
+<p>char *p; /<em>用于BYTE类地址</em>/<br>short *p; /<em>用于WORD类地址</em>/<br>int *p; /<em>用于DWORD类地址</em>/  </p>
+<pre><code class="C">struct SEGMENT_DESCRIPTOR&#123; 
+    short limit_low, base_low;
+    char base_mid, access_right;
+    char limit_high, base_high;
+&#125;; //存放GDT每个段的8字节信息2+2+1+1+1+1
+struct GATE_DESCRIPTOR &#123;
+    short offset_low, selector;
+    char dw_count, access_right;short offset_high;
+&#125;; //存放IDT信息
+void init_gdtidt(void)//GDT初始化
+&#123;
+    struct SEGMENT_DESCRIPTOR *gdt = (struct SEGMENT_DESCRIPTOR *) 0x00270000;
+    struct GATE_DESCRIPTOR *idt = (struct GATE_DESCRIPTOR *) 0x0026f800;
+    int i;
+    /* GDT的初始化 
+        GDT里面的值都为0
+    */
+    for (i = 0; i &lt; 8192; i++) &#123;
+        set_segmdesc(gdt + i, 0, 0, 0);
+    &#125;
+    /*
+        程序使用了两个段
+    */
+    set_segmdesc(gdt + 1, 0xffffffff, 0x00000000, 0x4092);
+    set_segmdesc(gdt + 2, 0x0007ffff, 0x00280000, 0x409a);
+    load_gdtr(0xffff, 0x00270000);
+    /* IDT的初始化 */
+    for (i = 0; i &lt; 256; i++) &#123;
+        set_gatedesc(idt + i, 0, 0, 0);
+    &#125;
+    load_idtr(0x7ff, 0x0026f800);
+    return;
+&#125; 
+void set_segmdesc(struct SEGMENT_DESCRIPTOR *sd, unsigned int limit, int base,int ar)
+&#123;
+    if (limit &gt; 0xfffff) &#123;
+        ar |= 0x8000; /* G_bit = 1 */
+        limit /= 0x1000;
+    &#125;
+    sd-&gt;limit_low = limit &amp; 0xffff;
+    sd-&gt;base_low = base &amp; 0xffff;
+    sd-&gt;base_mid = (base &gt;&gt; 16) &amp; 0xff;
+    sd-&gt;access_right = ar &amp; 0xff;
+    sd-&gt;limit_high = ((limit &gt;&gt; 16) &amp; 0x0f) | ((ar &gt;&gt; 8) &amp; 0xf0);
+    sd-&gt;base_high = (base &gt;&gt; 24) &amp; 0xff;
+    return;
+&#125; 
+void set_gatedesc(struct GATE_DESCRIPTOR *gd, int offset, int selector, int ar)
+&#123;
+    gd-&gt;offset_low = offset &amp; 0xffff;
+    gd-&gt;selector = selector;
+    gd-&gt;dw_count = (ar &gt;&gt; 8) &amp; 0xff;
+    gd-&gt;access_right = ar &amp; 0xff;
+    gd-&gt;offset_high = (offset &gt;&gt; 16) &amp; 0xffff;
+    return;
+&#125;
+</code></pre>
+<p> 也就是说将0x270000~0x27ffff 设为GDT</p>
+<p>struct SEGMENT_DESCRIPTOR *gdt = (struct SEGMENT_DESCRIPTOR *) 0x00270000;</p>
+<p>将0x26f800~0x27ffff设为IDT</p>
+<p>  struct GATE_DESCRIPTOR *idt = (struct GATE_DESCRIPTOR *) 0x0026f800; </p>
+<p>将所有段的上限（limit, 指段的字节数-1） 、 基址（base） 、 访问权限都设为0  </p>
+<p>for (i = 0; i &lt; 8192; i++) {<br>    set_segmdesc(gdt + i, 0, 0, 0);<br>}   </p>
+<p>段号为0 的段，上限值为0xffffffff（4GB)、 地址为0，标识CPU所能管理的内存本身，段属性为0x4092</p>
+<p>set_segmdesc(gdt + 1, 0xffffffff, 0x00000000, 0x4092);</p>
+<p>段号为1 的段，上限值为0x0007ffff（521KB)、 地址为0x00280000，标识CPU所能管理的内存本身，</p>
+<p>这正好是为bootpack.hrb而准备的(具体可以查看后面介绍的asmhead.nas)。 用这个段， 就可以执行bootpack.hrb。 因为bootpack.hrb是以ORG 0为前提翻译成的机器语言。  </p>
+<p>set_segmdesc(gdt + 2, 0x0007ffff, 0x00280000, 0x409a)  </p>
+<h3 id="harib03a-分割文件"><a href="#harib03a-分割文件" class="headerlink" title="harib03a  分割文件"></a>harib03a  分割文件</h3><p>makefile优化</p>
+<pre><code class="makefile">bootpack.gas : bootpack.c Makefile
+$(CC1) -o bootpack.gas bootpack.c
+graphic.gas : graphic.c Makefile
+$(CC1) -o graphic.gas graphic.c
+dsctbl.gas : dsctbl.c Makefile
+$(CC1) -o dsctbl.gas dsctbl.c
+或者像这样：
+bootpack.nas : bootpack.gas Makefile
+$(GAS2NASK) bootpack.gas bootpack.nas
+graphic.nas : graphic.gas Makefile
+$(GAS2NASK) graphic.gas graphic.nas
+dsctbl.nas : dsctbl.gas Makefile
+$(GAS2NASK) dsctbl.gas dsctbl.nas
+</code></pre>
+<p>可以使用下面规则来取代</p>
+<pre><code class="makefile">%.gas : %.c Makefile
+$(CC1) -o $*.gas $*.c
+%.nas : %.gas Makefile
+$(GAS2NASK) $*.gas $*.nas
+</code></pre>
+<p>而且不用考虑冲突问题，makefilemake.exe会首先寻找普通的生成规则， 如果没找到， 就尝试用一般规则。</p>
+<blockquote>
+<p>LGDT</p>
+</blockquote>
+<p>GDT可以被放在内存的任何位置，那么当程序员通过段寄存器来引用一个段描述符时，CPU必须知道GDT的入口，也就是基地址放在哪里，所以Intel的设计者门提供了一个寄存器GDTR用来存放GDT的入口地址，程序员将GDT设定在内存中某个位置之后，可以通过LGDT指令将GDT的入口地址装入此寄存器，从此以后，CPU就根据此寄存器中的内容作为GDT的入口来访问GDT了。</p>
+<pre><code class="assembly">_load_gdtr: ; void load_gdtr(int limit, int addr);
+MOV AX,[ESP+4] ; limit
+MOV [ESP+6],AX
+LGDT [ESP+6]
+RET
+</code></pre>
+<p>GDTR  这一特殊的寄存器为48位， 不能通过mov直接赋值。而是通过LGDT 指令，将指定地址处6个字节读入寄存器中。</p>
+<p>该寄存器低16位为段上限，它等于“GDT的有效字节数 - 1”。  </p>
+<p>剩下32位为GDT在内存中的开始地址。</p>
+<p>在最初执行这个函数的时候， DWORD[ESP + 4]里存放的是段上限，DWORD[ESP+8]里存放的是地址。   </p>
+<p>load_gdtr(0xffff, 0x00270000);</p>
+<p>在内存分布为[ff ff 00 00  00 00 27 00]</p>
+<p>而我们想要读取的是六个字节 ，即 [ff ff 00 00 27 00]</p>
+<p>在该函数中，首先 向AX 存储[ ff ff ]</p>
+<p>然后将其存入ESP+6处，此时内存分布为 [ff ff ff ff 00 00 27 00]</p>
+<p>此时从ESP+6读取，正好为[ff ff 00 00 27 00]</p>
+<h3 id="填写段信息set-segmdesc"><a href="#填写段信息set-segmdesc" class="headerlink" title="填写段信息set_segmdesc"></a>填写段信息set_segmdesc</h3><pre><code class="c">struct SEGMENT_DESCRIPTOR &#123;
+    short limit_low, base_low;
+    char base_mid, access_right;
+    char limit_high, base_high;
+&#125;;
+void set_segmdesc(struct SEGMENT_DESCRIPTOR *sd, unsigned int limit, int base,
+int ar)
+&#123;
+    if (limit &gt; 0xfffff) &#123;
+        ar |= 0x8000; /* G_bit = 1 */
+        limit /= 0x1000;
+    &#125;
+    sd-&gt;limit_low = limit &amp; 0xffff;
+    sd-&gt;base_low = base &amp; 0xffff;
+    sd-&gt;base_mid = (base &gt;&gt; 16) &amp; 0xff;
+    sd-&gt;access_right = ar &amp; 0xff;
+    sd-&gt;limit_high = ((limit &gt;&gt; 16) &amp; 0x0f) | ((ar &gt;&gt; 8) &amp; 0xf0);
+    sd-&gt;base_high = (base &gt;&gt; 24) &amp; 0xff;
+    return;
+&#125;
+</code></pre>
+<p>这个函数是按照CPU的规格要求， 将段的信息归结成8个字节写入内存的。   </p>
+<p>注: limit_high 高四位用于存储段信息，因此段上限可使用的位数为20位</p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220311122742449.png" alt="image-20220311122742449"></p>
+<p>包含如下信息</p>
+<ul>
+<li>段的起始位置 (base)</li>
+<li>段的大小(limit)</li>
+<li>段的管理属性（禁止写入， 禁止执行， 系统专用等） (ar)</li>
+</ul>
+<h3 id="基址base"><a href="#基址base" class="headerlink" title="基址base"></a>基址base</h3><p>基址在结构中分成了三部分，共32位</p>
+<p>为什么要分为3段呢？ 主要是为了与80286时代的程序兼容。 有了这样的<br>规格， 80286用的操作系统， 也可以不用修改就在386以后的CPU上运行<br>了  </p>
+<h3 id="段上限limit"><a href="#段上限limit" class="headerlink" title="段上限limit"></a>段上限limit</h3><p>表示一个段有多少个字节，但在32位系统中，段上限最大是4GB，是一个32位的数字。</p>
+<p>然而在结构体中，存储段上限的仅有20位，最大上限也只能是1mb</p>
+<p>在这里英特尔的叔叔们又想了一个办法， 他们在段的属性里设了一个标志位， 叫做Gbit。 这个标志位是1的时候， limit的单位不解释成字节（byte） ， 而解释成页（page） 。 页是什么呢？ 在电脑的<br>CPU里， 1页是指4KB。  </p>
+<p>​    </p>
+<h3 id="段属性"><a href="#段属性" class="headerlink" title="段属性"></a>段属性</h3><p>12位，段属性又称为“段的访问权属性”， 在程序中用变量名access_right或ar来表示。 因为12位段属性中的高4位放在limit_high的高4位里， 所以程序里有意把ar当作如下的16位构成来处理：<br>xxxx0000xxxxxxxx(其中x是0或1)  </p>
+<p>ar的高4位被称为“扩展访问权”。  </p>
+<p>由“GD00”构成的， 其中G是指刚才所说的G bit， D是指段的模式， 1是指32位模式， 0是指16位模式  </p>
+<p>ar的低四位</p>
+<p>00000000（0x00） ： 未使用的记录表（descriptor table） 。<br>10010010（0x92） ： 系统专用， 可读写的段。 不可执行。<br>10011010（0x9a） ： 系统专用， 可执行的段。 可读不可写。<br>11110010（0xf2） ： 应用程序用， 可读写的段。 不可执行。<br>11111010（0xfa） ： 应用程序用， 可执行的段。 可读不可写。  </p>
+<p>在32位模式下， CPU有系统模式（也称为“ring0”3） 和应用模式（也称为“ring3”） 之分。 操作系统等“管理用”的程序， 和应用程序等“被管理”的程序， 运行时的模式是不同的。  </p>
+<p>CPU到底是处于系统模式还是应用模式， 取决于执行中的应用程序是位<br>于访问权为0x9a的段， 还是位于访问权为0xfa的段。  </p>
+<h3 id="初始化PIC-harib03d"><a href="#初始化PIC-harib03d" class="headerlink" title="初始化PIC(harib03d)"></a>初始化PIC(harib03d)</h3><p>PIC programmable interrupt controller  可编程中断控制器。</p>
+<p>PIC是将8个中断信号1集合成一个中断信号的装置。 PIC监视着输入管脚的8个中断信号， 只要有一个中断信号进来， 就将唯一的输出管脚信号变成ON， 并通知给CPU  </p>
+<p>IBM的大叔们想要通过增加PIC来处理更多的中断信号， 他们认为电脑会有8个以上的外部设备， 所以就把中断信号设计成了15个， 并为此增设了2个PIC。  </p>
+<p><img src="https://gitee.com/qwrdxer/img2/raw/master/image-20220311144508369.png" alt="image-20220311144508369"></p>
+<p>中断请求，interrupt request， 缩写为IRQ。  </p>
+<pre><code class="c">int.c的主要组成部分
+void init_pic(void)
+/* PIC的初始化 */
+&#123;
+    io_out8(PIC0_IMR, 0xff ); /* 禁止所有中断 */
+    io_out8(PIC1_IMR, 0xff ); /* 禁止所有中断 */
+    
+    io_out8(PIC0_ICW1, 0x11 ); /* 边沿触发模式（edge trigger mode） */
+    io_out8(PIC0_ICW2, 0x20 ); /* IRQ0-7由INT20-27接收 */
+    io_out8(PIC0_ICW3, 1 &lt;&lt; 2); /* PIC1由IRQ2连接 */
+    io_out8(PIC0_ICW4, 0x01 ); /* 无缓冲区模式 */
+    
+    io_out8(PIC1_ICW1, 0x11 ); /* 边沿触发模式（edge trigger mode） */
+    io_out8(PIC1_ICW2, 0x28 ); /* IRQ8-15由INT28-2f接收 */
+    io_out8(PIC1_ICW3, 2 ); /* PIC1由IRQ2连接 */
+    io_out8(PIC1_ICW4, 0x01 ); /* 无缓冲区模式 */
+    io_out8(PIC0_IMR, 0xfb ); /* 11111011 PIC1以外全部禁止 */
+    io_out8(PIC1_IMR, 0xff ); /* 11111111 禁止所有中断 */
+    return;
+&#125;
+</code></pre>
+<p>io_out函数用于向指定外部装置传送数据</p>
+<p>为了区别不同的设备， 也要使用设备号码。 设备号码在英文中称为port（端口） ，这些号码并不是随意取的。</p>
+<p>程序中的PIC0和PIC1， 分别指主PIC和从PIC。  PIC内部有很多寄存器， 用端口号码对彼此进行区别， 以决定是写入哪一个寄存器。  </p>
+<p>具体的端口号码写在bootpack.h里， 请参考这个程序。 但是， 端口号相同的东西有很多， 可能会让人觉得混乱。  (有时候向要向一个端口写入多次数据，每次数据代表的操作不同)</p>
+<h3 id="PIC寄存器"><a href="#PIC寄存器" class="headerlink" title="PIC寄存器"></a>PIC寄存器</h3><p>PIC 寄存器都是8位寄存器</p>
+<blockquote>
+<p>​    IMR寄存器</p>
+</blockquote>
+<p>IMR是“interrupt mask register”的缩写， 意思是“中断屏蔽寄存器”。 8位分别对应8路IRQ信号。 如果某一位的值是1， 则该位所对应的IRQ信号被屏蔽， PIC就忽视该路信号。  </p>
+<blockquote>
+<p>ICW寄存器</p>
+</blockquote>
+<p>ICW是“initial control word”的缩写， 意为“初始化控制数据”。  </p>
+<p>ICW有4个， 分别编号为1~4， 共有4个字节的数据。   </p>
+<p>ICW1和ICW4与PIC主板配线方式、 中断信号的电气特性等有关  </p>
+<p>ICW3是有关主—从连接的设定， 对主PIC而言， 第几号IRQ与从PIC相连， 是用8位来设定的。 如果把这些位全部设为1， 那么主PIC就能驱动8个从PIC（那样的话， 最大就可能有64个IRQ） ， 但我们所用的电脑并不是这样的， 所以就设定成00000100。（表示IRQ2与从PIC连接)   </p>
+<p>ICW2 决定了IRQ以哪一号中断通知CPU。   </p>
+<p>中断发生以后， 如果CPU可以受理这个中断， CPU就会命令PIC发送2个字节的数据。 这2个字节是怎么传送的呢？ CPU与PIC用IN或OUT进行数据传送时， 有数据信号线连在一起。 PIC就是利用这个信号线发送这2个字节数据的。 送过来的数据是“0xcd 0x??”这两个字节。 由于电路设计的原因， 这两个字节的数据在CPU看来， 与从内存读进来的程序是完全一样的， 所以CPU就把送过来的“0xcd 0x??”作为机器语言执行。 这恰恰就是把数据当作程序来执行的情况。 这里的0xcd就是调用BIOS时使用的那个INT指令。 我们在程序里写的“INT 0x10”， 最后就被编译成了“0xcd 0x10”。 所以， CPU上了PIC的当， 按照PIC所希望的中断号执行了INT指令。  </p>
+<p>中断处理</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42240667/article/details/105071373">https://blog.csdn.net/weixin_42240667/article/details/105071373</a></p>
+<h3 id="中断处理程序"><a href="#中断处理程序" class="headerlink" title="中断处理程序"></a>中断处理程序</h3><pre><code class="c">void inthandler21(int *esp)
+/* 来自PS/2键盘的中断 */
+&#123;
+struct BOOTINFO *binfo = (struct BOOTINFO *) ADR_BOOTINFO;
+boxfill8(binfo-&gt;vram, binfo-&gt;scrnx, COL8_000000, 0, 0, 32 * 8 - 1, 15);
+putfonts8_asc(binfo-&gt;vram, binfo-&gt;scrnx, 0, 0, COL8_FFFFFF, &quot;INT 21 (IRQ-1) :
+PS/2 keyboard&quot;);
+for (;;) &#123;
+io_hlt();
+&#125;
+&#125;
+</code></pre>
+<p>中断处理完成之后， 不能执行“return;”（=RET指令） ， 而是必须执行IRETD指令  </p>
+<p>这里使用汇编实现</p>
+<pre><code class="assembly">EXTERN _inthandler21, _inthandler2c
+_asm_inthandler21:
+    PUSH ES
+    PUSH DS
+    PUSHAD
+    MOV EAX,ESP
+    PUSH EAX
+    MOV AX,SS
+    MOV DS,AX
+    MOV ES,AX
+    CALL _inthandler21
+    POP EAX
+    POPAD
+    POP DS
+    POP ES
+    IRETD
+</code></pre>
+<p>这个函数只是将寄存器的值保存到栈里， 然后将DS和ES调整到与SS相等， 再调用_inthandler21， 返回以后， 将所有寄存器的值再返回到原来的值， 然后执行IRETD。 内容就这些。 如此小心翼翼地保存寄存器的值， 其原因在于， 中断处理发生在函数处理的途中， 通过IREDT从中断处理返回以后， 如果寄存器的值乱了， 函数就无法正常处理下去了， 所以一定要想尽办法让寄存器的值返回到中断处理前的状态。  </p>
+<p>PUSHAD， 它相当于：<br>PUSH EAX<br>PUSH ECX<br>PUSH EDX<br>PUSH EBX<br>PUSH ESP<br>PUSH EBP<br>PUSH ESI<br>PUSH EDI<br>反过来， POPAD指令相当于按以上相反的顺序， 把它们全都POP出来  </p>
+<blockquote>
+<p> RET和IRET</p>
+</blockquote>
+<p> RET 子程序的返回指令</p>
+<p>iret     interrupt return 　　中断返回指令</p>
+<p>函数中的数字以INT 0x20<del>0x2f接收中断信号IRQ0</del>15而设定的。  (INT 0x00~0x1f不能用于IRQ  )</p>
+<h3 id="将中断处理程序注册到IDT中"><a href="#将中断处理程序注册到IDT中" class="headerlink" title="将中断处理程序注册到IDT中"></a>将中断处理程序注册到IDT中</h3><p>在dsctbl.c的init_gdtidt里加入以下语句  </p>
+<pre><code class="c">/* IDT的设定 */
+set_gatedesc(idt + 0x21, (int) asm_inthandler21, 2 * 8, AR_INTGATE32);
+set_gatedesc(idt + 0x2c, (int) asm_inthandler2c, 2 * 8, AR_INTGATE32);
+</code></pre>
+<p>asm_inthandler21注册在idt的第0x21号。 这样， 如果发生中断了， CPU就会自动调用asm_inthandler21。 这里的2 * 8表示的是asm_inthandler21属于哪一个段， 即段号是2， 乘以8是因为低3位有着别的意思， 这里低3位必须是0。</p>
+<p>CLI汇编指令全称为Clear Interupt，该指令的作用是禁止中断发生，在CLI起效之后，所有外部中断都被屏蔽，这样可以保证当前运行的代码不被打断，起到保护代码运行的作用。</p>
+<p>STI汇编指令全称为Set Interupt，该指令的作用是允许中断发生，在STI起效之后，所有外部中断都被恢复，这样可以打破被保护代码的运行，允许硬件中断转而处理中断的作用。</p>
+<h2 id="20220318"><a href="#20220318" class="headerlink" title="20220318"></a>20220318</h2><h3 id="获取键盘按键信息harib04a"><a href="#获取键盘按键信息harib04a" class="headerlink" title="获取键盘按键信息harib04a"></a>获取键盘按键信息harib04a</h3><pre><code class="c">#define PORT_KEYDAT 0x0060
+void inthandler21(int *esp)
+&#123;
+    struct BOOTINFO *binfo = (struct BOOTINFO *) ADR_BOOTINFO;
+    unsigned char data, s[4];
+    io_out8(PIC0_OCW2, 0x61); /* 通知PIC&quot;IRQ-01已经受理完毕&quot; */
+    data = io_in8(PORT_KEYDAT);
+    sprintf(s, &quot;%02X&quot;, data);
+    boxfill8(binfo-&gt;vram, binfo-&gt;scrnx, COL8_008484, 0, 16, 15, 31);
+    putfonts8_asc(binfo-&gt;vram, binfo-&gt;scrnx, 0, 16, COL8_FFFFFF, s);
+    return;
+&#125;
+</code></pre>
+<p>通知中断已完成:  将“0x60+IRQ号码”输出给OCW2</p>
+<ol>
+<li>通知PIC”IRQ-01已经受理完毕</li>
+<li>PIC继续时刻监视IRQ1中断是否发生。  </li>
+<li>0x0060 设备为键盘设备，从中读取8bit数据</li>
+<li>键盘的按下和松开都会产生中断</li>
+</ol>
+<h3 id="加快中断处理（hiarib04b）"><a href="#加快中断处理（hiarib04b）" class="headerlink" title="加快中断处理（hiarib04b）"></a>加快中断处理（hiarib04b）</h3><p>字符显示的内容被放在了中断处理程序中。  中断处理进行期间， 不再接受别的中断。 所以如果处理键盘的中断速度太慢， 就会出现鼠标的运动不连贯、不能从网上接收数据等情况， 这都是我们不希望看到的。  </p>
+<p>解决方法</p>
+<blockquote>
+<p>中断处理程序中，只对中断以及数据进行记录，如果有中断，该程序只存储该数据，并将flag置为1</p>
+</blockquote>
+<pre><code class="c">struct KEYBUF &#123;
+unsigned char data, flag;
+&#125;;
+#define PORT_KEYDAT 0x0060
+struct KEYBUF keybuf;
+void inthandler21(int *esp)
+&#123;
+unsigned char data;
+io_out8(PIC0_OCW2, 0x61); /* 通知PIC IRQ-01已经受理完毕 */
+data = io_in8(PORT_KEYDAT);if (keybuf.flag == 0) &#123;
+keybuf.data = data;
+keybuf.flag = 1;
+&#125;return;
+&#125;
+</code></pre>
+<blockquote>
+<p>主程序只要偶尔检测flag的值，如果为1，则进行进一步键盘处理</p>
+</blockquote>
+<pre><code class="c">for (;;) &#123;
+    io_cli(); //先关中断
+    if (keybuf.flag == 0) &#123;//没有键盘按下
+        io_stihlt();//连续指定STI 和HLT
+    &#125; else &#123;
+        i = keybuf.data;
+        keybuf.flag = 0;
+        io_sti();//获取完数据后打开中断。
+        sprintf(s, &quot;%02X&quot;, i);
+        boxfill8(binfo-&gt;vram, binfo-&gt;scrnx, COL8_008484, 0, 16, 15, 31);
+        putfonts8_asc(binfo-&gt;vram, binfo-&gt;scrnx, 0, 16, COL8_FFFFFF, s);
+    &#125;
+&#125;
+</code></pre>
+<p>HLT; 使CPU进入等待状态</p>
+<p>CLI汇编指令全称为Clear Interupt，该指令的作用是禁止中断发生，在CLI起效之后，所有外部中断都被屏蔽，这样可以保证当前运行的代码不被打断，起到保护代码运行的作用。</p>
+<p>STI汇编指令全称为Set Interupt，该指令的作用是允许中断发生，在STI起效之后，所有外部中断都被恢复，这样可以打破被保护代码的运行，允许硬件中断转而处理中断的作用。</p>
+<p><strong>根据CPU的规范， 机器语言的STI指令之后， 如果紧跟着HLT指令， 那么就暂不受理这两条指令之间的中断， 而要等到HLT指令之后才受理</strong>  </p>
+<blockquote>
+<p>按住ctrl</p>
+<p>当按下右Ctrl键时， 会产生两个字节的键码值“E0<br>1D”， 而松开这个键之后， 会产生两个字节的键码值“E0 9D”。 在一次产<br>生两个字节键码值的情况下， 因为键盘内部电路一次只能发送一个字<br>节， 所以一次按键就会产生两次中断， 第一次中断时发送E0， 第二次中<br>断时发送1D。  </p>
+</blockquote>
+<h3 id="fifo缓冲区"><a href="#fifo缓冲区" class="headerlink" title="fifo缓冲区"></a>fifo缓冲区</h3><blockquote>
+<p>version1</p>
+</blockquote>
+<p>中断函数</p>
+<pre><code class="c">
+struct KEYBUF &#123;
+unsigned char data[32];
+int next;
+&#125;;
+void inthandler21(int *esp)
+&#123;
+    unsigned char data;
+    io_out8(PIC0_OCW2, 0x61); /* 通知PIC IRQ-01已经受理完毕 */
+    data = io_in8(PORT_KEYDAT);
+    if (keybuf.next &lt; 32) &#123;
+    keybuf.data[keybuf.next] = data;
+    keybuf.next++;&#125;
+    return;
+&#125;
+</code></pre>
+<p>主函数</p>
+<pre><code class="c">for (;;) &#123;
+    io_cli();
+    if (keybuf.next == 0) &#123;
+        io_stihlt();
+    &#125; else &#123;
+        i = keybuf.data[0];
+        keybuf.next--;
+    for (j = 0; j &lt; keybuf.next; j++) &#123;
+        keybuf.data[j] = keybuf.data[j + 1];
+    &#125;
+    io_sti();
+    sprintf(s, &quot;%02X&quot;, i);
+    boxfill8(binfo-&gt;vram, binfo-&gt;scrnx, COL8_008484, 0, 16, 15, 31);
+    putfonts8_asc(binfo-&gt;vram, binfo-&gt;scrnx, 0, 16, COL8_FFFFFF, s);
+    &#125;
+&#125;
+</code></pre>
+<p>中断函数: 每次中断都会将数据存入数组中，并记录下一次存放的位置</p>
+<p>主函数：如果flag=1  读取数组中第一个数据，将后续数据往前移一个位置 keybuf.next也-1</p>
+<p>该函数主要问题在主函数中，最多要移动31个数据，在性能上有很大缺失。</p>
+<blockquote>
+<p>version2</p>
+</blockquote>
+<p>不仅要维护下一个要写入数据的位置， 还要维护下一个要读出数据的位置。  </p>
+<p>当读和写位置一样时，没有数据需要处理，</p>
+<pre><code class="c">struct KEYBUF &#123;
+    unsigned char data[32];
+    int next_r, next_w, len;
+&#125;;
+变量len是指缓冲区能记录多少字节的数据。
+    
+    
+void inthandler21(int *esp)
+&#123;
+    unsigned char data;
+    io_out8(PIC0_OCW2, 0x61); /* 通知 IRQ-01已经受理完毕 */
+    data = io_in8(PORT_KEYDAT);
+    if (keybuf.len &lt; 32) &#123; //如果keybuf还有空余位置
+        keybuf.data[keybuf.next_w] = data;
+        keybuf.len++;
+        keybuf.next_w++;
+        if (keybuf.next_w == 32) &#123;
+            keybuf.next_w = 0;
+        &#125;
+    &#125;
+    return;
+&#125;
+
+
+for (;;) &#123;
+io_cli();
+    if (keybuf.len == 0) &#123; 
+            io_stihlt();
+        &#125; else &#123;//len记录存放的数据的多少
+            i = keybuf.data[keybuf.next_r];
+            keybuf.len--;
+            keybuf.next_r++;
+            if (keybuf.next_r == 32) &#123;
+                keybuf.next_r = 0;
+            &#125;
+            io_sti();
+    &#125;
+&#125;
+</code></pre>
+<h3 id="鼠标（harib04f）"><a href="#鼠标（harib04f）" class="headerlink" title="鼠标（harib04f）"></a>鼠标（harib04f）</h3><p>鼠标传送的信息较多，在一开的时候并不适合操作系统</p>
+<p>所以， 虽然在主板上做了鼠标用的电路， 但只要不执行激活鼠标的指令，就不产生鼠标的中断信号  </p>
+<p>要想让鼠标能够传送数据、产生中断信号</p>
+<ol>
+<li>激活鼠标控制电路</li>
+<li>激活鼠标本身</li>
+</ol>
+<blockquote>
+<p>控制电路的设定  </p>
+</blockquote>
+<p>鼠标控制电路包含在键盘控制电路里， 如果键盘控制电路的初始化正常完成， 鼠标电路控制器的激活也就完成了  </p>
+<pre><code class="c">#define PORT_KEYDAT 0x0060
+#define PORT_KEYSTA 0x0064
+#define PORT_KEYCMD 0x0064
+#define KEYSTA_SEND_NOTREADY 0x02
+#define KEYCMD_WRITE_MODE 0x60
+#define KBC_MODE 0x47
+
+    /*它的作用是， 让键盘控制电路（keyboard controller, KBC） 做好准备动作， 等待控制指令的到来。*/
+void wait_KBC_sendready(void)
+&#123;
+    /* 等待键盘控制电路准备完毕 */
+    for (;;) &#123;
+        if ((io_in8(PORT_KEYSTA) &amp; KEYSTA_SEND_NOTREADY) == 0) &#123;
+            break;
+        &#125;
+    &#125;
+    return;
+&#125; 
+ /*如果键盘控制电路可以接受CPU指令了， CPU从设备号码0x0064处所读取的数据的倒数第二位（从低位开始数的第二位） 应该是0。 在确认到这一位是0之前， 程序一直通过for语句循环查询。*/
+
+    
+void init_keyboard(void)
+&#123;
+    /* 初始化键盘控制电路 */
+    wait_KBC_sendready();
+    io_out8(PORT_KEYCMD, KEYCMD_WRITE_MODE); //进行模式设定
+    wait_KBC_sendready();
+    io_out8(PORT_KEYDAT, KBC_MODE);  //利用鼠标模式
+    return;
+&#125;
+</code></pre>
+<blockquote>
+<p>鼠标设定</p>
+</blockquote>
+<p>现在， 我们开始发送激活鼠标的指令。 所谓发送鼠标激活指令， 归根到底还是要向键盘控制器发送指令  </p>
+<pre><code class="c">#define KEYCMD_SENDTO_MOUSE 0xd4
+#define MOUSECMD_ENABLE 0xf4
+void enable_mouse(void)
+&#123;
+    /* 激活鼠标 */
+    wait_KBC_sendready();
+    /*往键盘控制电路发送指令0xd4， 下一个数据就会自动发送给鼠标。 */
+    io_out8(PORT_KEYCMD, KEYCMD_SENDTO_MOUSE);
+    wait_KBC_sendready();
+    /*激活鼠标*/
+    io_out8(PORT_KEYDAT, MOUSECMD_ENABLE);
+    return; /* 顺利的话,键盘控制其会返送回ACK(0xfa)*/
+&#125;
+</code></pre>
+<h3 id="从鼠标接受数据（harib04g）"><a href="#从鼠标接受数据（harib04g）" class="headerlink" title="从鼠标接受数据（harib04g）"></a>从鼠标接受数据（harib04g）</h3><blockquote>
+<p>中断函数</p>
+</blockquote>
+<pre><code class="C">struct FIFO8 mousefifo;
+void inthandler2c(int *esp)
+/* 来自PS/2鼠标的中断 */
+&#123;
+    unsigned char data;
+    io_out8(PIC1_OCW2, 0x64); /* 通知PIC1 IRQ-12的受理已经完成 */
+    io_out8(PIC0_OCW2, 0x62); /* 通知PIC0 IRQ-02的受理已经完成 */
+    data = io_in8(PORT_KEYDAT);
+    fifo8_put(&amp;mousefifo, data);
+    return;
+&#125;
+</code></pre>
+<p>因为鼠标位于从PIC ，因此首先需要通知PIC1  ，鼠标的中断受理完成，</p>
+<p>然后通知主PIC，从PIC终端受理完成。</p>
+<blockquote>
+<p>主函数</p>
+</blockquote>
+<pre><code class="c">fifo8_init(&amp;mousefifo, 128, mousebuf);
+for (;;) &#123;
+    io_cli();
+    if (fifo8_status(&amp;keyfifo) + fifo8_status(&amp;mousefifo) == 0) &#123;
+        io_stihlt();
+    &#125; else &#123;
+        if (fifo8_status(&amp;keyfifo) != 0) &#123;
+            i = fifo8_get(&amp;keyfifo);
+            io_sti();
+            sprintf(s, &quot;%02X&quot;, i);
+            boxfill8(binfo-&gt;vram, binfo-&gt;scrnx, COL8_008484, 0, 16, 15, 31);
+            putfonts8_asc(binfo-&gt;vram, binfo-&gt;scrnx, 0, 16, COL8_FFFFFF, s);
+        &#125; else if (fifo8_status(&amp;mousefifo) != 0) &#123;
+            i = fifo8_get(&amp;mousefifo);
+            io_sti();
+            sprintf(s, &quot;%02X&quot;, i);
+            boxfill8(binfo-&gt;vram, binfo-&gt;scrnx, COL8_008484, 32, 16, 47, 31);
+            putfonts8_asc(binfo-&gt;vram, binfo-&gt;scrnx, 32, 16, COL8_FFFFFF, s);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>取得数据的程序中， 如果键盘和鼠标的FIFO缓冲区都为空了， 就执行HLT。 如果不是两者都空， 就先检查keyinfo， 如果有数据， 就取出一个显示出来。 如果keyinfo是空， 就再去检查mouseinfo， 如果有数据， 就取出一个显示出来。  </p>
+<h2 id="20220319"><a href="#20220319" class="headerlink" title="20220319"></a>20220319</h2><h3 id="鼠标信息解读harib05a"><a href="#鼠标信息解读harib05a" class="headerlink" title="鼠标信息解读harib05a"></a>鼠标信息解读harib05a</h3><p>在一开始激活鼠标后，会获得一个0xfa 字节数据，将该数据舍弃后，后续的数据都是3个字节为一组的。</p>
+<pre><code class="c">
+unsigned char mouse_dbuf[3], mouse_phase;
+enable_mouse();
+mouse_phase = 0; /* 进入到等待鼠标的0xfa的状态 */
+for (;;) &#123;
+    io_cli();
+    if (fifo8_status(&amp;keyfifo) + fifo8_status(&amp;mousefifo) == 0) &#123;
+        io_stihlt();
+        &#125; else &#123;
+            if (fifo8_status(&amp;keyfifo) != 0) &#123;
+                i = fifo8_get(&amp;keyfifo);
+                io_sti();
+                sprintf(s, &quot;%02X&quot;, i);
+                boxfill8(binfo-&gt;vram, binfo-&gt;scrnx, COL8_008484, 0, 16, 15, 31);
+                putfonts8_asc(binfo-&gt;vram, binfo-&gt;scrnx, 0, 16, COL8_FFFFFF, s);
+            &#125; else if (fifo8_status(&amp;mousefifo) != 0) &#123;
+                i = fifo8_get(&amp;mousefifo);
+                io_sti();
+            if (mouse_phase == 0) &#123;
+            /* 等待鼠标的0xfa的状态 */
+            if (i == 0xfa) &#123;
+                mouse_phase = 1;
+            &#125;
+            &#125; else if (mouse_phase == 1) &#123;
+                /* 等待鼠标的第一字节 */
+                mouse_dbuf[0] = i;
+                mouse_phase = 2;
+            &#125; else if (mouse_phase == 2) &#123;
+                /* 等待鼠标的第二字节 */
+                mouse_dbuf[1] = i;
+                mouse_phase = 3;
+            &#125; else if (mouse_phase == 3) &#123;
+                /* 等待鼠标的第三字节 */
+                mouse_dbuf[2] = i;
+                mouse_phase = 1;
+                /* 鼠标的3个字节都齐了， 显示出来 */sprintf(s, &quot;%02X %02X %02X&quot;, mouse_dbuf[0], mouse_dbuf[1],
+                mouse_dbuf[2]);
+                boxfill8(binfo-&gt;vram, binfo-&gt;scrnx, COL8_008484, 32, 16, 32 + 8 *
+                8 - 1, 31);
+                putfonts8_asc(binfo-&gt;vram, binfo-&gt;scrnx, 32, 16, COL8_FFFFFF, s);
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>代码逻辑: </p>
+<ol>
+<li>代码进入鼠标数据处理后，首先检测mouse_phase的值，若为0 ，则一开始的0xfa还未读取.</li>
+<li>若读入字节为0xfa ,将mouse_phase 的值设为1</li>
+<li>如果为1 ，则读入第一个字节 ，如为2，读入第二个字节 ….</li>
+<li>如果为3，读入第三个字节并显示，将 mouse_phase值置为1</li>
+</ol>
+<h3 id="鼠标解读2-harib05c"><a href="#鼠标解读2-harib05c" class="headerlink" title="鼠标解读2    harib05c"></a>鼠标解读2    harib05c</h3><blockquote>
+<p>数据处理部分</p>
+</blockquote>
+<pre><code class="c">struct MOUSE_DEC &#123;
+unsigned char buf[3], phase;
+int x, y, btn;
+&#125;;
+int mouse_decode(struct MOUSE_DEC *mdec, unsigned char dat)
+&#123;
+    if (mdec-&gt;phase == 0) &#123;
+    /* 等待鼠标的0xfa的阶段 */
+        if (dat == 0xfa) &#123;
+            mdec-&gt;phase = 1;
+        &#125;
+        return 0;
+    &#125;
+    if (mdec-&gt;phase == 1) &#123;
+        /* 等待鼠标第一字节的阶段 */
+        if ((dat &amp; 0xc8) == 0x08) &#123;
+            /* 如果第一字节正确 */
+            mdec-&gt;buf[0] = dat;
+            mdec-&gt;phase = 2;
+        &#125;
+        return 0;
+    &#125;
+    if (mdec-&gt;phase == 2) &#123;
+        /* 等待鼠标第二字节的阶段 */
+        mdec-&gt;buf[1] = dat;
+        mdec-&gt;phase = 3;
+        return 0;
+    &#125;
+    if (mdec-&gt;phase == 3) &#123;
+        /* 等待鼠标第三字节的阶段 */
+        mdec-&gt;buf[2] = dat;
+        mdec-&gt;phase = 1;
+        mdec-&gt;btn = mdec-&gt;buf[0] &amp; 0x07;
+        mdec-&gt;x = mdec-&gt;buf[1];
+        mdec-&gt;y = mdec-&gt;buf[2];
+        if ((mdec-&gt;buf[0] &amp; 0x10) != 0) &#123;
+            mdec-&gt;x |= 0xffffff00;
+        &#125;
+        if ((mdec-&gt;buf[0] &amp; 0x20) != 0) &#123;
+            mdec-&gt;y |= 0xffffff00;
+        &#125;
+        mdec-&gt;y = - mdec-&gt;y; /* 鼠标的y方向与画面符号相反 */
+        return 1;
+    &#125;
+    return -1; /* 应该不会到这儿来 */
+&#125;
+</code></pre>
+<p>结构体新增了int x, y, btn;  用于存储移动信息和鼠标的按键状态</p>
+<p>在phase=1阶段，对第一个字节进行判断，如果异常（高2位不是0<del>3，低四位不是8</del>F），该字节与后续两个字节都会被丢弃。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42707324/article/details/107069180">https://blog.csdn.net/weixin_42707324/article/details/107069180</a></p>
+<p>在phase=3阶段，开始对获取到的三个字节信息进行处理</p>
+<p>buf[0]的低三位为鼠标键信息，存入btn中，</p>
+<p>​    在buf[0]低四位为8的情况下，代表鼠标移动，buf[0]的高四位存储方向信息 </p>
+<p>​    在buf[0]低四位为9、A、F情况下，代表按键按下</p>
+<blockquote>
+<p>对于移动的位移，PS/2内置有两个位移寄存器，包括X方向和Y方向的位移寄存器，而这些寄存器存储的是<strong>9位带符号位整数</strong></p>
+</blockquote>
+<p>如图，buf[0]的第4、5位存放两个方向寄存器的符号位置。</p>
+<p>buf[1]为x方向信息</p>
+<p>​    如图，如果buf[0]的第4位为1 ，代表为负值，要将int类型的高24位计为1 ，代表负数</p>
+<p>buf[2]为y方向信息</p>
+<p>​    …..</p>
+<blockquote>
+<p>显示部分</p>
+</blockquote>
+<pre><code class="c">&#125; else if (fifo8_status(&amp;mousefifo) != 0) &#123;
+    i = fifo8_get(&amp;mousefifo);
+    io_sti();
+    if (mouse_decode(&amp;mdec, i) != 0) &#123;
+    /* 数据的3个字节都齐了， 显示出来 */
+        sprintf(s, &quot;[lcr %4d %4d]&quot;, mdec.x, mdec.y);
+        if ((mdec.btn &amp; 0x01) != 0) &#123;
+            s[1] = &#39;L&#39;;
+        &#125;
+        if ((mdec.btn &amp; 0x02) != 0) &#123;
+            s[3] = &#39;R&#39;;
+        &#125;
+        if ((mdec.btn &amp; 0x04) != 0) &#123;
+            s[2] = &#39;C&#39;;
+        &#125;
+        boxfill8(binfo-&gt;vram, binfo-&gt;scrnx, COL8_008484, 32, 16, 32 + 15 * 8 - 1,31);
+        putfonts8_asc(binfo-&gt;vram, binfo-&gt;scrnx, 32, 16, COL8_FFFFFF, s);
+        &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>让鼠标移动</p>
+</blockquote>
+<ol>
+<li>覆盖原来的鼠标</li>
+<li>x，y加上移动的偏移</li>
+<li>绘制鼠标</li>
+</ol>
+<h3 id="asmhead-nas-代码解读"><a href="#asmhead-nas-代码解读" class="headerlink" title="asmhead.nas  代码解读"></a>asmhead.nas  代码解读</h3><blockquote>
+<p>关闭全部中断</p>
+</blockquote>
+<pre><code class="assembly">; PIC关闭一切中断
+; 根据AT兼容机的规格， 如果要初始化PIC，
+; 必须在CLI之前进行， 否则有时会挂起。
+; 随后进行PIC的初始化。
+    MOV AL,0xff
+    OUT 0x21,AL
+    NOP ; 如果连续执行OUT指令， 有些机种会无法正常运行
+    OUT 0xa1,AL
+    CLI ; 禁止CPU级别的中断
+</code></pre>
+<p>NOP指令什么都不做， 它只是让CPU休息一个时钟长的时间  </p>
+<blockquote>
+<p>为了让CPU能够访问1MB以上的内存空间， 设定A20GATE  </p>
+</blockquote>
+<pre><code class="assembly">; 为了让CPU能够访问1MB以上的内存空间， 设定A20GATECALL waitkbdout
+    MOV AL,0xd1
+    OUT 0x64,AL   
+    CALL waitkbdout
+    MOV AL,0xdf ; enable A20
+    OUT 0x60,AL
+    CALL waitkbdout
+</code></pre>
+<p>这里的waitkbdout， 等同于wait_KBC_sendready</p>
+<p>向0x64端口写入 0xd1 然后向0x60端口写入0xdf</p>
+<p>这里发送的指令， 是指令键盘控制电路的附属端口输出0xdf。 这个附属<br>端口， 连接着主板上的很多地方， 通过这个端口发送不同的指令， 就可<br>以实现各种各样的控制功能  </p>
+<p>这次输出0xdf所要完成的功能， 是让A20GATE信号线变成ON的状态  </p>
+<blockquote>
+<p>切换到保护模式</p>
+</blockquote>
+<pre><code class="assembly">; 切换到保护模式
+[INSTRSET &quot;i486p&quot;] ; “想要使用486指令”的叙述
+    LGDT [GDTR0] ; 设定临时GDT
+    MOV EAX,CR0
+    AND EAX,0x7fffffff ; 设bit31为0（为了禁止分页）
+    OR EAX,0x00000001 ; 设bit0为1（为了切换到保护模式）
+    MOV CR0,EAX
+    JMP pipelineflush
+pipelineflush:
+    MOV AX,1*8 ; 可读写的段 32bit
+    MOV DS,AX
+    MOV ES,AX
+    MOV FS,AX
+    MOV GS,AX
+    MOV SS,AX
+</code></pre>
+<ol>
+<li><p>INSTRSET指令， 是为了能够使用386以后的LGDT， EAX， CR0等关键字。</p>
+</li>
+<li><p>LGDT指令， 不管三七二十一， 把随意准备的GDT给读进来。 对于这个暂定的GDT， 我们以后还要重新设置。<br>GDTR0 定义如下</p>
+<pre><code class="assembly">GDTR0:
+        DW        8*3-1
+        DD        GDT0
+</code></pre>
+</li>
+<li><p>然后将CR0这一特殊的32位寄存器的值代入EAX， 并将最高位置为0， 最低位置为1， 再将这个值返回给CR0寄存器。 这样就完成了模式转换， 进入到保护模式。</p>
+</li>
+<li><p>CR0， 也就是control register 0， 是一个非常重要的寄存器， 只有操作系统才能操作它。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37414405/article/details/84487591">https://blog.csdn.net/qq_37414405/article/details/84487591</a><br>代码中操控了下面两位</p>
+<p><strong>Protected-Mode Enable (PE) Bit</strong>. Bit0. PE=0,表示CPU处于实模式; PE=1表CPU处于保护模式，并使用分段机制。</p>
+<p><strong>Paging Enable (PG) Bit</strong>. Bit 31. 该位控制分页机制，PG=1，启动分页机制；PG=0,不使用分页机制。</p>
+</li>
+<li><p>保护模式与先前的16位模式不同， 段寄存器的解释不是16倍， 而是能够使用GDT。 这里的“保护”， 来自英文的“protect”。 在这种模式下， 应用程序既不能随便改变段的设定， 又不能使用操作系统专用的段。 操作系统受到CPU的保护， 所以称为保护模式<br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/25272611">https://www.zhihu.com/question/25272611</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/bEngi1/p/12173719.html">https://www.cnblogs.com/bEngi1/p/12173719.html</a></p>
+</li>
+</ol>
+<p>代码切换到保护模式，通过GDT进行地址转换</p>
+<p>通过代入CR0而切换到保护模式时， 要马上执行JMP指令</p>
+<p>将相关的段寄存器都设置为GDT+1的段</p>
+<blockquote>
+<p>载入代码</p>
+</blockquote>
+<pre><code class="assembly">; bootpack的转送
+    MOV ESI,bootpack ; 转送源
+    MOV EDI,BOTPAK ; 转送目的地
+    MOV ECX,512*1024/4
+    CALL memcpy
+; 磁盘数据最终转送到它本来的位置去
+; 首先从启动扇区开始
+    MOV ESI,0x7c00 ; 转送源
+    MOV EDI,DSKCAC ; 转送目的地
+    MOV ECX,512/4
+    CALL memcpy
+; 所有剩下的
+    MOV ESI,DSKCAC0+512 ; 转送源
+    MOV EDI,DSKCAC+512 ; 转送目的地
+    MOV ECX,0
+    MOV CL,BYTE [CYLS]
+    IMUL ECX,512*18*2/4 ; 从柱面数变换为字节数/4
+    SUB ECX,512/4 ; 减去 IPL
+    CALL memcpy
+</code></pre>
+<blockquote>
+<p>memcpy(转送源地址ESI, 转送目的地址EDI, 转送数据的大小ECX);</p>
+<p>转送数据大小是以双字为单位的， 所以数据大小用字节数除以4来指定。  </p>
+</blockquote>
+<p>memcpy(0x7c00, DSKCAC, 512/4);<br>DSKCAC是0x00100000， 所以上面这句话的意思就是从0x7c00复制512字节到0x00100000。 这正好是将启动扇区复制到1MB以后的内存去的意思。</p>
+<p>memcpy(DSKCAC0+512, DSKCAC+512, cyls * 512<em>18</em>2/4-512/4);<br>它的意思就是将始于0x00008200的磁盘内容（也即是启动区代码<strong>加载到内存中的数据</strong>,共10个柱面180kb)， 复制到0x00100200那里。  </p>
+<p>现在我们还没说明的函数就只有有程序开始处的memcpy了。 bootpack是asmhead.nas的最后一个标签。 haribote.sys是通过asmhead.bin和bootpack.hrb连接起来而生成的（可以通过Makefile确认） ， 所以asmhead结束的地方， 紧接着串连着bootpack.hrb最前面的部分。</p>
+<p>memcpy(bootpack, BOTPAK, 512*1024/4); → 从bootpack的地址开始的512KB内容复<br>制到0x00280000号地址去。  </p>
+<blockquote>
+<p>后续代码</p>
+</blockquote>
+<pre><code class="assembly">; 必须由asmhead来完成的工作， 至此全部完毕
+; 以后就交由bootpack来完成
+; bootpack的启动
+    MOV EBX,BOTPAK
+    MOV ECX,[EBX+16]
+    ADD ECX,3 ; ECX += 3;
+    SHR ECX,2 ; ECX /= 4;
+    JZ skip ; 没有要转送的东西时
+    MOV ESI,[EBX+20] ; 转送源
+    ADD ESI,EBX
+    MOV EDI,[EBX+12] ; 转送目的地
+    CALL memcpy
+    skip:
+    MOV ESP,[EBX+12] ; 栈初始值
+    JMP DWORD 2*8:0x0000001b
+</code></pre>
+<p>将bootpack.hrb第 0x10c8字节开始的0x11a8字节复制到0x00310000号地址去  </p>
+<p>最后将0x310000代入到ESP里， 然后用一个特别的JMP指令， 将2 * 8 代<br>入到CS里， 同时移动到0x1b号地址。 这里的0x1b号地址是指第2个段的<br>0x1b号地址。 第2个段的基地址是0x280000， 所以实际上是从0x28001b<br>开始执行的。 这也就是bootpack.hrb的0x1b号地址。<br>这样就开始执行bootpack.hrb了。  </p>
+<blockquote>
+<p>目前内存分布如下</p>
+</blockquote>
+<p>0x00000000 - 0x000fffff : 虽然在启动中会多次使用， 但之后就变空。<br>（1MB）<br>0x00100000 - 0x00267fff : 用于保存软盘的内容。 （1440KB）<br>0x00268000 - 0x0026f7ff : 空（30KB）<br>0x0026f800 - 0x0026ffff : IDT （2KB）<br>0x00270000 - 0x0027ffff : GDT （64KB）<br>0x00280000 - 0x002fffff : bootpack.hrb（512KB）<br>0x00300000 - 0x003fffff : 栈及其他（1MB）<br>0x00400000 - : 空  </p>
+<blockquote>
+<p>最后一部分</p>
+</blockquote>
+<pre><code class="assembly">ALIGNB 16
+GDT0:
+    RESB 8 ; NULL selector
+    DW 0xffff,0x0000,0x9200,0x00cf ; 可以读写的段（segment） 32bit
+    DW 0xffff,0x0000,0x9a28,0x0047 ; 可以执行的段（segment） 32bit（bootpack用）
+    DW 0
+GDTR0:
+    DW 8*3-1
+    DD GDT0
+    ALIGNB 16
+bootpack:
+</code></pre>
+<p>ALIGNB  16指令的意思是， 一直添加DB  0   直到地址能被16整除为止。</p>
+<p>如果标签GDT0的地址不是8的整数倍， 向段寄存器复制的MOV指令就会慢一些。 所以我们插入了ALIGNB指令。  </p>
+<p>GDT0也是一种特定的GDT。 0号是空区域（null sector） ， 不能够在那里定义段。 1号和2号分别由下式设定。<br>set_segmdesc(gdt + 1, 0xffffffff, 0x00000000, AR_DATA32_RW);<br>set_segmdesc(gdt + 2, LIMIT_BOTPAK, ADR_BOTPAK, AR_CODE32_ER);  </p>
+<p>DD GDT0</p>
+<blockquote>
+<p>总结asmhead.nas</p>
+</blockquote>
+<ol>
+<li>关闭所有中断</li>
+<li>为了让CPU能够访问1MB以上的内存空间， 设定A20GATE</li>
+<li>创建一个临时的GDT, 包含两个段</li>
+<li>将IPL 、bootpack等代码载入指定的内存中</li>
+<li>最后跳转到主程序区(0x280000)继续执行</li>
+</ol>
+<pre><code class="assembly">程序: asmhead.nas
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; haribote-os boot asm
+; TAB=4
+
+BOTPAK    EQU        0x00280000        ; 主程序地址
+DSKCAC    EQU        0x00100000        ; 
+DSKCAC0    EQU        0x00008000        ;
+DATPAK    EQU        0x00000000        ; 程序数据地址
+
+; 有关BOOT_INFO
+CYLS    EQU    0x0ff0        ; 设定启动区
+LEDS    EQU    0x0ff1        ; 键盘状态
+VMODE    EQU    0x0ff2        ; 颜色位数
+SCRNX    EQU    0x0ff4        ; 分辨率X (screen x)
+SCRNY    EQU    0x0ff6        ; 分辨率Y (screen y)
+VRAM    EQU    0x0ff8        ; 图像缓冲区开始地址，显卡内存
+
+        ORG        0x8200        
+
+; 初始化栈地址
+        mov        esp,0x8000
+
+; 设定Graphic Mode
+        MOV        AL,0x13            ; VGA显卡，320x200x8位彩色    
+        MOV        AH,0x00
+        INT        0x10
+        MOV        BYTE [VMODE],8    
+        MOV        WORD [SCRNX],320
+        MOV        WORD [SCRNY],200
+        MOV        DWORD [VRAM],0x000a0000
+
+; 返回键盘状态
+
+        MOV        AH,0x02
+        INT        0x16             ; keyboard BIOS
+        MOV        [LEDS],AL
+
+; PIC 可编程中断控制器 有两个PIC 每个PIC有8个输入0-7 处理为1,忽略为0
+; cli关闭所有中断，sti打开所有中断
+
+
+        MOV        AL,0xff
+        OUT        0x21,AL            ; PCI1 data
+        NOP                    ; 太快可能会有问题
+        OUT        0xa1,AL            ; PCI2 data
+
+        CLI                    ; 关闭全部中断
+
+; 蛋疼的键盘A20 address enable
+
+        CALL    waitkbdout
+        MOV        AL,0xd1
+        OUT        0x64,AL
+        CALL    waitkbdout
+        MOV        AL,0xdf            ; enable A20
+        OUT        0x60,AL
+        CALL    waitkbdout    
+
+; 切换到保护模式
+        LGDT    [GDTR0]            
+        MOV        EAX,CR0
+        AND        EAX,0x7fffffff    ; 禁止分页
+        OR        EAX,0x00000001    
+        MOV        CR0,EAX
+        JMP        pipelineflush
+pipelineflush:
+        MOV        AX,1*8        ; 取数据段偏移
+        MOV        DS,AX        ; 数据段
+        MOV        ES,AX        ; 数据段(字符操作目标)
+        MOV        FS,AX        ; 数据段
+        MOV        GS,AX        ; 数据段
+        MOV        SS,AX        ; 栈段
+
+; 主程序加载到0x280000
+
+        MOV        ESI,bootpack+0x1000    
+        MOV        EDI,BOTPAK+0x9000        
+        MOV        ECX,0x77000/4
+        CALL    memcpy
+; 数据加载到0x000000
+
+        MOV        esi,bootpack+0x1000
+        mov        eax,DATPAK+0x9000
+        MOV        edi,eax
+        MOV        ecx,0x77000/4    ; 小心不要覆盖引导区
+        CALL    memcpy
+
+; 跳转主程序
+
+        MOV        ESP,0x9ffff    ; 设置栈地址
+        JMP        DWORD 2*8:0x0000f000    ; 跳转到0x280000
+
+waitkbdout:
+        IN         AL,0x64
+        AND         AL,0x02        ; cpu可向键盘写命令时为1
+        JNZ        waitkbdout        ; 
+        RET
+
+memcpy:
+        MOV        EAX,[ESI]
+        ADD        ESI,4
+        MOV        [EDI],EAX
+        ADD        EDI,4
+        SUB        ECX,1
+        JNZ        memcpy    
+        RET
+; 全局变量表
+
+        ALIGNB    16    ; 16字节对齐 bss段
+GDT0:
+        RESB    8                    ; 第一项为0，这是规定
+        DW        0xffff,0x0000,0x9200,0x00cf    ; 整个内存
+        DW        0xffff,0x0000,0x9a28,0x0047    ; 程序段
+
+        DW        0
+GDTR0:
+        DW        8*3-1        ; 表的大小(字节)减1
+        DD        GDT0        ; 表的地址
+
+        ALIGNB    16
+bootpack:
+        resb    0x1000
+</code></pre>
+<h2 id="20220325"><a href="#20220325" class="headerlink" title="20220325"></a>20220325</h2><h3 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h3><blockquote>
+<p>内存检查</p>
+</blockquote>
+<pre><code class="assembly">_memtest_sub: ; unsigned int memtest_sub(unsigned int start, unsigned int end)
+PUSH EDI ; （由于还要使用EBX, ESI, EDI）
+PUSH ESI
+PUSH EBX
+MOV ESI,0xaa55aa55 ; pat0 = 0xaa55aa55;
+MOV EDI,0x55aa55aa ; pat1 = 0x55aa55aa;
+MOV EAX,[ESP+12+4] ; i = start;
+mts_loop:
+MOV EBX,EAX
+ADD EBX,0xffc ; p = i + 0xffc;
+MOV EDX,[EBX] ; old = *p;
+MOV [EBX],ESI ; *p = pat0;XOR DWORD [EBX],0xffffffff ; *p ^= 0xffffffff;
+CMP EDI,[EBX] ; if (*p != pat1) goto fin;
+JNE mts_fin
+XOR DWORD [EBX],0xffffffff ; *p ^= 0xffffffff;
+CMP ESI,[EBX] ; if (*p != pat0) goto fin;
+JNE mts_fin
+MOV [EBX],EDX ; *p = old;
+ADD EAX,0x1000 ; i += 0x1000;
+CMP EAX,[ESP+12+8] ; if (i &lt;= end) goto mts_loop;
+JBE mts_loop
+POP EBX
+POP ESI
+POP EDI
+RET
+mts_fin:
+MOV [EBX],EDX ; *p = old;
+POP EBX
+POP ESI
+POP EDI
+RET
+</code></pre>
+<p>将内存每4kB分一块，对最后4Byte进行检查。‘</p>
+<blockquote>
+<p>​    内存管理</p>
+</blockquote>
+<p>操作系统在工作中， 有时需要分配一定大小的内存， 用完以后又不再需要， 这种事会频繁发生。 为了应付这些需<br>求， 必须恰当管理好哪些内存可以使用（哪些内存空闲） ， 哪些内存不可以使用（正在使用） ， 这就是内存管理。 如果不进行管理， 系统会变得一塌糊涂， 要么不知道哪里可用， 要么多个应用程序使用同一地址的内存。  </p>
+<blockquote>
+<p>内存分配</p>
+</blockquote>
+<pre><code class="c">unsigned int memman_alloc(struct MEMMAN *man, unsigned int size)
+/* 分配 */
+&#123;
+    unsigned int i, a;
+    for (i = 0; i &lt; man-&gt;frees; i++) &#123;
+        if (man-&gt;free[i].size &gt;= size) &#123;
+            /* 找到了足够大的内存 */
+            a = man-&gt;free[i].addr;
+            man-&gt;free[i].addr += size;
+            man-&gt;free[i].size -= size;
+            if (man-&gt;free[i].size == 0) &#123;
+            /* 如果free[i]变成了0， 就减掉一条可用信息 */
+                man-&gt;frees--;
+                for (; i &lt; man-&gt;frees; i++) &#123;
+                man-&gt;free[i] = man-&gt;free[i + 1]; /* 代入结构体 */
+                &#125;
+            &#125;
+            return a; //返回分配的内存的初始地址
+        &#125;
+    &#125;
+    return 0; /* 没有可用空间 */
+&#125;
+</code></pre>
+<p>在分配的时候，只需要遍历MEMMAN，找到一个满足大小的free[i] ,进行分配即可。</p>
+<p>复杂的地方在内存释放。</p>
+<blockquote>
+<p>内存释放</p>
+</blockquote>
+<p>情况1: 如果释放的内存，其前面有可用的内存</p>
+<p>​    </p>
+<pre><code class="c">int memman_free(struct MEMMAN *man, unsigned int addr, unsigned int size)
+/* 释放 */
+&#123;
+    int i, j;
+    /* 为便于归纳内存， 将free[]按照addr的顺序排列 */
+    /* 所以， 先决定应该放在哪里 */
+    for (i = 0; i &lt; man-&gt;frees; i++) &#123;
+        if (man-&gt;free[i].addr &gt; addr) &#123;
+        break;
+        &#125;
+    &#125;
+        /*此时获取的i，满足 free[i - 1].addr &lt; addr &lt; free[i].addr */
+    if (i &gt; 0) &#123;
+    /* 前面有可用内存 ，并且地址相拼接*/
+        if (man-&gt;free[i - 1].addr + man-&gt;free[i - 1].size == addr) &#123;
+            /* 可以与前面的可用内存归纳到一起 */
+            man-&gt;free[i - 1].size += size;
+            if (i &lt; man-&gt;frees) &#123;
+                /* 后面也有 */
+                if (addr + size == man-&gt;free[i].addr) &#123;
+                    /* 也可以与后面的可用内存归纳到一起 */
+                    man-&gt;free[i - 1].size += man-&gt;free[i].size;
+                    /* man-&gt;free[i]删除 */
+                    /* free[i]变成0后归纳到前面去 */
+                    man-&gt;frees--;
+                    for (; i &lt; man-&gt;frees; i++) &#123;
+                        man-&gt;free[i] = man-&gt;free[i + 1]; /* 结构体赋值 */
+                    &#125;
+                &#125;
+            &#125;
+            return 0; /* 成功完成 */
+           &#125;
+    &#125;
+        /* 不能与前面的可用空间归纳到一起 */
+    if (i &lt; man-&gt;frees) &#123;
+        /* 后面还有 */
+        if (addr + size == man-&gt;free[i].addr) &#123;
+            /* 可以与后面的内容归纳到一起 */
+            man-&gt;free[i].addr = addr;
+            man-&gt;free[i].size += size;
+            return 0; /* 成功完成 */
+        &#125;
+    &#125;
+    /* 既不能与前面归纳到一起， 也不能与后面归纳到一起 
+        此时需要插入一个新的free[]
+    */
+    if (man-&gt;frees &lt; MEMMAN_FREES) &#123;
+        /* free[i]之后的， 向后移动， 腾出一点可用空间 */
+        for (j = man-&gt;frees; j &gt; i; j--) &#123;
+            man-&gt;free[j] = man-&gt;free[j - 1];
+        &#125;
+        man-&gt;frees++;
+        if (man-&gt;maxfrees &lt; man-&gt;frees) &#123;
+            man-&gt;maxfrees = man-&gt;frees; /* 更新最大值 */
+        &#125;
+        man-&gt;free[i].addr = addr;
+        man-&gt;free[i].size = size;return 0; /* 成功完成 */
+    &#125;/
+    * 不能往后移动 */
+    man-&gt;losts++;
+    man-&gt;lostsize += size;
+    return -1; /* 失败 */
+&#125;
+</code></pre>
+<h2 id="20220326"><a href="#20220326" class="headerlink" title="20220326"></a>20220326</h2><h3 id="图层叠加harib07b"><a href="#图层叠加harib07b" class="headerlink" title="图层叠加harib07b"></a>图层叠加harib07b</h3><blockquote>
+<p>图层信息</p>
+</blockquote>
+<pre><code class="c">struct SHEET &#123;
+    unsigned char *buf;
+    int bxsize, bysize, vx0, vy0, col_inv, height, flags;
+&#125;
+</code></pre>
+<p>buf用来存储图层的地址</p>
+<p>图层的整体大小，用bxsize * bysize 来表示</p>
+<p>vx0和vy0是表示图层在画面上位置的坐标， v是VRAM的略语。  </p>
+<p>col_inv表示透明色色号， 它是color（颜色） 和invisible（透明） 的组合略语。</p>
+<p> height表示图层高度</p>
+<p> Flags用于存放有关图层的各种设定信息。</p>
+<blockquote>
+<p> 图层集合</p>
+</blockquote>
+<pre><code class="c">#define MAX_SHEETS 256
+struct SHTCTL &#123;
+    unsigned char *vram;
+    int xsize, ysize, top;
+    struct SHEET *sheets[MAX_SHEETS];
+    struct SHEET sheets0[MAX_SHEETS];
+&#125;;
+</code></pre>
+<p>变量vram、 xsize、 ysize代表VRAM的地址和画面的大小  。</p>
+<p>top代表最上面图层的高度。   </p>
+<p>sheets0这个结构体用于存放我们准备的256个图层的信息  。</p>
+<p>sheets是记忆地址变量的领域，   由于sheets0中的图层顺序混乱， 所以<br>我们把它们按照高度进行升序排列， 然后将其地址写入sheets中， 这样<br>就方便多了。  </p>
+<p><img src="/2022/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20220326125741267.png" alt="image-20220326125741267"></p>
+<blockquote>
+<p>结构体初始化</p>
+</blockquote>
+<pre><code class="c">struct SHTCTL *shtctl_init(struct MEMMAN *memman, unsigned char *vram, int xsize,
+int ysize)
+&#123;
+    struct SHTCTL *ctl;
+    int i;
+    ctl = (struct SHTCTL *) memman_alloc_4k(memman, sizeof (struct SHTCTL));
+    if (ctl == 0) &#123;
+        goto err;
+    &#125;
+    ctl-&gt;vram = vram;
+    ctl-&gt;xsize = xsize;
+    ctl-&gt;ysize = ysize;
+    ctl-&gt;top = -1; /*一个SHEET没都有 */
+    for (i = 0; i &lt; MAX_SHEETS; i++) &#123;
+        ctl-&gt;sheets0[i].flags = 0; /* 标记为未使用 */
+    &#125;
+    err:
+    return ctl;
+&#125;
+</code></pre>
+<p>分配内存 -&gt; 初始化结构体</p>
+<blockquote>
+<p>取得未使用的图层</p>
+</blockquote>
+<pre><code class="c">#define SHEET_USE 1
+struct SHEET *sheet_alloc(struct SHTCTL *ctl)
+&#123;
+    struct SHEET *sht;
+    int i;
+    for (i = 0; i &lt; MAX_SHEETS; i++) &#123;
+        if (ctl-&gt;sheets0[i].flags == 0) &#123;
+            sht = &amp;ctl-&gt;sheets0[i];
+            sht-&gt;flags = SHEET_USE; /* 标记为正在使用*/
+            sht-&gt;height = -1; /* 隐藏 */
+            return sht;
+        &#125;
+    &#125;
+    return 0; /* 所有的SHEET都处于正在使用状态*/
+    
+&#125;
+</code></pre>
+<p>获取未使用的图层 –&gt; 获取该图层指针 标记为使用 设置高度为-1</p>
+<p>程序中出现的&amp;ctl—&gt;sheets0[i]是“ctl—&gt;sheets0[i]的地址”的意思。 也就是说， 指的是&amp;（ctl—&gt;sheets0[i]） ， 而不是（&amp;ctl） —&gt; sheets0[i]。  </p>
+<blockquote>
+<p>设置图层的缓冲区大小和透明度</p>
+</blockquote>
+<pre><code class="c">
+void sheet_setbuf(struct SHEET *sht, unsigned char *buf, int xsize, int ysize,
+int col_inv)
+&#123;
+    sht-&gt;buf = buf;
+    sht-&gt;bxsize = xsize;
+    sht-&gt;bysize = ysize;
+    sht-&gt;col_inv = col_inv;
+    return;
+&#125;
+</code></pre>
+<blockquote>
+<p>设定图层高度函数</p>
+</blockquote>
+<p>将指定的图层设置成新的高度</p>
+<pre><code class="c">void sheet_updown(struct SHTCTL *ctl, struct SHEET *sht, int height)
+&#123;
+    int h, old = sht-&gt;height; /* 存储设置前的高度信息 */
+
+    /* 如果指定的高度过高或过低， 则进行修正 */
+    if (height &gt; ctl-&gt;top + 1) &#123;
+        height = ctl-&gt;top + 1;
+    &#125;
+    if (height &lt; -1) &#123;
+        height = -1;
+    &#125;
+    sht-&gt;height = height;/* 设定高度 */
+
+    /* 下面主要是进行sheets[ ]的重新排列 */
+    if (old &gt; height) &#123;/* 比以前低 */
+        if (height &gt;= 0) &#123;
+            /* 把中间的往上提 */
+            for (h = old; h &gt; height; h--) &#123;
+                ctl-&gt;sheets[h] = ctl-&gt;sheets[h - 1];
+                ctl-&gt;sheets[h]-&gt;height = h;
+            &#125;
+            ctl-&gt;sheets[height] = sht;
+        &#125; else &#123;    /* 隐藏 */
+            if (ctl-&gt;top &gt; old) &#123;
+                /* 把上面的降下来 */
+                for (h = old; h &lt; ctl-&gt;top; h++) &#123;
+                    ctl-&gt;sheets[h] = ctl-&gt;sheets[h + 1];
+                    ctl-&gt;sheets[h]-&gt;height = h;
+                &#125;
+            &#125;
+            ctl-&gt;top--; /* 由于显示中的图层减少了一个， 所以最上面的图层高度下降 */
+        &#125;
+        sheet_refresh(ctl);/* 按新图层的信息重新绘制画面 */
+    &#125; else if (old &lt; height) &#123;    /* 比以前高 */
+        if (old &gt;= 0) &#123;
+            /* 把中间的拉下去 */
+            for (h = old; h &lt; height; h++) &#123;
+                ctl-&gt;sheets[h] = ctl-&gt;sheets[h + 1];
+                ctl-&gt;sheets[h]-&gt;height = h;
+            &#125;
+            ctl-&gt;sheets[height] = sht;
+        &#125; else &#123;    /* 由隐藏状态转为显示状态 */
+            /* 将已在上面的提上来 */
+            for (h = ctl-&gt;top; h &gt;= height; h--) &#123;
+                ctl-&gt;sheets[h + 1] = ctl-&gt;sheets[h];
+                ctl-&gt;sheets[h + 1]-&gt;height = h + 1;
+            &#125;
+            ctl-&gt;sheets[height] = sht;
+            ctl-&gt;top++; /* 由于已显示的图层增加了1个， 所以最上面的图层高度增加 */
+        &#125;
+        sheet_refresh(ctl); /* 由于已显示的图层增加了1个， 所以最上面的图层高度增加 */
+    &#125;
+    return;
+&#125;
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaoana_139/article/details/103802183">https://blog.csdn.net/xiaoana_139/article/details/103802183</a></p>
+<p><img src="/2022/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20220326163633662.png" alt="image-20220326163633662"></p>
+<blockquote>
+<p> 从下到上描绘所有的图层  </p>
+</blockquote>
+<pre><code class="c">void sheet_refresh(struct SHTCTL *ctl)
+&#123;
+    int h, bx, by, vx, vy;
+    unsigned char *buf, c, *vram = ctl-&gt;vram;
+    struct SHEET *sht;
+    for (h = 0; h &lt;= ctl-&gt;top; h++) &#123;
+        sht = ctl-&gt;sheets[h];
+        buf = sht-&gt;buf;
+        for (by = 0; by &lt; sht-&gt;bysize; by++) &#123;
+            vy = sht-&gt;vy0 + by;
+            for (bx = 0; bx &lt; sht-&gt;bxsize; bx++) &#123;
+                vx = sht-&gt;vx0 + bx;
+                c = buf[by * sht-&gt;bxsize + bx];
+                if (c != sht-&gt;col_inv) &#123;
+                    vram[vy * ctl-&gt;xsize + vx] = c;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    return;
+&#125;
+</code></pre>
+<p>由低到高遍历图层，</p>
+<p>对每一个图层的每一个像素，如果不为透明，则将其写入vram中</p>
+<blockquote>
+<p>上下左右移动图层的函数</p>
+</blockquote>
+<pre><code class="c">void sheet_slide(struct SHTCTL *ctl, struct SHEET *sht, int vx0, int vy0)
+&#123;
+    sht-&gt;vx0 = vx0;
+    sht-&gt;vy0 = vy0;
+    if (sht-&gt;height &gt;= 0) &#123; /* 如果正在显示*/
+        sheet_refresh(ctl); /* 按新图层的信息刷新画面 */
+    &#125;
+    return;
+&#125;
+</code></pre>
+<blockquote>
+<p>释放图层的函数</p>
+</blockquote>
+<pre><code class="c">void sheet_free(struct SHTCTL *ctl, struct SHEET *sht)&#123;
+    if (sht-&gt;height &gt;= 0) &#123;
+        sheet_updown(ctl, sht, -1); /* 如果处于显示状态， 则先设定为隐藏 */
+    &#125;
+    sht-&gt;flags = 0; /* &quot;未使用&quot;标志 */
+    return;
+&#125;
+</code></pre>
+<h3 id="提高叠加的优化速度harib07c"><a href="#提高叠加的优化速度harib07c" class="headerlink" title="提高叠加的优化速度harib07c"></a>提高叠加的优化速度harib07c</h3><p>上面的代码，在每次鼠标移动时，将所有的图层都重新绘制了一遍。</p>
+<p>其实在移动时只要修改鼠标所在范围的像素即可</p>
+<pre><code class="c">void sheet_refreshsub(struct SHTCTL *ctl, int vx0, int vy0, int vx1, int vy1)
+&#123;
+    int h, bx, by, vx, vy;
+    unsigned char *buf, c, *vram = ctl-&gt;vram;
+    struct SHEET *sht;
+    for (h = 0; h &lt;= ctl-&gt;top; h++) &#123;
+        sht = ctl-&gt;sheets[h];
+        buf = sht-&gt;buf;
+        for (by = 0; by &lt; sht-&gt;bysize; by++) &#123;
+            vy = sht-&gt;vy0 + by;
+            for (bx = 0; bx &lt; sht-&gt;bxsize; bx++) &#123;
+                vx = sht-&gt;vx0 + bx;
+                if (vx0 &lt;= vx &amp;&amp; vx &lt; vx1 &amp;&amp; vy0 &lt;= vy &amp;&amp; vy &lt; vy1) &#123;
+                    c = buf[by * sht-&gt;bxsize + bx];
+                    if (c != sht-&gt;col_inv) &#123;
+                        vram[vy * ctl-&gt;xsize + vx] = c;
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    return;
+&#125;
+</code></pre>
+<p>如图，通过使用vx0~vy1 来指定刷新(refresh)的区域。</p>
+<p>遍历图层，如果满足vx0 &lt;= vx &amp;&amp; vx &lt; vx1 &amp;&amp; vy0 &lt;= vy &amp;&amp; vy &lt; vy1(即与refresh重叠的区域)，则写入像素。</p>
+<p><img src="/2022/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20220326181447845.png" alt="image-20220326181447845"></p>
+<blockquote>
+<p>改造sheet_slide</p>
+</blockquote>
+<pre><code class="c">void sheet_slide(struct SHTCTL *ctl, struct SHEET *sht, int vx0, int vy0)
+&#123;
+    int old_vx0 = sht-&gt;vx0, old_vy0 = sht-&gt;vy0;
+    sht-&gt;vx0 = vx0;
+    sht-&gt;vy0 = vy0;
+    if (sht-&gt;height &gt;= 0) &#123; /* 如果正在显示， 则按新图层的信息刷新画面 */
+        sheet_refreshsub(ctl, old_vx0, old_vy0, old_vx0 + sht-&gt;bxsize, old_vy0 + sht-&gt;bysize);
+        sheet_refreshsub(ctl, vx0, vy0, vx0 + sht-&gt;bxsize, vy0 + sht-&gt;bysize);
+    &#125;
+    return;
+&#125;
+</code></pre>
+<p>这段程序所做的是： 首先记住目标图层移动前的显示位置(old)， 再设定新的显示位置(new)， 最后只要重新描绘移动前和移动后的地方就可以了。  </p>
+<ol>
+<li>重新绘制窗口移动前的所有图层在该窗口旧位置所在的像素。（sheet1就会显示的更为完整)</li>
+<li>重新绘制窗口移动后所有图层在该窗口新位置所在的像素。(sheet2部分将会被覆盖)</li>
+</ol>
+<p><img src="/2022/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20220326181653398.png" alt="image-20220326181653398"></p>
+<blockquote>
+<p>文字显示改造</p>
+</blockquote>
+<pre><code class="c">void sheet_refresh(struct SHTCTL *ctl, struct SHEET *sht, int bx0, int by0, int
+bx1, int by1)
+&#123;
+    if (sht-&gt;height &gt;= 0) &#123; /* 如果正在显示， 则按新图层的信息刷新画面*/
+        sheet_refreshsub(ctl, sht-&gt;vx0 + bx0, sht-&gt;vy0 + by0, sht-&gt;vx0 + bx1,sht-&gt;vy0 + by1);
+    &#125;
+    return;
+&#125;
+</code></pre>
+<p>vx0和vy0是表示图层在画面上位置的坐标</p>
+<p>首先确定刷新的范围为指定的图层指定的区域，其他图层在此区域重叠的部分都会被刷新。</p>
+<h3 id="提高速度2-harib07d"><a href="#提高速度2-harib07d" class="headerlink" title="提高速度2  harib07d"></a>提高速度2  harib07d</h3><p>上面的sheet_refreshsub使用了太多IF判断，仍有很大的性能提升空间。</p>
+<pre><code class="c">void sheet_refreshsub(struct SHTCTL *ctl, int vx0, int vy0, int vx1, int vy1)
+&#123;
+    int h, bx, by, vx, vy, bx0, by0, bx1, by1;
+    unsigned char *buf, c, *vram = ctl-&gt;vram;
+    struct SHEET *sht;
+    for (h = 0; h &lt;= ctl-&gt;top; h++) &#123;
+        sht = ctl-&gt;sheets[h];
+        buf = sht-&gt;buf;
+        /* 使用vx0～vy1， 对bx0～by1进行倒推*/
+        bx0 = vx0 - sht-&gt;vx0;
+        by0 = vy0 - sht-&gt;vy0;
+        bx1 = vx1 - sht-&gt;vx0;
+        by1 = vy1 - sht-&gt;vy0;
+        if (bx0 &lt; 0) &#123; bx0 = 0; &#125;
+        if (by0 &lt; 0) &#123; by0 = 0; &#125;
+        if (bx1 &gt; sht-&gt;bxsize) &#123; bx1 = sht-&gt;bxsize; &#125;
+        if (by1 &gt; sht-&gt;bysize) &#123; by1 = sht-&gt;bysize; &#125;
+        for (by = by0; by &lt; by1; by++) &#123;
+            vy = sht-&gt;vy0 + by;
+            for (bx = bx0; bx &lt; bx1; bx++) &#123;
+                vx = sht-&gt;vx0 + bx;
+                c = buf[by * sht-&gt;bxsize + bx];
+                if (c != sht-&gt;col_inv) &#123;
+                    vram[vy * ctl-&gt;xsize + vx] = c;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    return;
+&#125;
+</code></pre>
+<h2 id="——"><a href="#——" class="headerlink" title="——-"></a>——-</h2><h2 id="流程整体分析"><a href="#流程整体分析" class="headerlink" title="流程整体分析"></a>流程整体分析</h2><h3 id="CPU读入启动区"><a href="#CPU读入启动区" class="headerlink" title="CPU读入启动区"></a>CPU读入启动区</h3><blockquote>
+<p>CPU将系统盘中第一个扇区(启动区)的内容(512Byte)加载入内存中,检验扇区最后两字节是否为0x55 ,0xAA. 如果计算机确认了第一个扇区的最后两个字节正好是0x55 AA， 那它就认为这个扇区的开头是启动程序， 并开始执行这个程序  。</p>
+</blockquote>
+<h3 id="通过启动区加载操作系统代码"><a href="#通过启动区加载操作系统代码" class="headerlink" title="通过启动区加载操作系统代码"></a>通过启动区加载操作系统代码</h3><p>一个扇区是远远不够存储操作系统的，因此需要让CPU将其他扇区代码读入内存(缓冲区)中,我们要借助启动区读入的就是操作系统的代码。</p>
+<p>书中读入了10个柱面，10 × 2 × 18 × 512 = 184 320byte=180KB   也即读入了180KB的数据、代码</p>
+<h3 id="代码1-，初始化信息"><a href="#代码1-，初始化信息" class="headerlink" title="代码1 ，初始化信息"></a>代码1 ，初始化信息</h3><p>启动区执行完成后，会跳转到读入的扇区初始处开始执行代码，也即执行asmhead.nas处的代码</p>
+<p>通过asmhead,nas处的代码，进入C语言编写的主函数 void HariMain(void)</p>
+<h3 id="代码2-，初始化GDT和IDT"><a href="#代码2-，初始化GDT和IDT" class="headerlink" title="代码2 ，初始化GDT和IDT"></a>代码2 ，初始化GDT和IDT</h3><blockquote>
+<p>段号(segment selector 段选择符) 与GDT(global (segment) descriptor table 全局段号记录表)</p>
+</blockquote>
+<p>CPU需要用8个字节存储这些信息，但段寄存器只有16位(由于CPU设计的原因，低三位不能使用)，因此段寄存器只能存储段号, 再由段号映射到存在内存中的GDT（global (segment) descriptor table，全局段号记录表），读取段的信息。</p>
+<p>段寄存器有16位，三位不能使用，所以段号范围为0~8191即可以定义8192个段，每个段需要8字节来定义，一共需要64kb 即GDT大小为64KB</p>
+<blockquote>
+<p>IDT (interrupt descriptor table 中断记录表)</p>
+</blockquote>
+<p>当CPU遇到外部状况变化， 或者是内部偶然发生某些错误时， 会临时切换过去处理这种突发事件。 这就是中断功能 。</p>
+<p>各个设备有变化时就产生中断， 中断发生后， CPU暂时停止正在处理的任务， 并做好接下来能够继续处理的准备， 转而执行中断程序。 中断程序执行完以后， 再调用事先设定好的函数， 返回处理中的任务。 正是得益于中断机制， CPU可以不用一直查询键盘， 鼠标， 网卡等设备的状态， 将精力集中在处理任务上。</p>
+<p>IDT，Interrupt Descriptor Table，即中断描述符表，和GDT类似，他记录了0~255的中断号和调用函数之间的关系。</p>
+<hr>
+<p>GDT初始化</p>
+<p>GDT1的段的属性为0x4092 , 起始地址是0, 大小是0xffffffff,刚好是4GB.表示cpu所能管理的全部内存</p>
+<p>代码将0x280000～0x2fffff  设为GDT2 ，(通过asmhead.nas处理) 这里已经有bootpack.h了</p>
+<p>load_gdtr()调用这个函数将GDT在内存中的位置存入GDTR寄存器中</p>
+<hr>
+<p>同理  load_idtr  将IDT 加载到IDTR寄存器中</p>
+<h3 id="代码3-，初始化PIC"><a href="#代码3-，初始化PIC" class="headerlink" title="代码3 ，初始化PIC"></a>代码3 ，初始化PIC</h3><blockquote>
+<p> PIC programmable interrupt controller  可编程中断控制器。</p>
+</blockquote>
+<p>PIC是将8个中断信号1集合成一个中断信号的装置。 PIC监视着输入管脚的8个中断信号， 只要有一个中断信号进来， 就将唯一的输出管脚信号变成ON， 并通知给CPU  </p>
+<p>IBM的大叔们想要通过增加PIC来处理更多的中断信号， 他们认为电脑会有8个以上的外部设备， 所以就把中断信号设计成了15个， 并为此增设了2个PIC。  </p>
+<hr>
+<blockquote>
+<p> PIC初始化</p>
+</blockquote>
+<pre><code class="c">void init_pic(void)
+/* PIC的初始化 */
+&#123;
+io_out8(PIC0_IMR, 0xff ); /* 禁止所有中断 */
+io_out8(PIC1_IMR, 0xff ); /* 禁止所有中断 */
+io_out8(PIC0_ICW1, 0x11 ); /* 边沿触发模式（edge trigger mode） */
+io_out8(PIC0_ICW2, 0x20 ); /* IRQ0-7由INT20-27接收 */
+io_out8(PIC0_ICW3, 1 &lt;&lt; 2); /* PIC1由IRQ2连接 */
+io_out8(PIC0_ICW4, 0x01 ); /* 无缓冲区模式 */
+io_out8(PIC1_ICW1, 0x11 ); /* 边沿触发模式（edge trigger mode） */
+io_out8(PIC1_ICW2, 0x28 ); /* IRQ8-15由INT28-2f接收 */
+io_out8(PIC1_ICW3, 2 ); /* PIC1由IRQ2连接 */
+io_out8(PIC1_ICW4, 0x01 ); /* 无缓冲区模式 */
+io_out8(PIC0_IMR, 0xfb ); /* 11111011 PIC1以外全部禁止 */
+io_out8(PIC1_IMR, 0xff ); /* 11111111 禁止所有中断 */
+return;
+&#125;
+</code></pre>
+<blockquote>
+<p>中断函数编写</p>
+</blockquote>
+<p>键盘的中断函数如下</p>
+<pre><code class="c">void inthandler21(int *esp)
+&#123;
+    struct BOOTINFO *binfo = (struct BOOTINFO *) ADR_BOOTINFO;
+    boxfill8(binfo-&gt;vram, binfo-&gt;scrnx, COL8_000000, 0, 0, 32 * 8 - 1, 15);
+    putfonts8_asc(binfo-&gt;vram, binfo-&gt;scrnx, 0, 0, COL8_FFFFFF, &quot;INT 21 (IRQ-1) : PS/2 keyboard&quot;);
+    for (;;) &#123;
+        io_hlt();
+    &#125;
+&#125;
+</code></pre>
+<p>一部分需要使用汇编处理</p>
+<pre><code class="assembly">本次的naskfunc.nas节选
+EXTERN _inthandler21, _inthandler2c
+_asm_inthandler21:
+PUSH ES
+PUSH DS
+PUSHAD
+MOV EAX,ESP
+PUSH EAX
+MOV AX,SS
+MOV DS,AX
+MOV ES,AX
+CALL _inthandler21
+POP EAX
+POPAD
+POP DS
+POP ES
+IRETD
+
+结果， 这个函数只是将寄存器的值保存到栈里， 然后将DS和ES调整到
+与SS相等， 再调用_inthandler21， 返回以后， 将所有寄存器的值再返回
+到原来的值， 然后执行IRETD。
+</code></pre>
+<blockquote>
+<p>将中断函数注册到IDT中</p>
+</blockquote>
+<pre><code class="c">set_gatedesc(idt + 0x21, (int) asm_inthandler21, 2 * 8, AR_INTGATE32);
+set_gatedesc(idt + 0x2c, (int) asm_inthandler2c, 2 * 8, AR_INTGATE32);
+</code></pre>
+<p>为什么使用了 (int) - -</p>
+<h2 id="工具记录"><a href="#工具记录" class="headerlink" title="工具记录"></a>工具记录</h2><h3 id="HEX-Editor-二进制编辑器"><a href="#HEX-Editor-二进制编辑器" class="headerlink" title="HEX Editor 二进制编辑器"></a>HEX Editor 二进制编辑器</h3><p><a target="_blank" rel="noopener" href="https://hexeditor.en.softonic.com/download">https://hexeditor.en.softonic.com/download</a></p>
+<h3 id="QEMU-虚拟机"><a href="#QEMU-虚拟机" class="headerlink" title="QEMU 虚拟机"></a>QEMU 虚拟机</h3><p><a target="_blank" rel="noopener" href="https://www.qemu.org/">https://www.qemu.org/</a></p>
+<h3 id="书本配套文件"><a href="#书本配套文件" class="headerlink" title="书本配套文件"></a>书本配套文件</h3><p><a target="_blank" rel="noopener" href="https://github.com/sky5454/30daysMakeOS-Origin-ISOfiles">https://github.com/sky5454/30daysMakeOS-Origin-ISOfiles</a></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1944270374@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2020-2023 qwrdxer
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 722px;
+    }
+    .nav.fullscreen {
+        margin-left: -722px;
+    }
+    .nav-left {
+        width: 300px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 542px;
+        }
+        .nav.fullscreen {
+            margin-left: -542px;
+        }
+        .nav-left {
+            width: 150px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 542px;
+            margin-left: -542px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    #post {
+        background: url(/img/start.png);
+    }
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

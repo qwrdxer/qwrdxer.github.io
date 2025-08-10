@@ -1,0 +1,2224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>分布式扫描器实现 | qwrdxer &#39;s blog</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="分布式扫描器实现 | qwrdxer &#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About">
+<meta property="og:url" content="https://qwrdxer.github.io/about/index.html">
+<meta property="og:site_name" content="qwrdxer &#39;s blog">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-08-10T03:50:56.671Z">
+<meta property="article:modified_time" content="2025-08-10T03:50:56.671Z">
+<meta property="article:author" content="qwrdxer">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>qwrdxer</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/qwrdxer"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/yyc-96-55-3"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qwrdxer?type=blog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1944270374@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1944270374&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(54)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="杂项">
+            
+            杂项
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="编程语言">
+            <i class="fold iconfont icon-right"></i>
+            编程语言
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;C++">
+            
+            C++
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Go">
+            
+            Go
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Rust">
+            
+            Rust
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="操作系统">
+            
+            操作系统
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="代码分析">
+            
+            代码分析
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="环境配置">
+            
+            环境配置
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="脚本">
+            
+            脚本
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="开发工具">
+            
+            开发工具
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文阅读">
+            <i class="fold iconfont icon-right"></i>
+            论文阅读
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="论文阅读&lt;---&gt;人工智能">
+            
+            人工智能
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="爬虫">
+            
+            爬虫
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="区块链">
+            
+            区块链
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="人工智能">
+            <i class="fold iconfont icon-right"></i>
+            人工智能
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="人工智能&lt;---&gt;FASTAI">
+            
+            FASTAI
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="日志">
+            
+            日志
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="渗透测试篇">
+            
+            渗透测试篇
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            
+            数据库
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="算法">
+            
+            算法
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="写点好玩的">
+            
+            写点好玩的
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="一些奇怪的bug">
+            
+            一些奇怪的bug
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="以太坊">
+            
+            以太坊
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Agent">
+            
+            Agent
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="LLM">
+            
+            LLM
+            <small>(5)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="MCP">
+            
+            MCP
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全工具篇">
+            
+            web安全工具篇
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全漏洞篇">
+            
+            web安全漏洞篇
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="54">
+<input type="hidden" id="yelog_site_word_count" value="166.5k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>报错解决</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具使用</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境配置</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>脚本</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>深度学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>渗透测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>通讯协议</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>文件包含</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>bash</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FASTAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPT</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Josephus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MCP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Memory</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Multi-Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>shell</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Swarm</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>web漏洞</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WordPress</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2025/08/10/Untitled/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2025-08-10 11:50:56">2025/08/10</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/12/LLM/Llama%20Factory%20%E5%BE%AE%E8%B0%83%E4%B8%80%E4%B8%AA%20LLM%E8%B6%8A%E7%8B%B1%E7%9B%B8%E5%85%B3%E5%A4%A7%E6%A8%A1%E5%9E%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Llama Factory 微调一个 LLM越狱相关大模型">Llama Factory 微调一个 LLM越狱相关大模型</span>
+            <span class="post-date" title="2025-04-12 13:56:52">2025/04/12</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/10/LLM/Qwen2.5-7b%20Lora%E5%BE%AE%E8%B0%83-peft%E7%AF%87/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Qwen2.5-7b Lora微调-peft篇">Qwen2.5-7b Lora微调-peft篇</span>
+            <span class="post-date" title="2025-04-10 14:32:36">2025/04/10</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/07/LLM/%E9%A2%84%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA25M%E7%9A%84GPT2%E6%A8%A1%E5%9E%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="预训练一个25M的GPT2模型">预训练一个25M的GPT2模型</span>
+            <span class="post-date" title="2025-04-07 14:19:54">2025/04/07</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/06/LLM/Tokenizer%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Tokenizer 从零开始训练">Tokenizer 从零开始训练</span>
+            <span class="post-date" title="2025-04-06 20:50:21">2025/04/06</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/06/LLM/GPT2%20%E6%89%8B%E6%92%95%20%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GPT2 手撕 模型代码分析">GPT2 手撕 模型代码分析</span>
+            <span class="post-date" title="2025-04-06 14:14:30">2025/04/06</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/22/Agent/multi-agent%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="multi-agent中的设计模式">multi-agent中的设计模式</span>
+            <span class="post-date" title="2025-03-22 14:46:50">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/22/Agent/autogen-core%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen-core学习记录">autogen-core学习记录</span>
+            <span class="post-date" title="2025-03-22 14:42:21">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="All MCP "
+           href="/2025/03/12/MCP/MCP(Model%20Context%20Protocol)%20%E7%AE%80%E4%BB%8B/"
+           data-tag="MCP,通讯协议,LLM"
+           data-author="" >
+            <span class="post-title" title="MCP(Model Context Protocol) 简介">MCP(Model Context Protocol) 简介</span>
+            <span class="post-date" title="2025-03-12 15:47:27">2025/03/12</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/10/Agent/autogen%E6%8F%90%E9%AB%98%E4%B9%8BAgentChat%20Advanced%E9%83%A8%E5%88%86/"
+           data-tag="Agent,Multi-Agent,Memory,Swarm"
+           data-author="" >
+            <span class="post-title" title="autogen提高之AgentChat Advanced部分">autogen提高之AgentChat Advanced部分</span>
+            <span class="post-date" title="2025-03-10 21:35:41">2025/03/10</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/08/Agent/autogen%E5%85%A5%E9%97%A8%E4%B9%8Bagentchat/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen入门之autochat">autogen入门之autochat</span>
+            <span class="post-date" title="2025-03-08 20:23:19">2025/03/08</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2024/02/26/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/logseq%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="logseq使用">logseq使用</span>
+            <span class="post-date" title="2024-02-26 10:47:48">2024/02/26</span>
+        </a>
+        
+        
+        <a  class="All 区块链 "
+           href="/2024/01/21/%E5%8C%BA%E5%9D%97%E9%93%BE/hardhat%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hardhat智能合约流程">hardhat智能合约流程</span>
+            <span class="post-date" title="2024-01-21 15:20:03">2024/01/21</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/"
+           data-tag="Josephus"
+           data-author="" >
+            <span class="post-title" title="Josephus Problem">Josephus Problem</span>
+            <span class="post-date" title="2024-01-17 11:49:36">2024/01/17</span>
+        </a>
+        
+        
+        <a  class="All 区块链 "
+           href="/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="fabric环境配置">fabric环境配置</span>
+            <span class="post-date" title="2024-01-08 18:47:43">2024/01/08</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/12/22/%E7%88%AC%E8%99%AB/CF%E7%9B%BE%E7%BB%95%E8%BF%87(NodeJs%E7%89%88)/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CF盾绕过(NodeJs版)">CF盾绕过(NodeJs版)</span>
+            <span class="post-date" title="2023-12-22 20:11:48">2023/12/22</span>
+        </a>
+        
+        
+        <a  class="All 以太坊 "
+           href="/2023/10/19/%E4%BB%A5%E5%A4%AA%E5%9D%8A/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E9%83%A8%E5%88%86%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B5%85%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="以太坊部分知识点浅析">以太坊部分知识点浅析</span>
+            <span class="post-date" title="2023-10-19 16:10:05">2023/10/19</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2023/10/12/%E6%97%A5%E5%BF%97/%E9%93%BE%E6%8E%A5%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="链接记录">链接记录</span>
+            <span class="post-date" title="2023-10-12 19:40:28">2023/10/12</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/go-rod%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="go-rod学习">go-rod学习</span>
+            <span class="post-date" title="2023-10-06 11:22:48">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/Go%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%88%AC%E8%99%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go实现一个爬虫">Go实现一个爬虫</span>
+            <span class="post-date" title="2023-10-06 11:10:43">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="All 代码分析 "
+           href="/2023/10/05/%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/RustScan%E6%BA%90%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RustScan源代码分析">RustScan源代码分析</span>
+            <span class="post-date" title="2023-10-05 19:28:59">2023/10/05</span>
+        </a>
+        
+        
+        <a  class="All 一些奇怪的bug "
+           href="/2023/10/02/%E4%B8%80%E4%BA%9B%E5%A5%87%E6%80%AA%E7%9A%84bug/bug%E8%AE%B0%E5%BD%95&%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="bug记录&amp;解决方法">bug记录&amp;解决方法</span>
+            <span class="post-date" title="2023-10-02 16:05:12">2023/10/02</span>
+        </a>
+        
+        
+        <a  class="All 论文阅读 人工智能 "
+           href="/2023/10/01/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/OpenAI%E7%9A%84GPT%E5%8F%91%E5%B1%95/"
+           data-tag="LLM,GPT"
+           data-author="" >
+            <span class="post-title" title="大模型论文">大模型论文</span>
+            <span class="post-date" title="2023-10-01 22:17:21">2023/10/01</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Rust "
+           href="/2023/09/28/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/Rust_lifetime/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Rust的生命周期">Rust的生命周期</span>
+            <span class="post-date" title="2023-09-28 11:33:04">2023/09/28</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2023/09/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%AE%89%E5%85%A8%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE&%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE%E4%B8%8B%E8%BD%BD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安全四大会议&amp;人工智能四大会议下载">安全四大会议&amp;人工智能四大会议下载</span>
+            <span class="post-date" title="2023-09-27 20:47:28">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Rust "
+           href="/2023/09/27/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/The%20Rust%20Programming%20Language%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Rust Programming Language阅读笔记">The Rust Programming Language阅读笔记</span>
+            <span class="post-date" title="2023-09-27 20:35:50">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_3_%E5%A4%9AGPU%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_3_多GPU训练">FASTAI_3_多GPU训练</span>
+            <span class="post-date" title="2023-09-27 20:32:12">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_2_Datasets%E3%80%81Pipeline%E3%80%81TfmdLists%E3%80%81Transform/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_2_Datasets、Pipeline、TfmdLists、Transform">FASTAI_2_Datasets、Pipeline、TfmdLists、Transform</span>
+            <span class="post-date" title="2023-09-27 20:29:37">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_1_%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8CAPI%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI_1_使用不同API加载数据">FASTAI_1_使用不同API加载数据</span>
+            <span class="post-date" title="2023-09-27 20:28:09">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI快速入门">FASTAI快速入门</span>
+            <span class="post-date" title="2023-09-27 20:18:36">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 C++ "
+           href="/2023/01/10/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/C++%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C++入门">C++入门</span>
+            <span class="post-date" title="2023-01-10 11:30:50">2023/01/10</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%AB%E6%8F%8F%E5%99%A8%E5%AE%9E%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="分布式扫描器实现">分布式扫描器实现</span>
+            <span class="post-date" title="2022-04-27 11:43:42">2022/04/27</span>
+        </a>
+        
+        
+        <a  class="All 数据库 "
+           href="/2022/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93/mongodb%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="mongodb学习">mongodb学习</span>
+            <span class="post-date" title="2022-04-14 09:31:33">2022/04/14</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/10/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/Go%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E5%99%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go编写一个扫描器">Go编写一个扫描器</span>
+            <span class="post-date" title="2022-04-10 14:34:18">2022/04/10</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/09/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E6%83%B3%E6%B3%95%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="想法记录">想法记录</span>
+            <span class="post-date" title="2022-04-09 11:24:11">2022/04/09</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Go "
+           href="/2022/04/08/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go/The%20Way%20To%20Go/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Way To Go">The Way To Go</span>
+            <span class="post-date" title="2022-04-08 18:09:20">2022/04/08</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2022/03/31/%E6%97%A5%E5%BF%97/%E5%B1%B1%E8%BF%98%E6%98%AF%E5%B1%B1,%E6%B0%B4%E8%BF%98%E6%98%AF%E6%B0%B4,%E4%BD%A0%E4%B8%8D%E8%83%BD%E6%B0%B8%E8%BF%9C%E6%98%AF%E9%82%A3%E4%B8%AA%E4%BD%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="山还是山,水还是水,你不能永远是那个你">山还是山,水还是水,你不能永远是那个你</span>
+            <span class="post-date" title="2022-03-31 09:37:42">2022/03/31</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day11~day20">30天自制操作系统-学习笔记 day11~day20</span>
+            <span class="post-date" title="2022-03-27 09:49:33">2022/03/27</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2022/03/21/%E6%97%A5%E5%BF%97/%E9%97%B2%E8%AF%AD%E6%9D%82%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="闲语杂记">闲语杂记</span>
+            <span class="post-date" title="2022-03-21 12:51:18">2022/03/21</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/03/15/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/freemarker%E6%93%8D%E6%8E%A7word/"
+           data-tag="工具使用"
+           data-author="" >
+            <span class="post-title" title="freemarker操控word">freemarker操控word</span>
+            <span class="post-date" title="2022-03-15 12:00:54">2022/03/15</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/2022/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day1~day10">30天自制操作系统-学习笔记 day1~day10</span>
+            <span class="post-date" title="2022-01-31 10:57:39">2022/01/31</span>
+        </a>
+        
+        
+        <a  class="All 杂项 "
+           href="/2022/01/12/%E6%9D%82%E9%A1%B9/GITHUB%E6%94%B6%E9%9B%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GITHUB收集">GITHUB收集</span>
+            <span class="post-date" title="2022-01-12 20:07:03">2022/01/12</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/"
+           data-tag="渗透测试,工具开发"
+           data-author="" >
+            <span class="post-title" title="web页面密码爆破">web页面密码爆破</span>
+            <span class="post-date" title="2022-01-11 10:21:34">2022/01/11</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2022/01/09/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/Goby%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Goby分析">Goby分析</span>
+            <span class="post-date" title="2022-01-09 13:35:49">2022/01/09</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/08/15/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Shell%E8%84%9A%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag="bash,脚本,shell,linux,开发"
+           data-author="" >
+            <span class="post-title" title="Shell脚本学习笔记">Shell脚本学习笔记</span>
+            <span class="post-date" title="2021-08-15 11:19:55">2021/08/15</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试篇 "
+           href="/2021/07/25/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AF%87/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="信息收集">信息收集</span>
+            <span class="post-date" title="2021-07-25 19:33:55">2021/07/25</span>
+        </a>
+        
+        
+        <a  class="All web安全漏洞篇 "
+           href="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,MySQL"
+           data-author="" >
+            <span class="post-title" title="SQL注入相关">SQL注入相关</span>
+            <span class="post-date" title="2021-05-11 15:23:06">2021/05/11</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2021/04/21/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/nmap%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="nmap使用">nmap使用</span>
+            <span class="post-date" title="2021-04-21 19:29:51">2021/04/21</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/04/20/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/docker%E7%9B%B8%E5%85%B3/"
+           data-tag="工具使用,脚本,docker"
+           data-author="" >
+            <span class="post-title" title="docker相关">docker相关</span>
+            <span class="post-date" title="2021-04-20 13:49:50">2021/04/20</span>
+        </a>
+        
+        
+        <a  class="All web安全漏洞篇 "
+           href="/2021/04/19/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,文件包含"
+           data-author="" >
+            <span class="post-title" title="文件包含漏洞相关">文件包含漏洞相关</span>
+            <span class="post-date" title="2021-04-19 14:49:59">2021/04/19</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/04/16/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/hexo%E5%91%BD%E4%BB%A4/"
+           data-tag="工具使用,脚本"
+           data-author="" >
+            <span class="post-title" title="hexo相关">hexo相关</span>
+            <span class="post-date" title="2021-04-16 12:12:14">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2021/04/16/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/xray%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="xray使用">xray使用</span>
+            <span class="post-date" title="2021-04-16 12:10:08">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="All 脚本 "
+           href="/2021/04/15/%E8%84%9A%E6%9C%AC/some-script/"
+           data-tag="bash,脚本,python"
+           data-author="" >
+            <span class="post-title" title="some script">some script</span>
+            <span class="post-date" title="2021-04-15 11:23:33">2021/04/15</span>
+        </a>
+        
+        
+        <a  class="All 环境配置 "
+           href="/2021/04/15/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/centos%E9%83%A8%E7%BD%B2wordpress/"
+           data-tag="linux,环境配置,报错解决,WordPress"
+           data-author="" >
+            <span class="post-title" title="centos部署wordpress">centos部署wordpress</span>
+            <span class="post-date" title="2021-04-15 01:34:16">2021/04/15</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-写点好玩的/分布式扫描器实现" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">分布式扫描器实现</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="写点好玩的">写点好玩的</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2025-08-10 11:50:56'>2022-04-27 11:43</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:4.2k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%AB%E6%8F%8F%E5%99%A8"><span class="toc-text">分布式扫描器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MongoDB%E8%A1%A5%E5%85%85"><span class="toc-text">MongoDB补充</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MongoDB%E8%AE%BE%E8%AE%A1%E5%A6%82%E4%B8%8B"><span class="toc-text">MongoDB设计如下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#go%E8%AF%AD%E8%A8%80%E6%93%8D%E6%8E%A7MongoDB"><span class="toc-text">go语言操控MongoDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IP%E6%89%AB%E6%8F%8F%E4%BB%BB%E5%8A%A1-%E5%B0%86-%E7%AB%AF%E5%8F%A3-%E6%8C%87%E7%BA%B9%E5%86%99%E5%85%A5MongoDB%E4%B8%AD-%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F"><span class="toc-text">IP扫描任务: 将 端口+指纹写入MongoDB中(单机模式)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F-%E8%B0%83%E5%BA%A6%E5%99%A8Monitor"><span class="toc-text">分布式-调度器Monitor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nsq"><span class="toc-text">nsq</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#go%E6%93%8D%E6%8E%A7nsq"><span class="toc-text">go操控nsq</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E5%99%A8%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">调度器代码实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%9E%E7%8E%B0"><span class="toc-text">客户端实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">分布式架构设计</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="分布式扫描器"><a href="#分布式扫描器" class="headerlink" title="分布式扫描器"></a>分布式扫描器</h2><blockquote>
+<p>暂定技术栈</p>
+</blockquote>
+<p>前端: bootstrap JQuery</p>
+<p>后端: Go</p>
+<p>数据库 MongoDB<br>消息队列: nsq</p>
+<p>定时任务:  暂时使用循环+  sleep</p>
+<p><img src="/2022/04/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%AB%E6%8F%8F%E5%99%A8%E5%AE%9E%E7%8E%B0/image-20220419105247096.png" alt="image-20220419105247096"></p>
+<p><em><span id="more"></span></em> </p>
+<blockquote>
+<p>先写一下要达成的效果</p>
+</blockquote>
+<p>用户提交任务:  <a target="_blank" rel="noopener" href="http://www.xxx.com,www.ddd.com/">www.xxx.com,www.ddd.com</a>, 等一系列IP域名地址、</p>
+<p>客户端在MongoDB中初始化一个task，若MongoDB中记录当前无其他task，则将本task设为运行中，将IP、域名等信息插入到task中，每一个IP、域名。</p>
+<p>调度器每5秒查询一次MongoDB，若有正在运行中的任务，且消息队列还没有排满，则从task中取出一定数量的子任务， 处理成消息的格式放入消息队列中。</p>
+<p>执行器从消息队列中取出子任务，执行完成后，将数据更新到MongoDB的task中。</p>
+<pre><code class="json">taskUID : string
+&#123;
+    task_total : int 
+    task_waiting : int
+    task_runned  : int
+    task_running : int
+    task_domain: &#123;  需要进行子域名扫描, 子域名扫描完成后进行IP解析，将解析的IP:domain写入到task_IP中
+        domain_total : int
+        domain_running : int
+        domain_runned : int
+        domain1: &#123;
+            subdomain_task_status： (等待中、运行中、运行完毕)    
+            subdomain_info &#123;subdomain:IP&#125;
+        &#125;
+                
+        domain1: subdomain_task_status (等待中、运行中、运行完毕)
+    &#125;
+    task_IP :&#123; 进行端口扫描、指纹识别，将识别到的web协议资产加入到task_web中，其他加入到task_other中
+        IP_total
+        IP_running
+        IP_runned
+        IP1 :&#123;
+            task_status(等待中、运行中、运行完成)
+            task_openportanservice(开启的端口服务与指纹)
+            task_domainbind [domain1 domain2]（IP绑定的子域名)
+        &#125;
+    &#125;
+    task_WEB:&#123;
+        web1&#123;
+        web_URL
+        scan_status
+    &#125;
+    &#125;
+
+    
+&#125;
+</code></pre>
+<h3 id="MongoDB补充"><a href="#MongoDB补充" class="headerlink" title="MongoDB补充"></a>MongoDB补充</h3><blockquote>
+<p>清空集合数据</p>
+</blockquote>
+<p>db.xxx.remove({})</p>
+<blockquote>
+<p>设置集合主键</p>
+</blockquote>
+<pre><code>db.xxx.createIndex( &#123; &quot;ip_host&quot;: 1 &#125;, &#123; unique: true &#125; )
+</code></pre>
+<p>docker exec -it mongo mongo admin</p>
+<p>db.auth(“admin”,”qwrdxer”)</p>
+<p>use myscan</p>
+<p>db.task1_ip.insertMany([{<br>    ip_scan_status: 0,<br>    ip_host: “220.130.181.152”<br>},<br>{<br>    ip_scan_status: 0,<br>    ip_host: “140.122.149.12”<br>},<br>{<br>    ip_scan_status: 0,<br>    ip_host: “114.25.138.78”<br>}])</p>
+<h3 id="MongoDB设计如下"><a href="#MongoDB设计如下" class="headerlink" title="MongoDB设计如下"></a>MongoDB设计如下</h3><p>库名: myscan</p>
+<p>db.createCollection(task1_ip)</p>
+<p>每增加一个任务，都需要创建一个集合，并将该集合的名字记录在ScanStatus  的querylist表中</p>
+<p>集合: ScanTask_name_ip  、ScanStatus</p>
+<p>ScanTask_name_ip: 存放任务的ip</p>
+<p>使用db.task1_ip.insertMany()可一次性插入多个IP</p>
+<pre><code class="json">db.task1_ip.insertMany([&#123;
+    ip_scan_status: 0,
+    ip_host: &quot;220.130.181.152&quot;
+&#125;,
+&#123;
+    ip_scan_status: 0,
+    ip_host: &quot;140.122.149.12&quot;
+&#125;,
+&#123;
+    ip_scan_status: 0,
+    ip_host: &quot;114.25.138.78&quot;
+&#125;,
+&#123;
+    ip_scan_status: 0,
+    ip_host: &quot;35.201.212.100&quot;
+&#125;,&#123;
+    ip_scan_status: 0,
+    ip_host: &quot;203.69.15.226&quot;
+&#125;,&#123;
+    ip_scan_status: 0,
+    ip_host: &quot;122.117.147.95&quot;
+&#125;,&#123;
+    ip_scan_status: 0,
+    ip_host: &quot;219.71.199.26&quot;
+&#125;,&#123;
+    ip_scan_status: 0,
+    ip_host: &quot;59.126.205.82&quot;
+&#125;,&#123;
+    ip_scan_status: 0,
+    ip_host: &quot;35.194.147.80&quot;
+&#125;,&#123;
+    ip_scan_status: 0,
+    ip_host: &quot;123.0.63.235&quot;
+&#125;,&#123;
+    ip_scan_status: 0,
+    ip_host: &quot;140.122.53.205&quot;
+&#125;,&#123;
+    ip_scan_status: 0,
+    ip_host: &quot;140.122.53.161&quot;
+&#125;,&#123;
+    ip_scan_status: 0,
+    ip_host: &quot;163.21.180.18&quot;
+&#125;,&#123;
+    ip_scan_status: 0,
+    ip_host: &quot;203.64.208.70&quot;
+&#125;,&#123;
+    ip_scan_status: 0,
+    ip_host: &quot;163.21.180.180&quot;
+&#125;,&#123;
+    ip_scan_status: 0,
+    ip_host: &quot;163.18.23.135&quot;
+&#125;])
+</code></pre>
+<p>db.task1_ip.insertMany({<br>    ip_scan_status: 0,<br>    ip_host: “220.130.181.152”<br>})</p>
+<p>修改某个ip的运行状态</p>
+<pre><code class="json">db.scan1_ip.updateOne(&#123;ip_host: &quot;121.5.73.12&quot;&#125;,&#123;&quot;$set&quot;:&#123;ip_scan_status:2&#125;&#125;)
+</code></pre>
+<p>查看指定状态的所有IP</p>
+<pre><code class="json">db.scan1_ip.find(&#123;&quot;ip_scan_status&quot;:0&#125;)
+</code></pre>
+<p>ip扫描结果格式</p>
+<pre><code class="json">[&#123;
+    openport:80,
+    protocol:&quot;http&quot;
+ &#125;,&#123;
+    openport:22,
+    protocol:&quot;ssh&quot;
+ &#125;,&#123;
+    openport:6379,
+    protocol:&quot;redis&quot;
+ &#125;]
+</code></pre>
+<p>将扫描结果写入到MongoDB中</p>
+<pre><code class="json">db.task1_ip.updateOne(&#123;ip_host: &quot;121.5.73.14&quot;&#125;,&#123;&quot;$set&quot;:&#123;&quot;ip_openport&quot;:[&#123;
+    openport:8080,
+    protocol:&quot;http&quot;
+ &#125;,&#123;
+    openport:22,
+    protocol:&quot;ssh&quot;
+ &#125;,&#123;
+    openport:6379,
+    protocol:&quot;redis&quot;
+ &#125;,&#123;
+    openport:7171,
+    protocol:&quot;http&quot;
+ &#125;]&#125;&#125;)
+</code></pre>
+<p>查询有http协议的ip</p>
+<pre><code class="json">db.scan1_ip.find(&#123;&quot;ip_openport.protocol&quot;:&quot;http&quot;&#125;)
+</code></pre>
+<p>查询有http协议的ip,只要带http的端口</p>
+<pre><code class="javascript">cursor.forEach(function(x)&#123;
+    x.ip_openport.forEach(function(arr,index)&#123;
+        print(arr.openport)
+    &#125;)
+&#125;)
+db.task1_ip.find(&#123;&quot;ip_openport.protocol&quot;:&quot;http&quot;&#125;).forEach(function(x)&#123;
+    var iphost=x.ip_host
+    x.ip_openport.forEach(function(arr,index)&#123;
+        if(arr.protocol==&quot;http&quot;)&#123;
+            print(iphost+&quot;:&quot;+arr.port)
+            iphost=x.ip_host
+        &#125;
+    &#125;)
+&#125;)
+</code></pre>
+<p>输出结果如下 ，可以将http字符串替换成任意协议，输出都为ip_端口</p>
+<p>121.5.73.12:80                                                                                       </p>
+<p>121.5.73.14:8080                                                                                     </p>
+<p>121.5.73.14:7171  </p>
+<p>taskname_domain</p>
+<h3 id="go语言操控MongoDB"><a href="#go语言操控MongoDB" class="headerlink" title="go语言操控MongoDB"></a>go语言操控MongoDB</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/opeak/article/details/102544280/">https://blog.csdn.net/opeak/article/details/102544280/</a></p>
+<p><a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/347a637e322b3169a45177232f60ddccda38e69f.html">https://wenku.baidu.com/view/347a637e322b3169a45177232f60ddccda38e69f.html</a></p>
+<blockquote>
+<p>连接至MongoDB</p>
+</blockquote>
+<pre><code class="go">const (
+   MongoDBHosts = &quot;121.5.73.12:27017&quot;
+   AuthDatabase = &quot;admin&quot;
+   AuthUserName = &quot;admin&quot;
+   AuthPassword = &quot;123456&quot;
+   MaxCon       = 300
+)
+
+func main() &#123;
+
+   mongoDBDialInfo := &amp;mgo.DialInfo&#123;
+      Addrs:    []string&#123;MongoDBHosts&#125;,
+      Timeout:  60 * time.Second,
+      Database: AuthDatabase,
+      Username: AuthUserName,
+      Password: AuthPassword,
+   &#125;
+
+   session, err := mgo.DialWithInfo(mongoDBDialInfo)
+   if err != nil &#123;
+      log.Fatalf(&quot;CreateSession failed:%n&quot;, err)
+   &#125;
+
+   //设置连接池的大小
+   session.SetPoolLimit(MaxCon)
+   defer session.Close()
+   cloneSession := session.Clone()
+&#125;
+</code></pre>
+<p>创建了一个连接池，当需要对MongDB进行操作时，只需</p>
+<p>cloneSession := session.Clone() 即可获取到一个session </p>
+<blockquote>
+<p>获取一条记录</p>
+</blockquote>
+<p>首先要根据文档的格式定义好结构体</p>
+<p>JSON转GO结构体</p>
+<pre><code class="go">type IP_result struct &#123;
+    ID           bson.ObjectId  `bson:&quot;_id,omitempty&quot;` //类型是bson.ObjectId
+    IPScanStatus int            `bson:&quot;ip_scan_status&quot;`
+    IPHost       string         `bson:&quot;ip_host&quot;`
+    IPOpenport   []GoIPOpenport `bson:&quot;ip_openport&quot;`
+    BindDomain   []string       `bson:&quot;binddomain&quot;`
+&#125;
+
+type GoIPOpenport struct &#123;
+    Openport int    `bson:&quot;openport&quot;`
+    Protocol string `bson:&quot;protocol&quot;`
+&#125;
+</code></pre>
+<p>注意:</p>
+<ol>
+<li>标签为BSON格式</li>
+<li>结构体中成员必须大写，否则无法被其他包访问导致值为空</li>
+<li>要加上ID属性</li>
+</ol>
+<p>测试获取一条数据</p>
+<pre><code class="go">    c := cloneSession.DB(&quot;myscan&quot;).C(&quot;task1_ip&quot;)
+    var v = IP_result&#123;&#125;
+    c.Find(bson.M&#123;&quot;ip_host&quot;: &quot;121.5.73.14&quot;&#125;).One(&amp;v)
+</code></pre>
+<p><img src="/2022/04/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%AB%E6%8F%8F%E5%99%A8%E5%AE%9E%E7%8E%B0/image-20220416160520256.png" alt="image-20220416160520256"></p>
+<blockquote>
+<p>更新文档 - 单个值</p>
+</blockquote>
+<p>更新ip扫描状态</p>
+<pre><code class="go">c.Update(bson.M&#123;&quot;ip_host&quot;: &quot;121.5.73.15&quot;&#125;, bson.M&#123;&quot;$set&quot;: bson.M&#123;&quot;ip_scan_status&quot;: 110&#125;&#125;)
+</code></pre>
+<blockquote>
+<p>更新文档-列表</p>
+</blockquote>
+<p>对于不确定数量的列表，直接向bson.M中传入切片即可</p>
+<pre><code class="go">c.Update(bson.M&#123;&quot;ip_host&quot;: &quot;121.5.73.15&quot;&#125;, bson.M&#123;&quot;$set&quot;: bson.M&#123;&quot;openport&quot;: []int&#123;11, 111, 22, 80, 3333&#125;&#125;&#125;)
+</code></pre>
+<blockquote>
+<p>更新文档-嵌套文档</p>
+</blockquote>
+<p>嵌套文档，传入的是键值对 ，本次的需求是向列表成员中插入不定数量的子文档</p>
+<p>首先，对于确定数量的子文档，嵌套bson.M即可</p>
+<pre><code class="go">data2 := bson.M&#123;&quot;openport&quot;: []bson.M&#123;bson.M&#123;&quot;port&quot;: 80, &quot;protocol&quot;: &quot;https&quot;&#125;, bson.M&#123;&quot;port&quot;: 8080, &quot;protocol&quot;: &quot;http&quot;&#125;&#125;&#125;
+</code></pre>
+<p>对于不确定数量的子文档，首先定义一个bson.M类型的切片，使用for循环赋值即可</p>
+<p>其核心是将结构体转换成bson.M格式</p>
+<pre><code class="go">    test3 := &amp;GoIPOpenport&#123;Openport: 80, Protocol: &quot;https&quot;&#125;
+    data3, _ := bson.Marshal(test3)
+    mmap := bson.M&#123;&#125;
+    bson.Unmarshal(data3, mmap)
+</code></pre>
+<h3 id="IP扫描任务-将-端口-指纹写入MongoDB中-单机模式"><a href="#IP扫描任务-将-端口-指纹写入MongoDB中-单机模式" class="headerlink" title="IP扫描任务: 将 端口+指纹写入MongoDB中(单机模式)"></a>IP扫描任务: 将 端口+指纹写入MongoDB中(单机模式)</h3><p>单机模式的任务只有两种状态: 未扫描，扫描完成( 后续引入消息队列后还需要增加排队中、运行中的状态)</p>
+<p>其核心逻辑如下:</p>
+<ol>
+<li>获取一个任务(单机直接从MongoDB中获取，后续的分布式需要从消息队列中获取)</li>
+<li>执行任务</li>
+<li>上传数据，更新该任务状态</li>
+</ol>
+<blockquote>
+<p>端口扫描结果为字符串切片,使用strings.Join 转成字符串格式进行nmap指纹识别</p>
+</blockquote>
+<pre><code class="go">res:=strings.Join(p.openPort,&quot;,&quot;)
+</code></pre>
+<blockquote>
+<p>nmap扫描结果如下</p>
+</blockquote>
+<pre><code class="go">PORT     STATE  SERVICE VERSION
+22/tcp   open   ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.2 (Ubuntu Linux; protocol 2.0)
+25/tcp   closed smtp
+53/tcp   open   domain  ISC BIND 9.16.1 (Ubuntu Linux)
+80/tcp   open   http    Apache httpd 2.4.41 ((Ubuntu))
+110/tcp  closed pop3
+111/tcp  open   rpcbind 2-4 (RPC #100000)
+3306/tcp open   mysql   MySQL 5.7.36
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 15.71 seconds
+</code></pre>
+<p>使用如下代码提取出nmap结果中的协议和端口</p>
+<pre><code class="go">    var res = &quot;Starting Nmap 7.70 ( https://nmap.org ) at 2022-04-17 11:42 ?D1ú±ê×?ê±??\nNmap scan report for \nHost is up (0.063s latency).\n\nPORT    STATE  SERVICE VERSION\n22/tcp  open   ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.2 (Ubuntu Linux; protocol 2.0)\n25/tcp  closed smtp\n53/tcp  open   domain  ISC BIND 9.16.1 (Ubuntu Linux)\n80/tcp  open   http    Apache httpd 2.4.41 ((Ubuntu))\n110/tcp closed pop3\n111/tcp open   rpcbind 2-4 (RPC #100000)\nService Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel\n\nService detection performed. Please report any incorrect results at https://nmap.org/submit/ .\nNmap done: 1 IP address (1 host up) scanned in 15.48 seconds\n&quot;
+    var res1 = strings.Split(res, &quot;\n&quot;)
+    reg := regexp.MustCompile(&quot;^[0-9.]+/(?:tcp|udp)(.*)&quot;)
+    for _, infos := range res1 &#123;
+        status := reg.FindAllString(infos, -1)
+        if status != nil &#123;
+            info := strings.Fields(infos)
+            fmt.Println(info[2])
+        &#125;
+    &#125;
+</code></pre>
+<p>具体的ip扫描逻辑如下</p>
+<ol>
+<li>从MongoDB中读取到一条状态为0 的任务</li>
+<li>取出IP</li>
+<li>扫描端口指纹</li>
+<li>结果解析成BSON格式</li>
+<li>将IP的指纹和端口更新到MongDB中</li>
+<li>将该IP状态设置为扫描成功</li>
+</ol>
+<pre><code class="go">func main() &#123;
+    var conn mongodb.MongoPool
+    conn.Init()
+    defer conn.CloseSession()
+    session := conn.GetSession()
+    defer session.Close()
+    c := session.DB(&quot;myscan&quot;).C(&quot;task1_ip&quot;)
+    var task1 ipscan.IPScanTask
+    var v = IP_result&#123;&#125;
+    for&#123;
+        c.Find(bson.M&#123;&quot;ip_scan_status&quot;: 0&#125;).One(&amp;v)
+        var target=v.IPHost
+        task1.Init(target)
+        var bonsres=task1.Scan()
+        c.Update(bson.M&#123;&quot;ip_host&quot;: target&#125;,bson.M&#123;&quot;$set&quot;:bson.M&#123;&quot;ip_openport&quot;:bonsres&#125;&#125;)
+        c.Update(bson.M&#123;&quot;ip_host&quot;: target&#125;, bson.M&#123;&quot;$set&quot;: bson.M&#123;&quot;ip_scan_status&quot;: 1&#125;&#125;)
+    &#125;
+&#125;
+</code></pre>
+<h3 id="分布式-调度器Monitor"><a href="#分布式-调度器Monitor" class="headerlink" title="分布式-调度器Monitor"></a>分布式-调度器Monitor</h3><blockquote>
+<p> 先看看调度器要实现的功能:</p>
+</blockquote>
+<p>调度器首先要确定当前是否有任务在运行，若没有则从排队中的任务中取出一个设置为运行中</p>
+<p>因此要在mongDB中创建一个集合task_status，其存储的文档格式如下</p>
+<pre><code class="json">&#123;
+    task_name:&quot;taskname&quot;,
+    task_status:0
+&#125;
+</code></pre>
+<p>task_name 就是任务的名字，需要从客户端中进行任务创建</p>
+<p>task_status 为任务的状态，一共有三种状态</p>
+<ol>
+<li>值为0 ，标识任务刚刚初始化</li>
+<li>值为1 ，标识任务正在运行</li>
+<li>值为2 ，标识任务已完成</li>
+</ol>
+<p>需要用到如下MongoDB语句</p>
+<pre><code class="go">c := session.DB(&quot;myscan&quot;).C(&quot;task_status&quot;)
+
+//更新任务状态
+c.Update(bson.M&#123;&quot;task_name&quot;: taskname&#125;, bson.M&#123;&quot;$set&quot;: bson.M&#123;&quot;task_status&quot;: 1&#125;&#125;)
+
+//新增一个任务
+c.Insert(bson.M&#123;&quot;task_name&quot;:taskname,&quot;task_status&quot;:0&#125;)
+
+//顺序查找一个状态为0任务
+c.Find(bson.M&#123;&quot;task_status&quot;: 0&#125;).Sort(&quot;time:-1&quot;).One(&amp;v)
+</code></pre>
+<p>若当前有任务在运行，则根据任务定位到MongDB子任务集合中：</p>
+<ol>
+<li>取出状态为0的子任务</li>
+<li>将其加入写入到消息队列中</li>
+<li>将子任务状态设置为2(排队中)</li>
+</ol>
+<h3 id="nsq"><a href="#nsq" class="headerlink" title="nsq"></a>nsq</h3><p>官方文档如下</p>
+<p><a target="_blank" rel="noopener" href="https://nsq.io/">https://nsq.io/</a></p>
+<ol>
+<li><p>follow the instructions in the <a target="_blank" rel="noopener" href="https://nsq.io/deployment/installing.html">INSTALLING</a> doc.</p>
+</li>
+<li><p>in one shell, start <code>nsqlookupd</code>:  这相当于一个管理员</p>
+<pre><code class="shell">$ nsqlookupd
+</code></pre>
+</li>
+<li><p>in another shell, start <code>nsqd</code>:   这是用来消息发送 ,若在公网中搭建需要制定broadcast-adddress为公网IP</p>
+<pre><code class="shell">$ nsqd --lookupd-tcp-address=127.0.0.1:4160  -broadcast-address xxx.xxx.xxx.xxx
+</code></pre>
+<p>NOTE: if your system hostname does not resolve to <code>127.0.0.1</code> then add <code>--broadcast-address=127.0.0.1</code></p>
+</li>
+<li><p>in another shell, start <code>nsqadmin</code>:  这是用来管理的web界面</p>
+<pre><code class="shell">$ nsqadmin --lookupd-http-address=127.0.0.1:4161
+</code></pre>
+</li>
+<li><p>publish an initial message (creates the topic in the cluster, too):  发送一条测试消息</p>
+<pre><code class="shell">$ curl -d &#39;hello world 1&#39; &#39;http://127.0.0.1:4151/pub?topic=test&#39;
+</code></pre>
+</li>
+</ol>
+<h3 id="go操控nsq"><a href="#go操控nsq" class="headerlink" title="go操控nsq"></a>go操控nsq</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/binHome/p/12006392.html">https://www.cnblogs.com/binHome/p/12006392.html</a></p>
+<blockquote>
+<p>消息发送测试代码</p>
+</blockquote>
+<pre><code class="go">package main
+
+import (
+    &quot;bufio&quot;
+    &quot;fmt&quot;
+    &quot;github.com/nsqio/go-nsq&quot;
+    &quot;os&quot;
+    &quot;strings&quot;
+)
+
+// NSQ Producer Demo
+
+// 定义nsq生产者
+var producer *nsq.Producer
+
+// 初始化生产者
+func initProducer(str string) (err error) &#123;
+    // 创建配置信息
+    config := nsq.NewConfig()
+    // 初始化生产者 str传入ip:端口
+    producer, err = nsq.NewProducer(str, config)
+    if err != nil &#123;
+        fmt.Printf(&quot;create producer failed, err:%v\n&quot;, err)
+        return err
+    &#125;
+    // 测试生产者是否有效
+    err = producer.Ping()
+    if err != nil&#123;
+        fmt.Printf(&quot;No ping,err:%v\n&quot;,err)
+        producer.Stop() //关闭生产者
+    &#125;
+    return nil
+&#125;
+
+func main() &#123;
+    nsqAddress := &quot;121.5.73.12:4150&quot;
+    // 调用封装好的函数 初始化生产者
+    err := initProducer(nsqAddress)
+    if err != nil &#123;
+        fmt.Printf(&quot;init producer failed, err:%v\n&quot;, err)
+        return
+    &#125;
+
+    reader := bufio.NewReader(os.Stdin) // 从标准输入读取
+    for &#123;
+        data, err := reader.ReadString(&#39;\n&#39;)
+        if err != nil &#123;
+            fmt.Printf(&quot;read string from stdin failed, err:%v\n&quot;, err)
+            continue
+        &#125;
+        data = strings.TrimSpace(data)
+        if strings.ToUpper(data) == &quot;Q&quot; &#123; // 输入Q退出
+            break
+        &#125;
+        // 使用Publish 向 &#39;topic_demo&#39; publish 数据
+        err = producer.Publish(&quot;test&quot;, []byte(data))
+        if err != nil &#123;
+            fmt.Printf(&quot;publish msg to nsq failed, err:%v\n&quot;, err)
+            continue
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>消息接收测试代码</p>
+</blockquote>
+<pre><code class="go">// nsq_consumer/main.go
+package main
+
+import (
+    &quot;fmt&quot;
+    &quot;os&quot;
+    &quot;os/signal&quot;
+    &quot;syscall&quot;
+    &quot;time&quot;
+
+    &quot;github.com/nsqio/go-nsq&quot;
+)
+
+// NSQ Consumer Demo
+
+// MyHandler 是一个消费者类型
+type MyHandler struct &#123;
+    Title string
+&#125;
+
+// HandleMessage 是需要实现的处理消息的方法 *必须要实现
+func (m *MyHandler) HandleMessage(msg *nsq.Message) (err error) &#123;
+    fmt.Printf(&quot;%s recv from %v, msg:%v\n&quot;, m.Title, msg.NSQDAddress, string(msg.Body))
+    time.Sleep(time.Duration(2)*time.Second)
+    return
+&#125;
+
+// 初始化消费者
+func initConsumer(topic string, channel string, address string) (err error) &#123;
+    config := nsq.NewConfig()
+    // 重连时间
+    config.LookupdPollInterval = 15 * time.Second
+    // 新建消费者
+    c, err := nsq.NewConsumer(topic, channel, config)
+    if err != nil &#123;
+        fmt.Printf(&quot;create consumer failed, err:%v\n&quot;, err)
+        return
+    &#125;
+    consumer := &amp;MyHandler&#123;
+        Title: &quot;qwrdxer&quot;,
+    &#125;
+    // 屏蔽系统日志
+    // c.SetLogger(nil,0)
+    // 添加消费者
+    c.AddHandler(consumer)
+
+    // if err := c.ConnectToNSQD(address); err != nil &#123; // 直接连NSQD
+    if err := c.ConnectToNSQLookupd(address); err != nil &#123; // 通过lookupd查询
+        return err
+    &#125;
+    return nil
+
+&#125;
+
+func main() &#123;
+    err := initConsumer(&quot;test&quot;, &quot;tttt&quot;, &quot;121.5.73.12:4161&quot;)
+    if err != nil &#123;
+        fmt.Printf(&quot;init consumer failed, err:%v\n&quot;, err)
+        return
+    &#125;
+    c := make(chan os.Signal)        // 定义一个信号的通道
+    signal.Notify(c, syscall.SIGINT) // 转发键盘中断信号到c
+    &lt;-c                              // 阻塞
+&#125;
+</code></pre>
+<h3 id="调度器代码实现"><a href="#调度器代码实现" class="headerlink" title="调度器代码实现"></a>调度器代码实现</h3><ol>
+<li>初始化nsq 、Mongodb连接</li>
+<li>从mongdb中提取指定数量消息</li>
+<li>for循环，每向消息队列中写入一条消息，将该消息对应的mongodb文档设置为排队中</li>
+<li>sleep10秒</li>
+</ol>
+<pre><code class="go">package main
+
+import (
+    &quot;fmt&quot;
+    &quot;github.com/nsqio/go-nsq&quot;
+    &quot;gopkg.in/mgo.v2&quot;
+    &quot;gopkg.in/mgo.v2/bson&quot;
+    mongodb &quot;qwrdxer.com/NODE/MONGODB&quot;
+    &quot;time&quot;
+)
+type IP_result struct &#123;
+    ID           bson.ObjectId  `bson:&quot;_id,omitempty&quot;` //类型是bson.ObjectId
+    IPScanStatus int            `bson:&quot;ip_scan_status&quot;`
+    IPHost       string         `bson:&quot;ip_host&quot;`
+    IPOpenport   []GoIPOpenport `bson:&quot;ip_openport&quot;`
+    BindDomain   []string       `bson:&quot;binddomain&quot;`
+&#125;
+
+type GoIPOpenport struct &#123;
+    Openport int    `bson:&quot;openport&quot;`
+    Protocol string `bson:&quot;protocol&quot;`
+&#125;
+// NSQ Producer Demo
+
+type Monitor struct &#123;
+    producer *nsq.Producer
+    mgoconn *mgo.Session
+    querynum int  //每次查询的任务数
+    waitTime int  //一次调度后等待的时间
+&#125;
+// 初始化生产者
+func (m *Monitor)Init(ipport string) (err error) &#123;
+    // 创建配置信息
+    config := nsq.NewConfig()
+    // 初始化生产者 str传入ip:端口
+    m.producer, err = nsq.NewProducer(ipport, config)
+    if err != nil &#123;
+        fmt.Printf(&quot;create producer failed, err:%v\n&quot;, err)
+        return err
+    &#125;
+    // 测试生产者是否有效
+    err = m.producer.Ping()
+    if err != nil&#123;
+        fmt.Printf(&quot;No ping,err:%v\n&quot;,err)
+        m.producer.Stop() //关闭生产者
+    &#125;
+    return nil
+&#125;
+func (m *Monitor)Start(conn mongodb.MongoPool) &#123;
+    for&#123;
+        m.mgoconn=conn.GetSession()//建立mongodb连接
+        c :=m.mgoconn.DB(&quot;myscan&quot;).C(&quot;task1_ip&quot;)
+        iter:=c.Find(bson.M&#123;&quot;ip_scan_status&quot;: 0&#125;).Limit(2).Iter()
+        var v = IP_result&#123;&#125;
+        for iter.Next(&amp;v) &#123; //迭代子任务
+            var data=&quot;ipscan;&quot;+&quot;task1_ip;&quot;+v.IPHost
+            fmt.Println(&quot;adding:&quot;+ data)
+            err := m.producer.Publish(&quot;test&quot;, []byte(data))//写入消息队列
+            c.Update(bson.M&#123;&quot;ip_host&quot;: v.IPHost&#125;, bson.M&#123;&quot;$set&quot;: bson.M&#123;&quot;ip_scan_status&quot;: 2&#125;&#125;)//设置状态为排队中
+            if err != nil &#123;
+                fmt.Printf(&quot;publish msg to nsq failed, err:%v\n&quot;, err)
+                continue
+            &#125;
+        &#125;
+        m.mgoconn.Close() //关闭连接
+        fmt.Println(&quot;睡眠十秒&quot;)
+        time.Sleep(time.Duration(10)*time.Second)
+    &#125;
+&#125;
+func main() &#123;
+    //建立mongdb连接池
+    var conn mongodb.MongoPool
+    conn.Init()
+    defer conn.CloseSession()
+    var Mon =Monitor&#123;&#125;
+    Mon.Init(&quot;121.5.73.12:4150&quot;)
+    Mon.Start(conn)
+&#125;
+</code></pre>
+<h3 id="客户端实现"><a href="#客户端实现" class="headerlink" title="客户端实现"></a>客户端实现</h3><p>操控MongoDB的框架由mgo切换为MongDB-driver</p>
+<pre><code class="go">package main
+
+import (
+    &quot;context&quot;
+    &quot;fmt&quot;
+    &quot;go.mongodb.org/mongo-driver/bson&quot;
+    &quot;go.mongodb.org/mongo-driver/bson/primitive&quot;
+    &quot;go.mongodb.org/mongo-driver/mongo&quot;
+    &quot;go.mongodb.org/mongo-driver/mongo/options&quot;
+    &quot;log&quot;
+)
+type IP_result struct &#123;
+    Id primitive.ObjectID `bson:&quot;_id,omitempty&quot;`
+    IPScanStatus int            `bson:&quot;ip_scan_status&quot;`
+    IPHost       string         `bson:&quot;ip_host&quot;`
+    IPOpenport   []GoIPOpenport `bson:&quot;ip_openport&quot;`
+&#125;
+
+type GoIPOpenport struct &#123;
+    Openport int    `bson:&quot;openport&quot;`
+    Protocol string `bson:&quot;protocol&quot;`
+&#125;
+
+func main() &#123;
+    // Rest of the code will go here
+    // Set client options 设置连接参数
+    clientOptions := options.Client().ApplyURI(&quot;mongodb://admin:qwrdxer@123.123.123.123:27017/?authSource=admin&quot;)
+
+    // Connect to MongoDB 连接数据库
+    client, err := mongo.Connect(context.TODO(), clientOptions)
+
+    if err != nil &#123;
+        log.Fatal(err)
+    &#125;
+
+    // Check the connection 测试连接
+    err = client.Ping(context.TODO(), nil)
+
+    if err != nil &#123;
+        log.Fatal(err)
+    &#125;
+
+    fmt.Println(&quot;Connected to MongoDB!&quot;)
+     var result =IP_result&#123;&#125;
+    collection := client.Database(&quot;myscan&quot;).Collection(&quot;task1_ip&quot;)
+    tmp:=collection.FindOne(context.TODO(), bson.D&#123;&#123;"ip_scan_status", 3&#125;&#125;)
+    tmp.Decode(&amp;result)
+    if err != nil &#123;
+        log.Fatal(err)
+    &#125;
+&#125;
+</code></pre>
+<h3 id="分布式架构设计"><a href="#分布式架构设计" class="headerlink" title="分布式架构设计"></a>分布式架构设计</h3><blockquote>
+<p>扫描节点</p>
+</blockquote>
+<p>其主函数逻辑如下</p>
+<pre><code class="go">func main() &#123;
+    task := 0
+    taskLimit := 5
+    taskList := make([]PortScanTask, 0)
+    消息队列绑定
+    for &#123;
+        if task&lt;taskLimit&#123;
+            从消息队列中获取子任务
+            根据任务类别创建一个任务
+            将该任务加入到taskList中
+            go run 运行该任务
+        &#125;
+        遍历taskList，若有任务已完成，则将其从任务列表中删除
+        sleep(10)
+    &#125;
+&#125;
+</code></pre>
+<p>任务函数需要实现的接口如下</p>
+<pre><code class="go">interface task&#123;
+    init(); 将参数初始化
+    run() ; 执行任务
+    getprocess();获取当前任务进度
+    dataprocess(); 将运行结果改为JSON格式
+    upload(); 上传结果到MongoDB中，修改部分参数，如running-1 runned+1
+
+    实现接口的任务中还要定义一个标志位，当任务结束后方便主函数将其从任务列表中删除
+&#125;
+</code></pre>
+<blockquote>
+<p>调度节点</p>
+</blockquote>
+<p>主函数逻辑如下</p>
+<pre><code class="go">func main() &#123;
+    for &#123;
+        获取消息队列中可用的
+        sleep(10)
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>客户端</p>
+</blockquote>
+<p><em><!-- more --></em> </p>
+<blockquote>
+<p>参考文章</p>
+<p>Go执行系统命令并处理</p>
+<p><a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/97c2e105de36a32d7375a417866fb84ae45cc3f0.html">https://wenku.baidu.com/view/97c2e105de36a32d7375a417866fb84ae45cc3f0.html</a></p>
+</blockquote>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1944270374@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2020-2023 qwrdxer
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 722px;
+    }
+    .nav.fullscreen {
+        margin-left: -722px;
+    }
+    .nav-left {
+        width: 300px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 542px;
+        }
+        .nav.fullscreen {
+            margin-left: -542px;
+        }
+        .nav-left {
+            width: 150px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 542px;
+            margin-left: -542px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    #post {
+        background: url(/img/start.png);
+    }
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

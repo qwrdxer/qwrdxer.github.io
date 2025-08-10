@@ -1,0 +1,3418 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>The Rust Programming Language阅读笔记 | qwrdxer &#39;s blog</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="The Rust Programming Language阅读笔记 | qwrdxer &#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About">
+<meta property="og:url" content="https://qwrdxer.github.io/about/index.html">
+<meta property="og:site_name" content="qwrdxer &#39;s blog">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-08-10T03:50:56.671Z">
+<meta property="article:modified_time" content="2025-08-10T03:50:56.671Z">
+<meta property="article:author" content="qwrdxer">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>qwrdxer</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/qwrdxer"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/yyc-96-55-3"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qwrdxer?type=blog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1944270374@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1944270374&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(54)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="杂项">
+            
+            杂项
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="编程语言">
+            <i class="fold iconfont icon-right"></i>
+            编程语言
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;C++">
+            
+            C++
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Go">
+            
+            Go
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Rust">
+            
+            Rust
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="操作系统">
+            
+            操作系统
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="代码分析">
+            
+            代码分析
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="环境配置">
+            
+            环境配置
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="脚本">
+            
+            脚本
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="开发工具">
+            
+            开发工具
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文阅读">
+            <i class="fold iconfont icon-right"></i>
+            论文阅读
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="论文阅读&lt;---&gt;人工智能">
+            
+            人工智能
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="爬虫">
+            
+            爬虫
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="区块链">
+            
+            区块链
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="人工智能">
+            <i class="fold iconfont icon-right"></i>
+            人工智能
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="人工智能&lt;---&gt;FASTAI">
+            
+            FASTAI
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="日志">
+            
+            日志
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="渗透测试篇">
+            
+            渗透测试篇
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            
+            数据库
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="算法">
+            
+            算法
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="写点好玩的">
+            
+            写点好玩的
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="一些奇怪的bug">
+            
+            一些奇怪的bug
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="以太坊">
+            
+            以太坊
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Agent">
+            
+            Agent
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="LLM">
+            
+            LLM
+            <small>(5)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="MCP">
+            
+            MCP
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全工具篇">
+            
+            web安全工具篇
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全漏洞篇">
+            
+            web安全漏洞篇
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="54">
+<input type="hidden" id="yelog_site_word_count" value="166.5k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>报错解决</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具使用</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境配置</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>脚本</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>深度学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>渗透测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>通讯协议</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>文件包含</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>bash</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FASTAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPT</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Josephus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MCP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Memory</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Multi-Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>shell</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Swarm</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>web漏洞</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WordPress</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2025/08/10/Untitled/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2025-08-10 11:50:56">2025/08/10</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/12/LLM/Llama%20Factory%20%E5%BE%AE%E8%B0%83%E4%B8%80%E4%B8%AA%20LLM%E8%B6%8A%E7%8B%B1%E7%9B%B8%E5%85%B3%E5%A4%A7%E6%A8%A1%E5%9E%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Llama Factory 微调一个 LLM越狱相关大模型">Llama Factory 微调一个 LLM越狱相关大模型</span>
+            <span class="post-date" title="2025-04-12 13:56:52">2025/04/12</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/10/LLM/Qwen2.5-7b%20Lora%E5%BE%AE%E8%B0%83-peft%E7%AF%87/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Qwen2.5-7b Lora微调-peft篇">Qwen2.5-7b Lora微调-peft篇</span>
+            <span class="post-date" title="2025-04-10 14:32:36">2025/04/10</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/07/LLM/%E9%A2%84%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA25M%E7%9A%84GPT2%E6%A8%A1%E5%9E%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="预训练一个25M的GPT2模型">预训练一个25M的GPT2模型</span>
+            <span class="post-date" title="2025-04-07 14:19:54">2025/04/07</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/06/LLM/Tokenizer%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Tokenizer 从零开始训练">Tokenizer 从零开始训练</span>
+            <span class="post-date" title="2025-04-06 20:50:21">2025/04/06</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/06/LLM/GPT2%20%E6%89%8B%E6%92%95%20%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GPT2 手撕 模型代码分析">GPT2 手撕 模型代码分析</span>
+            <span class="post-date" title="2025-04-06 14:14:30">2025/04/06</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/22/Agent/multi-agent%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="multi-agent中的设计模式">multi-agent中的设计模式</span>
+            <span class="post-date" title="2025-03-22 14:46:50">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/22/Agent/autogen-core%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen-core学习记录">autogen-core学习记录</span>
+            <span class="post-date" title="2025-03-22 14:42:21">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="All MCP "
+           href="/2025/03/12/MCP/MCP(Model%20Context%20Protocol)%20%E7%AE%80%E4%BB%8B/"
+           data-tag="MCP,通讯协议,LLM"
+           data-author="" >
+            <span class="post-title" title="MCP(Model Context Protocol) 简介">MCP(Model Context Protocol) 简介</span>
+            <span class="post-date" title="2025-03-12 15:47:27">2025/03/12</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/10/Agent/autogen%E6%8F%90%E9%AB%98%E4%B9%8BAgentChat%20Advanced%E9%83%A8%E5%88%86/"
+           data-tag="Agent,Multi-Agent,Memory,Swarm"
+           data-author="" >
+            <span class="post-title" title="autogen提高之AgentChat Advanced部分">autogen提高之AgentChat Advanced部分</span>
+            <span class="post-date" title="2025-03-10 21:35:41">2025/03/10</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/08/Agent/autogen%E5%85%A5%E9%97%A8%E4%B9%8Bagentchat/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen入门之autochat">autogen入门之autochat</span>
+            <span class="post-date" title="2025-03-08 20:23:19">2025/03/08</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2024/02/26/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/logseq%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="logseq使用">logseq使用</span>
+            <span class="post-date" title="2024-02-26 10:47:48">2024/02/26</span>
+        </a>
+        
+        
+        <a  class="All 区块链 "
+           href="/2024/01/21/%E5%8C%BA%E5%9D%97%E9%93%BE/hardhat%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hardhat智能合约流程">hardhat智能合约流程</span>
+            <span class="post-date" title="2024-01-21 15:20:03">2024/01/21</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/"
+           data-tag="Josephus"
+           data-author="" >
+            <span class="post-title" title="Josephus Problem">Josephus Problem</span>
+            <span class="post-date" title="2024-01-17 11:49:36">2024/01/17</span>
+        </a>
+        
+        
+        <a  class="All 区块链 "
+           href="/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="fabric环境配置">fabric环境配置</span>
+            <span class="post-date" title="2024-01-08 18:47:43">2024/01/08</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/12/22/%E7%88%AC%E8%99%AB/CF%E7%9B%BE%E7%BB%95%E8%BF%87(NodeJs%E7%89%88)/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CF盾绕过(NodeJs版)">CF盾绕过(NodeJs版)</span>
+            <span class="post-date" title="2023-12-22 20:11:48">2023/12/22</span>
+        </a>
+        
+        
+        <a  class="All 以太坊 "
+           href="/2023/10/19/%E4%BB%A5%E5%A4%AA%E5%9D%8A/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E9%83%A8%E5%88%86%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B5%85%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="以太坊部分知识点浅析">以太坊部分知识点浅析</span>
+            <span class="post-date" title="2023-10-19 16:10:05">2023/10/19</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2023/10/12/%E6%97%A5%E5%BF%97/%E9%93%BE%E6%8E%A5%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="链接记录">链接记录</span>
+            <span class="post-date" title="2023-10-12 19:40:28">2023/10/12</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/go-rod%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="go-rod学习">go-rod学习</span>
+            <span class="post-date" title="2023-10-06 11:22:48">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/Go%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%88%AC%E8%99%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go实现一个爬虫">Go实现一个爬虫</span>
+            <span class="post-date" title="2023-10-06 11:10:43">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="All 代码分析 "
+           href="/2023/10/05/%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/RustScan%E6%BA%90%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RustScan源代码分析">RustScan源代码分析</span>
+            <span class="post-date" title="2023-10-05 19:28:59">2023/10/05</span>
+        </a>
+        
+        
+        <a  class="All 一些奇怪的bug "
+           href="/2023/10/02/%E4%B8%80%E4%BA%9B%E5%A5%87%E6%80%AA%E7%9A%84bug/bug%E8%AE%B0%E5%BD%95&%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="bug记录&amp;解决方法">bug记录&amp;解决方法</span>
+            <span class="post-date" title="2023-10-02 16:05:12">2023/10/02</span>
+        </a>
+        
+        
+        <a  class="All 论文阅读 人工智能 "
+           href="/2023/10/01/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/OpenAI%E7%9A%84GPT%E5%8F%91%E5%B1%95/"
+           data-tag="LLM,GPT"
+           data-author="" >
+            <span class="post-title" title="大模型论文">大模型论文</span>
+            <span class="post-date" title="2023-10-01 22:17:21">2023/10/01</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Rust "
+           href="/2023/09/28/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/Rust_lifetime/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Rust的生命周期">Rust的生命周期</span>
+            <span class="post-date" title="2023-09-28 11:33:04">2023/09/28</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2023/09/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%AE%89%E5%85%A8%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE&%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE%E4%B8%8B%E8%BD%BD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安全四大会议&amp;人工智能四大会议下载">安全四大会议&amp;人工智能四大会议下载</span>
+            <span class="post-date" title="2023-09-27 20:47:28">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Rust "
+           href="/2023/09/27/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/The%20Rust%20Programming%20Language%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Rust Programming Language阅读笔记">The Rust Programming Language阅读笔记</span>
+            <span class="post-date" title="2023-09-27 20:35:50">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_3_%E5%A4%9AGPU%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_3_多GPU训练">FASTAI_3_多GPU训练</span>
+            <span class="post-date" title="2023-09-27 20:32:12">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_2_Datasets%E3%80%81Pipeline%E3%80%81TfmdLists%E3%80%81Transform/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_2_Datasets、Pipeline、TfmdLists、Transform">FASTAI_2_Datasets、Pipeline、TfmdLists、Transform</span>
+            <span class="post-date" title="2023-09-27 20:29:37">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_1_%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8CAPI%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI_1_使用不同API加载数据">FASTAI_1_使用不同API加载数据</span>
+            <span class="post-date" title="2023-09-27 20:28:09">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI快速入门">FASTAI快速入门</span>
+            <span class="post-date" title="2023-09-27 20:18:36">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 C++ "
+           href="/2023/01/10/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/C++%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C++入门">C++入门</span>
+            <span class="post-date" title="2023-01-10 11:30:50">2023/01/10</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%AB%E6%8F%8F%E5%99%A8%E5%AE%9E%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="分布式扫描器实现">分布式扫描器实现</span>
+            <span class="post-date" title="2022-04-27 11:43:42">2022/04/27</span>
+        </a>
+        
+        
+        <a  class="All 数据库 "
+           href="/2022/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93/mongodb%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="mongodb学习">mongodb学习</span>
+            <span class="post-date" title="2022-04-14 09:31:33">2022/04/14</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/10/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/Go%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E5%99%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go编写一个扫描器">Go编写一个扫描器</span>
+            <span class="post-date" title="2022-04-10 14:34:18">2022/04/10</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/09/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E6%83%B3%E6%B3%95%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="想法记录">想法记录</span>
+            <span class="post-date" title="2022-04-09 11:24:11">2022/04/09</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Go "
+           href="/2022/04/08/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go/The%20Way%20To%20Go/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Way To Go">The Way To Go</span>
+            <span class="post-date" title="2022-04-08 18:09:20">2022/04/08</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2022/03/31/%E6%97%A5%E5%BF%97/%E5%B1%B1%E8%BF%98%E6%98%AF%E5%B1%B1,%E6%B0%B4%E8%BF%98%E6%98%AF%E6%B0%B4,%E4%BD%A0%E4%B8%8D%E8%83%BD%E6%B0%B8%E8%BF%9C%E6%98%AF%E9%82%A3%E4%B8%AA%E4%BD%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="山还是山,水还是水,你不能永远是那个你">山还是山,水还是水,你不能永远是那个你</span>
+            <span class="post-date" title="2022-03-31 09:37:42">2022/03/31</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day11~day20">30天自制操作系统-学习笔记 day11~day20</span>
+            <span class="post-date" title="2022-03-27 09:49:33">2022/03/27</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2022/03/21/%E6%97%A5%E5%BF%97/%E9%97%B2%E8%AF%AD%E6%9D%82%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="闲语杂记">闲语杂记</span>
+            <span class="post-date" title="2022-03-21 12:51:18">2022/03/21</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/03/15/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/freemarker%E6%93%8D%E6%8E%A7word/"
+           data-tag="工具使用"
+           data-author="" >
+            <span class="post-title" title="freemarker操控word">freemarker操控word</span>
+            <span class="post-date" title="2022-03-15 12:00:54">2022/03/15</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/2022/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day1~day10">30天自制操作系统-学习笔记 day1~day10</span>
+            <span class="post-date" title="2022-01-31 10:57:39">2022/01/31</span>
+        </a>
+        
+        
+        <a  class="All 杂项 "
+           href="/2022/01/12/%E6%9D%82%E9%A1%B9/GITHUB%E6%94%B6%E9%9B%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GITHUB收集">GITHUB收集</span>
+            <span class="post-date" title="2022-01-12 20:07:03">2022/01/12</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/"
+           data-tag="渗透测试,工具开发"
+           data-author="" >
+            <span class="post-title" title="web页面密码爆破">web页面密码爆破</span>
+            <span class="post-date" title="2022-01-11 10:21:34">2022/01/11</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2022/01/09/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/Goby%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Goby分析">Goby分析</span>
+            <span class="post-date" title="2022-01-09 13:35:49">2022/01/09</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/08/15/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Shell%E8%84%9A%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag="bash,脚本,shell,linux,开发"
+           data-author="" >
+            <span class="post-title" title="Shell脚本学习笔记">Shell脚本学习笔记</span>
+            <span class="post-date" title="2021-08-15 11:19:55">2021/08/15</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试篇 "
+           href="/2021/07/25/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AF%87/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="信息收集">信息收集</span>
+            <span class="post-date" title="2021-07-25 19:33:55">2021/07/25</span>
+        </a>
+        
+        
+        <a  class="All web安全漏洞篇 "
+           href="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,MySQL"
+           data-author="" >
+            <span class="post-title" title="SQL注入相关">SQL注入相关</span>
+            <span class="post-date" title="2021-05-11 15:23:06">2021/05/11</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2021/04/21/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/nmap%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="nmap使用">nmap使用</span>
+            <span class="post-date" title="2021-04-21 19:29:51">2021/04/21</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/04/20/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/docker%E7%9B%B8%E5%85%B3/"
+           data-tag="工具使用,脚本,docker"
+           data-author="" >
+            <span class="post-title" title="docker相关">docker相关</span>
+            <span class="post-date" title="2021-04-20 13:49:50">2021/04/20</span>
+        </a>
+        
+        
+        <a  class="All web安全漏洞篇 "
+           href="/2021/04/19/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,文件包含"
+           data-author="" >
+            <span class="post-title" title="文件包含漏洞相关">文件包含漏洞相关</span>
+            <span class="post-date" title="2021-04-19 14:49:59">2021/04/19</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/04/16/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/hexo%E5%91%BD%E4%BB%A4/"
+           data-tag="工具使用,脚本"
+           data-author="" >
+            <span class="post-title" title="hexo相关">hexo相关</span>
+            <span class="post-date" title="2021-04-16 12:12:14">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2021/04/16/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/xray%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="xray使用">xray使用</span>
+            <span class="post-date" title="2021-04-16 12:10:08">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="All 脚本 "
+           href="/2021/04/15/%E8%84%9A%E6%9C%AC/some-script/"
+           data-tag="bash,脚本,python"
+           data-author="" >
+            <span class="post-title" title="some script">some script</span>
+            <span class="post-date" title="2021-04-15 11:23:33">2021/04/15</span>
+        </a>
+        
+        
+        <a  class="All 环境配置 "
+           href="/2021/04/15/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/centos%E9%83%A8%E7%BD%B2wordpress/"
+           data-tag="linux,环境配置,报错解决,WordPress"
+           data-author="" >
+            <span class="post-title" title="centos部署wordpress">centos部署wordpress</span>
+            <span class="post-date" title="2021-04-15 01:34:16">2021/04/15</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-编程语言/Rust/The Rust Programming Language阅读笔记" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">The Rust Programming Language阅读笔记</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="编程语言">编程语言</a> > 
+            
+            <a  data-rel="编程语言&lt;---&gt;Rust">Rust</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2025-08-10 11:50:56'>2023-09-27 20:35</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:19.7k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%85%E8%A7%A3%E5%86%B3%E7%9A%84%E9%9A%BE%E7%82%B9"><span class="toc-text">待解决的难点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%B0%E6%83%91%E7%82%B9"><span class="toc-text">困惑点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-rust%E4%B8%AD%E6%9C%89%E6%89%80%E6%9C%89%E6%9D%83%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%8C%E6%88%91%E8%B0%83%E7%94%A8prinln-%E6%9D%A5%E8%BE%93%E5%87%BA%E5%8F%98%E9%87%8F%E4%BC%9A%E5%B0%86%E5%8F%98%E9%87%8F%E6%89%80%E6%9C%89%E6%9D%83%E8%BD%AC%E7%BB%99println-%E5%90%97%EF%BC%9F"><span class="toc-text">1.rust中有所有权的概念，我调用prinln!来输出变量会将变量所有权转给println!吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E7%9A%84%E6%98%AF-coin%E8%80%8C%E4%B8%8D%E6%98%AF-coin"><span class="toc-text">2. 为什么用的是&#x3D;coin而不是&#x3D;&#x3D;coin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%9C%A8rust%E4%B8%AD-let-v-vec-1-2-3-4-5-let-third-i32-v-2-%E8%BF%99%E6%98%AF%E5%90%A6%E6%84%8F%E5%91%B3%E7%9D%80v-2-%E5%85%83%E7%B4%A0%E7%9A%84%E6%89%80%E6%9C%89%E6%9D%83%E5%B7%B2%E7%BB%8F%E7%BB%99%E4%BA%86third"><span class="toc-text">3.在rust中,let v &#x3D; vec![1, 2, 3, 4, 5]; let third: i32 &#x3D; v[2]; 这是否意味着v[2]元素的所有权已经给了third</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%88%87%E7%89%87%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9F%AD%E6%9A%82"><span class="toc-text">多线程为什么字符串切片生命周期短暂</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8C%9C%E6%95%B0%E5%B0%8F%E6%B8%B8%E6%88%8F"><span class="toc-text">猜数小游戏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E5%99%A8"><span class="toc-text">端口扫描器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rust%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">Rust基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Rust-%E7%9A%84%E5%8F%98%E9%87%8F%E9%BB%98%E8%AE%A4%E6%98%AF%E4%B8%8D%E5%8F%AF%E5%8F%98%E7%9A%84"><span class="toc-text">1.Rust 的变量默认是不可变的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%81%AE%E8%94%BD"><span class="toc-text">2.遮蔽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">3.数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%87%BD%E6%95%B0"><span class="toc-text">4.函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%8E%A7%E5%88%B6%E6%B5%81"><span class="toc-text">5.控制流</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6-%E6%89%80%E6%9C%89%E6%9D%83"><span class="toc-text">进阶-所有权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%89%80%E6%9C%89%E6%9D%83"><span class="toc-text">1.所有权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">2.作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8F%98%E9%87%8F%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%9A%84%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F-%E4%B8%80-%E7%A7%BB%E5%8A%A8"><span class="toc-text">3.变量与数据的交互方式(一)移动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%8F%98%E9%87%8F%E5%92%8C%E6%95%B0%E6%8D%AE%E7%9A%84%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F-2-%E5%85%8B%E9%9A%86"><span class="toc-text">4.变量和数据的交互方式(2): 克隆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%89%80%E6%9C%89%E6%9D%83%E4%B8%8E%E5%87%BD%E6%95%B0"><span class="toc-text">5.所有权与函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%BC%95%E7%94%A8%E4%B8%8E%E5%80%9F%E7%94%A8"><span class="toc-text">6.引用与借用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%82%AC%E5%9E%82%E5%BC%95%E7%94%A8"><span class="toc-text">7.悬垂引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E5%88%87%E7%89%87slice"><span class="toc-text">8.切片slice</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6-%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-text">进阶-结构体</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%8E%E5%85%B6%E4%BB%96%E5%AE%9E%E4%BE%8B%E4%B8%AD%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93%E5%AE%9E%E4%BE%8B"><span class="toc-text">1.从其他实例中创建新的结构体实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E6%8D%AE%E7%9A%84%E5%A3%B0%E6%98%8E%E5%91%A8%E6%9C%9F"><span class="toc-text">2.结构体数据的声明周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%80%9A%E8%BF%87%E6%B4%BE%E7%94%9Ftrait%E5%A2%9E%E5%8A%A0%E5%AE%9E%E7%94%A8%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-text">3.通过派生trait增加实用的功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%96%B9%E6%B3%95"><span class="toc-text">4.方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6-%E6%9E%9A%E4%B8%BE%E5%92%8C%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D"><span class="toc-text">进阶-枚举和模式匹配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B"><span class="toc-text">1.枚举类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Option-%E6%9E%9A%E4%B8%BE%E5%92%8C%E5%85%B6%E7%9B%B8%E5%AF%B9%E4%BA%8E%E7%A9%BA%E5%80%BC%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="toc-text">2. Option 枚举和其相对于空值的优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-match%E6%8E%A7%E5%88%B6%E6%B5%81%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">3.match控制流运算符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6-%E7%AE%A1%E7%90%86%E4%BB%A3%E7%A0%81"><span class="toc-text">进阶-管理代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8C%85%E5%92%8Ccreate"><span class="toc-text">1. 包和create</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%A8%A1%E5%9D%97%E7%B3%BB%E7%BB%9F"><span class="toc-text">2.模块系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Rust-%E5%A6%82%E4%BD%95%E5%9C%A8%E6%A8%A1%E5%9D%97%E6%A0%91%E4%B8%AD%E6%89%BE%E5%88%B0%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-text">3.Rust 如何在模块树中找到一个项的位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BD%BF%E7%94%A8use%E5%85%B3%E9%94%AE%E5%AD%97%E5%B0%86%E5%90%8D%E7%A7%B0%E5%BC%95%E5%85%A5%E5%9F%9F"><span class="toc-text">3.使用use关键字将名称引入域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%B0%86%E6%A8%A1%E5%9D%97%E5%88%86%E5%89%B2%E5%88%B0%E4%B8%8D%E5%90%8C%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%AD"><span class="toc-text">4.将模块分割到不同的文件中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6-%E5%B8%B8%E8%A7%81%E9%9B%86%E5%90%88"><span class="toc-text">进阶- 常见集合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-vector"><span class="toc-text">1.vector</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AD%97%E7%AC%A6%E4%B8%B2String"><span class="toc-text">2.字符串String</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AD%98%E5%82%A8%E9%94%AE%E5%80%BC%E5%AF%B9%E7%9A%84hash-map"><span class="toc-text">3.存储键值对的hash map</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-text">进阶- 错误处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#panic-%E4%B8%8E%E4%B8%8D%E5%8F%AF%E6%81%A2%E5%A4%8D%E7%9A%84%E9%94%99%E8%AF%AF"><span class="toc-text">panic! 与不可恢复的错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#result%E4%B8%8E%E5%8F%AF%E6%81%A2%E5%A4%8D%E9%94%99%E8%AF%AF"><span class="toc-text">result与可恢复错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%B1%E8%B4%A5%E6%97%B6panic%E7%9A%84%E7%AE%80%E5%86%99-unwrap%E5%92%8Cexpect"><span class="toc-text">失败时panic的简写: unwrap和expect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E7%9A%84%E4%BC%A0%E6%92%AD"><span class="toc-text">错误的传播</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E6%92%AD%E9%94%99%E8%AF%AF%E7%9A%84%E7%AE%80%E5%86%99-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">传播错误的简写:  ? 运算符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6-%E6%B3%9B%E5%9E%8B%E3%80%81trait-%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">进阶- 泛型、trait 与生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B"><span class="toc-text">泛型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E4%B8%AD%E7%9A%84%E6%B3%9B%E5%9E%8B"><span class="toc-text">结构体中的泛型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%AE%9A%E4%B9%89%E4%B8%AD%E7%9A%84%E6%B3%9B%E5%9E%8B"><span class="toc-text">方法定义中的泛型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#trait-%E5%AE%9A%E4%B9%89%E5%85%B1%E4%BA%AB%E8%A1%8C%E4%B8%BA"><span class="toc-text">trait: 定义共享行为</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E4%B8%8E%E5%BC%95%E7%94%A8%E7%9A%84%E6%9C%89%E6%95%88%E6%80%A7"><span class="toc-text">生命周期与引用的有效性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E7%9A%84-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%A0%87%E6%B3%A8%E8%AF%AD%E6%B3%95"><span class="toc-text">引用的 生命周期标注语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E5%AE%9A%E4%B9%89%E4%B8%AD%E5%BC%95%E7%94%A8%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%A0%87%E6%B3%A8"><span class="toc-text">结构体定义中引用的生命周期标注</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9C%81%E7%95%A5"><span class="toc-text">生命周期省略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">静态生命周期</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAGrep"><span class="toc-text">实现一个Grep</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#main-rs"><span class="toc-text">main.rs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lib-rs"><span class="toc-text">lib.rs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rust-%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0%E5%BC%8F%E8%AF%AD%E8%A8%80%E5%8A%9F%E8%83%BD-%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E9%97%AD%E5%8C%85"><span class="toc-text">Rust 中的函数式语言功能:迭代器与闭包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%97%AD%E5%8C%85-%E5%8F%AF%E4%BB%A5%E6%8D%95%E8%8E%B7%E5%85%B6%E7%8E%AF%E5%A2%83%E7%9A%84%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0"><span class="toc-text">1.闭包: 可以捕获其环境的匿名函数</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="待解决的难点"><a href="#待解决的难点" class="headerlink" title="待解决的难点"></a>待解决的难点</h2><p>操作<a target="_blank" rel="noopener" href="https://blog.csdn.net/cfy_banq/article/details/131863274">https://blog.csdn.net/cfy_banq/article/details/131863274</a></p>
+<p>option </p>
+<p>枚举</p>
+<h2 id="困惑点"><a href="#困惑点" class="headerlink" title="困惑点"></a>困惑点</h2><h3 id="1-rust中有所有权的概念，我调用prinln-来输出变量会将变量所有权转给println-吗？"><a href="#1-rust中有所有权的概念，我调用prinln-来输出变量会将变量所有权转给println-吗？" class="headerlink" title="1.rust中有所有权的概念，我调用prinln!来输出变量会将变量所有权转给println!吗？"></a>1.rust中有所有权的概念，我调用prinln!来输出变量会将变量所有权转给println!吗？</h3><p>在 Rust 中，调用 <code>println!</code> 宏并不会转移变量的所有权。这是因为 <code>println!</code> 通常接受一个变量的引用或者是实现了 <code>Copy</code> trait 的类型，而不是变量本身。</p>
+<p>在 Rust 的标准库中，很多类型都实现了 <code>Copy</code> trait，包括所有整数类型、浮点数类型和字符类型等。当一个类型实现了 <code>Copy</code> trait，这意味着在赋值或者函数调用过程中，它的数据会被复制而不是移动，因此其所有权不会被转移。</p>
+<p>对于没有实现 <code>Copy</code> trait 的复杂类型（比如 <code>String</code> 或自定义的结构体和枚举），<code>println!</code> 通常会使用一个不可变引用 <code>&amp;T</code>，这样也不会转移所有权。</p>
+<p>下面是一些例子：</p>
+<pre><code>rustCopy codelet x = 42;  // i32 类型，实现了 Copy trait
+println!(&quot;x is: &#123;&#125;&quot;, x); // 打印 x 的值
+println!(&quot;x is: &#123;&#125;&quot;, x); // 因为 i32 是 Copy 的，这里依然可以使用 x
+
+let s = String::from(&quot;hello&quot;);
+println!(&quot;s is: &#123;&#125;&quot;, s); // 使用不可变引用打印 s 的值
+println!(&quot;s is: &#123;&#125;&quot;, s); // s 的所有权没有被转移，依然可以使用
+</code></pre>
+<p>总之，使用 <code>println!</code> 宏并不会转移变量的所有权，所以你可以放心地在后续代码中使用这些变量。</p>
+<h3 id="2-为什么用的是-coin而不是-coin"><a href="#2-为什么用的是-coin而不是-coin" class="headerlink" title="2. 为什么用的是=coin而不是==coin"></a>2. 为什么用的是=coin而不是==coin</h3><pre><code class="rust">if let Coin::Quarter(state) = coin &#123;
+    println!(&quot;State quarter from &#123;:?&#125;!&quot;, state);
+&#125; else &#123;
+    count += 1;
+&#125;
+</code></pre>
+<p>在 Rust 中，<code>if let</code> 语句用于模式匹配。在这里，<code>=</code> 并不是一个比较运算符（这会是 <code>==</code>）；相反，它用于解构和匹配 <code>coin</code> 的值。如果 <code>coin</code> 是 <code>Coin::Quarter(state)</code> 类型，<code>state</code> 将包含 <code>Quarter</code> 的值，并执行大括号内的代码。</p>
+<p>这里是一个简单的解释：</p>
+<ul>
+<li><code>==</code> 是一个比较运算符，用于检查两个值是否相等。</li>
+<li><code>=</code> 是一个赋值运算符，在模式匹配中用于解构值。</li>
+</ul>
+<p>在 <code>if let</code> 表达式中，<code>=</code> 符号的目的是尝试将右侧的 <code>coin</code> 解构为左侧的模式 <code>Coin::Quarter(state)</code>。如果这个尝试成功，那么 <code>state</code> 变量将包含 <code>Quarter</code> 的值，然后执行 <code>if</code> 分支内的代码。</p>
+<p>下面是一个完整的例子，解释了这个过程：</p>
+<pre><code>rustCopy codeenum UsState &#123;
+    Alabama,
+    Alaska,
+    // etc
+&#125;
+
+enum Coin &#123;
+    Penny,
+    Nickel,
+    Dime,
+    Quarter(UsState),
+&#125;
+
+fn main() &#123;
+    let coin = Coin::Quarter(UsState::Alaska);
+    let mut count = 0;
+
+    if let Coin::Quarter(state) = coin &#123;
+        println!(&quot;State quarter from &#123;:?&#125;!&quot;, state);
+    &#125; else &#123;
+        count += 1;
+    &#125;
+    
+    println!(&quot;Count: &#123;&#125;&quot;, count);
+&#125;
+</code></pre>
+<p>运行这个程序会输出：</p>
+<pre><code>vbnetCopy codeState quarter from Alaska!
+Count: 0
+</code></pre>
+<p>这里 <code>Coin::Quarter(state) = coin</code> 成功匹配，所以 <code>state</code> 被赋值为 <code>UsState::Alaska</code>，并执行了 <code>println!(&quot;State quarter from &#123;:?&#125;!&quot;, state);</code>。<code>count</code> 没有增加，因为 <code>else</code> 分支没有执行。</p>
+<h3 id="3-在rust中-let-v-vec-1-2-3-4-5-let-third-i32-v-2-这是否意味着v-2-元素的所有权已经给了third"><a href="#3-在rust中-let-v-vec-1-2-3-4-5-let-third-i32-v-2-这是否意味着v-2-元素的所有权已经给了third" class="headerlink" title="3.在rust中,let v = vec![1, 2, 3, 4, 5]; let third: i32 = v[2]; 这是否意味着v[2]元素的所有权已经给了third"></a>3.在rust中,let v = vec![1, 2, 3, 4, 5]; let third: i32 = v[2]; 这是否意味着v[2]元素的所有权已经给了third</h3><p>在Rust中，基本类型（如<code>i32</code>、<code>f64</code>、<code>bool</code>等）是实现了<code>Copy</code> trait的，这意味着当你做类似<code>let third: i32 = v[2];</code>这样的操作时，实际上是把<code>v[2]</code>的值复制到了<code>third</code>变量中，而不是转移所有权。</p>
+<p>对于实现了<code>Copy</code> trait的类型，赋值操作会复制值，而不会转移所有权。因此，在这种情况下，<code>v</code>仍然拥有其所有元素的所有权，<code>third</code>则拥有一个新的、与<code>v[2]</code>相等的值。</p>
+<p>下面是代码：</p>
+<pre><code>rustCopy codelet v = vec![1, 2, 3, 4, 5];
+let third: i32 = v[2]; // third 现在是 3，而 v[2] 的值并没有改变。
+</code></pre>
+<p>这里，<code>v</code>的结构和所有权没有受到影响。你之后仍然可以正常使用<code>v</code>和它的元素，包括<code>v[2]</code>。</p>
+<p>需要注意的是，这种行为是基本类型特有的。如果<code>v</code>是一个存储了更复杂类型（比如自定义结构体或枚举）的向量，并且这些类型没有实现<code>Copy</code> trait，那么尝试进行类似的赋值操作会导致编译器错误，除非你显式地使用<code>.clone()</code>方法或其他复制手段。</p>
+<h3 id="多线程为什么字符串切片生命周期短暂"><a href="#多线程为什么字符串切片生命周期短暂" class="headerlink" title="多线程为什么字符串切片生命周期短暂"></a>多线程为什么字符串切片生命周期短暂</h3><p>Rust 中的字符串切片（<code>&amp;str</code>）是对某个字符串数据的不可变引用，它由一个指针和一个长度组成。这个切片实际上没有拥有它所引用的数据，它只是“借用”了这份数据。因此，切片的生命周期总是受到其所引用的原始数据（即字符串字面量、<code>String</code> 对象等）的生命周期的限制。</p>
+<p>考虑下面的代码：</p>
+<pre><code>rustCopy codelet mut target_ip_input = String::new();
+io::stdin().read_line(&amp;mut target_ip_input).unwrap();
+let target_ip = target_ip_input.trim_end();
+</code></pre>
+<p>在这里，<code>target_ip</code> 是一个字符串切片，它是 <code>target_ip_input</code> 的一个部分。它不拥有数据，只是一个指向 <code>target_ip_input</code> 中某个部分的引用。因此，<code>target_ip</code> 的生命周期是受 <code>target_ip_input</code> 的生命周期限制的。</p>
+<p>当你尝试在一个线程中使用 <code>target_ip</code> 时，Rust 的生命周期检查器会发现一个问题。线程可能会在 <code>main()</code> 函数结束后继续运行，而 <code>main()</code> 函数结束时，<code>target_ip_input</code>（以及由其产生的 <code>target_ip</code> 切片）都将被销毁。这意味着线程可能会尝试访问一个已经被销毁的字符串，这是不安全的。</p>
+<p>解决这个问题的一种方法是创建一个新的 <code>String</code> 对象（它拥有其数据）并传递这个对象（或其克隆）给线程。因为这个新的 <code>String</code> 对象拥有其数据，它可以安全地传递给线程，不受原始 <code>String</code> 对象（在这种情况下是 <code>target_ip_input</code>）生命周期的限制。</p>
+<p>这就是为什么将 <code>trim_end()</code> 的返回结果转换为 <code>String</code> 对象可以解决生命周期问题的原因：</p>
+<pre><code>rustCopy code
+let target_ip = target_ip_input.trim_end().to_string();
+</code></pre>
+<p>现在 <code>target_ip</code> 是一个 <code>String</code> 对象，它拥有自己的数据。这样你就可以克隆这个 <code>String</code> 对象，并将克隆传递给线程，而不必担心生命周期问题了。</p>
+<h2 id="猜数小游戏"><a href="#猜数小游戏" class="headerlink" title="猜数小游戏"></a>猜数小游戏</h2><pre><code class="rust">use rand::Rng;
+use std::cmp::Ordering;
+use std::io;
+
+fn main() &#123;
+    println!(&quot;Guess the number!&quot;);
+    //生成一个1~100的随机数
+    let secret_number = rand::thread_rng().gen_range(1..101);
+
+    loop &#123;
+        println!(&quot;Please input your guess.&quot;);
+        
+        let mut guess = String::new();
+        //读取输入存入guss中
+        io::stdin()
+            .read_line(&amp;mut guess)
+            .expect(&quot;Failed to read line&quot;);
+        //通过match 来尝试将输入的guess转换成int
+        let guess: u32 = match guess.trim().parse() &#123;
+            //.parse()调用成功会返回一个包含结果数字的Ok
+            Ok(num) =&gt; num,
+            //调用失败会返回Err
+            Err(_) =&gt; continue,
+        &#125;;
+
+        println!(&quot;You guessed: &#123;&#125;&quot;, guess);
+
+        match guess.cmp(&amp;secret_number) &#123;
+            Ordering::Less =&gt; println!(&quot;Too small!&quot;),
+            Ordering::Greater =&gt; println!(&quot;Too big!&quot;),
+            Ordering::Equal =&gt; &#123;
+                println!(&quot;You win!&quot;);
+                break;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="端口扫描器"><a href="#端口扫描器" class="headerlink" title="端口扫描器"></a>端口扫描器</h2><pre><code class="rust">use std::io::&#123;self, Write&#125;;
+use std::net::TcpStream;
+use std::thread;
+
+fn main() &#123;
+    let mut target_ip = String::new();
+    print!(&quot;请输入要扫描的IP地址: &quot;);
+    io::stdout().flush().unwrap(); // 刷新stdout以立即显示提示
+    io::stdin().read_line(&amp;mut target_ip);
+
+    // 端口范围可以按需求更改
+    let start_port: u16 = 20;
+    let end_port: u16 = 40000;
+    let target_ip = target_ip.trim_end().to_string();
+    for port in start_port..=end_port &#123;
+        let target_ip = target_ip.clone(); 
+        // 用线程执行每个扫描以加速过程
+        thread::spawn(move || &#123;
+            scan_port(&amp;target_ip, port);
+        &#125;);
+    &#125;
+
+    // 等待所有线程完成（简单的暂停，更好的方法是使用线程池和任务同步）
+    thread::sleep(std::time::Duration::from_secs(2));
+&#125;
+
+fn scan_port(ip: &amp;str, port: u16) &#123;
+
+    let ip_port = format!(&quot;&#123;&#125;:&#123;&#125;&quot;, ip, port);
+   // println!(&quot;&#123;&#125;&quot;, ip_port);
+    if TcpStream::connect(ip_port).is_ok() &#123;
+        println!(&quot;端口 &#123;&#125; 是打开的&quot;, port);
+    &#125;
+&#125;
+</code></pre>
+<h2 id="Rust基本概念"><a href="#Rust基本概念" class="headerlink" title="Rust基本概念"></a>Rust基本概念</h2><h3 id="1-Rust-的变量默认是不可变的"><a href="#1-Rust-的变量默认是不可变的" class="headerlink" title="1.Rust 的变量默认是不可变的"></a>1.Rust 的变量默认是不可变的</h3><pre><code class="rust">let x =5; 
+x=4; //报错
+</code></pre>
+<pre><code class="rust">//如果想让变量为可变变量，要加上mut关键字
+let mut x =5;
+x=4; //可以
+</code></pre>
+<h3 id="2-遮蔽"><a href="#2-遮蔽" class="headerlink" title="2.遮蔽"></a>2.遮蔽</h3><p>你可以声明和前面变量具有相同名称的新变量。第一个变量会被第二个变量<strong>遮蔽</strong>（<em>shadow</em>），这意味着当我们使用变量时我们看到的会是第二个变量的值。我们可以通过使用相同的变量名并重复使用 <code>let</code> 关键字来遮蔽变量</p>
+<pre><code class="rust">fn main() &#123;
+    let x = 5;
+
+    let x = x + 1;
+
+    &#123;
+        let x = x * 2;
+        println!(&quot;The value of x in the inner scope is: &#123;&#125;&quot;, x);
+    &#125;
+
+    println!(&quot;The value of x is: &#123;&#125;&quot;, x);
+&#125;
+</code></pre>
+<h3 id="3-数据类型"><a href="#3-数据类型" class="headerlink" title="3.数据类型"></a>3.数据类型</h3><blockquote>
+<p> 标量类型: 整数、浮点型、布尔型、字符</p>
+</blockquote>
+<pre><code class="rust">let x =5;
+let y:u8=5; // u8 u16 u32 u64   i8 i16 i32 i664
+let z=0.4; //默认为f64
+let a:f32=111;
+let t = true;
+let f: bool = false; // with explicit type annotation
+let c = &#39;z&#39;; //Rust 的字符类型大小为 4 个字节，表示的是一个 Unicode 标量值
+let z = &#39;ℤ&#39;;
+let heart_eyed_cat = &#39;😻&#39;;
+</code></pre>
+<blockquote>
+<p> 复合类型: Rust有两种基本的复合类型: 元组(tuple) 和数组(array).</p>
+</blockquote>
+<p>元组的长度是固定的：声明后，它们就无法增长或缩小。元组中的每个位置都有一个类型，并且元组中不同值的类型不要求是相同的。</p>
+<pre><code class="rust">let tup: (i32, f64, u8) = (500, 6.4, 1);
+let (x, y, z) = tup; //直接给xyz赋值
+
+let x: (i32, f64, u8) = (500, 6.4, 1);
+let five_hundred = x.0; //通过.来进行下标访问
+let six_point_four = x.1;
+let one = x.2;
+</code></pre>
+<p>组的每个元素必须具有相同的类型。与某些其他语言中的数组不同，Rust 中的数组具有固定长度。</p>
+<pre><code class="rust">let a = [1, 2, 3, 4, 5];
+let months = [&quot;January&quot;, &quot;February&quot;, &quot;March&quot;];
+
+let first = a[0];//通过下标访问数组成员
+let second = a[1];
+</code></pre>
+<h3 id="4-函数"><a href="#4-函数" class="headerlink" title="4.函数"></a>4.函数</h3><pre><code class="rust">fn main() &#123;
+    let a = [1, 2, 3, 4, 5];
+    let result:u8=add(a[1],a[2]);
+    println!(&quot;&#123;&#125;&quot;,result);
+&#125;
+fn add(x:u8,y:u8) -&gt; u8&#123;
+    return x+y;
+&#125;
+</code></pre>
+<p>通过元组可以返回多个值</p>
+<pre><code class="rust">fn main() &#123;
+    let s1 = String::from(&quot;hello&quot;);
+
+    let (s2, len) = calculate_length(s1);
+
+    println!(&quot;The length of &#39;&#123;&#125;&#39; is &#123;&#125;.&quot;, s2, len);
+&#125;
+
+fn calculate_length(s: String) -&gt; (String, usize) &#123;
+    let length = s.len(); // len() 返回字符串的长度
+
+    (s, length)
+&#125;
+</code></pre>
+<h3 id="5-控制流"><a href="#5-控制流" class="headerlink" title="5.控制流"></a>5.控制流</h3><blockquote>
+<p> 条件if</p>
+</blockquote>
+<pre><code class="rust">fn main() &#123;
+    let number = 6;
+
+    if number % 4 == 0 &#123;
+        println!(&quot;number is divisible by 4&quot;);
+    &#125; else if number % 3 == 0 &#123;
+        println!(&quot;number is divisible by 3&quot;);
+    &#125; else if number % 2 == 0 &#123;
+        println!(&quot;number is divisible by 2&quot;);
+    &#125; else &#123;
+        println!(&quot;number is not divisible by 4, 3, or 2&quot;);
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>循环loop</p>
+</blockquote>
+<pre><code class="rust">fn main() &#123;
+    let mut count = 0;
+    &#39;counting_up: loop &#123; //couting_up是一个标签
+        println!(&quot;count = &#123;&#125;&quot;, count);
+        let mut remaining = 10;
+
+        loop &#123;
+            println!(&quot;remaining = &#123;&#125;&quot;, remaining);
+            if remaining == 9 &#123;
+                break;
+            &#125;
+            if count == 2 &#123;
+                break &#39;counting_up;
+            &#125;
+            remaining -= 1;
+        &#125;
+
+        count += 1;
+    &#125;
+    println!(&quot;End count = &#123;&#125;&quot;, count);
+&#125;
+</code></pre>
+<blockquote>
+<p>while</p>
+</blockquote>
+<pre><code class="rust">    while index &lt; 5 &#123;
+        println!(&quot;the value is: &#123;&#125;&quot;, a[index]);
+
+        index += 1;
+    &#125;
+</code></pre>
+<blockquote>
+<p>for in </p>
+</blockquote>
+<pre><code class="rust">fn main() &#123;
+    let a = [10, 20, 30, 40, 50];
+
+    for element in a &#123;
+        println!(&quot;the value is: &#123;&#125;&quot;, element);
+    &#125;
+&#125;
+</code></pre>
+<h2 id="进阶-所有权"><a href="#进阶-所有权" class="headerlink" title="进阶-所有权"></a>进阶-所有权</h2><h3 id="1-所有权"><a href="#1-所有权" class="headerlink" title="1.所有权"></a>1.所有权</h3><ul>
+<li>Rust 中的每一个值都有一个被称为其 <strong>所有者</strong>（<em>owner</em>）的变量。</li>
+<li>值在任一时刻有且只有一个所有者。</li>
+<li>当所有者（变量）离开作用域，这个值将被丢弃。</li>
+</ul>
+<h3 id="2-作用域"><a href="#2-作用域" class="headerlink" title="2.作用域"></a>2.作用域</h3><pre><code class="rust">    &#123;                      // s 在这里无效, 它尚未声明
+        let s = &quot;hello&quot;;   // 从此处起，s 开始有效
+
+        // 使用 s
+    &#125;                      // 此作用域已结束，s 不再有效
+</code></pre>
+<p>当 <code>s</code> 离开作用域的时候。当变量离开作用域，Rust 为我们调用一个特殊的函数。这个函数叫做 <a target="_blank" rel="noopener" href="https://rustwiki.org/zh-CN/std/ops/trait.Drop.html#tymethod.drop"><code>drop</code></a>，在这里 <code>String</code> 的作者可以放置释放内存的代码。Rust 在结尾的 <code>&#125;</code> 处自动调用 <code>drop</code></p>
+<h3 id="3-变量与数据的交互方式-一-移动"><a href="#3-变量与数据的交互方式-一-移动" class="headerlink" title="3.变量与数据的交互方式(一)移动"></a>3.变量与数据的交互方式(一)移动</h3><p>对于堆中的数据，采用深度拷贝会降低性能，rust将原变量直接无效。</p>
+<pre><code class="rust">    let s1 = String::from(&quot;hello&quot;);
+    let s2 = s1;
+</code></pre>
+<p><img src="/2023/09/27/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/The%20Rust%20Programming%20Language%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230909192926044.png" alt="image-20230909192926044"></p>
+<p>例子可以解读为 <code>s1</code> 被 <strong>移动</strong> 到了 <code>s2</code> 中，此时变量s1已经无效了。</p>
+<h3 id="4-变量和数据的交互方式-2-克隆"><a href="#4-变量和数据的交互方式-2-克隆" class="headerlink" title="4.变量和数据的交互方式(2): 克隆"></a>4.变量和数据的交互方式(2): 克隆</h3><pre><code class="rust">    let s1 = String::from(&quot;hello&quot;);
+    let s2 = s1.clone();
+
+    println!(&quot;s1 = &#123;&#125;, s2 = &#123;&#125;&quot;, s1, s2);
+</code></pre>
+<h3 id="5-所有权与函数"><a href="#5-所有权与函数" class="headerlink" title="5.所有权与函数"></a>5.所有权与函数</h3><pre><code class="rust">fn main() &#123;
+  let s = String::from(&quot;hello&quot;);  // s 进入作用域
+
+  takes_ownership(s);             // s 的值移动到函数里 ...
+                                  // ... 所以到这里不再有效
+
+  let x = 5;                      // x 进入作用域
+
+  makes_copy(x);                  // x 应该移动函数里，
+                                  // 但 i32 是 Copy 的，所以在后面可继续使用 x
+
+&#125; // 这里, x 先移出了作用域，然后是 s。但因为 s 的值已被移走，
+  // 所以不会有特殊操作
+
+fn takes_ownership(some_string: String) &#123; // some_string 进入作用域
+  println!(&quot;&#123;&#125;&quot;, some_string);
+&#125; // 这里，some_string 移出作用域并调用 `drop` 方法。占用的内存被释放
+
+fn makes_copy(some_integer: i32) &#123; // some_integer 进入作用域
+  println!(&quot;&#123;&#125;&quot;, some_integer);
+&#125; // 这里，some_integer 移出作用域。不会有特殊操作
+</code></pre>
+<p>函数通过返回值可以返回所有权</p>
+<pre><code class="rust">fn main() &#123;
+  let s1 = gives_ownership();         // gives_ownership 将返回值
+                                      // 移给 s1
+
+  let s2 = String::from(&quot;hello&quot;);     // s2 进入作用域
+
+  let s3 = takes_and_gives_back(s2);  // s2 被移动到
+                                      // takes_and_gives_back 中,
+                                      // 它也将返回值移给 s3
+&#125; // 这里, s3 移出作用域并被丢弃。s2 也移出作用域，但已被移走，
+  // 所以什么也不会发生。s1 移出作用域并被丢弃
+
+fn gives_ownership() -&gt; String &#123;           // gives_ownership 将返回值移动给
+                                           // 调用它的函数
+
+  let some_string = String::from(&quot;yours&quot;); // some_string 进入作用域
+
+  some_string                              // 返回 some_string 并移出给调用的函数
+&#125;
+
+// takes_and_gives_back 将传入字符串并返回该值
+fn takes_and_gives_back(a_string: String) -&gt; String &#123; // a_string 进入作用域
+
+  a_string  // 返回 a_string 并移出给调用的函数
+&#125;
+</code></pre>
+<h3 id="6-引用与借用"><a href="#6-引用与借用" class="headerlink" title="6.引用与借用"></a>6.引用与借用</h3><pre><code class="rust">fn main() &#123;
+    let s1 = String::from(&quot;hello&quot;);
+
+    let len = calculate_length(&amp;s1);
+
+    println!(&quot;The length of &#39;&#123;&#125;&#39; is &#123;&#125;.&quot;, s1, len);
+&#125;
+
+fn calculate_length(s: &amp;String) -&gt; usize &#123;
+    s.len()
+&#125;
+</code></pre>
+<p><img src="/2023/09/27/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/The%20Rust%20Programming%20Language%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230909193951382.png" alt="image-20230909193951382"></p>
+<p>修改引用指向的值(可变引用 &amp;mut)</p>
+<pre><code class="rust">fn main() &#123;
+    let mut s = String::from(&quot;hello&quot;);
+
+    change(&amp;mut s);
+&#125;
+
+fn change(some_string: &amp;mut String) &#123;
+    some_string.push_str(&quot;, world&quot;);
+&#125;
+</code></pre>
+<p>首先，我们必须将 <code>s</code> 改为 <code>mut</code>。然后必须在调用 <code>change</code> 函数的地方创建一个可变引用 <code>&amp;mut s</code>，并更新函数签名以接受一个可变引用 <code>some_string: &amp;mut String</code>。这就非常清楚地表明，<code>change</code> 函数将改变它所借用的值。</p>
+<p>不过<strong>可变引用</strong>有一个很大的限制：<strong>在同一时间</strong>，只能有一个对某一特定数据的可变引用。尝试创建两个可变引用的代码将会失败：</p>
+<p><img src="/2023/09/27/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/The%20Rust%20Programming%20Language%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230909194209032.png" alt="image-20230909194209032"></p>
+<p>这个限制的好处是 Rust 可以在编译时就避免数据竞争。<strong>数据竞争</strong>（<em>data race</em>）类似于竞态条件，它由这三个行为造成：</p>
+<ul>
+<li>两个或更多指针同时访问同一数据。</li>
+<li>至少有一个指针被用来写入数据。</li>
+<li>没有同步数据访问的机制。</li>
+</ul>
+<pre><code class="rust">fn main() &#123;
+    let mut s = String::from(&quot;hello&quot;);
+    let r1 = &amp;s; // 没问题
+    let r2 = &amp;s; // 没问题
+    let r3 = &amp;mut s; // 大问题
+    println!(&quot;&#123;&#125;, &#123;&#125;, and &#123;&#125;&quot;, r1, r2, r3);//这里r1 r2在声明r3后使用了，所以会导致编译不通过
+&#125;
+
+
+fn main() &#123;
+    let mut s = String::from(&quot;hello&quot;);
+
+    let r1 = &amp;s; // 没问题
+    let r2 = &amp;s; // 没问题
+    println!(&quot;&#123;&#125;, &#123;&#125;, and&quot;, r1, r2);
+    let r3 = &amp;mut s; // 没问题，因为后续的代码中,r1 r2都没有被使用。
+&#125;
+</code></pre>
+<h3 id="7-悬垂引用"><a href="#7-悬垂引用" class="headerlink" title="7.悬垂引用"></a>7.悬垂引用</h3><p>在具有指针的语言中，很容易通过释放内存时保留指向它的指针而错误地生成一个 <strong>悬垂指针</strong>（<em>dangling pointer</em>），所谓悬垂指针是其指向的内存可能已经被分配给其它持有者。相比之下，在 Rust 中编译器确保引用永远也不会变成悬垂状态：当你拥有一些数据的引用，编译器确保数据不会在其引用之前离开作用域。</p>
+<p>让我们尝试创建一个悬垂引用，Rust 会通过一个编译时错误来避免：</p>
+<pre><code class="rust">fn main() &#123;
+    let reference_to_nothing = dangle();
+&#125;
+
+fn dangle() -&gt; &amp;String &#123; // dangle 返回一个字符串的引用
+
+    let s = String::from(&quot;hello&quot;); // s 是一个新字符串
+
+    &amp;s // 返回字符串 s 的引用
+&#125; // 这里 s 离开作用域并被丢弃。其内存被释放。
+  // 危险！
+</code></pre>
+<p>解决方法</p>
+<pre><code class="rust">fn no_dangle() -&gt; String &#123;
+    let s = String::from(&quot;hello&quot;);
+    s
+&#125;//这样就没有任何错误了。所有权被移动出去，所以没有值被释放。
+</code></pre>
+<h3 id="8-切片slice"><a href="#8-切片slice" class="headerlink" title="8.切片slice"></a>8.切片slice</h3><p>引用、切片都没有所有权</p>
+<p><strong>字符串 slice</strong>（<em>string slice</em>）是 <code>String</code> 中一部分值的引用，它看起来像这样：</p>
+<pre><code class="rust">    let s = String::from(&quot;hello world&quot;);
+
+    let hello = &amp;s[0..5];
+    let world = &amp;s[6..11];
+</code></pre>
+<p>这类似于引用整个 <code>String</code> 不过带有额外的 <code>[0..5]</code> 部分。它不是对整个 <code>String</code> 的引用，而是对部分 <code>String</code> 的引用。</p>
+<p><img src="/2023/09/27/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/The%20Rust%20Programming%20Language%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230909200838308.png" alt="image-20230909200838308"></p>
+<p>字符串切片类型为&amp;str ,这种特殊的引用</p>
+<h2 id="进阶-结构体"><a href="#进阶-结构体" class="headerlink" title="进阶-结构体"></a>进阶-结构体</h2><p><em>struct</em>，或者 <em>structure</em>，是一个自定义数据类型，允许你命名和包装多个相关的值，从而形成一个有意义的组合。如果你熟悉一门面向对象语言，<em>struct</em> 就像对象中的数据属性。</p>
+<pre><code class="rust">struct User &#123;
+    active: bool,
+    username: String,
+    email: String,
+    sign_in_count: u64,
+&#125;
+
+fn main() &#123;
+    let mut user1 = User &#123;
+        email: String::from(&quot;someone@example.com&quot;),
+        username: String::from(&quot;someusername123&quot;),
+        active: true,
+        sign_in_count: 1,
+    &#125;;
+
+    user1.email = String::from(&quot;anotheremail@example.com&quot;);
+&#125;
+</code></pre>
+<p>注意整个实例必须是可变的；Rust 并不允许只将某个字段标记为可变。另外需要注意同其他任何表达式一样，我们可以在函数体的最后一个表达式中构造一个结构体的新实例，来隐式地返回这个实例。</p>
+<pre><code class="rust">fn build_user(email: String, username: String) -&gt; User &#123;
+    User &#123;
+        email,
+        username,
+        active: true,
+        sign_in_count: 1,
+    &#125;
+&#125;
+</code></pre>
+<h3 id="1-从其他实例中创建新的结构体实例"><a href="#1-从其他实例中创建新的结构体实例" class="headerlink" title="1.从其他实例中创建新的结构体实例"></a>1.从其他实例中创建新的结构体实例</h3><p>方式1 ：</p>
+<pre><code class="rust">    let user2 = User &#123;
+        active: user1.active,
+        username: user1.username,
+        email: String::from(&quot;another@example.com&quot;),
+        sign_in_count: user1.sign_in_count,
+    &#125;;
+</code></pre>
+<p>方式2:</p>
+<pre><code class="rust">    let user2 = User &#123;
+        email: String::from(&quot;another@example.com&quot;),
+        ..user1 //复制user1中除了email外的值
+    &#125;;
+</code></pre>
+<p>在这个例子中，我们在创建 <code>user2</code> 后不能再使用 <code>user1</code>，因为 <code>user1</code> 的 <code>username</code> 字段中的 <code>String</code> 被移到 <code>user2</code> 中。如果我们给 <code>user2</code> 的 <code>email</code> 和 <code>username</code> 都赋予新的 <code>String</code> 值，从而只使用 <code>user1</code> 的 <code>active</code> 和 <code>sign_in_count</code> 值，那么 <code>user1</code> 在创建 <code>user2</code> 后仍然有效。<code>active</code> 和 <code>sign_in_count</code> 的类型是实现 <code>Copy</code> trait 的类型</p>
+<h3 id="2-结构体数据的声明周期"><a href="#2-结构体数据的声明周期" class="headerlink" title="2.结构体数据的声明周期"></a>2.结构体数据的声明周期</h3><p><code>User</code> 结构体的定义中，我们使用了自身拥有所有权的 <code>String</code> 类型而不是 <code>&amp;str</code> 字符串 slice 类型。这是一个有意而为之的选择，因为我们想要这个结构体拥有它所有的数据，为此只要整个结构体是有效的话其数据也是有效的。</p>
+<p>可以使结构体存储被其他对象拥有的数据的引用，不过这么做的话需要用上<strong>生命周期</strong>（<em>lifetime</em>）。生命周期确保结构体引用的数据有效性跟结构体本身保持一致。</p>
+<h3 id="3-通过派生trait增加实用的功能"><a href="#3-通过派生trait增加实用的功能" class="headerlink" title="3.通过派生trait增加实用的功能"></a>3.通过派生trait增加实用的功能</h3><p>如下代码会报错</p>
+<pre><code class="rust">#[derive(Debug)]//通过 derive 属性来使用的 trait
+struct Rectangle &#123;
+    width: u32,
+    height: u32,
+&#125;
+
+fn main() &#123;
+    let scale = 2;
+    let rect1 = Rectangle &#123;
+        width: dbg!(30 * scale),
+        height: 50,
+    &#125;;
+
+    dbg!(&amp;rect1);
+&#125;
+</code></pre>
+<p>一种使用 <code>Debug</code> 格式打印数值的方法是使用 <a target="_blank" rel="noopener" href="https://rustwiki.org/zh-CN/std/macro.dbg.html"><code>dbg!</code> 宏</a>。<code>dbg!</code> 宏接收一个表达式的所有权，打印出代码中调用 <code>dbg!</code> 宏时所在的文件和行号，以及该表达式的结果值，并返回该值的所有权</p>
+<h3 id="4-方法"><a href="#4-方法" class="headerlink" title="4.方法"></a>4.方法</h3><p><strong>方法</strong> 与函数类似：它们使用 <code>fn</code> 关键字和名称声明，可以拥有参数和返回值，同时包含在某处调用该方法时会执行的代码。不过方法与函数是不同的，因为它们在结构体的上下文中被定义，并且它们第一个参数总是 <code>self</code>，它代表调用该方法的结构体实例。</p>
+<pre><code class="rust">文件名: src/main.rs
+
+
+#[derive(Debug)]
+struct Rectangle &#123;
+    width: u32,
+    height: u32,
+&#125;
+
+impl Rectangle &#123;
+    fn area(&amp;self) -&gt; u32 &#123;
+        self.width * self.height
+    &#125;
+&#125;
+
+fn main() &#123;
+    let rect1 = Rectangle &#123;
+        width: 30,
+        height: 50,
+    &#125;;
+
+    println!(
+        &quot;The area of the rectangle is &#123;&#125; square pixels.&quot;,
+        rect1.area()
+    );
+&#125;
+</code></pre>
+<p>这里选择 <code>&amp;self</code> 的理由跟在函数版本中使用 <code>&amp;Rectangle</code> 是相同的：我们并不想获取所有权，只希望能够读取结构体中的数据，而不是写入。如果想要在方法中改变调用方法的实例，需要将第一个参数改为 <code>&amp;mut self</code>。通过仅仅使用 <code>self</code> 作为第一个参数来使方法获取实例的所有权是很少见的；这种技术通常用在当方法将 <code>self</code> 转换成别的实例的时候，这时我们想要防止调用者在转换之后使用原始的实例。</p>
+<p>我们可以选择将方法的名称与结构中的一个字段相同。在 <code>main</code> 中，当我们在 <code>rect1.width</code> 后面加上括号时。Rust 知道我们指的是方法 <code>width</code>。当我们不使用圆括号时，Rust 知道我们指的是字段 <code>width</code>。</p>
+<blockquote>
+<p>带有更多参数的方法</p>
+</blockquote>
+<pre><code class="rust">impl Rectangle &#123;
+    fn area(&amp;self) -&gt; u32 &#123;
+        self.width * self.height
+    &#125;
+
+    fn can_hold(&amp;self, other: &amp;Rectangle) -&gt; bool &#123;
+        self.width &gt; other.width &amp;&amp; self.height &gt; other.height
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>关联函数</p>
+</blockquote>
+<p>所有在 <code>impl</code> 块中定义的函数被称为<strong>关联函数</strong>（<em>associated function</em>），因为它们与 <code>impl</code> 后面命名的类型相关。我们可以定义不以 <code>self</code> 为第一参数的关联函数（因此不是方法），因为它们并不作用于一个结构体的实例。我们已经使用了一个这样的函数，<code>String::from</code> 函数，它是在 <code>String</code> 类型上定义的。</p>
+<p>关联函数经常被用作返回一个结构体新实例的构造函数。例如我们可以提供一个关联函数，它接受一个维度参数并且同时作为宽和高，这样可以更轻松的创建一个正方形 <code>Rectangle</code> 而不必指定两次同样的值：</p>
+<p>文件名: src/main.rs</p>
+<pre><code class="rust">impl Rectangle &#123;
+    fn square(size: u32) -&gt; Rectangle &#123;
+        Rectangle &#123;
+            width: size,
+            height: size,
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>使用结构体名和 <code>::</code> 语法来调用这个关联函数：比如 <code>let sq = Rectangle::square(3);</code>。这个方法位于结构体的命名空间中：<code>::</code> 语法用于关联函数和模块创建的命名空间。第 7 章会讲到模块。</p>
+<h2 id="进阶-枚举和模式匹配"><a href="#进阶-枚举和模式匹配" class="headerlink" title="进阶-枚举和模式匹配"></a>进阶-枚举和模式匹配</h2><h3 id="1-枚举类型"><a href="#1-枚举类型" class="headerlink" title="1.枚举类型"></a>1.枚举类型</h3><p>一个简单的例子: 任何一个 IP 地址要么是 IPv4 的要么是 IPv6 的，而且不能两者都是。IP 地址的这个特性使得枚举数据结构非常适合这个场景，因为枚举值只可能是<strong>其中一个成员</strong>.</p>
+<pre><code class="rust">enum IpAddrKind &#123;
+    V4,
+    V6,
+&#125;
+
+struct IpAddr &#123;
+    kind: IpAddrKind,
+    address: String,
+&#125;
+
+let home = IpAddr &#123;
+    kind: IpAddrKind::V4,
+    address: String::from(&quot;127.0.0.1&quot;),
+&#125;;
+
+let loopback = IpAddr &#123;
+    kind: IpAddrKind::V6,
+    address: String::from(&quot;::1&quot;),
+&#125;;
+</code></pre>
+<p>注意枚举的成员位于其标识符的命名空间中，并使用两个冒号分开。这么设计的益处是现在 <code>IpAddrKind::V4</code> 和 <code>IpAddrKind::V6</code> 都是 <code>IpAddrKind</code> 类型的。例如，接着可以定义一个函数来获取任何 <code>IpAddrKind</code>：</p>
+<pre><code class="rust">fn route(ip_type: IpAddrKind) &#123; &#125;
+</code></pre>
+<p>现在可以使用任一成员来调用这个函数：</p>
+<pre><code class="rust">route(IpAddrKind::V4);
+route(IpAddrKind::V6);
+</code></pre>
+<p>我们可以使用一种更简洁的方式来表达相同的概念，仅仅使用枚举并将数据直接放进每一个枚举成员而不是将枚举作为结构体的一部分。<code>IpAddr</code> 枚举的新定义表明了 <code>V4</code> 和 <code>V6</code> 成员都关联了 <code>String</code> 值：</p>
+<pre><code class="rust">enum IpAddr &#123;
+    V4(String),
+    V6(String),
+&#125;
+
+let home = IpAddr::V4(String::from(&quot;127.0.0.1&quot;));
+
+let loopback = IpAddr::V6(String::from(&quot;::1&quot;));
+</code></pre>
+<p>用枚举替代结构体还有另一个优势：每个成员可以处理不同类型和数量的数据。IPv4 版本的 IP 地址总是含有四个值在 0 和 255 之间的数字部分。如果我们想要将 <code>V4</code> 地址存储为四个 <code>u8</code> 值而 <code>V6</code> 地址仍然表现为一个 <code>String</code>，这就不能使用结构体了。枚举则可以轻易地处理这个情况：</p>
+<pre><code class="rust">enum IpAddr &#123;
+    V4(u8, u8, u8, u8),
+    V6(String),
+&#125;
+
+let home = IpAddr::V4(127, 0, 0, 1);
+
+let loopback = IpAddr::V6(String::from(&quot;::1&quot;));
+</code></pre>
+<h3 id="2-Option-枚举和其相对于空值的优势"><a href="#2-Option-枚举和其相对于空值的优势" class="headerlink" title="2. Option 枚举和其相对于空值的优势"></a>2. Option 枚举和其相对于空值的优势</h3><pre><code class="rust">enum Option&lt;T&gt; &#123;
+    Some(T),
+    None,
+&#125;
+</code></pre>
+<p>为了拥有一个可能为空的值，你必须要显式地将其放入对应类型的 <code>Option&lt;T&gt;</code> 中。接着，当使用这个值时，必须明确地处理值为空的情况。只要一个值不是 <code>Option&lt;T&gt;</code> 类型，你就 <strong>可以</strong> 安全地认定它的值不为空。这是 Rust 的一个经过深思熟虑的设计决策，来限制空值的泛滥以增加 Rust 代码的安全性。</p>
+<h3 id="3-match控制流运算符"><a href="#3-match控制流运算符" class="headerlink" title="3.match控制流运算符"></a>3.match控制流运算符</h3><p>可以把 <code>match</code> 表达式想象成某种硬币分类器：硬币滑入有着不同大小孔洞的轨道，每一个硬币都会掉入符合它大小的孔洞。同样地，值也会通过 <code>match</code> 的每一个模式，并且在遇到第一个 “符合” 的模式时，值会进入相关联的代码块并在执行中被使用。</p>
+<p>因为刚刚提到了硬币，让我们用它们来作为一个使用 <code>match</code> 的例子！我们可以编写一个函数来获取一个未知的硬币，并以一种类似验钞机的方式，确定它是何种硬币并返回它的美分值，如示例 6-3 中所示。</p>
+<pre><code class="rust">enum Coin &#123;
+    Penny,
+    Nickel,
+    Dime,
+    Quarter,
+&#125;
+
+fn value_in_cents(coin: Coin) -&gt; u8 &#123;
+    match coin &#123;
+        Coin::Penny =&gt; 1,
+        Coin::Nickel =&gt; 5,
+        Coin::Dime =&gt; 10,
+        Coin::Quarter =&gt; 25,
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>匹配是穷尽的！！！！！！！！！！！！！！！！</p>
+</blockquote>
+<p><code>match</code> 还有另一方面需要讨论。考虑一下 <code>plus_one</code> 函数的这个版本，它有一个 bug 并不能编译：</p>
+<pre><code class="rust">    fn plus_one(x: Option&lt;i32&gt;) -&gt; Option&lt;i32&gt; &#123;
+        match x &#123;
+            Some(i) =&gt; Some(i + 1),
+        &#125;
+    &#125;
+</code></pre>
+<p>我们没有处理 <code>None</code> 的情况，所以这些代码会造成一个 bug。幸运的是，这是一个 Rust 知道如何处理的 bug。如果尝试编译这段代码，会得到这个错误：</p>
+<pre><code class="console">$ cargo run
+   Compiling enums v0.1.0 (file:///projects/enums)
+error[E0004]: non-exhaustive patterns: `None` not covered
+   --&gt; src/main.rs:3:15
+    |
+3   |         match x &#123;
+    |               ^ pattern `None` not covered
+    |
+    = help: ensure that all possible cases are being handled, possibly by adding wildcards or more match arms
+    = note: the matched value is of type `Option&lt;i32&gt;`
+
+For more information about this error, try `rustc --explain E0004`.
+error: could not compile `enums` due to previous error
+</code></pre>
+<p>Rust 知道我们没有覆盖所有可能的情况甚至知道哪些模式被忘记了！Rust 中的匹配是<strong>穷举式的</strong>（<em>exhaustive</em>）：必须穷举到最后的可能性来使代码有效。特别的在这个 <code>Option&lt;T&gt;</code> 的例子中，Rust 防止我们忘记明确的处理 <code>None</code> 的情况，这让我们免于假设拥有一个实际上为空的值，从而使之前提到的价值亿万的错误不可能发生。</p>
+<blockquote>
+<p>如何处理你不关心的值呢?</p>
+</blockquote>
+<p>让我们看一个例子，我们希望对一些特定的值采取特殊操作，而对其他的值采取默认操作。想象我们正在玩一个游戏，如果你掷出骰子的值为 3，角色不会移动，而是会得到一顶新奇的帽子。如果你掷出了 7，你的角色将失去新奇的帽子。对于其他的数值，你的角色会在棋盘上移动相应的格子。这是一个实现了上述逻辑的 <code>match</code>，骰子的结果是硬编码而不是一个随机值，其他的逻辑部分使用了没有函数体的函数来表示，实现它们超出了本例的范围：</p>
+<pre><code class="rust">    let dice_roll = 9;
+    match dice_roll &#123;
+        3 =&gt; add_fancy_hat(),
+        7 =&gt; remove_fancy_hat(),
+        other =&gt; move_player(other),
+    &#125;
+
+    fn add_fancy_hat() &#123;&#125;
+    fn remove_fancy_hat() &#123;&#125;
+    fn move_player(num_spaces: u8) &#123;&#125;
+</code></pre>
+<p>对于前两个分支，匹配模式是字面值 3 和 7，最后一个分支则涵盖了所有其他可能的值，模式是我们命名为 <code>other</code> 的一个变量。<code>other</code> 分支的代码通过将其传递给 <code>move_player</code> 函数来使用这个变量。</p>
+<p>即使我们没有列出 <code>u8</code> 所有可能的值，这段代码依然能够编译，因为最后一个模式将匹配所有未被特殊列出的值。这种通配模式满足了 <code>match</code> 必须被穷尽的要求。请注意，我们必须将通配分支放在最后，因为模式是按顺序匹配的。如果我们在通配分支后添加其他分支，Rust 将会警告我们，因为此后的分支永远不会被匹配到。</p>
+<p>Rust 还提供了一个模式，当我们不想使用通配模式获取的值时，请使用 <code>_</code> ，这是一个特殊的模式，可以匹配任意值而不绑定到该值。这告诉 Rust 我们不会使用这个值，所以 Rust 也不会警告我们存在未使用的变量。</p>
+<p>让我们改变游戏规则，当你掷出的值不是 3 或 7 的时候，你必须再次掷出。这种情况下我们不需要使用这个值，所以我们改动代码使用 <code>_</code> 来替代变量 <code>other</code> ：</p>
+<pre><code class="rust">    let dice_roll = 9;
+    match dice_roll &#123;
+        3 =&gt; add_fancy_hat(),
+        7 =&gt; remove_fancy_hat(),
+        _ =&gt; reroll(),
+    &#125;
+
+    fn add_fancy_hat() &#123;&#125;
+    fn remove_fancy_hat() &#123;&#125;
+    fn reroll() &#123;&#125;
+</code></pre>
+<p>这个例子也满足穷举性要求，因为我们在最后一个分支中明确地忽略了其他的值。我们没有忘记处理任何东西。</p>
+<p>让我们再次改变游戏规则，如果你掷出 3 或 7 以外的值，你的回合将无事发生。我们可以使用单元值（在<a target="_blank" rel="noopener" href="https://rustwiki.org/zh-CN/book/ch03-02-data-types.html#%E5%85%83%E7%BB%84%E7%B1%BB%E5%9E%8B">“元组类型”</a>一节中提到的空元组）作为 <code>_</code> 分支的代码：</p>
+<pre><code class="rust">    let dice_roll = 9;
+    match dice_roll &#123;
+        3 =&gt; add_fancy_hat(),
+        7 =&gt; remove_fancy_hat(),
+        _ =&gt; (),
+    &#125;
+
+    fn add_fancy_hat() &#123;&#125;
+    fn remove_fancy_hat() &#123;&#125;
+</code></pre>
+<p>在这里，我们明确告诉 Rust 我们不会使用与前面模式不匹配的值，并且这种情况下我们不想运行任何代码。</p>
+<blockquote>
+<p>使用if let简洁操作</p>
+</blockquote>
+<p><code>if let</code> 语法让我们以一种不那么冗长的方式结合 <code>if</code> 和 <code>let</code>，来处理只匹配一个模式的值而忽略其他模式的情况。考虑示例 6-6 中的程序，它匹配一个 <code>Option&lt;u8&gt;</code> 值并只希望当值为 3 时执行代码：</p>
+<pre><code class="rust">let some_u8_value = Some(0u8);
+match some_u8_value &#123;
+    Some(3) =&gt; println!(&quot;three&quot;),
+    _ =&gt; (),
+&#125;
+</code></pre>
+<p>示例 6-6：<code>match</code> 只关心当值为 <code>Some(3)</code> 时执行代码</p>
+<p>我们想要对 <code>Some(3)</code> 匹配进行操作但是不想处理任何其他 <code>Some&lt;u8&gt;</code> 值或 <code>None</code> 值。为了满足 <code>match</code> 表达式（穷尽性）的要求，必须在处理完这唯一的成员后加上 <code>_ =&gt; ()</code>，这样也要增加很多样板代码。</p>
+<p>不过我们可以使用 <code>if let</code> 这种更短的方式编写。如下代码与示例 6-6 中的 <code>match</code> 行为一致：</p>
+<pre><code class="rust">if let Some(3) = some_u8_value &#123;
+    println!(&quot;three&quot;);
+&#125;
+</code></pre>
+<p><code>if let</code> 获取通过等号分隔的一个模式和一个表达式。它的工作方式与 <code>match</code> 相同，这里的表达式对应 <code>match</code> 而模式则对应第一个分支。</p>
+<p>使用 <code>if let</code> 意味着编写更少代码，更少的缩进和更少的样板代码。然而，这样会失去 <code>match</code> 强制要求的穷尽性检查。<code>match</code> 和 <code>if let</code> 之间的选择依赖特定的环境以及增加简洁度和失去穷尽性检查的权衡取舍。</p>
+<h2 id="进阶-管理代码"><a href="#进阶-管理代码" class="headerlink" title="进阶-管理代码"></a>进阶-管理代码</h2><p>Rust 有许多功能可以让你管理代码的组织，包括哪些内容可以被公开，哪些内容作为私有部分，以及程序每个作用域中的名字。这些功能。这有时被称为 “模块系统（the module system）”，包括：</p>
+<ul>
+<li><strong>包</strong>（<em>Packages</em>）： Cargo 的一个功能，它允许你构建、测试和分享 crate。</li>
+<li><strong>Crates</strong> ：一个模块的树形结构，它形成了库或二进制项目。</li>
+<li><strong>模块</strong>（<em>Modules</em>）和 <strong>use</strong>： 允许你控制作用域和路径的私有性。</li>
+<li><strong>路径</strong>（<em>path</em>）：一个命名例如结构体、函数或模块等项的方式</li>
+</ul>
+<h3 id="1-包和create"><a href="#1-包和create" class="headerlink" title="1. 包和create"></a>1. 包和create</h3><p>crate 是一个二进制项或者库。<em>crate root</em> 是一个源文件，Rust 编译器以它为起始点，并构成你的 crate 的根模块，<em>包</em>（<em>package</em>）是提供一系列功能的一个或者多个 crate。一个包会包含有一个 <em>Cargo.toml</em> 文件，阐述如何去构建这些 crate。</p>
+<p>包中所包含的内容由几条规则来确立。一个包中至多 <strong>只能</strong> 包含一个库 crate（library crate）；包中可以包含任意多个二进制 crate（binary crate）；包中至少包含一个 crate，无论是库的还是二进制的。</p>
+<p>让我们来看看创建包的时候会发生什么。首先，我们输入命令 <code>cargo new</code>：</p>
+<pre><code class="text">$ cargo new my-project
+     Created binary (application) `my-project` package
+$ ls my-project
+Cargo.toml
+src
+$ ls my-project/src
+main.rs
+</code></pre>
+<p>当我们输入了这条命令，Cargo 会给我们的包创建一个 <em>Cargo.toml</em> 文件。查看 <em>Cargo.toml</em> 的内容，会发现并没有提到 <em>src/main.rs</em>，因为 Cargo 遵循的一个约定：<em>src/main.rs</em> 就是一个与包同名的二进制 crate 的 crate 根。同样的，Cargo 知道如果包目录中包含 <em>src/lib.rs</em>，则包带有与其同名的库 crate，且 <em>src/lib.rs</em> 是 crate 根。crate 根文件将由 Cargo 传递给 <code>rustc</code> 来实际构建库或者二进制项目。</p>
+<h3 id="2-模块系统"><a href="#2-模块系统" class="headerlink" title="2.模块系统"></a>2.模块系统</h3><p><em>模块</em> 让我们可以将一个 crate 中的代码进行分组，以提高可读性与重用性。模块还可以控制项的 <em>私有性</em>，即项是可以被外部代码使用的（<em>public</em>），还是作为一个内部实现的内容，不能被外部代码使用（<em>private</em>）。</p>
+<p>通过如下命令创建一个lib create</p>
+<pre><code class="rust">cargo new --lib restaurant
+</code></pre>
+<p>文件名: src/lib.rs</p>
+<pre><code class="rust">mod front_of_house &#123;
+    mod hosting &#123;
+        fn add_to_waitlist() &#123;&#125;
+
+        fn seat_at_table() &#123;&#125;
+    &#125;
+
+    mod serving &#123;
+        fn take_order() &#123;&#125;
+
+        fn serve_order() &#123;&#125;
+
+        fn take_payment() &#123;&#125;
+    &#125;
+&#125;
+</code></pre>
+<p>通过使用模块，我们可以把相关的定义组织起来，并通过模块命名来解释为什么它们之间有相关性。使用这部分代码的开发者可以更方便的循着这种分组找到自己需要的定义，而不需要通览所有。编写这部分代码的开发者通过分组知道该把新功能放在哪里以便继续让程序保持组织性。</p>
+<p>之前我们提到，<em>src/main.rs</em> 和 <em>src/lib.rs</em> 被称为 crate 根。如此称呼的原因是，这两个文件中任意一个的内容会构成名为 <code>crate</code> 的模块，且该模块位于 crate 的被称为 <em>模块树</em> 的模块结构的根部（”at the root of the crate’s module structure”）。</p>
+<pre><code class="text">crate
+ └── front_of_house
+     ├── hosting
+     │   ├── add_to_waitlist
+     │   └── seat_at_table
+     └── serving
+         ├── take_order
+         ├── serve_order
+         └── take_payment
+</code></pre>
+<p>这个树展示了模块间是如何相互嵌套的（比如，<code>hosting</code> 嵌套在 <code>front_of_house</code> 内部）。这个树还展示了一些模块互为 <em>兄弟</em> ，即它们被定义在同一模块内（<code>hosting</code> 和 <code>serving</code> 都定义在 <code>front_of_house</code> 内）。继续使用家族比喻，如果模块A包含在模块B的内部，我们称模块A是模块B的 <em>孩子</em> 且模块B是模块A的 <em>父辈</em> 。注意整个模块树的根位于名为 <code>crate</code> 的隐式模块下。</p>
+<h3 id="3-Rust-如何在模块树中找到一个项的位置"><a href="#3-Rust-如何在模块树中找到一个项的位置" class="headerlink" title="3.Rust 如何在模块树中找到一个项的位置"></a>3.Rust 如何在模块树中找到一个项的位置</h3><p>路径有两种形式：</p>
+<ul>
+<li><strong>绝对路径</strong>（<em>absolute path</em>）从 crate 根部开始，以 crate 名或者字面量 <code>crate</code> 开头。</li>
+<li><strong>相对路径</strong>（<em>relative path</em>）从当前模块开始，以 <code>self</code>、<code>super</code> 或当前模块的标识符开头。</li>
+</ul>
+<p>文件名: src/lib.rs</p>
+<pre><code class="rust">mod front_of_house &#123;
+    mod hosting &#123;
+        fn add_to_waitlist() &#123;&#125;
+    &#125;
+&#125;
+
+pub fn eat_at_restaurant() &#123;
+    // 绝对路径
+    crate::front_of_house::hosting::add_to_waitlist();
+
+    // 相对路径
+    front_of_house::hosting::add_to_waitlist();
+&#125;
+</code></pre>
+<p>第一种方式，我们在 <code>eat_at_restaurant</code> 中调用 <code>add_to_waitlist</code> 函数，使用的是绝对路径。<code>add_to_waitlist</code> 函数与 <code>eat_at_restaurant</code> 被定义在同一 crate 中，这意味着我们可以使用 <code>crate</code> 关键字为起始的绝对路径。</p>
+<p>第二种方式，我们在 <code>eat_at_restaurant</code> 中调用 <code>add_to_waitlist</code>，使用的是相对路径。这个路径以 <code>front_of_house</code> 为起始，这个模块在模块树中，与 <code>eat_at_restaurant</code> 定义在同一层级。与之等价的文件系统路径就是 <code>front_of_house/hosting/add_to_waitlist</code>。以名称为起始，意味着该路径是相对路径。</p>
+<blockquote>
+<p>编译这个src/lib.rs模块会报错 –&gt; 模块的私有性</p>
+</blockquote>
+<p>我们拥有 <code>hosting</code> 模块和 <code>add_to_waitlist</code> 函数的的正确路径，但是 Rust 不让我们使用，因为它不能访问私有片段。</p>
+<p>模块不仅对于你组织代码很有用。他们还定义了 Rust 的 <em>私有性边界</em>（<em>privacy boundary</em>）：这条界线不允许外部代码了解、调用和依赖被封装的实现细节。所以，如果你希望创建一个私有函数或结构体，你可以将其放入模块。</p>
+<p>Rust 中默认所有项（函数、方法、结构体、枚举、模块和常量）都是私有的。<strong>父模块中的项不能使用子模块中的私有项，但是子模块中的项可以使用他们父模块中的项</strong>。</p>
+<blockquote>
+<p>使用pub关键字暴露路径</p>
+</blockquote>
+<p>文件名: src/lib.rs</p>
+<pre><code class="rust">mod front_of_house &#123;
+    pub mod hosting &#123;
+        fn add_to_waitlist() &#123;&#125;
+    &#125;
+&#125;
+
+pub fn eat_at_restaurant() &#123;
+    // 绝对路径
+    crate::front_of_house::hosting::add_to_waitlist();
+
+    // 相对路径
+    front_of_house::hosting::add_to_waitlist();
+&#125;
+</code></pre>
+<p>然而这样还是有问题, 在 <code>mod hosting</code> 前添加了 <code>pub</code> 关键字，使其变成公有的。伴随着这种变化，如果我们可以访问 <code>front_of_house</code>，那我们也可以访问 <code>hosting</code>。但是 <code>hosting</code> 的 <strong>内容</strong>（<em>contents</em>） 仍然是私有的；这表明使模块公有并不使其内容也是公有的。模块上的 <code>pub</code> 关键字只允许其父模块引用它。</p>
+<p>最终版本: src/lib.rs</p>
+<pre><code class="rust">mod front_of_house &#123;
+    pub mod hosting &#123;
+        pub fn add_to_waitlist() &#123;&#125;
+    &#125;
+&#125;
+
+pub fn eat_at_restaurant() &#123;
+    // 绝对路径
+    crate::front_of_house::hosting::add_to_waitlist();
+
+    // 相对路径
+    front_of_house::hosting::add_to_waitlist();
+&#125;
+</code></pre>
+<blockquote>
+<p>使用super其实的相对路径</p>
+</blockquote>
+<p>我们还可以使用 <code>super</code> 开头来构建从父模块开始的相对路径。这么做类似于文件系统中以 <code>..</code> 开头的语法。我们为什么要这样做呢？</p>
+<p>文件名: src/lib.rs</p>
+<pre><code class="rust">fn serve_order() &#123;&#125;
+
+mod back_of_house &#123;
+    fn fix_incorrect_order() &#123;
+        cook_order();
+        super::serve_order();//调用
+    &#125;
+
+    fn cook_order() &#123;&#125;
+&#125;
+</code></pre>
+<pre><code>fix_incorrect_order` 函数在 `back_of_house` 模块中，所以我们可以使用 `super` 进入 `back_of_house` 父模块，也就是本例中的 `crate` 根。在这里，我们可以找到 `serve_order
+</code></pre>
+<blockquote>
+<p>使用pub构造公有的结构体和枚举</p>
+</blockquote>
+<p>我们还可以使用 <code>pub</code> 来设计公有的结构体和枚举，不过有一些额外的细节需要注意。如果我们在一个结构体定义的前面使用了 <code>pub</code> ，这个结构体会变成公有的，但是这个结构体的字段仍然是私有的。</p>
+<p>文件名: src/lib.rs</p>
+<pre><code class="rust">mod back_of_house &#123;
+    pub struct Breakfast &#123;
+        pub toast: String,
+        seasonal_fruit: String,
+    &#125;
+
+    impl Breakfast &#123;
+        pub fn summer(toast: &amp;str) -&gt; Breakfast &#123;
+            Breakfast &#123;
+                toast: String::from(toast),
+                seasonal_fruit: String::from(&quot;peaches&quot;),
+            &#125;
+        &#125;
+    &#125;
+&#125;
+
+pub fn eat_at_restaurant() &#123;
+    // 在夏天点一份黑麦面包作为早餐
+    let mut meal = back_of_house::Breakfast::summer(&quot;Rye&quot;);
+    // 更改我们想要的面包
+    meal.toast = String::from(&quot;Wheat&quot;);
+    println!(&quot;I&#39;d like &#123;&#125; toast please&quot;, meal.toast);
+
+    // 如果取消下一行的注释，将会导致编译失败；我们不被允许看到或更改随餐搭配的季节水果
+    // meal.seasonal_fruit = String::from(&quot;blueberries&quot;);
+&#125;
+</code></pre>
+<p>如果我们将枚举设为公有，则它的所有成员都将变为公有。我们只需要在 <code>enum</code> 关键字前面加上 <code>pub</code></p>
+<p>src/lib.rs</p>
+<pre><code class="rust">mod back_of_house &#123;
+    pub enum Appetizer &#123;
+        Soup,
+        Salad,
+    &#125;
+&#125;
+
+pub fn eat_at_restaurant() &#123;
+    let order1 = back_of_house::Appetizer::Soup;
+    let order2 = back_of_house::Appetizer::Salad;
+&#125;
+</code></pre>
+<h3 id="3-使用use关键字将名称引入域"><a href="#3-使用use关键字将名称引入域" class="headerlink" title="3.使用use关键字将名称引入域"></a>3.使用use关键字将名称引入域</h3><p>文件名: src/lib.rs</p>
+<pre><code class="rust">mod front_of_house &#123;
+    pub mod hosting &#123;
+        pub fn add_to_waitlist() &#123;&#125;
+    &#125;
+&#125;
+
+use crate::front_of_house::hosting;
+
+pub fn eat_at_restaurant() &#123;
+    hosting::add_to_waitlist();
+&#125;
+</code></pre>
+<p>在作用域中增加 <code>use</code> 和路径类似于在文件系统中创建软连接（符号连接，symbolic link）。通过在 crate 根增加 <code>use crate::front_of_house::hosting</code>，现在 <code>hosting</code> 在作用域中就是有效的名称了，如同 <code>hosting</code> 模块被定义于 crate 根一样。通过 <code>use</code> 引入作用域的路径也会检查私有性，同其它路径一样。</p>
+<blockquote>
+<p>使用as关键字提供新的名称</p>
+</blockquote>
+<p>文件名: src/lib.rs</p>
+<pre><code class="rust">use std::fmt::Result;
+use std::io::Result as IoResult;
+
+fn function1() -&gt; Result &#123;
+    // --snip--
+&#125;
+
+fn function2() -&gt; IoResult&lt;()&gt; &#123;
+    // --snip--
+&#125;
+</code></pre>
+<p>在第二个 <code>use</code> 语句中，我们选择 <code>IoResult</code> 作为 <code>std::io::Result</code> 的新名称，它与从 <code>std::fmt</code> 引入作用域的 <code>Result</code> 并不冲突</p>
+<blockquote>
+<p>使用 pub use 重导出名称</p>
+</blockquote>
+<p>当使用 <code>use</code> 关键字将名称导入作用域时，在新作用域中可用的名称是私有的。如果为了让调用你编写的代码的代码能够像在自己的作用域内引用这些类型，可以结合 <code>pub</code> 和 <code>use</code>。这个技术被称为 “<em>重导出</em>（<em>re-exporting</em>）”，因为这样做将项引入作用域并同时使其可供其他代码引入自己的作用域。</p>
+<p>文件名: src/lib.rs</p>
+<pre><code class="rust">mod front_of_house &#123;
+    pub mod hosting &#123;
+        pub fn add_to_waitlist() &#123;&#125;
+    &#125;
+&#125;
+
+pub use crate::front_of_house::hosting;
+
+pub fn eat_at_restaurant() &#123;
+    hosting::add_to_waitlist();
+&#125;
+</code></pre>
+<blockquote>
+<p>使用外部包</p>
+</blockquote>
+<p>文件名: Cargo.toml</p>
+<pre><code class="toml">[dependencies]
+rand = &quot;0.8.3&quot;
+</code></pre>
+<p>在 <em>Cargo.toml</em> 中加入 <code>rand</code> 依赖告诉了 Cargo 要从 <a target="_blank" rel="noopener" href="https://crates.io/">crates.io</a> 下载 <code>rand</code> 和其依赖，并使其可在项目代码中使用。</p>
+<p>接着，为了将 <code>rand</code> 定义引入项目包的作用域，我们加入一行 <code>use</code> 起始的包名，它以 <code>rand</code> 包名开头并列出了需要引入作用域的项</p>
+<pre><code class="rust">use rand::Rng;
+
+fn main() &#123;
+    let secret_number = rand::thread_rng().gen_range(1..101);
+&#125;
+</code></pre>
+<blockquote>
+<p>嵌套路径来消除大量的use行</p>
+</blockquote>
+<pre><code class="rust">use std::cmp::Ordering;
+use std::io;
+// ---snip---
+</code></pre>
+<p>相反，我们可以使用嵌套路径将相同的项在一行中引入作用域。这么做需要指定路径的相同部分，接着是两个冒号，接着是大括号中的各自不同的路径部分，如示例 7-18 所示。</p>
+<p>文件名: src/main.rs</p>
+<pre><code class="rust">use std::&#123;cmp::Ordering, io&#125;;
+</code></pre>
+<blockquote>
+<p>通过glob运算符将所有公有定义引入作用域</p>
+</blockquote>
+<p>如果希望将一个路径下 <strong>所有</strong> 公有项引入作用域，可以指定路径后跟 glob 运算符 <code>*</code>：</p>
+<pre><code class="rust">use std::collections::*;
+</code></pre>
+<h3 id="4-将模块分割到不同的文件中"><a href="#4-将模块分割到不同的文件中" class="headerlink" title="4.将模块分割到不同的文件中"></a>4.将模块分割到不同的文件中</h3><p>文件名: src/lib.rs</p>
+<pre><code class="rust">mod front_of_house; //在 mod front_of_house 后使用分号，而不是代码块，这将告诉 Rust 在另一个与模块同名的文件中加载模块的内容。子
+
+pub use crate::front_of_house::hosting;
+
+pub fn eat_at_restaurant() &#123;
+    hosting::add_to_waitlist();
+&#125;
+</code></pre>
+<p>文件名: src/front_of_house.rs</p>
+<pre><code class="rust">pub mod hosting &#123;
+    pub fn add_to_waitlist() &#123;&#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>继续重构</p>
+</blockquote>
+<p>将 <code>hosting</code> 模块也提取到其自己的文件中，仅对 <em>src/front_of_house.rs</em> 包含 <code>hosting</code> 模块的声明进行修改：</p>
+<p>文件名: src/front_of_house.rs</p>
+<pre><code class="rust">pub mod hosting;
+</code></pre>
+<p>接着我们创建一个 <em>src/front_of_house</em> 目录和一个包含 <code>hosting</code> 模块定义的 <em>src/front_of_house/hosting.rs</em> 文件：</p>
+<p>文件名: src/front_of_house/hosting.rs</p>
+<pre><code class="rust">pub fn add_to_waitlist() &#123;&#125;
+</code></pre>
+<h2 id="进阶-常见集合"><a href="#进阶-常见集合" class="headerlink" title="进阶- 常见集合"></a>进阶- 常见集合</h2><p>同于内建的数组和元组类型，这些集合指向的数据是储存在堆上的，这意味着数据的数量不必在编译时就已知，并且还可以随着程序的运行增长或缩小。每种集合都有着不同功能和成本，而根据当前情况选择合适的集合，这是一项应当逐渐掌握的技能。在这一章里，我们将详细的了解三个在 Rust 程序中被广泛使用的集合：</p>
+<ul>
+<li><em>vector</em> 允许我们一个挨着一个地储存一系列数量可变的值</li>
+<li><strong>字符串</strong>（<em>string</em>）是字符的集合。我们之前见过 <code>String</code> 类型，不过在本章我们将深入了解。</li>
+<li><strong>哈希 map</strong>（<em>hash map</em>）允许我们将值与一个特定的键（key）相关联。这是一个叫做 <em>map</em> 的更通用的数据结构的特定实现。</li>
+</ul>
+<h3 id="1-vector"><a href="#1-vector" class="headerlink" title="1.vector"></a>1.vector</h3><pre><code class="rust">let v: Vec&lt;i32&gt; = Vec::new();
+let v = vec![1, 2, 3];//使用宏来创建
+</code></pre>
+<blockquote>
+<p>更新vector</p>
+</blockquote>
+<pre><code class="rust">let mut v = Vec::new();
+
+v.push(5);
+v.push(6);
+v.push(7);
+v.push(8);
+</code></pre>
+<blockquote>
+<p>vector 离开作用域后也会丢弃其所有元素</p>
+</blockquote>
+<pre><code class="rust">&#123;
+    let v = vec![1, 2, 3, 4];
+
+    // 处理变量 v
+
+&#125; // &lt;- 这里 v 离开作用域并被丢弃
+</code></pre>
+<blockquote>
+<p>读取vector的元素的两种方式</p>
+</blockquote>
+<pre><code class="rust">let v = vec![1, 2, 3, 4, 5];
+
+let third: &amp;i32 = &amp;v[2];
+println!(&quot;The third element is &#123;&#125;&quot;, third);
+
+match v.get(2) &#123;
+    Some(third) =&gt; println!(&quot;The third element is &#123;&#125;&quot;, third),
+    None =&gt; println!(&quot;There is no third element.&quot;),
+&#125;
+</code></pre>
+<p>当引用一个不存在的元素时 Rust 会造成 panic。这个方法更适合当程序认为尝试访问超过 vector 结尾的元素是一个严重错误的情况，这时应该使程序崩溃。</p>
+<p>当 <code>get</code> 方法被传递了一个数组外的索引时，它不会 panic 而是返回 <code>None</code></p>
+<p>当我们获取了 vector 的第一个元素的不可变引用并尝试在 vector 末尾增加一个元素的时候，这是行不通的：</p>
+<pre><code class="rust">let mut v = vec![1, 2, 3, 4, 5];
+
+let first = &amp;v[0]; 
+
+v.push(6);//
+
+println!(&quot;The first element is: &#123;&#125;&quot;, first);
+</code></pre>
+<p>编译会给出这个错误：</p>
+<pre><code class="text">error[E0502]: cannot borrow `v` as mutable because it is also borrowed as immutable
+ --&gt; src/main.rs:6:5
+  |
+4 |     let first = &amp;v[0];
+  |                  - immutable borrow occurs here
+5 |
+6 |     v.push(6);
+  |     ^^^^^^^^^ mutable borrow occurs here
+7 |
+8 |     println!(&quot;The first element is: &#123;&#125;&quot;, first);
+  |                                          ----- immutable borrow later used here
+</code></pre>
+<p>代码看起来应该能够运行：为什么第一个元素的引用会关心 vector 结尾的变化？不能这么做的原因是由于 vector 的工作方式：在 vector 的结尾增加新元素时，<strong>在没有足够空间将所有所有元素依次相邻存放的情况下，可能会要求分配新内存并将老的元素拷贝到新的空间中</strong>。这时，第一个元素的引用就指向了被释放的内存。借用规则阻止程序陷入这种状况。</p>
+<blockquote>
+<p>通过可变引用改变vector的值</p>
+</blockquote>
+<p>我们也可以遍历可变 vector 的每一个元素的可变引用以便能改变他们。示例 中的 <code>for</code> 循环会给每一个元素加 <code>50</code>：</p>
+<pre><code class="rust">let mut v = vec![100, 32, 57];
+for i in &amp;mut v &#123;
+    *i += 50;
+&#125;
+</code></pre>
+<blockquote>
+<p>使用枚举来存储多种类型的值</p>
+</blockquote>
+<p>本章的开始，我们提到 vector 只能储存相同类型的值。这是很不方便的；绝对会有需要储存一系列不同类型的值的用例。幸运的是，枚举的成员都被定义为相同的枚举类型，所以当需要在 vector 中储存不同类型值时，我们可以定义并使用一个枚举！</p>
+<pre><code class="rust">enum SpreadsheetCell &#123;
+    Int(i32),
+    Float(f64),
+    Text(String),
+&#125;
+
+let row = vec![
+    SpreadsheetCell::Int(3),
+    SpreadsheetCell::Text(String::from(&quot;blue&quot;)),
+    SpreadsheetCell::Float(10.12),
+];
+</code></pre>
+<p>Rust 在编译时就必须准确的知道 vector 中类型的原因在于它需要知道储存每个元素到底需要多少内存。第二个好处是可以准确的知道这个 vector 中允许什么类型。</p>
+<h3 id="2-字符串String"><a href="#2-字符串String" class="headerlink" title="2.字符串String"></a>2.字符串String</h3><p>Rust的核心部分中只有一种字符串类型，那就是字符串切片str, 它常以借用的形式出现(&amp;str)</p>
+<blockquote>
+<p>String 与&amp;str</p>
+</blockquote>
+<pre><code class="rust">// &amp;str 类型
+let hello: &amp;str = &quot;Hello, world!&quot;;
+
+// String 类型
+let mut hello_string: String = String::from(&quot;Hello, world!&quot;);
+
+//创建一个空字符串
+let mut s = String::new();
+
+// &amp;str 转 String
+let new_string = hello.to_string();
+
+// String 转 &amp;str
+let new_str: &amp;str = &amp;hello_string;
+
+// 修改 String
+hello_string.push_str(&quot; Rust is great!&quot;);
+</code></pre>
+<blockquote>
+<p>更新字符串</p>
+</blockquote>
+<pre><code class="rust">let mut s = String::from(&quot;foo&quot;);
+s.push_str(&quot;bar&quot;);//push_str 方法采用字符串 slice，因为我们并不需要获取参数的所有权。
+
+
+let mut s = String::from(&quot;lo&quot;);
+s.push(&#39;l&#39;); //单独字符
+
+//使用 + 运算符将两个 String 值合并到一个新的 String 值中
+let s1 = String::from(&quot;Hello, &quot;);
+let s2 = String::from(&quot;world!&quot;);
+let s3 = s1 + &amp;s2; // 注意 s1 被移动了，不能继续使用
+
+//使用format拼接 , format! 与 println! 的工作原理相同，不过不同于将输出打印到屏幕上，它返回一个带有结果内容的 String。
+let s1 = String::from(&quot;tic&quot;);
+let s2 = String::from(&quot;tac&quot;);
+let s3 = String::from(&quot;toe&quot;);
+let s = format!(&quot;&#123;&#125;-&#123;&#125;-&#123;&#125;&quot;, s1, s2, s3);
+</code></pre>
+<blockquote>
+<p>深入看看String</p>
+</blockquote>
+<p><code>String</code> 是一个 <code>Vec&lt;u8&gt;</code> 的封装。</p>
+<blockquote>
+<p>遍历字符串</p>
+</blockquote>
+<pre><code class="rust">//如果你需要操作单独的 Unicode 标量值，最好的选择是使用 chars 方法。对 “नमस्ते” 调用 chars 方法会将其分开并返回六个 char 类型的值
+for c in &quot;नमस्ते&quot;.chars() &#123;
+    println!(&quot;&#123;&#125;&quot;, c);
+&#125;
+
+//bytes 方法返回每一个原始字节，这可能会适合你的使用场景：
+for b in &quot;नमस्ते&quot;.bytes() &#123;
+    println!(&quot;&#123;&#125;&quot;, b);
+&#125;
+</code></pre>
+<h3 id="3-存储键值对的hash-map"><a href="#3-存储键值对的hash-map" class="headerlink" title="3.存储键值对的hash map"></a>3.存储键值对的hash map</h3><blockquote>
+<p>创建一个hash map</p>
+</blockquote>
+<pre><code class="rust">use std::collections::HashMap;
+
+let mut scores = HashMap::new();
+
+scores.insert(String::from(&quot;Blue&quot;), 10);
+scores.insert(String::from(&quot;Yellow&quot;), 50);
+</code></pre>
+<p>像 vector 一样，哈希 map 将它们的数据储存在堆上，这个 <code>HashMap</code> 的键类型是 <code>String</code> 而值类型是 <code>i32</code>。类似于 vector，哈希 map 是同质的：所有的键必须是相同类型，值也必须都是相同类型。</p>
+<blockquote>
+<p>另一个构建哈希 map 的方法是使用一个元组的 vector 的 <code>collect</code> 方法，其中每个元组包含一个键值对。</p>
+</blockquote>
+<pre><code class="rust">use std::collections::HashMap;
+
+let teams  = vec![String::from(&quot;Blue&quot;), String::from(&quot;Yellow&quot;)];
+let initial_scores = vec![10, 50];
+
+let scores: HashMap&lt;_, _&gt; = teams.iter().zip(initial_scores.iter()).collect();
+</code></pre>
+<ol>
+<li><p>**<code>teams.iter()</code> 和 <code>initial_scores.iter()</code>**：使用<code>.iter()</code>方法在<code>teams</code>和<code>initial_scores</code>向量上创建了迭代器。这两个迭代器分别会生成<code>&amp;String</code>和<code>&amp;i32</code>类型的元素。</p>
+</li>
+<li><p><strong><code>zip(initial_scores.iter())</code></strong>: <code>zip</code>函数会将<code>teams.iter()</code>生成的迭代器和<code>initial_scores.iter()</code>生成的迭代器”压缩”在一起。具体来说，它会创建一个新的迭代器，每次迭代都会返回一个元组，该元组中的第一个元素来自<code>teams.iter()</code>，第二个元素来自<code>initial_scores.iter()</code>。</p>
+<p>所以，如果<code>teams = [&quot;Blue&quot;, &quot;Yellow&quot;]</code>，<code>initial_scores = [10, 50]</code>，那么<code>zip</code>函数将生成以下元组的迭代器：<code>(&amp;&quot;Blue&quot;, &amp;10), (&amp;&quot;Yellow&quot;, &amp;50)</code>。</p>
+</li>
+<li><p><strong><code>collect()</code></strong>: 这个方法会将迭代器中的所有元素收集到一个集合中。在这里，它将元组的迭代器转换成一个<code>HashMap</code>。</p>
+</li>
+<li><p><strong><code>HashMap&lt;_, _&gt;</code></strong>: 这里的类型注解意味着该<code>HashMap</code>的键和值的类型是由编译器推导的。因为<code>zip</code>生成的是<code>(&amp;String, &amp;i32)</code>类型的元组，<code>HashMap</code>的类型实际上是<code>HashMap&lt;&amp;String, &amp;i32&gt;</code>。</p>
+</li>
+</ol>
+<p>这里 <code>HashMap&lt;_, _&gt;</code> 类型标注是必要的，因为 <code>collect</code> 有可能当成多种不同的数据结构，而除非显式指定否则 Rust 无从得知你需要的类型。但是对于键和值的类型参数来说，可以使用下划线占位，而 Rust 能够根据 vector 中数据的类型推断出 <code>HashMap</code> 所包含的类型。</p>
+<blockquote>
+<p>hashmap和所有权</p>
+</blockquote>
+<p>对于像 <code>i32</code> 这样的实现了 <code>Copy</code> trait 的类型，其值可以拷贝进哈希 map。对于像 <code>String</code> 这样拥有所有权的值，其值将被移动而哈希 map 会成为这些值的所有者</p>
+<pre><code class="rust">    use std::collections::HashMap;
+
+    let field_name = String::from(&quot;Favorite color&quot;);
+    let field_value = String::from(&quot;Blue&quot;);
+    
+    let mut map = HashMap::new();
+    map.insert(field_name, field_value);
+    // 这里 field_name 和 field_value 不再有效，
+    // 尝试使用它们看看会出现什么编译错误！
+</code></pre>
+<blockquote>
+<p>访问hash map 中的值</p>
+</blockquote>
+<p>可以通过get方法 通过 键来获取对应的值、</p>
+<p><img src="/2023/09/27/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/The%20Rust%20Programming%20Language%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230912205129158.png" alt="image-20230912205129158"></p>
+<blockquote>
+<p>更新</p>
+</blockquote>
+<p>覆盖：如果我们插入了一个键值对，接着用相同的键插入一个不同的值，与这个键相关联的旧值将被替换。即便</p>
+<pre><code class="rust">scores.insert(String::from(&quot;Blue&quot;), 10);
+scores.insert(String::from(&quot;Blue&quot;), 25);
+</code></pre>
+<p>只在键没有对应值时插入</p>
+<pre><code class="rust">scores.entry(String::from(&quot;Yellow&quot;)).or_insert(50);
+scores.entry(String::from(&quot;Blue&quot;)).or_insert(50);
+</code></pre>
+<h2 id="进阶-错误处理"><a href="#进阶-错误处理" class="headerlink" title="进阶- 错误处理"></a>进阶- 错误处理</h2><p><strong>可恢复错误</strong>（<em>recoverable</em>）和 <strong>不可恢复错误</strong>（<em>unrecoverable</em>）。可恢复错误通常代表向用户报告错误和重试操作是合理的情况，比如未找到文件。不可恢复错误通常是 bug 的同义词，比如尝试访问超过数组结尾的位置。</p>
+<h3 id="panic-与不可恢复的错误"><a href="#panic-与不可恢复的错误" class="headerlink" title="panic! 与不可恢复的错误"></a>panic! 与不可恢复的错误</h3><p>有的时候代码出问题了，而你对此束手无策。对于这种情况，Rust 有 <code>panic!</code>宏。当执行这个宏时，程序会打印出一个错误信息，展开并清理栈数据，然后接着退出。出现这种情况的场景通常是检测到一些类型的 bug，而且开发者并不清楚该如何处理它。</p>
+<h3 id="result与可恢复错误"><a href="#result与可恢复错误" class="headerlink" title="result与可恢复错误"></a>result与可恢复错误</h3><pre><code class="rust">fn main() &#123;
+    let f = File::open(&quot;hello.txt&quot;);//File::open 函数的返回值类型是 Result&lt;T, E&gt;
+
+    let f = match f &#123;//当 File::open 成功的情况下，变量 f 的值将会是一个包含文件句柄的 Ok 实例。在失败的情况下，f 的值会是一个包含更多关于出现了何种错误信息的 Err 实例。
+        Ok(file) =&gt; file,//从OK中拆出来file
+        Err(error) =&gt; &#123;
+            panic!(&quot;Problem opening the file: &#123;:?&#125;&quot;, error)
+        &#125;,
+    &#125;;
+&#125;
+</code></pre>
+<pre><code class="rust">fn main() &#123;
+    let f = File::open(&quot;hello.txt&quot;);
+
+    let f = match f &#123;
+        Ok(file) =&gt; file,
+        Err(error) =&gt; match error.kind() &#123;
+            ErrorKind::NotFound =&gt; match File::create(&quot;hello.txt&quot;) &#123;//如果是没有文件可以尝试创建文件
+                Ok(fc) =&gt; fc,
+                Err(e) =&gt; panic!(&quot;Problem creating the file: &#123;:?&#125;&quot;, e),
+            &#125;,
+            other_error =&gt; panic!(&quot;Problem opening the file: &#123;:?&#125;&quot;, other_error),
+        &#125;,
+    &#125;;
+&#125;
+</code></pre>
+<pre><code class="rust">use std::fs::File;
+use std::io::ErrorKind;
+
+fn main() &#123;
+    let f = File::open(&quot;hello.txt&quot;).unwrap_or_else(|error| &#123;//如果正常就返回file 了否则继续执行代码
+        if error.kind() == ErrorKind::NotFound &#123;
+            File::create(&quot;hello.txt&quot;).unwrap_or_else(|error| &#123;
+                panic!(&quot;Problem creating the file: &#123;:?&#125;&quot;, error);
+            &#125;)
+        &#125; else &#123;
+            panic!(&quot;Problem opening the file: &#123;:?&#125;&quot;, error);
+        &#125;
+    &#125;);
+&#125;
+</code></pre>
+<h3 id="失败时panic的简写-unwrap和expect"><a href="#失败时panic的简写-unwrap和expect" class="headerlink" title="失败时panic的简写: unwrap和expect"></a>失败时panic的简写: unwrap和expect</h3><pre><code class="rust">use std::fs::File;
+
+fn main() &#123;
+    let f = File::open(&quot;hello.txt&quot;).unwrap();
+&#125;
+</code></pre>
+<p>如果调用这段代码时不存在 <em>hello.txt</em> 文件，我们将会看到一个 <code>unwrap</code> 调用 <code>panic!</code></p>
+<pre><code class="rust">use std::fs::File;
+
+fn main() &#123;
+    let f = File::open(&quot;hello.txt&quot;).expect(&quot;Failed to open hello.txt&quot;);
+&#125;
+</code></pre>
+<p><code>expect</code> 与 <code>unwrap</code> 的使用方式一样：返回文件句柄或调用 <code>panic!</code> 宏。<code>expect</code> 在调用 <code>panic!</code> 时使用的错误信息将是我们传递给 <code>expect</code> 的参数，而不像 <code>unwrap</code> 那样使用默认的 <code>panic!</code> 信息。它看起来像这样：</p>
+<pre><code class="text">thread &#39;main&#39; panicked at &#39;Failed to open hello.txt: Error &#123; repr: Os &#123; code:
+2, message: &quot;No such file or directory&quot; &#125; &#125;&#39;, src/libcore/result.rs:906:4
+</code></pre>
+<p>因为这个错误信息以我们指定的文本开始，<code>Failed to open hello.txt</code>，将会更容易找到代码中的错误信息来自何处。如果在多处使用 <code>unwrap</code>，则需要花更多的时间来分析到底是哪一个 <code>unwrap</code> 造成了 panic，因为所有的 <code>unwrap</code> 调用都打印相同的信息。</p>
+<h3 id="错误的传播"><a href="#错误的传播" class="headerlink" title="错误的传播"></a>错误的传播</h3><p>当编写一个需要先调用一些可能会失败的操作的函数时，除了在这个函数中处理错误外，还可以选择让调用者知道这个错误并决定该如何处理。这被称为 <strong>传播</strong>（<em>propagating</em>）错误，这样能更好地控制代码调用，因为比起你代码所拥有的上下文，调用者可能拥有更多信息或逻辑来决定应该如何处理错误。</p>
+<pre><code class="rust">use std::io;
+use std::io::Read;
+use std::fs::File;
+
+fn read_username_from_file() -&gt; Result&lt;String, io::Error&gt; &#123;
+    let f = File::open(&quot;hello.txt&quot;);
+
+    let mut f = match f &#123;
+        Ok(file) =&gt; file,  //如果能正常打开文件的话就将file赋值给f
+        Err(e) =&gt; return Err(e),
+    &#125;;
+
+    let mut s = String::new();
+
+    match f.read_to_string(&amp;mut s) &#123; //将f指向的文件第一行读给s,成功返回s
+        Ok(_) =&gt; Ok(s),
+        Err(e) =&gt; Err(e),
+    &#125;
+&#125;
+</code></pre>
+<p>函数的返回值：<code>Result&lt;String, io::Error&gt;</code>  这意味着函数返回一个 <code>Result&lt;T, E&gt;</code> 类型的值，其中泛型参数 <code>T</code> 的具体类型是 <code>String</code>，而 <code>E</code> 的具体类型是 <code>io::Error</code></p>
+<p>调用这个函数的代码最终会得到一个包含用户名的 <code>Ok</code> 值，或者一个包含 <code>io::Error</code> 的 <code>Err</code> 值。</p>
+<h3 id="传播错误的简写-运算符"><a href="#传播错误的简写-运算符" class="headerlink" title="传播错误的简写:  ? 运算符"></a>传播错误的简写:  ? 运算符</h3><pre><code class="rust">use std::io;
+use std::io::Read;
+use std::fs::File;
+
+fn read_username_from_file() -&gt; Result&lt;String, io::Error&gt; &#123;
+    let mut f = File::open(&quot;hello.txt&quot;)?;
+    let mut s = String::new();
+    f.read_to_string(&amp;mut s)?;
+    Ok(s)
+&#125;
+</code></pre>
+<p>如果 <code>Result</code> 的值是 <code>Ok</code>，这个表达式将会返回 <code>Ok</code> 中的值而程序将继续执行。如果值是 <code>Err</code>，<code>Err</code> 将作为整个函数的返回值</p>
+<p>the <code>?</code> operator can only be used in a function that returns <code>Result</code> or <code>Option</code> (or another type that implements <code>FromResidual</code>)</p>
+<h2 id="进阶-泛型、trait-与生命周期"><a href="#进阶-泛型、trait-与生命周期" class="headerlink" title="进阶- 泛型、trait 与生命周期"></a>进阶- 泛型、trait 与生命周期</h2><p>泛型是具体类型或其他属性的抽象替代。我们可以表达泛型的属性，比如他们的行为或如何与其他泛型相关联，而不需要在编写和编译代码时知道他们在这里实际上代表什么。</p>
+<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p>我们要实现寻找slice最大值的函数</p>
+<pre><code class="rust">fn largest_i32(list: &amp;[i32]) -&gt; i32 &#123;
+    let mut largest = list[0];
+
+    for &amp;item in list.iter() &#123;
+        if item &gt; largest &#123;
+            largest = item;
+        &#125;
+    &#125;
+
+    largest
+&#125;
+
+fn largest_char(list: &amp;[char]) -&gt; char &#123;
+    let mut largest = list[0];
+
+    for &amp;item in list.iter() &#123;
+        if item &gt; largest &#123;
+            largest = item;
+        &#125;
+    &#125;
+
+    largest
+&#125;
+</code></pre>
+<p>每一个类型都写一个函数太麻烦了, 引入泛型</p>
+<pre><code class="rust">fn largest&lt;T&gt;(list: &amp;[T]) -&gt; T &#123;
+    let mut largest = list[0];
+
+    for &amp;item in list.iter() &#123;
+        if item &gt; largest &#123;
+            largest = item;
+        &#125;
+    &#125;
+
+    largest
+&#125;
+
+fn main() &#123;
+    let number_list = vec![34, 50, 25, 100, 65];
+
+    let result = largest(&amp;number_list);
+    println!(&quot;The largest number is &#123;&#125;&quot;, result);
+
+    let char_list = vec![&#39;y&#39;, &#39;m&#39;, &#39;a&#39;, &#39;q&#39;];
+
+    let result = largest(&amp;char_list);
+    println!(&quot;The largest char is &#123;&#125;&quot;, result);
+&#125;
+</code></pre>
+<p>可以这样理解这个定义：函数 <code>largest</code> 有泛型类型 <code>T</code>。它有个参数 <code>list</code>，其类型是元素为 <code>T</code> 的 slice。<code>largest</code> 函数的返回值类型也是 <code>T</code>。</p>
+<p>当然，这个代码还是无法通过编译，简单来说，这个错误表明 <code>largest</code> 的函数体不能适用于 <code>T</code> 的所有可能的类型。因为在函数体需要比较 <code>T</code> 类型的值，不过它只能用于我们知道如何排序的类型。</p>
+<h3 id="结构体中的泛型"><a href="#结构体中的泛型" class="headerlink" title="结构体中的泛型"></a>结构体中的泛型</h3><pre><code class="rust">struct Point&lt;T&gt; &#123;
+    x: T,
+    y: T,
+&#125;
+
+fn main() &#123;
+    let integer = Point &#123; x: 5, y: 10 &#125;;
+    let float = Point &#123; x: 1.0, y: 4.0 &#125;;
+&#125;
+</code></pre>
+<p>其语法类似于函数定义中使用泛型。首先，必须在结构体名称后面的尖括号中声明泛型参数的名称。接着在结构体定义中可以指定具体数据类型的位置使用泛型类型。</p>
+<p>注意 <code>Point&lt;T&gt;</code> 的定义中只使用了一个泛型类型，这个定义表明结构体 <code>Point&lt;T&gt;</code> 对于一些类型 <code>T</code> 是泛型的，而且字段 <code>x</code> 和 <code>y</code> <strong>都是</strong> 相同类型的，无论它具体是何类型。如果尝试创建一个有不同类型值的 <code>Point&lt;T&gt;</code> 的实例 将无法通过编译。</p>
+<p>如果想要定义一个 <code>x</code> 和 <code>y</code> 可以有不同类型且仍然是泛型的 <code>Point</code> 结构体，我们可以使用多个泛型类型参数。</p>
+<pre><code class="rust">struct Point&lt;T, U&gt; &#123;
+    x: T,
+    y: U,
+&#125;
+
+fn main() &#123;
+    let both_integer = Point &#123; x: 5, y: 10 &#125;;
+    let both_float = Point &#123; x: 1.0, y: 4.0 &#125;;
+    let integer_and_float = Point &#123; x: 5, y: 4.0 &#125;;
+&#125;
+</code></pre>
+<h3 id="方法定义中的泛型"><a href="#方法定义中的泛型" class="headerlink" title="方法定义中的泛型"></a>方法定义中的泛型</h3><pre><code class="python">struct Point&lt;T&gt; &#123;
+    x: T,
+    y: T,
+&#125;
+
+impl&lt;T&gt; Point&lt;T&gt; &#123;
+    fn x(&amp;self) -&gt; &amp;T &#123;
+        &amp;self.x
+    &#125;
+&#125;
+
+fn main() &#123;
+    let p = Point &#123; x: 5, y: 10 &#125;;
+
+    println!(&quot;p.x = &#123;&#125;&quot;, p.x());
+&#125;
+</code></pre>
+<p>注意必须在 <code>impl</code> 后面声明 <code>T</code>，这样就可以在 <code>Point&lt;T&gt;</code> 上实现的方法中使用它了, <code>impl</code> 之后声明泛型 <code>T</code> ，这样 Rust 就知道 <code>Point</code> 的尖括号中的类型是泛型而不是具体类型。</p>
+<pre><code class="rust">struct Point&lt;T, U&gt; &#123;
+    x: T,
+    y: U,
+&#125;
+
+impl&lt;T, U&gt; Point&lt;T, U&gt; &#123;
+    fn mixup&lt;V, W&gt;(self, other: Point&lt;V, W&gt;) -&gt; Point&lt;T, W&gt; &#123;
+        Point &#123;
+            x: self.x,
+            y: other.y,
+        &#125;
+    &#125;
+&#125;
+
+fn main() &#123;
+    let p1 = Point &#123; x: 5, y: 10.4 &#125;;
+    let p2 = Point &#123; x: &quot;Hello&quot;, y: &#39;c&#39;&#125;;
+
+    let p3 = p1.mixup(p2);
+
+    println!(&quot;p3.x = &#123;&#125;, p3.y = &#123;&#125;&quot;, p3.x, p3.y);
+&#125;
+</code></pre>
+<p>这个例子的目的是展示一些泛型通过 <code>impl</code> 声明而另一些通过方法定义声明的情况。这里泛型参数 <code>T</code> 和 <code>U</code> 声明于 <code>impl</code> 之后，因为他们与结构体定义相对应。而泛型参数 <code>V</code> 和 <code>W</code> 声明于 <code>fn mixup</code> 之后，因为他们只是相对于方法本身的</p>
+<h3 id="trait-定义共享行为"><a href="#trait-定义共享行为" class="headerlink" title="trait: 定义共享行为"></a>trait: 定义共享行为</h3><p>一个类型的行为由其可供调用的方法构成。如果可以对不同类型调用相同的方法的话，这些类型就可以共享相同的行为了。trait 定义是一种将方法签名组合起来的方法，目的是定义一个实现某些目的所必需的行为的集合。</p>
+<p><em>trait</em> 类似于其他语言中常被称为 <strong>接口</strong>（<em>interfaces</em>）的功能，虽然有一些不同。</p>
+<pre><code class="rust">//定义一个trait
+pub trait Summary &#123;
+    fn summarize(&amp;self) -&gt; String; //描述实现这个trait的类型所需要的行为的方法签名。
+&#125;
+
+
+//然后为类型实现trait
+pub struct NewsArticle &#123;
+    pub headline: String,
+    pub location: String,
+    pub author: String,
+    pub content: String,
+&#125;
+
+impl Summary for NewsArticle &#123;
+    fn summarize(&amp;self) -&gt; String &#123;
+        format!(&quot;&#123;&#125;, by &#123;&#125; (&#123;&#125;)&quot;, self.headline, self.author, self.location)
+    &#125;
+&#125;
+
+pub struct Tweet &#123;
+    pub username: String,
+    pub content: String,
+    pub reply: bool,
+    pub retweet: bool,
+&#125;
+
+impl Summary for Tweet &#123;
+    fn summarize(&amp;self) -&gt; String &#123;
+        format!(&quot;&#123;&#125;: &#123;&#125;&quot;, self.username, self.content)
+    &#125;
+&#125;
+</code></pre>
+<p>调用trait</p>
+<pre><code class="rust">let tweet = Tweet &#123;
+    username: String::from(&quot;horse_ebooks&quot;),
+    content: String::from(&quot;of course, as you probably already know, people&quot;),
+    reply: false,
+    retweet: false,
+&#125;;
+
+println!(&quot;1 new tweet: &#123;&#125;&quot;, tweet.summarize());
+</code></pre>
+<p>trait作为参数传递</p>
+<pre><code class="rust">pub fn notify(item: impl Summary) &#123;
+    println!(&quot;Breaking news! &#123;&#125;&quot;, item.summarize());
+&#125;
+</code></pre>
+<p>对于 <code>item</code> 参数，我们指定了 <code>impl</code> 关键字和 trait 名称，而不是具体的类型。</p>
+<p>trait bound</p>
+<pre><code class="rust">pub fn notify&lt;T: Summary&gt;(item: T) &#123;
+    println!(&quot;Breaking news! &#123;&#125;&quot;, item.summarize());
+&#125;
+</code></pre>
+<p>通过+ 指定多个trait </p>
+<pre><code class="rust">pub fn notify(item: impl Summary + Display) &#123;
+</code></pre>
+<p><code>+</code> 语法也适用于泛型的 trait bound：</p>
+<pre><code class="rust">pub fn notify&lt;T: Summary + Display&gt;(item: T) &#123;
+</code></pre>
+<p>通过where 简化trait bound: </p>
+<pre><code class="rust">fn some_function&lt;T: Display + Clone, U: Clone + Debug&gt;(t: T, u: U) -&gt; i32 &#123;...
+
+fn some_function&lt;T, U&gt;(t: T, u: U) -&gt; i32
+    where T: Display + Clone,
+          U: Clone + Debug
+&#123;
+</code></pre>
+<p>返回值实现trait</p>
+<pre><code class="rust">fn returns_summarizable() -&gt; impl Summary &#123;
+    Tweet &#123;
+        username: String::from(&quot;horse_ebooks&quot;),
+        content: String::from(&quot;of course, as you probably already know, people&quot;),
+        reply: false,
+        retweet: false,
+    &#125;
+&#125;
+</code></pre>
+<p>修改获取最大值代码</p>
+<pre><code class="rust">//一个可以用于任何实现了 PartialOrd 和 Copy trait 的泛型的 largest 函数
+fn largest&lt;T: PartialOrd + Copy&gt;(list: &amp;[T]) -&gt; T &#123;
+    //为了只对实现了 Copy 的类型调用这些代码，可以在 T 的 trait bounds 中增加 Copy
+    let mut largest = list[0];
+
+    for &amp;item in list.iter() &#123;
+        if item &gt; largest &#123;
+            largest = item;
+        &#125;
+    &#125;
+
+    largest
+&#125;
+
+fn main() &#123;
+    let number_list = vec![34, 50, 25, 100, 65];
+
+    let result = largest(&amp;number_list);
+    println!(&quot;The largest number is &#123;&#125;&quot;, result);
+
+    let char_list = vec![&#39;y&#39;, &#39;m&#39;, &#39;a&#39;, &#39;q&#39;];
+
+    let result = largest(&amp;char_list);
+    println!(&quot;The largest char is &#123;&#125;&quot;, result);
+&#125;
+</code></pre>
+<h3 id="生命周期与引用的有效性"><a href="#生命周期与引用的有效性" class="headerlink" title="生命周期与引用的有效性"></a>生命周期与引用的有效性</h3><p>类似于当因为有多种可能类型的时候必须注明类型，也会出现引用的生命周期以一些不同方式相关联的情况，所以 Rust 需要我们使用泛型生命周期参数来注明他们的关系，这样就能确保运行时实际使用的引用绝对是有效的。</p>
+<p>生命周期避免了垂直引用</p>
+<pre><code class="rust">fn main() &#123;
+    let r;
+
+    &#123;
+        let x = 5;
+        r = &amp;x;
+    &#125;
+
+    println!(&quot;r: &#123;&#125;&quot;, r);
+&#125;
+</code></pre>
+<p><img src="/2023/09/27/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/The%20Rust%20Programming%20Language%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/image-20230914102606051.png" alt="image-20230914102606051"></p>
+<p>函数中泛型的生命周期</p>
+<pre><code class="rust">fn longest(x: &amp;str, y: &amp;str) -&gt; &amp;str &#123;
+    if x.len() &gt; y.len() &#123;
+        x
+    &#125; else &#123;
+        y
+    &#125;
+&#125;
+</code></pre>
+<p>该函数 <code>fn longest(x: &amp;str, y: &amp;str) -&gt; &amp;str</code> 在 Rust 中不能通过编译，因为它违反了 Rust 的生命周期规则。具体来说，该函数没有明确指出返回值的生命周期是如何与输入参数 <code>x</code> 和 <code>y</code> 的生命周期关联的。</p>
+<p>当你返回一个引用（在这里是 <code>&amp;str</code>），Rust 需要知道这个引用的“生命周期”——即引用的数据将保持有效多长时间。在这个函数的上下文中，返回的字符串切片（<code>&amp;str</code>）可能是 <code>x</code> 或 <code>y</code>，并且它的有效期需要与输入参数 <code>x</code> 或 <code>y</code> 的有效期相匹配。</p>
+<p>你可以通过生命周期标注来修复这个问题，以明确指出输入参数和返回值之间的生命周期关系：</p>
+<pre><code class="rust">rustCopy codefn longest&lt;&#39;a&gt;(x: &amp;&#39;a str, y: &amp;&#39;a str) -&gt; &amp;&#39;a str &#123;
+    if x.len() &gt; y.len() &#123;
+        x
+    &#125; else &#123;
+        y
+    &#125;
+&#125;
+</code></pre>
+<p>在这里，<code>&#39;a</code> 是一个生命周期标注，它表明参数 <code>x</code> 和 <code>y</code> 必须具有相同的生命周期 <code>&#39;a</code>，并且返回值也将具有同样的生命周期 <code>&#39;a</code>。这意味着：</p>
+<ul>
+<li><code>x</code> 和 <code>y</code> 必须有相同的生命周期。</li>
+<li>返回的引用（不论是 <code>x</code> 还是 <code>y</code>）也将有相同的生命周期。</li>
+</ul>
+<p>这样，Rust 的生命周期检查器就能确保你的代码是安全的。</p>
+<p>需要注意的是，这样的函数有一定的限制。例如，它不能接受具有不同生命周期的 <code>x</code> 和 <code>y</code> 参数。但这些限制是由你函数的逻辑和需求决定的。根据你的具体需求，这样的限制可能是完全可接受的，也可能需要进一步优化。</p>
+<h3 id="引用的-生命周期标注语法"><a href="#引用的-生命周期标注语法" class="headerlink" title="引用的 生命周期标注语法"></a>引用的 生命周期标注语法</h3><p>生命周期标注描述了多个引用生命周期相互的关系，而不影响其生命周期。</p>
+<p>生命周期参数名称必须以撇号（<code>&#39;</code>）开头，其名称通常全是小写，类似于泛型其名称非常短。</p>
+<p><code>&#39;a</code> 是大多数人默认使用的名称。生命周期参数标注位于引用的 <code>&amp;</code> 之后，并有一个空格来将引用类型与生命周期标注分隔开。</p>
+<pre><code class="rust">&amp;i32        // 引用
+&amp;&#39;a i32     // 带有显式生命周期的引用
+&amp;&#39;a mut i32 // 带有显式生命周期的可变引用
+</code></pre>
+<p>单个生命周期标注本身没有多少意义，因为生命周期标注告诉 Rust 多个引用的泛型生命周期参数如何相互联系的。</p>
+<p>函数签名中的生命周期标注：</p>
+<p>泛型生命周期参数需要生命在函数名和参数列表间的尖括号中。 &amp; str -&gt; &amp;’a str</p>
+<pre><code class="rust">fn longest&lt;&#39;a&gt;(x: &amp;&#39;a str, y: &amp;&#39;a str) -&gt; &amp;&#39;a str &#123;
+    if x.len() &gt; y.len() &#123;
+        x
+    &#125; else &#123;
+        y
+    &#125;
+&#125;
+</code></pre>
+<p>当具体的引用被传递给 longest时 ，被 ‘a 所替代的具体生命周期是x的作用域与y的作用域<strong>相重叠的那部分</strong>。</p>
+<p>或者说 泛型生命周期 ‘a 的具体生命周期等同于x和y的生命周期中较小的 那一个。</p>
+<pre><code class="rust">fn main() &#123;
+    let string1 = String::from(&quot;long string is long&quot;);
+
+    &#123;
+        let string2 = String::from(&quot;xyz&quot;);
+        let result = longest(string1.as_str(), string2.as_str());
+        println!(&quot;The longest string is &#123;&#125;&quot;, result);
+    &#125;
+   // println!(&quot;The longest string is &#123;&#125;&quot;, result); 如果在这输出就不对了，因为超出了string的作用域
+&#125;
+fn longest&lt;&#39;a&gt;(x: &amp;&#39;a str, y: &amp;&#39;a str) -&gt; &amp;&#39;a str &#123;
+    if x.len() &gt; y.len() &#123;
+        x
+    &#125; else &#123;
+        y
+    &#125;
+&#125;
+</code></pre>
+<h3 id="结构体定义中引用的生命周期标注"><a href="#结构体定义中引用的生命周期标注" class="headerlink" title="结构体定义中引用的生命周期标注"></a>结构体定义中引用的生命周期标注</h3><p>在结构体中定义slice时，我们也需要考虑其生命周期的问题</p>
+<pre><code class="rust">struct ImportantExcerpt&lt;&#39;a&gt; &#123;
+    part: &amp;&#39;a str, // part不使用之前, 结构体实例必须已经不被使用了
+&#125;
+
+fn main() &#123;
+    let novel = String::from(&quot;Call me Ishmael. Some years ago...&quot;);
+    let first_sentence = novel.split(&#39;.&#39;)
+        .next()
+        .expect(&quot;Could not find a &#39;.&#39;&quot;);
+    let i = ImportantExcerpt &#123; part: first_sentence &#125;;
+&#125;
+</code></pre>
+<p>这个结构体有一个字段，<code>part</code>，它存放了一个字符串 slice，这是一个引用。</p>
+<p>类似于泛型参数类型，必须在结构体名称后面的尖括号中声明泛型生命周期参数，以便在结构体定义中使用生命周期参数。</p>
+<p>这个标注意味着ImportantExcept 的实例不能比其part字段中的引用存在的更久</p>
+<h3 id="生命周期省略"><a href="#生命周期省略" class="headerlink" title="生命周期省略"></a>生命周期省略</h3><p>函数或方法的参数的生命周期被称为 <strong>输入生命周期</strong>（<em>input lifetimes</em>），而返回值的生命周期被称为 <strong>输出生命周期</strong>（<em>output lifetimes</em>）。</p>
+<p>第一条规则是每一个是引用的参数都有它自己的生命周期参数。换句话说就是，有一个引用参数的函数有一个生命周期参数：<code>fn foo&lt;&#39;a&gt;(x: &amp;&#39;a i32)</code>，有两个引用参数的函数有两个不同的生命周期参数，<code>fn foo&lt;&#39;a, &#39;b&gt;(x: &amp;&#39;a i32, y: &amp;&#39;b i32)</code>，依此类推。</p>
+<p>第二条规则是如果只有一个输入生命周期参数，那么它被赋予所有输出生命周期参数：<code>fn foo&lt;&#39;a&gt;(x: &amp;&#39;a i32) -&gt; &amp;&#39;a i32</code>。</p>
+<p>第三条规则是如果方法有多个输入生命周期参数并且其中一个参数是 <code>&amp;self</code> 或 <code>&amp;mut self</code>，说明是个对象的方法(method)， 那么所有输出生命周期参数被赋予 <code>self</code> 的生命周期。第三条规则使得方法更容易读写，因为只需更少的符号。</p>
+<h3 id="静态生命周期"><a href="#静态生命周期" class="headerlink" title="静态生命周期"></a>静态生命周期</h3><p>这里有一种特殊的生命周期值得讨论：<code>&#39;static</code>，其生命周期<strong>能够</strong>存活于整个程序期间。所有的字符串字面量都拥有 <code>&#39;static</code> 生命周期，我们也可以选择像下面这样标注出来：</p>
+<pre><code class="rust">let s: &amp;&#39;static str = &quot;I have a static lifetime.&quot;;
+</code></pre>
+<p>这个字符串的文本被直接储存在程序的二进制文件中而这个文件总是可用的。因此所有的字符串字面量都是 <code>&#39;static</code> 的。</p>
+<h2 id="实现一个Grep"><a href="#实现一个Grep" class="headerlink" title="实现一个Grep"></a>实现一个Grep</h2><h3 id="main-rs"><a href="#main-rs" class="headerlink" title="main.rs"></a>main.rs</h3><pre><code class="rust">use std::env;
+use std::process;
+use minigrep::Config;
+
+fn main() &#123;
+    let args: Vec&lt;String&gt; = env::args().collect();
+    //通过minigrep库的Config函数来将参数读入config
+    let config = Config::new(&amp;args).unwrap_or_else(|err| &#123;
+        eprintln!(&quot;Problem parsing arguments: &#123;&#125;&quot;, err);
+        process::exit(1);
+    &#125;);
+    //通过minigrep库的run函数
+    if let Err(e) = minigrep::run(config) &#123;
+        eprintln!(&quot;Application error: &#123;&#125;&quot;, e);
+
+        process::exit(1);
+    &#125;
+&#125;
+rintln!(&quot;&#123;:?&#125;&quot;,args);
+&#125;
+</code></pre>
+<h3 id="lib-rs"><a href="#lib-rs" class="headerlink" title="lib.rs"></a>lib.rs</h3><pre><code class="rust">use std::error::Error;
+use std::fs;
+use std::env;
+pub struct Config &#123;
+    pub query: String,
+    pub filename: String,
+    pub case_sensitive: bool,
+&#125;
+
+impl Config &#123;
+    pub fn new(args: &amp;[String]) -&gt; Result&lt;Config, &amp;&#39;static str&gt; &#123;
+        if args.len() &lt; 3 &#123;
+            return Err(&quot;not enough arguments&quot;);
+        &#125;
+
+        let query = args[1].clone();
+        let filename = args[2].clone();
+
+        let case_sensitive = env::var(&quot;CASE_INSENSITIVE&quot;).is_err();
+
+        Ok(Config &#123; query, filename, case_sensitive &#125;)
+    &#125;
+&#125;
+
+pub fn run(config: Config) -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; &#123;
+    let contents = fs::read_to_string(config.filename)?;
+
+    let results = if config.case_sensitive &#123;
+        search(&amp;config.query, &amp;contents)
+    &#125; else &#123;
+        search_case_insensitive(&amp;config.query, &amp;contents)
+    &#125;;
+
+    for line in results &#123;
+        println!(&quot;&#123;&#125;&quot;, line);
+    &#125;
+
+    Ok(())
+&#125;
+pub fn search&lt;&#39;a&gt;(query: &amp;str, contents: &amp;&#39;a str) -&gt; Vec&lt;&amp;&#39;a str&gt; &#123;//函数返回值的生命周期必须和contents一样长
+    let mut results = Vec::new();
+
+    for line in contents.lines() &#123;
+        if line.contains(query) &#123;
+            results.push(line);
+        &#125;
+    &#125;
+
+    results
+&#125;
+pub fn search_case_insensitive&lt;&#39;a&gt;(query: &amp;str, contents: &amp;&#39;a str) -&gt; Vec&lt;&amp;&#39;a str&gt; &#123;
+    let query = query.to_lowercase();
+    let mut results = Vec::new();
+
+    for line in contents.lines() &#123;
+        if line.to_lowercase().contains(&amp;query) &#123;
+            results.push(line);
+        &#125;
+    &#125;
+
+    results
+&#125;
+#[cfg(test)]
+mod tests &#123;
+    use super::*;
+
+    #[test]
+    fn case_sensitive() &#123;
+        let query = &quot;duct&quot;;
+        let contents = &quot;\
+Rust:
+safe, fast, productive.
+Pick three.
+Duct tape.&quot;;
+
+        assert_eq!(
+            vec![&quot;safe, fast, productive.&quot;],
+            search(query, contents)
+        );
+    &#125;
+
+    #[test]
+    fn case_insensitive() &#123;
+        let query = &quot;rUsT&quot;;
+        let contents = &quot;\
+Rust:
+safe, fast, productive.
+Pick three.
+Trust me.&quot;;
+
+        assert_eq!(
+            vec![&quot;Rust:&quot;, &quot;Trust me.&quot;],
+            search_case_insensitive(query, contents)
+        );
+    &#125;
+&#125;
+</code></pre>
+<h2 id="Rust-中的函数式语言功能-迭代器与闭包"><a href="#Rust-中的函数式语言功能-迭代器与闭包" class="headerlink" title="Rust 中的函数式语言功能:迭代器与闭包"></a>Rust 中的函数式语言功能:迭代器与闭包</h2><p>我们将要涉及：</p>
+<ul>
+<li><strong>闭包</strong>（<em>Closures</em>），一个可以储存在变量里的类似函数的结构</li>
+<li><strong>迭代器</strong>（<em>Iterators</em>），一种处理元素序列的方式</li>
+<li>如何使用这些功能来改进 minigrep</li>
+<li>这两个功能的性能（<strong>剧透警告：</strong> 他们的速度超乎你的想象！）</li>
+</ul>
+<h3 id="1-闭包-可以捕获其环境的匿名函数"><a href="#1-闭包-可以捕获其环境的匿名函数" class="headerlink" title="1.闭包: 可以捕获其环境的匿名函数"></a>1.闭包: 可以捕获其环境的匿名函数</h3><ul>
+<li>Rust 的 <strong>闭包</strong>（<em>closures</em>）是可以保存进变量或作为参数传递给其他函数的匿名函数。</li>
+<li>可以在一个地方创建闭包，然后在不同的上下文中执行闭包运算。</li>
+<li>不同于函数，闭包允许捕获调用者作用域中的值。</li>
+</ul>
+<p>考虑一下这个假定的场景：我们在一个通过 app 生成自定义健身计划的初创企业工作。其后端使用 Rust 编写，而生成健身计划的算法需要考虑很多不同的因素，比如用户的年龄、身体质量指数（Body Mass Index）、用户喜好、最近的健身活动和用户指定的强度系数。本例中实际的算法并不重要，重要的是这个计算将会花费几秒钟。我们只希望在需要时调用算法，并且只希望调用一次，这样就不会让用户等得太久。</p>
+<p>我们使用sleep函数来 模拟这个几秒的运算 </p>
+<pre><code class="rust">use std::thread;
+use std::time::Duration;
+
+fn simulated_expensive_calculation(intensity: u32) -&gt; u32 &#123;
+    println!(&quot;calculating slowly...&quot;);
+    thread::sleep(Duration::from_secs(2));
+    intensity
+&#125;
+</code></pre>
+<p>main函数中 ,为了简便表示我们硬编码了两个用户的参数，通过generate_workout 传入这两个用户参数 ，</p>
+<pre><code class="rust">fn main() &#123;
+    let simulated_user_specified_value = 10;
+    let simulated_random_number = 7;
+
+    generate_workout(
+        simulated_user_specified_value,
+        simulated_random_number
+    );
+&#125;
+</code></pre>
+<p>在generate_workout内部调用simulated_expensive_calculation</p>
+<pre><code class="rust">fn generate_workout(intensity: u32, random_number: u32) &#123;
+    if intensity &lt; 25 &#123;
+        println!(
+            &quot;Today, do &#123;&#125; pushups!&quot;,
+            simulated_expensive_calculation(intensity)
+        );
+        println!(
+            &quot;Next, do &#123;&#125; situps!&quot;,
+            simulated_expensive_calculation(intensity)
+        ); //这里调用了两次
+    &#125; else &#123;
+        if random_number == 3 &#123;
+            println!(&quot;Take a break today! Remember to stay hydrated!&quot;);//这里没有调用
+        &#125; else &#123;
+            println!(
+                &quot;Today, run for &#123;&#125; minutes!&quot;,
+                simulated_expensive_calculation(intensity)
+                //这里调用了一次
+            );
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>现在这份代码能够应对我们的需求了，但数据科学部门的同学告知我们将来会对调用 <code>simulated_expensive_calculation</code> 的方式做出一些改变。为了在要做这些改动的时候简化更新步骤，我们将重构代码来让它只调用 <code>simulated_expensive_calculation</code> 一次。同时还希望去掉目前多余的连续两次函数调用，并不希望在计算过程中增加任何其他此函数的调用。</p>
+<p>也就是说，我们不希望在完全无需其结果的情况调用函数，在必要时也最多只调用一次。</p>
+<blockquote>
+<p>有多种方法可以重构此程序。我们首先尝试的是将重复的 <code>simulated_expensive_calculation</code> 函数调用提取到一个变量中，</p>
+</blockquote>
+<pre><code class="rust">fn generate_workout(intensity: u32, random_number: u32) &#123;
+    let expensive_result =
+        simulated_expensive_calculation(intensity);//调用一次
+
+    if intensity &lt; 25 &#123;
+        println!(
+            &quot;Today, do &#123;&#125; pushups!&quot;,
+            expensive_result
+        );
+        println!(
+            &quot;Next, do &#123;&#125; situps!&quot;,
+            expensive_result
+        );
+    &#125; else &#123;
+        if random_number == 3 &#123;
+            println!(&quot;Take a break today! Remember to stay hydrated!&quot;);
+        &#125; else &#123;
+            println!(
+                &quot;Today, run for &#123;&#125; minutes!&quot;,
+                expensive_result
+            );
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>不幸的是，现在所有的情况下都需要调用函数并等待结果，包括那个完全不需要这一结果的内部 <code>if</code> 块。</p>
+<p>我们希望能够在程序的一个位置指定某些代码，并只在程序的某处实际需要结果的时候 <strong>执行</strong> 这些代码。这正是闭包的用武之地！</p>
+<blockquote>
+<p>不同于总是在 <code>if</code> 块之前调用 <code>simulated_expensive_calculation</code> 函数并储存其结果，我们可以定义一个闭包并将其储存在变量中</p>
+</blockquote>
+<pre><code class="rust">let expensive_closure = |num| &#123;
+    println!(&quot;calculating slowly...&quot;);
+    thread::sleep(Duration::from_secs(2));
+    num
+&#125;
+</code></pre>
+<p>闭包的定义以一对竖线（<code>|</code>）开始，在竖线中指定闭包的参数；这个闭包有一个参数 <code>num</code>；如果有多于一个参数，可以使用逗号分隔，比如 <code>|param1, param2|</code>。</p>
+<p>参数之后是存放闭包体的大括号 —— 如果闭包体只有一行则大括号是可以省略的。在闭包的末尾，花括号之后，需要使用分号使 <code>let</code> 语句完整。因为闭包体的最后一行没有分号（正如函数体一样），所以闭包体（<code>num</code>）最后一行的返回值作为调用闭包时的返回值 。</p>
+<p>注意这个 <code>let</code> 语句意味着 <code>expensive_closure</code> 包含一个匿名函数的 <strong>定义</strong>，不是调用匿名函数的 <strong>返回值</strong>。</p>
+<p>定义了闭包之后，可以改变 <code>if</code> 块中的代码来调用闭包以执行代码并获取结果值。调用闭包类似于调用函数。</p>
+<pre><code class="rust">fn generate_workout(intensity: u32, random_number: u32) &#123;
+    let expensive_closure = |num| &#123;
+        println!(&quot;calculating slowly...&quot;);
+        thread::sleep(Duration::from_secs(2));
+        num
+    &#125;;
+
+    if intensity &lt; 25 &#123;
+        println!(
+            &quot;Today, do &#123;&#125; pushups!&quot;,
+            expensive_closure(intensity)
+        );
+        println!(
+            &quot;Next, do &#123;&#125; situps!&quot;,
+            expensive_closure(intensity)
+        ); //
+    &#125; else &#123;
+        if random_number == 3 &#123;
+            println!(&quot;Take a break today! Remember to stay hydrated!&quot;);
+        &#125; else &#123;
+            println!(
+                &quot;Today, run for &#123;&#125; minutes!&quot;,
+                expensive_closure(intensity)
+            );
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>仍然在第一个 <code>if</code> 块中调用了闭包两次，这调用了慢计算代码两次而使得用户需要多等待一倍的时间。可以通过在 <code>if</code> 块中创建一个本地变量存放闭包调用的结果来解决这个问题，不过闭包可以提供另外一种解决方案。</p>
+<p>闭包有默认的类型标注，我们看看一个简单的函数是如何转换成闭包的</p>
+<pre><code class="rust">fn  add_one_v1   (x: u32) -&gt; u32 &#123; x + 1 &#125; //函数
+let add_one_v2 = |x: u32| -&gt; u32 &#123; x + 1 &#125;;//完整的闭包
+let add_one_v3 = |x|             &#123; x + 1 &#125;;// 省略类型标注
+let add_one_v4 = |x|               x + 1  ;//去掉了大括号
+</code></pre>
+<p>闭包定义会为每个参数和返回值推断一个具体类型，如果尝试对同一闭包使用不同类型则会得到类型错误。</p>
+<p>幸运的是，还有另一个可用的方案。可以创建一个存放闭包和调用闭包结果的结构体。该结构体只会在需要结果时执行闭包，并会缓存结果值，这责保存结果并可以复用该值。你可能见过这种模式被称 <em>memoization</em> 或 <em>lazy evaluation</em> <em>（惰性求值）</em>。</p>
+<p>为了让结构体存放闭包，我们需要指定闭包的类型，因为结构体定义需要知道其每一个字段的类型。每一个闭包实例有其自己独有的匿名类型：也就是说，即便两个闭包有着相同的签名，他们的类型仍然可以被认为是不同。为了定义使用闭包的结构体、枚举或函数参数，需要使用 trait bound 和泛型</p>
+<blockquote>
+<p>参考文章</p>
+</blockquote>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1944270374@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2020-2023 qwrdxer
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 722px;
+    }
+    .nav.fullscreen {
+        margin-left: -722px;
+    }
+    .nav-left {
+        width: 300px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 542px;
+        }
+        .nav.fullscreen {
+            margin-left: -542px;
+        }
+        .nav-left {
+            width: 150px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 542px;
+            margin-left: -542px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    #post {
+        background: url(/img/start.png);
+    }
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

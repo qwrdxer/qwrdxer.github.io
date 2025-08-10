@@ -1,0 +1,1956 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>预训练一个25M的GPT2模型 | qwrdxer &#39;s blog</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="预训练一个25M的GPT2模型 | qwrdxer &#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About">
+<meta property="og:url" content="https://qwrdxer.github.io/about/index.html">
+<meta property="og:site_name" content="qwrdxer &#39;s blog">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-08-10T03:50:56.671Z">
+<meta property="article:modified_time" content="2025-08-10T03:50:56.671Z">
+<meta property="article:author" content="qwrdxer">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>qwrdxer</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/qwrdxer"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/yyc-96-55-3"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qwrdxer?type=blog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1944270374@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1944270374&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(54)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="杂项">
+            
+            杂项
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="编程语言">
+            <i class="fold iconfont icon-right"></i>
+            编程语言
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;C++">
+            
+            C++
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Go">
+            
+            Go
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Rust">
+            
+            Rust
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="操作系统">
+            
+            操作系统
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="代码分析">
+            
+            代码分析
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="环境配置">
+            
+            环境配置
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="脚本">
+            
+            脚本
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="开发工具">
+            
+            开发工具
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文阅读">
+            <i class="fold iconfont icon-right"></i>
+            论文阅读
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="论文阅读&lt;---&gt;人工智能">
+            
+            人工智能
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="爬虫">
+            
+            爬虫
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="区块链">
+            
+            区块链
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="人工智能">
+            <i class="fold iconfont icon-right"></i>
+            人工智能
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="人工智能&lt;---&gt;FASTAI">
+            
+            FASTAI
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="日志">
+            
+            日志
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="渗透测试篇">
+            
+            渗透测试篇
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            
+            数据库
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="算法">
+            
+            算法
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="写点好玩的">
+            
+            写点好玩的
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="一些奇怪的bug">
+            
+            一些奇怪的bug
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="以太坊">
+            
+            以太坊
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Agent">
+            
+            Agent
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="LLM">
+            
+            LLM
+            <small>(5)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="MCP">
+            
+            MCP
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全工具篇">
+            
+            web安全工具篇
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全漏洞篇">
+            
+            web安全漏洞篇
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="54">
+<input type="hidden" id="yelog_site_word_count" value="166.5k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>报错解决</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具使用</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境配置</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>脚本</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>深度学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>渗透测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>通讯协议</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>文件包含</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>bash</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FASTAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPT</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Josephus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MCP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Memory</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Multi-Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>shell</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Swarm</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>web漏洞</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WordPress</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2025/08/10/Untitled/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2025-08-10 11:50:56">2025/08/10</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/12/LLM/Llama%20Factory%20%E5%BE%AE%E8%B0%83%E4%B8%80%E4%B8%AA%20LLM%E8%B6%8A%E7%8B%B1%E7%9B%B8%E5%85%B3%E5%A4%A7%E6%A8%A1%E5%9E%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Llama Factory 微调一个 LLM越狱相关大模型">Llama Factory 微调一个 LLM越狱相关大模型</span>
+            <span class="post-date" title="2025-04-12 13:56:52">2025/04/12</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/10/LLM/Qwen2.5-7b%20Lora%E5%BE%AE%E8%B0%83-peft%E7%AF%87/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Qwen2.5-7b Lora微调-peft篇">Qwen2.5-7b Lora微调-peft篇</span>
+            <span class="post-date" title="2025-04-10 14:32:36">2025/04/10</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/07/LLM/%E9%A2%84%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA25M%E7%9A%84GPT2%E6%A8%A1%E5%9E%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="预训练一个25M的GPT2模型">预训练一个25M的GPT2模型</span>
+            <span class="post-date" title="2025-04-07 14:19:54">2025/04/07</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/06/LLM/Tokenizer%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Tokenizer 从零开始训练">Tokenizer 从零开始训练</span>
+            <span class="post-date" title="2025-04-06 20:50:21">2025/04/06</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/06/LLM/GPT2%20%E6%89%8B%E6%92%95%20%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GPT2 手撕 模型代码分析">GPT2 手撕 模型代码分析</span>
+            <span class="post-date" title="2025-04-06 14:14:30">2025/04/06</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/22/Agent/multi-agent%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="multi-agent中的设计模式">multi-agent中的设计模式</span>
+            <span class="post-date" title="2025-03-22 14:46:50">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/22/Agent/autogen-core%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen-core学习记录">autogen-core学习记录</span>
+            <span class="post-date" title="2025-03-22 14:42:21">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="All MCP "
+           href="/2025/03/12/MCP/MCP(Model%20Context%20Protocol)%20%E7%AE%80%E4%BB%8B/"
+           data-tag="MCP,通讯协议,LLM"
+           data-author="" >
+            <span class="post-title" title="MCP(Model Context Protocol) 简介">MCP(Model Context Protocol) 简介</span>
+            <span class="post-date" title="2025-03-12 15:47:27">2025/03/12</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/10/Agent/autogen%E6%8F%90%E9%AB%98%E4%B9%8BAgentChat%20Advanced%E9%83%A8%E5%88%86/"
+           data-tag="Agent,Multi-Agent,Memory,Swarm"
+           data-author="" >
+            <span class="post-title" title="autogen提高之AgentChat Advanced部分">autogen提高之AgentChat Advanced部分</span>
+            <span class="post-date" title="2025-03-10 21:35:41">2025/03/10</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/08/Agent/autogen%E5%85%A5%E9%97%A8%E4%B9%8Bagentchat/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen入门之autochat">autogen入门之autochat</span>
+            <span class="post-date" title="2025-03-08 20:23:19">2025/03/08</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2024/02/26/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/logseq%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="logseq使用">logseq使用</span>
+            <span class="post-date" title="2024-02-26 10:47:48">2024/02/26</span>
+        </a>
+        
+        
+        <a  class="All 区块链 "
+           href="/2024/01/21/%E5%8C%BA%E5%9D%97%E9%93%BE/hardhat%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hardhat智能合约流程">hardhat智能合约流程</span>
+            <span class="post-date" title="2024-01-21 15:20:03">2024/01/21</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/"
+           data-tag="Josephus"
+           data-author="" >
+            <span class="post-title" title="Josephus Problem">Josephus Problem</span>
+            <span class="post-date" title="2024-01-17 11:49:36">2024/01/17</span>
+        </a>
+        
+        
+        <a  class="All 区块链 "
+           href="/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="fabric环境配置">fabric环境配置</span>
+            <span class="post-date" title="2024-01-08 18:47:43">2024/01/08</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/12/22/%E7%88%AC%E8%99%AB/CF%E7%9B%BE%E7%BB%95%E8%BF%87(NodeJs%E7%89%88)/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CF盾绕过(NodeJs版)">CF盾绕过(NodeJs版)</span>
+            <span class="post-date" title="2023-12-22 20:11:48">2023/12/22</span>
+        </a>
+        
+        
+        <a  class="All 以太坊 "
+           href="/2023/10/19/%E4%BB%A5%E5%A4%AA%E5%9D%8A/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E9%83%A8%E5%88%86%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B5%85%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="以太坊部分知识点浅析">以太坊部分知识点浅析</span>
+            <span class="post-date" title="2023-10-19 16:10:05">2023/10/19</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2023/10/12/%E6%97%A5%E5%BF%97/%E9%93%BE%E6%8E%A5%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="链接记录">链接记录</span>
+            <span class="post-date" title="2023-10-12 19:40:28">2023/10/12</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/go-rod%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="go-rod学习">go-rod学习</span>
+            <span class="post-date" title="2023-10-06 11:22:48">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/Go%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%88%AC%E8%99%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go实现一个爬虫">Go实现一个爬虫</span>
+            <span class="post-date" title="2023-10-06 11:10:43">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="All 代码分析 "
+           href="/2023/10/05/%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/RustScan%E6%BA%90%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RustScan源代码分析">RustScan源代码分析</span>
+            <span class="post-date" title="2023-10-05 19:28:59">2023/10/05</span>
+        </a>
+        
+        
+        <a  class="All 一些奇怪的bug "
+           href="/2023/10/02/%E4%B8%80%E4%BA%9B%E5%A5%87%E6%80%AA%E7%9A%84bug/bug%E8%AE%B0%E5%BD%95&%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="bug记录&amp;解决方法">bug记录&amp;解决方法</span>
+            <span class="post-date" title="2023-10-02 16:05:12">2023/10/02</span>
+        </a>
+        
+        
+        <a  class="All 论文阅读 人工智能 "
+           href="/2023/10/01/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/OpenAI%E7%9A%84GPT%E5%8F%91%E5%B1%95/"
+           data-tag="LLM,GPT"
+           data-author="" >
+            <span class="post-title" title="大模型论文">大模型论文</span>
+            <span class="post-date" title="2023-10-01 22:17:21">2023/10/01</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Rust "
+           href="/2023/09/28/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/Rust_lifetime/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Rust的生命周期">Rust的生命周期</span>
+            <span class="post-date" title="2023-09-28 11:33:04">2023/09/28</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2023/09/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%AE%89%E5%85%A8%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE&%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE%E4%B8%8B%E8%BD%BD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安全四大会议&amp;人工智能四大会议下载">安全四大会议&amp;人工智能四大会议下载</span>
+            <span class="post-date" title="2023-09-27 20:47:28">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Rust "
+           href="/2023/09/27/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/The%20Rust%20Programming%20Language%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Rust Programming Language阅读笔记">The Rust Programming Language阅读笔记</span>
+            <span class="post-date" title="2023-09-27 20:35:50">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_3_%E5%A4%9AGPU%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_3_多GPU训练">FASTAI_3_多GPU训练</span>
+            <span class="post-date" title="2023-09-27 20:32:12">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_2_Datasets%E3%80%81Pipeline%E3%80%81TfmdLists%E3%80%81Transform/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_2_Datasets、Pipeline、TfmdLists、Transform">FASTAI_2_Datasets、Pipeline、TfmdLists、Transform</span>
+            <span class="post-date" title="2023-09-27 20:29:37">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_1_%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8CAPI%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI_1_使用不同API加载数据">FASTAI_1_使用不同API加载数据</span>
+            <span class="post-date" title="2023-09-27 20:28:09">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI快速入门">FASTAI快速入门</span>
+            <span class="post-date" title="2023-09-27 20:18:36">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 C++ "
+           href="/2023/01/10/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/C++%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C++入门">C++入门</span>
+            <span class="post-date" title="2023-01-10 11:30:50">2023/01/10</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%AB%E6%8F%8F%E5%99%A8%E5%AE%9E%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="分布式扫描器实现">分布式扫描器实现</span>
+            <span class="post-date" title="2022-04-27 11:43:42">2022/04/27</span>
+        </a>
+        
+        
+        <a  class="All 数据库 "
+           href="/2022/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93/mongodb%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="mongodb学习">mongodb学习</span>
+            <span class="post-date" title="2022-04-14 09:31:33">2022/04/14</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/10/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/Go%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E5%99%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go编写一个扫描器">Go编写一个扫描器</span>
+            <span class="post-date" title="2022-04-10 14:34:18">2022/04/10</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/09/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E6%83%B3%E6%B3%95%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="想法记录">想法记录</span>
+            <span class="post-date" title="2022-04-09 11:24:11">2022/04/09</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Go "
+           href="/2022/04/08/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go/The%20Way%20To%20Go/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Way To Go">The Way To Go</span>
+            <span class="post-date" title="2022-04-08 18:09:20">2022/04/08</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2022/03/31/%E6%97%A5%E5%BF%97/%E5%B1%B1%E8%BF%98%E6%98%AF%E5%B1%B1,%E6%B0%B4%E8%BF%98%E6%98%AF%E6%B0%B4,%E4%BD%A0%E4%B8%8D%E8%83%BD%E6%B0%B8%E8%BF%9C%E6%98%AF%E9%82%A3%E4%B8%AA%E4%BD%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="山还是山,水还是水,你不能永远是那个你">山还是山,水还是水,你不能永远是那个你</span>
+            <span class="post-date" title="2022-03-31 09:37:42">2022/03/31</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day11~day20">30天自制操作系统-学习笔记 day11~day20</span>
+            <span class="post-date" title="2022-03-27 09:49:33">2022/03/27</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2022/03/21/%E6%97%A5%E5%BF%97/%E9%97%B2%E8%AF%AD%E6%9D%82%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="闲语杂记">闲语杂记</span>
+            <span class="post-date" title="2022-03-21 12:51:18">2022/03/21</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/03/15/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/freemarker%E6%93%8D%E6%8E%A7word/"
+           data-tag="工具使用"
+           data-author="" >
+            <span class="post-title" title="freemarker操控word">freemarker操控word</span>
+            <span class="post-date" title="2022-03-15 12:00:54">2022/03/15</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/2022/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day1~day10">30天自制操作系统-学习笔记 day1~day10</span>
+            <span class="post-date" title="2022-01-31 10:57:39">2022/01/31</span>
+        </a>
+        
+        
+        <a  class="All 杂项 "
+           href="/2022/01/12/%E6%9D%82%E9%A1%B9/GITHUB%E6%94%B6%E9%9B%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GITHUB收集">GITHUB收集</span>
+            <span class="post-date" title="2022-01-12 20:07:03">2022/01/12</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/"
+           data-tag="渗透测试,工具开发"
+           data-author="" >
+            <span class="post-title" title="web页面密码爆破">web页面密码爆破</span>
+            <span class="post-date" title="2022-01-11 10:21:34">2022/01/11</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2022/01/09/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/Goby%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Goby分析">Goby分析</span>
+            <span class="post-date" title="2022-01-09 13:35:49">2022/01/09</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/08/15/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Shell%E8%84%9A%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag="bash,脚本,shell,linux,开发"
+           data-author="" >
+            <span class="post-title" title="Shell脚本学习笔记">Shell脚本学习笔记</span>
+            <span class="post-date" title="2021-08-15 11:19:55">2021/08/15</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试篇 "
+           href="/2021/07/25/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AF%87/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="信息收集">信息收集</span>
+            <span class="post-date" title="2021-07-25 19:33:55">2021/07/25</span>
+        </a>
+        
+        
+        <a  class="All web安全漏洞篇 "
+           href="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,MySQL"
+           data-author="" >
+            <span class="post-title" title="SQL注入相关">SQL注入相关</span>
+            <span class="post-date" title="2021-05-11 15:23:06">2021/05/11</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2021/04/21/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/nmap%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="nmap使用">nmap使用</span>
+            <span class="post-date" title="2021-04-21 19:29:51">2021/04/21</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/04/20/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/docker%E7%9B%B8%E5%85%B3/"
+           data-tag="工具使用,脚本,docker"
+           data-author="" >
+            <span class="post-title" title="docker相关">docker相关</span>
+            <span class="post-date" title="2021-04-20 13:49:50">2021/04/20</span>
+        </a>
+        
+        
+        <a  class="All web安全漏洞篇 "
+           href="/2021/04/19/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,文件包含"
+           data-author="" >
+            <span class="post-title" title="文件包含漏洞相关">文件包含漏洞相关</span>
+            <span class="post-date" title="2021-04-19 14:49:59">2021/04/19</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/04/16/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/hexo%E5%91%BD%E4%BB%A4/"
+           data-tag="工具使用,脚本"
+           data-author="" >
+            <span class="post-title" title="hexo相关">hexo相关</span>
+            <span class="post-date" title="2021-04-16 12:12:14">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2021/04/16/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/xray%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="xray使用">xray使用</span>
+            <span class="post-date" title="2021-04-16 12:10:08">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="All 脚本 "
+           href="/2021/04/15/%E8%84%9A%E6%9C%AC/some-script/"
+           data-tag="bash,脚本,python"
+           data-author="" >
+            <span class="post-title" title="some script">some script</span>
+            <span class="post-date" title="2021-04-15 11:23:33">2021/04/15</span>
+        </a>
+        
+        
+        <a  class="All 环境配置 "
+           href="/2021/04/15/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/centos%E9%83%A8%E7%BD%B2wordpress/"
+           data-tag="linux,环境配置,报错解决,WordPress"
+           data-author="" >
+            <span class="post-title" title="centos部署wordpress">centos部署wordpress</span>
+            <span class="post-date" title="2021-04-15 01:34:16">2021/04/15</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-LLM/预训练一个25M的GPT2模型" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">预训练一个25M的GPT2模型</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="LLM">LLM</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2025-08-10 11:50:56'>2025-04-07 14:19</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:3.9k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87"><span class="toc-text">数据准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E9%80%89%E6%8B%A9"><span class="toc-text">数据集选择</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF%E8%AE%BE%E8%AE%A1"><span class="toc-text">思路设计</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%E8%AE%BE%E8%AE%A1"><span class="toc-text">模型参数设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E8%AE%AD%E7%BB%83-%E6%9C%80%E5%88%9D%E4%BB%A3%E7%A0%81"><span class="toc-text">开始训练 - 最初代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E8%AE%AD%E7%BB%83-%E4%BC%98%E5%8C%96%E7%89%88%E4%BB%A3%E7%A0%81"><span class="toc-text">开始训练 - 优化版代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-text">测试</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.modelscope.cn/datasets/gongjy/minimind_dataset/summary">https://www.modelscope.cn/datasets/gongjy/minimind_dataset/summary</a><br><a target="_blank" rel="noopener" href="https://github.com/jingyaogong/minimind?tab=readme-ov-file">https://github.com/jingyaogong/minimind?tab=readme-ov-file</a></p>
+<h3 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h3><h4 id="数据集选择"><a href="#数据集选择" class="headerlink" title="数据集选择"></a>数据集选择</h4><p>使用pretrain_hq.jsonl 进行预训练<br><a target="_blank" rel="noopener" href="https://www.modelscope.cn/datasets/gongjy/minimind_dataset/summary">https://www.modelscope.cn/datasets/gongjy/minimind_dataset/summary</a><br>样本例子如下:都是中文文本,每一行一个JSON</p>
+<pre><code class="json">&#123;&quot;text&quot;: &quot;&lt;s&gt;介绍一本你近期阅读的书籍。\n最近我阅读了一本名为《霹雳娇娃》的小说。这本小说讲述了三位女性侠士与神秘组织之间的斗争。在这个故事中，女性侠士们并不是柔弱无力的弱女子，她们展现出了超强的战斗能力和深厚的情感内涵。小说通过复杂的情节和令人窒息的危机场面，揭示了人性善恶的多重性，并强调了团结互助的重要性。\n这本小说的细节描写十分生动鲜活，使读者能够身临其境。此外，角色之间的互动也表现出了情感和人性的复杂性。我认为这本小说不仅仅是一个好的故事，更是一部能够启示读者思考的良心之作。\n基于以上这段文本换一种方式重新描述。最近，我读了一本非常引人入胜的小说——《霹雳娇娃》。这本小说跟随三位女性侠士与神秘组织之间的生死决战。故事展示了三位侠士的坚韧和无所畏惧的战斗精神，同时也揭示了隐藏的人性弱点和矛盾之处。情节丰满，紧张刺激——你会感到自己置身其中。同时，本书还强调了互助合作的重要性，切中当今社会和我们内心深处的共鸣。\n在精彩的情节中，作者巧妙地把握了角色之间的情感和复杂性，使得书中的事件和人物不再只是一个干瘪的故事线，而是变成了一个立体的故事世界。这本小说不仅可以带给你好的故事，还可以让读者了解到自己内心深处的一些意义。&lt;/s&gt;&quot;&#125;
+&#123;&quot;text&quot;: &quot;&lt;s&gt;常见的心理障碍类型有哪些？\n心理障碍常常是人类生活压力过大、心理压抑等原因造成的。常见的心理障碍类型包括：抑郁症、强迫症、焦虑症、创伤后应激障碍等。其中，抑郁症主要表现为情感低落、失去兴趣等；强迫症则表现为强迫症状，需要反复进行某种行为；焦虑症则表现为极度担忧、不安和消极情绪；创伤后应激障碍则是由于遭受创伤事件后造成的精神创伤而引起的精神病症状。处理心理障碍需要采取适当的心理疏导和药物辅助治疗。如果你或身边的人需要帮助，及时与心理医生或心理咨询师联系是很重要的。\n基于以上这段文本重新润色，保证意思一致。常见的心理障碍类型有哪些？\n当人们的生活压力过大或情绪被压抑时，容易出现各种心理障碍。到目前为止，我们已经确定了几种常见的心理障碍类型，它们分别是抑郁症、强迫症、焦虑症和创伤后应激障碍。抑郁症表现为情感低落和失去兴趣；强迫症表现为需要反复进行某种行为；焦虑症表现为极度担忧、不安和消极情绪；创伤后应激障碍则是受到创伤事件影响后引起的精神创伤。对于这些心理障碍，心理医生和心理咨询师可以提供适当的心理疏导和药物辅助治疗。即使你周围的人并没有得到心理障碍的诊断，但如果你感觉他们表现出这些征兆，还是尽早提供帮助为好。&lt;/s&gt;&quot;&#125;
+</code></pre>
+<p>编写一个简单的脚本看一下平均长度</p>
+<pre><code class="python"># Python 实现
+def calculate_average_length_and_line_count(file_path):
+    with open(file_path, &#39;r&#39;, encoding=&#39;utf-8&#39;) as file:
+        lines = file.readlines()
+    
+    line_count = len(lines)
+    line_lengths = [len(line.strip()) for line in lines]
+    avg_length = sum(line_lengths) / line_count if line_count &gt; 0 else 0
+    
+    return line_count, avg_length
+
+# 输入文件路径
+file_path = &#39;/datasets/pretrain_hq.jsonl&#39;
+line_count, average_length = calculate_average_length_and_line_count(file_path)
+print(f&quot;总行数: &#123;line_count&#125;, 每一行的平均长度是: &#123;average_length&#125;&quot;)
+</code></pre>
+<p>总行数: 1,413,103, 每一行的平均长度是: 416.641455718373</p>
+<h4 id="思路设计"><a href="#思路设计" class="headerlink" title="思路设计"></a>思路设计</h4><ul>
+<li>我们的模型上下文设置为512 ,大于512的行需要截取，小于512的行需要填充(padding)</li>
+</ul>
+<p><strong>首先是Dataset的设计</strong></p>
+<ul>
+<li>Dataset提供给模型的X,Y应该是Tokenizer后的向量对，因此需要一个Tokenizer</li>
+<li>根据文本长度做padding或者截取操作</li>
+</ul>
+<pre><code class="python">import torch
+from torch.utils.data import Dataset
+import json
+from transformers.tokenization_utils_fast import PreTrainedTokenizerFast
+from typing import List
+class PretrainDataset(Dataset):
+    def __init__(self,data_dir:str,max_length:int,tokenizer:PreTrainedTokenizerFast):
+        super().__init__()
+        self.data_dir=data_dir
+        self.tokenizer=tokenizer
+        self.max_length=max_length
+        self.samples=self.load_data(self.data_dir)
+    def load_data(self,path:str)-&gt;List[str]:
+        samples=[]
+        with open(path,&#39;r&#39;,encoding=&#39;utf-8&#39;) as f:
+            for idx,line in enumerate(f,1):
+                data=json.load(line.strip())
+                samples.append(data[&#39;text&#39;])
+        return samples
+
+    def __len__(self):
+        return len(self.samples)
+
+    def __getitem__(self, index):
+        sample=self.samples[index]
+        sample_tokenize = self.tokenizer(
+            sample,  
+            max_length=self.max_length,  # 设置输入序列的最大长度，超过该长度的文本将会被截断，默认值为 None，表示不限制最大长度
+            padding=&#39;max_length&#39;,  # 设置是否对输入进行填充以及填充方式。&#39;max_length&#39; 表示填充至 `max_length` 指定的长度；&#39;longest&#39; 会根据输入序列的最大长度进行填充，&#39;do_not_pad&#39; 表示不进行填充。
+            truncation=True,  # 设置是否对输入进行截断。True 表示超出 `max_length` 的部分会被截断
+            return_tensors=&#39;pt&#39;  # 设置返回的格式。&#39;pt&#39; 表示返回 PyTorch 张量（Tensor）。可以选择 &#39;tf&#39;（返回 TensorFlow 张量）或 &#39;np&#39;（返回 NumPy 数组），&#39;pt&#39; 是针对 PyTorch 框架的
+        )
+
+        #&#123;&#39;input_ids&#39;: tensor([[2157, 1293,    0,    0,    0,    0,    0,    0,    0,    0]]), &#39;token_type_ids&#39;: tensor([[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]), &#39;attention_mask&#39;: tensor([[1, 1, 0, 0, 0, 0, 0, 0, 0, 0]])&#125;
+        input_ids=sample_tokenize[&#39;input_ids&#39;].squeeze()
+        loss_mask=sample_tokenize[&#39;attention_mask&#39;].squeeze()
+        # X[n] 与Y[n+1] 一一对应 ,即训练的目的是next token预测
+        # Y[b]与loss_mask[b]一一对应,padding部分的token不应该参与loss计算
+        X=sample_tokenize[:-1]
+        Y=sample_tokenize[1:]
+        loss_mask=loss_mask[1:]
+        return X,Y,loss_mask
+</code></pre>
+<h3 id="模型参数设计"><a href="#模型参数设计" class="headerlink" title="模型参数设计"></a>模型参数设计</h3><pre><code class="python">batch_size = 64 # 每次训练的样本数
+context_length=256# 上下文长度
+d_model=512 # 嵌入向量的维度
+num_block=8 # Transformer块数
+num_heads=16 # 多头注意力的头数
+max_token_value=6400
+</code></pre>
+<p>打印一下模型的参数量</p>
+<pre><code class="python">from minimodel import GPT2Model
+import torch
+batch_size = 64 # 每次训练的样本数
+context_length=256# 上下文长度
+d_model=512 # 嵌入向量的维度
+num_block=8 # Transformer块数
+num_heads=16 # 多头注意力的头数
+max_token_value=6400
+device=torch.device(&#39;cuda&#39; if torch.cuda.is_available() else &#39;cpu&#39;)
+# Generate
+model = GPT2Model(
+    max_token_value=max_token_value,
+    d_model=d_model,
+    num_heads=num_heads,
+    num_blocks=num_block,
+    context_length=context_length
+).to(device)
+#打印模型的参数量
+print(&quot;模型参数量：&quot;, sum(p.numel() for p in model.parameters())/1e6, &quot;M&quot;)
+</code></pre>
+<p>或者这样</p>
+<pre><code class="python">model=GPT2Model(max_token_value=max_token_value,d_model=d_model,num_heads=num_heads,num_blocks=num_block,context_length=context_length).to(device)
+
+x = torch.randint(0, max_token_value, (batch_size, context_length), dtype=torch.long).to(device).to(device)
+
+torchinfo.summary(model,input_data=x)
+</code></pre>
+<p>Total params: 25,869,568<br>Trainable params: 25,869,568<br>Non-trainable params: 0</p>
+<p>Input size (MB): 0.13<br>Forward/backward pass size (MB): 6878.66<br>Params size (MB): 103.48<br>Estimated Total Size (MB): 6982.27</p>
+<h3 id="开始训练-最初代码"><a href="#开始训练-最初代码" class="headerlink" title="开始训练 - 最初代码"></a>开始训练 - 最初代码</h3><pre><code class="python">import torch
+from torch.utils.data import DataLoader
+from gpt2model import GPT2Model
+from mydataset import PretrainDataset
+from torch.optim import AdamW
+from transformers import AutoTokenizer
+from tqdm import tqdm
+
+## 超参数定义
+
+batch_size =64 # 每次训练的样本数
+context_length=512# 上下文长度
+d_model=512 # 嵌入向量的维度
+num_block=8 # Transformer块数
+num_heads=16 # 多头注意力的头数
+max_token_value=6400
+  
+learning_rate=1e-4 # 学习率
+dropout=0.1 # Dropout的比率
+train_epoche=6 #在数据集上训练的轮数
+eval_interval=50 # 评估的间隔
+eval_iters=20
+device = &#39;cuda:1&#39; if torch.cuda.is_available() else &#39;cpu&#39; # 设备
+torch.manual_seed(1337) # 随机种子
+
+  
+tokenizer=AutoTokenizer.from_pretrained(&#39;/data1/zah_workspace/llmfromzero/tokenizer/model/minimind_tokenizer&#39;)
+model=GPT2Model(max_token_value=max_token_value,d_model=d_model,num_heads=num_heads,num_blocks=num_block,context_length=context_length).to(device)
+optimizer = AdamW(model.parameters(), lr=learning_rate, weight_decay=0.001)
+loss_fct=torch.nn.CrossEntropyLoss(reduction=&#39;none&#39;)#设置了 reduction=&#39;none&#39;，这意味着它不会自动对损失进行平均或求和，而是返回每个样本的损失值。
+## 数据集加载
+dataset=PretrainDataset(data_dir=&#39;/data3/zah_work/datasets/pretrain_hq.jsonl&#39;,max_length=context_length,tokenizer=tokenizer)
+  
+mydataloader=DataLoader(dataset=dataset,batch_size=batch_size,shuffle=True)
+  
+#训练模型
+
+def train_epch(epoch):
+    model.train()
+    for step,(X,Y,lossmask) in tqdm(enumerate(mydataloader)):
+        X=X.to(device)
+        Y=Y.to(device)
+        # print(X.shape)
+        # print(Y.shape)
+
+        lossmask=lossmask.to(device)
+        logits=model(X)# logits 为(batchsize,contextlength,max_token_value) loss为)
+        #掩码一下，去除padding
+        losses = loss_fct(logits.view(-1, logits.size(-1)), Y.view(-1))
+        #计算损失
+        # print(f&quot;loss shape: &#123;loss.shape&#125;&quot;)
+        # print(f&quot;lossmask shape: &#123;lossmask.shape&#125;&quot;)
+        losses = losses.view(Y.shape)  # [1, 512]
+        valid_tokens = lossmask.to(torch.bool)  # [1, 512]
+
+        # 只计算有效token的损失
+        valid_losses = losses[valid_tokens]
+  
+        # 对有效损失求平均
+
+        final_loss = valid_losses.mean()
+        optimizer.zero_grad()
+        final_loss.backward()
+        optimizer.step()
+        if(step%10==0):
+            print(f&quot;Loss (masked): &#123;final_loss&#125;&quot;)
+        #
+train_epch(10)
+## 模型保存
+</code></pre>
+<p>主要就是加载Tokenizer、Model 设置优化器、损失函数、加载数据集<br>随后开始训练，打印损失</p>
+<h4 id><a href="#" class="headerlink" title></a></h4><h3 id="开始训练-优化版代码"><a href="#开始训练-优化版代码" class="headerlink" title="开始训练 - 优化版代码"></a>开始训练 - 优化版代码</h3><p>让cursor进行分析,进行了如下</p>
+<pre><code>主要修改包括：
+
+1. 降低了学习率从 1e-4 到 5e-5
+
+2. 添加了学习率预热策略（warmup）
+
+3. 添加了梯度裁剪（max_grad_norm = 1.0）
+
+4. 增大了 batch size 从 64 到 128
+
+5. 调整了 weight decay 从 0.001 到 0.01
+
+6. 添加了 Xavier 初始化方法
+
+7. 添加了学习率监控输出
+</code></pre>
+<pre><code class="python">import math
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+def init_weights(module):
+    if isinstance(module, nn.Linear):
+        nn.init.xavier_uniform_(module.weight)
+        if module.bias is not None:
+            nn.init.zeros_(module.bias)
+    elif isinstance(module, nn.Embedding):
+        nn.init.normal_(module.weight, mean=0.0, std=0.02)
+
+class FeedForwardNetWork(nn.Module):
+    def __init__(self,d_model,d_ff):
+        super().__init__()
+        self.d_model=d_model
+        self.d_ff=d_ff
+        self.ffn=nn.Sequential(
+            nn.Linear(in_features=self.d_model,out_features=self.d_ff),
+            nn.ReLU(),
+            nn.Linear(in_features=self.d_ff,out_features=self.d_model),
+            nn.Dropout(0.1)
+        )
+        self.apply(init_weights)
+
+    def forward(self,x):
+        return self.ffn(x)
+
+class ScaledDotProductAttention(nn.Module):
+    def __init__(self,head_dim,context_length=16,dropout=0.1):
+        super().__init__()
+        self.head_dim=head_dim
+        self.dropout=dropout
+        self.context_length=context_length
+        self.Wq=nn.Linear(head_dim,head_dim,bias=False)
+        self.Wk=nn.Linear(head_dim,head_dim,bias=False)
+        self.Wv=nn.Linear(head_dim,head_dim,bias=False)
+        # apply mask
+        self.register_buffer(&#39;mask&#39;,torch.tril(torch.ones(context_length,context_length)))
+        self.dropout_layer = nn.Dropout(self.dropout)
+
+    def forward(self,x):
+        B,T,C=x.shape
+        assert T&lt;=self.context_length
+        assert C==self.head_dim
+        Q=self.Wq(x)
+        K=self.Wk(x)
+        V=self.Wv(x)
+        #计算分数
+        attention=Q @ K.transpose(-2,-1) / math.sqrt(self.head_dim)
+        # mask
+        attention=attention.masked_fill(self.mask[:T,:T]==0,float(&#39;-inf&#39;))
+        attention_score=F.softmax(attention,dim=-1)
+        attention_score = self.dropout_layer(attention_score)
+        x=attention_score@V
+        return x
+  
+class MultiHeadAttention(nn.Module):
+    def __init__(self,d_model,num_heads,context_length=16):
+        super().__init__()
+        self.d_model=d_model
+        self.num_heads=num_heads
+        self.context_length=context_length
+        self.head_dim=d_model // num_heads
+
+        self.heads=nn.ModuleList([ScaledDotProductAttention(head_dim=d_model//num_heads,context_length=context_length) for _ in range(num_heads)])
+        self.projection_layer=nn.Linear(d_model,d_model)
+        self.dropout=nn.Dropout(0.1)
+
+    def forward(self,x):
+        # 将x拆分成多头
+        batch_size=x.size(0)
+        # view : 对数据重新分组，平铺后的矩阵数据位置还是一样的
+        # transpose:x[a,b]的访问变为x[b,a]数据肯定是被打乱的了
+        x=x.view(batch_size,-1,self.num_heads,self.head_dim).transpose(1,2)
+        heads_output=[]
+        for i,head in enumerate(self.heads):
+            heads_output.append(head(x[:,i]))
+        heads_output=torch.cat(heads_output,dim=-1)
+        out=self.projection_layer(heads_output)
+        out=self.dropout(out)
+        return out
+
+
+class TransformerBlock(nn.Module):
+
+    def __init__(self,d_model,num_heads,context_length=16):
+        super().__init__()
+        self.d_model=d_model
+        self.num_heads=num_heads
+        self.layer_norm1=nn.LayerNorm(d_model)
+        self.layer_norm2=nn.LayerNorm(d_model)
+        self.multi_head_attention =MultiHeadAttention(d_model=d_model,num_heads=num_heads,context_length=context_length)
+        self.ff_network=FeedForwardNetWork(d_model=d_model,d_ff=4*d_model)
+
+    def forward(self,x):
+        multi_attention_output=self.multi_head_attention(x)
+        x=self.layer_norm1(x+multi_attention_output)
+        feed_forward_output=self.ff_network(x)
+        x=self.layer_norm2(x+feed_forward_output)
+        return x
+
+class GPT2Model(nn.Module):
+    def __init__(self,max_token_value,d_model,num_heads,num_blocks,context_length=16):
+        super().__init__()
+        self.d_model=d_model
+        self.context_length=context_length
+        self.token_embedding=nn.Embedding(max_token_value,d_model)
+        self.transformer_block=nn.Sequential(*([TransformerBlock(d_model=d_model,num_heads=num_heads,context_length=context_length) for _ in range(num_blocks)]+[nn.LayerNorm(self.d_model)]))
+
+  
+
+        self.language_model_out_linear_layer = nn.Linear(in_features=self.d_model, out_features=max_token_value)
+        self.apply(init_weights)
+
+    def forward(self,idx,targets=None):
+        B,T=idx.shape
+        position_encoding_lookup_table = torch.zeros(self.context_length, self.d_model)
+        position = torch.arange(0, self.context_length, dtype=torch.float).unsqueeze(1)
+        div_term = torch.exp(torch.arange(0, self.d_model, 2).float() * (-math.log(10000.0) / self.d_model))
+        position_encoding_lookup_table[:, 0::2] = torch.sin(position * div_term)
+        position_encoding_lookup_table[:, 1::2] = torch.cos(position * div_term)
+        # change position_encoding_lookup_table from (context_length, d_model) to (T, d_model)
+        position_embedding = position_encoding_lookup_table[:T, :].to(idx.device)
+        x=self.token_embedding(idx)+position_embedding
+        x=self.transformer_block(x)
+        logits=self.language_model_out_linear_layer(x) # batch_size , time_stamp ,table
+        return logits
+
+
+    def generate(self,idx,max_new_tokens=100):
+        for _ in range(max_new_tokens):
+            idx_crop = idx[:, -self.context_length:]
+            logits,loss=self(idx_crop)
+            logist_last_timestep=logits[:,-1,:]
+            probs=F.softmax(input=logist_last_timestep,dim=-1)
+            idx_next=torch.multinomial(input=probs,num_samples=1)
+            idx =torch.cat((idx,idx_next),dim=1)
+        return idx
+</code></pre>
+<pre><code class="python">import torch
+from torch.utils.data import DataLoader
+from gpt2model import GPT2Model
+from mydataset import PretrainDataset
+from torch.optim import AdamW
+from transformers import AutoTokenizer, get_linear_schedule_with_warmup
+from tqdm import tqdm
+## 超参数定义
+batch_size = 128 # 每次训练的样本数
+context_length=512# 上下文长度
+d_model=512 # 嵌入向量的维度
+num_block=8 # Transformer块数
+num_heads=16 # 多头注意力的头数
+max_token_value=6400
+
+
+learning_rate=5e-5 # 学习率
+dropout=0.1 # Dropout的比率
+train_epoche=6 #在数据集上训练的轮数
+eval_interval=50 # 评估的间隔
+eval_iters=20
+warmup_steps = 1000  # 添加warmup步数
+max_grad_norm = 1.0  # 梯度裁剪阈值
+device = &#39;cuda:1&#39; if torch.cuda.is_available() else &#39;cpu&#39; # 设备
+torch.manual_seed(1337) # 随机种子
+
+tokenizer=AutoTokenizer.from_pretrained(&#39;/data1/zah_workspace/llmfromzero/tokenizer/model/minimind_tokenizer&#39;)
+model=GPT2Model(max_token_value=max_token_value,d_model=d_model,num_heads=num_heads,num_blocks=num_block,context_length=context_length).to(device)
+optimizer = AdamW(model.parameters(), lr=learning_rate, weight_decay=0.01)
+loss_fct=torch.nn.CrossEntropyLoss(reduction=&#39;none&#39;)#设置了 reduction=&#39;none&#39;，这意味着它不会自动对损失进行平均或求和，而是返回每个样本的损失值。
+## 数据集加载
+dataset=PretrainDataset(data_dir=&#39;/data3/zah_work/datasets/pretrain_hq.jsonl&#39;,max_length=context_length,tokenizer=tokenizer)
+
+mydataloader=DataLoader(dataset=dataset,batch_size=batch_size,shuffle=True)
+
+# 创建学习率调度器
+num_training_steps = len(mydataloader) * train_epoche
+scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=warmup_steps, num_training_steps=num_training_steps)
+
+#训练模型
+def train_epch(epoch):
+    model.train()
+    for step,(X,Y,lossmask) in tqdm(enumerate(mydataloader)):
+        X=X.to(device)
+        Y=Y.to(device)
+        # print(X.shape)
+        # print(Y.shape)
+        lossmask=lossmask.to(device)
+        logits=model(X)# logits 为(batchsize,contextlength,max_token_value) loss为)
+        #掩码一下，去除padding
+        losses = loss_fct(logits.view(-1, logits.size(-1)), Y.view(-1))
+        #计算损失
+        # print(f&quot;loss shape: &#123;loss.shape&#125;&quot;)
+        # print(f&quot;lossmask shape: &#123;lossmask.shape&#125;&quot;)
+        losses = losses.view(Y.shape)  # [1, 512]
+        valid_tokens = lossmask.to(torch.bool)  # [1, 512]
+        # 只计算有效token的损失
+        valid_losses = losses[valid_tokens]
+  
+        # 对有效损失求平均
+        final_loss = valid_losses.mean()
+        optimizer.zero_grad()
+        final_loss.backward()
+        # 添加梯度裁剪
+        torch.nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm)
+        optimizer.step()
+        scheduler.step()  # 更新学习率
+        if(step%10==0):
+            print(f&quot;Loss (masked): &#123;final_loss&#125;&quot;)
+            print(f&quot;Learning rate: &#123;scheduler.get_last_lr()[0]&#125;&quot;)  # 打印当前学习率
+
+train_epch(10)
+## 模型保存
+</code></pre>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>训练到第二个epoch后loss在2.3~2.5震荡，直接停了。</p>
+<pre><code class="python">import torch
+from torch.utils.data import DataLoader
+from gpt2model import GPT2Model
+from mydataset import PretrainDataset
+from torch.optim import AdamW
+from transformers import AutoTokenizer
+from tqdm import tqdm
+## 超参数定义
+batch_size =64 # 每次训练的样本数
+context_length=512# 上下文长度
+d_model=512 # 嵌入向量的维度
+num_block=8 # Transformer块数
+num_heads=16 # 多头注意力的头数
+max_token_value=6400
+  
+device = &#39;cuda:0&#39; if torch.cuda.is_available() else &#39;cpu&#39; # 设备
+tokenizer=AutoTokenizer.from_pretrained(&#39;./tokenizer/model/minimind_tokenizer&#39;)
+model=GPT2Model(max_token_value=max_token_value,d_model=d_model,num_heads=num_heads,num_blocks=num_block,context_length=context_length).to(device)
+model_path = &#39;./model/gpt2model_epoch3_iter72000_bs64.pt&#39;
+  
+# 直接加载模型的state_dict
+model.load_state_dict(torch.load(model_path, map_location=device))
+  
+idx=tokenizer(&quot;珠穆朗玛峰是&quot;,return_tensors=&#39;pt&#39;)
+input_ids=idx[&#39;input_ids&#39;]
+input_ids=input_ids.to(device)
+newidx=model.generate(input_ids)
+print(tokenizer.decode(newidx[0]))
+</code></pre>
+<p>输出: </p>
+<pre><code class="json">珠穆朗玛峰是什么？玛玛峰是一个极坐线且势力的综合性。它洲是地球上最引力和最紧密的恒星之一，它们是一个巨大的恒星，位于赤道和非洲北部。这是一个惊艳中最强的恒星，位于太平洋中而已被永破碎时与太阳射线相互作用带的行星以及这种最强的恒星。&lt;/s&gt; &lt;s&gt;好的，我马上回来，你能请问
+</code></pre>
+<p>有点人工智障了哈哈</p>
+<p>后续路线</p>
+<ul>
+<li>模型架构优化，提高训练速度</li>
+<li>参数调整（炼丹） 重新训练</li>
+<li>微调</li>
+</ul>
+<hr>
+<p>文章参考:</p>
+<p>博客地址: qwrdxer.github.io</p>
+<p>欢迎交流: qq1944270374</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1944270374@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2020-2023 qwrdxer
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 722px;
+    }
+    .nav.fullscreen {
+        margin-left: -722px;
+    }
+    .nav-left {
+        width: 300px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 542px;
+        }
+        .nav.fullscreen {
+            margin-left: -542px;
+        }
+        .nav-left {
+            width: 150px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 542px;
+            margin-left: -542px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    #post {
+        background: url(/img/start.png);
+    }
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

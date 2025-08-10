@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>FASTAI快速入门 | qwrdxer &#39;s blog</title>
+  <meta name="keywords" content=" 深度学习 , FASTAI ">
+  <meta name="description" content="FASTAI快速入门 | qwrdxer &#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About">
+<meta property="og:url" content="https://qwrdxer.github.io/about/index.html">
+<meta property="og:site_name" content="qwrdxer &#39;s blog">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-08-10T03:50:56.671Z">
+<meta property="article:modified_time" content="2025-08-10T03:50:56.671Z">
+<meta property="article:author" content="qwrdxer">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>qwrdxer</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/qwrdxer"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/yyc-96-55-3"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qwrdxer?type=blog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1944270374@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1944270374&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(54)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="杂项">
+            
+            杂项
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="编程语言">
+            <i class="fold iconfont icon-right"></i>
+            编程语言
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;C++">
+            
+            C++
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Go">
+            
+            Go
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Rust">
+            
+            Rust
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="操作系统">
+            
+            操作系统
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="代码分析">
+            
+            代码分析
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="环境配置">
+            
+            环境配置
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="脚本">
+            
+            脚本
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="开发工具">
+            
+            开发工具
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文阅读">
+            <i class="fold iconfont icon-right"></i>
+            论文阅读
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="论文阅读&lt;---&gt;人工智能">
+            
+            人工智能
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="爬虫">
+            
+            爬虫
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="区块链">
+            
+            区块链
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="人工智能">
+            <i class="fold iconfont icon-right"></i>
+            人工智能
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="人工智能&lt;---&gt;FASTAI">
+            
+            FASTAI
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="日志">
+            
+            日志
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="渗透测试篇">
+            
+            渗透测试篇
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            
+            数据库
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="算法">
+            
+            算法
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="写点好玩的">
+            
+            写点好玩的
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="一些奇怪的bug">
+            
+            一些奇怪的bug
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="以太坊">
+            
+            以太坊
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Agent">
+            
+            Agent
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="LLM">
+            
+            LLM
+            <small>(5)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="MCP">
+            
+            MCP
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全工具篇">
+            
+            web安全工具篇
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全漏洞篇">
+            
+            web安全漏洞篇
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="54">
+<input type="hidden" id="yelog_site_word_count" value="166.5k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>报错解决</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具使用</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境配置</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>脚本</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>深度学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>渗透测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>通讯协议</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>文件包含</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>bash</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FASTAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPT</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Josephus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MCP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Memory</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Multi-Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>shell</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Swarm</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>web漏洞</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WordPress</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2025/08/10/Untitled/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2025-08-10 11:50:56">2025/08/10</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/12/LLM/Llama%20Factory%20%E5%BE%AE%E8%B0%83%E4%B8%80%E4%B8%AA%20LLM%E8%B6%8A%E7%8B%B1%E7%9B%B8%E5%85%B3%E5%A4%A7%E6%A8%A1%E5%9E%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Llama Factory 微调一个 LLM越狱相关大模型">Llama Factory 微调一个 LLM越狱相关大模型</span>
+            <span class="post-date" title="2025-04-12 13:56:52">2025/04/12</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/10/LLM/Qwen2.5-7b%20Lora%E5%BE%AE%E8%B0%83-peft%E7%AF%87/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Qwen2.5-7b Lora微调-peft篇">Qwen2.5-7b Lora微调-peft篇</span>
+            <span class="post-date" title="2025-04-10 14:32:36">2025/04/10</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/07/LLM/%E9%A2%84%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA25M%E7%9A%84GPT2%E6%A8%A1%E5%9E%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="预训练一个25M的GPT2模型">预训练一个25M的GPT2模型</span>
+            <span class="post-date" title="2025-04-07 14:19:54">2025/04/07</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/06/LLM/Tokenizer%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Tokenizer 从零开始训练">Tokenizer 从零开始训练</span>
+            <span class="post-date" title="2025-04-06 20:50:21">2025/04/06</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/06/LLM/GPT2%20%E6%89%8B%E6%92%95%20%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GPT2 手撕 模型代码分析">GPT2 手撕 模型代码分析</span>
+            <span class="post-date" title="2025-04-06 14:14:30">2025/04/06</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/22/Agent/multi-agent%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="multi-agent中的设计模式">multi-agent中的设计模式</span>
+            <span class="post-date" title="2025-03-22 14:46:50">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/22/Agent/autogen-core%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen-core学习记录">autogen-core学习记录</span>
+            <span class="post-date" title="2025-03-22 14:42:21">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="All MCP "
+           href="/2025/03/12/MCP/MCP(Model%20Context%20Protocol)%20%E7%AE%80%E4%BB%8B/"
+           data-tag="MCP,通讯协议,LLM"
+           data-author="" >
+            <span class="post-title" title="MCP(Model Context Protocol) 简介">MCP(Model Context Protocol) 简介</span>
+            <span class="post-date" title="2025-03-12 15:47:27">2025/03/12</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/10/Agent/autogen%E6%8F%90%E9%AB%98%E4%B9%8BAgentChat%20Advanced%E9%83%A8%E5%88%86/"
+           data-tag="Agent,Multi-Agent,Memory,Swarm"
+           data-author="" >
+            <span class="post-title" title="autogen提高之AgentChat Advanced部分">autogen提高之AgentChat Advanced部分</span>
+            <span class="post-date" title="2025-03-10 21:35:41">2025/03/10</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/08/Agent/autogen%E5%85%A5%E9%97%A8%E4%B9%8Bagentchat/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen入门之autochat">autogen入门之autochat</span>
+            <span class="post-date" title="2025-03-08 20:23:19">2025/03/08</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2024/02/26/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/logseq%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="logseq使用">logseq使用</span>
+            <span class="post-date" title="2024-02-26 10:47:48">2024/02/26</span>
+        </a>
+        
+        
+        <a  class="All 区块链 "
+           href="/2024/01/21/%E5%8C%BA%E5%9D%97%E9%93%BE/hardhat%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hardhat智能合约流程">hardhat智能合约流程</span>
+            <span class="post-date" title="2024-01-21 15:20:03">2024/01/21</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/"
+           data-tag="Josephus"
+           data-author="" >
+            <span class="post-title" title="Josephus Problem">Josephus Problem</span>
+            <span class="post-date" title="2024-01-17 11:49:36">2024/01/17</span>
+        </a>
+        
+        
+        <a  class="All 区块链 "
+           href="/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="fabric环境配置">fabric环境配置</span>
+            <span class="post-date" title="2024-01-08 18:47:43">2024/01/08</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/12/22/%E7%88%AC%E8%99%AB/CF%E7%9B%BE%E7%BB%95%E8%BF%87(NodeJs%E7%89%88)/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CF盾绕过(NodeJs版)">CF盾绕过(NodeJs版)</span>
+            <span class="post-date" title="2023-12-22 20:11:48">2023/12/22</span>
+        </a>
+        
+        
+        <a  class="All 以太坊 "
+           href="/2023/10/19/%E4%BB%A5%E5%A4%AA%E5%9D%8A/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E9%83%A8%E5%88%86%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B5%85%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="以太坊部分知识点浅析">以太坊部分知识点浅析</span>
+            <span class="post-date" title="2023-10-19 16:10:05">2023/10/19</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2023/10/12/%E6%97%A5%E5%BF%97/%E9%93%BE%E6%8E%A5%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="链接记录">链接记录</span>
+            <span class="post-date" title="2023-10-12 19:40:28">2023/10/12</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/go-rod%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="go-rod学习">go-rod学习</span>
+            <span class="post-date" title="2023-10-06 11:22:48">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/Go%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%88%AC%E8%99%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go实现一个爬虫">Go实现一个爬虫</span>
+            <span class="post-date" title="2023-10-06 11:10:43">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="All 代码分析 "
+           href="/2023/10/05/%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/RustScan%E6%BA%90%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RustScan源代码分析">RustScan源代码分析</span>
+            <span class="post-date" title="2023-10-05 19:28:59">2023/10/05</span>
+        </a>
+        
+        
+        <a  class="All 一些奇怪的bug "
+           href="/2023/10/02/%E4%B8%80%E4%BA%9B%E5%A5%87%E6%80%AA%E7%9A%84bug/bug%E8%AE%B0%E5%BD%95&%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="bug记录&amp;解决方法">bug记录&amp;解决方法</span>
+            <span class="post-date" title="2023-10-02 16:05:12">2023/10/02</span>
+        </a>
+        
+        
+        <a  class="All 论文阅读 人工智能 "
+           href="/2023/10/01/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/OpenAI%E7%9A%84GPT%E5%8F%91%E5%B1%95/"
+           data-tag="LLM,GPT"
+           data-author="" >
+            <span class="post-title" title="大模型论文">大模型论文</span>
+            <span class="post-date" title="2023-10-01 22:17:21">2023/10/01</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Rust "
+           href="/2023/09/28/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/Rust_lifetime/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Rust的生命周期">Rust的生命周期</span>
+            <span class="post-date" title="2023-09-28 11:33:04">2023/09/28</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2023/09/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%AE%89%E5%85%A8%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE&%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE%E4%B8%8B%E8%BD%BD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安全四大会议&amp;人工智能四大会议下载">安全四大会议&amp;人工智能四大会议下载</span>
+            <span class="post-date" title="2023-09-27 20:47:28">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Rust "
+           href="/2023/09/27/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/The%20Rust%20Programming%20Language%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Rust Programming Language阅读笔记">The Rust Programming Language阅读笔记</span>
+            <span class="post-date" title="2023-09-27 20:35:50">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_3_%E5%A4%9AGPU%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_3_多GPU训练">FASTAI_3_多GPU训练</span>
+            <span class="post-date" title="2023-09-27 20:32:12">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_2_Datasets%E3%80%81Pipeline%E3%80%81TfmdLists%E3%80%81Transform/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_2_Datasets、Pipeline、TfmdLists、Transform">FASTAI_2_Datasets、Pipeline、TfmdLists、Transform</span>
+            <span class="post-date" title="2023-09-27 20:29:37">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_1_%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8CAPI%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI_1_使用不同API加载数据">FASTAI_1_使用不同API加载数据</span>
+            <span class="post-date" title="2023-09-27 20:28:09">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI快速入门">FASTAI快速入门</span>
+            <span class="post-date" title="2023-09-27 20:18:36">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 C++ "
+           href="/2023/01/10/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/C++%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C++入门">C++入门</span>
+            <span class="post-date" title="2023-01-10 11:30:50">2023/01/10</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%AB%E6%8F%8F%E5%99%A8%E5%AE%9E%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="分布式扫描器实现">分布式扫描器实现</span>
+            <span class="post-date" title="2022-04-27 11:43:42">2022/04/27</span>
+        </a>
+        
+        
+        <a  class="All 数据库 "
+           href="/2022/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93/mongodb%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="mongodb学习">mongodb学习</span>
+            <span class="post-date" title="2022-04-14 09:31:33">2022/04/14</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/10/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/Go%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E5%99%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go编写一个扫描器">Go编写一个扫描器</span>
+            <span class="post-date" title="2022-04-10 14:34:18">2022/04/10</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/09/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E6%83%B3%E6%B3%95%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="想法记录">想法记录</span>
+            <span class="post-date" title="2022-04-09 11:24:11">2022/04/09</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Go "
+           href="/2022/04/08/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go/The%20Way%20To%20Go/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Way To Go">The Way To Go</span>
+            <span class="post-date" title="2022-04-08 18:09:20">2022/04/08</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2022/03/31/%E6%97%A5%E5%BF%97/%E5%B1%B1%E8%BF%98%E6%98%AF%E5%B1%B1,%E6%B0%B4%E8%BF%98%E6%98%AF%E6%B0%B4,%E4%BD%A0%E4%B8%8D%E8%83%BD%E6%B0%B8%E8%BF%9C%E6%98%AF%E9%82%A3%E4%B8%AA%E4%BD%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="山还是山,水还是水,你不能永远是那个你">山还是山,水还是水,你不能永远是那个你</span>
+            <span class="post-date" title="2022-03-31 09:37:42">2022/03/31</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day11~day20">30天自制操作系统-学习笔记 day11~day20</span>
+            <span class="post-date" title="2022-03-27 09:49:33">2022/03/27</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2022/03/21/%E6%97%A5%E5%BF%97/%E9%97%B2%E8%AF%AD%E6%9D%82%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="闲语杂记">闲语杂记</span>
+            <span class="post-date" title="2022-03-21 12:51:18">2022/03/21</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/03/15/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/freemarker%E6%93%8D%E6%8E%A7word/"
+           data-tag="工具使用"
+           data-author="" >
+            <span class="post-title" title="freemarker操控word">freemarker操控word</span>
+            <span class="post-date" title="2022-03-15 12:00:54">2022/03/15</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/2022/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day1~day10">30天自制操作系统-学习笔记 day1~day10</span>
+            <span class="post-date" title="2022-01-31 10:57:39">2022/01/31</span>
+        </a>
+        
+        
+        <a  class="All 杂项 "
+           href="/2022/01/12/%E6%9D%82%E9%A1%B9/GITHUB%E6%94%B6%E9%9B%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GITHUB收集">GITHUB收集</span>
+            <span class="post-date" title="2022-01-12 20:07:03">2022/01/12</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/"
+           data-tag="渗透测试,工具开发"
+           data-author="" >
+            <span class="post-title" title="web页面密码爆破">web页面密码爆破</span>
+            <span class="post-date" title="2022-01-11 10:21:34">2022/01/11</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2022/01/09/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/Goby%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Goby分析">Goby分析</span>
+            <span class="post-date" title="2022-01-09 13:35:49">2022/01/09</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/08/15/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Shell%E8%84%9A%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag="bash,脚本,shell,linux,开发"
+           data-author="" >
+            <span class="post-title" title="Shell脚本学习笔记">Shell脚本学习笔记</span>
+            <span class="post-date" title="2021-08-15 11:19:55">2021/08/15</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试篇 "
+           href="/2021/07/25/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AF%87/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="信息收集">信息收集</span>
+            <span class="post-date" title="2021-07-25 19:33:55">2021/07/25</span>
+        </a>
+        
+        
+        <a  class="All web安全漏洞篇 "
+           href="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,MySQL"
+           data-author="" >
+            <span class="post-title" title="SQL注入相关">SQL注入相关</span>
+            <span class="post-date" title="2021-05-11 15:23:06">2021/05/11</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2021/04/21/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/nmap%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="nmap使用">nmap使用</span>
+            <span class="post-date" title="2021-04-21 19:29:51">2021/04/21</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/04/20/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/docker%E7%9B%B8%E5%85%B3/"
+           data-tag="工具使用,脚本,docker"
+           data-author="" >
+            <span class="post-title" title="docker相关">docker相关</span>
+            <span class="post-date" title="2021-04-20 13:49:50">2021/04/20</span>
+        </a>
+        
+        
+        <a  class="All web安全漏洞篇 "
+           href="/2021/04/19/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,文件包含"
+           data-author="" >
+            <span class="post-title" title="文件包含漏洞相关">文件包含漏洞相关</span>
+            <span class="post-date" title="2021-04-19 14:49:59">2021/04/19</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/04/16/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/hexo%E5%91%BD%E4%BB%A4/"
+           data-tag="工具使用,脚本"
+           data-author="" >
+            <span class="post-title" title="hexo相关">hexo相关</span>
+            <span class="post-date" title="2021-04-16 12:12:14">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2021/04/16/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/xray%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="xray使用">xray使用</span>
+            <span class="post-date" title="2021-04-16 12:10:08">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="All 脚本 "
+           href="/2021/04/15/%E8%84%9A%E6%9C%AC/some-script/"
+           data-tag="bash,脚本,python"
+           data-author="" >
+            <span class="post-title" title="some script">some script</span>
+            <span class="post-date" title="2021-04-15 11:23:33">2021/04/15</span>
+        </a>
+        
+        
+        <a  class="All 环境配置 "
+           href="/2021/04/15/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/centos%E9%83%A8%E7%BD%B2wordpress/"
+           data-tag="linux,环境配置,报错解决,WordPress"
+           data-author="" >
+            <span class="post-title" title="centos部署wordpress">centos部署wordpress</span>
+            <span class="post-date" title="2021-04-15 01:34:16">2021/04/15</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-人工智能/FASTAI/FASTAI快速入门" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">FASTAI快速入门</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="人工智能">人工智能</a> > 
+            
+            <a  data-rel="人工智能&lt;---&gt;FASTAI">FASTAI</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">深度学习</a>
+            
+            <a class="color2">FASTAI</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2025-08-10 11:50:56'>2023-09-27 20:18</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:2.9k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#FASTAI"><span class="toc-text">FASTAI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="toc-text">1.快速入门</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1%E5%9B%BE%E7%89%87%E5%88%86%E7%B1%BB%E2%80%93-gt-%E7%8C%AB%E5%9B%BE%E7%89%87%E9%A2%84%E6%B5%8B"><span class="toc-text">1.1图片分类–&gt; 猫图片预测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%88%86%E6%9E%90%E4%BB%A3%E7%A0%81"><span class="toc-text">1.2 分析代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%BF%9B%E9%98%B6dataloader"><span class="toc-text">2.进阶dataloader</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E7%A4%BA%E4%BE%8B"><span class="toc-text">2.1 示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E9%80%9A%E8%BF%87csv%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6-%E8%BF%9B%E8%A1%8C%E6%A0%87%E7%AD%BE"><span class="toc-text">2.2 通过csv格式文件 进行标签</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%BF%9B%E9%98%B6DataBlock"><span class="toc-text">3. 进阶DataBlock</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E4%BB%8E%E5%A4%B4%E5%BC%80%E5%A7%8B%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AADataBlock"><span class="toc-text">3.1 从头开始创建一个DataBlock</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-MINST%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">3.2 MINST数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-Oxford-IIIT-Pets-dataset-%E6%95%B0%E6%8D%AE%E9%9B%86-%E5%A4%9A%E5%88%86%E7%B1%BB-%E6%A0%87%E7%AD%BE%E5%A4%84%E7%90%86"><span class="toc-text">3.4 Oxford IIIT Pets dataset 数据集(多分类+标签处理)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-Pascal-%E5%A4%9A%E6%A0%87%E7%AD%BE%E5%88%86%E7%B1%BB"><span class="toc-text">3.5 Pascal (多标签分类)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-%E5%9B%BE%E7%89%87%E5%AE%9A%E4%BD%8D"><span class="toc-text">3.6  图片定位</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="FASTAI"><a href="#FASTAI" class="headerlink" title="FASTAI"></a>FASTAI</h2><h3 id="1-快速入门"><a href="#1-快速入门" class="headerlink" title="1.快速入门"></a>1.快速入门</h3><blockquote>
+<p>安装库</p>
+</blockquote>
+<p>pip install fastai</p>
+<blockquote>
+<p>导入库</p>
+</blockquote>
+<pre><code class="python">from fastai.vision.all import *
+from fastai.text.all import *
+from fastai.collab import *
+from fastai.tabular.all import *
+</code></pre>
+<h3 id="1-1图片分类–-gt-猫图片预测"><a href="#1-1图片分类–-gt-猫图片预测" class="headerlink" title="1.1图片分类–&gt; 猫图片预测"></a>1.1图片分类–&gt; 猫图片预测</h3><pre><code class="python">path = untar_data(URLs.PETS)/&#39;images&#39;
+
+def is_cat(x): return x[0].isupper()
+dls = ImageDataLoaders.from_name_func(
+    path, get_image_files(path), valid_pct=0.2, seed=42,
+    label_func=is_cat, item_tfms=Resize(224))
+
+learn = vision_learner(dls, resnet18, metrics=error_rate)
+learn.fine_tune(1)
+</code></pre>
+<blockquote>
+<p>分析结果</p>
+</blockquote>
+<pre><code class="python">#查看 top8 loss
+interp = ClassificationInterpretation.from_learner(learn)
+interp.plot_top_losses(k=8)
+</code></pre>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230904160207548.png" alt="image-20230904160207548"></p>
+<pre><code class="python">#查看cnfusion_matrix
+interp.plot_confusion_matrix(figsize=(6,6))
+</code></pre>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230904160258096.png" alt="image-20230904160258096"></p>
+<h3 id="1-2-分析代码"><a href="#1-2-分析代码" class="headerlink" title="1.2 分析代码"></a>1.2 分析代码</h3><p><code>path = untar_data(URLs.PETS)</code></p>
+<p>下载数据，返回数据集所在目录</p>
+<p><code>files = get_image_files(path/&quot;images&quot;)</code></p>
+<p>获取path目录下/images文件</p>
+<p><code>def label_func(f): return f[0].isupper()</code></p>
+<p>数据处理函数，如果f的第一个字母为大写，则返回True，用到的数据集中首字母大写的为猫。</p>
+<p><code>dls = ImageDataLoaders.from_name_func(path, files, label_func, item_tfms=Resize(224))</code></p>
+<p>path为数据集路径，files为具体文件路径，label_func为对files进行的处理作为标签，item_tfms为图片的处理。</p>
+<p><code>learn = vision_learner(dls, resnet34, metrics=error_rate)</code><br><code>learn.fine_tune(1)</code></p>
+<p>使用数据集进行训练。</p>
+<p><code>learn.predict(Path(r&quot;C:\Users\qwrdxer\Pictures\Abyssinian_1.jpg&quot;))</code></p>
+<p>将图片地址转换为Path类型进行预测</p>
+<p>使用lr_find来查找合适的学习率</p>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230904163839792.png" alt="image-20230904163839792"></p>
+<h2 id="2-进阶dataloader"><a href="#2-进阶dataloader" class="headerlink" title="2.进阶dataloader"></a>2.进阶dataloader</h2><h3 id="2-1-示例"><a href="#2-1-示例" class="headerlink" title="2.1 示例"></a>2.1 示例</h3><pre><code class="python">pets = DataBlock(blocks=(ImageBlock, CategoryBlock), #用到的类型,图片、分类
+                 get_items=get_image_files, #获取x的方式
+                 splitter=RandomSplitter(), #分割方式
+                 get_y=using_attr(RegexLabeller(r&#39;(.+)_\d+.jpg$&#39;), &#39;name&#39;),    #获取y标签的方法
+                 item_tfms=Resize(460),
+                 batch_tfms=aug_transforms(size=224))
+</code></pre>
+<p>A datablock is built by giving the fastai library a bunch of informations:</p>
+<ul>
+<li>the types used, through an argument called <code>blocks</code>: here we have images and categories, so we pass <a target="_blank" rel="noopener" href="https://docs.fast.ai/vision.data.html#imageblock"><code>ImageBlock</code></a> and <a target="_blank" rel="noopener" href="https://docs.fast.ai/data.block.html#categoryblock"><code>CategoryBlock</code></a>.</li>
+<li>how to get the raw items, here our function <a target="_blank" rel="noopener" href="https://docs.fast.ai/data.transforms.html#get_image_files"><code>get_image_files</code></a>.</li>
+<li>how to label those items, here with the same regular expression as before.</li>
+<li>how to split those items, here with a random splitter.</li>
+<li>the <code>item_tfms</code> and <code>batch_tfms</code> like before.</li>
+</ul>
+<h3 id="2-2-通过csv格式文件-进行标签"><a href="#2-2-通过csv格式文件-进行标签" class="headerlink" title="2.2 通过csv格式文件 进行标签"></a>2.2 通过csv格式文件 进行标签</h3><p>例子使用了多分类的数据集，标签在train.csv中</p>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230904165814674.png" alt="image-20230904165814674"></p>
+<p>dls = ImageDataLoaders.<code>from_df</code>(<code>df</code>, path, folder=’train’, valid_col=’is_valid’, <code>label_delim=&#39; &#39;</code>,                               item_tfms=Resize(460), batch_tfms=aug_transforms(size=224))</p>
+<ol>
+<li><p>使用from_df函数来加载csv的数据集。</p>
+</li>
+<li><p>path为基目录，folder 用于在path和filename之间增加路径path/folder/filename</p>
+</li>
+<li><p>label_delim 指定使用空格作为标签分类条件</p>
+</li>
+<li><p>文件名、标签<strong>默认</strong>为第一二列所以这里不需要指定。</p>
+</li>
+</ol>
+<blockquote>
+<p>进阶：</p>
+</blockquote>
+<pre><code class="python">pascal = DataBlock(blocks=(ImageBlock, MultiCategoryBlock),
+                   splitter=ColSplitter(&#39;is_valid&#39;),
+                   get_x=ColReader(&#39;fname&#39;, pref=str(path/&#39;train&#39;) + os.path.sep),
+                   get_y=ColReader(&#39;labels&#39;, label_delim=&#39; &#39;),
+                   item_tfms = Resize(460),
+                   batch_tfms=aug_transforms(size=224))
+</code></pre>
+<blockquote>
+<p>多分类使用F1 Score来评价模型的好坏</p>
+</blockquote>
+<pre><code class="python">f1_macro = F1ScoreMulti(thresh=0.5, average=&#39;macro&#39;)
+f1_macro.name = &#39;F1(macro)&#39;
+f1_samples = F1ScoreMulti(thresh=0.5, average=&#39;samples&#39;)
+f1_samples.name = &#39;F1(samples)&#39;
+learn = vision_learner(dls, resnet50, metrics=[partial(accuracy_multi, thresh=0.5), f1_macro, f1_samples])
+</code></pre>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230904193732565.png" alt="image-20230904193732565"></p>
+<h2 id="3-进阶DataBlock"><a href="#3-进阶DataBlock" class="headerlink" title="3. 进阶DataBlock"></a>3. 进阶DataBlock</h2><h3 id="3-1-从头开始创建一个DataBlock"><a href="#3-1-从头开始创建一个DataBlock" class="headerlink" title="3.1 从头开始创建一个DataBlock"></a>3.1 从头开始创建一个DataBlock</h3><blockquote>
+<p>DataBlock 可以理解为一个如何汇聚数据的模板,我们可以通过DataBlock的实例的 <code>datasets</code> 方法获取数据集、<code>dataloaders</code>方法来获取 Dataloader进行训练、<br><code>summary</code> 方法来看数据集的构造细节。</p>
+</blockquote>
+<p>下面的示例代码中创建了一个空的DataBlock，然后将文件名作为数据集传入其中，随后输出数据集的第一个。</p>
+<pre><code class="python">from fastai.data.all import *
+from fastai.vision.all import *
+path = untar_data(URLs.PETS)
+fnames = get_image_files(path/&quot;images&quot;)# 下面的代码中使用get_items可以直接指定。
+dblock = DataBlock()#创建一个空的DataBlock
+
+dsets = dblock.datasets(fnames)
+dsets.train[0]
+</code></pre>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230905093117340.png" alt="image-20230905093117340"></p>
+<p>默认情况下DataBlock对数据集的处理包含输入(X)和输出(Y)，因为这里没做任何处理，所以打印出来2次重复的。</p>
+<blockquote>
+<p>首先我们可以指定<code>get_items</code> 来确定如何获取数据集(X)。</p>
+</blockquote>
+<pre><code class="python">dblock = DataBlock(get_items = get_image_files)
+</code></pre>
+<blockquote>
+<p>随后是如何获取标签值(Y) </p>
+</blockquote>
+<p>观察数据集可知，文件名如果是大写英文开头，则为猫，小写则为狗,我们可以根据这种规则来对数据打标签,下面使用<code>label_func</code>函数来实现。</p>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230905094133498.png" alt="image-20230905094133498"></p>
+<pre><code class="python">def label_func(fname):
+    return &quot;cat&quot; if fname.name[0].isupper() else &quot;dog&quot;
+
+dblock = DataBlock(get_items = get_image_files,
+                   get_y     = label_func)
+
+dsets = dblock.datasets(path/&quot;images&quot;)
+dsets.train[0]
+</code></pre>
+<p>可以看到train[0] 已经可以正常输出X,Y了(注意X虽然是路径，但框架可以很方便的通过这个完整的文件路径来获取图片)</p>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230905094054481.png" alt="image-20230905094054481"></p>
+<blockquote>
+<p>我们现在知道了输入是图片(Images),输出是类别(Category), 我们可以通过blocks来制定输入和输出的类型。</p>
+</blockquote>
+<pre><code class="python">dblock = DataBlock(blocks    = (ImageBlock, CategoryBlock),
+                   get_items = get_image_files,
+                   get_y     = label_func)
+
+dsets = dblock.datasets(path/&quot;images&quot;)
+dsets.train[0]
+</code></pre>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230905094558815.png" alt="image-20230905094558815"></p>
+<p>这样的输出的train[0]就更为简单易懂了，输入为RGB图片，输出为类别下标1，我们可以通过<code>dsets.vocab</code> 来获取类别，这里1代表dog</p>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230905094855819.png" alt="image-20230905094855819"></p>
+<blockquote>
+<p>接下来的是一些进一步的优化和展示。</p>
+</blockquote>
+<p><code>splitter</code> 表示对数据集中验证集的划分，这里是随机划分。</p>
+<p><code>item_tfms</code> 代表对X的处理，这里将他们的size都设置为224x224</p>
+<pre><code class="python">dblock = DataBlock(blocks    = (ImageBlock, CategoryBlock),
+                   get_items = get_image_files,
+                   get_y     = label_func,
+                   splitter  = RandomSplitter(),
+                   item_tfms = Resize(224))
+</code></pre>
+<p>使用show_bach可以方便的查看数据集</p>
+<pre><code class="python">dls = dblock.dataloaders(path/&quot;images&quot;)
+dls.show_batch()
+</code></pre>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230905095126401.png" alt="image-20230905095126401"></p>
+<p>总结一下，我们可以通过回答下列的问题来构建一个datablock:</p>
+<ul>
+<li>输入(X)/目标(Y)的类型分别是什么? 上文例子中为 图片/类别。</li>
+<li>数据在哪里? 这里的输入来自一个文件夹</li>
+<li>有无必要在数据输入时做一些处理？这里没有做任何处理</li>
+<li>有无必要对目标(Y)做一些处理？这里 使用 <code>label_func</code> </li>
+<li>如何划分训练集和验证集？这里使用的是随机划分。</li>
+<li>需要对样本进行格式统一操作吗? 这里图片大小不一致，使用<code>resize</code> 进行调整。</li>
+<li>需要对batches进行统一处理吗? 这里不需要。</li>
+</ul>
+<h3 id="3-2-MINST数据集"><a href="#3-2-MINST数据集" class="headerlink" title="3.2 MINST数据集"></a>3.2 MINST数据集</h3><blockquote>
+<p>接下来将使用MNIST_TINY手写数据集进行学习，这个数据集中包含一些数字3和7的手写图片</p>
+</blockquote>
+<p>首先看一下要使用的数据集目录结构， mnist_tiny下已经划分好了训练集验证集和测试集。</p>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230905101020012.png" alt="image-20230905101020012"></p>
+<p>三个数据集目录下有两个子目录3 和7 代表两个数字的图片集。</p>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230905100507398.png" alt="image-20230905100507398"></p>
+<blockquote>
+<p>如何构建DataBlock?</p>
+</blockquote>
+<p>首先，输入的图片并不是RGB图片而是黑白图片，因此要指定ImageBlock的类别为<code> cls=PILImageBW</code>。</p>
+<p>如何获取图片标签?  这里图片所在的目录即为类别，可以通过<code>get_y=parent_label</code>来获取。</p>
+<p>如何划分数据集？ 这里数据集已经分好类了，图片的上两级目录(grandparent ，或者说父目录的父目录)即为不同的数据集<code>splitter=GrandparentSplitter()</code>。</p>
+<p>如一张图片目录为 <code>train/3/9932.png</code> ， 其parent 即为3，其grandparent即为train。</p>
+<pre><code class="python">mnist = DataBlock(blocks=(ImageBlock(cls=PILImageBW), CategoryBlock), 
+                  get_items=get_image_files, 
+                  splitter=GrandparentSplitter(),
+                  get_y=parent_label)
+</code></pre>
+<p>构造完成后，可以查看一下具体的内容</p>
+<pre><code class="python">dls = mnist.dataloaders(untar_data(URLs.MNIST_TINY))
+dls.show_batch(max_n=9, figsize=(4,4))
+</code></pre>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230905101648053.png" alt="image-20230905101648053"></p>
+<p>也可以通过<code>summary</code>看看构造的具体过程</p>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230905101900079.png" alt="image-20230905101900079"></p>
+<h3 id="3-4-Oxford-IIIT-Pets-dataset-数据集-多分类-标签处理"><a href="#3-4-Oxford-IIIT-Pets-dataset-数据集-多分类-标签处理" class="headerlink" title="3.4 Oxford IIIT Pets dataset 数据集(多分类+标签处理)"></a>3.4 Oxford IIIT Pets dataset 数据集(多分类+标签处理)</h3><p>我们一开始用的数据集就是这个，不过刚才只关注猫狗的二分类，实际上这个数据集 共有37种不同的类别。</p>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230905102611381.png" alt="image-20230905102611381"></p>
+<p>图片的格式为 品种_序号.jpg  ，其中品种可能有多个单词，也使用  _ 进行分割。大小写分别代表猫和狗。</p>
+<blockquote>
+<p>如何构造DataBlock?</p>
+</blockquote>
+<p>比较难的点在于获取标签，使用如下代码来获取</p>
+<p><code> get_y=Pipeline([attrgetter(&quot;name&quot;), RegexLabeller(pat = r&#39;^(.*)_\d+.jpg$&#39;)]),</code></p>
+<p>首先调用artrgetter来获取 输入的<code>Path</code> 的<code>name</code>的值(即文件名)。</p>
+<p>然后调用RegexLabeller(正则匹配)对这个值进行处理，最后获取类别。</p>
+<p>最后使用PipeLine方法来将这两个处理合并。</p>
+<pre><code class="python">pets = DataBlock(blocks=(ImageBlock, CategoryBlock), 
+                 get_items=get_image_files, 
+                 splitter=RandomSplitter(),
+                 get_y=Pipeline([attrgetter(&quot;name&quot;), RegexLabeller(pat = r&#39;^(.*)_\d+.jpg$&#39;)]),
+                 item_tfms=Resize(128),
+                 batch_tfms=aug_transforms())
+</code></pre>
+<h3 id="3-5-Pascal-多标签分类"><a href="#3-5-Pascal-多标签分类" class="headerlink" title="3.5 Pascal (多标签分类)"></a>3.5 Pascal (多标签分类)</h3><blockquote>
+<p>加载</p>
+</blockquote>
+<pre><code class="python">pascal_source = untar_data(URLs.PASCAL_2007)
+df = pd.read_csv(pascal_source/&quot;train.csv&quot;)
+</code></pre>
+<p>图片中可能有多个标签(如骑马的图片中会有人 和马的标签)</p>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230905201506899.png" alt="image-20230905201506899"></p>
+<blockquote>
+<p>如何构造DataBlock？</p>
+</blockquote>
+<p>这里对DataBlock输入的是一个csv文件，我们可以根据其每行的数据来构造数据集。</p>
+<pre><code class="python">pascal = DataBlock(blocks=(ImageBlock, MultiCategoryBlock),
+                   splitter=ColSplitter(),
+                   get_x=ColReader(0, pref=pascal_source/&quot;train&quot;),
+                   get_y=ColReader(1, label_delim=&#39; &#39;),
+                   item_tfms=Resize(224),
+                   batch_tfms=aug_transforms())
+
+dls = pascal.dataloaders(df)
+dls.show_batch()
+</code></pre>
+<p>通过 <code> get_y=ColReader(1, label_delim=&#39; &#39;),</code>的label_delim来设置按空格分隔。</p>
+<pre><code class="python">pascal = DataBlock(blocks=(ImageBlock, MultiCategoryBlock),
+                   splitter=ColSplitter(),
+                   get_x=lambda x:pascal_source/&quot;train&quot;/f&#39;&#123;x[0]&#125;&#39;,
+                   get_y=lambda x:x[1].split(&#39; &#39;),
+                   item_tfms=Resize(224),
+                   batch_tfms=aug_transforms())
+</code></pre>
+<p>通过使用lambda 表达式来更简洁的进行分割。</p>
+<pre><code class="python">def _pascal_items(x): return (
+    f&#39;&#123;pascal_source&#125;/train/&#39;+x.fname, x.labels.str.split())
+valid_idx = df[df[&#39;is_valid&#39;]].index.values
+
+pascal = DataBlock.from_columns(blocks=(ImageBlock, MultiCategoryBlock),
+                   get_items=_pascal_items,
+                   splitter=IndexSplitter(valid_idx),
+                   item_tfms=Resize(224),
+                   batch_tfms=aug_transforms())
+</code></pre>
+<p>这个跟前两个不同的是，调用了DataBlock的<code>from_columns</code>方法来构造。</p>
+<ol>
+<li><p>通过使用自定义函数，该函数的输入为csv的行，我们可以根据列名字来访问成员，其返回值为(X,Y)。</p>
+</li>
+<li><p>通过<code>df[df[&#39;is_valid&#39;]].index.values</code> 获取了所有is_valid为True的下标用于验证集的划分。</p>
+</li>
+</ol>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230906164547318.png" alt="image-20230906164547318"></p>
+<h3 id="3-6-图片定位"><a href="#3-6-图片定位" class="headerlink" title="3.6  图片定位"></a>3.6  图片定位</h3><p>图像定位类别中有各种问题：图像分割（这是一项必须预测图像中每个像素类别的任务）、坐标预测（预测图像上的一个或多个关键点）和目标检测（在要检测的对象周围画一个框）。</p>
+<blockquote>
+<p>图像分割</p>
+</blockquote>
+<p>将图片的所有像素进行分类。首先输入是一张正常的图片，输出则为对图片所有像素分好类的图片。</p>
+<p>数据集的(X,Y)如下:</p>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230906170615340.png" alt="image-20230906170615340"></p>
+<pre><code class="python">camvid = DataBlock(blocks=(ImageBlock, MaskBlock(codes = np.loadtxt(path/&#39;codes.txt&#39;, dtype=str))),
+    get_items=get_image_files,
+    splitter=RandomSplitter(),
+    get_y=lambda o: path/&#39;labels&#39;/f&#39;&#123;o.stem&#125;_P&#123;o.suffix&#125;&#39;,
+    batch_tfms=aug_transforms())
+</code></pre>
+<p>首先是<code>MaskBlockMaskBlock(codes = np.loadtxt(path/&#39;codes.txt&#39;, dtype=str)</code> 即我们的输出的像素的类别由codes.txt来定义。</p>
+<p>获取Y的方法:  <code>lambda o: path/&#39;labels&#39;/f&#39;&#123;o.stem&#125;_P&#123;o.suffix&#125;&#39;,</code></p>
+<p>图片的文件名为0001TP_006750.png ,输出的文件名为0001TP_006750_P.png ，f’{o.stem}_P{o.suffix} ‘即为</p>
+<p>f’{0001TP_006750}_P{.jpg}’</p>
+<blockquote>
+<p>坐标预测</p>
+</blockquote>
+<pre><code class="python">biwi = DataBlock(blocks=(ImageBlock, PointBlock),
+                 get_items=get_image_files,
+                 splitter=RandomSplitter(),
+                 get_y=lambda o:fn2ctr[o.name].flip(0),
+                 batch_tfms=aug_transforms())
+</code></pre>
+<p><code>get_y=lambda o:fn2ctr[o.name].flip(0)</code> 的作用是根据输入图像文件名，找到相应的目标坐标点，并进行翻转。这样，每个输入图像就有了与之相匹配的目标点，可以用于训练模型。</p>
+<blockquote>
+<p>目标检测</p>
+</blockquote>
+<p>这里使用的是COCO数据集， 它包含日常物品的图片，目的是通过在日常物品周围绘制矩形来预测日常物品的位置。</p>
+<p>train.json对应了图片中的物品位置、物品类型</p>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230906184834404.png" alt="image-20230906184834404"></p>
+<p>首先将其加载进来</p>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230906185037249.png" alt="image-20230906185037249"></p>
+<p>img2bbox就是字典类型，key为文件名，Value就是图片中物品的位置、类型。这个字典后续用于标签的构造。</p>
+<pre><code class="python">coco = DataBlock(blocks=(ImageBlock, BBoxBlock, BBoxLblBlock),
+                 get_items=get_image_files,
+                 splitter=RandomSplitter(),
+                 get_y=[lambda o: img2bbox[o.name][0], lambda o: img2bbox[o.name][1]], 
+                 item_tfms=Resize(128),
+                 batch_tfms=aug_transforms(),
+                 n_inp=1)
+</code></pre>
+<p>在block中有三个block，因为输出有box的坐标和box对应的类别，通过n_inp=1来说明输入截止的block(第一个)。</p>
+<pre><code class="python">dls = coco.dataloaders(coco_source)
+dls.show_batch(max_n=9)
+</code></pre>
+<blockquote>
+<p>语言模型</p>
+</blockquote>
+<pre><code class="python">from fastai.text.all import *
+
+path = untar_data(URLs.IMDB_SAMPLE)
+df = pd.read_csv(path/&#39;texts.csv&#39;)
+df.head()
+</code></pre>
+<p>跟其他DataBlock不同的是，输入和输出几乎一致，因此这里只用了一个TextBlock</p>
+<pre><code class="python">imdb_lm = DataBlock(blocks=TextBlock.from_df(&#39;text&#39;, is_lm=True),
+                    get_x=ColReader(&#39;text&#39;),
+                    splitter=ColSplitter())
+</code></pre>
+<pre><code class="python">dls = imdb_lm.dataloaders(df, bs=64, seq_len=72)
+dls.show_batch(max_n=6)
+</code></pre>
+<p><img src="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/image-20230906201324027.png" alt="image-20230906201324027"></p>
+<p>input[x]= output[x-1] ,用于训练预测下一个词，生成 文本。</p>
+<blockquote>
+<p>参考文章</p>
+</blockquote>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1944270374@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2020-2023 qwrdxer
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 722px;
+    }
+    .nav.fullscreen {
+        margin-left: -722px;
+    }
+    .nav-left {
+        width: 300px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 542px;
+        }
+        .nav.fullscreen {
+            margin-left: -542px;
+        }
+        .nav-left {
+            width: 150px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 542px;
+            margin-left: -542px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    #post {
+        background: url(/img/start.png);
+    }
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

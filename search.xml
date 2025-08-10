@@ -4,12 +4,37 @@
   
     
     <entry>
-      <title></title>
-      <link href="/2025/08/10/Untitled/"/>
-      <url>/2025/08/10/Untitled/</url>
+      <title>大模型防火墙-数据工程</title>
+      <link href="/2025/08/10/AI%E5%AE%89%E5%85%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%98%B2%E7%81%AB%E5%A2%99-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/"/>
+      <url>/2025/08/10/AI%E5%AE%89%E5%85%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%98%B2%E7%81%AB%E5%A2%99-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote><p>为了提高模型的准确率、需要大量高质量的数据。针对大模型攻防领域，恶意prompt具有稀缺性、同时模型训练对数据质量也有一定要求，因此需要进行数据工程。主要是两部份：</p></blockquote><ul><li>数据处理：攻击类型有多种，需要分类管理。恶意prompt有多种语言版本，需要做中文适配。公开数据集质量参差不齐，需要进行过滤去重等操作。</li><li>数据合成：一些新型攻击手段，并没有公开的数据集作为参考（MCP攻击、LLMDoS攻击等），需要进行高质量样本的合成。</li></ul><p>目前来看，LLM本身已经具有相应的数据处理、合成能力，可以通过Prompt工程，利用高性能的商用、开源模型进行处理。</p><h2 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h2><h3 id="框架分析"><a href="#框架分析" class="headerlink" title="框架分析"></a>框架分析</h3><p>给定恶意prompt，对其进行分类。可以调用大模型进行标注来减少人力成本。具体来说需要实现如下功能</p><ul><li>翻译 :样本来源可能是公开数据集、真实生产环境数据等。为了适配中文领域，需要对其进行翻译操作。</li><li>多模型标注: 为了提高标注样本的准确性，可以引入多个模型进行标注，并额外使用一个模型进行聚合，获取最终标签。</li><li>人工介入：标注模型没有达成共识、样本过长无法处理等情况，需要人工介入来分析。</li></ul><p><img src="/2025/08/10/AI%E5%AE%89%E5%85%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%98%B2%E7%81%AB%E5%A2%99-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/1a75c651-ed09-47ce-a5de-a6631e1f9ad5.png" alt="1a75c651-ed09-47ce-a5de-a6631e1f9ad5"></p><h2 id="数据合成"><a href="#数据合成" class="headerlink" title="数据合成"></a>数据合成</h2><p><img src="/2025/08/10/AI%E5%AE%89%E5%85%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%98%B2%E7%81%AB%E5%A2%99-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/ca1b1de9-0155-403e-a490-f6a42c724507.png" alt="ca1b1de9-0155-403e-a490-f6a42c724507"></p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><hr><p>文章参考:</p><p>博客地址: qwrdxer.github.io</p><p>欢迎交流: qq1944270374</p>]]></content>
       
+      
+      <categories>
+          
+          <category> AI安全 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>大模型防火墙-overview</title>
+      <link href="/2025/08/10/AI%E5%AE%89%E5%85%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%98%B2%E7%81%AB%E5%A2%99-overview/"/>
+      <url>/2025/08/10/AI%E5%AE%89%E5%85%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%98%B2%E7%81%AB%E5%A2%99-overview/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="简介-为什么需要外置防火墙"><a href="#简介-为什么需要外置防火墙" class="headerlink" title="简介(为什么需要外置防火墙)"></a>简介(为什么需要外置防火墙)</h2><h3 id="Transformer、Bert-、LLM"><a href="#Transformer、Bert-、LLM" class="headerlink" title="Transformer、Bert 、LLM"></a>Transformer、Bert 、LLM</h3><p>Transformer结合了注意力机制、残差、词向量等结构，通过在大规模自然语言数据集上无监督训练，拥有很强的自然语言理解能力</p><h3 id="LLM服务-amp-安全性"><a href="#LLM服务-amp-安全性" class="headerlink" title="LLM服务 &amp; 安全性"></a>LLM服务 &amp; 安全性</h3><p><strong>简单服务</strong>: 用户将自己的prompt发送给LLM服务供应商，服务端调用大模型后，返回结果给用户</p><p><img src="/2025/08/10/AI%E5%AE%89%E5%85%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%98%B2%E7%81%AB%E5%A2%99-overview/89a5efdf-4c6a-4863-ba4a-f5c44fe46f8a.png" alt="89a5efdf-4c6a-4863-ba4a-f5c44fe46f8a"></p><p><strong>工具调用</strong>: 大模型本身无法获取外部信息，这限制了其应用。</p><p><img src="/2025/08/10/AI%E5%AE%89%E5%85%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%98%B2%E7%81%AB%E5%A2%99-overview/aa7003e3-856c-4ac7-971f-8c731673699d.png" alt="aa7003e3-856c-4ac7-971f-8c731673699d"></p><p>OPENAI 提出了Function Call，为LLM引入了外部工具，大模型可以通过工具调用获取外部信息。Claude提出了MCP协议，规范了工具调用的流程。</p><p><img src="/2025/08/10/AI%E5%AE%89%E5%85%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%98%B2%E7%81%AB%E5%A2%99-overview/50a9ccb7-832b-4f13-9e54-2572225c3740.png" alt="50a9ccb7-832b-4f13-9e54-2572225c3740"></p><p><strong>安全问题</strong>: 大模型是基于大量无标注样本训练而来的，本质上是一个Next Token预测器，并没有价值观的概念。尽管模型会通过SFT、强化学习等方法训练模型与人类价值观对齐。但仍有绕过这种对齐的越狱攻击方案。通过越狱攻击，大模型会输出恶意内容、用MCP执行恶意指令等。</p><p><img src="/2025/08/10/AI%E5%AE%89%E5%85%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%98%B2%E7%81%AB%E5%A2%99-overview/814a8105-3349-4fef-874e-60cc89196cf9.png" alt="814a8105-3349-4fef-874e-60cc89196cf9"></p><p>总之，模型自身的安全对齐无法有效防御各种越狱攻击。我们需要引入模型外的防护手段。<strong>大模型防火墙建设</strong></p><h2 id="问题拆解-引出数据工程"><a href="#问题拆解-引出数据工程" class="headerlink" title="问题拆解(引出数据工程)"></a>问题拆解(引出数据工程)</h2><p>防火墙位置、用到哪些工程方案、框架如何持续优化。</p><h3 id="防火墙位置"><a href="#防火墙位置" class="headerlink" title="防火墙位置"></a>防火墙位置</h3><p>防火墙要位于用户与模型交互各个流程中， 综合各种工程方案来提高检测准确性，总的来看可以在如下三个位置设计</p><ul><li>用户状态：可以对用户账号进行画像，一个简单的策略是：若用户被检测到多次尝试越狱，可以进行封号处理。</li><li>用户输入：最理想的位置，若能在用户输入中检测到恶意请求，可以在调用模型前拒绝回答，节省资源，但高误报率可能会影响用户体验。</li><li>模型输出：持续监控模型输出，若检测到模型的恶意输出，则应该立刻终止输出。</li></ul><h3 id="工程方案"><a href="#工程方案" class="headerlink" title="工程方案"></a>工程方案</h3><p>方案要结合准确性、实时性、可更新性等综合考虑，以下是四个可用的工程方案</p><ul><li>向量库相似度匹配：借助embedding模型，可以将任意长度的prompt编码为固定长度的词向量。通过相似度计算。可以将用户输入的prompt在向量库中进行相似度匹配。基于匹配结果判断prompt是否恶意。</li><li>二分类模型检测：如promptguard等开源模型，通过微调bert，让其具有分类能力。</li><li>前置模型预处理：可以前置一个小模型，首先对用户输入进行快速分析。将分析结果与用户prompt一起发送给LLM。</li><li>模型输出持续检测：对模型输出进行缓存切片、通过检测算法持续监控模型输出。</li></ul><h3 id="框架优化"><a href="#框架优化" class="headerlink" title="框架优化"></a>框架优化</h3><p>攻击手段是持续更新的，因此方案要考虑到能否在有限时间内迭代更新。</p><ul><li>向量库：可实时更新。</li><li>Bert模型：周更新。需要收集/合成高质量的黑样本，尽可能覆盖所有恶意prompt类型。</li><li>小模型：月/季度更新。需要有样本+样本分析数据，对小模型进行知识蒸馏。让其拥有大模型的判别能力。</li></ul><p>总之，在算法层面上各大厂商之间差距较小，因此要在数据质量、工程方案上进行持续优化更新。</p><h3 id="整体框架"><a href="#整体框架" class="headerlink" title="整体框架"></a>整体框架</h3><p><img src="/2025/08/10/AI%E5%AE%89%E5%85%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%98%B2%E7%81%AB%E5%A2%99-overview/f98cf8cc-a953-4764-91b0-f461d472d6c9.png" alt="f98cf8cc-a953-4764-91b0-f461d472d6c9"></p><p><strong>总结</strong></p><ul><li>可以在三个位置设置防火墙：用户状态、用户输入、模型输出。</li><li>每个位置都可以结合多种方案进行综合处理，提高框架整体的准确性、实时性。</li><li>防火墙需要有更新的能力，因此数据工程十分重要。借助数据工程获取高质量的样本数据，基于数据对方案算法进行进一步迭代优化。</li></ul><hr><p>文章参考:</p><p>博客地址: qwrdxer.github.io</p><p>欢迎交流: qq1944270374</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> AI安全 </category>
+          
+      </categories>
       
       
     </entry>

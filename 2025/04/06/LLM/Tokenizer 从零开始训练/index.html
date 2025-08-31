@@ -149,7 +149,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(55)</small>
+                <small>(58)</small>
             
         </div>
     </li>
@@ -544,7 +544,7 @@
         <div data-rel="LLM">
             
             LLM
-            <small>(5)</small>
+            <small>(8)</small>
         </div>
         
     </li>
@@ -621,8 +621,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="55">
-<input type="hidden" id="yelog_site_word_count" value="168k">
+<input type="hidden" id="yelog_site_posts_number" value="58">
+<input type="hidden" id="yelog_site_word_count" value="176.4k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -802,6 +802,33 @@
            data-author="" >
             <span class="post-title" title="大模型防火墙-overview">大模型防火墙-overview</span>
             <span class="post-date" title="2025-08-10 12:36:18">2025/08/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 LLM "
+           href="/2025/05/11/LLM/LLM%E5%AE%89%E5%85%A8%E4%BE%8B%E5%AD%90.%20%E8%81%94%E7%BD%91%E6%90%9C%E7%B4%A2%E3%80%81MCP%E5%AE%89%E5%85%A8%E3%80%81%E7%B3%BB%E7%BB%9F%E6%8F%90%E7%A4%BA%E8%AF%8D%E8%8E%B7%E5%8F%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="LLM安全例子. 联网搜索、MCP安全、系统提示词获取、文生图越狱等">LLM安全例子. 联网搜索、MCP安全、系统提示词获取、文生图越狱等</span>
+            <span class="post-date" title="2025-05-11 17:00:27">2025/05/11</span>
+        </a>
+        
+        
+        <a  class="全部文章 LLM "
+           href="/2025/04/17/LLM/%E5%A4%A7%E6%A8%A1%E5%9E%8B%20System%20Prompt%E6%90%9C%E9%9B%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="大模型 System Prompt搜集">大模型 System Prompt搜集</span>
+            <span class="post-date" title="2025-04-17 17:38:23">2025/04/17</span>
+        </a>
+        
+        
+        <a  class="全部文章 LLM "
+           href="/2025/04/15/LLM/unsloth%20%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE&GRPO%E6%B5%81%E7%A8%8B%E8%B7%91%E9%80%9A/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="unsloth 环境配置&amp;GRPO流程跑通">unsloth 环境配置&amp;GRPO流程跑通</span>
+            <span class="post-date" title="2025-04-15 13:26:12">2025/04/15</span>
         </a>
         
         
@@ -1319,12 +1346,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2025-08-10 11:50:56'>2025-04-06 20:50</time>
+            发布时间 : <time class="date" title='最后更新: 2025-08-31 11:54:30'>2025-04-06 20:50</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:3.4k</span>
+        <span>字数:3.5k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -1375,6 +1402,12 @@
 &quot;十大功劳属 \n 十大功劳属（学名：&quot;&quot;Mahonia&quot;&quot;）是小檗科下的一个属。该属共有约100种，分布于美洲中部和北部及亚洲。 \n 本属大部分的物种都可入药，在中药学中包含根、茎、叶等器官都可作为药材，而药效视物种而有所不同，据说有十种疗效，因而得名。&quot;
 &quot;舞鹤草属 \n 舞鹤草属（学名：&quot;&quot;Maianthemum&quot;&quot;）是百合科下的一个属，为多年生、矮小草本植物。该属共有4种，分布于北温带。 \n 最新资料把该属列为天门冬科植物&quot;
 &quot;牛筋藤属 \n 牛筋藤属（学名：&quot;&quot;Trophis&quot;&quot;，异名&quot;&quot;Malaisia&quot;&quot;）是桑科下的一个属，为藤本植物。该属仅有牛筋藤（&quot;&quot;Trophi scandens&quot;&quot;）一种，分布于东南亚和大洋洲。&quot;
+</code></pre>
+<p><strong>数据集预处理</strong></p>
+<pre><code class="python">dataset = load_dataset(&#39;text&#39;, data_files=&#123;&#39;train_file&#39;: &quot;./data.txt&quot;&#125;, cache_dir=&#39;./cache/&#39;)
+def batch_iterator(batch_size=10000):
+    for i in range(0, len(dataset[&#39;train_file&#39;]), batch_size):
+        yield dataset[&#39;train_file&#39;][i: i + batch_size][&quot;text&quot;]
 </code></pre>
 <p><strong>导入对应的包</strong></p>
 <pre><code class="python">import random

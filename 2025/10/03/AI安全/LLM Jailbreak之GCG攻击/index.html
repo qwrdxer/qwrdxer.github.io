@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>LLM Jailbreak之GCG攻击 | qwrdxer &#39;s blog</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="LLM Jailbreak之GCG攻击 | qwrdxer &#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Categories">
+<meta property="og:url" content="https://qwrdxer.github.io/categories/index.html">
+<meta property="og:site_name" content="qwrdxer &#39;s blog">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-08-10T03:50:56.671Z">
+<meta property="article:modified_time" content="2025-08-10T03:50:56.671Z">
+<meta property="article:author" content="qwrdxer">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>qwrdxer</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/qwrdxer"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/yyc-96-55-3"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="csdn"
+               href="https://blog.csdn.net/qwrdxer?type=blog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-csdn"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1944270374@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1944270374&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(67)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="杂项">
+            
+            杂项
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="编程语言">
+            <i class="fold iconfont icon-right"></i>
+            编程语言
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;C++">
+            
+            C++
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Go">
+            
+            Go
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+                    
+    <li>
+        <div data-rel="编程语言&lt;---&gt;Rust">
+            
+            Rust
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="操作系统">
+            
+            操作系统
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="代码分析">
+            
+            代码分析
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="环境配置">
+            
+            环境配置
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="脚本">
+            
+            脚本
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="开发工具">
+            
+            开发工具
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="论文阅读">
+            <i class="fold iconfont icon-right"></i>
+            论文阅读
+            <small>(1)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="论文阅读&lt;---&gt;人工智能">
+            
+            人工智能
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="爬虫">
+            
+            爬虫
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="区块链">
+            
+            区块链
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="人工智能">
+            <i class="fold iconfont icon-right"></i>
+            人工智能
+            <small>(4)</small>
+        </div>
+        
+            <ul class="sub hide">
+                
+                    
+    <li>
+        <div data-rel="人工智能&lt;---&gt;FASTAI">
+            
+            FASTAI
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+                
+            </ul>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="日志">
+            
+            日志
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="渗透测试篇">
+            
+            渗透测试篇
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            
+            数据库
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="算法">
+            
+            算法
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="写点好玩的">
+            
+            写点好玩的
+            <small>(6)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="一些奇怪的bug">
+            
+            一些奇怪的bug
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="以太坊">
+            
+            以太坊
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="Agent">
+            
+            Agent
+            <small>(4)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="AI安全">
+            
+            AI安全
+            <small>(8)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="LLM">
+            
+            LLM
+            <small>(10)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="MCP">
+            
+            MCP
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全工具篇">
+            
+            web安全工具篇
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="web安全漏洞篇">
+            
+            web安全漏洞篇
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="67">
+<input type="hidden" id="yelog_site_word_count" value="194.3k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>报错解决</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工具使用</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>环境配置</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>脚本</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>开发</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>深度学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>渗透测试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>通讯协议</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>文件包含</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>bash</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>FASTAI</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>GPT</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Josephus</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>linux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>LLM</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MCP</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Memory</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Multi-Agent</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>shell</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Swarm</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>web漏洞</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>WordPress</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <div id="local-search-result">
+
+    </div>
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2025/10/03/AI%E5%AE%89%E5%85%A8/LLM%20Jailbreak%E4%B9%8BGCG%E6%94%BB%E5%87%BB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="LLM Jailbreak之GCG攻击">LLM Jailbreak之GCG攻击</span>
+            <span class="post-date" title="2025-10-03 01:33:54">2025/10/03</span>
+        </a>
+        
+        
+        <a  class="All AI安全 "
+           href="/2025/09/24/AI%E5%AE%89%E5%85%A8/%E7%AE%80%E6%9E%90llamaGuard%7CQwen3Guard/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="简析llamaGuard|Qwen3Guard">简析llamaGuard|Qwen3Guard</span>
+            <span class="post-date" title="2025-09-24 13:19:49">2025/09/24</span>
+        </a>
+        
+        
+        <a  class="All AI安全 "
+           href="/2025/09/23/AI%E5%AE%89%E5%85%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%98%B2%E7%81%AB%E5%A2%99-%E7%8E%AF%E8%8A%82%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="大模型防火墙-环节分析">大模型防火墙-环节分析</span>
+            <span class="post-date" title="2025-09-23 19:49:20">2025/09/23</span>
+        </a>
+        
+        
+        <a  class="All AI安全 "
+           href="/2025/09/23/AI%E5%AE%89%E5%85%A8/%E5%BE%AE%E8%B0%83PromptGuard/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="微调PromptGuard">微调PromptGuard</span>
+            <span class="post-date" title="2025-09-23 12:03:17">2025/09/23</span>
+        </a>
+        
+        
+        <a  class="All AI安全 "
+           href="/2025/09/09/AI%E5%AE%89%E5%85%A8/LLM%20%E6%94%BB%E5%87%BB&%20%E9%98%B2%E5%BE%A1%E6%96%B9%E6%B3%95%E5%A4%8D%E7%8E%B0%E6%B5%8B%E8%AF%95(%E4%BA%8C)/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="LLM 攻击&amp; 防御方法复现测试(二)">LLM 攻击&amp; 防御方法复现测试(二)</span>
+            <span class="post-date" title="2025-09-09 00:30:51">2025/09/09</span>
+        </a>
+        
+        
+        <a  class="All AI安全 "
+           href="/2025/09/04/AI%E5%AE%89%E5%85%A8/LLM%20%E6%94%BB%E5%87%BB&%20%E9%98%B2%E5%BE%A1%E6%96%B9%E6%B3%95%E5%A4%8D%E7%8E%B0%E6%B5%8B%E8%AF%95(%E4%B8%80)/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="LLM 攻击&amp; 防御方法复现测试(一)">LLM 攻击&amp; 防御方法复现测试(一)</span>
+            <span class="post-date" title="2025-09-04 22:57:05">2025/09/04</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/09/03/LLM/%E5%BE%AE%E8%B0%83gpt-oss-20/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="微调gpt-oss-20b">微调gpt-oss-20b</span>
+            <span class="post-date" title="2025-09-03 22:10:10">2025/09/03</span>
+        </a>
+        
+        
+        <a  class="All AI安全 "
+           href="/2025/09/01/AI%E5%AE%89%E5%85%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8%E6%BC%AB%E8%B0%88/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="大模型安全漫谈">大模型安全漫谈</span>
+            <span class="post-date" title="2025-09-01 22:29:24">2025/09/01</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/08/31/LLM/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="大模型中的强化学习">大模型中的强化学习</span>
+            <span class="post-date" title="2025-08-31 12:43:58">2025/08/31</span>
+        </a>
+        
+        
+        <a  class="All AI安全 "
+           href="/2025/08/10/AI%E5%AE%89%E5%85%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%98%B2%E7%81%AB%E5%A2%99-%E6%95%B0%E6%8D%AE%E5%B7%A5%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="大模型防火墙-数据工程">大模型防火墙-数据工程</span>
+            <span class="post-date" title="2025-08-10 22:42:14">2025/08/10</span>
+        </a>
+        
+        
+        <a  class="All AI安全 "
+           href="/2025/08/10/AI%E5%AE%89%E5%85%A8/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%98%B2%E7%81%AB%E5%A2%99-overview/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="大模型防火墙-overview">大模型防火墙-overview</span>
+            <span class="post-date" title="2025-08-10 12:36:18">2025/08/10</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/05/11/LLM/LLM%E5%AE%89%E5%85%A8%E4%BE%8B%E5%AD%90.%20%E8%81%94%E7%BD%91%E6%90%9C%E7%B4%A2%E3%80%81MCP%E5%AE%89%E5%85%A8%E3%80%81%E7%B3%BB%E7%BB%9F%E6%8F%90%E7%A4%BA%E8%AF%8D%E8%8E%B7%E5%8F%96/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="LLM安全例子. 联网搜索、MCP安全、系统提示词获取、文生图越狱等">LLM安全例子. 联网搜索、MCP安全、系统提示词获取、文生图越狱等</span>
+            <span class="post-date" title="2025-05-11 17:00:27">2025/05/11</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/17/LLM/%E5%A4%A7%E6%A8%A1%E5%9E%8B%20System%20Prompt%E6%90%9C%E9%9B%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="大模型 System Prompt搜集">大模型 System Prompt搜集</span>
+            <span class="post-date" title="2025-04-17 17:38:23">2025/04/17</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/15/LLM/unsloth%20%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE&GRPO%E6%B5%81%E7%A8%8B%E8%B7%91%E9%80%9A/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="unsloth 环境配置&amp;GRPO流程跑通">unsloth 环境配置&amp;GRPO流程跑通</span>
+            <span class="post-date" title="2025-04-15 13:26:12">2025/04/15</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/12/LLM/Llama%20Factory%20%E5%BE%AE%E8%B0%83%E4%B8%80%E4%B8%AA%20LLM%E8%B6%8A%E7%8B%B1%E7%9B%B8%E5%85%B3%E5%A4%A7%E6%A8%A1%E5%9E%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Llama Factory 微调一个 LLM越狱相关大模型">Llama Factory 微调一个 LLM越狱相关大模型</span>
+            <span class="post-date" title="2025-04-12 13:56:52">2025/04/12</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/10/LLM/Qwen2.5-7b%20Lora%E5%BE%AE%E8%B0%83-peft%E7%AF%87/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Qwen2.5-7b Lora微调-peft篇">Qwen2.5-7b Lora微调-peft篇</span>
+            <span class="post-date" title="2025-04-10 14:32:36">2025/04/10</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/07/LLM/%E9%A2%84%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA25M%E7%9A%84GPT2%E6%A8%A1%E5%9E%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="预训练一个25M的GPT2模型">预训练一个25M的GPT2模型</span>
+            <span class="post-date" title="2025-04-07 14:19:54">2025/04/07</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/06/LLM/Tokenizer%20%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Tokenizer 从零开始训练">Tokenizer 从零开始训练</span>
+            <span class="post-date" title="2025-04-06 20:50:21">2025/04/06</span>
+        </a>
+        
+        
+        <a  class="All LLM "
+           href="/2025/04/06/LLM/GPT2%20%E6%89%8B%E6%92%95%20%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GPT2 手撕 模型代码分析">GPT2 手撕 模型代码分析</span>
+            <span class="post-date" title="2025-04-06 14:14:30">2025/04/06</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/22/Agent/multi-agent%E4%B8%AD%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="multi-agent中的设计模式">multi-agent中的设计模式</span>
+            <span class="post-date" title="2025-03-22 14:46:50">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/22/Agent/autogen-core%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen-core学习记录">autogen-core学习记录</span>
+            <span class="post-date" title="2025-03-22 14:42:21">2025/03/22</span>
+        </a>
+        
+        
+        <a  class="All MCP "
+           href="/2025/03/12/MCP/MCP(Model%20Context%20Protocol)%20%E7%AE%80%E4%BB%8B/"
+           data-tag="MCP,通讯协议,LLM"
+           data-author="" >
+            <span class="post-title" title="MCP(Model Context Protocol) 简介">MCP(Model Context Protocol) 简介</span>
+            <span class="post-date" title="2025-03-12 15:47:27">2025/03/12</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/10/Agent/autogen%E6%8F%90%E9%AB%98%E4%B9%8BAgentChat%20Advanced%E9%83%A8%E5%88%86/"
+           data-tag="Agent,Multi-Agent,Memory,Swarm"
+           data-author="" >
+            <span class="post-title" title="autogen提高之AgentChat Advanced部分">autogen提高之AgentChat Advanced部分</span>
+            <span class="post-date" title="2025-03-10 21:35:41">2025/03/10</span>
+        </a>
+        
+        
+        <a  class="All Agent "
+           href="/2025/03/08/Agent/autogen%E5%85%A5%E9%97%A8%E4%B9%8Bagentchat/"
+           data-tag="Agent,Multi-Agent"
+           data-author="" >
+            <span class="post-title" title="autogen入门之autochat">autogen入门之autochat</span>
+            <span class="post-date" title="2025-03-08 20:23:19">2025/03/08</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2024/02/26/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/logseq%E4%BD%BF%E7%94%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="logseq使用">logseq使用</span>
+            <span class="post-date" title="2024-02-26 10:47:48">2024/02/26</span>
+        </a>
+        
+        
+        <a  class="All 区块链 "
+           href="/2024/01/21/%E5%8C%BA%E5%9D%97%E9%93%BE/hardhat%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hardhat智能合约流程">hardhat智能合约流程</span>
+            <span class="post-date" title="2024-01-21 15:20:03">2024/01/21</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2024/01/17/%E7%AE%97%E6%B3%95/Josephus%20Problem/"
+           data-tag="Josephus"
+           data-author="" >
+            <span class="post-title" title="Josephus Problem">Josephus Problem</span>
+            <span class="post-date" title="2024-01-17 11:49:36">2024/01/17</span>
+        </a>
+        
+        
+        <a  class="All 区块链 "
+           href="/2024/01/08/%E5%8C%BA%E5%9D%97%E9%93%BE/fabric%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="fabric环境配置">fabric环境配置</span>
+            <span class="post-date" title="2024-01-08 18:47:43">2024/01/08</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/12/22/%E7%88%AC%E8%99%AB/CF%E7%9B%BE%E7%BB%95%E8%BF%87(NodeJs%E7%89%88)/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CF盾绕过(NodeJs版)">CF盾绕过(NodeJs版)</span>
+            <span class="post-date" title="2023-12-22 20:11:48">2023/12/22</span>
+        </a>
+        
+        
+        <a  class="All 以太坊 "
+           href="/2023/10/19/%E4%BB%A5%E5%A4%AA%E5%9D%8A/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E9%83%A8%E5%88%86%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B5%85%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="以太坊部分知识点浅析">以太坊部分知识点浅析</span>
+            <span class="post-date" title="2023-10-19 16:10:05">2023/10/19</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2023/10/12/%E6%97%A5%E5%BF%97/%E9%93%BE%E6%8E%A5%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="链接记录">链接记录</span>
+            <span class="post-date" title="2023-10-12 19:40:28">2023/10/12</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/go-rod%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="go-rod学习">go-rod学习</span>
+            <span class="post-date" title="2023-10-06 11:22:48">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="All 爬虫 "
+           href="/2023/10/06/%E7%88%AC%E8%99%AB/Go%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%88%AC%E8%99%AB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go实现一个爬虫">Go实现一个爬虫</span>
+            <span class="post-date" title="2023-10-06 11:10:43">2023/10/06</span>
+        </a>
+        
+        
+        <a  class="All 代码分析 "
+           href="/2023/10/05/%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/RustScan%E6%BA%90%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RustScan源代码分析">RustScan源代码分析</span>
+            <span class="post-date" title="2023-10-05 19:28:59">2023/10/05</span>
+        </a>
+        
+        
+        <a  class="All 一些奇怪的bug "
+           href="/2023/10/02/%E4%B8%80%E4%BA%9B%E5%A5%87%E6%80%AA%E7%9A%84bug/bug%E8%AE%B0%E5%BD%95&%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="bug记录&amp;解决方法">bug记录&amp;解决方法</span>
+            <span class="post-date" title="2023-10-02 16:05:12">2023/10/02</span>
+        </a>
+        
+        
+        <a  class="All 论文阅读 人工智能 "
+           href="/2023/10/01/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/OpenAI%E7%9A%84GPT%E5%8F%91%E5%B1%95/"
+           data-tag="LLM,GPT"
+           data-author="" >
+            <span class="post-title" title="大模型论文">大模型论文</span>
+            <span class="post-date" title="2023-10-01 22:17:21">2023/10/01</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Rust "
+           href="/2023/09/28/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/Rust_lifetime/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Rust的生命周期">Rust的生命周期</span>
+            <span class="post-date" title="2023-09-28 11:33:04">2023/09/28</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2023/09/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%AE%89%E5%85%A8%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE&%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9B%9B%E5%A4%A7%E4%BC%9A%E8%AE%AE%E4%B8%8B%E8%BD%BD/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安全四大会议&amp;人工智能四大会议下载">安全四大会议&amp;人工智能四大会议下载</span>
+            <span class="post-date" title="2023-09-27 20:47:28">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Rust "
+           href="/2023/09/27/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Rust/The%20Rust%20Programming%20Language%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Rust Programming Language阅读笔记">The Rust Programming Language阅读笔记</span>
+            <span class="post-date" title="2023-09-27 20:35:50">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_3_%E5%A4%9AGPU%E8%AE%AD%E7%BB%83/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_3_多GPU训练">FASTAI_3_多GPU训练</span>
+            <span class="post-date" title="2023-09-27 20:32:12">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_2_Datasets%E3%80%81Pipeline%E3%80%81TfmdLists%E3%80%81Transform/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="FASTAI_2_Datasets、Pipeline、TfmdLists、Transform">FASTAI_2_Datasets、Pipeline、TfmdLists、Transform</span>
+            <span class="post-date" title="2023-09-27 20:29:37">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI_1_%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8CAPI%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI_1_使用不同API加载数据">FASTAI_1_使用不同API加载数据</span>
+            <span class="post-date" title="2023-09-27 20:28:09">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 人工智能 FASTAI "
+           href="/2023/09/27/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/FASTAI/FASTAI%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"
+           data-tag="深度学习,FASTAI"
+           data-author="" >
+            <span class="post-title" title="FASTAI快速入门">FASTAI快速入门</span>
+            <span class="post-date" title="2023-09-27 20:18:36">2023/09/27</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 C++ "
+           href="/2023/01/10/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C++/C++%E5%85%A5%E9%97%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C++入门">C++入门</span>
+            <span class="post-date" title="2023-01-10 11:30:50">2023/01/10</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/27/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%AB%E6%8F%8F%E5%99%A8%E5%AE%9E%E7%8E%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="分布式扫描器实现">分布式扫描器实现</span>
+            <span class="post-date" title="2022-04-27 11:43:42">2022/04/27</span>
+        </a>
+        
+        
+        <a  class="All 数据库 "
+           href="/2022/04/14/%E6%95%B0%E6%8D%AE%E5%BA%93/mongodb%E5%AD%A6%E4%B9%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="mongodb学习">mongodb学习</span>
+            <span class="post-date" title="2022-04-14 09:31:33">2022/04/14</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/10/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/Go%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E5%99%A8/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go编写一个扫描器">Go编写一个扫描器</span>
+            <span class="post-date" title="2022-04-10 14:34:18">2022/04/10</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/04/09/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/%E6%83%B3%E6%B3%95%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="想法记录">想法记录</span>
+            <span class="post-date" title="2022-04-09 11:24:11">2022/04/09</span>
+        </a>
+        
+        
+        <a  class="All 编程语言 Go "
+           href="/2022/04/08/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go/The%20Way%20To%20Go/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="The Way To Go">The Way To Go</span>
+            <span class="post-date" title="2022-04-08 18:09:20">2022/04/08</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2022/03/31/%E6%97%A5%E5%BF%97/%E5%B1%B1%E8%BF%98%E6%98%AF%E5%B1%B1,%E6%B0%B4%E8%BF%98%E6%98%AF%E6%B0%B4,%E4%BD%A0%E4%B8%8D%E8%83%BD%E6%B0%B8%E8%BF%9C%E6%98%AF%E9%82%A3%E4%B8%AA%E4%BD%A0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="山还是山,水还是水,你不能永远是那个你">山还是山,水还是水,你不能永远是那个你</span>
+            <span class="post-date" title="2022-03-31 09:37:42">2022/03/31</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/2022/03/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20day11~day20/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day11~day20">30天自制操作系统-学习笔记 day11~day20</span>
+            <span class="post-date" title="2022-03-27 09:49:33">2022/03/27</span>
+        </a>
+        
+        
+        <a  class="All 日志 "
+           href="/2022/03/21/%E6%97%A5%E5%BF%97/%E9%97%B2%E8%AF%AD%E6%9D%82%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="闲语杂记">闲语杂记</span>
+            <span class="post-date" title="2022-03-21 12:51:18">2022/03/21</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/03/15/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/freemarker%E6%93%8D%E6%8E%A7word/"
+           data-tag="工具使用"
+           data-author="" >
+            <span class="post-title" title="freemarker操控word">freemarker操控word</span>
+            <span class="post-date" title="2022-03-15 12:00:54">2022/03/15</span>
+        </a>
+        
+        
+        <a  class="All 操作系统 "
+           href="/2022/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/30%E5%A4%A9%E8%87%AA%E5%88%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="30天自制操作系统-学习笔记 day1~day10">30天自制操作系统-学习笔记 day1~day10</span>
+            <span class="post-date" title="2022-01-31 10:57:39">2022/01/31</span>
+        </a>
+        
+        
+        <a  class="All 杂项 "
+           href="/2022/01/12/%E6%9D%82%E9%A1%B9/GITHUB%E6%94%B6%E9%9B%86/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GITHUB收集">GITHUB收集</span>
+            <span class="post-date" title="2022-01-12 20:07:03">2022/01/12</span>
+        </a>
+        
+        
+        <a  class="All 写点好玩的 "
+           href="/2022/01/11/%E5%86%99%E7%82%B9%E5%A5%BD%E7%8E%A9%E7%9A%84/web%E9%A1%B5%E9%9D%A2%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/"
+           data-tag="渗透测试,工具开发"
+           data-author="" >
+            <span class="post-title" title="web页面密码爆破">web页面密码爆破</span>
+            <span class="post-date" title="2022-01-11 10:21:34">2022/01/11</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2022/01/09/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/Goby%E5%88%86%E6%9E%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Goby分析">Goby分析</span>
+            <span class="post-date" title="2022-01-09 13:35:49">2022/01/09</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/08/15/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Shell%E8%84%9A%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+           data-tag="bash,脚本,shell,linux,开发"
+           data-author="" >
+            <span class="post-title" title="Shell脚本学习笔记">Shell脚本学习笔记</span>
+            <span class="post-date" title="2021-08-15 11:19:55">2021/08/15</span>
+        </a>
+        
+        
+        <a  class="All 渗透测试篇 "
+           href="/2021/07/25/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E7%AF%87/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="信息收集">信息收集</span>
+            <span class="post-date" title="2021-07-25 19:33:55">2021/07/25</span>
+        </a>
+        
+        
+        <a  class="All web安全漏洞篇 "
+           href="/2021/05/11/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/SQL%E6%B3%A8%E5%85%A5%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,MySQL"
+           data-author="" >
+            <span class="post-title" title="SQL注入相关">SQL注入相关</span>
+            <span class="post-date" title="2021-05-11 15:23:06">2021/05/11</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2021/04/21/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/nmap%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="nmap使用">nmap使用</span>
+            <span class="post-date" title="2021-04-21 19:29:51">2021/04/21</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/04/20/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/docker%E7%9B%B8%E5%85%B3/"
+           data-tag="工具使用,脚本,docker"
+           data-author="" >
+            <span class="post-title" title="docker相关">docker相关</span>
+            <span class="post-date" title="2021-04-20 13:49:50">2021/04/20</span>
+        </a>
+        
+        
+        <a  class="All web安全漏洞篇 "
+           href="/2021/04/19/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E7%AF%87/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%9B%B8%E5%85%B3/"
+           data-tag="web漏洞,文件包含"
+           data-author="" >
+            <span class="post-title" title="文件包含漏洞相关">文件包含漏洞相关</span>
+            <span class="post-date" title="2021-04-19 14:49:59">2021/04/19</span>
+        </a>
+        
+        
+        <a  class="All 开发工具 "
+           href="/2021/04/16/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/hexo%E5%91%BD%E4%BB%A4/"
+           data-tag="工具使用,脚本"
+           data-author="" >
+            <span class="post-title" title="hexo相关">hexo相关</span>
+            <span class="post-date" title="2021-04-16 12:12:14">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="All web安全工具篇 "
+           href="/2021/04/16/web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E7%AF%87/xray%E4%BD%BF%E7%94%A8/"
+           data-tag="渗透测试,工具使用"
+           data-author="" >
+            <span class="post-title" title="xray使用">xray使用</span>
+            <span class="post-date" title="2021-04-16 12:10:08">2021/04/16</span>
+        </a>
+        
+        
+        <a  class="All 脚本 "
+           href="/2021/04/15/%E8%84%9A%E6%9C%AC/some-script/"
+           data-tag="bash,脚本,python"
+           data-author="" >
+            <span class="post-title" title="some script">some script</span>
+            <span class="post-date" title="2021-04-15 11:23:33">2021/04/15</span>
+        </a>
+        
+        
+        <a  class="All 环境配置 "
+           href="/2021/04/15/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/centos%E9%83%A8%E7%BD%B2wordpress/"
+           data-tag="linux,环境配置,报错解决,WordPress"
+           data-author="" >
+            <span class="post-title" title="centos部署wordpress">centos部署wordpress</span>
+            <span class="post-date" title="2021-04-15 01:34:16">2021/04/15</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-AI安全/LLM Jailbreak之GCG攻击" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">LLM Jailbreak之GCG攻击</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2025-10-03 01:50:12'>2025-10-03 01:33</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:2.4k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A6%82%E8%BF%B0-Overview"><span class="toc-text">1. 概述 (Overview)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%AE%BE%E5%AE%9A%E5%85%B7%E4%BD%93%E7%BB%B4%E5%BA%A6"><span class="toc-text">2. 设定具体维度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%94%BB%E5%87%BB%E5%85%A8%E6%B5%81%E7%A8%8B%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90-In-Depth-Attack-Walkthrough"><span class="toc-text">3. 攻击全流程深度解析 (In-Depth Attack Walkthrough)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E8%AE%BE%E7%BD%AE-Initialization-amp-Setup"><span class="toc-text">3.1 初始化与设置 (Initialization &amp; Setup)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E8%BF%AD%E4%BB%A3%E5%BE%AA%E7%8E%AF%E5%BC%80%E5%A7%8B-Entering-the-Main-Loop"><span class="toc-text">3.2 迭代循环开始 (Entering the Main Loop)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E6%AD%A5%E9%AA%A4-A-%E8%AE%A1%E7%AE%97%E6%A2%AF%E5%BA%A6-Step-A-Gradient-Calculation"><span class="toc-text">3.3 步骤 A: 计算梯度 (Step A: Gradient Calculation)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E6%AD%A5%E9%AA%A4-B-%E5%AF%BB%E6%89%BE%E6%9C%80%E4%BD%B3%E6%9B%BF%E6%8D%A2-Token-Step-B-Finding-the-Best-Replacement-Tokens"><span class="toc-text">3.4 步骤 B: 寻找最佳替换 Token (Step B: Finding the Best Replacement Tokens)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E6%AD%A5%E9%AA%A4-C-%E9%9A%8F%E6%9C%BA%E9%87%87%E6%A0%B7%E4%B8%8E%E8%B4%AA%E5%A9%AA%E6%9B%B4%E6%96%B0-Step-C-Randomized-Sampling-amp-Greedy-Update"><span class="toc-text">3.5 步骤 C: 随机采样与贪婪更新 (Step C: Randomized Sampling &amp; Greedy Update)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%80%BB%E7%BB%93"><span class="toc-text">4. 总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text">代码</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-4 i,
+    .toc-level-4 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>文章中主体内容通过gemini code进行整理</strong> 本人尝试基于代码与gemini不断交流来了解这种攻击的原理，实际来看效果不错，将最终的文档整理并分享。个人的疑惑是如何反向传播来实现后缀更新，学习后发现其核心思想是 梯度代表更新方向，梯度与词表embedding的点积代表选用该token带来的贡献。</p>
+<p>GCG 攻击是一种针对白盒大模型的攻击方式，论文<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2307.15043">https://arxiv.org/abs/2307.15043</a></p>
+<p>本文档通过一组<strong>具体的维度数值</strong>，对 GCG 攻击代码的实现进行最终的深度技术拆解。这能让你像在调试器中观察一样，清晰地看到每个张量（Tensor）的形状变化和计算过程。</p>
+<h2 id="1-概述-Overview"><a href="#1-概述-Overview" class="headerlink" title="1. 概述 (Overview)"></a>1. 概述 (Overview)</h2><p>GCG 攻击通过在<strong>输入嵌入空间</strong>中进行梯度下降，来迭代式地优化一个对抗性后缀。其目标是找到一个能让模型以最高概率生成指定有害回复的后缀。本解析将带你走过从 token ID 到下一个更优后缀的完整计算过程。</p>
+<h2 id="2-设定具体维度"><a href="#2-设定具体维度" class="headerlink" title="2. 设定具体维度"></a>2. 设定具体维度</h2><p>为了方便理解，我们在整个流程中假设以下维度：</p>
+<ul>
+<li>  <code>embed_dim</code> (词嵌入维度): <strong>768</strong></li>
+<li>  <code>vocab_size</code> (词汇表大小): <strong>32000</strong></li>
+<li>  <code>user_len</code> (用户指令长度): <strong>10</strong> tokens</li>
+<li>  <code>adv_len</code> (对抗性后缀长度): <strong>5</strong> tokens</li>
+<li>  <code>target_len</code> (目标回复长度): <strong>8</strong> tokens</li>
+<li>  <code>total_length</code> (总长度): 10 + 5 + 8 = <strong>23</strong> tokens</li>
+<li>  <code>topk</code> (候选词数量): <strong>20</strong></li>
+<li>  <code>batch_size</code> (候选后缀评估批次): <strong>64</strong></li>
+</ul>
+<hr>
+<h2 id="3-攻击全流程深度解析-In-Depth-Attack-Walkthrough"><a href="#3-攻击全流程深度解析-In-Depth-Attack-Walkthrough" class="headerlink" title="3. 攻击全流程深度解析 (In-Depth Attack Walkthrough)"></a>3. 攻击全流程深度解析 (In-Depth Attack Walkthrough)</h2><p>我们将模拟并分解攻击循环中的<strong>一次完整迭代</strong>。</p>
+<h3 id="3-1-初始化与设置-Initialization-amp-Setup"><a href="#3-1-初始化与设置-Initialization-amp-Setup" class="headerlink" title="3.1 初始化与设置 (Initialization &amp; Setup)"></a>3.1 初始化与设置 (Initialization &amp; Setup)</h3><p>准备工作与之前相同，但现在我们知道分词后各个部分的 token 数量。</p>
+<h3 id="3-2-迭代循环开始-Entering-the-Main-Loop"><a href="#3-2-迭代循环开始-Entering-the-Main-Loop" class="headerlink" title="3.2 迭代循环开始 (Entering the Main Loop)"></a>3.2 迭代循环开始 (Entering the Main Loop)</h3><p>代码进入主循环: <code>for step in range(num_steps):</code></p>
+<h3 id="3-3-步骤-A-计算梯度-Step-A-Gradient-Calculation"><a href="#3-3-步骤-A-计算梯度-Step-A-Gradient-Calculation" class="headerlink" title="3.3 步骤 A: 计算梯度 (Step A: Gradient Calculation)"></a>3.3 步骤 A: 计算梯度 (Step A: Gradient Calculation)</h3><ul>
+<li><p><strong>A.1. 拼接与嵌入 (Concatenation &amp; Embedding)</strong></p>
+<ul>
+<li><strong>操作</strong>: 拼接 token ID。<pre><code class="python"># input_ids shape: (1, 10 + 5 + 8) -&gt; (1, 23)
+</code></pre>
+</li>
+<li><strong>操作</strong>: 转换为词嵌入向量，并启用梯度计算。<pre><code class="python"># input_embeds shape: (1, 23, 768)
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>A.2. 前向传播 (Forward Pass)</strong></p>
+<ul>
+<li><strong>操作</strong>: 将 <code>input_embeds</code> 输入 LLM，得到 <code>logits</code>。<pre><code class="python"># logits shape: (1, 23, 32000)
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>A.3. 损失计算 (Loss Calculation)</strong></p>
+<ul>
+<li><strong>操作</strong>: 切片 <code>logits</code>，只取出用于预测 <code>target</code> 的部分。预测 <code>target</code> 的第一个 token，需要用到第 <code>10+5-1=14</code> 个位置的 logit。预测 <code>target</code> 的最后一个 token，需要用到第 <code>23-1-1=21</code> 个位置的 logit。<pre><code class="python"># 切片范围: logits[:, 14:22, :]
+# pred_logits shape: (1, 8, 32000)
+</code></pre>
+</li>
+<li>  <strong>操作</strong>: 计算交叉熵损失。<code>pred_logits</code> 会被 reshape 成 <code>(8, 32000)</code>，<code>target_prompt_tokens</code> 会被 reshape 成 <code>(8,)</code>。</li>
+</ul>
+</li>
+<li><p><strong>A.4. 反向传播 (Backward Pass)</strong></p>
+<ul>
+<li>  <strong>操作</strong>: <code>loss.backward()</code></li>
+<li><strong>操作</strong>: 从 <code>input_embeds.grad</code> 中提取出只属于对抗性后缀的梯度。对抗性后缀从第 <code>10</code> 个 token 开始，到第 <code>14</code> 个 token 结束。<pre><code class="python"># 切片范围: input_embeds.grad[:, 10:15, :]
+# adv_grad shape: (1, 5, 768)
+</code></pre>
+</li>
+<li>  <strong>结果</strong>: 我们获得了 <code>adv_grad</code>，一个 <code>(1, 5, 768)</code> 的张量，包含了宝贵的梯度信息。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-4-步骤-B-寻找最佳替换-Token-Step-B-Finding-the-Best-Replacement-Tokens"><a href="#3-4-步骤-B-寻找最佳替换-Token-Step-B-Finding-the-Best-Replacement-Tokens" class="headerlink" title="3.4 步骤 B: 寻找最佳替换 Token (Step B: Finding the Best Replacement Tokens)"></a>3.4 步骤 B: 寻找最佳替换 Token (Step B: Finding the Best Replacement Tokens)</h3><ul>
+<li><p><strong>B.1. 梯度与嵌入矩阵相乘 (Gradient-Embedding Product)</strong></p>
+<ul>
+<li>  <strong>目标</strong>: 将 <code>768</code> 维的梯度信号，转换为 <code>32000</code> 维的 token 分数。</li>
+<li><strong>操作</strong>: <code>adv_grad</code> 左乘词汇表嵌入矩阵的转置。<pre><code class="python"># model.get_input_embeddings().weight.T shape: (768, 32000)
+# token_scores = adv_grad @ model.get_input_embeddings().weight.T
+# shape: (1, 5, 768) @ (768, 32000) -&gt; (1, 5, 32000)
+</code></pre>
+</li>
+<li>  <strong>结果解读</strong>: <code>token_scores</code> 是一个 <code>(1, 5, 32000)</code> 的张量。它的 <code>[0, i, j]</code> 位置的值，代表了将后缀的第 <code>i</code> 个 token 换成词汇表的第 <code>j</code> 个 token 的“收益”。</li>
+</ul>
+</li>
+<li><p><strong>B.2. Top-K 筛选 (Top-K Selection)</strong></p>
+<ul>
+<li><strong>操作</strong>: 对 <code>token_scores</code> 在最后一个维度（<code>32000</code>）上进行排序，选出分数最高的 <code>20</code> 个。<pre><code class="python"># topk_indices = torch.topk(token_scores, k=20, dim=-1).indices
+# topk_indices shape: (1, 5, 20)
+</code></pre>
+</li>
+<li>  <strong>结果</strong>: <code>topk_indices</code> 保存了后缀每个位置最值得替换的 <code>20</code> 个候选 token 的 ID。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-5-步骤-C-随机采样与贪婪更新-Step-C-Randomized-Sampling-amp-Greedy-Update"><a href="#3-5-步骤-C-随机采样与贪婪更新-Step-C-Randomized-Sampling-amp-Greedy-Update" class="headerlink" title="3.5 步骤 C: 随机采样与贪婪更新 (Step C: Randomized Sampling &amp; Greedy Update)"></a>3.5 步骤 C: 随机采样与贪婪更新 (Step C: Randomized Sampling &amp; Greedy Update)</h3><ul>
+<li><p><strong>C.1. 生成候选批次 (Generating a Candidate Batch)</strong></p>
+<ul>
+<li>  <strong>操作</strong>: 循环 <code>64</code> 次，每次都通过随机替换一个 token，生成一个新的后缀。最终得到一个包含 <code>64</code> 个新后缀的列表。</li>
+</ul>
+</li>
+<li><p><strong>C.2. 并行评估 (Parallel Evaluation)</strong></p>
+<ul>
+<li><strong>操作</strong>: 将 <code>64</code> 个新后缀与 <code>user_prompt</code> 和 <code>target_prompt</code> 分别拼接，形成一个批次。<pre><code class="python"># 伪代码
+# batched_input_ids shape: (64, 23)
+</code></pre>
+</li>
+<li><strong>操作</strong>: 对这个批次执行一次<strong>无梯度</strong>的前向传播，并计算每个样本的损失。<pre><code class="python"># batched_logits shape: (64, 23, 32000)
+# ... 经过切片和损失计算后 ...
+# all_losses shape: (64,)
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>C.3. 贪婪选择 (Greedy Selection)</strong></p>
+<ul>
+<li><strong>操作</strong>: 在 <code>all_losses</code> (一个有64个损失值的向量) 中找到最小值的索引。<pre><code class="python"># best_index = torch.argmin(all_losses) -&gt; 一个从 0 到 63 的整数
+</code></pre>
+</li>
+<li>  <strong>操作</strong>: 将这个 <code>best_index</code> 对应的新后缀，作为下一次迭代的起始后缀。</li>
+</ul>
+</li>
+</ul>
+<p>循环回到 <code>3.2</code>，用这个从64个候选中脱颖而出的、当前最优的后缀，重复上述所有步骤。</p>
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h2><p>通过这组具体的数值，我们可以更清晰地追踪数据在算法中的流动和变换。整个过程是一个高度优化的搜索循环，它将连续的梯度信息巧妙地转化为了在离散 token 空间中进行选择的依据，从而高效地找到攻击向量。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>为了更深入的了解原理，这是Gemini生成代码，可以直接运行测试学习</p>
+<pre><code class="python">import torch
+import torch.nn.functional as F
+
+# --- 1. 配置与维度设定 ---
+# (与我们之前在 README 中讨论的维度保持一致)
+print(&quot;--- 1. 配置与维度设定 ---&quot;)
+embed_dim = 768       # 词嵌入维度
+vocab_size = 32000    # 词汇表大小
+user_len = 10         # 用户指令长度
+adv_len = 5           # 对抗性后缀长度
+target_len = 8        # 目标回复长度
+total_len = user_len + adv_len + target_len
+topk = 20             # 候选词数量
+
+print(f&quot;Embed Dim: &#123;embed_dim&#125;, Vocab Size: &#123;vocab_size&#125;&quot;)
+print(f&quot;User Len: &#123;user_len&#125;, Adv Len: &#123;adv_len&#125;, Target Len: &#123;target_len&#125;\n&quot;)
+
+
+# --- 2. 随机初始化模拟数据 ---
+# 我们不需要一个真实的LLM，只需要形状正确并能进行反向传播的模拟组件
+print(&quot;--- 2. 随机初始化模拟数据 ---&quot;)
+
+# 模拟模型的词嵌入层
+mock_embedding_layer = torch.nn.Embedding(vocab_size, embed_dim)
+print(f&quot;模拟词嵌入矩阵 Shape: &#123;mock_embedding_layer.weight.shape&#125;&quot;)
+
+# 模拟一个极简的“模型”，它只做一件事：将嵌入向量转换为logits
+# 这足以让我们完成梯度的计算
+mock_llm_head = torch.nn.Linear(embed_dim, vocab_size)
+print(f&quot;模拟LLM头部 Shape: W: &#123;mock_llm_head.weight.shape&#125;, B: &#123;mock_llm_head.bias.shape&#125;&quot;)
+
+# 创建随机的输入 token IDs
+user_prompt_ids = torch.randint(0, vocab_size, (1, user_len))
+adv_prompt_ids = torch.randint(0, vocab_size, (1, adv_len))
+target_ids = torch.randint(0, vocab_size, (1, target_len))
+
+print(f&quot;原始对抗性后缀 (Token IDs): &#123;adv_prompt_ids.tolist()[0]&#125;\n&quot;)
+
+
+# --- 3. 执行单步 GCG 攻击流程 ---
+print(&quot;--- 3. 执行单步 GCG 攻击流程 ---&quot;)
+
+# A.1. 拼接与嵌入
+input_ids = torch.cat([user_prompt_ids, adv_prompt_ids, target_ids], dim=1)
+input_embeds = mock_embedding_layer(input_ids)
+# 关键！input_embeds是一个中间变量（非叶子节点），默认不会保存梯度。
+# 我们需要使用 retain_grad() 来显式地保留它的梯度。
+input_embeds.retain_grad()
+print(f&quot;A.1. 拼接后输入 Shape: &#123;input_ids.shape&#125;&quot;)
+print(f&quot;     嵌入后输入 Shape: &#123;input_embeds.shape&#125;&quot;)
+
+# A.2. 前向传播
+logits = mock_llm_head(input_embeds)
+print(f&quot;A.2. 模型输出 Logits Shape: &#123;logits.shape&#125;&quot;)
+
+# A.3. 损失计算 (只关心 target 部分)
+pred_logits = logits[:, user_len + adv_len - 1 : -1, :]
+loss = F.cross_entropy(pred_logits.view(-1, vocab_size), target_ids.view(-1))
+print(f&quot;A.3. 用于计算损失的 Logits Shape: &#123;pred_logits.shape&#125;&quot;)
+print(f&quot;     计算出的 Loss: &#123;loss.item():.4f&#125;&quot;)
+
+# A.4. 反向传播 &amp; 提取梯度
+loss.backward()
+adv_grad = input_embeds.grad[:, user_len : user_len + adv_len, :]
+print(f&quot;A.4. 提取出的对抗性后缀梯度 Shape: &#123;adv_grad.shape&#125;\n&quot;)
+
+
+# --- 4. 确定下一个 Token ---
+print(&quot;--- 4. 确定下一个 Token ---&quot;)
+
+# B.1. 梯度与嵌入矩阵相乘
+token_scores = adv_grad @ mock_embedding_layer.weight.T
+print(f&quot;B.1. 梯度与嵌入矩阵转置相乘...&quot;)
+print(f&quot;     (&#123;adv_grad.shape&#125;) @ (&#123;mock_embedding_layer.weight.T.shape&#125;) -&gt; &#123;token_scores.shape&#125;&quot;)
+
+# B.2. Top-K 筛选
+# 梯度指向损失增大的方向，所以我们要找分数最小（最负）的token
+# 这等价于对分数的负数取 top-k
+neg_token_scores = -token_scores
+_, topk_indices = torch.topk(neg_token_scores, k=topk, dim=-1)
+print(f&quot;B.2. Top-K 筛选结果 Shape: &#123;topk_indices.shape&#125;&quot;)
+print(f&quot;     这代表后缀的5个位置，每个位置都有了&#123;topk&#125;个最佳候选Token。\n&quot;)
+
+
+# --- 5. 贪婪地选择并更新一个Token ---
+# 为了简化Demo，我们不实现批处理评估，而是直接选择全局最优的那个替换
+print(&quot;--- 5. 贪婪地选择并更新一个Token ---&quot;)
+
+# 将 (5, 32000) 的分数展平为 (5 * 32000)
+flat_scores = neg_token_scores.view(-1)
+
+# 找到分数最高的那个候选词的索引
+best_candidate_flat_idx = torch.argmax(flat_scores)
+
+# 将一维索引转换回 (位置, token_id)
+# .item() 返回的是一个通用的Python Number，静态检查器无法确定其为整数。
+# 我们通过int()进行显式转换，以确保类型正确。
+best_pos = int((best_candidate_flat_idx // vocab_size).item())
+best_token_id = int((best_candidate_flat_idx % vocab_size).item())
+
+print(f&quot;全局最优替换: 在后缀的第 &#123;best_pos&#125; 个位置，将原Token替换为新Token ID &#123;best_token_id&#125;&quot;)
+
+# 创建新的对抗性后缀
+new_adv_prompt_ids = adv_prompt_ids.clone()
+new_adv_prompt_ids[0, best_pos] = best_token_id
+
+print(f&quot;原始对抗性后缀: &#123;adv_prompt_ids.tolist()[0]&#125;&quot;)
+print(f&quot;更新后对抗性后缀: &#123;new_adv_prompt_ids.tolist()[0]&#125;\n&quot;)
+
+print(&quot;--- Demo结束 ---&quot;)
+print(&quot;在真实的攻击中，这个新的后缀将会作为下一次迭代的输入，重复上述过程。&quot;)
+</code></pre>
+<hr>
+<p>文章参考:</p>
+<p>博客地址: qwrdxer.github.io</p>
+<p>欢迎交流, QQ: <code>1944270374</code>. WX: <code>qwrdxer</code></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1944270374@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2020-2023 qwrdxer
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 722px;
+    }
+    .nav.fullscreen {
+        margin-left: -722px;
+    }
+    .nav-left {
+        width: 300px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 542px;
+        }
+        .nav.fullscreen {
+            margin-left: -542px;
+        }
+        .nav-left {
+            width: 150px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 542px;
+            margin-left: -542px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    #post {
+        background: url(/img/start.png);
+    }
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

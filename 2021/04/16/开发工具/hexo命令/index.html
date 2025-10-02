@@ -6,31 +6,15 @@
   <meta name="keywords" content=" 工具使用 , 脚本 ">
   <meta name="description" content="hexo相关 | qwrdxer &#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="​    前文简单分析了PromptGuard，其利用Bert的上下文理解能力进行二分类训练，实现了越狱、注入的检测效果，然而Bert模型并没有语言模型的推理能力，对于一些复杂、隐藏恶意特征的越狱样本是很难检测到的。我们当然可以选择收集、合成复杂的样本进行训练，但根本的问题是Bert可能仅能学到浅层的模式、关键词匹配等，无法深入理解什么是真正的恶意样本。 ​    另一个思路是使用小的语言模型，即">
-<meta property="og:type" content="article">
-<meta property="og:title" content="简析llamaGuard|Qwen3Guard">
-<meta property="og:url" content="https://qwrdxer.github.io/2025/09/24/AI%E5%AE%89%E5%85%A8/%E7%AE%80%E6%9E%90llamaGuard|Qwen3Guard/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Categories">
+<meta property="og:url" content="https://qwrdxer.github.io/categories/index.html">
 <meta property="og:site_name" content="qwrdxer &#39;s blog">
-<meta property="og:description" content="​    前文简单分析了PromptGuard，其利用Bert的上下文理解能力进行二分类训练，实现了越狱、注入的检测效果，然而Bert模型并没有语言模型的推理能力，对于一些复杂、隐藏恶意特征的越狱样本是很难检测到的。我们当然可以选择收集、合成复杂的样本进行训练，但根本的问题是Bert可能仅能学到浅层的模式、关键词匹配等，无法深入理解什么是真正的恶意样本。 ​    另一个思路是使用小的语言模型，即">
 <meta property="og:locale">
-<meta property="og:image" content="https://qwrdxer.github.io/2025/09/24/AI%E5%AE%89%E5%85%A8/%E7%AE%80%E6%9E%90llamaGuard%7CQwen3Guard/image-20250926012732280.png">
-<meta property="og:image" content="https://qwrdxer.github.io/2025/09/24/AI%E5%AE%89%E5%85%A8/%E7%AE%80%E6%9E%90llamaGuard%7CQwen3Guard/image-20250926013324640.png">
-<meta property="og:image" content="https://qwrdxer.github.io/2025/09/24/AI%E5%AE%89%E5%85%A8/%E7%AE%80%E6%9E%90llamaGuard%7CQwen3Guard/image-20250926121219201.png">
-<meta property="og:image" content="https://qwrdxer.github.io/2025/09/24/AI%E5%AE%89%E5%85%A8/%E7%AE%80%E6%9E%90llamaGuard%7CQwen3Guard/image-20250926121557554.png">
-<meta property="og:image" content="https://qwrdxer.github.io/2025/09/24/AI%E5%AE%89%E5%85%A8/%E7%AE%80%E6%9E%90llamaGuard%7CQwen3Guard/image-20250926143739087.png">
-<meta property="og:image" content="https://qwrdxer.github.io/2025/09/24/AI%E5%AE%89%E5%85%A8/%E7%AE%80%E6%9E%90llamaGuard%7CQwen3Guard/image-20250926144950518.png">
-<meta property="og:image" content="https://qwrdxer.github.io/2025/09/24/AI%E5%AE%89%E5%85%A8/%E7%AE%80%E6%9E%90llamaGuard%7CQwen3Guard/image-20250926132904084.png">
-<meta property="og:image" content="https://qwrdxer.github.io/2025/09/24/AI%E5%AE%89%E5%85%A8/%E7%AE%80%E6%9E%90llamaGuard%7CQwen3Guard/image-20250926151852632.png">
-<meta property="og:image" content="https://qwrdxer.github.io/2025/09/24/AI%E5%AE%89%E5%85%A8/%E7%AE%80%E6%9E%90llamaGuard%7CQwen3Guard/image-20250926152909235.png">
-<meta property="og:image" content="https://qwrdxer.github.io/2025/09/24/AI%E5%AE%89%E5%85%A8/%E7%AE%80%E6%9E%90llamaGuard%7CQwen3Guard/image-20250926153116276.png">
-<meta property="og:image" content="https://qwrdxer.github.io/2025/09/24/AI%E5%AE%89%E5%85%A8/%E7%AE%80%E6%9E%90llamaGuard%7CQwen3Guard/image-20250926153520360.png">
-<meta property="og:image" content="https://qwrdxer.github.io/2025/09/24/AI%E5%AE%89%E5%85%A8/%E7%AE%80%E6%9E%90llamaGuard%7CQwen3Guard/image-20250926164546200.png">
-<meta property="og:image" content="https://qwrdxer.github.io/2025/09/24/AI%E5%AE%89%E5%85%A8/%E7%AE%80%E6%9E%90llamaGuard%7CQwen3Guard/image-20250926164622984.png">
-<meta property="article:published_time" content="2025-09-24T05:19:49.000Z">
-<meta property="article:modified_time" content="2025-09-26T08:57:59.739Z">
+<meta property="article:published_time" content="2025-08-10T03:50:56.671Z">
+<meta property="article:modified_time" content="2025-08-10T03:50:56.671Z">
 <meta property="article:author" content="qwrdxer">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://qwrdxer.github.io/2025/09/24/AI%E5%AE%89%E5%85%A8/%E7%AE%80%E6%9E%90llamaGuard%7CQwen3Guard/image-20250926012732280.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -165,7 +149,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(66)</small>
+                <small>(67)</small>
             
         </div>
     </li>
@@ -533,7 +517,7 @@
         <div data-rel="AI安全">
             
             AI安全
-            <small>(7)</small>
+            <small>(8)</small>
         </div>
         
     </li>
@@ -637,8 +621,8 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="66">
-<input type="hidden" id="yelog_site_word_count" value="192.3k">
+<input type="hidden" id="yelog_site_posts_number" value="67">
+<input type="hidden" id="yelog_site_word_count" value="194.3k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -804,6 +788,15 @@
         
         
         <a  class="All "
+           href="/2025/10/03/AI%E5%AE%89%E5%85%A8/LLM%20Jailbreak%E4%B9%8BGCG%E6%94%BB%E5%87%BB/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="LLM Jailbreak之GCG攻击">LLM Jailbreak之GCG攻击</span>
+            <span class="post-date" title="2025-10-03 01:33:54">2025/10/03</span>
+        </a>
+        
+        
+        <a  class="All AI安全 "
            href="/2025/09/24/AI%E5%AE%89%E5%85%A8/%E7%AE%80%E6%9E%90llamaGuard%7CQwen3Guard/"
            data-tag=""
            data-author="" >
